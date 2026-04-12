@@ -1,0 +1,32 @@
+name: workflow-security-guardrails
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/**'
+      - 'scripts/check-workflow-security-baseline.sh'
+  push:
+    branches: ['main']
+    paths:
+      - '.github/workflows/**'
+      - 'scripts/check-workflow-security-baseline.sh'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  guardrails:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+
+      - name: Validate workflow security baseline
+        env:
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+          CHECK_ALL_WORKFLOWS: ${{ github.event_name == 'workflow_dispatch' && 'true' || 'false' }}
+          ENFORCE_SHA_PINS: 'true'
+        run: ./scripts/check-workflow-security-baseline.sh
