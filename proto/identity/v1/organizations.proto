@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package identity.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/identity/v1;identityv1";
+
+import "google/protobuf/timestamp.proto";
+
+// Organization is the canonical org/workspace type.
+// Unifies gate's Organization (tenant.proto) and chat's WorkspaceInfo (auth.proto).
+message Organization {
+  string id = 1;
+  string name = 2;
+  string slug = 3;
+  google.protobuf.Timestamp created_at = 4;
+}
+
+// Member is the canonical org membership type.
+// Unifies gate's OrgMember and chat's WorkspaceMemberInfo.
+message Member {
+  string user_id = 1;
+  string organization_id = 2;
+  string email = 3;
+  string name = 4;
+  string picture = 5;
+  string role = 6;
+  string status = 7;
+  string identity_provider = 8;
+  string provisioning_source = 9;
+  google.protobuf.Timestamp created_at = 10;
+}
+
+// APIKey is the canonical API key type.
+// Unifies gate's APIKey (tenant.proto) and chat's APIKeyInfo (auth.proto).
+message APIKey {
+  string id = 1;
+  string organization_id = 2;
+  string name = 3;
+  string prefix = 4;
+  string provider = 5;
+  string role = 6;
+  string label = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp expires_at = 9;
+}

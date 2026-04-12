@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+package meter.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/meter/v1;meterv1";
+
+import "google/protobuf/timestamp.proto";
+
+// MeterService records and queries usage across EvalOps services.
+service MeterService {
+  rpc RecordUsage(RecordUsageRequest) returns (RecordUsageResponse);
+  rpc QueryUsage(QueryUsageRequest) returns (QueryUsageResponse);
+  rpc GetUsageSummary(GetUsageSummaryRequest) returns (GetUsageSummaryResponse);
+}
+
+// RecordUsageRequest is the canonical type for recording token/cost usage.
+// Replaces hand-written structs in llm-gateway and chat.
+message RecordUsageRequest {
+  string organization_id = 1;
+  string user_id = 2;
+  string agent_id = 3;
+  string team_id = 4;
+  string model = 5;
+  string provider = 6;
+  int64 prompt_tokens = 7;
+  int64 completion_tokens = 8;
+  int64 total_tokens = 9;
+  int64 cached_tokens = 10;
+  int64 reasoning_tokens = 11;
+  int64 cost_micros = 12;
+  string request_id = 13;
+  string surface = 14;
+  google.protobuf.Timestamp recorded_at = 15;
+}
+
+message RecordUsageResponse {
+  string id = 1;
+}
+
+message UsageRecord {
+  string id = 1;
+  string organization_id = 2;
+  string user_id = 3;
+  string agent_id = 4;
+  string team_id = 5;
+  string model = 6;
+  string provider = 7;
+  int64 prompt_tokens = 8;
+  int64 completion_tokens = 9;
+  int64 total_tokens = 10;
+  int64 cached_tokens = 11;
+  int64 reasoning_tokens = 12;
+  int64 cost_micros = 13;
+  string request_id = 14;
+  string surface = 15;
+  google.protobuf.Timestamp recorded_at = 16;
+}
+
+message QueryUsageRequest {
+  string organization_id = 1;
+  string user_id = 2;
+  string agent_id = 3;
+  string team_id = 4;
+  string model = 5;
+  string provider = 6;
+  google.protobuf.Timestamp start_time = 7;
+  google.protobuf.Timestamp end_time = 8;
+  int32 limit = 9;
+  int32 offset = 10;
+}
+
+message QueryUsageResponse {
+  repeated UsageRecord records = 1;
+  int32 total = 2;
+}
+
+message GetUsageSummaryRequest {
+  string organization_id = 1;
+  google.protobuf.Timestamp start_time = 2;
+  google.protobuf.Timestamp end_time = 3;
+  string group_by = 4;
+}
+
+message GetUsageSummaryResponse {
+  UsageSummary summary = 1;
+}
+
+message UsageSummary {
+  int64 total_tokens = 1;
+  int64 total_prompt_tokens = 2;
+  int64 total_completion_tokens = 3;
+  int64 total_cost_micros = 4;
+  int32 total_requests = 5;
+  repeated UsageBucket buckets = 6;
+}
+
+message UsageBucket {
+  string key = 1;
+  int64 tokens = 2;
+  int64 cost_micros = 3;
+  int32 requests = 4;
+}

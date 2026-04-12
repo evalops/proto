@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package identity.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/identity/v1;identityv1";
+
+import "google/protobuf/timestamp.proto";
+
+// TokenService handles token introspection and issuance for cross-service auth.
+service TokenService {
+  // Introspect validates a bearer token and returns the resolved claims.
+  rpc Introspect(IntrospectRequest) returns (IntrospectResponse);
+
+  // IssueServiceToken mints a short-lived token for service-to-service calls.
+  rpc IssueServiceToken(IssueServiceTokenRequest) returns (IssueServiceTokenResponse);
+
+  // IssueAgentToken mints a token scoped to an agent identity.
+  rpc IssueAgentToken(IssueAgentTokenRequest) returns (IssueAgentTokenResponse);
+}
+
+message IntrospectRequest {
+  string token = 1;
+}
+
+// IntrospectResponse is the canonical introspection result.
+// Superset of service-runtime/identityclient.IntrospectionResult and
+// llm-gateway/internal/auth.IntrospectionResult — callers should import
+// this type instead of maintaining their own structs.
+message IntrospectResponse {
+  bool active = 1;
+  string subject = 2;
+  string token_type = 3;
+  string service = 4;
+  string organization_id = 5;
+  repeated string scopes = 6;
+  string agent_type = 7;
+  repeated string capabilities = 8;
+  string run_id = 9;
+  string surface = 10;
+  string user_subject = 11;
+  string email = 12;
+  string name = 13;
+  google.protobuf.Timestamp expires_at = 14;
+  google.protobuf.Timestamp issued_at = 15;
+}
+
+message IssueServiceTokenRequest {
+  string service = 1;
+  string organization_id = 2;
+  repeated string scopes = 3;
+  int32 ttl_seconds = 4;
+}
+
+message IssueServiceTokenResponse {
+  string token = 1;
+  google.protobuf.Timestamp expires_at = 2;
+}
+
+message IssueAgentTokenRequest {
+  string agent_type = 1;
+  repeated string capabilities = 2;
+  repeated string scopes = 3;
+  string surface = 4;
+  int32 ttl_seconds = 5;
+}
+
+message IssueAgentTokenResponse {
+  string token = 1;
+  google.protobuf.Timestamp expires_at = 2;
+}

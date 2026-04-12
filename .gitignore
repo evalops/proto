@@ -1,0 +1,8 @@
+# OS
+.DS_Store
+
+# Go
+/vendor/
+
+# Node (if consuming TS locally)
+node_modules/
