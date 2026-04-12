@@ -1,4 +1,4 @@
-.PHONY: lint breaking generate clean
+.PHONY: lint breaking generate test clean
 
 lint:
 	buf lint
@@ -8,6 +8,9 @@ breaking:
 
 generate:
 	buf generate
+
+test:
+	go test ./...
 
 clean:
 	rm -rf gen/go gen/ts gen/python
