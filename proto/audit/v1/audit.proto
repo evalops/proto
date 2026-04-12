@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+package audit.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/audit/v1;auditv1";
+
+import "google/protobuf/timestamp.proto";
+
+// AuditService records and queries audit events across EvalOps services.
+// This is the cross-service audit contract. Gate and chat each have their own
+// domain-specific audit protos that extend these base types.
+service AuditService {
+  rpc RecordEvent(RecordEventRequest) returns (RecordEventResponse);
+  rpc QueryEvents(QueryEventsRequest) returns (QueryEventsResponse);
+  rpc ExportEvents(ExportEventsRequest) returns (stream ExportEventsResponse);
+}
+
+// Actor identifies who performed an action.
+// Unifies the actor concept across chat's AuditEvent, gate's AuditEntry,
+// and the standalone audit service's RecordEventRequest.
+message Actor {
+  string id = 1;
+  string type = 2;
+  string email = 3;
+  string ip_address = 4;
+  string user_agent = 5;
+  string service = 6;
+  string device_id = 7;
+}
+
+// Resource identifies what was acted upon.
+message Resource {
+  string type = 1;
+  string id = 2;
+  string name = 3;
+}
+
+// Event is the canonical audit event.
+message Event {
+  string event_id = 1;
+  google.protobuf.Timestamp timestamp = 2;
+
+  Actor actor = 3;
+  Resource resource = 4;
+
+  string action = 5;
+  string organization_id = 6;
+  string workspace_id = 7;
+
+  string outcome = 8;
+  string error_message = 9;
+
+  string before_state = 10;
+  string after_state = 11;
+
+  string data_classification = 12;
+  map<string, string> metadata = 13;
+
+  // Tamper-evidence chain
+  string checksum = 14;
+  string previous_event_id = 15;
+}
+
+message RecordEventRequest {
+  Actor actor = 1;
+  Resource resource = 2;
+  string action = 3;
+  string organization_id = 4;
+  string workspace_id = 5;
+  string outcome = 6;
+  string error_message = 7;
+  string before_state = 8;
+  string after_state = 9;
+  string data_classification = 10;
+  map<string, string> metadata = 11;
+  string request_id = 12;
+  string trace_id = 13;
+}
+
+message RecordEventResponse {
+  string event_id = 1;
+  google.protobuf.Timestamp timestamp = 2;
+  string checksum = 3;
+}
+
+message QueryEventsRequest {
+  string organization_id = 1;
+  google.protobuf.Timestamp start_time = 2;
+  google.protobuf.Timestamp end_time = 3;
+  string actor_id = 4;
+  string actor_type = 5;
+  string action = 6;
+  string resource_type = 7;
+  string resource_id = 8;
+  string outcome = 9;
+  int32 limit = 10;
+  int32 offset = 11;
+  bool include_state_changes = 12;
+}
+
+message QueryEventsResponse {
+  repeated Event events = 1;
+  int32 total = 2;
+}
+
+message ExportEventsRequest {
+  string organization_id = 1;
+  google.protobuf.Timestamp start_time = 2;
+  google.protobuf.Timestamp end_time = 3;
+  string format = 4;
+  bool include_state_changes = 5;
+  string export_reason = 6;
+}
+
+message ExportEventsResponse {
+  bytes data = 1;
+  string content_type = 2;
+  string filename = 3;
+}

@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package identity.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/identity/v1;identityv1";
+
+import "google/protobuf/timestamp.proto";
+
+// Session represents an authenticated user session.
+// Derived from identity/internal/sessions.Session.
+message Session {
+  string id = 1;
+  string identity_id = 2;
+  string organization_id = 3;
+  string tenant_id = 4;
+  bool active = 5;
+  DeviceInfo device_info = 6;
+  google.protobuf.Timestamp expires_at = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}
+
+message DeviceInfo {
+  string ip = 1;
+  string forwarded_for = 2;
+  string user_agent = 3;
+}

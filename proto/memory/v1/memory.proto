@@ -1,0 +1,135 @@
+syntax = "proto3";
+
+package memory.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/memory/v1;memoryv1";
+
+import "google/protobuf/timestamp.proto";
+
+// MemoryService provides semantic memory storage and recall.
+// Canonical contract for evalops/memory, replacing hand-written structs
+// in chat (externalmemory/client.go) and ensemble (src/lib/memory/).
+service MemoryService {
+  rpc Store(StoreRequest) returns (StoreResponse);
+  rpc Recall(RecallRequest) returns (RecallResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+  rpc List(ListRequest) returns (ListResponse);
+  rpc Consolidate(ConsolidateRequest) returns (ConsolidateResponse);
+}
+
+// Scope controls memory visibility.
+enum Scope {
+  SCOPE_UNSPECIFIED = 0;
+  SCOPE_USER = 1;
+  SCOPE_TEAM = 2;
+  SCOPE_ORGANIZATION = 3;
+  SCOPE_AGENT = 4;
+  SCOPE_PROJECT = 5;
+}
+
+// Memory is the canonical memory record.
+// Unifies chat's Memory proto and ensemble's TypeScript memory types.
+message Memory {
+  string id = 1;
+  Scope scope = 2;
+  string content = 3;
+  string type = 4;
+  string source = 5;
+  float confidence = 6;
+  bool pinned = 7;
+
+  // Packed float encoding — ~4x smaller than JSON float arrays.
+  repeated float embedding = 8 [packed = true];
+
+  string workspace_id = 9;
+  string user_id = 10;
+  string project_id = 11;
+  string team_id = 12;
+  string repository = 13;
+  string agent = 14;
+  bool is_policy = 15;
+
+  google.protobuf.Timestamp created_at = 16;
+  google.protobuf.Timestamp updated_at = 17;
+}
+
+message StoreRequest {
+  Scope scope = 1;
+  string content = 2;
+  string type = 3;
+  string source = 4;
+  float confidence = 5;
+  string project_id = 6;
+  string team_id = 7;
+  string repository = 8;
+  string agent = 9;
+  bool is_policy = 10;
+}
+
+message StoreResponse {
+  Memory memory = 1;
+}
+
+message RecallRequest {
+  string query = 1;
+  Scope scope = 2;
+  int32 top_k = 3;
+  float min_similarity = 4;
+  string project_id = 5;
+  string team_id = 6;
+  string repository = 7;
+  string agent = 8;
+}
+
+message RecallResponse {
+  repeated RecallResult results = 1;
+}
+
+message RecallResult {
+  Memory memory = 1;
+  float similarity = 2;
+}
+
+message UpdateRequest {
+  string id = 1;
+  string content = 2;
+  string type = 3;
+  float confidence = 4;
+}
+
+message UpdateResponse {
+  Memory memory = 1;
+}
+
+message DeleteRequest {
+  string id = 1;
+}
+
+message DeleteResponse {}
+
+message ListRequest {
+  Scope scope = 1;
+  string project_id = 2;
+  string team_id = 3;
+  string repository = 4;
+  string agent = 5;
+  int32 limit = 6;
+  int32 offset = 7;
+}
+
+message ListResponse {
+  repeated Memory memories = 1;
+  int32 total = 2;
+  bool has_more = 3;
+}
+
+message ConsolidateRequest {
+  Scope scope = 1;
+  string project_id = 2;
+}
+
+message ConsolidateResponse {
+  int32 merged = 1;
+  int32 pruned = 2;
+}
