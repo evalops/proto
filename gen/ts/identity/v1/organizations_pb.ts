@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file identity/v1/organizations.proto.
  */
 export const file_identity_v1_organizations: GenFile = /*@__PURE__*/
-  fileDesc("Ch9pZGVudGl0eS92MS9vcmdhbml6YXRpb25zLnByb3RvEgtpZGVudGl0eS52MSJmCgxPcmdhbml6YXRpb24SCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIMCgRzbHVnGAMgASgJEi4KCmNyZWF0ZWRfYXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIuYBCgZNZW1iZXISDwoHdXNlcl9pZBgBIAEoCRIXCg9vcmdhbml6YXRpb25faWQYAiABKAkSDQoFZW1haWwYAyABKAkSDAoEbmFtZRgEIAEoCRIPCgdwaWN0dXJlGAUgASgJEgwKBHJvbGUYBiABKAkSDgoGc3RhdHVzGAcgASgJEhkKEWlkZW50aXR5X3Byb3ZpZGVyGAggASgJEhsKE3Byb3Zpc2lvbmluZ19zb3VyY2UYCSABKAkSLgoKY3JlYXRlZF9hdBgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAi2gEKBkFQSUtleRIKCgJpZBgBIAEoCRIXCg9vcmdhbml6YXRpb25faWQYAiABKAkSDAoEbmFtZRgDIAEoCRIOCgZwcmVmaXgYBCABKAkSEAoIcHJvdmlkZXIYBSABKAkSDAoEcm9sZRgGIAEoCRINCgVsYWJlbBgHIAEoCRIuCgpjcmVhdGVkX2F0GAggASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgpleHBpcmVzX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcEI4WjZnaXRodWIuY29tL2V2YWxvcHMvcHJvdG8vZ2VuL2dvL2lkZW50aXR5L3YxO2lkZW50aXR5djFiBnByb3RvMw", [file_google_protobuf_timestamp]);
+  fileDesc("Ch9pZGVudGl0eS92MS9vcmdhbml6YXRpb25zLnByb3RvEgtpZGVudGl0eS52MSJmCgxPcmdhbml6YXRpb24SCgoCaWQYASABKAkSDAoEbmFtZRgCIAEoCRIMCgRzbHVnGAMgASgJEi4KCmNyZWF0ZWRfYXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIlcKFk9yZ2FuaXphdGlvbk1lbWJlcnNoaXASLwoMb3JnYW5pemF0aW9uGAEgASgLMhkuaWRlbnRpdHkudjEuT3JnYW5pemF0aW9uEgwKBHJvbGUYAiABKAki5gEKBk1lbWJlchIPCgd1c2VyX2lkGAEgASgJEhcKD29yZ2FuaXphdGlvbl9pZBgCIAEoCRINCgVlbWFpbBgDIAEoCRIMCgRuYW1lGAQgASgJEg8KB3BpY3R1cmUYBSABKAkSDAoEcm9sZRgGIAEoCRIOCgZzdGF0dXMYByABKAkSGQoRaWRlbnRpdHlfcHJvdmlkZXIYCCABKAkSGwoTcHJvdmlzaW9uaW5nX3NvdXJjZRgJIAEoCRIuCgpjcmVhdGVkX2F0GAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCLaAQoGQVBJS2V5EgoKAmlkGAEgASgJEhcKD29yZ2FuaXphdGlvbl9pZBgCIAEoCRIMCgRuYW1lGAMgASgJEg4KBnByZWZpeBgEIAEoCRIQCghwcm92aWRlchgFIAEoCRIMCgRyb2xlGAYgASgJEg0KBWxhYmVsGAcgASgJEi4KCmNyZWF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCmV4cGlyZXNfYXQYCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wQjhaNmdpdGh1Yi5jb20vZXZhbG9wcy9wcm90by9nZW4vZ28vaWRlbnRpdHkvdjE7aWRlbnRpdHl2MWIGcHJvdG8z", [file_google_protobuf_timestamp]);
 
 /**
  * Organization is the canonical org/workspace type.
@@ -48,6 +48,32 @@ export type Organization = Message<"identity.v1.Organization"> & {
  */
 export const OrganizationSchema: GenMessage<Organization> = /*@__PURE__*/
   messageDesc(file_identity_v1_organizations, 0);
+
+/**
+ * OrganizationMembership is the canonical "org plus this user's role in it"
+ * view. It replaces chat's WorkspaceInfo without pushing membership-scoped
+ * fields onto Organization itself.
+ *
+ * @generated from message identity.v1.OrganizationMembership
+ */
+export type OrganizationMembership = Message<"identity.v1.OrganizationMembership"> & {
+  /**
+   * @generated from field: identity.v1.Organization organization = 1;
+   */
+  organization?: Organization;
+
+  /**
+   * @generated from field: string role = 2;
+   */
+  role: string;
+};
+
+/**
+ * Describes the message identity.v1.OrganizationMembership.
+ * Use `create(OrganizationMembershipSchema)` to create a new message.
+ */
+export const OrganizationMembershipSchema: GenMessage<OrganizationMembership> = /*@__PURE__*/
+  messageDesc(file_identity_v1_organizations, 1);
 
 /**
  * Member is the canonical org membership type.
@@ -112,7 +138,7 @@ export type Member = Message<"identity.v1.Member"> & {
  * Use `create(MemberSchema)` to create a new message.
  */
 export const MemberSchema: GenMessage<Member> = /*@__PURE__*/
-  messageDesc(file_identity_v1_organizations, 1);
+  messageDesc(file_identity_v1_organizations, 2);
 
 /**
  * APIKey is the canonical API key type.
@@ -172,5 +198,5 @@ export type APIKey = Message<"identity.v1.APIKey"> & {
  * Use `create(APIKeySchema)` to create a new message.
  */
 export const APIKeySchema: GenMessage<APIKey> = /*@__PURE__*/
-  messageDesc(file_identity_v1_organizations, 2);
+  messageDesc(file_identity_v1_organizations, 3);
 
