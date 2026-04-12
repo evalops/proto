@@ -73,6 +73,11 @@ flowchart TD
     Proto -->|events/v1| Pipeline[Pipeline]
     Proto -->|tap/v1| EnsembleTap[ensemble-tap]
     Proto -->|tap/v1| Pipeline
+    Proto -->|prompts/v1| Prompts[prompts]
+    Proto -->|prompts/v1| Gateway
+    Proto -->|prompts/v1| Fermata[fermata]
+    Proto -->|prompts/v1| Maestro[maestro]
+    Proto -->|prompts/v1| Ensemble
 ```
 
 ### What This Replaces
@@ -106,6 +111,7 @@ import (
     meterv1 "github.com/evalops/proto/gen/go/meter/v1"
     auditv1 "github.com/evalops/proto/gen/go/audit/v1"
     memoryv1 "github.com/evalops/proto/gen/go/memory/v1"
+    promptsv1 "github.com/evalops/proto/gen/go/prompts/v1"
 )
 
 // Use generated types directly
@@ -114,6 +120,13 @@ req := &meterv1.RecordUsageRequest{
     Model:          "claude-opus-4.6",
     PromptTokens:   1250,
     CostMicros:     42300,
+}
+
+// Resolve the active prompt version at inference time
+resolveReq := &promptsv1.ResolveRequest{
+    Name:    "sdr-outreach",
+    Surface: "ensemble",
+    Env:     "production",
 }
 ```
 
@@ -200,6 +213,7 @@ proto/                  source .proto files
   memory/v1/            semantic memory storage and recall
   events/v1/            CloudEvent envelope and change journal payloads
   tap/v1/               normalized provider event payloads
+  prompts/v1/           prompt versioning, deployment, eval linkage
 gen/                    generated code (committed)
   go/                   Go protobuf + Connect-RPC packages
   ts/                   TypeScript protobuf-es + Connect-ES packages
