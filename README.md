@@ -157,6 +157,9 @@ make breaking
 # Regenerate Go and TypeScript packages
 make generate
 
+# Run contract tests for generated packages
+make test
+
 # Clean and regenerate from scratch
 make clean generate
 ```
@@ -210,7 +213,7 @@ The CI pipeline runs on every push to `main` and every PR:
 1. `buf lint` — validates proto files against the STANDARD rule set.
 2. `buf breaking` — checks for wire-incompatible changes against `main` (PRs only).
 3. `buf generate` — regenerates code and fails if the committed code is stale.
-4. `go build` — verifies the generated Go packages compile.
+4. `go test` — verifies the generated Go packages and contract tests pass.
 
 ## Related Issues
 

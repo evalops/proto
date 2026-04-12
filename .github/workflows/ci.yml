@@ -41,7 +41,7 @@ jobs:
             exit 1
           fi
 
-  go-build:
+  go-test:
     runs-on: ubuntu-latest
     needs: generate
     steps:
@@ -49,4 +49,4 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: "1.22"
-      - run: go build ./gen/go/...
+      - run: go test ./...
