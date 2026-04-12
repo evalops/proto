@@ -15,6 +15,14 @@ message Organization {
   google.protobuf.Timestamp created_at = 4;
 }
 
+// OrganizationMembership is the canonical "org plus this user's role in it"
+// view. It replaces chat's WorkspaceInfo without pushing membership-scoped
+// fields onto Organization itself.
+message OrganizationMembership {
+  Organization organization = 1;
+  string role = 2;
+}
+
 // Member is the canonical org membership type.
 // Unifies gate's OrgMember and chat's WorkspaceMemberInfo.
 message Member {

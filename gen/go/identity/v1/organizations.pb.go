@@ -92,6 +92,61 @@ func (x *Organization) GetCreatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+// OrganizationMembership is the canonical "org plus this user's role in it"
+// view. It replaces chat's WorkspaceInfo without pushing membership-scoped
+// fields onto Organization itself.
+type OrganizationMembership struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Organization  *Organization          `protobuf:"bytes,1,opt,name=organization,proto3" json:"organization,omitempty"`
+	Role          string                 `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *OrganizationMembership) Reset() {
+	*x = OrganizationMembership{}
+	mi := &file_identity_v1_organizations_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *OrganizationMembership) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*OrganizationMembership) ProtoMessage() {}
+
+func (x *OrganizationMembership) ProtoReflect() protoreflect.Message {
+	mi := &file_identity_v1_organizations_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use OrganizationMembership.ProtoReflect.Descriptor instead.
+func (*OrganizationMembership) Descriptor() ([]byte, []int) {
+	return file_identity_v1_organizations_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *OrganizationMembership) GetOrganization() *Organization {
+	if x != nil {
+		return x.Organization
+	}
+	return nil
+}
+
+func (x *OrganizationMembership) GetRole() string {
+	if x != nil {
+		return x.Role
+	}
+	return ""
+}
+
 // Member is the canonical org membership type.
 // Unifies gate's OrgMember and chat's WorkspaceMemberInfo.
 type Member struct {
@@ -112,7 +167,7 @@ type Member struct {
 
 func (x *Member) Reset() {
 	*x = Member{}
-	mi := &file_identity_v1_organizations_proto_msgTypes[1]
+	mi := &file_identity_v1_organizations_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -124,7 +179,7 @@ func (x *Member) String() string {
 func (*Member) ProtoMessage() {}
 
 func (x *Member) ProtoReflect() protoreflect.Message {
-	mi := &file_identity_v1_organizations_proto_msgTypes[1]
+	mi := &file_identity_v1_organizations_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -137,7 +192,7 @@ func (x *Member) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Member.ProtoReflect.Descriptor instead.
 func (*Member) Descriptor() ([]byte, []int) {
-	return file_identity_v1_organizations_proto_rawDescGZIP(), []int{1}
+	return file_identity_v1_organizations_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Member) GetUserId() string {
@@ -229,7 +284,7 @@ type APIKey struct {
 
 func (x *APIKey) Reset() {
 	*x = APIKey{}
-	mi := &file_identity_v1_organizations_proto_msgTypes[2]
+	mi := &file_identity_v1_organizations_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -241,7 +296,7 @@ func (x *APIKey) String() string {
 func (*APIKey) ProtoMessage() {}
 
 func (x *APIKey) ProtoReflect() protoreflect.Message {
-	mi := &file_identity_v1_organizations_proto_msgTypes[2]
+	mi := &file_identity_v1_organizations_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -254,7 +309,7 @@ func (x *APIKey) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use APIKey.ProtoReflect.Descriptor instead.
 func (*APIKey) Descriptor() ([]byte, []int) {
-	return file_identity_v1_organizations_proto_rawDescGZIP(), []int{2}
+	return file_identity_v1_organizations_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *APIKey) GetId() string {
@@ -330,7 +385,10 @@ const file_identity_v1_organizations_proto_rawDesc = "" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04slug\x18\x03 \x01(\tR\x04slug\x129\n" +
 	"\n" +
-	"created_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xd3\x02\n" +
+	"created_at\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"k\n" +
+	"\x16OrganizationMembership\x12=\n" +
+	"\forganization\x18\x01 \x01(\v2\x19.identity.v1.OrganizationR\forganization\x12\x12\n" +
+	"\x04role\x18\x02 \x01(\tR\x04role\"\xd3\x02\n" +
 	"\x06Member\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12'\n" +
 	"\x0forganization_id\x18\x02 \x01(\tR\x0eorganizationId\x12\x14\n" +
@@ -369,23 +427,25 @@ func file_identity_v1_organizations_proto_rawDescGZIP() []byte {
 	return file_identity_v1_organizations_proto_rawDescData
 }
 
-var file_identity_v1_organizations_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_identity_v1_organizations_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_identity_v1_organizations_proto_goTypes = []any{
-	(*Organization)(nil),          // 0: identity.v1.Organization
-	(*Member)(nil),                // 1: identity.v1.Member
-	(*APIKey)(nil),                // 2: identity.v1.APIKey
-	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
+	(*Organization)(nil),           // 0: identity.v1.Organization
+	(*OrganizationMembership)(nil), // 1: identity.v1.OrganizationMembership
+	(*Member)(nil),                 // 2: identity.v1.Member
+	(*APIKey)(nil),                 // 3: identity.v1.APIKey
+	(*timestamppb.Timestamp)(nil),  // 4: google.protobuf.Timestamp
 }
 var file_identity_v1_organizations_proto_depIdxs = []int32{
-	3, // 0: identity.v1.Organization.created_at:type_name -> google.protobuf.Timestamp
-	3, // 1: identity.v1.Member.created_at:type_name -> google.protobuf.Timestamp
-	3, // 2: identity.v1.APIKey.created_at:type_name -> google.protobuf.Timestamp
-	3, // 3: identity.v1.APIKey.expires_at:type_name -> google.protobuf.Timestamp
-	4, // [4:4] is the sub-list for method output_type
-	4, // [4:4] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	4, // 0: identity.v1.Organization.created_at:type_name -> google.protobuf.Timestamp
+	0, // 1: identity.v1.OrganizationMembership.organization:type_name -> identity.v1.Organization
+	4, // 2: identity.v1.Member.created_at:type_name -> google.protobuf.Timestamp
+	4, // 3: identity.v1.APIKey.created_at:type_name -> google.protobuf.Timestamp
+	4, // 4: identity.v1.APIKey.expires_at:type_name -> google.protobuf.Timestamp
+	5, // [5:5] is the sub-list for method output_type
+	5, // [5:5] is the sub-list for method input_type
+	5, // [5:5] is the sub-list for extension type_name
+	5, // [5:5] is the sub-list for extension extendee
+	0, // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_identity_v1_organizations_proto_init() }
@@ -399,7 +459,7 @@ func file_identity_v1_organizations_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_identity_v1_organizations_proto_rawDesc), len(file_identity_v1_organizations_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
