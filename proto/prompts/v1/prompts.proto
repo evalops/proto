@@ -31,18 +31,38 @@ message Version {
   string hash = 6;
   string author = 7;
   google.protobuf.Timestamp created_at = 8;
+  // Expected interpolation variable names (e.g., "customer_name", "deal_stage").
+  // Declaration only — rendering is the consumer's responsibility.
+  repeated string variables = 9;
+  // Per-model token counts for context window budgeting.
+  // Populated lazily by gateway or fermata after first tokenization.
+  map<string, int64> token_counts = 10;
 }
 
-// Deployment tracks which version is active for a given surface and environment.
+// Label is a mutable pointer from (org, prompt, label_name) to a version.
+// The primary resolution mechanism — code references labels, not version numbers.
+// Promotion and rollback are both label reassignments.
+message Label {
+  string prompt_id = 1;
+  string name = 2;            // "production", "staging", "canary"
+  int32 version = 3;
+  string actor = 4;
+  int32 rollback_from = 5;    // set when this assignment is a rollback
+  google.protobuf.Timestamp assigned_at = 6;
+}
+
+// Deployment is an audit record of a label assignment. Retained for compliance.
+// Every AssignLabel call produces both a Label update and a Deployment record.
 message Deployment {
   string id = 1;
   string prompt_id = 2;
   string version_id = 3;
   int32 version = 4;
-  string surface = 5;
-  string env = 6;
+  string surface = 5;         // label name (kept as "surface" for wire compat)
+  string env = 6;             // deprecated — use label name
   string actor = 7;
   google.protobuf.Timestamp created_at = 8;
+  int32 rollback_from = 9;
 }
 
 // EvalLink connects a prompt version to a Fermata evaluation result.
@@ -57,6 +77,14 @@ message EvalLink {
   google.protobuf.Timestamp created_at = 8;
 }
 
+// ResolvedPrompt is returned by the bulk-load endpoint for gateway startup.
+message ResolvedPrompt {
+  string prompt_name = 1;
+  string prompt_id = 2;
+  string label = 3;
+  Version version = 4;
+}
+
 // PromptService defines the prompt registry API.
 service PromptService {
   rpc CreatePrompt(CreatePromptRequest) returns (Prompt);
@@ -64,10 +92,12 @@ service PromptService {
   rpc ListPrompts(ListPromptsRequest) returns (ListPromptsResponse);
   rpc CreateVersion(CreateVersionRequest) returns (Version);
   rpc ListVersions(ListVersionsRequest) returns (ListVersionsResponse);
-  rpc Deploy(DeployRequest) returns (Deployment);
+  rpc AssignLabel(AssignLabelRequest) returns (Label);
+  rpc ListLabels(ListLabelsRequest) returns (ListLabelsResponse);
   rpc ListDeployments(ListDeploymentsRequest) returns (ListDeploymentsResponse);
   rpc LinkEval(LinkEvalRequest) returns (EvalLink);
   rpc Resolve(ResolveRequest) returns (ResolveResponse);
+  rpc ResolveAll(ResolveAllRequest) returns (ResolveAllResponse);
 }
 
 message CreatePromptRequest {
@@ -95,6 +125,7 @@ message CreateVersionRequest {
   string content = 2;
   string model = 3;
   string author = 4;
+  repeated string variables = 5;
 }
 
 message ListVersionsRequest {
@@ -105,12 +136,22 @@ message ListVersionsResponse {
   repeated Version versions = 1;
 }
 
-message DeployRequest {
+// AssignLabelRequest atomically moves a label pointer to a version.
+// Used for promotion, rollback, and canary assignment.
+message AssignLabelRequest {
   string prompt_id = 1;
-  int32 version = 2;
-  string surface = 3;
-  string env = 4;
-  string actor = 5;
+  string name = 2;            // label name: "production", "staging", "canary"
+  int32 version = 3;          // target version number
+  string actor = 4;           // who is making the assignment
+  int32 rollback_from = 5;    // set when this is a rollback (the version being rolled back from)
+}
+
+message ListLabelsRequest {
+  string prompt_id = 1;
+}
+
+message ListLabelsResponse {
+  repeated Label labels = 1;
 }
 
 message ListDeploymentsRequest {
@@ -130,12 +171,22 @@ message LinkEvalRequest {
   string eval_url = 6;
 }
 
+// ResolveRequest is the hot-path lookup. Label defaults to "production".
+// Consumers MUST pin the resolved version at session/sequence start.
 message ResolveRequest {
   string name = 1;
-  string surface = 2;
-  string env = 3;
+  string label = 2;           // default: "production"
 }
 
 message ResolveResponse {
   Version version = 1;
+}
+
+// ResolveAllRequest returns all active prompts for a label — gateway startup path.
+message ResolveAllRequest {
+  string label = 1;           // default: "production"
+}
+
+message ResolveAllResponse {
+  repeated ResolvedPrompt prompts = 1;
 }
