@@ -1,0 +1,21 @@
+{
+  "results": [
+    {
+      "memory": {
+        "id": "mem_123",
+        "scope": "SCOPE_PROJECT",
+        "content": "Retry with exponential backoff.",
+        "type": "project",
+        "source": "maestro",
+        "confidence": 0.87,
+        "project_id": "maestro",
+        "team_id": "team-platform",
+        "repository": "evalops/maestro",
+        "agent": "maestro",
+        "created_at": "2026-04-12T15:00:00Z",
+        "updated_at": "2026-04-12T15:00:00Z"
+      },
+      "similarity": 0.82
+    }
+  ]
+}
