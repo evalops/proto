@@ -1,0 +1,12 @@
+{
+  "scope": "SCOPE_PROJECT",
+  "content": "Keep PRs focused.",
+  "type": "project",
+  "source": "maestro",
+  "confidence": 0.91,
+  "project_id": "maestro",
+  "team_id": "team-platform",
+  "repository": "evalops/maestro",
+  "agent": "maestro",
+  "is_policy": true
+}

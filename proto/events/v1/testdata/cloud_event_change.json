@@ -1,0 +1,29 @@
+{
+  "spec_version": "1.0",
+  "id": "evt_123",
+  "type": "conversation.updated",
+  "source": "maestro",
+  "subject": "conversation/conv_456",
+  "time": "2026-04-12T15:10:00Z",
+  "data_content_type": "application/protobuf",
+  "tenant_id": "org_123",
+  "data": {
+    "@type": "type.googleapis.com/events.v1.Change",
+    "seq": "42",
+    "organization_id": "org_123",
+    "aggregate_type": "conversation",
+    "aggregate_id": "conv_456",
+    "operation": "updated",
+    "actor_type": "agent",
+    "actor_id": "maestro",
+    "aggregate_version": "7",
+    "recorded_at": "2026-04-12T15:10:00Z",
+    "payload": {
+      "branch_count": 2,
+      "visibility": "workspace"
+    }
+  },
+  "extensions": {
+    "dataschema": "buf.build/evalops/proto/events.v1.Change"
+  }
+}

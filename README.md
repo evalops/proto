@@ -177,6 +177,11 @@ make test
 make clean generate
 ```
 
+Fixture-backed contract examples live alongside the owning proto package under
+`proto/<service>/v1/testdata/`. Keep those JSON examples aligned with the
+canonical protojson field names because `make test` unmarshals them through the
+generated types.
+
 ## Adding a New Proto
 
 1. Create `proto/<service>/v1/<file>.proto`.
@@ -211,7 +216,9 @@ proto/                  source .proto files
   meter/v1/             usage recording and cost attribution
   audit/v1/             audit event recording and querying
   memory/v1/            semantic memory storage and recall
+    testdata/           canonical protojson fixtures for contract tests
   events/v1/            CloudEvent envelope and change journal payloads
+    testdata/           typed event fixtures for cross-service contracts
   tap/v1/               normalized provider event payloads
   prompts/v1/           prompt versioning, deployment, eval linkage
 gen/                    generated code (committed)
