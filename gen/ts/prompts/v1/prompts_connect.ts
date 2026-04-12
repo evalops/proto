@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CreatePromptRequest, CreateVersionRequest, Deployment, DeployRequest, EvalLink, GetPromptRequest, LinkEvalRequest, ListDeploymentsRequest, ListDeploymentsResponse, ListPromptsRequest, ListPromptsResponse, ListVersionsRequest, ListVersionsResponse, Prompt, ResolveRequest, ResolveResponse, Version } from "./prompts_pb";
+import { AssignLabelRequest, CreatePromptRequest, CreateVersionRequest, EvalLink, GetPromptRequest, Label, LinkEvalRequest, ListDeploymentsRequest, ListDeploymentsResponse, ListLabelsRequest, ListLabelsResponse, ListPromptsRequest, ListPromptsResponse, ListVersionsRequest, ListVersionsResponse, Prompt, ResolveAllRequest, ResolveAllResponse, ResolveRequest, ResolveResponse, Version } from "./prompts_pb";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -60,12 +60,21 @@ export const PromptService = {
       kind: MethodKind.Unary,
     },
     /**
-     * @generated from rpc prompts.v1.PromptService.Deploy
+     * @generated from rpc prompts.v1.PromptService.AssignLabel
      */
-    deploy: {
-      name: "Deploy",
-      I: DeployRequest,
-      O: Deployment,
+    assignLabel: {
+      name: "AssignLabel",
+      I: AssignLabelRequest,
+      O: Label,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc prompts.v1.PromptService.ListLabels
+     */
+    listLabels: {
+      name: "ListLabels",
+      I: ListLabelsRequest,
+      O: ListLabelsResponse,
       kind: MethodKind.Unary,
     },
     /**
@@ -93,6 +102,15 @@ export const PromptService = {
       name: "Resolve",
       I: ResolveRequest,
       O: ResolveResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc prompts.v1.PromptService.ResolveAll
+     */
+    resolveAll: {
+      name: "ResolveAll",
+      I: ResolveAllRequest,
+      O: ResolveAllResponse,
       kind: MethodKind.Unary,
     },
   }
