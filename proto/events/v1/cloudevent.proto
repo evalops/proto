@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package events.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/events/v1;eventsv1";
+
+import "google/protobuf/any.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+// CloudEvent is the canonical event envelope used on the internal NATS bus.
+// The payload remains a typed message so producers and consumers can share one
+// transport wrapper while evolving event-specific contracts independently.
+message CloudEvent {
+  string spec_version = 1;
+  string id = 2;
+  string type = 3;
+  string source = 4;
+  string subject = 5;
+  google.protobuf.Timestamp time = 6;
+  string data_content_type = 7;
+  string tenant_id = 8;
+  google.protobuf.Any data = 9;
+  map<string, google.protobuf.Value> extensions = 10;
+}

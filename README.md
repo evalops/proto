@@ -32,6 +32,8 @@ packages instead of maintaining their own hand-written struct copies.
 | `meter/v1` | Usage recording, querying, cost attribution | llm-gateway, chat, platform |
 | `audit/v1` | Audit event recording, actors, resources, querying, export | llm-gateway, chat, gate, platform |
 | `memory/v1` | Semantic memory storage, recall, embeddings, consolidation | chat, ensemble, platform |
+| `events/v1` | Shared NATS event envelope and change journal payloads | service-runtime, pipeline, parker |
+| `tap/v1` | Normalized tap webhook payloads and field-level diffs | ensemble-tap, pipeline |
 
 ## Architecture Diagrams
 
@@ -65,6 +67,11 @@ flowchart TD
     Proto -->|memory/v1| Memory
     Proto -->|memory/v1| Chat
     Proto -->|memory/v1| Ensemble
+    Proto -->|events/v1| SRT
+    Proto -->|events/v1| Parker[Parker]
+    Proto -->|events/v1| Pipeline[Pipeline]
+    Proto -->|tap/v1| EnsembleTap[ensemble-tap]
+    Proto -->|tap/v1| Pipeline
 ```
 
 ### What This Replaces
@@ -187,6 +194,8 @@ proto/                  source .proto files
   meter/v1/             usage recording and cost attribution
   audit/v1/             audit event recording and querying
   memory/v1/            semantic memory storage and recall
+  events/v1/            CloudEvent envelope and change journal payloads
+  tap/v1/               normalized provider event payloads
 gen/                    generated code (committed)
   go/                   Go protobuf + Connect-RPC packages
   ts/                   TypeScript protobuf-es + Connect-ES packages
@@ -210,3 +219,4 @@ The CI pipeline runs on every push to `main` and every PR:
 - evalops/meter#30 — adopt meter proto types
 - evalops/audit#23 — adopt audit proto types
 - evalops/memory#32 — adopt memory proto types
+- evalops/service-runtime#24 — shared protobuf event schemas
