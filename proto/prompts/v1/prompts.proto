@@ -1,0 +1,141 @@
+syntax = "proto3";
+
+package prompts.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/prompts/v1;promptsv1";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+// Prompt is a named, versioned prompt template scoped to an organization.
+// Used by all surfaces (Maestro, Ensemble, Aria) and by Fermata for eval
+// linkage. The canonical cross-service contract for prompt governance.
+message Prompt {
+  string id = 1;
+  string organization_id = 2;
+  string name = 3;
+  string surface = 4;
+  repeated string tags = 5;
+  google.protobuf.Struct metadata = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+}
+
+// Version is an immutable snapshot of prompt content.
+message Version {
+  string id = 1;
+  string prompt_id = 2;
+  int32 version = 3;
+  string content = 4;
+  string model = 5;
+  string hash = 6;
+  string author = 7;
+  google.protobuf.Timestamp created_at = 8;
+}
+
+// Deployment tracks which version is active for a given surface and environment.
+message Deployment {
+  string id = 1;
+  string prompt_id = 2;
+  string version_id = 3;
+  int32 version = 4;
+  string surface = 5;
+  string env = 6;
+  string actor = 7;
+  google.protobuf.Timestamp created_at = 8;
+}
+
+// EvalLink connects a prompt version to a Fermata evaluation result.
+message EvalLink {
+  string id = 1;
+  string prompt_id = 2;
+  string version_id = 3;
+  string eval_run_id = 4;
+  double score = 5;
+  bool pass = 6;
+  string eval_url = 7;
+  google.protobuf.Timestamp created_at = 8;
+}
+
+// PromptService defines the prompt registry API.
+service PromptService {
+  rpc CreatePrompt(CreatePromptRequest) returns (Prompt);
+  rpc GetPrompt(GetPromptRequest) returns (Prompt);
+  rpc ListPrompts(ListPromptsRequest) returns (ListPromptsResponse);
+  rpc CreateVersion(CreateVersionRequest) returns (Version);
+  rpc ListVersions(ListVersionsRequest) returns (ListVersionsResponse);
+  rpc Deploy(DeployRequest) returns (Deployment);
+  rpc ListDeployments(ListDeploymentsRequest) returns (ListDeploymentsResponse);
+  rpc LinkEval(LinkEvalRequest) returns (EvalLink);
+  rpc Resolve(ResolveRequest) returns (ResolveResponse);
+}
+
+message CreatePromptRequest {
+  string name = 1;
+  string surface = 2;
+  repeated string tags = 3;
+  google.protobuf.Struct metadata = 4;
+}
+
+message GetPromptRequest {
+  string id = 1;
+}
+
+message ListPromptsRequest {
+  string surface = 1;
+  string tag = 2;
+}
+
+message ListPromptsResponse {
+  repeated Prompt prompts = 1;
+}
+
+message CreateVersionRequest {
+  string prompt_id = 1;
+  string content = 2;
+  string model = 3;
+  string author = 4;
+}
+
+message ListVersionsRequest {
+  string prompt_id = 1;
+}
+
+message ListVersionsResponse {
+  repeated Version versions = 1;
+}
+
+message DeployRequest {
+  string prompt_id = 1;
+  int32 version = 2;
+  string surface = 3;
+  string env = 4;
+  string actor = 5;
+}
+
+message ListDeploymentsRequest {
+  string prompt_id = 1;
+}
+
+message ListDeploymentsResponse {
+  repeated Deployment deployments = 1;
+}
+
+message LinkEvalRequest {
+  string prompt_id = 1;
+  string version_id = 2;
+  string eval_run_id = 3;
+  double score = 4;
+  bool pass = 5;
+  string eval_url = 6;
+}
+
+message ResolveRequest {
+  string name = 1;
+  string surface = 2;
+  string env = 3;
+}
+
+message ResolveResponse {
+  Version version = 1;
+}

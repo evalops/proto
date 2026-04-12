@@ -34,6 +34,7 @@ packages instead of maintaining their own hand-written struct copies.
 | `memory/v1` | Semantic memory storage, recall, embeddings, consolidation | chat, ensemble, platform |
 | `events/v1` | Shared NATS event envelope and change journal payloads | service-runtime, pipeline, parker |
 | `tap/v1` | Normalized tap webhook payloads and field-level diffs | ensemble-tap, pipeline |
+| `prompts/v1` | Prompt versioning, deployment tracking, eval linkage, resolution | prompts, llm-gateway, fermata, maestro, ensemble |
 
 ## Architecture Diagrams
 
