@@ -228,6 +228,16 @@ func TestCloudEventChangeFixtureMatchesProtoContract(t *testing.T) {
 	var message eventsv1.CloudEvent
 	loadProtoJSONFixture(t, filepath.Join("proto", "events", "v1", "testdata", "cloud_event_change.json"), &message)
 
+	if message.GetSubject() != "conversation/conv_456" {
+		t.Fatalf("expected subject conversation/conv_456, got %q", message.GetSubject())
+	}
+	if message.GetTenantId() != "org_123" {
+		t.Fatalf("expected tenant_id org_123, got %q", message.GetTenantId())
+	}
+	if message.GetDataContentType() != "application/protobuf" {
+		t.Fatalf("expected data_content_type application/protobuf, got %q", message.GetDataContentType())
+	}
+
 	if message.GetData().GetTypeUrl() != "type.googleapis.com/events.v1.Change" {
 		t.Fatalf("unexpected Change type URL %q", message.GetData().GetTypeUrl())
 	}
@@ -316,6 +326,16 @@ func TestCloudEventTapFixtureMatchesProtoContract(t *testing.T) {
 
 	var message eventsv1.CloudEvent
 	loadProtoJSONFixture(t, filepath.Join("proto", "events", "v1", "testdata", "cloud_event_tap.json"), &message)
+
+	if message.GetSubject() != "deal/deal_123" {
+		t.Fatalf("expected subject deal/deal_123, got %q", message.GetSubject())
+	}
+	if message.GetTenantId() != "org_123" {
+		t.Fatalf("expected tenant_id org_123, got %q", message.GetTenantId())
+	}
+	if message.GetDataContentType() != "application/protobuf" {
+		t.Fatalf("expected data_content_type application/protobuf, got %q", message.GetDataContentType())
+	}
 
 	if message.GetData().GetTypeUrl() != "type.googleapis.com/tap.v1.TapEventData" {
 		t.Fatalf("unexpected TapEventData type URL %q", message.GetData().GetTypeUrl())

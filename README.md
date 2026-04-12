@@ -153,6 +153,22 @@ import { createClient } from "@connectrpc/connect-web";
 import { MemoryService } from "@evalops/proto/memory/v1/memory_connect";
 ```
 
+## Event Envelope Guidance
+
+`events/v1.CloudEvent` is the canonical typed envelope for the shared internal
+bus.
+
+- Set `subject` to the actual bus subject when the transport has one. This
+  keeps NATS routing context visible without forcing consumers to infer it from
+  `type`.
+- Keep `data` as a typed message packed in `google.protobuf.Any`; do not fall
+  back to service-local ad hoc payload blobs.
+- Prefer `data_content_type=application/protobuf` for the canonical envelope.
+  Some services still emit structured CloudEvents JSON with
+  `specversion`/`datacontenttype` and JSON `data` while they migrate. Consumers
+  should tolerate both shapes until the bus converges, but new typed contracts
+  should start from `events/v1.CloudEvent`.
+
 ## Development
 
 Prerequisites:
