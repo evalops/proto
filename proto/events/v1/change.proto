@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package events.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/events/v1;eventsv1";
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+// Change is the canonical change-journal payload shared by producers like
+// parker and pipeline and by downstream NATS consumers.
+message Change {
+  int64 seq = 1;
+  string organization_id = 2;
+  string aggregate_type = 3;
+  string aggregate_id = 4;
+  string operation = 5;
+  string actor_type = 6;
+  string actor_id = 7;
+  int64 aggregate_version = 8;
+  google.protobuf.Timestamp recorded_at = 9;
+  google.protobuf.Struct payload = 10;
+}

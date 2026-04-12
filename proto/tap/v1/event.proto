@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package tap.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/tap/v1;tapv1";
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+// FieldChange records a before/after value transition for a provider field.
+message FieldChange {
+  google.protobuf.Value from = 1;
+  google.protobuf.Value to = 2;
+}
+
+// TapEventData is the canonical normalized provider event payload produced by
+// ensemble-tap and consumed by downstream systems like pipeline.
+message TapEventData {
+  string provider = 1;
+  string entity_type = 2;
+  string entity_id = 3;
+  string action = 4;
+  map<string, FieldChange> changes = 5;
+  google.protobuf.Struct snapshot = 6;
+  string provider_event_id = 7;
+  google.protobuf.Timestamp provider_timestamp = 8;
+  string tenant_id = 9;
+  string request_id = 10;
+}
