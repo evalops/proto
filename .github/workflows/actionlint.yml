@@ -1,0 +1,38 @@
+name: actionlint
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  actionlint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install actionlint
+        shell: bash
+        run: |
+          set -euo pipefail
+          version=1.7.11
+          archive="actionlint_${version}_linux_amd64.tar.gz"
+          checksums="actionlint_${version}_checksums.txt"
+          curl -fsSLO "https://github.com/rhysd/actionlint/releases/download/v${version}/${archive}"
+          curl -fsSLO "https://github.com/rhysd/actionlint/releases/download/v${version}/${checksums}"
+          grep " ${archive}$" "${checksums}" | sha256sum -c -
+          tar -xzf "${archive}" actionlint
+          install -m 0755 actionlint "${RUNNER_TEMP}/actionlint"
+          echo "${RUNNER_TEMP}" >> "${GITHUB_PATH}"
+
+      - name: Lint GitHub Actions workflows
+        run: actionlint
