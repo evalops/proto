@@ -128,15 +128,21 @@ func (x *Prompt) GetUpdatedAt() *timestamppb.Timestamp {
 
 // Version is an immutable snapshot of prompt content.
 type Version struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	PromptId      string                 `protobuf:"bytes,2,opt,name=prompt_id,json=promptId,proto3" json:"prompt_id,omitempty"`
-	Version       int32                  `protobuf:"varint,3,opt,name=version,proto3" json:"version,omitempty"`
-	Content       string                 `protobuf:"bytes,4,opt,name=content,proto3" json:"content,omitempty"`
-	Model         string                 `protobuf:"bytes,5,opt,name=model,proto3" json:"model,omitempty"`
-	Hash          string                 `protobuf:"bytes,6,opt,name=hash,proto3" json:"hash,omitempty"`
-	Author        string                 `protobuf:"bytes,7,opt,name=author,proto3" json:"author,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	Id        string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	PromptId  string                 `protobuf:"bytes,2,opt,name=prompt_id,json=promptId,proto3" json:"prompt_id,omitempty"`
+	Version   int32                  `protobuf:"varint,3,opt,name=version,proto3" json:"version,omitempty"`
+	Content   string                 `protobuf:"bytes,4,opt,name=content,proto3" json:"content,omitempty"`
+	Model     string                 `protobuf:"bytes,5,opt,name=model,proto3" json:"model,omitempty"`
+	Hash      string                 `protobuf:"bytes,6,opt,name=hash,proto3" json:"hash,omitempty"`
+	Author    string                 `protobuf:"bytes,7,opt,name=author,proto3" json:"author,omitempty"`
+	CreatedAt *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	// Expected interpolation variable names (e.g., "customer_name", "deal_stage").
+	// Declaration only — rendering is the consumer's responsibility.
+	Variables []string `protobuf:"bytes,9,rep,name=variables,proto3" json:"variables,omitempty"`
+	// Per-model token counts for context window budgeting.
+	// Populated lazily by gateway or fermata after first tokenization.
+	TokenCounts   map[string]int64 `protobuf:"bytes,10,rep,name=token_counts,json=tokenCounts,proto3" json:"token_counts,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -227,24 +233,127 @@ func (x *Version) GetCreatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-// Deployment tracks which version is active for a given surface and environment.
+func (x *Version) GetVariables() []string {
+	if x != nil {
+		return x.Variables
+	}
+	return nil
+}
+
+func (x *Version) GetTokenCounts() map[string]int64 {
+	if x != nil {
+		return x.TokenCounts
+	}
+	return nil
+}
+
+// Label is a mutable pointer from (org, prompt, label_name) to a version.
+// The primary resolution mechanism — code references labels, not version numbers.
+// Promotion and rollback are both label reassignments.
+type Label struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PromptId      string                 `protobuf:"bytes,1,opt,name=prompt_id,json=promptId,proto3" json:"prompt_id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"` // "production", "staging", "canary"
+	Version       int32                  `protobuf:"varint,3,opt,name=version,proto3" json:"version,omitempty"`
+	Actor         string                 `protobuf:"bytes,4,opt,name=actor,proto3" json:"actor,omitempty"`
+	RollbackFrom  int32                  `protobuf:"varint,5,opt,name=rollback_from,json=rollbackFrom,proto3" json:"rollback_from,omitempty"` // set when this assignment is a rollback
+	AssignedAt    *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=assigned_at,json=assignedAt,proto3" json:"assigned_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Label) Reset() {
+	*x = Label{}
+	mi := &file_prompts_v1_prompts_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Label) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Label) ProtoMessage() {}
+
+func (x *Label) ProtoReflect() protoreflect.Message {
+	mi := &file_prompts_v1_prompts_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Label.ProtoReflect.Descriptor instead.
+func (*Label) Descriptor() ([]byte, []int) {
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Label) GetPromptId() string {
+	if x != nil {
+		return x.PromptId
+	}
+	return ""
+}
+
+func (x *Label) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *Label) GetVersion() int32 {
+	if x != nil {
+		return x.Version
+	}
+	return 0
+}
+
+func (x *Label) GetActor() string {
+	if x != nil {
+		return x.Actor
+	}
+	return ""
+}
+
+func (x *Label) GetRollbackFrom() int32 {
+	if x != nil {
+		return x.RollbackFrom
+	}
+	return 0
+}
+
+func (x *Label) GetAssignedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.AssignedAt
+	}
+	return nil
+}
+
+// Deployment is an audit record of a label assignment. Retained for compliance.
+// Every AssignLabel call produces both a Label update and a Deployment record.
 type Deployment struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	PromptId      string                 `protobuf:"bytes,2,opt,name=prompt_id,json=promptId,proto3" json:"prompt_id,omitempty"`
 	VersionId     string                 `protobuf:"bytes,3,opt,name=version_id,json=versionId,proto3" json:"version_id,omitempty"`
 	Version       int32                  `protobuf:"varint,4,opt,name=version,proto3" json:"version,omitempty"`
-	Surface       string                 `protobuf:"bytes,5,opt,name=surface,proto3" json:"surface,omitempty"`
-	Env           string                 `protobuf:"bytes,6,opt,name=env,proto3" json:"env,omitempty"`
+	Surface       string                 `protobuf:"bytes,5,opt,name=surface,proto3" json:"surface,omitempty"` // label name (kept as "surface" for wire compat)
+	Env           string                 `protobuf:"bytes,6,opt,name=env,proto3" json:"env,omitempty"`         // deprecated — use label name
 	Actor         string                 `protobuf:"bytes,7,opt,name=actor,proto3" json:"actor,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	RollbackFrom  int32                  `protobuf:"varint,9,opt,name=rollback_from,json=rollbackFrom,proto3" json:"rollback_from,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Deployment) Reset() {
 	*x = Deployment{}
-	mi := &file_prompts_v1_prompts_proto_msgTypes[2]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -256,7 +365,7 @@ func (x *Deployment) String() string {
 func (*Deployment) ProtoMessage() {}
 
 func (x *Deployment) ProtoReflect() protoreflect.Message {
-	mi := &file_prompts_v1_prompts_proto_msgTypes[2]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -269,7 +378,7 @@ func (x *Deployment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Deployment.ProtoReflect.Descriptor instead.
 func (*Deployment) Descriptor() ([]byte, []int) {
-	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{2}
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Deployment) GetId() string {
@@ -328,6 +437,13 @@ func (x *Deployment) GetCreatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *Deployment) GetRollbackFrom() int32 {
+	if x != nil {
+		return x.RollbackFrom
+	}
+	return 0
+}
+
 // EvalLink connects a prompt version to a Fermata evaluation result.
 type EvalLink struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -345,7 +461,7 @@ type EvalLink struct {
 
 func (x *EvalLink) Reset() {
 	*x = EvalLink{}
-	mi := &file_prompts_v1_prompts_proto_msgTypes[3]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -357,7 +473,7 @@ func (x *EvalLink) String() string {
 func (*EvalLink) ProtoMessage() {}
 
 func (x *EvalLink) ProtoReflect() protoreflect.Message {
-	mi := &file_prompts_v1_prompts_proto_msgTypes[3]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -370,7 +486,7 @@ func (x *EvalLink) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EvalLink.ProtoReflect.Descriptor instead.
 func (*EvalLink) Descriptor() ([]byte, []int) {
-	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{3}
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *EvalLink) GetId() string {
@@ -429,6 +545,75 @@ func (x *EvalLink) GetCreatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+// ResolvedPrompt is returned by the bulk-load endpoint for gateway startup.
+type ResolvedPrompt struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PromptName    string                 `protobuf:"bytes,1,opt,name=prompt_name,json=promptName,proto3" json:"prompt_name,omitempty"`
+	PromptId      string                 `protobuf:"bytes,2,opt,name=prompt_id,json=promptId,proto3" json:"prompt_id,omitempty"`
+	Label         string                 `protobuf:"bytes,3,opt,name=label,proto3" json:"label,omitempty"`
+	Version       *Version               `protobuf:"bytes,4,opt,name=version,proto3" json:"version,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResolvedPrompt) Reset() {
+	*x = ResolvedPrompt{}
+	mi := &file_prompts_v1_prompts_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResolvedPrompt) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResolvedPrompt) ProtoMessage() {}
+
+func (x *ResolvedPrompt) ProtoReflect() protoreflect.Message {
+	mi := &file_prompts_v1_prompts_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResolvedPrompt.ProtoReflect.Descriptor instead.
+func (*ResolvedPrompt) Descriptor() ([]byte, []int) {
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *ResolvedPrompt) GetPromptName() string {
+	if x != nil {
+		return x.PromptName
+	}
+	return ""
+}
+
+func (x *ResolvedPrompt) GetPromptId() string {
+	if x != nil {
+		return x.PromptId
+	}
+	return ""
+}
+
+func (x *ResolvedPrompt) GetLabel() string {
+	if x != nil {
+		return x.Label
+	}
+	return ""
+}
+
+func (x *ResolvedPrompt) GetVersion() *Version {
+	if x != nil {
+		return x.Version
+	}
+	return nil
+}
+
 type CreatePromptRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
@@ -441,7 +626,7 @@ type CreatePromptRequest struct {
 
 func (x *CreatePromptRequest) Reset() {
 	*x = CreatePromptRequest{}
-	mi := &file_prompts_v1_prompts_proto_msgTypes[4]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -453,7 +638,7 @@ func (x *CreatePromptRequest) String() string {
 func (*CreatePromptRequest) ProtoMessage() {}
 
 func (x *CreatePromptRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_prompts_v1_prompts_proto_msgTypes[4]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -466,7 +651,7 @@ func (x *CreatePromptRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreatePromptRequest.ProtoReflect.Descriptor instead.
 func (*CreatePromptRequest) Descriptor() ([]byte, []int) {
-	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{4}
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *CreatePromptRequest) GetName() string {
@@ -506,7 +691,7 @@ type GetPromptRequest struct {
 
 func (x *GetPromptRequest) Reset() {
 	*x = GetPromptRequest{}
-	mi := &file_prompts_v1_prompts_proto_msgTypes[5]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -518,7 +703,7 @@ func (x *GetPromptRequest) String() string {
 func (*GetPromptRequest) ProtoMessage() {}
 
 func (x *GetPromptRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_prompts_v1_prompts_proto_msgTypes[5]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -531,7 +716,7 @@ func (x *GetPromptRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetPromptRequest.ProtoReflect.Descriptor instead.
 func (*GetPromptRequest) Descriptor() ([]byte, []int) {
-	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{5}
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetPromptRequest) GetId() string {
@@ -551,7 +736,7 @@ type ListPromptsRequest struct {
 
 func (x *ListPromptsRequest) Reset() {
 	*x = ListPromptsRequest{}
-	mi := &file_prompts_v1_prompts_proto_msgTypes[6]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -563,7 +748,7 @@ func (x *ListPromptsRequest) String() string {
 func (*ListPromptsRequest) ProtoMessage() {}
 
 func (x *ListPromptsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_prompts_v1_prompts_proto_msgTypes[6]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -576,7 +761,7 @@ func (x *ListPromptsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPromptsRequest.ProtoReflect.Descriptor instead.
 func (*ListPromptsRequest) Descriptor() ([]byte, []int) {
-	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{6}
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ListPromptsRequest) GetSurface() string {
@@ -602,7 +787,7 @@ type ListPromptsResponse struct {
 
 func (x *ListPromptsResponse) Reset() {
 	*x = ListPromptsResponse{}
-	mi := &file_prompts_v1_prompts_proto_msgTypes[7]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -614,7 +799,7 @@ func (x *ListPromptsResponse) String() string {
 func (*ListPromptsResponse) ProtoMessage() {}
 
 func (x *ListPromptsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_prompts_v1_prompts_proto_msgTypes[7]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -627,7 +812,7 @@ func (x *ListPromptsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPromptsResponse.ProtoReflect.Descriptor instead.
 func (*ListPromptsResponse) Descriptor() ([]byte, []int) {
-	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{7}
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ListPromptsResponse) GetPrompts() []*Prompt {
@@ -643,13 +828,14 @@ type CreateVersionRequest struct {
 	Content       string                 `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
 	Model         string                 `protobuf:"bytes,3,opt,name=model,proto3" json:"model,omitempty"`
 	Author        string                 `protobuf:"bytes,4,opt,name=author,proto3" json:"author,omitempty"`
+	Variables     []string               `protobuf:"bytes,5,rep,name=variables,proto3" json:"variables,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *CreateVersionRequest) Reset() {
 	*x = CreateVersionRequest{}
-	mi := &file_prompts_v1_prompts_proto_msgTypes[8]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -661,7 +847,7 @@ func (x *CreateVersionRequest) String() string {
 func (*CreateVersionRequest) ProtoMessage() {}
 
 func (x *CreateVersionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_prompts_v1_prompts_proto_msgTypes[8]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -674,7 +860,7 @@ func (x *CreateVersionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateVersionRequest.ProtoReflect.Descriptor instead.
 func (*CreateVersionRequest) Descriptor() ([]byte, []int) {
-	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{8}
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CreateVersionRequest) GetPromptId() string {
@@ -705,6 +891,13 @@ func (x *CreateVersionRequest) GetAuthor() string {
 	return ""
 }
 
+func (x *CreateVersionRequest) GetVariables() []string {
+	if x != nil {
+		return x.Variables
+	}
+	return nil
+}
+
 type ListVersionsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PromptId      string                 `protobuf:"bytes,1,opt,name=prompt_id,json=promptId,proto3" json:"prompt_id,omitempty"`
@@ -714,7 +907,7 @@ type ListVersionsRequest struct {
 
 func (x *ListVersionsRequest) Reset() {
 	*x = ListVersionsRequest{}
-	mi := &file_prompts_v1_prompts_proto_msgTypes[9]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -726,7 +919,7 @@ func (x *ListVersionsRequest) String() string {
 func (*ListVersionsRequest) ProtoMessage() {}
 
 func (x *ListVersionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_prompts_v1_prompts_proto_msgTypes[9]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -739,7 +932,7 @@ func (x *ListVersionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListVersionsRequest.ProtoReflect.Descriptor instead.
 func (*ListVersionsRequest) Descriptor() ([]byte, []int) {
-	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{9}
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListVersionsRequest) GetPromptId() string {
@@ -758,7 +951,7 @@ type ListVersionsResponse struct {
 
 func (x *ListVersionsResponse) Reset() {
 	*x = ListVersionsResponse{}
-	mi := &file_prompts_v1_prompts_proto_msgTypes[10]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -770,7 +963,7 @@ func (x *ListVersionsResponse) String() string {
 func (*ListVersionsResponse) ProtoMessage() {}
 
 func (x *ListVersionsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_prompts_v1_prompts_proto_msgTypes[10]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -783,7 +976,7 @@ func (x *ListVersionsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListVersionsResponse.ProtoReflect.Descriptor instead.
 func (*ListVersionsResponse) Descriptor() ([]byte, []int) {
-	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{10}
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ListVersionsResponse) GetVersions() []*Version {
@@ -793,32 +986,34 @@ func (x *ListVersionsResponse) GetVersions() []*Version {
 	return nil
 }
 
-type DeployRequest struct {
+// AssignLabelRequest atomically moves a label pointer to a version.
+// Used for promotion, rollback, and canary assignment.
+type AssignLabelRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PromptId      string                 `protobuf:"bytes,1,opt,name=prompt_id,json=promptId,proto3" json:"prompt_id,omitempty"`
-	Version       int32                  `protobuf:"varint,2,opt,name=version,proto3" json:"version,omitempty"`
-	Surface       string                 `protobuf:"bytes,3,opt,name=surface,proto3" json:"surface,omitempty"`
-	Env           string                 `protobuf:"bytes,4,opt,name=env,proto3" json:"env,omitempty"`
-	Actor         string                 `protobuf:"bytes,5,opt,name=actor,proto3" json:"actor,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`                                      // label name: "production", "staging", "canary"
+	Version       int32                  `protobuf:"varint,3,opt,name=version,proto3" json:"version,omitempty"`                               // target version number
+	Actor         string                 `protobuf:"bytes,4,opt,name=actor,proto3" json:"actor,omitempty"`                                    // who is making the assignment
+	RollbackFrom  int32                  `protobuf:"varint,5,opt,name=rollback_from,json=rollbackFrom,proto3" json:"rollback_from,omitempty"` // set when this is a rollback (the version being rolled back from)
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DeployRequest) Reset() {
-	*x = DeployRequest{}
-	mi := &file_prompts_v1_prompts_proto_msgTypes[11]
+func (x *AssignLabelRequest) Reset() {
+	*x = AssignLabelRequest{}
+	mi := &file_prompts_v1_prompts_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeployRequest) String() string {
+func (x *AssignLabelRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeployRequest) ProtoMessage() {}
+func (*AssignLabelRequest) ProtoMessage() {}
 
-func (x *DeployRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_prompts_v1_prompts_proto_msgTypes[11]
+func (x *AssignLabelRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_prompts_v1_prompts_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -829,44 +1024,132 @@ func (x *DeployRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeployRequest.ProtoReflect.Descriptor instead.
-func (*DeployRequest) Descriptor() ([]byte, []int) {
-	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{11}
+// Deprecated: Use AssignLabelRequest.ProtoReflect.Descriptor instead.
+func (*AssignLabelRequest) Descriptor() ([]byte, []int) {
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *DeployRequest) GetPromptId() string {
+func (x *AssignLabelRequest) GetPromptId() string {
 	if x != nil {
 		return x.PromptId
 	}
 	return ""
 }
 
-func (x *DeployRequest) GetVersion() int32 {
+func (x *AssignLabelRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *AssignLabelRequest) GetVersion() int32 {
 	if x != nil {
 		return x.Version
 	}
 	return 0
 }
 
-func (x *DeployRequest) GetSurface() string {
-	if x != nil {
-		return x.Surface
-	}
-	return ""
-}
-
-func (x *DeployRequest) GetEnv() string {
-	if x != nil {
-		return x.Env
-	}
-	return ""
-}
-
-func (x *DeployRequest) GetActor() string {
+func (x *AssignLabelRequest) GetActor() string {
 	if x != nil {
 		return x.Actor
 	}
 	return ""
+}
+
+func (x *AssignLabelRequest) GetRollbackFrom() int32 {
+	if x != nil {
+		return x.RollbackFrom
+	}
+	return 0
+}
+
+type ListLabelsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PromptId      string                 `protobuf:"bytes,1,opt,name=prompt_id,json=promptId,proto3" json:"prompt_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListLabelsRequest) Reset() {
+	*x = ListLabelsRequest{}
+	mi := &file_prompts_v1_prompts_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListLabelsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListLabelsRequest) ProtoMessage() {}
+
+func (x *ListLabelsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_prompts_v1_prompts_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListLabelsRequest.ProtoReflect.Descriptor instead.
+func (*ListLabelsRequest) Descriptor() ([]byte, []int) {
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *ListLabelsRequest) GetPromptId() string {
+	if x != nil {
+		return x.PromptId
+	}
+	return ""
+}
+
+type ListLabelsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Labels        []*Label               `protobuf:"bytes,1,rep,name=labels,proto3" json:"labels,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListLabelsResponse) Reset() {
+	*x = ListLabelsResponse{}
+	mi := &file_prompts_v1_prompts_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListLabelsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListLabelsResponse) ProtoMessage() {}
+
+func (x *ListLabelsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_prompts_v1_prompts_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListLabelsResponse.ProtoReflect.Descriptor instead.
+func (*ListLabelsResponse) Descriptor() ([]byte, []int) {
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *ListLabelsResponse) GetLabels() []*Label {
+	if x != nil {
+		return x.Labels
+	}
+	return nil
 }
 
 type ListDeploymentsRequest struct {
@@ -878,7 +1161,7 @@ type ListDeploymentsRequest struct {
 
 func (x *ListDeploymentsRequest) Reset() {
 	*x = ListDeploymentsRequest{}
-	mi := &file_prompts_v1_prompts_proto_msgTypes[12]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -890,7 +1173,7 @@ func (x *ListDeploymentsRequest) String() string {
 func (*ListDeploymentsRequest) ProtoMessage() {}
 
 func (x *ListDeploymentsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_prompts_v1_prompts_proto_msgTypes[12]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -903,7 +1186,7 @@ func (x *ListDeploymentsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListDeploymentsRequest.ProtoReflect.Descriptor instead.
 func (*ListDeploymentsRequest) Descriptor() ([]byte, []int) {
-	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{12}
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ListDeploymentsRequest) GetPromptId() string {
@@ -922,7 +1205,7 @@ type ListDeploymentsResponse struct {
 
 func (x *ListDeploymentsResponse) Reset() {
 	*x = ListDeploymentsResponse{}
-	mi := &file_prompts_v1_prompts_proto_msgTypes[13]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -934,7 +1217,7 @@ func (x *ListDeploymentsResponse) String() string {
 func (*ListDeploymentsResponse) ProtoMessage() {}
 
 func (x *ListDeploymentsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_prompts_v1_prompts_proto_msgTypes[13]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -947,7 +1230,7 @@ func (x *ListDeploymentsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListDeploymentsResponse.ProtoReflect.Descriptor instead.
 func (*ListDeploymentsResponse) Descriptor() ([]byte, []int) {
-	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{13}
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ListDeploymentsResponse) GetDeployments() []*Deployment {
@@ -971,7 +1254,7 @@ type LinkEvalRequest struct {
 
 func (x *LinkEvalRequest) Reset() {
 	*x = LinkEvalRequest{}
-	mi := &file_prompts_v1_prompts_proto_msgTypes[14]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -983,7 +1266,7 @@ func (x *LinkEvalRequest) String() string {
 func (*LinkEvalRequest) ProtoMessage() {}
 
 func (x *LinkEvalRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_prompts_v1_prompts_proto_msgTypes[14]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -996,7 +1279,7 @@ func (x *LinkEvalRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LinkEvalRequest.ProtoReflect.Descriptor instead.
 func (*LinkEvalRequest) Descriptor() ([]byte, []int) {
-	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{14}
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *LinkEvalRequest) GetPromptId() string {
@@ -1041,18 +1324,19 @@ func (x *LinkEvalRequest) GetEvalUrl() string {
 	return ""
 }
 
+// ResolveRequest is the hot-path lookup. Label defaults to "production".
+// Consumers MUST pin the resolved version at session/sequence start.
 type ResolveRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Surface       string                 `protobuf:"bytes,2,opt,name=surface,proto3" json:"surface,omitempty"`
-	Env           string                 `protobuf:"bytes,3,opt,name=env,proto3" json:"env,omitempty"`
+	Label         string                 `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"` // default: "production"
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ResolveRequest) Reset() {
 	*x = ResolveRequest{}
-	mi := &file_prompts_v1_prompts_proto_msgTypes[15]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1064,7 +1348,7 @@ func (x *ResolveRequest) String() string {
 func (*ResolveRequest) ProtoMessage() {}
 
 func (x *ResolveRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_prompts_v1_prompts_proto_msgTypes[15]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1077,7 +1361,7 @@ func (x *ResolveRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResolveRequest.ProtoReflect.Descriptor instead.
 func (*ResolveRequest) Descriptor() ([]byte, []int) {
-	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{15}
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ResolveRequest) GetName() string {
@@ -1087,16 +1371,9 @@ func (x *ResolveRequest) GetName() string {
 	return ""
 }
 
-func (x *ResolveRequest) GetSurface() string {
+func (x *ResolveRequest) GetLabel() string {
 	if x != nil {
-		return x.Surface
-	}
-	return ""
-}
-
-func (x *ResolveRequest) GetEnv() string {
-	if x != nil {
-		return x.Env
+		return x.Label
 	}
 	return ""
 }
@@ -1110,7 +1387,7 @@ type ResolveResponse struct {
 
 func (x *ResolveResponse) Reset() {
 	*x = ResolveResponse{}
-	mi := &file_prompts_v1_prompts_proto_msgTypes[16]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1122,7 +1399,7 @@ func (x *ResolveResponse) String() string {
 func (*ResolveResponse) ProtoMessage() {}
 
 func (x *ResolveResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_prompts_v1_prompts_proto_msgTypes[16]
+	mi := &file_prompts_v1_prompts_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1135,12 +1412,101 @@ func (x *ResolveResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResolveResponse.ProtoReflect.Descriptor instead.
 func (*ResolveResponse) Descriptor() ([]byte, []int) {
-	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{16}
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ResolveResponse) GetVersion() *Version {
 	if x != nil {
 		return x.Version
+	}
+	return nil
+}
+
+// ResolveAllRequest returns all active prompts for a label — gateway startup path.
+type ResolveAllRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Label         string                 `protobuf:"bytes,1,opt,name=label,proto3" json:"label,omitempty"` // default: "production"
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResolveAllRequest) Reset() {
+	*x = ResolveAllRequest{}
+	mi := &file_prompts_v1_prompts_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResolveAllRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResolveAllRequest) ProtoMessage() {}
+
+func (x *ResolveAllRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_prompts_v1_prompts_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResolveAllRequest.ProtoReflect.Descriptor instead.
+func (*ResolveAllRequest) Descriptor() ([]byte, []int) {
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *ResolveAllRequest) GetLabel() string {
+	if x != nil {
+		return x.Label
+	}
+	return ""
+}
+
+type ResolveAllResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Prompts       []*ResolvedPrompt      `protobuf:"bytes,1,rep,name=prompts,proto3" json:"prompts,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResolveAllResponse) Reset() {
+	*x = ResolveAllResponse{}
+	mi := &file_prompts_v1_prompts_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResolveAllResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResolveAllResponse) ProtoMessage() {}
+
+func (x *ResolveAllResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_prompts_v1_prompts_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResolveAllResponse.ProtoReflect.Descriptor instead.
+func (*ResolveAllResponse) Descriptor() ([]byte, []int) {
+	return file_prompts_v1_prompts_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *ResolveAllResponse) GetPrompts() []*ResolvedPrompt {
+	if x != nil {
+		return x.Prompts
 	}
 	return nil
 }
@@ -1161,7 +1527,7 @@ const file_prompts_v1_prompts_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xe7\x01\n" +
+	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\x8e\x03\n" +
 	"\aVersion\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
 	"\tprompt_id\x18\x02 \x01(\tR\bpromptId\x12\x18\n" +
@@ -1171,7 +1537,21 @@ const file_prompts_v1_prompts_proto_rawDesc = "" +
 	"\x04hash\x18\x06 \x01(\tR\x04hash\x12\x16\n" +
 	"\x06author\x18\a \x01(\tR\x06author\x129\n" +
 	"\n" +
-	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xef\x01\n" +
+	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x1c\n" +
+	"\tvariables\x18\t \x03(\tR\tvariables\x12G\n" +
+	"\ftoken_counts\x18\n" +
+	" \x03(\v2$.prompts.v1.Version.TokenCountsEntryR\vtokenCounts\x1a>\n" +
+	"\x10TokenCountsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\x03R\x05value:\x028\x01\"\xca\x01\n" +
+	"\x05Label\x12\x1b\n" +
+	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
+	"\aversion\x18\x03 \x01(\x05R\aversion\x12\x14\n" +
+	"\x05actor\x18\x04 \x01(\tR\x05actor\x12#\n" +
+	"\rrollback_from\x18\x05 \x01(\x05R\frollbackFrom\x12;\n" +
+	"\vassigned_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
+	"assignedAt\"\x94\x02\n" +
 	"\n" +
 	"Deployment\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
@@ -1183,7 +1563,8 @@ const file_prompts_v1_prompts_proto_rawDesc = "" +
 	"\x03env\x18\x06 \x01(\tR\x03env\x12\x14\n" +
 	"\x05actor\x18\a \x01(\tR\x05actor\x129\n" +
 	"\n" +
-	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xf6\x01\n" +
+	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x12#\n" +
+	"\rrollback_from\x18\t \x01(\x05R\frollbackFrom\"\xf6\x01\n" +
 	"\bEvalLink\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
 	"\tprompt_id\x18\x02 \x01(\tR\bpromptId\x12\x1d\n" +
@@ -1194,7 +1575,13 @@ const file_prompts_v1_prompts_proto_rawDesc = "" +
 	"\x04pass\x18\x06 \x01(\bR\x04pass\x12\x19\n" +
 	"\beval_url\x18\a \x01(\tR\aevalUrl\x129\n" +
 	"\n" +
-	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\x8c\x01\n" +
+	"created_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\x93\x01\n" +
+	"\x0eResolvedPrompt\x12\x1f\n" +
+	"\vprompt_name\x18\x01 \x01(\tR\n" +
+	"promptName\x12\x1b\n" +
+	"\tprompt_id\x18\x02 \x01(\tR\bpromptId\x12\x14\n" +
+	"\x05label\x18\x03 \x01(\tR\x05label\x12-\n" +
+	"\aversion\x18\x04 \x01(\v2\x13.prompts.v1.VersionR\aversion\"\x8c\x01\n" +
 	"\x13CreatePromptRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
 	"\asurface\x18\x02 \x01(\tR\asurface\x12\x12\n" +
@@ -1206,22 +1593,27 @@ const file_prompts_v1_prompts_proto_rawDesc = "" +
 	"\asurface\x18\x01 \x01(\tR\asurface\x12\x10\n" +
 	"\x03tag\x18\x02 \x01(\tR\x03tag\"C\n" +
 	"\x13ListPromptsResponse\x12,\n" +
-	"\aprompts\x18\x01 \x03(\v2\x12.prompts.v1.PromptR\aprompts\"{\n" +
+	"\aprompts\x18\x01 \x03(\v2\x12.prompts.v1.PromptR\aprompts\"\x99\x01\n" +
 	"\x14CreateVersionRequest\x12\x1b\n" +
 	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\x12\x14\n" +
 	"\x05model\x18\x03 \x01(\tR\x05model\x12\x16\n" +
-	"\x06author\x18\x04 \x01(\tR\x06author\"2\n" +
+	"\x06author\x18\x04 \x01(\tR\x06author\x12\x1c\n" +
+	"\tvariables\x18\x05 \x03(\tR\tvariables\"2\n" +
 	"\x13ListVersionsRequest\x12\x1b\n" +
 	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\"G\n" +
 	"\x14ListVersionsResponse\x12/\n" +
-	"\bversions\x18\x01 \x03(\v2\x13.prompts.v1.VersionR\bversions\"\x88\x01\n" +
-	"\rDeployRequest\x12\x1b\n" +
-	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\x12\x18\n" +
-	"\aversion\x18\x02 \x01(\x05R\aversion\x12\x18\n" +
-	"\asurface\x18\x03 \x01(\tR\asurface\x12\x10\n" +
-	"\x03env\x18\x04 \x01(\tR\x03env\x12\x14\n" +
-	"\x05actor\x18\x05 \x01(\tR\x05actor\"5\n" +
+	"\bversions\x18\x01 \x03(\v2\x13.prompts.v1.VersionR\bversions\"\x9a\x01\n" +
+	"\x12AssignLabelRequest\x12\x1b\n" +
+	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
+	"\aversion\x18\x03 \x01(\x05R\aversion\x12\x14\n" +
+	"\x05actor\x18\x04 \x01(\tR\x05actor\x12#\n" +
+	"\rrollback_from\x18\x05 \x01(\x05R\frollbackFrom\"0\n" +
+	"\x11ListLabelsRequest\x12\x1b\n" +
+	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\"?\n" +
+	"\x12ListLabelsResponse\x12)\n" +
+	"\x06labels\x18\x01 \x03(\v2\x11.prompts.v1.LabelR\x06labels\"5\n" +
 	"\x16ListDeploymentsRequest\x12\x1b\n" +
 	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\"S\n" +
 	"\x17ListDeploymentsResponse\x128\n" +
@@ -1233,23 +1625,30 @@ const file_prompts_v1_prompts_proto_rawDesc = "" +
 	"\veval_run_id\x18\x03 \x01(\tR\tevalRunId\x12\x14\n" +
 	"\x05score\x18\x04 \x01(\x01R\x05score\x12\x12\n" +
 	"\x04pass\x18\x05 \x01(\bR\x04pass\x12\x19\n" +
-	"\beval_url\x18\x06 \x01(\tR\aevalUrl\"P\n" +
+	"\beval_url\x18\x06 \x01(\tR\aevalUrl\":\n" +
 	"\x0eResolveRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
-	"\asurface\x18\x02 \x01(\tR\asurface\x12\x10\n" +
-	"\x03env\x18\x03 \x01(\tR\x03env\"@\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
+	"\x05label\x18\x02 \x01(\tR\x05label\"@\n" +
 	"\x0fResolveResponse\x12-\n" +
-	"\aversion\x18\x01 \x01(\v2\x13.prompts.v1.VersionR\aversion2\x9a\x05\n" +
+	"\aversion\x18\x01 \x01(\v2\x13.prompts.v1.VersionR\aversion\")\n" +
+	"\x11ResolveAllRequest\x12\x14\n" +
+	"\x05label\x18\x01 \x01(\tR\x05label\"J\n" +
+	"\x12ResolveAllResponse\x124\n" +
+	"\aprompts\x18\x01 \x03(\v2\x1a.prompts.v1.ResolvedPromptR\aprompts2\xb9\x06\n" +
 	"\rPromptService\x12C\n" +
 	"\fCreatePrompt\x12\x1f.prompts.v1.CreatePromptRequest\x1a\x12.prompts.v1.Prompt\x12=\n" +
 	"\tGetPrompt\x12\x1c.prompts.v1.GetPromptRequest\x1a\x12.prompts.v1.Prompt\x12N\n" +
 	"\vListPrompts\x12\x1e.prompts.v1.ListPromptsRequest\x1a\x1f.prompts.v1.ListPromptsResponse\x12F\n" +
 	"\rCreateVersion\x12 .prompts.v1.CreateVersionRequest\x1a\x13.prompts.v1.Version\x12Q\n" +
-	"\fListVersions\x12\x1f.prompts.v1.ListVersionsRequest\x1a .prompts.v1.ListVersionsResponse\x12;\n" +
-	"\x06Deploy\x12\x19.prompts.v1.DeployRequest\x1a\x16.prompts.v1.Deployment\x12Z\n" +
+	"\fListVersions\x12\x1f.prompts.v1.ListVersionsRequest\x1a .prompts.v1.ListVersionsResponse\x12@\n" +
+	"\vAssignLabel\x12\x1e.prompts.v1.AssignLabelRequest\x1a\x11.prompts.v1.Label\x12K\n" +
+	"\n" +
+	"ListLabels\x12\x1d.prompts.v1.ListLabelsRequest\x1a\x1e.prompts.v1.ListLabelsResponse\x12Z\n" +
 	"\x0fListDeployments\x12\".prompts.v1.ListDeploymentsRequest\x1a#.prompts.v1.ListDeploymentsResponse\x12=\n" +
 	"\bLinkEval\x12\x1b.prompts.v1.LinkEvalRequest\x1a\x14.prompts.v1.EvalLink\x12B\n" +
-	"\aResolve\x12\x1a.prompts.v1.ResolveRequest\x1a\x1b.prompts.v1.ResolveResponseB6Z4github.com/evalops/proto/gen/go/prompts/v1;promptsv1b\x06proto3"
+	"\aResolve\x12\x1a.prompts.v1.ResolveRequest\x1a\x1b.prompts.v1.ResolveResponse\x12K\n" +
+	"\n" +
+	"ResolveAll\x12\x1d.prompts.v1.ResolveAllRequest\x1a\x1e.prompts.v1.ResolveAllResponseB6Z4github.com/evalops/proto/gen/go/prompts/v1;promptsv1b\x06proto3"
 
 var (
 	file_prompts_v1_prompts_proto_rawDescOnce sync.Once
@@ -1263,63 +1662,79 @@ func file_prompts_v1_prompts_proto_rawDescGZIP() []byte {
 	return file_prompts_v1_prompts_proto_rawDescData
 }
 
-var file_prompts_v1_prompts_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_prompts_v1_prompts_proto_msgTypes = make([]protoimpl.MessageInfo, 24)
 var file_prompts_v1_prompts_proto_goTypes = []any{
 	(*Prompt)(nil),                  // 0: prompts.v1.Prompt
 	(*Version)(nil),                 // 1: prompts.v1.Version
-	(*Deployment)(nil),              // 2: prompts.v1.Deployment
-	(*EvalLink)(nil),                // 3: prompts.v1.EvalLink
-	(*CreatePromptRequest)(nil),     // 4: prompts.v1.CreatePromptRequest
-	(*GetPromptRequest)(nil),        // 5: prompts.v1.GetPromptRequest
-	(*ListPromptsRequest)(nil),      // 6: prompts.v1.ListPromptsRequest
-	(*ListPromptsResponse)(nil),     // 7: prompts.v1.ListPromptsResponse
-	(*CreateVersionRequest)(nil),    // 8: prompts.v1.CreateVersionRequest
-	(*ListVersionsRequest)(nil),     // 9: prompts.v1.ListVersionsRequest
-	(*ListVersionsResponse)(nil),    // 10: prompts.v1.ListVersionsResponse
-	(*DeployRequest)(nil),           // 11: prompts.v1.DeployRequest
-	(*ListDeploymentsRequest)(nil),  // 12: prompts.v1.ListDeploymentsRequest
-	(*ListDeploymentsResponse)(nil), // 13: prompts.v1.ListDeploymentsResponse
-	(*LinkEvalRequest)(nil),         // 14: prompts.v1.LinkEvalRequest
-	(*ResolveRequest)(nil),          // 15: prompts.v1.ResolveRequest
-	(*ResolveResponse)(nil),         // 16: prompts.v1.ResolveResponse
-	(*structpb.Struct)(nil),         // 17: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),   // 18: google.protobuf.Timestamp
+	(*Label)(nil),                   // 2: prompts.v1.Label
+	(*Deployment)(nil),              // 3: prompts.v1.Deployment
+	(*EvalLink)(nil),                // 4: prompts.v1.EvalLink
+	(*ResolvedPrompt)(nil),          // 5: prompts.v1.ResolvedPrompt
+	(*CreatePromptRequest)(nil),     // 6: prompts.v1.CreatePromptRequest
+	(*GetPromptRequest)(nil),        // 7: prompts.v1.GetPromptRequest
+	(*ListPromptsRequest)(nil),      // 8: prompts.v1.ListPromptsRequest
+	(*ListPromptsResponse)(nil),     // 9: prompts.v1.ListPromptsResponse
+	(*CreateVersionRequest)(nil),    // 10: prompts.v1.CreateVersionRequest
+	(*ListVersionsRequest)(nil),     // 11: prompts.v1.ListVersionsRequest
+	(*ListVersionsResponse)(nil),    // 12: prompts.v1.ListVersionsResponse
+	(*AssignLabelRequest)(nil),      // 13: prompts.v1.AssignLabelRequest
+	(*ListLabelsRequest)(nil),       // 14: prompts.v1.ListLabelsRequest
+	(*ListLabelsResponse)(nil),      // 15: prompts.v1.ListLabelsResponse
+	(*ListDeploymentsRequest)(nil),  // 16: prompts.v1.ListDeploymentsRequest
+	(*ListDeploymentsResponse)(nil), // 17: prompts.v1.ListDeploymentsResponse
+	(*LinkEvalRequest)(nil),         // 18: prompts.v1.LinkEvalRequest
+	(*ResolveRequest)(nil),          // 19: prompts.v1.ResolveRequest
+	(*ResolveResponse)(nil),         // 20: prompts.v1.ResolveResponse
+	(*ResolveAllRequest)(nil),       // 21: prompts.v1.ResolveAllRequest
+	(*ResolveAllResponse)(nil),      // 22: prompts.v1.ResolveAllResponse
+	nil,                             // 23: prompts.v1.Version.TokenCountsEntry
+	(*structpb.Struct)(nil),         // 24: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),   // 25: google.protobuf.Timestamp
 }
 var file_prompts_v1_prompts_proto_depIdxs = []int32{
-	17, // 0: prompts.v1.Prompt.metadata:type_name -> google.protobuf.Struct
-	18, // 1: prompts.v1.Prompt.created_at:type_name -> google.protobuf.Timestamp
-	18, // 2: prompts.v1.Prompt.updated_at:type_name -> google.protobuf.Timestamp
-	18, // 3: prompts.v1.Version.created_at:type_name -> google.protobuf.Timestamp
-	18, // 4: prompts.v1.Deployment.created_at:type_name -> google.protobuf.Timestamp
-	18, // 5: prompts.v1.EvalLink.created_at:type_name -> google.protobuf.Timestamp
-	17, // 6: prompts.v1.CreatePromptRequest.metadata:type_name -> google.protobuf.Struct
-	0,  // 7: prompts.v1.ListPromptsResponse.prompts:type_name -> prompts.v1.Prompt
-	1,  // 8: prompts.v1.ListVersionsResponse.versions:type_name -> prompts.v1.Version
-	2,  // 9: prompts.v1.ListDeploymentsResponse.deployments:type_name -> prompts.v1.Deployment
-	1,  // 10: prompts.v1.ResolveResponse.version:type_name -> prompts.v1.Version
-	4,  // 11: prompts.v1.PromptService.CreatePrompt:input_type -> prompts.v1.CreatePromptRequest
-	5,  // 12: prompts.v1.PromptService.GetPrompt:input_type -> prompts.v1.GetPromptRequest
-	6,  // 13: prompts.v1.PromptService.ListPrompts:input_type -> prompts.v1.ListPromptsRequest
-	8,  // 14: prompts.v1.PromptService.CreateVersion:input_type -> prompts.v1.CreateVersionRequest
-	9,  // 15: prompts.v1.PromptService.ListVersions:input_type -> prompts.v1.ListVersionsRequest
-	11, // 16: prompts.v1.PromptService.Deploy:input_type -> prompts.v1.DeployRequest
-	12, // 17: prompts.v1.PromptService.ListDeployments:input_type -> prompts.v1.ListDeploymentsRequest
-	14, // 18: prompts.v1.PromptService.LinkEval:input_type -> prompts.v1.LinkEvalRequest
-	15, // 19: prompts.v1.PromptService.Resolve:input_type -> prompts.v1.ResolveRequest
-	0,  // 20: prompts.v1.PromptService.CreatePrompt:output_type -> prompts.v1.Prompt
-	0,  // 21: prompts.v1.PromptService.GetPrompt:output_type -> prompts.v1.Prompt
-	7,  // 22: prompts.v1.PromptService.ListPrompts:output_type -> prompts.v1.ListPromptsResponse
-	1,  // 23: prompts.v1.PromptService.CreateVersion:output_type -> prompts.v1.Version
-	10, // 24: prompts.v1.PromptService.ListVersions:output_type -> prompts.v1.ListVersionsResponse
-	2,  // 25: prompts.v1.PromptService.Deploy:output_type -> prompts.v1.Deployment
-	13, // 26: prompts.v1.PromptService.ListDeployments:output_type -> prompts.v1.ListDeploymentsResponse
-	3,  // 27: prompts.v1.PromptService.LinkEval:output_type -> prompts.v1.EvalLink
-	16, // 28: prompts.v1.PromptService.Resolve:output_type -> prompts.v1.ResolveResponse
-	20, // [20:29] is the sub-list for method output_type
-	11, // [11:20] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	24, // 0: prompts.v1.Prompt.metadata:type_name -> google.protobuf.Struct
+	25, // 1: prompts.v1.Prompt.created_at:type_name -> google.protobuf.Timestamp
+	25, // 2: prompts.v1.Prompt.updated_at:type_name -> google.protobuf.Timestamp
+	25, // 3: prompts.v1.Version.created_at:type_name -> google.protobuf.Timestamp
+	23, // 4: prompts.v1.Version.token_counts:type_name -> prompts.v1.Version.TokenCountsEntry
+	25, // 5: prompts.v1.Label.assigned_at:type_name -> google.protobuf.Timestamp
+	25, // 6: prompts.v1.Deployment.created_at:type_name -> google.protobuf.Timestamp
+	25, // 7: prompts.v1.EvalLink.created_at:type_name -> google.protobuf.Timestamp
+	1,  // 8: prompts.v1.ResolvedPrompt.version:type_name -> prompts.v1.Version
+	24, // 9: prompts.v1.CreatePromptRequest.metadata:type_name -> google.protobuf.Struct
+	0,  // 10: prompts.v1.ListPromptsResponse.prompts:type_name -> prompts.v1.Prompt
+	1,  // 11: prompts.v1.ListVersionsResponse.versions:type_name -> prompts.v1.Version
+	2,  // 12: prompts.v1.ListLabelsResponse.labels:type_name -> prompts.v1.Label
+	3,  // 13: prompts.v1.ListDeploymentsResponse.deployments:type_name -> prompts.v1.Deployment
+	1,  // 14: prompts.v1.ResolveResponse.version:type_name -> prompts.v1.Version
+	5,  // 15: prompts.v1.ResolveAllResponse.prompts:type_name -> prompts.v1.ResolvedPrompt
+	6,  // 16: prompts.v1.PromptService.CreatePrompt:input_type -> prompts.v1.CreatePromptRequest
+	7,  // 17: prompts.v1.PromptService.GetPrompt:input_type -> prompts.v1.GetPromptRequest
+	8,  // 18: prompts.v1.PromptService.ListPrompts:input_type -> prompts.v1.ListPromptsRequest
+	10, // 19: prompts.v1.PromptService.CreateVersion:input_type -> prompts.v1.CreateVersionRequest
+	11, // 20: prompts.v1.PromptService.ListVersions:input_type -> prompts.v1.ListVersionsRequest
+	13, // 21: prompts.v1.PromptService.AssignLabel:input_type -> prompts.v1.AssignLabelRequest
+	14, // 22: prompts.v1.PromptService.ListLabels:input_type -> prompts.v1.ListLabelsRequest
+	16, // 23: prompts.v1.PromptService.ListDeployments:input_type -> prompts.v1.ListDeploymentsRequest
+	18, // 24: prompts.v1.PromptService.LinkEval:input_type -> prompts.v1.LinkEvalRequest
+	19, // 25: prompts.v1.PromptService.Resolve:input_type -> prompts.v1.ResolveRequest
+	21, // 26: prompts.v1.PromptService.ResolveAll:input_type -> prompts.v1.ResolveAllRequest
+	0,  // 27: prompts.v1.PromptService.CreatePrompt:output_type -> prompts.v1.Prompt
+	0,  // 28: prompts.v1.PromptService.GetPrompt:output_type -> prompts.v1.Prompt
+	9,  // 29: prompts.v1.PromptService.ListPrompts:output_type -> prompts.v1.ListPromptsResponse
+	1,  // 30: prompts.v1.PromptService.CreateVersion:output_type -> prompts.v1.Version
+	12, // 31: prompts.v1.PromptService.ListVersions:output_type -> prompts.v1.ListVersionsResponse
+	2,  // 32: prompts.v1.PromptService.AssignLabel:output_type -> prompts.v1.Label
+	15, // 33: prompts.v1.PromptService.ListLabels:output_type -> prompts.v1.ListLabelsResponse
+	17, // 34: prompts.v1.PromptService.ListDeployments:output_type -> prompts.v1.ListDeploymentsResponse
+	4,  // 35: prompts.v1.PromptService.LinkEval:output_type -> prompts.v1.EvalLink
+	20, // 36: prompts.v1.PromptService.Resolve:output_type -> prompts.v1.ResolveResponse
+	22, // 37: prompts.v1.PromptService.ResolveAll:output_type -> prompts.v1.ResolveAllResponse
+	27, // [27:38] is the sub-list for method output_type
+	16, // [16:27] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_prompts_v1_prompts_proto_init() }
@@ -1333,7 +1748,7 @@ func file_prompts_v1_prompts_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_prompts_v1_prompts_proto_rawDesc), len(file_prompts_v1_prompts_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   17,
+			NumMessages:   24,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

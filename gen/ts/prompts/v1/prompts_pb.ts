@@ -12,7 +12,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
  * Describes the file prompts/v1/prompts.proto.
  */
 export const file_prompts_v1_prompts: GenFile = /*@__PURE__*/
-  fileDesc("Chhwcm9tcHRzL3YxL3Byb21wdHMucHJvdG8SCnByb21wdHMudjEi5QEKBlByb21wdBIKCgJpZBgBIAEoCRIXCg9vcmdhbml6YXRpb25faWQYAiABKAkSDAoEbmFtZRgDIAEoCRIPCgdzdXJmYWNlGAQgASgJEgwKBHRhZ3MYBSADKAkSKQoIbWV0YWRhdGEYBiABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Ei4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIqcBCgdWZXJzaW9uEgoKAmlkGAEgASgJEhEKCXByb21wdF9pZBgCIAEoCRIPCgd2ZXJzaW9uGAMgASgFEg8KB2NvbnRlbnQYBCABKAkSDQoFbW9kZWwYBSABKAkSDAoEaGFzaBgGIAEoCRIOCgZhdXRob3IYByABKAkSLgoKY3JlYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAirQEKCkRlcGxveW1lbnQSCgoCaWQYASABKAkSEQoJcHJvbXB0X2lkGAIgASgJEhIKCnZlcnNpb25faWQYAyABKAkSDwoHdmVyc2lvbhgEIAEoBRIPCgdzdXJmYWNlGAUgASgJEgsKA2VudhgGIAEoCRINCgVhY3RvchgHIAEoCRIuCgpjcmVhdGVkX2F0GAggASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCKxAQoIRXZhbExpbmsSCgoCaWQYASABKAkSEQoJcHJvbXB0X2lkGAIgASgJEhIKCnZlcnNpb25faWQYAyABKAkSEwoLZXZhbF9ydW5faWQYBCABKAkSDQoFc2NvcmUYBSABKAESDAoEcGFzcxgGIAEoCBIQCghldmFsX3VybBgHIAEoCRIuCgpjcmVhdGVkX2F0GAggASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCJtChNDcmVhdGVQcm9tcHRSZXF1ZXN0EgwKBG5hbWUYASABKAkSDwoHc3VyZmFjZRgCIAEoCRIMCgR0YWdzGAMgAygJEikKCG1ldGFkYXRhGAQgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdCIeChBHZXRQcm9tcHRSZXF1ZXN0EgoKAmlkGAEgASgJIjIKEkxpc3RQcm9tcHRzUmVxdWVzdBIPCgdzdXJmYWNlGAEgASgJEgsKA3RhZxgCIAEoCSI6ChNMaXN0UHJvbXB0c1Jlc3BvbnNlEiMKB3Byb21wdHMYASADKAsyEi5wcm9tcHRzLnYxLlByb21wdCJZChRDcmVhdGVWZXJzaW9uUmVxdWVzdBIRCglwcm9tcHRfaWQYASABKAkSDwoHY29udGVudBgCIAEoCRINCgVtb2RlbBgDIAEoCRIOCgZhdXRob3IYBCABKAkiKAoTTGlzdFZlcnNpb25zUmVxdWVzdBIRCglwcm9tcHRfaWQYASABKAkiPQoUTGlzdFZlcnNpb25zUmVzcG9uc2USJQoIdmVyc2lvbnMYASADKAsyEy5wcm9tcHRzLnYxLlZlcnNpb24iYAoNRGVwbG95UmVxdWVzdBIRCglwcm9tcHRfaWQYASABKAkSDwoHdmVyc2lvbhgCIAEoBRIPCgdzdXJmYWNlGAMgASgJEgsKA2VudhgEIAEoCRINCgVhY3RvchgFIAEoCSIrChZMaXN0RGVwbG95bWVudHNSZXF1ZXN0EhEKCXByb21wdF9pZBgBIAEoCSJGChdMaXN0RGVwbG95bWVudHNSZXNwb25zZRIrCgtkZXBsb3ltZW50cxgBIAMoCzIWLnByb21wdHMudjEuRGVwbG95bWVudCJ8Cg9MaW5rRXZhbFJlcXVlc3QSEQoJcHJvbXB0X2lkGAEgASgJEhIKCnZlcnNpb25faWQYAiABKAkSEwoLZXZhbF9ydW5faWQYAyABKAkSDQoFc2NvcmUYBCABKAESDAoEcGFzcxgFIAEoCBIQCghldmFsX3VybBgGIAEoCSI8Cg5SZXNvbHZlUmVxdWVzdBIMCgRuYW1lGAEgASgJEg8KB3N1cmZhY2UYAiABKAkSCwoDZW52GAMgASgJIjcKD1Jlc29sdmVSZXNwb25zZRIkCgd2ZXJzaW9uGAEgASgLMhMucHJvbXB0cy52MS5WZXJzaW9uMpoFCg1Qcm9tcHRTZXJ2aWNlEkMKDENyZWF0ZVByb21wdBIfLnByb21wdHMudjEuQ3JlYXRlUHJvbXB0UmVxdWVzdBoSLnByb21wdHMudjEuUHJvbXB0Ej0KCUdldFByb21wdBIcLnByb21wdHMudjEuR2V0UHJvbXB0UmVxdWVzdBoSLnByb21wdHMudjEuUHJvbXB0Ek4KC0xpc3RQcm9tcHRzEh4ucHJvbXB0cy52MS5MaXN0UHJvbXB0c1JlcXVlc3QaHy5wcm9tcHRzLnYxLkxpc3RQcm9tcHRzUmVzcG9uc2USRgoNQ3JlYXRlVmVyc2lvbhIgLnByb21wdHMudjEuQ3JlYXRlVmVyc2lvblJlcXVlc3QaEy5wcm9tcHRzLnYxLlZlcnNpb24SUQoMTGlzdFZlcnNpb25zEh8ucHJvbXB0cy52MS5MaXN0VmVyc2lvbnNSZXF1ZXN0GiAucHJvbXB0cy52MS5MaXN0VmVyc2lvbnNSZXNwb25zZRI7CgZEZXBsb3kSGS5wcm9tcHRzLnYxLkRlcGxveVJlcXVlc3QaFi5wcm9tcHRzLnYxLkRlcGxveW1lbnQSWgoPTGlzdERlcGxveW1lbnRzEiIucHJvbXB0cy52MS5MaXN0RGVwbG95bWVudHNSZXF1ZXN0GiMucHJvbXB0cy52MS5MaXN0RGVwbG95bWVudHNSZXNwb25zZRI9CghMaW5rRXZhbBIbLnByb21wdHMudjEuTGlua0V2YWxSZXF1ZXN0GhQucHJvbXB0cy52MS5FdmFsTGluaxJCCgdSZXNvbHZlEhoucHJvbXB0cy52MS5SZXNvbHZlUmVxdWVzdBobLnByb21wdHMudjEuUmVzb2x2ZVJlc3BvbnNlQjZaNGdpdGh1Yi5jb20vZXZhbG9wcy9wcm90by9nZW4vZ28vcHJvbXB0cy92MTtwcm9tcHRzdjFiBnByb3RvMw", [file_google_protobuf_timestamp, file_google_protobuf_struct]);
+  fileDesc("Chhwcm9tcHRzL3YxL3Byb21wdHMucHJvdG8SCnByb21wdHMudjEi5QEKBlByb21wdBIKCgJpZBgBIAEoCRIXCg9vcmdhbml6YXRpb25faWQYAiABKAkSDAoEbmFtZRgDIAEoCRIPCgdzdXJmYWNlGAQgASgJEgwKBHRhZ3MYBSADKAkSKQoIbWV0YWRhdGEYBiABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Ei4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIqoCCgdWZXJzaW9uEgoKAmlkGAEgASgJEhEKCXByb21wdF9pZBgCIAEoCRIPCgd2ZXJzaW9uGAMgASgFEg8KB2NvbnRlbnQYBCABKAkSDQoFbW9kZWwYBSABKAkSDAoEaGFzaBgGIAEoCRIOCgZhdXRob3IYByABKAkSLgoKY3JlYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASEQoJdmFyaWFibGVzGAkgAygJEjoKDHRva2VuX2NvdW50cxgKIAMoCzIkLnByb21wdHMudjEuVmVyc2lvbi5Ub2tlbkNvdW50c0VudHJ5GjIKEFRva2VuQ291bnRzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgDOgI4ASKQAQoFTGFiZWwSEQoJcHJvbXB0X2lkGAEgASgJEgwKBG5hbWUYAiABKAkSDwoHdmVyc2lvbhgDIAEoBRINCgVhY3RvchgEIAEoCRIVCg1yb2xsYmFja19mcm9tGAUgASgFEi8KC2Fzc2lnbmVkX2F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCLEAQoKRGVwbG95bWVudBIKCgJpZBgBIAEoCRIRCglwcm9tcHRfaWQYAiABKAkSEgoKdmVyc2lvbl9pZBgDIAEoCRIPCgd2ZXJzaW9uGAQgASgFEg8KB3N1cmZhY2UYBSABKAkSCwoDZW52GAYgASgJEg0KBWFjdG9yGAcgASgJEi4KCmNyZWF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhUKDXJvbGxiYWNrX2Zyb20YCSABKAUisQEKCEV2YWxMaW5rEgoKAmlkGAEgASgJEhEKCXByb21wdF9pZBgCIAEoCRISCgp2ZXJzaW9uX2lkGAMgASgJEhMKC2V2YWxfcnVuX2lkGAQgASgJEg0KBXNjb3JlGAUgASgBEgwKBHBhc3MYBiABKAgSEAoIZXZhbF91cmwYByABKAkSLgoKY3JlYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAibQoOUmVzb2x2ZWRQcm9tcHQSEwoLcHJvbXB0X25hbWUYASABKAkSEQoJcHJvbXB0X2lkGAIgASgJEg0KBWxhYmVsGAMgASgJEiQKB3ZlcnNpb24YBCABKAsyEy5wcm9tcHRzLnYxLlZlcnNpb24ibQoTQ3JlYXRlUHJvbXB0UmVxdWVzdBIMCgRuYW1lGAEgASgJEg8KB3N1cmZhY2UYAiABKAkSDAoEdGFncxgDIAMoCRIpCghtZXRhZGF0YRgEIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QiHgoQR2V0UHJvbXB0UmVxdWVzdBIKCgJpZBgBIAEoCSIyChJMaXN0UHJvbXB0c1JlcXVlc3QSDwoHc3VyZmFjZRgBIAEoCRILCgN0YWcYAiABKAkiOgoTTGlzdFByb21wdHNSZXNwb25zZRIjCgdwcm9tcHRzGAEgAygLMhIucHJvbXB0cy52MS5Qcm9tcHQibAoUQ3JlYXRlVmVyc2lvblJlcXVlc3QSEQoJcHJvbXB0X2lkGAEgASgJEg8KB2NvbnRlbnQYAiABKAkSDQoFbW9kZWwYAyABKAkSDgoGYXV0aG9yGAQgASgJEhEKCXZhcmlhYmxlcxgFIAMoCSIoChNMaXN0VmVyc2lvbnNSZXF1ZXN0EhEKCXByb21wdF9pZBgBIAEoCSI9ChRMaXN0VmVyc2lvbnNSZXNwb25zZRIlCgh2ZXJzaW9ucxgBIAMoCzITLnByb21wdHMudjEuVmVyc2lvbiJsChJBc3NpZ25MYWJlbFJlcXVlc3QSEQoJcHJvbXB0X2lkGAEgASgJEgwKBG5hbWUYAiABKAkSDwoHdmVyc2lvbhgDIAEoBRINCgVhY3RvchgEIAEoCRIVCg1yb2xsYmFja19mcm9tGAUgASgFIiYKEUxpc3RMYWJlbHNSZXF1ZXN0EhEKCXByb21wdF9pZBgBIAEoCSI3ChJMaXN0TGFiZWxzUmVzcG9uc2USIQoGbGFiZWxzGAEgAygLMhEucHJvbXB0cy52MS5MYWJlbCIrChZMaXN0RGVwbG95bWVudHNSZXF1ZXN0EhEKCXByb21wdF9pZBgBIAEoCSJGChdMaXN0RGVwbG95bWVudHNSZXNwb25zZRIrCgtkZXBsb3ltZW50cxgBIAMoCzIWLnByb21wdHMudjEuRGVwbG95bWVudCJ8Cg9MaW5rRXZhbFJlcXVlc3QSEQoJcHJvbXB0X2lkGAEgASgJEhIKCnZlcnNpb25faWQYAiABKAkSEwoLZXZhbF9ydW5faWQYAyABKAkSDQoFc2NvcmUYBCABKAESDAoEcGFzcxgFIAEoCBIQCghldmFsX3VybBgGIAEoCSItCg5SZXNvbHZlUmVxdWVzdBIMCgRuYW1lGAEgASgJEg0KBWxhYmVsGAIgASgJIjcKD1Jlc29sdmVSZXNwb25zZRIkCgd2ZXJzaW9uGAEgASgLMhMucHJvbXB0cy52MS5WZXJzaW9uIiIKEVJlc29sdmVBbGxSZXF1ZXN0Eg0KBWxhYmVsGAEgASgJIkEKElJlc29sdmVBbGxSZXNwb25zZRIrCgdwcm9tcHRzGAEgAygLMhoucHJvbXB0cy52MS5SZXNvbHZlZFByb21wdDK5BgoNUHJvbXB0U2VydmljZRJDCgxDcmVhdGVQcm9tcHQSHy5wcm9tcHRzLnYxLkNyZWF0ZVByb21wdFJlcXVlc3QaEi5wcm9tcHRzLnYxLlByb21wdBI9CglHZXRQcm9tcHQSHC5wcm9tcHRzLnYxLkdldFByb21wdFJlcXVlc3QaEi5wcm9tcHRzLnYxLlByb21wdBJOCgtMaXN0UHJvbXB0cxIeLnByb21wdHMudjEuTGlzdFByb21wdHNSZXF1ZXN0Gh8ucHJvbXB0cy52MS5MaXN0UHJvbXB0c1Jlc3BvbnNlEkYKDUNyZWF0ZVZlcnNpb24SIC5wcm9tcHRzLnYxLkNyZWF0ZVZlcnNpb25SZXF1ZXN0GhMucHJvbXB0cy52MS5WZXJzaW9uElEKDExpc3RWZXJzaW9ucxIfLnByb21wdHMudjEuTGlzdFZlcnNpb25zUmVxdWVzdBogLnByb21wdHMudjEuTGlzdFZlcnNpb25zUmVzcG9uc2USQAoLQXNzaWduTGFiZWwSHi5wcm9tcHRzLnYxLkFzc2lnbkxhYmVsUmVxdWVzdBoRLnByb21wdHMudjEuTGFiZWwSSwoKTGlzdExhYmVscxIdLnByb21wdHMudjEuTGlzdExhYmVsc1JlcXVlc3QaHi5wcm9tcHRzLnYxLkxpc3RMYWJlbHNSZXNwb25zZRJaCg9MaXN0RGVwbG95bWVudHMSIi5wcm9tcHRzLnYxLkxpc3REZXBsb3ltZW50c1JlcXVlc3QaIy5wcm9tcHRzLnYxLkxpc3REZXBsb3ltZW50c1Jlc3BvbnNlEj0KCExpbmtFdmFsEhsucHJvbXB0cy52MS5MaW5rRXZhbFJlcXVlc3QaFC5wcm9tcHRzLnYxLkV2YWxMaW5rEkIKB1Jlc29sdmUSGi5wcm9tcHRzLnYxLlJlc29sdmVSZXF1ZXN0GhsucHJvbXB0cy52MS5SZXNvbHZlUmVzcG9uc2USSwoKUmVzb2x2ZUFsbBIdLnByb21wdHMudjEuUmVzb2x2ZUFsbFJlcXVlc3QaHi5wcm9tcHRzLnYxLlJlc29sdmVBbGxSZXNwb25zZUI2WjRnaXRodWIuY29tL2V2YWxvcHMvcHJvdG8vZ2VuL2dvL3Byb21wdHMvdjE7cHJvbXB0c3YxYgZwcm90bzM", [file_google_protobuf_timestamp, file_google_protobuf_struct]);
 
 /**
  * Prompt is a named, versioned prompt template scoped to an organization.
@@ -115,6 +115,22 @@ export type Version = Message<"prompts.v1.Version"> & {
    * @generated from field: google.protobuf.Timestamp created_at = 8;
    */
   createdAt?: Timestamp;
+
+  /**
+   * Expected interpolation variable names (e.g., "customer_name", "deal_stage").
+   * Declaration only — rendering is the consumer's responsibility.
+   *
+   * @generated from field: repeated string variables = 9;
+   */
+  variables: string[];
+
+  /**
+   * Per-model token counts for context window budgeting.
+   * Populated lazily by gateway or fermata after first tokenization.
+   *
+   * @generated from field: map<string, int64> token_counts = 10;
+   */
+  tokenCounts: { [key: string]: bigint };
 };
 
 /**
@@ -125,7 +141,58 @@ export const VersionSchema: GenMessage<Version> = /*@__PURE__*/
   messageDesc(file_prompts_v1_prompts, 1);
 
 /**
- * Deployment tracks which version is active for a given surface and environment.
+ * Label is a mutable pointer from (org, prompt, label_name) to a version.
+ * The primary resolution mechanism — code references labels, not version numbers.
+ * Promotion and rollback are both label reassignments.
+ *
+ * @generated from message prompts.v1.Label
+ */
+export type Label = Message<"prompts.v1.Label"> & {
+  /**
+   * @generated from field: string prompt_id = 1;
+   */
+  promptId: string;
+
+  /**
+   * "production", "staging", "canary"
+   *
+   * @generated from field: string name = 2;
+   */
+  name: string;
+
+  /**
+   * @generated from field: int32 version = 3;
+   */
+  version: number;
+
+  /**
+   * @generated from field: string actor = 4;
+   */
+  actor: string;
+
+  /**
+   * set when this assignment is a rollback
+   *
+   * @generated from field: int32 rollback_from = 5;
+   */
+  rollbackFrom: number;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp assigned_at = 6;
+   */
+  assignedAt?: Timestamp;
+};
+
+/**
+ * Describes the message prompts.v1.Label.
+ * Use `create(LabelSchema)` to create a new message.
+ */
+export const LabelSchema: GenMessage<Label> = /*@__PURE__*/
+  messageDesc(file_prompts_v1_prompts, 2);
+
+/**
+ * Deployment is an audit record of a label assignment. Retained for compliance.
+ * Every AssignLabel call produces both a Label update and a Deployment record.
  *
  * @generated from message prompts.v1.Deployment
  */
@@ -151,11 +218,15 @@ export type Deployment = Message<"prompts.v1.Deployment"> & {
   version: number;
 
   /**
+   * label name (kept as "surface" for wire compat)
+   *
    * @generated from field: string surface = 5;
    */
   surface: string;
 
   /**
+   * deprecated — use label name
+   *
    * @generated from field: string env = 6;
    */
   env: string;
@@ -169,6 +240,11 @@ export type Deployment = Message<"prompts.v1.Deployment"> & {
    * @generated from field: google.protobuf.Timestamp created_at = 8;
    */
   createdAt?: Timestamp;
+
+  /**
+   * @generated from field: int32 rollback_from = 9;
+   */
+  rollbackFrom: number;
 };
 
 /**
@@ -176,7 +252,7 @@ export type Deployment = Message<"prompts.v1.Deployment"> & {
  * Use `create(DeploymentSchema)` to create a new message.
  */
 export const DeploymentSchema: GenMessage<Deployment> = /*@__PURE__*/
-  messageDesc(file_prompts_v1_prompts, 2);
+  messageDesc(file_prompts_v1_prompts, 3);
 
 /**
  * EvalLink connects a prompt version to a Fermata evaluation result.
@@ -230,7 +306,41 @@ export type EvalLink = Message<"prompts.v1.EvalLink"> & {
  * Use `create(EvalLinkSchema)` to create a new message.
  */
 export const EvalLinkSchema: GenMessage<EvalLink> = /*@__PURE__*/
-  messageDesc(file_prompts_v1_prompts, 3);
+  messageDesc(file_prompts_v1_prompts, 4);
+
+/**
+ * ResolvedPrompt is returned by the bulk-load endpoint for gateway startup.
+ *
+ * @generated from message prompts.v1.ResolvedPrompt
+ */
+export type ResolvedPrompt = Message<"prompts.v1.ResolvedPrompt"> & {
+  /**
+   * @generated from field: string prompt_name = 1;
+   */
+  promptName: string;
+
+  /**
+   * @generated from field: string prompt_id = 2;
+   */
+  promptId: string;
+
+  /**
+   * @generated from field: string label = 3;
+   */
+  label: string;
+
+  /**
+   * @generated from field: prompts.v1.Version version = 4;
+   */
+  version?: Version;
+};
+
+/**
+ * Describes the message prompts.v1.ResolvedPrompt.
+ * Use `create(ResolvedPromptSchema)` to create a new message.
+ */
+export const ResolvedPromptSchema: GenMessage<ResolvedPrompt> = /*@__PURE__*/
+  messageDesc(file_prompts_v1_prompts, 5);
 
 /**
  * @generated from message prompts.v1.CreatePromptRequest
@@ -262,7 +372,7 @@ export type CreatePromptRequest = Message<"prompts.v1.CreatePromptRequest"> & {
  * Use `create(CreatePromptRequestSchema)` to create a new message.
  */
 export const CreatePromptRequestSchema: GenMessage<CreatePromptRequest> = /*@__PURE__*/
-  messageDesc(file_prompts_v1_prompts, 4);
+  messageDesc(file_prompts_v1_prompts, 6);
 
 /**
  * @generated from message prompts.v1.GetPromptRequest
@@ -279,7 +389,7 @@ export type GetPromptRequest = Message<"prompts.v1.GetPromptRequest"> & {
  * Use `create(GetPromptRequestSchema)` to create a new message.
  */
 export const GetPromptRequestSchema: GenMessage<GetPromptRequest> = /*@__PURE__*/
-  messageDesc(file_prompts_v1_prompts, 5);
+  messageDesc(file_prompts_v1_prompts, 7);
 
 /**
  * @generated from message prompts.v1.ListPromptsRequest
@@ -301,7 +411,7 @@ export type ListPromptsRequest = Message<"prompts.v1.ListPromptsRequest"> & {
  * Use `create(ListPromptsRequestSchema)` to create a new message.
  */
 export const ListPromptsRequestSchema: GenMessage<ListPromptsRequest> = /*@__PURE__*/
-  messageDesc(file_prompts_v1_prompts, 6);
+  messageDesc(file_prompts_v1_prompts, 8);
 
 /**
  * @generated from message prompts.v1.ListPromptsResponse
@@ -318,7 +428,7 @@ export type ListPromptsResponse = Message<"prompts.v1.ListPromptsResponse"> & {
  * Use `create(ListPromptsResponseSchema)` to create a new message.
  */
 export const ListPromptsResponseSchema: GenMessage<ListPromptsResponse> = /*@__PURE__*/
-  messageDesc(file_prompts_v1_prompts, 7);
+  messageDesc(file_prompts_v1_prompts, 9);
 
 /**
  * @generated from message prompts.v1.CreateVersionRequest
@@ -343,6 +453,11 @@ export type CreateVersionRequest = Message<"prompts.v1.CreateVersionRequest"> & 
    * @generated from field: string author = 4;
    */
   author: string;
+
+  /**
+   * @generated from field: repeated string variables = 5;
+   */
+  variables: string[];
 };
 
 /**
@@ -350,7 +465,7 @@ export type CreateVersionRequest = Message<"prompts.v1.CreateVersionRequest"> & 
  * Use `create(CreateVersionRequestSchema)` to create a new message.
  */
 export const CreateVersionRequestSchema: GenMessage<CreateVersionRequest> = /*@__PURE__*/
-  messageDesc(file_prompts_v1_prompts, 8);
+  messageDesc(file_prompts_v1_prompts, 10);
 
 /**
  * @generated from message prompts.v1.ListVersionsRequest
@@ -367,7 +482,7 @@ export type ListVersionsRequest = Message<"prompts.v1.ListVersionsRequest"> & {
  * Use `create(ListVersionsRequestSchema)` to create a new message.
  */
 export const ListVersionsRequestSchema: GenMessage<ListVersionsRequest> = /*@__PURE__*/
-  messageDesc(file_prompts_v1_prompts, 9);
+  messageDesc(file_prompts_v1_prompts, 11);
 
 /**
  * @generated from message prompts.v1.ListVersionsResponse
@@ -384,44 +499,89 @@ export type ListVersionsResponse = Message<"prompts.v1.ListVersionsResponse"> & 
  * Use `create(ListVersionsResponseSchema)` to create a new message.
  */
 export const ListVersionsResponseSchema: GenMessage<ListVersionsResponse> = /*@__PURE__*/
-  messageDesc(file_prompts_v1_prompts, 10);
+  messageDesc(file_prompts_v1_prompts, 12);
 
 /**
- * @generated from message prompts.v1.DeployRequest
+ * AssignLabelRequest atomically moves a label pointer to a version.
+ * Used for promotion, rollback, and canary assignment.
+ *
+ * @generated from message prompts.v1.AssignLabelRequest
  */
-export type DeployRequest = Message<"prompts.v1.DeployRequest"> & {
+export type AssignLabelRequest = Message<"prompts.v1.AssignLabelRequest"> & {
   /**
    * @generated from field: string prompt_id = 1;
    */
   promptId: string;
 
   /**
-   * @generated from field: int32 version = 2;
+   * label name: "production", "staging", "canary"
+   *
+   * @generated from field: string name = 2;
+   */
+  name: string;
+
+  /**
+   * target version number
+   *
+   * @generated from field: int32 version = 3;
    */
   version: number;
 
   /**
-   * @generated from field: string surface = 3;
-   */
-  surface: string;
-
-  /**
-   * @generated from field: string env = 4;
-   */
-  env: string;
-
-  /**
-   * @generated from field: string actor = 5;
+   * who is making the assignment
+   *
+   * @generated from field: string actor = 4;
    */
   actor: string;
+
+  /**
+   * set when this is a rollback (the version being rolled back from)
+   *
+   * @generated from field: int32 rollback_from = 5;
+   */
+  rollbackFrom: number;
 };
 
 /**
- * Describes the message prompts.v1.DeployRequest.
- * Use `create(DeployRequestSchema)` to create a new message.
+ * Describes the message prompts.v1.AssignLabelRequest.
+ * Use `create(AssignLabelRequestSchema)` to create a new message.
  */
-export const DeployRequestSchema: GenMessage<DeployRequest> = /*@__PURE__*/
-  messageDesc(file_prompts_v1_prompts, 11);
+export const AssignLabelRequestSchema: GenMessage<AssignLabelRequest> = /*@__PURE__*/
+  messageDesc(file_prompts_v1_prompts, 13);
+
+/**
+ * @generated from message prompts.v1.ListLabelsRequest
+ */
+export type ListLabelsRequest = Message<"prompts.v1.ListLabelsRequest"> & {
+  /**
+   * @generated from field: string prompt_id = 1;
+   */
+  promptId: string;
+};
+
+/**
+ * Describes the message prompts.v1.ListLabelsRequest.
+ * Use `create(ListLabelsRequestSchema)` to create a new message.
+ */
+export const ListLabelsRequestSchema: GenMessage<ListLabelsRequest> = /*@__PURE__*/
+  messageDesc(file_prompts_v1_prompts, 14);
+
+/**
+ * @generated from message prompts.v1.ListLabelsResponse
+ */
+export type ListLabelsResponse = Message<"prompts.v1.ListLabelsResponse"> & {
+  /**
+   * @generated from field: repeated prompts.v1.Label labels = 1;
+   */
+  labels: Label[];
+};
+
+/**
+ * Describes the message prompts.v1.ListLabelsResponse.
+ * Use `create(ListLabelsResponseSchema)` to create a new message.
+ */
+export const ListLabelsResponseSchema: GenMessage<ListLabelsResponse> = /*@__PURE__*/
+  messageDesc(file_prompts_v1_prompts, 15);
 
 /**
  * @generated from message prompts.v1.ListDeploymentsRequest
@@ -438,7 +598,7 @@ export type ListDeploymentsRequest = Message<"prompts.v1.ListDeploymentsRequest"
  * Use `create(ListDeploymentsRequestSchema)` to create a new message.
  */
 export const ListDeploymentsRequestSchema: GenMessage<ListDeploymentsRequest> = /*@__PURE__*/
-  messageDesc(file_prompts_v1_prompts, 12);
+  messageDesc(file_prompts_v1_prompts, 16);
 
 /**
  * @generated from message prompts.v1.ListDeploymentsResponse
@@ -455,7 +615,7 @@ export type ListDeploymentsResponse = Message<"prompts.v1.ListDeploymentsRespons
  * Use `create(ListDeploymentsResponseSchema)` to create a new message.
  */
 export const ListDeploymentsResponseSchema: GenMessage<ListDeploymentsResponse> = /*@__PURE__*/
-  messageDesc(file_prompts_v1_prompts, 13);
+  messageDesc(file_prompts_v1_prompts, 17);
 
 /**
  * @generated from message prompts.v1.LinkEvalRequest
@@ -497,9 +657,12 @@ export type LinkEvalRequest = Message<"prompts.v1.LinkEvalRequest"> & {
  * Use `create(LinkEvalRequestSchema)` to create a new message.
  */
 export const LinkEvalRequestSchema: GenMessage<LinkEvalRequest> = /*@__PURE__*/
-  messageDesc(file_prompts_v1_prompts, 14);
+  messageDesc(file_prompts_v1_prompts, 18);
 
 /**
+ * ResolveRequest is the hot-path lookup. Label defaults to "production".
+ * Consumers MUST pin the resolved version at session/sequence start.
+ *
  * @generated from message prompts.v1.ResolveRequest
  */
 export type ResolveRequest = Message<"prompts.v1.ResolveRequest"> & {
@@ -509,14 +672,11 @@ export type ResolveRequest = Message<"prompts.v1.ResolveRequest"> & {
   name: string;
 
   /**
-   * @generated from field: string surface = 2;
+   * default: "production"
+   *
+   * @generated from field: string label = 2;
    */
-  surface: string;
-
-  /**
-   * @generated from field: string env = 3;
-   */
-  env: string;
+  label: string;
 };
 
 /**
@@ -524,7 +684,7 @@ export type ResolveRequest = Message<"prompts.v1.ResolveRequest"> & {
  * Use `create(ResolveRequestSchema)` to create a new message.
  */
 export const ResolveRequestSchema: GenMessage<ResolveRequest> = /*@__PURE__*/
-  messageDesc(file_prompts_v1_prompts, 15);
+  messageDesc(file_prompts_v1_prompts, 19);
 
 /**
  * @generated from message prompts.v1.ResolveResponse
@@ -541,7 +701,45 @@ export type ResolveResponse = Message<"prompts.v1.ResolveResponse"> & {
  * Use `create(ResolveResponseSchema)` to create a new message.
  */
 export const ResolveResponseSchema: GenMessage<ResolveResponse> = /*@__PURE__*/
-  messageDesc(file_prompts_v1_prompts, 16);
+  messageDesc(file_prompts_v1_prompts, 20);
+
+/**
+ * ResolveAllRequest returns all active prompts for a label — gateway startup path.
+ *
+ * @generated from message prompts.v1.ResolveAllRequest
+ */
+export type ResolveAllRequest = Message<"prompts.v1.ResolveAllRequest"> & {
+  /**
+   * default: "production"
+   *
+   * @generated from field: string label = 1;
+   */
+  label: string;
+};
+
+/**
+ * Describes the message prompts.v1.ResolveAllRequest.
+ * Use `create(ResolveAllRequestSchema)` to create a new message.
+ */
+export const ResolveAllRequestSchema: GenMessage<ResolveAllRequest> = /*@__PURE__*/
+  messageDesc(file_prompts_v1_prompts, 21);
+
+/**
+ * @generated from message prompts.v1.ResolveAllResponse
+ */
+export type ResolveAllResponse = Message<"prompts.v1.ResolveAllResponse"> & {
+  /**
+   * @generated from field: repeated prompts.v1.ResolvedPrompt prompts = 1;
+   */
+  prompts: ResolvedPrompt[];
+};
+
+/**
+ * Describes the message prompts.v1.ResolveAllResponse.
+ * Use `create(ResolveAllResponseSchema)` to create a new message.
+ */
+export const ResolveAllResponseSchema: GenMessage<ResolveAllResponse> = /*@__PURE__*/
+  messageDesc(file_prompts_v1_prompts, 22);
 
 /**
  * PromptService defines the prompt registry API.
@@ -590,12 +788,20 @@ export const PromptService: GenService<{
     output: typeof ListVersionsResponseSchema;
   },
   /**
-   * @generated from rpc prompts.v1.PromptService.Deploy
+   * @generated from rpc prompts.v1.PromptService.AssignLabel
    */
-  deploy: {
+  assignLabel: {
     methodKind: "unary";
-    input: typeof DeployRequestSchema;
-    output: typeof DeploymentSchema;
+    input: typeof AssignLabelRequestSchema;
+    output: typeof LabelSchema;
+  },
+  /**
+   * @generated from rpc prompts.v1.PromptService.ListLabels
+   */
+  listLabels: {
+    methodKind: "unary";
+    input: typeof ListLabelsRequestSchema;
+    output: typeof ListLabelsResponseSchema;
   },
   /**
    * @generated from rpc prompts.v1.PromptService.ListDeployments
@@ -620,6 +826,14 @@ export const PromptService: GenService<{
     methodKind: "unary";
     input: typeof ResolveRequestSchema;
     output: typeof ResolveResponseSchema;
+  },
+  /**
+   * @generated from rpc prompts.v1.PromptService.ResolveAll
+   */
+  resolveAll: {
+    methodKind: "unary";
+    input: typeof ResolveAllRequestSchema;
+    output: typeof ResolveAllResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_prompts_v1_prompts, 0);

@@ -47,8 +47,12 @@ const (
 	// PromptServiceListVersionsProcedure is the fully-qualified name of the PromptService's
 	// ListVersions RPC.
 	PromptServiceListVersionsProcedure = "/prompts.v1.PromptService/ListVersions"
-	// PromptServiceDeployProcedure is the fully-qualified name of the PromptService's Deploy RPC.
-	PromptServiceDeployProcedure = "/prompts.v1.PromptService/Deploy"
+	// PromptServiceAssignLabelProcedure is the fully-qualified name of the PromptService's AssignLabel
+	// RPC.
+	PromptServiceAssignLabelProcedure = "/prompts.v1.PromptService/AssignLabel"
+	// PromptServiceListLabelsProcedure is the fully-qualified name of the PromptService's ListLabels
+	// RPC.
+	PromptServiceListLabelsProcedure = "/prompts.v1.PromptService/ListLabels"
 	// PromptServiceListDeploymentsProcedure is the fully-qualified name of the PromptService's
 	// ListDeployments RPC.
 	PromptServiceListDeploymentsProcedure = "/prompts.v1.PromptService/ListDeployments"
@@ -56,6 +60,9 @@ const (
 	PromptServiceLinkEvalProcedure = "/prompts.v1.PromptService/LinkEval"
 	// PromptServiceResolveProcedure is the fully-qualified name of the PromptService's Resolve RPC.
 	PromptServiceResolveProcedure = "/prompts.v1.PromptService/Resolve"
+	// PromptServiceResolveAllProcedure is the fully-qualified name of the PromptService's ResolveAll
+	// RPC.
+	PromptServiceResolveAllProcedure = "/prompts.v1.PromptService/ResolveAll"
 )
 
 // PromptServiceClient is a client for the prompts.v1.PromptService service.
@@ -65,10 +72,12 @@ type PromptServiceClient interface {
 	ListPrompts(context.Context, *connect.Request[v1.ListPromptsRequest]) (*connect.Response[v1.ListPromptsResponse], error)
 	CreateVersion(context.Context, *connect.Request[v1.CreateVersionRequest]) (*connect.Response[v1.Version], error)
 	ListVersions(context.Context, *connect.Request[v1.ListVersionsRequest]) (*connect.Response[v1.ListVersionsResponse], error)
-	Deploy(context.Context, *connect.Request[v1.DeployRequest]) (*connect.Response[v1.Deployment], error)
+	AssignLabel(context.Context, *connect.Request[v1.AssignLabelRequest]) (*connect.Response[v1.Label], error)
+	ListLabels(context.Context, *connect.Request[v1.ListLabelsRequest]) (*connect.Response[v1.ListLabelsResponse], error)
 	ListDeployments(context.Context, *connect.Request[v1.ListDeploymentsRequest]) (*connect.Response[v1.ListDeploymentsResponse], error)
 	LinkEval(context.Context, *connect.Request[v1.LinkEvalRequest]) (*connect.Response[v1.EvalLink], error)
 	Resolve(context.Context, *connect.Request[v1.ResolveRequest]) (*connect.Response[v1.ResolveResponse], error)
+	ResolveAll(context.Context, *connect.Request[v1.ResolveAllRequest]) (*connect.Response[v1.ResolveAllResponse], error)
 }
 
 // NewPromptServiceClient constructs a client for the prompts.v1.PromptService service. By default,
@@ -112,10 +121,16 @@ func NewPromptServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(promptServiceMethods.ByName("ListVersions")),
 			connect.WithClientOptions(opts...),
 		),
-		deploy: connect.NewClient[v1.DeployRequest, v1.Deployment](
+		assignLabel: connect.NewClient[v1.AssignLabelRequest, v1.Label](
 			httpClient,
-			baseURL+PromptServiceDeployProcedure,
-			connect.WithSchema(promptServiceMethods.ByName("Deploy")),
+			baseURL+PromptServiceAssignLabelProcedure,
+			connect.WithSchema(promptServiceMethods.ByName("AssignLabel")),
+			connect.WithClientOptions(opts...),
+		),
+		listLabels: connect.NewClient[v1.ListLabelsRequest, v1.ListLabelsResponse](
+			httpClient,
+			baseURL+PromptServiceListLabelsProcedure,
+			connect.WithSchema(promptServiceMethods.ByName("ListLabels")),
 			connect.WithClientOptions(opts...),
 		),
 		listDeployments: connect.NewClient[v1.ListDeploymentsRequest, v1.ListDeploymentsResponse](
@@ -136,6 +151,12 @@ func NewPromptServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(promptServiceMethods.ByName("Resolve")),
 			connect.WithClientOptions(opts...),
 		),
+		resolveAll: connect.NewClient[v1.ResolveAllRequest, v1.ResolveAllResponse](
+			httpClient,
+			baseURL+PromptServiceResolveAllProcedure,
+			connect.WithSchema(promptServiceMethods.ByName("ResolveAll")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -146,10 +167,12 @@ type promptServiceClient struct {
 	listPrompts     *connect.Client[v1.ListPromptsRequest, v1.ListPromptsResponse]
 	createVersion   *connect.Client[v1.CreateVersionRequest, v1.Version]
 	listVersions    *connect.Client[v1.ListVersionsRequest, v1.ListVersionsResponse]
-	deploy          *connect.Client[v1.DeployRequest, v1.Deployment]
+	assignLabel     *connect.Client[v1.AssignLabelRequest, v1.Label]
+	listLabels      *connect.Client[v1.ListLabelsRequest, v1.ListLabelsResponse]
 	listDeployments *connect.Client[v1.ListDeploymentsRequest, v1.ListDeploymentsResponse]
 	linkEval        *connect.Client[v1.LinkEvalRequest, v1.EvalLink]
 	resolve         *connect.Client[v1.ResolveRequest, v1.ResolveResponse]
+	resolveAll      *connect.Client[v1.ResolveAllRequest, v1.ResolveAllResponse]
 }
 
 // CreatePrompt calls prompts.v1.PromptService.CreatePrompt.
@@ -177,9 +200,14 @@ func (c *promptServiceClient) ListVersions(ctx context.Context, req *connect.Req
 	return c.listVersions.CallUnary(ctx, req)
 }
 
-// Deploy calls prompts.v1.PromptService.Deploy.
-func (c *promptServiceClient) Deploy(ctx context.Context, req *connect.Request[v1.DeployRequest]) (*connect.Response[v1.Deployment], error) {
-	return c.deploy.CallUnary(ctx, req)
+// AssignLabel calls prompts.v1.PromptService.AssignLabel.
+func (c *promptServiceClient) AssignLabel(ctx context.Context, req *connect.Request[v1.AssignLabelRequest]) (*connect.Response[v1.Label], error) {
+	return c.assignLabel.CallUnary(ctx, req)
+}
+
+// ListLabels calls prompts.v1.PromptService.ListLabels.
+func (c *promptServiceClient) ListLabels(ctx context.Context, req *connect.Request[v1.ListLabelsRequest]) (*connect.Response[v1.ListLabelsResponse], error) {
+	return c.listLabels.CallUnary(ctx, req)
 }
 
 // ListDeployments calls prompts.v1.PromptService.ListDeployments.
@@ -197,6 +225,11 @@ func (c *promptServiceClient) Resolve(ctx context.Context, req *connect.Request[
 	return c.resolve.CallUnary(ctx, req)
 }
 
+// ResolveAll calls prompts.v1.PromptService.ResolveAll.
+func (c *promptServiceClient) ResolveAll(ctx context.Context, req *connect.Request[v1.ResolveAllRequest]) (*connect.Response[v1.ResolveAllResponse], error) {
+	return c.resolveAll.CallUnary(ctx, req)
+}
+
 // PromptServiceHandler is an implementation of the prompts.v1.PromptService service.
 type PromptServiceHandler interface {
 	CreatePrompt(context.Context, *connect.Request[v1.CreatePromptRequest]) (*connect.Response[v1.Prompt], error)
@@ -204,10 +237,12 @@ type PromptServiceHandler interface {
 	ListPrompts(context.Context, *connect.Request[v1.ListPromptsRequest]) (*connect.Response[v1.ListPromptsResponse], error)
 	CreateVersion(context.Context, *connect.Request[v1.CreateVersionRequest]) (*connect.Response[v1.Version], error)
 	ListVersions(context.Context, *connect.Request[v1.ListVersionsRequest]) (*connect.Response[v1.ListVersionsResponse], error)
-	Deploy(context.Context, *connect.Request[v1.DeployRequest]) (*connect.Response[v1.Deployment], error)
+	AssignLabel(context.Context, *connect.Request[v1.AssignLabelRequest]) (*connect.Response[v1.Label], error)
+	ListLabels(context.Context, *connect.Request[v1.ListLabelsRequest]) (*connect.Response[v1.ListLabelsResponse], error)
 	ListDeployments(context.Context, *connect.Request[v1.ListDeploymentsRequest]) (*connect.Response[v1.ListDeploymentsResponse], error)
 	LinkEval(context.Context, *connect.Request[v1.LinkEvalRequest]) (*connect.Response[v1.EvalLink], error)
 	Resolve(context.Context, *connect.Request[v1.ResolveRequest]) (*connect.Response[v1.ResolveResponse], error)
+	ResolveAll(context.Context, *connect.Request[v1.ResolveAllRequest]) (*connect.Response[v1.ResolveAllResponse], error)
 }
 
 // NewPromptServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -247,10 +282,16 @@ func NewPromptServiceHandler(svc PromptServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(promptServiceMethods.ByName("ListVersions")),
 		connect.WithHandlerOptions(opts...),
 	)
-	promptServiceDeployHandler := connect.NewUnaryHandler(
-		PromptServiceDeployProcedure,
-		svc.Deploy,
-		connect.WithSchema(promptServiceMethods.ByName("Deploy")),
+	promptServiceAssignLabelHandler := connect.NewUnaryHandler(
+		PromptServiceAssignLabelProcedure,
+		svc.AssignLabel,
+		connect.WithSchema(promptServiceMethods.ByName("AssignLabel")),
+		connect.WithHandlerOptions(opts...),
+	)
+	promptServiceListLabelsHandler := connect.NewUnaryHandler(
+		PromptServiceListLabelsProcedure,
+		svc.ListLabels,
+		connect.WithSchema(promptServiceMethods.ByName("ListLabels")),
 		connect.WithHandlerOptions(opts...),
 	)
 	promptServiceListDeploymentsHandler := connect.NewUnaryHandler(
@@ -271,6 +312,12 @@ func NewPromptServiceHandler(svc PromptServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(promptServiceMethods.ByName("Resolve")),
 		connect.WithHandlerOptions(opts...),
 	)
+	promptServiceResolveAllHandler := connect.NewUnaryHandler(
+		PromptServiceResolveAllProcedure,
+		svc.ResolveAll,
+		connect.WithSchema(promptServiceMethods.ByName("ResolveAll")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/prompts.v1.PromptService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case PromptServiceCreatePromptProcedure:
@@ -283,14 +330,18 @@ func NewPromptServiceHandler(svc PromptServiceHandler, opts ...connect.HandlerOp
 			promptServiceCreateVersionHandler.ServeHTTP(w, r)
 		case PromptServiceListVersionsProcedure:
 			promptServiceListVersionsHandler.ServeHTTP(w, r)
-		case PromptServiceDeployProcedure:
-			promptServiceDeployHandler.ServeHTTP(w, r)
+		case PromptServiceAssignLabelProcedure:
+			promptServiceAssignLabelHandler.ServeHTTP(w, r)
+		case PromptServiceListLabelsProcedure:
+			promptServiceListLabelsHandler.ServeHTTP(w, r)
 		case PromptServiceListDeploymentsProcedure:
 			promptServiceListDeploymentsHandler.ServeHTTP(w, r)
 		case PromptServiceLinkEvalProcedure:
 			promptServiceLinkEvalHandler.ServeHTTP(w, r)
 		case PromptServiceResolveProcedure:
 			promptServiceResolveHandler.ServeHTTP(w, r)
+		case PromptServiceResolveAllProcedure:
+			promptServiceResolveAllHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -320,8 +371,12 @@ func (UnimplementedPromptServiceHandler) ListVersions(context.Context, *connect.
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("prompts.v1.PromptService.ListVersions is not implemented"))
 }
 
-func (UnimplementedPromptServiceHandler) Deploy(context.Context, *connect.Request[v1.DeployRequest]) (*connect.Response[v1.Deployment], error) {
-	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("prompts.v1.PromptService.Deploy is not implemented"))
+func (UnimplementedPromptServiceHandler) AssignLabel(context.Context, *connect.Request[v1.AssignLabelRequest]) (*connect.Response[v1.Label], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("prompts.v1.PromptService.AssignLabel is not implemented"))
+}
+
+func (UnimplementedPromptServiceHandler) ListLabels(context.Context, *connect.Request[v1.ListLabelsRequest]) (*connect.Response[v1.ListLabelsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("prompts.v1.PromptService.ListLabels is not implemented"))
 }
 
 func (UnimplementedPromptServiceHandler) ListDeployments(context.Context, *connect.Request[v1.ListDeploymentsRequest]) (*connect.Response[v1.ListDeploymentsResponse], error) {
@@ -334,4 +389,8 @@ func (UnimplementedPromptServiceHandler) LinkEval(context.Context, *connect.Requ
 
 func (UnimplementedPromptServiceHandler) Resolve(context.Context, *connect.Request[v1.ResolveRequest]) (*connect.Response[v1.ResolveResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("prompts.v1.PromptService.Resolve is not implemented"))
+}
+
+func (UnimplementedPromptServiceHandler) ResolveAll(context.Context, *connect.Request[v1.ResolveAllRequest]) (*connect.Response[v1.ResolveAllResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("prompts.v1.PromptService.ResolveAll is not implemented"))
 }
