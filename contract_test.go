@@ -2,6 +2,8 @@ package proto_test
 
 import (
 	"encoding/json"
+	"os"
+	"path/filepath"
 	"testing"
 	"time"
 
@@ -117,6 +119,42 @@ func TestMemoryRecallResponseRoundTripPreservesNestedMetadata(t *testing.T) {
 	}
 }
 
+func TestMemoryStoreRequestFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message memoryv1.StoreRequest
+	loadProtoJSONFixture(t, filepath.Join("proto", "memory", "v1", "testdata", "store_request.json"), &message)
+
+	if message.GetScope() != memoryv1.Scope_SCOPE_PROJECT {
+		t.Fatalf("expected SCOPE_PROJECT, got %v", message.GetScope())
+	}
+	if message.GetProjectId() != "maestro" {
+		t.Fatalf("expected project_id maestro, got %q", message.GetProjectId())
+	}
+	if !message.GetIsPolicy() {
+		t.Fatal("expected is_policy=true in store fixture")
+	}
+}
+
+func TestMemoryRecallResponseFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message memoryv1.RecallResponse
+	loadProtoJSONFixture(t, filepath.Join("proto", "memory", "v1", "testdata", "recall_response.json"), &message)
+
+	if len(message.GetResults()) != 1 {
+		t.Fatalf("expected 1 recall result, got %d", len(message.GetResults()))
+	}
+
+	result := message.GetResults()[0]
+	if result.GetMemory().GetRepository() != "evalops/maestro" {
+		t.Fatalf("expected repository evalops/maestro, got %q", result.GetMemory().GetRepository())
+	}
+	if result.GetSimilarity() != float32(0.82) {
+		t.Fatalf("expected similarity 0.82, got %v", result.GetSimilarity())
+	}
+}
+
 func TestCloudEventRoundTripPreservesTypedChangePayload(t *testing.T) {
 	t.Parallel()
 
@@ -184,6 +222,29 @@ func TestCloudEventRoundTripPreservesTypedChangePayload(t *testing.T) {
 	}
 }
 
+func TestCloudEventChangeFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message eventsv1.CloudEvent
+	loadProtoJSONFixture(t, filepath.Join("proto", "events", "v1", "testdata", "cloud_event_change.json"), &message)
+
+	if message.GetData().GetTypeUrl() != "type.googleapis.com/events.v1.Change" {
+		t.Fatalf("unexpected Change type URL %q", message.GetData().GetTypeUrl())
+	}
+
+	var unpacked eventsv1.Change
+	if err := message.GetData().UnmarshalTo(&unpacked); err != nil {
+		t.Fatalf("unpack Change payload: %v", err)
+	}
+
+	if unpacked.GetAggregateId() != "conv_456" {
+		t.Fatalf("expected aggregate_id conv_456, got %q", unpacked.GetAggregateId())
+	}
+	if unpacked.GetPayload().GetFields()["branch_count"].GetNumberValue() != 2 {
+		t.Fatalf("expected branch_count 2, got %#v", unpacked.GetPayload().GetFields()["branch_count"])
+	}
+}
+
 func TestCloudEventRoundTripPreservesTypedTapPayload(t *testing.T) {
 	t.Parallel()
 
@@ -247,6 +308,44 @@ func TestCloudEventRoundTripPreservesTypedTapPayload(t *testing.T) {
 	}
 	if unpacked.GetChanges()["stage"].GetTo().GetStringValue() != "qualified" {
 		t.Fatalf("expected stage transition to qualified, got %#v", unpacked.GetChanges()["stage"].GetTo())
+	}
+}
+
+func TestCloudEventTapFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message eventsv1.CloudEvent
+	loadProtoJSONFixture(t, filepath.Join("proto", "events", "v1", "testdata", "cloud_event_tap.json"), &message)
+
+	if message.GetData().GetTypeUrl() != "type.googleapis.com/tap.v1.TapEventData" {
+		t.Fatalf("unexpected TapEventData type URL %q", message.GetData().GetTypeUrl())
+	}
+
+	var unpacked tapv1.TapEventData
+	if err := message.GetData().UnmarshalTo(&unpacked); err != nil {
+		t.Fatalf("unpack TapEventData payload: %v", err)
+	}
+
+	if unpacked.GetProvider() != "hubspot" {
+		t.Fatalf("expected provider hubspot, got %q", unpacked.GetProvider())
+	}
+	if unpacked.GetRequestId() != "req_789" {
+		t.Fatalf("expected request_id req_789, got %q", unpacked.GetRequestId())
+	}
+	if unpacked.GetChanges()["stage"].GetTo().GetStringValue() != "qualified" {
+		t.Fatalf("expected stage transition to qualified, got %#v", unpacked.GetChanges()["stage"].GetTo())
+	}
+}
+
+func loadProtoJSONFixture(t *testing.T, path string, message proto.Message) {
+	t.Helper()
+
+	fixture, err := os.ReadFile(path)
+	if err != nil {
+		t.Fatalf("read fixture %s: %v", path, err)
+	}
+	if err := (protojson.UnmarshalOptions{DiscardUnknown: false}).Unmarshal(fixture, message); err != nil {
+		t.Fatalf("unmarshal fixture %s: %v", path, err)
 	}
 }
 
