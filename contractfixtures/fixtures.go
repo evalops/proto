@@ -12,6 +12,7 @@ import (
 	configv1 "github.com/evalops/proto/gen/go/config/v1"
 	eventsv1 "github.com/evalops/proto/gen/go/events/v1"
 	tapv1 "github.com/evalops/proto/gen/go/tap/v1"
+	workflowsv1 "github.com/evalops/proto/gen/go/workflows/v1"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
 )
@@ -32,6 +33,8 @@ const (
 	EventParkerWorkRelationshipUpdateTerminated = "events/v1/testdata/cloud_event_parker_work_relationship_update_terminated.json"
 	EventTap                                    = "events/v1/testdata/cloud_event_tap.json"
 	EventTapHubspotDealQualified                = "events/v1/testdata/cloud_event_tap_hubspot_deal_qualified.json"
+	EventWorkflowRunStarted                     = "events/v1/testdata/cloud_event_workflow_run_started.json"
+	EventWorkflowStepWaiting                    = "events/v1/testdata/cloud_event_workflow_step_waiting.json"
 	GovernanceEvaluateActionRequest             = "governance/v1/testdata/evaluate_action_request.json"
 	KeysResolveProviderRefRequest               = "keys/v1/testdata/resolve_provider_ref_request.json"
 	KeysResolveProviderRefResponse              = "keys/v1/testdata/resolve_provider_ref_response.json"
@@ -50,6 +53,8 @@ const (
 	WorkflowsHandleTriggerResponse              = "workflows/v1/testdata/handle_trigger_response.json"
 	WorkflowsPublishVersionResponse             = "workflows/v1/testdata/publish_version_response.json"
 	WorkflowsGetRunResponse                     = "workflows/v1/testdata/get_run_response.json"
+	WorkflowsRunLifecycleEventStarted           = "workflows/v1/testdata/run_lifecycle_event_started.json"
+	WorkflowsStepLifecycleEventWaiting          = "workflows/v1/testdata/step_lifecycle_event_waiting.json"
 )
 
 var fixtureCatalog = []string{
@@ -68,6 +73,8 @@ var fixtureCatalog = []string{
 	EventParkerWorkRelationshipUpdateTerminated,
 	EventTap,
 	EventTapHubspotDealQualified,
+	EventWorkflowRunStarted,
+	EventWorkflowStepWaiting,
 	GovernanceEvaluateActionRequest,
 	KeysResolveProviderRefRequest,
 	KeysResolveProviderRefResponse,
@@ -86,6 +93,8 @@ var fixtureCatalog = []string{
 	WorkflowsHandleTriggerResponse,
 	WorkflowsPublishVersionResponse,
 	WorkflowsGetRunResponse,
+	WorkflowsRunLifecycleEventStarted,
+	WorkflowsStepLifecycleEventWaiting,
 }
 
 var embeddedFixtures = map[string][]byte{
@@ -378,6 +387,22 @@ func LoadTapFixture(name string) (*eventsv1.CloudEvent, *tapv1.TapEventData, err
 
 func LoadFeatureFlagSnapshot(name string) (*configv1.FeatureFlagSnapshot, error) {
 	var message configv1.FeatureFlagSnapshot
+	if err := UnmarshalProtoJSON(name, &message); err != nil {
+		return nil, err
+	}
+	return &message, nil
+}
+
+func LoadWorkflowRunLifecycleEvent(name string) (*workflowsv1.WorkflowRunLifecycleEvent, error) {
+	var message workflowsv1.WorkflowRunLifecycleEvent
+	if err := UnmarshalProtoJSON(name, &message); err != nil {
+		return nil, err
+	}
+	return &message, nil
+}
+
+func LoadWorkflowStepLifecycleEvent(name string) (*workflowsv1.WorkflowStepLifecycleEvent, error) {
+	var message workflowsv1.WorkflowStepLifecycleEvent
 	if err := UnmarshalProtoJSON(name, &message); err != nil {
 		return nil, err
 	}
