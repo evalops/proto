@@ -110,6 +110,12 @@ var embeddedFixtures = map[string][]byte{
     "provider_ref_id": "pref_000001"
   }
 }`),
+	KeysResolveProviderRefRequest: []byte(`{
+  "provider": "openai",
+  "environment": "production",
+  "credential_name": "default",
+  "team_id": "team_platform"
+}`),
 	KeysResolveProviderRefResponse: []byte(`{
   "provider_ref": {
     "id": "pref_000001",

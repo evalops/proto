@@ -127,6 +127,21 @@ func TestUnmarshalProtoJSONLoadsLLMGatewayMeterFixture(t *testing.T) {
 	}
 }
 
+func TestUnmarshalProtoJSONLoadsKeysResolveRequestFixture(t *testing.T) {
+	t.Parallel()
+
+	var message keysv1.ResolveProviderRefRequest
+	if err := UnmarshalProtoJSON(KeysResolveProviderRefRequest, &message); err != nil {
+		t.Fatalf("load keys resolve provider ref request: %v", err)
+	}
+	if message.GetProvider() != "openai" {
+		t.Fatalf("unexpected provider %q", message.GetProvider())
+	}
+	if message.GetTeamId() != "team_platform" {
+		t.Fatalf("unexpected team_id %q", message.GetTeamId())
+	}
+}
+
 func TestUnmarshalProtoJSONLoadsKeysResolveFixture(t *testing.T) {
 	t.Parallel()
 
