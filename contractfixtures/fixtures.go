@@ -21,6 +21,7 @@ const (
 	EventPipelineActivityCreateReplied          = "events/v1/testdata/cloud_event_pipeline_activity_create_replied.json"
 	EventParkerWorkRelationshipUpdateTerminated = "events/v1/testdata/cloud_event_parker_work_relationship_update_terminated.json"
 	EventTapHubspotDealQualified                = "events/v1/testdata/cloud_event_tap_hubspot_deal_qualified.json"
+	MeterRecordUsageRequestLLMGatewayResponses  = "meter/v1/testdata/record_usage_request_llm_gateway_responses.json"
 	MeterRecordUsageRequest                     = "meter/v1/testdata/record_usage_request.json"
 	MeterRecordUsageResponse                    = "meter/v1/testdata/record_usage_response.json"
 	MeterUsageQueryResponse                     = "meter/v1/testdata/query_usage_response.json"
