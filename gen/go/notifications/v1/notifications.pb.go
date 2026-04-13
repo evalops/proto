@@ -457,14 +457,16 @@ func (x *NotificationPreferences) GetEscalationRules() []*EscalationRule {
 }
 
 type SendRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	WorkspaceId   string                 `protobuf:"bytes,1,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
-	RecipientId   string                 `protobuf:"bytes,2,opt,name=recipient_id,json=recipientId,proto3" json:"recipient_id,omitempty"`
-	Channel       DeliveryChannel        `protobuf:"varint,3,opt,name=channel,proto3,enum=notifications.v1.DeliveryChannel" json:"channel,omitempty"`
-	Priority      Priority               `protobuf:"varint,4,opt,name=priority,proto3,enum=notifications.v1.Priority" json:"priority,omitempty"`
-	Subject       string                 `protobuf:"bytes,5,opt,name=subject,proto3" json:"subject,omitempty"`
-	Body          string                 `protobuf:"bytes,6,opt,name=body,proto3" json:"body,omitempty"`
-	MetadataJson  string                 `protobuf:"bytes,7,opt,name=metadata_json,json=metadataJson,proto3" json:"metadata_json,omitempty"`
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	WorkspaceId string                 `protobuf:"bytes,1,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	RecipientId string                 `protobuf:"bytes,2,opt,name=recipient_id,json=recipientId,proto3" json:"recipient_id,omitempty"`
+	// If channel is unspecified, the notifications service may resolve it from
+	// the recipient's preferences before falling back to a safe default.
+	Channel       DeliveryChannel `protobuf:"varint,3,opt,name=channel,proto3,enum=notifications.v1.DeliveryChannel" json:"channel,omitempty"`
+	Priority      Priority        `protobuf:"varint,4,opt,name=priority,proto3,enum=notifications.v1.Priority" json:"priority,omitempty"`
+	Subject       string          `protobuf:"bytes,5,opt,name=subject,proto3" json:"subject,omitempty"`
+	Body          string          `protobuf:"bytes,6,opt,name=body,proto3" json:"body,omitempty"`
+	MetadataJson  string          `protobuf:"bytes,7,opt,name=metadata_json,json=metadataJson,proto3" json:"metadata_json,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

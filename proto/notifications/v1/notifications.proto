@@ -79,6 +79,8 @@ message NotificationPreferences {
 message SendRequest {
   string workspace_id = 1;
   string recipient_id = 2;
+  // If channel is unspecified, the notifications service may resolve it from
+  // the recipient's preferences before falling back to a safe default.
   DeliveryChannel channel = 3;
   Priority priority = 4;
   string subject = 5;
