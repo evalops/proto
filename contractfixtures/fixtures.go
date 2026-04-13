@@ -22,6 +22,8 @@ const (
 	EventPipelineActivityCreateReplied          = "events/v1/testdata/cloud_event_pipeline_activity_create_replied.json"
 	EventParkerWorkRelationshipUpdateTerminated = "events/v1/testdata/cloud_event_parker_work_relationship_update_terminated.json"
 	EventTapHubspotDealQualified                = "events/v1/testdata/cloud_event_tap_hubspot_deal_qualified.json"
+	KeysResolveProviderRefRequest               = "keys/v1/testdata/resolve_provider_ref_request.json"
+	KeysResolveProviderRefResponse              = "keys/v1/testdata/resolve_provider_ref_response.json"
 	MeterRecordUsageRequestLLMGatewayResponses  = "meter/v1/testdata/record_usage_request_llm_gateway_responses.json"
 	MeterRecordUsageRequest                     = "meter/v1/testdata/record_usage_request.json"
 	MeterRecordUsageResponse                    = "meter/v1/testdata/record_usage_response.json"
@@ -106,6 +108,27 @@ var embeddedFixtures = map[string][]byte{
   "data": {
     "endpoint": "/v1/responses",
     "provider_ref_id": "pref_000001"
+  }
+}`),
+	KeysResolveProviderRefResponse: []byte(`{
+  "provider_ref": {
+    "id": "pref_000001",
+    "organization_id": "org_123",
+    "provider": "openai",
+    "environment": "production",
+    "credential_name": "default",
+    "team_id": "team_platform",
+    "credential_type": "api_key",
+    "endpoint_url": "https://api.openai.com/v1",
+    "region": "us",
+    "credential_data": {
+      "api_key": "sk-live-123"
+    },
+    "provider_config": {
+      "base_url": "https://api.openai.com/v1"
+    },
+    "created_at": "2026-04-13T11:30:00Z",
+    "updated_at": "2026-04-13T11:30:00Z"
   }
 }`),
 }

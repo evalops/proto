@@ -29,6 +29,7 @@ packages instead of maintaining their own hand-written struct copies.
 | Package | Description | Consumers |
 |---------|-------------|-----------|
 | `identity/v1` | Token introspection, organizations, members, API keys, sessions | gate, chat, llm-gateway, service-runtime, identity |
+| `keys/v1` | Managed provider refs, endpoint metadata, credential resolution | keys, llm-gateway, chat |
 | `meter/v1` | Usage recording, querying, cost attribution | llm-gateway, chat, platform |
 | `audit/v1` | Audit event recording, actors, resources, querying, export | llm-gateway, chat, gate, platform |
 | `memory/v1` | Semantic memory storage, recall, embeddings, consolidation | chat, ensemble, platform |
@@ -73,6 +74,9 @@ flowchart TD
     Proto -->|identity/v1| Chat
     Proto -->|identity/v1| Gate
     Proto -->|identity/v1| SRT
+    Proto -->|keys/v1| Keys[keys]
+    Proto -->|keys/v1| Gateway
+    Proto -->|keys/v1| Chat
     Proto -->|meter/v1| Meter
     Proto -->|meter/v1| Gateway
     Proto -->|meter/v1| Chat
@@ -207,6 +211,7 @@ root as `@evalops/proto`.
 Current package surface:
 
 - protobuf-es message modules like `@evalops/proto/memory/v1/memory_pb`
+- managed provider-ref contracts like `@evalops/proto/keys/v1/keys_pb`
 - metering contracts like `@evalops/proto/meter/v1/meter_pb`
 - shared event contracts like `@evalops/proto/events/v1/cloudevent_pb`
 
@@ -326,6 +331,7 @@ buf.yaml                buf module configuration
 buf.gen.yaml            codegen plugin configuration
 proto/                  source .proto files
   identity/v1/          token introspection, orgs, members, sessions
+  keys/v1/              managed provider refs and credential resolution
   meter/v1/             usage recording and cost attribution
   audit/v1/             audit event recording and querying
   memory/v1/            semantic memory storage and recall
