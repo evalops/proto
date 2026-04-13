@@ -12,9 +12,11 @@ import "google/protobuf/timestamp.proto";
 service MemoryService {
   rpc Store(StoreRequest) returns (StoreResponse);
   rpc Recall(RecallRequest) returns (RecallResponse);
+  rpc RecallKnowledge(RecallKnowledgeRequest) returns (RecallKnowledgeResponse);
   rpc Update(UpdateRequest) returns (UpdateResponse);
   rpc Delete(DeleteRequest) returns (DeleteResponse);
   rpc List(ListRequest) returns (ListResponse);
+  rpc GetOperatingRules(GetOperatingRulesRequest) returns (GetOperatingRulesResponse);
   rpc Consolidate(ConsolidateRequest) returns (ConsolidateResponse);
 }
 
@@ -52,6 +54,7 @@ message Memory {
 
   google.protobuf.Timestamp created_at = 16;
   google.protobuf.Timestamp updated_at = 17;
+  repeated string tags = 18;
 }
 
 message StoreRequest {
@@ -65,6 +68,7 @@ message StoreRequest {
   string repository = 8;
   string agent = 9;
   bool is_policy = 10;
+  repeated string tags = 11;
 }
 
 message StoreResponse {
@@ -82,7 +86,21 @@ message RecallRequest {
   string agent = 8;
 }
 
+message RecallKnowledgeRequest {
+  repeated string conditions = 1;
+  Scope scope = 2;
+  int32 top_k = 3;
+  string project_id = 4;
+  string team_id = 5;
+  string repository = 6;
+  string agent = 7;
+}
+
 message RecallResponse {
+  repeated RecallResult results = 1;
+}
+
+message RecallKnowledgeResponse {
   repeated RecallResult results = 1;
 }
 
@@ -96,6 +114,7 @@ message UpdateRequest {
   string content = 2;
   string type = 3;
   float confidence = 4;
+  repeated string tags = 5;
 }
 
 message UpdateResponse {
@@ -118,7 +137,23 @@ message ListRequest {
   int32 offset = 7;
 }
 
+message GetOperatingRulesRequest {
+  Scope scope = 1;
+  string project_id = 2;
+  string team_id = 3;
+  string repository = 4;
+  string agent = 5;
+  int32 limit = 6;
+  int32 offset = 7;
+}
+
 message ListResponse {
+  repeated Memory memories = 1;
+  int32 total = 2;
+  bool has_more = 3;
+}
+
+message GetOperatingRulesResponse {
   repeated Memory memories = 1;
   int32 total = 2;
   bool has_more = 3;

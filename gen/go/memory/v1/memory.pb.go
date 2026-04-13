@@ -103,6 +103,7 @@ type Memory struct {
 	IsPolicy      bool                   `protobuf:"varint,15,opt,name=is_policy,json=isPolicy,proto3" json:"is_policy,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Tags          []string               `protobuf:"bytes,18,rep,name=tags,proto3" json:"tags,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -256,6 +257,13 @@ func (x *Memory) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *Memory) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
 type StoreRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Scope         Scope                  `protobuf:"varint,1,opt,name=scope,proto3,enum=memory.v1.Scope" json:"scope,omitempty"`
@@ -268,6 +276,7 @@ type StoreRequest struct {
 	Repository    string                 `protobuf:"bytes,8,opt,name=repository,proto3" json:"repository,omitempty"`
 	Agent         string                 `protobuf:"bytes,9,opt,name=agent,proto3" json:"agent,omitempty"`
 	IsPolicy      bool                   `protobuf:"varint,10,opt,name=is_policy,json=isPolicy,proto3" json:"is_policy,omitempty"`
+	Tags          []string               `protobuf:"bytes,11,rep,name=tags,proto3" json:"tags,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -370,6 +379,13 @@ func (x *StoreRequest) GetIsPolicy() bool {
 		return x.IsPolicy
 	}
 	return false
+}
+
+func (x *StoreRequest) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
 }
 
 type StoreResponse struct {
@@ -516,6 +532,98 @@ func (x *RecallRequest) GetAgent() string {
 	return ""
 }
 
+type RecallKnowledgeRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Conditions    []string               `protobuf:"bytes,1,rep,name=conditions,proto3" json:"conditions,omitempty"`
+	Scope         Scope                  `protobuf:"varint,2,opt,name=scope,proto3,enum=memory.v1.Scope" json:"scope,omitempty"`
+	TopK          int32                  `protobuf:"varint,3,opt,name=top_k,json=topK,proto3" json:"top_k,omitempty"`
+	ProjectId     string                 `protobuf:"bytes,4,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	TeamId        string                 `protobuf:"bytes,5,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	Repository    string                 `protobuf:"bytes,6,opt,name=repository,proto3" json:"repository,omitempty"`
+	Agent         string                 `protobuf:"bytes,7,opt,name=agent,proto3" json:"agent,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RecallKnowledgeRequest) Reset() {
+	*x = RecallKnowledgeRequest{}
+	mi := &file_memory_v1_memory_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RecallKnowledgeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RecallKnowledgeRequest) ProtoMessage() {}
+
+func (x *RecallKnowledgeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_memory_v1_memory_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RecallKnowledgeRequest.ProtoReflect.Descriptor instead.
+func (*RecallKnowledgeRequest) Descriptor() ([]byte, []int) {
+	return file_memory_v1_memory_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *RecallKnowledgeRequest) GetConditions() []string {
+	if x != nil {
+		return x.Conditions
+	}
+	return nil
+}
+
+func (x *RecallKnowledgeRequest) GetScope() Scope {
+	if x != nil {
+		return x.Scope
+	}
+	return Scope_SCOPE_UNSPECIFIED
+}
+
+func (x *RecallKnowledgeRequest) GetTopK() int32 {
+	if x != nil {
+		return x.TopK
+	}
+	return 0
+}
+
+func (x *RecallKnowledgeRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *RecallKnowledgeRequest) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *RecallKnowledgeRequest) GetRepository() string {
+	if x != nil {
+		return x.Repository
+	}
+	return ""
+}
+
+func (x *RecallKnowledgeRequest) GetAgent() string {
+	if x != nil {
+		return x.Agent
+	}
+	return ""
+}
+
 type RecallResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Results       []*RecallResult        `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
@@ -525,7 +633,7 @@ type RecallResponse struct {
 
 func (x *RecallResponse) Reset() {
 	*x = RecallResponse{}
-	mi := &file_memory_v1_memory_proto_msgTypes[4]
+	mi := &file_memory_v1_memory_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -537,7 +645,7 @@ func (x *RecallResponse) String() string {
 func (*RecallResponse) ProtoMessage() {}
 
 func (x *RecallResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_memory_v1_memory_proto_msgTypes[4]
+	mi := &file_memory_v1_memory_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -550,10 +658,54 @@ func (x *RecallResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RecallResponse.ProtoReflect.Descriptor instead.
 func (*RecallResponse) Descriptor() ([]byte, []int) {
-	return file_memory_v1_memory_proto_rawDescGZIP(), []int{4}
+	return file_memory_v1_memory_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *RecallResponse) GetResults() []*RecallResult {
+	if x != nil {
+		return x.Results
+	}
+	return nil
+}
+
+type RecallKnowledgeResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Results       []*RecallResult        `protobuf:"bytes,1,rep,name=results,proto3" json:"results,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RecallKnowledgeResponse) Reset() {
+	*x = RecallKnowledgeResponse{}
+	mi := &file_memory_v1_memory_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RecallKnowledgeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RecallKnowledgeResponse) ProtoMessage() {}
+
+func (x *RecallKnowledgeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_memory_v1_memory_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RecallKnowledgeResponse.ProtoReflect.Descriptor instead.
+func (*RecallKnowledgeResponse) Descriptor() ([]byte, []int) {
+	return file_memory_v1_memory_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *RecallKnowledgeResponse) GetResults() []*RecallResult {
 	if x != nil {
 		return x.Results
 	}
@@ -570,7 +722,7 @@ type RecallResult struct {
 
 func (x *RecallResult) Reset() {
 	*x = RecallResult{}
-	mi := &file_memory_v1_memory_proto_msgTypes[5]
+	mi := &file_memory_v1_memory_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -582,7 +734,7 @@ func (x *RecallResult) String() string {
 func (*RecallResult) ProtoMessage() {}
 
 func (x *RecallResult) ProtoReflect() protoreflect.Message {
-	mi := &file_memory_v1_memory_proto_msgTypes[5]
+	mi := &file_memory_v1_memory_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -595,7 +747,7 @@ func (x *RecallResult) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RecallResult.ProtoReflect.Descriptor instead.
 func (*RecallResult) Descriptor() ([]byte, []int) {
-	return file_memory_v1_memory_proto_rawDescGZIP(), []int{5}
+	return file_memory_v1_memory_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *RecallResult) GetMemory() *Memory {
@@ -618,13 +770,14 @@ type UpdateRequest struct {
 	Content       string                 `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
 	Type          string                 `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
 	Confidence    float32                `protobuf:"fixed32,4,opt,name=confidence,proto3" json:"confidence,omitempty"`
+	Tags          []string               `protobuf:"bytes,5,rep,name=tags,proto3" json:"tags,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *UpdateRequest) Reset() {
 	*x = UpdateRequest{}
-	mi := &file_memory_v1_memory_proto_msgTypes[6]
+	mi := &file_memory_v1_memory_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -636,7 +789,7 @@ func (x *UpdateRequest) String() string {
 func (*UpdateRequest) ProtoMessage() {}
 
 func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_memory_v1_memory_proto_msgTypes[6]
+	mi := &file_memory_v1_memory_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -649,7 +802,7 @@ func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
 func (*UpdateRequest) Descriptor() ([]byte, []int) {
-	return file_memory_v1_memory_proto_rawDescGZIP(), []int{6}
+	return file_memory_v1_memory_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UpdateRequest) GetId() string {
@@ -680,6 +833,13 @@ func (x *UpdateRequest) GetConfidence() float32 {
 	return 0
 }
 
+func (x *UpdateRequest) GetTags() []string {
+	if x != nil {
+		return x.Tags
+	}
+	return nil
+}
+
 type UpdateResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Memory        *Memory                `protobuf:"bytes,1,opt,name=memory,proto3" json:"memory,omitempty"`
@@ -689,7 +849,7 @@ type UpdateResponse struct {
 
 func (x *UpdateResponse) Reset() {
 	*x = UpdateResponse{}
-	mi := &file_memory_v1_memory_proto_msgTypes[7]
+	mi := &file_memory_v1_memory_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -701,7 +861,7 @@ func (x *UpdateResponse) String() string {
 func (*UpdateResponse) ProtoMessage() {}
 
 func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_memory_v1_memory_proto_msgTypes[7]
+	mi := &file_memory_v1_memory_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -714,7 +874,7 @@ func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
 func (*UpdateResponse) Descriptor() ([]byte, []int) {
-	return file_memory_v1_memory_proto_rawDescGZIP(), []int{7}
+	return file_memory_v1_memory_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *UpdateResponse) GetMemory() *Memory {
@@ -733,7 +893,7 @@ type DeleteRequest struct {
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_memory_v1_memory_proto_msgTypes[8]
+	mi := &file_memory_v1_memory_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -745,7 +905,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_memory_v1_memory_proto_msgTypes[8]
+	mi := &file_memory_v1_memory_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -758,7 +918,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_memory_v1_memory_proto_rawDescGZIP(), []int{8}
+	return file_memory_v1_memory_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *DeleteRequest) GetId() string {
@@ -776,7 +936,7 @@ type DeleteResponse struct {
 
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
-	mi := &file_memory_v1_memory_proto_msgTypes[9]
+	mi := &file_memory_v1_memory_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -788,7 +948,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_memory_v1_memory_proto_msgTypes[9]
+	mi := &file_memory_v1_memory_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -801,7 +961,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_memory_v1_memory_proto_rawDescGZIP(), []int{9}
+	return file_memory_v1_memory_proto_rawDescGZIP(), []int{11}
 }
 
 type ListRequest struct {
@@ -819,7 +979,7 @@ type ListRequest struct {
 
 func (x *ListRequest) Reset() {
 	*x = ListRequest{}
-	mi := &file_memory_v1_memory_proto_msgTypes[10]
+	mi := &file_memory_v1_memory_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -831,7 +991,7 @@ func (x *ListRequest) String() string {
 func (*ListRequest) ProtoMessage() {}
 
 func (x *ListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_memory_v1_memory_proto_msgTypes[10]
+	mi := &file_memory_v1_memory_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -844,7 +1004,7 @@ func (x *ListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRequest.ProtoReflect.Descriptor instead.
 func (*ListRequest) Descriptor() ([]byte, []int) {
-	return file_memory_v1_memory_proto_rawDescGZIP(), []int{10}
+	return file_memory_v1_memory_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ListRequest) GetScope() Scope {
@@ -896,6 +1056,98 @@ func (x *ListRequest) GetOffset() int32 {
 	return 0
 }
 
+type GetOperatingRulesRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Scope         Scope                  `protobuf:"varint,1,opt,name=scope,proto3,enum=memory.v1.Scope" json:"scope,omitempty"`
+	ProjectId     string                 `protobuf:"bytes,2,opt,name=project_id,json=projectId,proto3" json:"project_id,omitempty"`
+	TeamId        string                 `protobuf:"bytes,3,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	Repository    string                 `protobuf:"bytes,4,opt,name=repository,proto3" json:"repository,omitempty"`
+	Agent         string                 `protobuf:"bytes,5,opt,name=agent,proto3" json:"agent,omitempty"`
+	Limit         int32                  `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,7,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetOperatingRulesRequest) Reset() {
+	*x = GetOperatingRulesRequest{}
+	mi := &file_memory_v1_memory_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetOperatingRulesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOperatingRulesRequest) ProtoMessage() {}
+
+func (x *GetOperatingRulesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_memory_v1_memory_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOperatingRulesRequest.ProtoReflect.Descriptor instead.
+func (*GetOperatingRulesRequest) Descriptor() ([]byte, []int) {
+	return file_memory_v1_memory_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *GetOperatingRulesRequest) GetScope() Scope {
+	if x != nil {
+		return x.Scope
+	}
+	return Scope_SCOPE_UNSPECIFIED
+}
+
+func (x *GetOperatingRulesRequest) GetProjectId() string {
+	if x != nil {
+		return x.ProjectId
+	}
+	return ""
+}
+
+func (x *GetOperatingRulesRequest) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *GetOperatingRulesRequest) GetRepository() string {
+	if x != nil {
+		return x.Repository
+	}
+	return ""
+}
+
+func (x *GetOperatingRulesRequest) GetAgent() string {
+	if x != nil {
+		return x.Agent
+	}
+	return ""
+}
+
+func (x *GetOperatingRulesRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetOperatingRulesRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
 type ListResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Memories      []*Memory              `protobuf:"bytes,1,rep,name=memories,proto3" json:"memories,omitempty"`
@@ -907,7 +1159,7 @@ type ListResponse struct {
 
 func (x *ListResponse) Reset() {
 	*x = ListResponse{}
-	mi := &file_memory_v1_memory_proto_msgTypes[11]
+	mi := &file_memory_v1_memory_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -919,7 +1171,7 @@ func (x *ListResponse) String() string {
 func (*ListResponse) ProtoMessage() {}
 
 func (x *ListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_memory_v1_memory_proto_msgTypes[11]
+	mi := &file_memory_v1_memory_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -932,7 +1184,7 @@ func (x *ListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListResponse.ProtoReflect.Descriptor instead.
 func (*ListResponse) Descriptor() ([]byte, []int) {
-	return file_memory_v1_memory_proto_rawDescGZIP(), []int{11}
+	return file_memory_v1_memory_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *ListResponse) GetMemories() []*Memory {
@@ -956,6 +1208,66 @@ func (x *ListResponse) GetHasMore() bool {
 	return false
 }
 
+type GetOperatingRulesResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Memories      []*Memory              `protobuf:"bytes,1,rep,name=memories,proto3" json:"memories,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	HasMore       bool                   `protobuf:"varint,3,opt,name=has_more,json=hasMore,proto3" json:"has_more,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetOperatingRulesResponse) Reset() {
+	*x = GetOperatingRulesResponse{}
+	mi := &file_memory_v1_memory_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetOperatingRulesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOperatingRulesResponse) ProtoMessage() {}
+
+func (x *GetOperatingRulesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_memory_v1_memory_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOperatingRulesResponse.ProtoReflect.Descriptor instead.
+func (*GetOperatingRulesResponse) Descriptor() ([]byte, []int) {
+	return file_memory_v1_memory_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *GetOperatingRulesResponse) GetMemories() []*Memory {
+	if x != nil {
+		return x.Memories
+	}
+	return nil
+}
+
+func (x *GetOperatingRulesResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *GetOperatingRulesResponse) GetHasMore() bool {
+	if x != nil {
+		return x.HasMore
+	}
+	return false
+}
+
 type ConsolidateRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Scope         Scope                  `protobuf:"varint,1,opt,name=scope,proto3,enum=memory.v1.Scope" json:"scope,omitempty"`
@@ -966,7 +1278,7 @@ type ConsolidateRequest struct {
 
 func (x *ConsolidateRequest) Reset() {
 	*x = ConsolidateRequest{}
-	mi := &file_memory_v1_memory_proto_msgTypes[12]
+	mi := &file_memory_v1_memory_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -978,7 +1290,7 @@ func (x *ConsolidateRequest) String() string {
 func (*ConsolidateRequest) ProtoMessage() {}
 
 func (x *ConsolidateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_memory_v1_memory_proto_msgTypes[12]
+	mi := &file_memory_v1_memory_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -991,7 +1303,7 @@ func (x *ConsolidateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConsolidateRequest.ProtoReflect.Descriptor instead.
 func (*ConsolidateRequest) Descriptor() ([]byte, []int) {
-	return file_memory_v1_memory_proto_rawDescGZIP(), []int{12}
+	return file_memory_v1_memory_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ConsolidateRequest) GetScope() Scope {
@@ -1018,7 +1330,7 @@ type ConsolidateResponse struct {
 
 func (x *ConsolidateResponse) Reset() {
 	*x = ConsolidateResponse{}
-	mi := &file_memory_v1_memory_proto_msgTypes[13]
+	mi := &file_memory_v1_memory_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1030,7 +1342,7 @@ func (x *ConsolidateResponse) String() string {
 func (*ConsolidateResponse) ProtoMessage() {}
 
 func (x *ConsolidateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_memory_v1_memory_proto_msgTypes[13]
+	mi := &file_memory_v1_memory_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1043,7 +1355,7 @@ func (x *ConsolidateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConsolidateResponse.ProtoReflect.Descriptor instead.
 func (*ConsolidateResponse) Descriptor() ([]byte, []int) {
-	return file_memory_v1_memory_proto_rawDescGZIP(), []int{13}
+	return file_memory_v1_memory_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *ConsolidateResponse) GetMerged() int32 {
@@ -1064,7 +1376,7 @@ var File_memory_v1_memory_proto protoreflect.FileDescriptor
 
 const file_memory_v1_memory_proto_rawDesc = "" +
 	"\n" +
-	"\x16memory/v1/memory.proto\x12\tmemory.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x9d\x04\n" +
+	"\x16memory/v1/memory.proto\x12\tmemory.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb1\x04\n" +
 	"\x06Memory\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12&\n" +
 	"\x05scope\x18\x02 \x01(\x0e2\x10.memory.v1.ScopeR\x05scope\x12\x18\n" +
@@ -1090,7 +1402,8 @@ const file_memory_v1_memory_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xa7\x02\n" +
+	"updated_at\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x12\n" +
+	"\x04tags\x18\x12 \x03(\tR\x04tags\"\xbb\x02\n" +
 	"\fStoreRequest\x12&\n" +
 	"\x05scope\x18\x01 \x01(\x0e2\x10.memory.v1.ScopeR\x05scope\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\x12\x12\n" +
@@ -1107,7 +1420,8 @@ const file_memory_v1_memory_proto_rawDesc = "" +
 	"repository\x12\x14\n" +
 	"\x05agent\x18\t \x01(\tR\x05agent\x12\x1b\n" +
 	"\tis_policy\x18\n" +
-	" \x01(\bR\bisPolicy\":\n" +
+	" \x01(\bR\bisPolicy\x12\x12\n" +
+	"\x04tags\x18\v \x03(\tR\x04tags\":\n" +
 	"\rStoreResponse\x12)\n" +
 	"\x06memory\x18\x01 \x01(\v2\x11.memory.v1.MemoryR\x06memory\"\xf7\x01\n" +
 	"\rRecallRequest\x12\x14\n" +
@@ -1121,21 +1435,37 @@ const file_memory_v1_memory_proto_rawDesc = "" +
 	"\n" +
 	"repository\x18\a \x01(\tR\n" +
 	"repository\x12\x14\n" +
-	"\x05agent\x18\b \x01(\tR\x05agent\"C\n" +
+	"\x05agent\x18\b \x01(\tR\x05agent\"\xe3\x01\n" +
+	"\x16RecallKnowledgeRequest\x12\x1e\n" +
+	"\n" +
+	"conditions\x18\x01 \x03(\tR\n" +
+	"conditions\x12&\n" +
+	"\x05scope\x18\x02 \x01(\x0e2\x10.memory.v1.ScopeR\x05scope\x12\x13\n" +
+	"\x05top_k\x18\x03 \x01(\x05R\x04topK\x12\x1d\n" +
+	"\n" +
+	"project_id\x18\x04 \x01(\tR\tprojectId\x12\x17\n" +
+	"\ateam_id\x18\x05 \x01(\tR\x06teamId\x12\x1e\n" +
+	"\n" +
+	"repository\x18\x06 \x01(\tR\n" +
+	"repository\x12\x14\n" +
+	"\x05agent\x18\a \x01(\tR\x05agent\"C\n" +
 	"\x0eRecallResponse\x121\n" +
+	"\aresults\x18\x01 \x03(\v2\x17.memory.v1.RecallResultR\aresults\"L\n" +
+	"\x17RecallKnowledgeResponse\x121\n" +
 	"\aresults\x18\x01 \x03(\v2\x17.memory.v1.RecallResultR\aresults\"Y\n" +
 	"\fRecallResult\x12)\n" +
 	"\x06memory\x18\x01 \x01(\v2\x11.memory.v1.MemoryR\x06memory\x12\x1e\n" +
 	"\n" +
 	"similarity\x18\x02 \x01(\x02R\n" +
-	"similarity\"m\n" +
+	"similarity\"\x81\x01\n" +
 	"\rUpdateRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\x12\x12\n" +
 	"\x04type\x18\x03 \x01(\tR\x04type\x12\x1e\n" +
 	"\n" +
 	"confidence\x18\x04 \x01(\x02R\n" +
-	"confidence\";\n" +
+	"confidence\x12\x12\n" +
+	"\x04tags\x18\x05 \x03(\tR\x04tags\";\n" +
 	"\x0eUpdateResponse\x12)\n" +
 	"\x06memory\x18\x01 \x01(\v2\x11.memory.v1.MemoryR\x06memory\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
@@ -1151,8 +1481,23 @@ const file_memory_v1_memory_proto_rawDesc = "" +
 	"repository\x12\x14\n" +
 	"\x05agent\x18\x05 \x01(\tR\x05agent\x12\x14\n" +
 	"\x05limit\x18\x06 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\a \x01(\x05R\x06offset\"\xde\x01\n" +
+	"\x18GetOperatingRulesRequest\x12&\n" +
+	"\x05scope\x18\x01 \x01(\x0e2\x10.memory.v1.ScopeR\x05scope\x12\x1d\n" +
+	"\n" +
+	"project_id\x18\x02 \x01(\tR\tprojectId\x12\x17\n" +
+	"\ateam_id\x18\x03 \x01(\tR\x06teamId\x12\x1e\n" +
+	"\n" +
+	"repository\x18\x04 \x01(\tR\n" +
+	"repository\x12\x14\n" +
+	"\x05agent\x18\x05 \x01(\tR\x05agent\x12\x14\n" +
+	"\x05limit\x18\x06 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\a \x01(\x05R\x06offset\"n\n" +
 	"\fListResponse\x12-\n" +
+	"\bmemories\x18\x01 \x03(\v2\x11.memory.v1.MemoryR\bmemories\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x19\n" +
+	"\bhas_more\x18\x03 \x01(\bR\ahasMore\"{\n" +
+	"\x19GetOperatingRulesResponse\x12-\n" +
 	"\bmemories\x18\x01 \x03(\v2\x11.memory.v1.MemoryR\bmemories\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x19\n" +
 	"\bhas_more\x18\x03 \x01(\bR\ahasMore\"[\n" +
@@ -1171,13 +1516,15 @@ const file_memory_v1_memory_proto_rawDesc = "" +
 	"SCOPE_TEAM\x10\x02\x12\x16\n" +
 	"\x12SCOPE_ORGANIZATION\x10\x03\x12\x0f\n" +
 	"\vSCOPE_AGENT\x10\x04\x12\x11\n" +
-	"\rSCOPE_PROJECT\x10\x052\x8f\x03\n" +
+	"\rSCOPE_PROJECT\x10\x052\xc9\x04\n" +
 	"\rMemoryService\x12:\n" +
 	"\x05Store\x12\x17.memory.v1.StoreRequest\x1a\x18.memory.v1.StoreResponse\x12=\n" +
-	"\x06Recall\x12\x18.memory.v1.RecallRequest\x1a\x19.memory.v1.RecallResponse\x12=\n" +
+	"\x06Recall\x12\x18.memory.v1.RecallRequest\x1a\x19.memory.v1.RecallResponse\x12X\n" +
+	"\x0fRecallKnowledge\x12!.memory.v1.RecallKnowledgeRequest\x1a\".memory.v1.RecallKnowledgeResponse\x12=\n" +
 	"\x06Update\x12\x18.memory.v1.UpdateRequest\x1a\x19.memory.v1.UpdateResponse\x12=\n" +
 	"\x06Delete\x12\x18.memory.v1.DeleteRequest\x1a\x19.memory.v1.DeleteResponse\x127\n" +
-	"\x04List\x12\x16.memory.v1.ListRequest\x1a\x17.memory.v1.ListResponse\x12L\n" +
+	"\x04List\x12\x16.memory.v1.ListRequest\x1a\x17.memory.v1.ListResponse\x12^\n" +
+	"\x11GetOperatingRules\x12#.memory.v1.GetOperatingRulesRequest\x1a$.memory.v1.GetOperatingRulesResponse\x12L\n" +
 	"\vConsolidate\x12\x1d.memory.v1.ConsolidateRequest\x1a\x1e.memory.v1.ConsolidateResponseB4Z2github.com/evalops/proto/gen/go/memory/v1;memoryv1b\x06proto3"
 
 var (
@@ -1193,55 +1540,67 @@ func file_memory_v1_memory_proto_rawDescGZIP() []byte {
 }
 
 var file_memory_v1_memory_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_memory_v1_memory_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_memory_v1_memory_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_memory_v1_memory_proto_goTypes = []any{
-	(Scope)(0),                    // 0: memory.v1.Scope
-	(*Memory)(nil),                // 1: memory.v1.Memory
-	(*StoreRequest)(nil),          // 2: memory.v1.StoreRequest
-	(*StoreResponse)(nil),         // 3: memory.v1.StoreResponse
-	(*RecallRequest)(nil),         // 4: memory.v1.RecallRequest
-	(*RecallResponse)(nil),        // 5: memory.v1.RecallResponse
-	(*RecallResult)(nil),          // 6: memory.v1.RecallResult
-	(*UpdateRequest)(nil),         // 7: memory.v1.UpdateRequest
-	(*UpdateResponse)(nil),        // 8: memory.v1.UpdateResponse
-	(*DeleteRequest)(nil),         // 9: memory.v1.DeleteRequest
-	(*DeleteResponse)(nil),        // 10: memory.v1.DeleteResponse
-	(*ListRequest)(nil),           // 11: memory.v1.ListRequest
-	(*ListResponse)(nil),          // 12: memory.v1.ListResponse
-	(*ConsolidateRequest)(nil),    // 13: memory.v1.ConsolidateRequest
-	(*ConsolidateResponse)(nil),   // 14: memory.v1.ConsolidateResponse
-	(*timestamppb.Timestamp)(nil), // 15: google.protobuf.Timestamp
+	(Scope)(0),                        // 0: memory.v1.Scope
+	(*Memory)(nil),                    // 1: memory.v1.Memory
+	(*StoreRequest)(nil),              // 2: memory.v1.StoreRequest
+	(*StoreResponse)(nil),             // 3: memory.v1.StoreResponse
+	(*RecallRequest)(nil),             // 4: memory.v1.RecallRequest
+	(*RecallKnowledgeRequest)(nil),    // 5: memory.v1.RecallKnowledgeRequest
+	(*RecallResponse)(nil),            // 6: memory.v1.RecallResponse
+	(*RecallKnowledgeResponse)(nil),   // 7: memory.v1.RecallKnowledgeResponse
+	(*RecallResult)(nil),              // 8: memory.v1.RecallResult
+	(*UpdateRequest)(nil),             // 9: memory.v1.UpdateRequest
+	(*UpdateResponse)(nil),            // 10: memory.v1.UpdateResponse
+	(*DeleteRequest)(nil),             // 11: memory.v1.DeleteRequest
+	(*DeleteResponse)(nil),            // 12: memory.v1.DeleteResponse
+	(*ListRequest)(nil),               // 13: memory.v1.ListRequest
+	(*GetOperatingRulesRequest)(nil),  // 14: memory.v1.GetOperatingRulesRequest
+	(*ListResponse)(nil),              // 15: memory.v1.ListResponse
+	(*GetOperatingRulesResponse)(nil), // 16: memory.v1.GetOperatingRulesResponse
+	(*ConsolidateRequest)(nil),        // 17: memory.v1.ConsolidateRequest
+	(*ConsolidateResponse)(nil),       // 18: memory.v1.ConsolidateResponse
+	(*timestamppb.Timestamp)(nil),     // 19: google.protobuf.Timestamp
 }
 var file_memory_v1_memory_proto_depIdxs = []int32{
 	0,  // 0: memory.v1.Memory.scope:type_name -> memory.v1.Scope
-	15, // 1: memory.v1.Memory.created_at:type_name -> google.protobuf.Timestamp
-	15, // 2: memory.v1.Memory.updated_at:type_name -> google.protobuf.Timestamp
+	19, // 1: memory.v1.Memory.created_at:type_name -> google.protobuf.Timestamp
+	19, // 2: memory.v1.Memory.updated_at:type_name -> google.protobuf.Timestamp
 	0,  // 3: memory.v1.StoreRequest.scope:type_name -> memory.v1.Scope
 	1,  // 4: memory.v1.StoreResponse.memory:type_name -> memory.v1.Memory
 	0,  // 5: memory.v1.RecallRequest.scope:type_name -> memory.v1.Scope
-	6,  // 6: memory.v1.RecallResponse.results:type_name -> memory.v1.RecallResult
-	1,  // 7: memory.v1.RecallResult.memory:type_name -> memory.v1.Memory
-	1,  // 8: memory.v1.UpdateResponse.memory:type_name -> memory.v1.Memory
-	0,  // 9: memory.v1.ListRequest.scope:type_name -> memory.v1.Scope
-	1,  // 10: memory.v1.ListResponse.memories:type_name -> memory.v1.Memory
-	0,  // 11: memory.v1.ConsolidateRequest.scope:type_name -> memory.v1.Scope
-	2,  // 12: memory.v1.MemoryService.Store:input_type -> memory.v1.StoreRequest
-	4,  // 13: memory.v1.MemoryService.Recall:input_type -> memory.v1.RecallRequest
-	7,  // 14: memory.v1.MemoryService.Update:input_type -> memory.v1.UpdateRequest
-	9,  // 15: memory.v1.MemoryService.Delete:input_type -> memory.v1.DeleteRequest
-	11, // 16: memory.v1.MemoryService.List:input_type -> memory.v1.ListRequest
-	13, // 17: memory.v1.MemoryService.Consolidate:input_type -> memory.v1.ConsolidateRequest
-	3,  // 18: memory.v1.MemoryService.Store:output_type -> memory.v1.StoreResponse
-	5,  // 19: memory.v1.MemoryService.Recall:output_type -> memory.v1.RecallResponse
-	8,  // 20: memory.v1.MemoryService.Update:output_type -> memory.v1.UpdateResponse
-	10, // 21: memory.v1.MemoryService.Delete:output_type -> memory.v1.DeleteResponse
-	12, // 22: memory.v1.MemoryService.List:output_type -> memory.v1.ListResponse
-	14, // 23: memory.v1.MemoryService.Consolidate:output_type -> memory.v1.ConsolidateResponse
-	18, // [18:24] is the sub-list for method output_type
-	12, // [12:18] is the sub-list for method input_type
-	12, // [12:12] is the sub-list for extension type_name
-	12, // [12:12] is the sub-list for extension extendee
-	0,  // [0:12] is the sub-list for field type_name
+	0,  // 6: memory.v1.RecallKnowledgeRequest.scope:type_name -> memory.v1.Scope
+	8,  // 7: memory.v1.RecallResponse.results:type_name -> memory.v1.RecallResult
+	8,  // 8: memory.v1.RecallKnowledgeResponse.results:type_name -> memory.v1.RecallResult
+	1,  // 9: memory.v1.RecallResult.memory:type_name -> memory.v1.Memory
+	1,  // 10: memory.v1.UpdateResponse.memory:type_name -> memory.v1.Memory
+	0,  // 11: memory.v1.ListRequest.scope:type_name -> memory.v1.Scope
+	0,  // 12: memory.v1.GetOperatingRulesRequest.scope:type_name -> memory.v1.Scope
+	1,  // 13: memory.v1.ListResponse.memories:type_name -> memory.v1.Memory
+	1,  // 14: memory.v1.GetOperatingRulesResponse.memories:type_name -> memory.v1.Memory
+	0,  // 15: memory.v1.ConsolidateRequest.scope:type_name -> memory.v1.Scope
+	2,  // 16: memory.v1.MemoryService.Store:input_type -> memory.v1.StoreRequest
+	4,  // 17: memory.v1.MemoryService.Recall:input_type -> memory.v1.RecallRequest
+	5,  // 18: memory.v1.MemoryService.RecallKnowledge:input_type -> memory.v1.RecallKnowledgeRequest
+	9,  // 19: memory.v1.MemoryService.Update:input_type -> memory.v1.UpdateRequest
+	11, // 20: memory.v1.MemoryService.Delete:input_type -> memory.v1.DeleteRequest
+	13, // 21: memory.v1.MemoryService.List:input_type -> memory.v1.ListRequest
+	14, // 22: memory.v1.MemoryService.GetOperatingRules:input_type -> memory.v1.GetOperatingRulesRequest
+	17, // 23: memory.v1.MemoryService.Consolidate:input_type -> memory.v1.ConsolidateRequest
+	3,  // 24: memory.v1.MemoryService.Store:output_type -> memory.v1.StoreResponse
+	6,  // 25: memory.v1.MemoryService.Recall:output_type -> memory.v1.RecallResponse
+	7,  // 26: memory.v1.MemoryService.RecallKnowledge:output_type -> memory.v1.RecallKnowledgeResponse
+	10, // 27: memory.v1.MemoryService.Update:output_type -> memory.v1.UpdateResponse
+	12, // 28: memory.v1.MemoryService.Delete:output_type -> memory.v1.DeleteResponse
+	15, // 29: memory.v1.MemoryService.List:output_type -> memory.v1.ListResponse
+	16, // 30: memory.v1.MemoryService.GetOperatingRules:output_type -> memory.v1.GetOperatingRulesResponse
+	18, // 31: memory.v1.MemoryService.Consolidate:output_type -> memory.v1.ConsolidateResponse
+	24, // [24:32] is the sub-list for method output_type
+	16, // [16:24] is the sub-list for method input_type
+	16, // [16:16] is the sub-list for extension type_name
+	16, // [16:16] is the sub-list for extension extendee
+	0,  // [0:16] is the sub-list for field type_name
 }
 
 func init() { file_memory_v1_memory_proto_init() }
@@ -1255,7 +1614,7 @@ func file_memory_v1_memory_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_memory_v1_memory_proto_rawDesc), len(file_memory_v1_memory_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   14,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ConsolidateRequest, ConsolidateResponse, DeleteRequest, DeleteResponse, ListRequest, ListResponse, RecallRequest, RecallResponse, StoreRequest, StoreResponse, UpdateRequest, UpdateResponse } from "./memory_pb.js";
+import { ConsolidateRequest, ConsolidateResponse, DeleteRequest, DeleteResponse, GetOperatingRulesRequest, GetOperatingRulesResponse, ListRequest, ListResponse, RecallKnowledgeRequest, RecallKnowledgeResponse, RecallRequest, RecallResponse, StoreRequest, StoreResponse, UpdateRequest, UpdateResponse } from "./memory_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -35,6 +35,15 @@ export const MemoryService = {
       kind: MethodKind.Unary,
     },
     /**
+     * @generated from rpc memory.v1.MemoryService.RecallKnowledge
+     */
+    recallKnowledge: {
+      name: "RecallKnowledge",
+      I: RecallKnowledgeRequest,
+      O: RecallKnowledgeResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
      * @generated from rpc memory.v1.MemoryService.Update
      */
     update: {
@@ -59,6 +68,15 @@ export const MemoryService = {
       name: "List",
       I: ListRequest,
       O: ListResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc memory.v1.MemoryService.GetOperatingRules
+     */
+    getOperatingRules: {
+      name: "GetOperatingRules",
+      I: GetOperatingRulesRequest,
+      O: GetOperatingRulesResponse,
       kind: MethodKind.Unary,
     },
     /**
