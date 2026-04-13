@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file memory/v1/memory.proto.
  */
 export const file_memory_v1_memory: GenFile = /*@__PURE__*/
-  fileDesc("ChZtZW1vcnkvdjEvbWVtb3J5LnByb3RvEgltZW1vcnkudjEigQMKBk1lbW9yeRIKCgJpZBgBIAEoCRIfCgVzY29wZRgCIAEoDjIQLm1lbW9yeS52MS5TY29wZRIPCgdjb250ZW50GAMgASgJEgwKBHR5cGUYBCABKAkSDgoGc291cmNlGAUgASgJEhIKCmNvbmZpZGVuY2UYBiABKAISDgoGcGlubmVkGAcgASgIEhUKCWVtYmVkZGluZxgIIAMoAkICEAESFAoMd29ya3NwYWNlX2lkGAkgASgJEg8KB3VzZXJfaWQYCiABKAkSEgoKcHJvamVjdF9pZBgLIAEoCRIPCgd0ZWFtX2lkGAwgASgJEhIKCnJlcG9zaXRvcnkYDSABKAkSDQoFYWdlbnQYDiABKAkSEQoJaXNfcG9saWN5GA8gASgIEi4KCmNyZWF0ZWRfYXQYECABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYESABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIs0BCgxTdG9yZVJlcXVlc3QSHwoFc2NvcGUYASABKA4yEC5tZW1vcnkudjEuU2NvcGUSDwoHY29udGVudBgCIAEoCRIMCgR0eXBlGAMgASgJEg4KBnNvdXJjZRgEIAEoCRISCgpjb25maWRlbmNlGAUgASgCEhIKCnByb2plY3RfaWQYBiABKAkSDwoHdGVhbV9pZBgHIAEoCRISCgpyZXBvc2l0b3J5GAggASgJEg0KBWFnZW50GAkgASgJEhEKCWlzX3BvbGljeRgKIAEoCCIyCg1TdG9yZVJlc3BvbnNlEiEKBm1lbW9yeRgBIAEoCzIRLm1lbW9yeS52MS5NZW1vcnkirgEKDVJlY2FsbFJlcXVlc3QSDQoFcXVlcnkYASABKAkSHwoFc2NvcGUYAiABKA4yEC5tZW1vcnkudjEuU2NvcGUSDQoFdG9wX2sYAyABKAUSFgoObWluX3NpbWlsYXJpdHkYBCABKAISEgoKcHJvamVjdF9pZBgFIAEoCRIPCgd0ZWFtX2lkGAYgASgJEhIKCnJlcG9zaXRvcnkYByABKAkSDQoFYWdlbnQYCCABKAkiOgoOUmVjYWxsUmVzcG9uc2USKAoHcmVzdWx0cxgBIAMoCzIXLm1lbW9yeS52MS5SZWNhbGxSZXN1bHQiRQoMUmVjYWxsUmVzdWx0EiEKBm1lbW9yeRgBIAEoCzIRLm1lbW9yeS52MS5NZW1vcnkSEgoKc2ltaWxhcml0eRgCIAEoAiJOCg1VcGRhdGVSZXF1ZXN0EgoKAmlkGAEgASgJEg8KB2NvbnRlbnQYAiABKAkSDAoEdHlwZRgDIAEoCRISCgpjb25maWRlbmNlGAQgASgCIjMKDlVwZGF0ZVJlc3BvbnNlEiEKBm1lbW9yeRgBIAEoCzIRLm1lbW9yeS52MS5NZW1vcnkiGwoNRGVsZXRlUmVxdWVzdBIKCgJpZBgBIAEoCSIQCg5EZWxldGVSZXNwb25zZSKVAQoLTGlzdFJlcXVlc3QSHwoFc2NvcGUYASABKA4yEC5tZW1vcnkudjEuU2NvcGUSEgoKcHJvamVjdF9pZBgCIAEoCRIPCgd0ZWFtX2lkGAMgASgJEhIKCnJlcG9zaXRvcnkYBCABKAkSDQoFYWdlbnQYBSABKAkSDQoFbGltaXQYBiABKAUSDgoGb2Zmc2V0GAcgASgFIlQKDExpc3RSZXNwb25zZRIjCghtZW1vcmllcxgBIAMoCzIRLm1lbW9yeS52MS5NZW1vcnkSDQoFdG90YWwYAiABKAUSEAoIaGFzX21vcmUYAyABKAgiSQoSQ29uc29saWRhdGVSZXF1ZXN0Eh8KBXNjb3BlGAEgASgOMhAubWVtb3J5LnYxLlNjb3BlEhIKCnByb2plY3RfaWQYAiABKAkiNQoTQ29uc29saWRhdGVSZXNwb25zZRIOCgZtZXJnZWQYASABKAUSDgoGcHJ1bmVkGAIgASgFKnoKBVNjb3BlEhUKEVNDT1BFX1VOU1BFQ0lGSUVEEAASDgoKU0NPUEVfVVNFUhABEg4KClNDT1BFX1RFQU0QAhIWChJTQ09QRV9PUkdBTklaQVRJT04QAxIPCgtTQ09QRV9BR0VOVBAEEhEKDVNDT1BFX1BST0pFQ1QQBTKPAwoNTWVtb3J5U2VydmljZRI6CgVTdG9yZRIXLm1lbW9yeS52MS5TdG9yZVJlcXVlc3QaGC5tZW1vcnkudjEuU3RvcmVSZXNwb25zZRI9CgZSZWNhbGwSGC5tZW1vcnkudjEuUmVjYWxsUmVxdWVzdBoZLm1lbW9yeS52MS5SZWNhbGxSZXNwb25zZRI9CgZVcGRhdGUSGC5tZW1vcnkudjEuVXBkYXRlUmVxdWVzdBoZLm1lbW9yeS52MS5VcGRhdGVSZXNwb25zZRI9CgZEZWxldGUSGC5tZW1vcnkudjEuRGVsZXRlUmVxdWVzdBoZLm1lbW9yeS52MS5EZWxldGVSZXNwb25zZRI3CgRMaXN0EhYubWVtb3J5LnYxLkxpc3RSZXF1ZXN0GhcubWVtb3J5LnYxLkxpc3RSZXNwb25zZRJMCgtDb25zb2xpZGF0ZRIdLm1lbW9yeS52MS5Db25zb2xpZGF0ZVJlcXVlc3QaHi5tZW1vcnkudjEuQ29uc29saWRhdGVSZXNwb25zZUI0WjJnaXRodWIuY29tL2V2YWxvcHMvcHJvdG8vZ2VuL2dvL21lbW9yeS92MTttZW1vcnl2MWIGcHJvdG8z", [file_google_protobuf_timestamp]);
+  fileDesc("ChZtZW1vcnkvdjEvbWVtb3J5LnByb3RvEgltZW1vcnkudjEijwMKBk1lbW9yeRIKCgJpZBgBIAEoCRIfCgVzY29wZRgCIAEoDjIQLm1lbW9yeS52MS5TY29wZRIPCgdjb250ZW50GAMgASgJEgwKBHR5cGUYBCABKAkSDgoGc291cmNlGAUgASgJEhIKCmNvbmZpZGVuY2UYBiABKAISDgoGcGlubmVkGAcgASgIEhUKCWVtYmVkZGluZxgIIAMoAkICEAESFAoMd29ya3NwYWNlX2lkGAkgASgJEg8KB3VzZXJfaWQYCiABKAkSEgoKcHJvamVjdF9pZBgLIAEoCRIPCgd0ZWFtX2lkGAwgASgJEhIKCnJlcG9zaXRvcnkYDSABKAkSDQoFYWdlbnQYDiABKAkSEQoJaXNfcG9saWN5GA8gASgIEi4KCmNyZWF0ZWRfYXQYECABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYESABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEgwKBHRhZ3MYEiADKAki2wEKDFN0b3JlUmVxdWVzdBIfCgVzY29wZRgBIAEoDjIQLm1lbW9yeS52MS5TY29wZRIPCgdjb250ZW50GAIgASgJEgwKBHR5cGUYAyABKAkSDgoGc291cmNlGAQgASgJEhIKCmNvbmZpZGVuY2UYBSABKAISEgoKcHJvamVjdF9pZBgGIAEoCRIPCgd0ZWFtX2lkGAcgASgJEhIKCnJlcG9zaXRvcnkYCCABKAkSDQoFYWdlbnQYCSABKAkSEQoJaXNfcG9saWN5GAogASgIEgwKBHRhZ3MYCyADKAkiMgoNU3RvcmVSZXNwb25zZRIhCgZtZW1vcnkYASABKAsyES5tZW1vcnkudjEuTWVtb3J5Iq4BCg1SZWNhbGxSZXF1ZXN0Eg0KBXF1ZXJ5GAEgASgJEh8KBXNjb3BlGAIgASgOMhAubWVtb3J5LnYxLlNjb3BlEg0KBXRvcF9rGAMgASgFEhYKDm1pbl9zaW1pbGFyaXR5GAQgASgCEhIKCnByb2plY3RfaWQYBSABKAkSDwoHdGVhbV9pZBgGIAEoCRISCgpyZXBvc2l0b3J5GAcgASgJEg0KBWFnZW50GAggASgJIqQBChZSZWNhbGxLbm93bGVkZ2VSZXF1ZXN0EhIKCmNvbmRpdGlvbnMYASADKAkSHwoFc2NvcGUYAiABKA4yEC5tZW1vcnkudjEuU2NvcGUSDQoFdG9wX2sYAyABKAUSEgoKcHJvamVjdF9pZBgEIAEoCRIPCgd0ZWFtX2lkGAUgASgJEhIKCnJlcG9zaXRvcnkYBiABKAkSDQoFYWdlbnQYByABKAkiOgoOUmVjYWxsUmVzcG9uc2USKAoHcmVzdWx0cxgBIAMoCzIXLm1lbW9yeS52MS5SZWNhbGxSZXN1bHQiQwoXUmVjYWxsS25vd2xlZGdlUmVzcG9uc2USKAoHcmVzdWx0cxgBIAMoCzIXLm1lbW9yeS52MS5SZWNhbGxSZXN1bHQiRQoMUmVjYWxsUmVzdWx0EiEKBm1lbW9yeRgBIAEoCzIRLm1lbW9yeS52MS5NZW1vcnkSEgoKc2ltaWxhcml0eRgCIAEoAiJcCg1VcGRhdGVSZXF1ZXN0EgoKAmlkGAEgASgJEg8KB2NvbnRlbnQYAiABKAkSDAoEdHlwZRgDIAEoCRISCgpjb25maWRlbmNlGAQgASgCEgwKBHRhZ3MYBSADKAkiMwoOVXBkYXRlUmVzcG9uc2USIQoGbWVtb3J5GAEgASgLMhEubWVtb3J5LnYxLk1lbW9yeSIbCg1EZWxldGVSZXF1ZXN0EgoKAmlkGAEgASgJIhAKDkRlbGV0ZVJlc3BvbnNlIpUBCgtMaXN0UmVxdWVzdBIfCgVzY29wZRgBIAEoDjIQLm1lbW9yeS52MS5TY29wZRISCgpwcm9qZWN0X2lkGAIgASgJEg8KB3RlYW1faWQYAyABKAkSEgoKcmVwb3NpdG9yeRgEIAEoCRINCgVhZ2VudBgFIAEoCRINCgVsaW1pdBgGIAEoBRIOCgZvZmZzZXQYByABKAUiogEKGEdldE9wZXJhdGluZ1J1bGVzUmVxdWVzdBIfCgVzY29wZRgBIAEoDjIQLm1lbW9yeS52MS5TY29wZRISCgpwcm9qZWN0X2lkGAIgASgJEg8KB3RlYW1faWQYAyABKAkSEgoKcmVwb3NpdG9yeRgEIAEoCRINCgVhZ2VudBgFIAEoCRINCgVsaW1pdBgGIAEoBRIOCgZvZmZzZXQYByABKAUiVAoMTGlzdFJlc3BvbnNlEiMKCG1lbW9yaWVzGAEgAygLMhEubWVtb3J5LnYxLk1lbW9yeRINCgV0b3RhbBgCIAEoBRIQCghoYXNfbW9yZRgDIAEoCCJhChlHZXRPcGVyYXRpbmdSdWxlc1Jlc3BvbnNlEiMKCG1lbW9yaWVzGAEgAygLMhEubWVtb3J5LnYxLk1lbW9yeRINCgV0b3RhbBgCIAEoBRIQCghoYXNfbW9yZRgDIAEoCCJJChJDb25zb2xpZGF0ZVJlcXVlc3QSHwoFc2NvcGUYASABKA4yEC5tZW1vcnkudjEuU2NvcGUSEgoKcHJvamVjdF9pZBgCIAEoCSI1ChNDb25zb2xpZGF0ZVJlc3BvbnNlEg4KBm1lcmdlZBgBIAEoBRIOCgZwcnVuZWQYAiABKAUqegoFU2NvcGUSFQoRU0NPUEVfVU5TUEVDSUZJRUQQABIOCgpTQ09QRV9VU0VSEAESDgoKU0NPUEVfVEVBTRACEhYKElNDT1BFX09SR0FOSVpBVElPThADEg8KC1NDT1BFX0FHRU5UEAQSEQoNU0NPUEVfUFJPSkVDVBAFMskECg1NZW1vcnlTZXJ2aWNlEjoKBVN0b3JlEhcubWVtb3J5LnYxLlN0b3JlUmVxdWVzdBoYLm1lbW9yeS52MS5TdG9yZVJlc3BvbnNlEj0KBlJlY2FsbBIYLm1lbW9yeS52MS5SZWNhbGxSZXF1ZXN0GhkubWVtb3J5LnYxLlJlY2FsbFJlc3BvbnNlElgKD1JlY2FsbEtub3dsZWRnZRIhLm1lbW9yeS52MS5SZWNhbGxLbm93bGVkZ2VSZXF1ZXN0GiIubWVtb3J5LnYxLlJlY2FsbEtub3dsZWRnZVJlc3BvbnNlEj0KBlVwZGF0ZRIYLm1lbW9yeS52MS5VcGRhdGVSZXF1ZXN0GhkubWVtb3J5LnYxLlVwZGF0ZVJlc3BvbnNlEj0KBkRlbGV0ZRIYLm1lbW9yeS52MS5EZWxldGVSZXF1ZXN0GhkubWVtb3J5LnYxLkRlbGV0ZVJlc3BvbnNlEjcKBExpc3QSFi5tZW1vcnkudjEuTGlzdFJlcXVlc3QaFy5tZW1vcnkudjEuTGlzdFJlc3BvbnNlEl4KEUdldE9wZXJhdGluZ1J1bGVzEiMubWVtb3J5LnYxLkdldE9wZXJhdGluZ1J1bGVzUmVxdWVzdBokLm1lbW9yeS52MS5HZXRPcGVyYXRpbmdSdWxlc1Jlc3BvbnNlEkwKC0NvbnNvbGlkYXRlEh0ubWVtb3J5LnYxLkNvbnNvbGlkYXRlUmVxdWVzdBoeLm1lbW9yeS52MS5Db25zb2xpZGF0ZVJlc3BvbnNlQjRaMmdpdGh1Yi5jb20vZXZhbG9wcy9wcm90by9nZW4vZ28vbWVtb3J5L3YxO21lbW9yeXYxYgZwcm90bzM", [file_google_protobuf_timestamp]);
 
 /**
  * Memory is the canonical memory record.
@@ -107,6 +107,11 @@ export type Memory = Message<"memory.v1.Memory"> & {
    * @generated from field: google.protobuf.Timestamp updated_at = 17;
    */
   updatedAt?: Timestamp;
+
+  /**
+   * @generated from field: repeated string tags = 18;
+   */
+  tags: string[];
 };
 
 /**
@@ -169,6 +174,11 @@ export type StoreRequest = Message<"memory.v1.StoreRequest"> & {
    * @generated from field: bool is_policy = 10;
    */
   isPolicy: boolean;
+
+  /**
+   * @generated from field: repeated string tags = 11;
+   */
+  tags: string[];
 };
 
 /**
@@ -248,6 +258,53 @@ export const RecallRequestSchema: GenMessage<RecallRequest> = /*@__PURE__*/
   messageDesc(file_memory_v1_memory, 3);
 
 /**
+ * @generated from message memory.v1.RecallKnowledgeRequest
+ */
+export type RecallKnowledgeRequest = Message<"memory.v1.RecallKnowledgeRequest"> & {
+  /**
+   * @generated from field: repeated string conditions = 1;
+   */
+  conditions: string[];
+
+  /**
+   * @generated from field: memory.v1.Scope scope = 2;
+   */
+  scope: Scope;
+
+  /**
+   * @generated from field: int32 top_k = 3;
+   */
+  topK: number;
+
+  /**
+   * @generated from field: string project_id = 4;
+   */
+  projectId: string;
+
+  /**
+   * @generated from field: string team_id = 5;
+   */
+  teamId: string;
+
+  /**
+   * @generated from field: string repository = 6;
+   */
+  repository: string;
+
+  /**
+   * @generated from field: string agent = 7;
+   */
+  agent: string;
+};
+
+/**
+ * Describes the message memory.v1.RecallKnowledgeRequest.
+ * Use `create(RecallKnowledgeRequestSchema)` to create a new message.
+ */
+export const RecallKnowledgeRequestSchema: GenMessage<RecallKnowledgeRequest> = /*@__PURE__*/
+  messageDesc(file_memory_v1_memory, 4);
+
+/**
  * @generated from message memory.v1.RecallResponse
  */
 export type RecallResponse = Message<"memory.v1.RecallResponse"> & {
@@ -262,7 +319,24 @@ export type RecallResponse = Message<"memory.v1.RecallResponse"> & {
  * Use `create(RecallResponseSchema)` to create a new message.
  */
 export const RecallResponseSchema: GenMessage<RecallResponse> = /*@__PURE__*/
-  messageDesc(file_memory_v1_memory, 4);
+  messageDesc(file_memory_v1_memory, 5);
+
+/**
+ * @generated from message memory.v1.RecallKnowledgeResponse
+ */
+export type RecallKnowledgeResponse = Message<"memory.v1.RecallKnowledgeResponse"> & {
+  /**
+   * @generated from field: repeated memory.v1.RecallResult results = 1;
+   */
+  results: RecallResult[];
+};
+
+/**
+ * Describes the message memory.v1.RecallKnowledgeResponse.
+ * Use `create(RecallKnowledgeResponseSchema)` to create a new message.
+ */
+export const RecallKnowledgeResponseSchema: GenMessage<RecallKnowledgeResponse> = /*@__PURE__*/
+  messageDesc(file_memory_v1_memory, 6);
 
 /**
  * @generated from message memory.v1.RecallResult
@@ -284,7 +358,7 @@ export type RecallResult = Message<"memory.v1.RecallResult"> & {
  * Use `create(RecallResultSchema)` to create a new message.
  */
 export const RecallResultSchema: GenMessage<RecallResult> = /*@__PURE__*/
-  messageDesc(file_memory_v1_memory, 5);
+  messageDesc(file_memory_v1_memory, 7);
 
 /**
  * @generated from message memory.v1.UpdateRequest
@@ -309,6 +383,11 @@ export type UpdateRequest = Message<"memory.v1.UpdateRequest"> & {
    * @generated from field: float confidence = 4;
    */
   confidence: number;
+
+  /**
+   * @generated from field: repeated string tags = 5;
+   */
+  tags: string[];
 };
 
 /**
@@ -316,7 +395,7 @@ export type UpdateRequest = Message<"memory.v1.UpdateRequest"> & {
  * Use `create(UpdateRequestSchema)` to create a new message.
  */
 export const UpdateRequestSchema: GenMessage<UpdateRequest> = /*@__PURE__*/
-  messageDesc(file_memory_v1_memory, 6);
+  messageDesc(file_memory_v1_memory, 8);
 
 /**
  * @generated from message memory.v1.UpdateResponse
@@ -333,7 +412,7 @@ export type UpdateResponse = Message<"memory.v1.UpdateResponse"> & {
  * Use `create(UpdateResponseSchema)` to create a new message.
  */
 export const UpdateResponseSchema: GenMessage<UpdateResponse> = /*@__PURE__*/
-  messageDesc(file_memory_v1_memory, 7);
+  messageDesc(file_memory_v1_memory, 9);
 
 /**
  * @generated from message memory.v1.DeleteRequest
@@ -350,7 +429,7 @@ export type DeleteRequest = Message<"memory.v1.DeleteRequest"> & {
  * Use `create(DeleteRequestSchema)` to create a new message.
  */
 export const DeleteRequestSchema: GenMessage<DeleteRequest> = /*@__PURE__*/
-  messageDesc(file_memory_v1_memory, 8);
+  messageDesc(file_memory_v1_memory, 10);
 
 /**
  * @generated from message memory.v1.DeleteResponse
@@ -363,7 +442,7 @@ export type DeleteResponse = Message<"memory.v1.DeleteResponse"> & {
  * Use `create(DeleteResponseSchema)` to create a new message.
  */
 export const DeleteResponseSchema: GenMessage<DeleteResponse> = /*@__PURE__*/
-  messageDesc(file_memory_v1_memory, 9);
+  messageDesc(file_memory_v1_memory, 11);
 
 /**
  * @generated from message memory.v1.ListRequest
@@ -410,7 +489,54 @@ export type ListRequest = Message<"memory.v1.ListRequest"> & {
  * Use `create(ListRequestSchema)` to create a new message.
  */
 export const ListRequestSchema: GenMessage<ListRequest> = /*@__PURE__*/
-  messageDesc(file_memory_v1_memory, 10);
+  messageDesc(file_memory_v1_memory, 12);
+
+/**
+ * @generated from message memory.v1.GetOperatingRulesRequest
+ */
+export type GetOperatingRulesRequest = Message<"memory.v1.GetOperatingRulesRequest"> & {
+  /**
+   * @generated from field: memory.v1.Scope scope = 1;
+   */
+  scope: Scope;
+
+  /**
+   * @generated from field: string project_id = 2;
+   */
+  projectId: string;
+
+  /**
+   * @generated from field: string team_id = 3;
+   */
+  teamId: string;
+
+  /**
+   * @generated from field: string repository = 4;
+   */
+  repository: string;
+
+  /**
+   * @generated from field: string agent = 5;
+   */
+  agent: string;
+
+  /**
+   * @generated from field: int32 limit = 6;
+   */
+  limit: number;
+
+  /**
+   * @generated from field: int32 offset = 7;
+   */
+  offset: number;
+};
+
+/**
+ * Describes the message memory.v1.GetOperatingRulesRequest.
+ * Use `create(GetOperatingRulesRequestSchema)` to create a new message.
+ */
+export const GetOperatingRulesRequestSchema: GenMessage<GetOperatingRulesRequest> = /*@__PURE__*/
+  messageDesc(file_memory_v1_memory, 13);
 
 /**
  * @generated from message memory.v1.ListResponse
@@ -437,7 +563,34 @@ export type ListResponse = Message<"memory.v1.ListResponse"> & {
  * Use `create(ListResponseSchema)` to create a new message.
  */
 export const ListResponseSchema: GenMessage<ListResponse> = /*@__PURE__*/
-  messageDesc(file_memory_v1_memory, 11);
+  messageDesc(file_memory_v1_memory, 14);
+
+/**
+ * @generated from message memory.v1.GetOperatingRulesResponse
+ */
+export type GetOperatingRulesResponse = Message<"memory.v1.GetOperatingRulesResponse"> & {
+  /**
+   * @generated from field: repeated memory.v1.Memory memories = 1;
+   */
+  memories: Memory[];
+
+  /**
+   * @generated from field: int32 total = 2;
+   */
+  total: number;
+
+  /**
+   * @generated from field: bool has_more = 3;
+   */
+  hasMore: boolean;
+};
+
+/**
+ * Describes the message memory.v1.GetOperatingRulesResponse.
+ * Use `create(GetOperatingRulesResponseSchema)` to create a new message.
+ */
+export const GetOperatingRulesResponseSchema: GenMessage<GetOperatingRulesResponse> = /*@__PURE__*/
+  messageDesc(file_memory_v1_memory, 15);
 
 /**
  * @generated from message memory.v1.ConsolidateRequest
@@ -459,7 +612,7 @@ export type ConsolidateRequest = Message<"memory.v1.ConsolidateRequest"> & {
  * Use `create(ConsolidateRequestSchema)` to create a new message.
  */
 export const ConsolidateRequestSchema: GenMessage<ConsolidateRequest> = /*@__PURE__*/
-  messageDesc(file_memory_v1_memory, 12);
+  messageDesc(file_memory_v1_memory, 16);
 
 /**
  * @generated from message memory.v1.ConsolidateResponse
@@ -481,7 +634,7 @@ export type ConsolidateResponse = Message<"memory.v1.ConsolidateResponse"> & {
  * Use `create(ConsolidateResponseSchema)` to create a new message.
  */
 export const ConsolidateResponseSchema: GenMessage<ConsolidateResponse> = /*@__PURE__*/
-  messageDesc(file_memory_v1_memory, 13);
+  messageDesc(file_memory_v1_memory, 17);
 
 /**
  * Scope controls memory visibility.
@@ -551,6 +704,14 @@ export const MemoryService: GenService<{
     output: typeof RecallResponseSchema;
   },
   /**
+   * @generated from rpc memory.v1.MemoryService.RecallKnowledge
+   */
+  recallKnowledge: {
+    methodKind: "unary";
+    input: typeof RecallKnowledgeRequestSchema;
+    output: typeof RecallKnowledgeResponseSchema;
+  },
+  /**
    * @generated from rpc memory.v1.MemoryService.Update
    */
   update: {
@@ -573,6 +734,14 @@ export const MemoryService: GenService<{
     methodKind: "unary";
     input: typeof ListRequestSchema;
     output: typeof ListResponseSchema;
+  },
+  /**
+   * @generated from rpc memory.v1.MemoryService.GetOperatingRules
+   */
+  getOperatingRules: {
+    methodKind: "unary";
+    input: typeof GetOperatingRulesRequestSchema;
+    output: typeof GetOperatingRulesResponseSchema;
   },
   /**
    * @generated from rpc memory.v1.MemoryService.Consolidate
