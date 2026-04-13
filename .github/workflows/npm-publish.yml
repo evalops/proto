@@ -75,27 +75,33 @@ jobs:
           artifact_registry_url="https://${region}-npm.pkg.dev/${project_id}/${repository}/"
 
           if [ -n "${GCP_WORKLOAD_IDENTITY_PROVIDER:-}" ]; then
-            echo "enabled=true" >> "$GITHUB_OUTPUT"
-            echo "mode=artifact-registry" >> "$GITHUB_OUTPUT"
-            echo "registry=${artifact_registry_url}" >> "$GITHUB_OUTPUT"
-            echo "project-id=${project_id}" >> "$GITHUB_OUTPUT"
-            echo "region=${region}" >> "$GITHUB_OUTPUT"
-            echo "repository=${repository}" >> "$GITHUB_OUTPUT"
-            echo "scope=${scope}" >> "$GITHUB_OUTPUT"
+            {
+              echo "enabled=true"
+              echo "mode=artifact-registry"
+              echo "registry=${artifact_registry_url}"
+              echo "project-id=${project_id}"
+              echo "region=${region}"
+              echo "repository=${repository}"
+              echo "scope=${scope}"
+            } >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
           if [ -z "${NPM_PUBLISH_NPMRC:-}" ]; then
-            echo "enabled=false" >> "$GITHUB_OUTPUT"
-            echo "mode=disabled" >> "$GITHUB_OUTPUT"
+            {
+              echo "enabled=false"
+              echo "mode=disabled"
+            } >> "$GITHUB_OUTPUT"
             if [ -n "${NPM_PUBLISH_REGISTRY:-}" ]; then
               echo "registry=${NPM_PUBLISH_REGISTRY}" >> "$GITHUB_OUTPUT"
             fi
             exit 0
           fi
 
-          echo "enabled=true" >> "$GITHUB_OUTPUT"
-          echo "mode=npmrc-secret" >> "$GITHUB_OUTPUT"
+          {
+            echo "enabled=true"
+            echo "mode=npmrc-secret"
+          } >> "$GITHUB_OUTPUT"
           if [ -n "${NPM_PUBLISH_REGISTRY:-}" ]; then
             echo "registry=${NPM_PUBLISH_REGISTRY}" >> "$GITHUB_OUTPUT"
           fi
