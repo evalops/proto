@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/evalops/proto/eventhelpers"
+	configv1 "github.com/evalops/proto/gen/go/config/v1"
 	eventsv1 "github.com/evalops/proto/gen/go/events/v1"
 	tapv1 "github.com/evalops/proto/gen/go/tap/v1"
 	"google.golang.org/protobuf/encoding/protojson"
@@ -16,6 +17,7 @@ import (
 )
 
 const (
+	ConfigFeatureFlagSnapshot                   = "config/v1/testdata/feature_flag_snapshot.json"
 	EventPipelineActivityCreateReplied          = "events/v1/testdata/cloud_event_pipeline_activity_create_replied.json"
 	EventParkerWorkRelationshipUpdateTerminated = "events/v1/testdata/cloud_event_parker_work_relationship_update_terminated.json"
 	EventTapHubspotDealQualified                = "events/v1/testdata/cloud_event_tap_hubspot_deal_qualified.json"
@@ -88,6 +90,14 @@ func LoadTapFixture(name string) (*eventsv1.CloudEvent, *tapv1.TapEventData, err
 		return nil, nil, fmt.Errorf("unmarshal tap fixture %q: %w", name, err)
 	}
 	return envelope, data, nil
+}
+
+func LoadFeatureFlagSnapshot(name string) (*configv1.FeatureFlagSnapshot, error) {
+	var message configv1.FeatureFlagSnapshot
+	if err := UnmarshalProtoJSON(name, &message); err != nil {
+		return nil, err
+	}
+	return &message, nil
 }
 
 // UnmarshalProtoJSON reads a canonical fixture and unmarshals it with strict
