@@ -72,6 +72,15 @@
         "platform-app"
       ],
       "description": "Kill switch for Gate connector proxying of new upstream sessions."
+    },
+    {
+      "key": "platform.kill_switches.prompts.resolve_api",
+      "enabled": false,
+      "rollout_percent": 0,
+      "owners": [
+        "platform-app"
+      ],
+      "description": "Kill switch for Prompts resolve and bulk-resolve APIs."
     }
   ]
 }

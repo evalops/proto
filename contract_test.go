@@ -174,8 +174,8 @@ func TestFeatureFlagSnapshotFixtureMatchesProtoContract(t *testing.T) {
 	if message.GetSchemaVersion() != 1 {
 		t.Fatalf("expected schema_version 1, got %d", message.GetSchemaVersion())
 	}
-	if len(message.GetFlags()) != 8 {
-		t.Fatalf("expected 8 flags, got %d", len(message.GetFlags()))
+	if len(message.GetFlags()) != 9 {
+		t.Fatalf("expected 9 flags, got %d", len(message.GetFlags()))
 	}
 	if message.GetFlags()[0].GetKey() != "llm_gateway.model_routing.provider_failover" {
 		t.Fatalf("unexpected first flag key %q", message.GetFlags()[0].GetKey())
@@ -197,6 +197,12 @@ func TestFeatureFlagSnapshotFixtureMatchesProtoContract(t *testing.T) {
 	}
 	if message.GetFlags()[7].GetRolloutPercent() != 0 {
 		t.Fatalf("expected rollout_percent 0, got %d", message.GetFlags()[7].GetRolloutPercent())
+	}
+	if message.GetFlags()[8].GetKey() != "platform.kill_switches.prompts.resolve_api" {
+		t.Fatalf("unexpected ninth flag key %q", message.GetFlags()[8].GetKey())
+	}
+	if message.GetFlags()[8].GetEnabled() {
+		t.Fatal("expected prompts resolve kill switch to default to disabled")
 	}
 }
 
