@@ -1,6 +1,7 @@
 package eventhelpers
 
 import (
+	"errors"
 	"testing"
 	"time"
 
@@ -203,6 +204,42 @@ func TestNewChangeRejectsNonObjectPayload(t *testing.T) {
 
 	if _, err := NewChange(1, "org", "activity", "agg", "create", "service", "svc", 1, time.Time{}, []byte(`["bad"]`)); err == nil {
 		t.Fatal("expected non-object payload error")
+	}
+}
+
+func TestUnpackDataReturnsErrorWhenEnvelopeDataMissing(t *testing.T) {
+	t.Parallel()
+
+	err := UnpackData(&eventsv1.CloudEvent{}, &eventsv1.Change{})
+	if !errors.Is(err, errDataNil) {
+		t.Fatalf("UnpackData() error = %v, want %v", err, errDataNil)
+	}
+}
+
+func TestUnpackChangeReturnsErrorWhenEnvelopeDataMissing(t *testing.T) {
+	t.Parallel()
+
+	_, err := UnpackChange(&eventsv1.CloudEvent{})
+	if !errors.Is(err, errDataNil) {
+		t.Fatalf("UnpackChange() error = %v, want %v", err, errDataNil)
+	}
+}
+
+func TestUnpackTapEventDataReturnsErrorWhenEnvelopeDataMissing(t *testing.T) {
+	t.Parallel()
+
+	_, err := UnpackTapEventData(&eventsv1.CloudEvent{})
+	if !errors.Is(err, errDataNil) {
+		t.Fatalf("UnpackTapEventData() error = %v, want %v", err, errDataNil)
+	}
+}
+
+func TestUnpackEvaluationCompletedReturnsErrorWhenEnvelopeDataMissing(t *testing.T) {
+	t.Parallel()
+
+	_, err := UnpackEvaluationCompleted(&eventsv1.CloudEvent{})
+	if !errors.Is(err, errDataNil) {
+		t.Fatalf("UnpackEvaluationCompleted() error = %v, want %v", err, errDataNil)
 	}
 }
 
