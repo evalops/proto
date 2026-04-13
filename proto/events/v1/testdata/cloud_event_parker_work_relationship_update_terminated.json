@@ -1,0 +1,41 @@
+{
+  "spec_version": "1.0",
+  "id": "evt_parker_work_relationship_terminated_1",
+  "type": "parker.changes.work_relationship.update",
+  "source": "parker",
+  "subject": "parker.changes.work_relationship.update",
+  "time": "2026-04-13T00:35:00.987654321Z",
+  "data_content_type": "application/protobuf",
+  "tenant_id": "11111111-1111-1111-1111-111111111111",
+  "data": {
+    "@type": "type.googleapis.com/events.v1.Change",
+    "seq": "57",
+    "organization_id": "11111111-1111-1111-1111-111111111111",
+    "aggregate_type": "work_relationship",
+    "aggregate_id": "55555555-5555-5555-5555-555555555555",
+    "operation": "update",
+    "actor_type": "service",
+    "actor_id": "parker-api",
+    "aggregate_version": "2",
+    "recorded_at": "2026-04-13T00:35:00.987654321Z",
+    "payload": {
+      "id": "55555555-5555-5555-5555-555555555555",
+      "organization_id": "11111111-1111-1111-1111-111111111111",
+      "person_id": "66666666-6666-6666-6666-666666666666",
+      "legal_entity_id": "77777777-7777-7777-7777-777777777777",
+      "worker_type": "employee",
+      "employment_type": "full_time",
+      "status": "terminated",
+      "original_hire_date": "2024-01-08",
+      "current_start_date": "2024-01-08",
+      "termination_date": "2026-04-13",
+      "termination_reason": "voluntary",
+      "version": 2,
+      "created_at": "2024-01-08T09:00:00Z",
+      "updated_at": "2026-04-13T00:35:00.987654321Z"
+    }
+  },
+  "extensions": {
+    "dataschema": "buf.build/evalops/proto/events.v1.Change"
+  }
+}

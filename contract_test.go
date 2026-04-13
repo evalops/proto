@@ -364,6 +364,77 @@ func TestCloudEventTapFixtureMatchesProtoContract(t *testing.T) {
 	}
 }
 
+func TestCloudEventPipelineActivityCreateRepliedFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message eventsv1.CloudEvent
+	loadProtoJSONFixture(t, filepath.Join("proto", "events", "v1", "testdata", "cloud_event_pipeline_activity_create_replied.json"), &message)
+
+	if message.GetSubject() != "pipeline.changes.activity.create" {
+		t.Fatalf("expected subject pipeline.changes.activity.create, got %q", message.GetSubject())
+	}
+	if message.GetTenantId() != "11111111-1111-1111-1111-111111111111" {
+		t.Fatalf("expected tenant_id 11111111-1111-1111-1111-111111111111, got %q", message.GetTenantId())
+	}
+	if message.GetDataContentType() != "application/protobuf" {
+		t.Fatalf("expected data_content_type application/protobuf, got %q", message.GetDataContentType())
+	}
+
+	var unpacked eventsv1.Change
+	if err := message.GetData().UnmarshalTo(&unpacked); err != nil {
+		t.Fatalf("unpack Change payload: %v", err)
+	}
+
+	if unpacked.GetAggregateType() != "activity" || unpacked.GetOperation() != "create" {
+		t.Fatalf("expected activity/create, got %q/%q", unpacked.GetAggregateType(), unpacked.GetOperation())
+	}
+
+	payload := unpacked.GetPayload().AsMap()
+	if payload["owner_type"] != "contact" {
+		t.Fatalf("expected owner_type contact, got %#v", payload["owner_type"])
+	}
+	if payload["outcome"] != "replied" {
+		t.Fatalf("expected outcome replied, got %#v", payload["outcome"])
+	}
+	if payload["channel"] != "email" {
+		t.Fatalf("expected channel email, got %#v", payload["channel"])
+	}
+}
+
+func TestCloudEventParkerWorkRelationshipUpdateTerminatedFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message eventsv1.CloudEvent
+	loadProtoJSONFixture(t, filepath.Join("proto", "events", "v1", "testdata", "cloud_event_parker_work_relationship_update_terminated.json"), &message)
+
+	if message.GetSubject() != "parker.changes.work_relationship.update" {
+		t.Fatalf("expected subject parker.changes.work_relationship.update, got %q", message.GetSubject())
+	}
+	if message.GetTenantId() != "11111111-1111-1111-1111-111111111111" {
+		t.Fatalf("expected tenant_id 11111111-1111-1111-1111-111111111111, got %q", message.GetTenantId())
+	}
+
+	var unpacked eventsv1.Change
+	if err := message.GetData().UnmarshalTo(&unpacked); err != nil {
+		t.Fatalf("unpack Change payload: %v", err)
+	}
+
+	if unpacked.GetAggregateType() != "work_relationship" || unpacked.GetOperation() != "update" {
+		t.Fatalf("expected work_relationship/update, got %q/%q", unpacked.GetAggregateType(), unpacked.GetOperation())
+	}
+
+	payload := unpacked.GetPayload().AsMap()
+	if payload["status"] != "terminated" {
+		t.Fatalf("expected status terminated, got %#v", payload["status"])
+	}
+	if payload["termination_reason"] != "voluntary" {
+		t.Fatalf("expected termination_reason voluntary, got %#v", payload["termination_reason"])
+	}
+	if payload["employment_type"] != "full_time" {
+		t.Fatalf("expected employment_type full_time, got %#v", payload["employment_type"])
+	}
+}
+
 func TestApprovalsRequestApprovalFixtureMatchesProtoContract(t *testing.T) {
 	t.Parallel()
 
