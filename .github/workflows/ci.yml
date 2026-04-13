@@ -115,10 +115,4 @@ jobs:
           . .venv-smoke/bin/activate
           python -m pip install --upgrade pip
           python -m pip install dist/*.whl
-          python - <<'PY'
-from config.v1.config_pb2 import FeatureFlagSnapshot
-from events.v1.cloudevent_pb2 import CloudEvent
-
-assert FeatureFlagSnapshot.DESCRIPTOR.full_name == "config.v1.FeatureFlagSnapshot"
-assert CloudEvent.DESCRIPTOR.full_name == "events.v1.CloudEvent"
-PY
+          python -c "from config.v1.config_pb2 import FeatureFlagSnapshot; from events.v1.cloudevent_pb2 import CloudEvent; assert FeatureFlagSnapshot.DESCRIPTOR.full_name == 'config.v1.FeatureFlagSnapshot'; assert CloudEvent.DESCRIPTOR.full_name == 'events.v1.CloudEvent'"
