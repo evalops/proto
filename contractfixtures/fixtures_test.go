@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	configv1 "github.com/evalops/proto/gen/go/config/v1"
+	eventsv1 "github.com/evalops/proto/gen/go/events/v1"
 	meterv1 "github.com/evalops/proto/gen/go/meter/v1"
 )
 
@@ -58,6 +59,37 @@ func TestLoadTapFixture(t *testing.T) {
 	}
 	if data.GetChanges()["stage"].GetTo().GetStringValue() != "qualified" {
 		t.Fatalf("unexpected stage change %#v", data.GetChanges()["stage"].GetTo())
+	}
+}
+
+func TestLoadEvaluationCompletedFixture(t *testing.T) {
+	t.Parallel()
+
+	envelope, message, err := LoadEvaluationCompletedFixture(EventEvaluationCompletedTechnicalCapability)
+	if err != nil {
+		t.Fatalf("load evaluation fixture: %v", err)
+	}
+	if envelope.GetType() != "evaluation.completed" {
+		t.Fatalf("unexpected type %q", envelope.GetType())
+	}
+	if got := envelope.GetExtensions()["dataschema"].GetStringValue(); got != "buf.build/evalops/proto/events.v1.EvaluationCompleted" {
+		t.Fatalf("unexpected dataschema %q", got)
+	}
+	if message.GetSignalType() != "technical_capability" {
+		t.Fatalf("unexpected signal_type %q", message.GetSignalType())
+	}
+	if message.GetRun().GetId() != "run-1" {
+		t.Fatalf("unexpected run.id %q", message.GetRun().GetId())
+	}
+	if message.GetMetrics().GetSuccessRate() != 0.9 {
+		t.Fatalf("unexpected metrics.success_rate %v", message.GetMetrics().GetSuccessRate())
+	}
+	if envelope.GetData().GetTypeUrl() != "type.googleapis.com/events.v1.EvaluationCompleted" {
+		t.Fatalf("unexpected type URL %q", envelope.GetData().GetTypeUrl())
+	}
+	var direct eventsv1.EvaluationCompleted
+	if err := envelope.GetData().UnmarshalTo(&direct); err != nil {
+		t.Fatalf("unmarshal direct evaluation payload: %v", err)
 	}
 }
 

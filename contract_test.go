@@ -589,6 +589,43 @@ func TestCloudEventPipelineActivityCreateRepliedFixtureMatchesProtoContract(t *t
 	}
 }
 
+func TestCloudEventEvaluationCompletedTechnicalCapabilityFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message eventsv1.CloudEvent
+	loadProtoJSONFixture(t, filepath.Join("proto", "events", "v1", "testdata", "cloud_event_evaluation_completed_technical_capability.json"), &message)
+
+	if message.GetType() != "evaluation.completed" {
+		t.Fatalf("expected type evaluation.completed, got %q", message.GetType())
+	}
+	if message.GetSubject() != "product.evaluation.completed" {
+		t.Fatalf("expected subject product.evaluation.completed, got %q", message.GetSubject())
+	}
+	if message.GetTenantId() != "11111111-1111-1111-1111-111111111111" {
+		t.Fatalf("expected tenant_id 11111111-1111-1111-1111-111111111111, got %q", message.GetTenantId())
+	}
+	if got := message.GetExtensions()["dataschema"].GetStringValue(); got != "buf.build/evalops/proto/events.v1.EvaluationCompleted" {
+		t.Fatalf("expected dataschema buf.build/evalops/proto/events.v1.EvaluationCompleted, got %q", got)
+	}
+
+	var unpacked eventsv1.EvaluationCompleted
+	if err := message.GetData().UnmarshalTo(&unpacked); err != nil {
+		t.Fatalf("unpack EvaluationCompleted payload: %v", err)
+	}
+	if unpacked.GetSignalType() != "technical_capability" {
+		t.Fatalf("expected signal_type technical_capability, got %q", unpacked.GetSignalType())
+	}
+	if unpacked.GetRun().GetId() != "run-1" {
+		t.Fatalf("expected run.id run-1, got %q", unpacked.GetRun().GetId())
+	}
+	if unpacked.GetMetrics().GetSuccessRate() != 0.9 {
+		t.Fatalf("expected metrics.success_rate 0.9, got %v", unpacked.GetMetrics().GetSuccessRate())
+	}
+	if got := unpacked.GetCompanyDomains(); len(got) != 1 || got[0] != "acme.com" {
+		t.Fatalf("expected company_domains [acme.com], got %#v", got)
+	}
+}
+
 func TestCloudEventParkerWorkRelationshipUpdateTerminatedFixtureMatchesProtoContract(t *testing.T) {
 	t.Parallel()
 
