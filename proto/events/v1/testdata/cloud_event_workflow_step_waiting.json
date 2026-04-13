@@ -1,0 +1,40 @@
+{
+  "spec_version": "1.0",
+  "id": "evt_workflow_step_waiting_1",
+  "type": "workflows.changes.step.waiting",
+  "source": "workflows",
+  "subject": "workflows.changes.step.waiting",
+  "time": "2026-04-13T14:34:46Z",
+  "data_content_type": "application/protobuf",
+  "tenant_id": "11111111-1111-1111-1111-111111111111",
+  "data": {
+    "@type": "type.googleapis.com/workflows.v1.WorkflowStepLifecycleEvent",
+    "run_id": "wfr_outbound_acme_001",
+    "definition_id": "wf_outbound_sdr",
+    "definition_version": 2,
+    "workspace_id": "11111111-1111-1111-1111-111111111111",
+    "workflow_state": "WORKFLOW_STATE_RUNNING",
+    "trigger_type": "TRIGGER_TYPE_WEBHOOK",
+    "trigger_event_id": "evt_tap_hubspot_contact_created_acme",
+    "initiator_agent_id": "agent_sdr_outbound",
+    "entity_id": "canonical_acme_vp_sales",
+    "entity_type": "ENTITY_TYPE_CONTACT",
+    "workflow_total_cost_usd": 0.055,
+    "step": {
+      "step_id": "approve-high-value",
+      "step_name": "Manager Approval",
+      "step_type": "STEP_TYPE_APPROVAL_GATE",
+      "state": "STEP_RUN_STATE_WAITING",
+      "approval_request_id": "apr_acme_outreach_001",
+      "input_payload": {
+        "qualified": true,
+        "deal_value_usd": 85000,
+        "qualification_score": 0.91
+      },
+      "started_at": "2026-04-13T14:34:46Z"
+    }
+  },
+  "extensions": {
+    "dataschema": "buf.build/evalops/proto/workflows.v1.WorkflowStepLifecycleEvent"
+  }
+}

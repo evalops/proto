@@ -1,0 +1,58 @@
+{
+  "spec_version": "1.0",
+  "id": "evt_workflow_run_started_1",
+  "type": "workflows.changes.run.started",
+  "source": "workflows",
+  "subject": "workflows.changes.run.started",
+  "time": "2026-04-13T14:30:00Z",
+  "data_content_type": "application/protobuf",
+  "tenant_id": "11111111-1111-1111-1111-111111111111",
+  "data": {
+    "@type": "type.googleapis.com/workflows.v1.WorkflowRunLifecycleEvent",
+    "run": {
+      "id": "wfr_outbound_acme_001",
+      "definition_id": "wf_outbound_sdr",
+      "definition_version": 2,
+      "workspace_id": "11111111-1111-1111-1111-111111111111",
+      "state": "WORKFLOW_STATE_RUNNING",
+      "steps": [
+        {
+          "step_id": "research-company",
+          "step_name": "Research Company",
+          "step_type": "STEP_TYPE_AGENT_ACTION",
+          "state": "STEP_RUN_STATE_RUNNING",
+          "objective_id": "obj_research_acme",
+          "agent_id": "agent_research",
+          "input_payload": {
+            "provider": "hubspot",
+            "entity_type": "contact",
+            "entity_id": "hs_contact_98765"
+          },
+          "started_at": "2026-04-13T14:30:00Z"
+        },
+        {
+          "step_id": "qualify-lead",
+          "step_name": "Qualify Lead",
+          "step_type": "STEP_TYPE_AGENT_ACTION",
+          "state": "STEP_RUN_STATE_PENDING"
+        }
+      ],
+      "trigger_event_id": "evt_tap_hubspot_contact_created_acme",
+      "trigger_type": "TRIGGER_TYPE_WEBHOOK",
+      "initiator_agent_id": "agent_sdr_outbound",
+      "entity_id": "canonical_acme_vp_sales",
+      "entity_type": "ENTITY_TYPE_CONTACT",
+      "input_payload": {
+        "provider": "hubspot",
+        "entity_type": "contact",
+        "entity_id": "hs_contact_98765",
+        "action": "created"
+      },
+      "total_cost_usd": 0,
+      "started_at": "2026-04-13T14:30:00Z"
+    }
+  },
+  "extensions": {
+    "dataschema": "buf.build/evalops/proto/workflows.v1.WorkflowRunLifecycleEvent"
+  }
+}
