@@ -144,6 +144,14 @@ func UnpackChange(envelope *eventsv1.CloudEvent) (*eventsv1.Change, error) {
 	return message, nil
 }
 
+func UnpackEvaluationCompleted(envelope *eventsv1.CloudEvent) (*eventsv1.EvaluationCompleted, error) {
+	message := &eventsv1.EvaluationCompleted{}
+	if err := UnpackData(envelope, message); err != nil {
+		return nil, err
+	}
+	return message, nil
+}
+
 func UnpackTapEventData(envelope *eventsv1.CloudEvent) (*tapv1.TapEventData, error) {
 	message := &tapv1.TapEventData{}
 	if err := UnpackData(envelope, message); err != nil {
