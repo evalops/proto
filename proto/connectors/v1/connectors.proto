@@ -60,6 +60,9 @@ message Connection {
   google.protobuf.Timestamp last_healthy_at = 8;
   google.protobuf.Timestamp created_at = 9;
   google.protobuf.Timestamp updated_at = 10;
+  // credential_refs mirrors non-secret credential references such as vault or
+  // secret-manager handles. Raw credential material must not be returned here.
+  map<string, string> credential_refs = 11;
 }
 
 // ConnectionHealth provides detailed health information for a connection.

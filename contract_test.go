@@ -796,6 +796,39 @@ func TestConnectorsRegisterConnectionFixtureMatchesProtoContract(t *testing.T) {
 	}
 }
 
+func TestConnectorsConnectionProtoJSONUsesStableProtoFieldNames(t *testing.T) {
+	t.Parallel()
+
+	payload := &connectorsv1.Connection{
+		Id:           "conn_connectors",
+		WorkspaceId:  "ws_connectors",
+		ProviderId:   "hubspot",
+		DisplayName:  "HubSpot CRM",
+		AuthType:     connectorsv1.AuthType_AUTH_TYPE_OAUTH2,
+		HealthStatus: connectorsv1.HealthStatus_HEALTH_STATUS_HEALTHY,
+		CredentialRefs: map[string]string{
+			"client_secret": "gsm://evalops/hubspot-client-secret",
+		},
+	}
+
+	encoded, err := protojson.MarshalOptions{UseProtoNames: true}.Marshal(payload)
+	if err != nil {
+		t.Fatalf("marshal Connection: %v", err)
+	}
+
+	var decoded map[string]any
+	if err := json.Unmarshal(encoded, &decoded); err != nil {
+		t.Fatalf("decode Connection JSON: %v", err)
+	}
+
+	if _, ok := decoded["credential_refs"]; !ok {
+		t.Fatalf("expected proto JSON to contain credential_refs, got %s", string(encoded))
+	}
+	if _, ok := decoded["credentialRefs"]; ok {
+		t.Fatalf("expected proto JSON to omit camelCase credentialRefs, got %s", string(encoded))
+	}
+}
+
 func TestEntitiesGetCanonicalFixtureMatchesProtoContract(t *testing.T) {
 	t.Parallel()
 
