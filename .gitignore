@@ -6,3 +6,4 @@
 
 # Node (if consuming TS locally)
 node_modules/
+gen/dist/
