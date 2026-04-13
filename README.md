@@ -237,8 +237,8 @@ bus.
 - Use `github.com/evalops/proto/eventhelpers` to build and unpack canonical
   envelopes instead of re-implementing `Any` packing, protojson marshaling, and
   type assertions in each service. The package exports `NewCloudEvent`,
-  `NewChange`, `MarshalProtoJSON`, `UnpackChange`, and
-  `UnpackTapEventData`. `NewCloudEvent` also stamps
+  `NewChange`, `MarshalProtoJSON`, `UnpackChange`,
+  `UnpackEvaluationCompleted`, and `UnpackTapEventData`. `NewCloudEvent` also stamps
   `extensions.dataschema=buf.build/evalops/proto/<message>` so published
   envelopes stay self-describing across service boundaries.
 - Use `config/v1.FeatureFlagSnapshot` when a repo needs a shared on-disk or
@@ -278,7 +278,9 @@ generated types.
 High-risk boundary fixtures belong there too. The current catalog includes
 canonical `events/v1.CloudEvent` examples for `pipeline.changes.activity.create`
 with `outcome=replied` and `parker.changes.work_relationship.update` with
-`status=terminated`. It also includes a Tap -> Pipeline boundary fixture for
+`status=terminated`, plus `evaluation.completed` with a typed
+`events/v1.EvaluationCompleted` payload for the Fermata -> Pipeline capability
+signal seam. It also includes a Tap -> Pipeline boundary fixture for
 `ensemble.tap.hubspot.deal.updated` with a qualified stage change and a real
 UUID tenant, so downstream consumers can pin the semantics they depend on
 instead of only the wire shape.

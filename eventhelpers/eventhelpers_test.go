@@ -112,6 +112,62 @@ func TestUnpackTapEventDataRoundTrip(t *testing.T) {
 	}
 }
 
+func TestUnpackEvaluationCompletedRoundTrip(t *testing.T) {
+	t.Parallel()
+
+	message := &eventsv1.EvaluationCompleted{
+		SignalType:     "technical_capability",
+		Summary:        "Claude beats GPT-4 on latency by 40% on enterprise workloads.",
+		SuccessRate:    float64ptr(0.9),
+		CompanyDomains: []string{"acme.com"},
+		CompanyNames:   []string{"Acme Corporation"},
+		DealIds:        []string{"deal-123"},
+		Run: &eventsv1.EvaluationRun{
+			Id:            "run-1",
+			TestSuiteId:   "suite-1",
+			TestSuiteName: "Latency benchmark",
+			Name:          "Enterprise latency proof",
+			Description:   "Claude beats GPT-4 on latency by 40% on enterprise workloads.",
+			Tags:          []string{"pipeline:signal_type=technical_capability"},
+		},
+		Metrics: &eventsv1.EvaluationMetrics{
+			TotalTests:  int64ptr(20),
+			PassedTests: int64ptr(18),
+			FailedTests: int64ptr(2),
+			TotalCost:   float64ptr(4.2),
+			Duration:    float64ptr(12.5),
+			SuccessRate: float64ptr(0.9),
+		},
+	}
+
+	envelope, err := NewCloudEvent(
+		"evt_eval_123",
+		"evaluation.completed",
+		"fermata",
+		"product.evaluation.completed",
+		"11111111-1111-1111-1111-111111111111",
+		time.Date(2026, 4, 13, 12, 0, 0, 0, time.UTC),
+		message,
+	)
+	if err != nil {
+		t.Fatalf("NewCloudEvent() error = %v", err)
+	}
+
+	unpacked, err := UnpackEvaluationCompleted(envelope)
+	if err != nil {
+		t.Fatalf("UnpackEvaluationCompleted() error = %v", err)
+	}
+	if unpacked.GetSignalType() != "technical_capability" {
+		t.Fatalf("unexpected signal_type %q", unpacked.GetSignalType())
+	}
+	if unpacked.GetMetrics().GetSuccessRate() != 0.9 {
+		t.Fatalf("unexpected success_rate %v", unpacked.GetMetrics().GetSuccessRate())
+	}
+	if got := envelope.GetExtensions()["dataschema"].GetStringValue(); got != "buf.build/evalops/proto/events.v1.EvaluationCompleted" {
+		t.Fatalf("unexpected dataschema %q", got)
+	}
+}
+
 func TestNewChangeBuildsCanonicalMessageFromJSONPayload(t *testing.T) {
 	t.Parallel()
 
@@ -158,4 +214,12 @@ func mustStruct(t *testing.T, fields map[string]any) *structpb.Struct {
 		t.Fatalf("NewStruct() error = %v", err)
 	}
 	return message
+}
+
+func int64ptr(value int64) *int64 {
+	return &value
+}
+
+func float64ptr(value float64) *float64 {
+	return &value
 }
