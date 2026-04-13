@@ -1,0 +1,163 @@
+syntax = "proto3";
+
+package entities.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/entities/v1;entitiesv1";
+
+import "google/protobuf/timestamp.proto";
+
+// EntityService provides cross-system entity resolution and correlation.
+service EntityService {
+  rpc Resolve(ResolveRequest) returns (ResolveResponse);
+  rpc Correlate(CorrelateRequest) returns (CorrelateResponse);
+  rpc GetCanonical(GetCanonicalRequest) returns (GetCanonicalResponse);
+  rpc Search(SearchRequest) returns (SearchResponse);
+  rpc LinkEntity(LinkEntityRequest) returns (LinkEntityResponse);
+  rpc UnlinkEntity(UnlinkEntityRequest) returns (UnlinkEntityResponse);
+  rpc GetCorrelationGraph(GetCorrelationGraphRequest) returns (GetCorrelationGraphResponse);
+  rpc IngestResult(IngestResultRequest) returns (IngestResultResponse);
+}
+
+// EntityType identifies the kind of entity across systems.
+enum EntityType {
+  ENTITY_TYPE_UNSPECIFIED = 0;
+  ENTITY_TYPE_CONTACT = 1;
+  ENTITY_TYPE_COMPANY = 2;
+  ENTITY_TYPE_DEAL = 3;
+  ENTITY_TYPE_TICKET = 4;
+  ENTITY_TYPE_CUSTOMER = 5;
+  ENTITY_TYPE_OPPORTUNITY = 6;
+}
+
+// MatchMethod describes how two entities were correlated.
+enum MatchMethod {
+  MATCH_METHOD_UNSPECIFIED = 0;
+  MATCH_METHOD_EMAIL = 1;
+  MATCH_METHOD_DOMAIN = 2;
+  MATCH_METHOD_COMPANY_NAME = 3;
+  MATCH_METHOD_RECORD_NAME = 4;
+  MATCH_METHOD_MANUAL = 5;
+}
+
+// CanonicalEntity is the unified, deduplicated entity record.
+message CanonicalEntity {
+  string id = 1;
+  string workspace_id = 2;
+  EntityType primary_type = 3;
+  string primary_name = 4;
+  repeated CrossSystemRef refs = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+// CrossSystemRef links a canonical entity to a record in an external system.
+message CrossSystemRef {
+  string integration_id = 1;
+  string record_id = 2;
+  EntityType entity_type = 3;
+  string display_name = 4;
+  repeated string emails = 5;
+  repeated string domains = 6;
+  float confidence = 7;
+}
+
+// CorrelationMatch describes a single match between entities.
+message CorrelationMatch {
+  MatchMethod matched_by = 1;
+  string matched_value = 2;
+  float confidence = 3;
+}
+
+// CorrelationGroup is a cluster of correlated entities.
+message CorrelationGroup {
+  string id = 1;
+  string primary_name = 2;
+  EntityType primary_type = 3;
+  repeated CanonicalEntity entities = 4;
+  repeated CorrelationMatch matches = 5;
+}
+
+message ResolveRequest {
+  string workspace_id = 1;
+  string integration_id = 2;
+  string record_id = 3;
+}
+
+message ResolveResponse {
+  CanonicalEntity entity = 1;
+}
+
+message CorrelateRequest {
+  string workspace_id = 1;
+  repeated string emails = 2;
+  repeated string domains = 3;
+  string company_name = 4;
+}
+
+message CorrelateResponse {
+  repeated CorrelationGroup groups = 1;
+}
+
+message GetCanonicalRequest {
+  string id = 1;
+}
+
+message GetCanonicalResponse {
+  CanonicalEntity entity = 1;
+}
+
+message SearchRequest {
+  string workspace_id = 1;
+  string query = 2;
+  EntityType entity_type = 3;
+  int32 limit = 4;
+  int32 offset = 5;
+}
+
+message SearchResponse {
+  repeated CanonicalEntity entities = 1;
+  int32 total = 2;
+}
+
+message LinkEntityRequest {
+  string canonical_entity_id = 1;
+  CrossSystemRef ref = 2;
+}
+
+message LinkEntityResponse {
+  CanonicalEntity entity = 1;
+}
+
+message UnlinkEntityRequest {
+  string canonical_entity_id = 1;
+  string integration_id = 2;
+  string record_id = 3;
+}
+
+message UnlinkEntityResponse {
+  CanonicalEntity entity = 1;
+}
+
+message GetCorrelationGraphRequest {
+  string canonical_entity_id = 1;
+  int32 depth = 2;
+}
+
+message GetCorrelationGraphResponse {
+  repeated CorrelationGroup groups = 1;
+}
+
+message IngestResultRequest {
+  string workspace_id = 1;
+  string integration_id = 2;
+  string record_id = 3;
+  EntityType entity_type = 4;
+  string display_name = 5;
+  repeated string emails = 6;
+  repeated string domains = 7;
+}
+
+message IngestResultResponse {
+  CanonicalEntity entity = 1;
+  bool created = 2;
+}
