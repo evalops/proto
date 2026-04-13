@@ -1,0 +1,197 @@
+syntax = "proto3";
+
+package governance.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/governance/v1;governancev1";
+
+import "google/protobuf/timestamp.proto";
+
+// GovernanceService enforces safety, compliance, and data governance policies.
+service GovernanceService {
+  rpc EvaluateAction(EvaluateActionRequest) returns (EvaluateActionResponse);
+  rpc DetectPII(DetectPIIRequest) returns (DetectPIIResponse);
+  rpc ClassifyRisk(ClassifyRiskRequest) returns (ClassifyRiskResponse);
+  rpc CheckCredentialExposure(CheckCredentialExposureRequest) returns (CheckCredentialExposureResponse);
+  rpc GetRetentionPolicy(GetRetentionPolicyRequest) returns (GetRetentionPolicyResponse);
+  rpc SetRetentionPolicy(SetRetentionPolicyRequest) returns (SetRetentionPolicyResponse);
+  rpc CheckLegalHold(CheckLegalHoldRequest) returns (CheckLegalHoldResponse);
+  rpc SetLegalHold(SetLegalHoldRequest) returns (SetLegalHoldResponse);
+  rpc GetSafetyPolicy(GetSafetyPolicyRequest) returns (GetSafetyPolicyResponse);
+  rpc SetSafetyPolicy(SetSafetyPolicyRequest) returns (SetSafetyPolicyResponse);
+}
+
+// ActionDecision describes the governance decision for an action.
+enum ActionDecision {
+  ACTION_DECISION_UNSPECIFIED = 0;
+  ACTION_DECISION_ALLOW = 1;
+  ACTION_DECISION_DENY = 2;
+  ACTION_DECISION_REQUIRE_APPROVAL = 3;
+}
+
+// PIICategory identifies the category of personally identifiable information.
+enum PIICategory {
+  PII_CATEGORY_UNSPECIFIED = 0;
+  PII_CATEGORY_EMAIL = 1;
+  PII_CATEGORY_PHONE = 2;
+  PII_CATEGORY_SSN = 3;
+  PII_CATEGORY_CREDIT_CARD = 4;
+  PII_CATEGORY_ADDRESS = 5;
+  PII_CATEGORY_PERSON_NAME = 6;
+  PII_CATEGORY_CUSTOM = 7;
+}
+
+// RiskLevel classifies the risk of an action.
+enum RiskLevel {
+  RISK_LEVEL_UNSPECIFIED = 0;
+  RISK_LEVEL_LOW = 1;
+  RISK_LEVEL_MEDIUM = 2;
+  RISK_LEVEL_HIGH = 3;
+  RISK_LEVEL_CRITICAL = 4;
+}
+
+// ActionEvaluation is the result of evaluating an action against governance rules.
+message ActionEvaluation {
+  ActionDecision decision = 1;
+  RiskLevel risk_level = 2;
+  repeated string reasons = 3;
+  repeated string matched_rules = 4;
+}
+
+// PIIDetectionResult contains all PII spans found in a text.
+message PIIDetectionResult {
+  repeated PIISpan spans = 1;
+}
+
+// PIISpan identifies a single occurrence of PII within text.
+message PIISpan {
+  int32 start_offset = 1;
+  int32 end_offset = 2;
+  PIICategory category = 3;
+  string text = 4;
+  float confidence = 5;
+}
+
+// RetentionPolicy defines data retention rules for a workspace.
+message RetentionPolicy {
+  string workspace_id = 1;
+  int32 retention_days = 2;
+  bool legal_hold_override = 3;
+}
+
+// LegalHold prevents data deletion for compliance or legal reasons.
+message LegalHold {
+  string id = 1;
+  string workspace_id = 2;
+  string scope = 3;
+  string reason = 4;
+  string created_by = 5;
+  bool active = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp expires_at = 8;
+}
+
+// SafetyPolicy defines the safety rules for a workspace.
+message SafetyPolicy {
+  string workspace_id = 1;
+  repeated SafetyRule rules = 2;
+}
+
+// SafetyRule is a single rule within a safety policy.
+message SafetyRule {
+  string id = 1;
+  string pattern = 2;
+  ActionDecision action = 3;
+  RiskLevel risk_level = 4;
+  string description = 5;
+}
+
+message EvaluateActionRequest {
+  string workspace_id = 1;
+  string agent_id = 2;
+  string action_type = 3;
+  bytes action_payload = 4;
+}
+
+message EvaluateActionResponse {
+  ActionEvaluation evaluation = 1;
+}
+
+message DetectPIIRequest {
+  string text = 1;
+  repeated PIICategory categories = 2;
+}
+
+message DetectPIIResponse {
+  PIIDetectionResult result = 1;
+}
+
+message ClassifyRiskRequest {
+  string workspace_id = 1;
+  string action_type = 2;
+  bytes action_payload = 3;
+}
+
+message ClassifyRiskResponse {
+  RiskLevel risk_level = 1;
+  repeated string reasons = 2;
+}
+
+message CheckCredentialExposureRequest {
+  string text = 1;
+}
+
+message CheckCredentialExposureResponse {
+  bool exposed = 1;
+  repeated string credential_types = 2;
+  repeated string locations = 3;
+}
+
+message GetRetentionPolicyRequest {
+  string workspace_id = 1;
+}
+
+message GetRetentionPolicyResponse {
+  RetentionPolicy policy = 1;
+}
+
+message SetRetentionPolicyRequest {
+  RetentionPolicy policy = 1;
+}
+
+message SetRetentionPolicyResponse {
+  RetentionPolicy policy = 1;
+}
+
+message CheckLegalHoldRequest {
+  string workspace_id = 1;
+  string scope = 2;
+}
+
+message CheckLegalHoldResponse {
+  bool held = 1;
+  repeated LegalHold holds = 2;
+}
+
+message SetLegalHoldRequest {
+  LegalHold hold = 1;
+}
+
+message SetLegalHoldResponse {
+  LegalHold hold = 1;
+}
+
+message GetSafetyPolicyRequest {
+  string workspace_id = 1;
+}
+
+message GetSafetyPolicyResponse {
+  SafetyPolicy policy = 1;
+}
+
+message SetSafetyPolicyRequest {
+  SafetyPolicy policy = 1;
+}
+
+message SetSafetyPolicyResponse {
+  SafetyPolicy policy = 1;
+}
