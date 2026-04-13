@@ -174,8 +174,8 @@ func TestFeatureFlagSnapshotFixtureMatchesProtoContract(t *testing.T) {
 	if message.GetSchemaVersion() != 1 {
 		t.Fatalf("expected schema_version 1, got %d", message.GetSchemaVersion())
 	}
-	if len(message.GetFlags()) != 6 {
-		t.Fatalf("expected 6 flags, got %d", len(message.GetFlags()))
+	if len(message.GetFlags()) != 8 {
+		t.Fatalf("expected 8 flags, got %d", len(message.GetFlags()))
 	}
 	if message.GetFlags()[0].GetKey() != "llm_gateway.model_routing.provider_failover" {
 		t.Fatalf("unexpected first flag key %q", message.GetFlags()[0].GetKey())
@@ -186,8 +186,17 @@ func TestFeatureFlagSnapshotFixtureMatchesProtoContract(t *testing.T) {
 	if message.GetFlags()[2].GetEnabled() {
 		t.Fatal("expected third flag to be disabled")
 	}
-	if message.GetFlags()[5].GetRolloutPercent() != 100 {
-		t.Fatalf("expected rollout_percent 100, got %d", message.GetFlags()[5].GetRolloutPercent())
+	if message.GetFlags()[6].GetKey() != "platform.kill_switches.gate.control_api" {
+		t.Fatalf("unexpected seventh flag key %q", message.GetFlags()[6].GetKey())
+	}
+	if message.GetFlags()[6].GetEnabled() {
+		t.Fatal("expected gate control-plane kill switch to default to disabled")
+	}
+	if message.GetFlags()[7].GetKey() != "platform.kill_switches.gate.connector_proxy" {
+		t.Fatalf("unexpected eighth flag key %q", message.GetFlags()[7].GetKey())
+	}
+	if message.GetFlags()[7].GetRolloutPercent() != 0 {
+		t.Fatalf("expected rollout_percent 0, got %d", message.GetFlags()[7].GetRolloutPercent())
 	}
 }
 
