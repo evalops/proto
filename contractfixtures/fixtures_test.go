@@ -3,6 +3,8 @@ package contractfixtures
 import (
 	"bytes"
 	"testing"
+
+	meterv1 "github.com/evalops/proto/gen/go/meter/v1"
 )
 
 func TestReadSupportsRelativeFixturePaths(t *testing.T) {
@@ -55,5 +57,20 @@ func TestLoadTapFixture(t *testing.T) {
 	}
 	if data.GetChanges()["stage"].GetTo().GetStringValue() != "qualified" {
 		t.Fatalf("unexpected stage change %#v", data.GetChanges()["stage"].GetTo())
+	}
+}
+
+func TestUnmarshalProtoJSONLoadsMeterFixture(t *testing.T) {
+	t.Parallel()
+
+	var message meterv1.RecordUsageRequest
+	if err := UnmarshalProtoJSON(MeterRecordUsageRequest, &message); err != nil {
+		t.Fatalf("load meter record usage request: %v", err)
+	}
+	if message.GetEventType() != "llm.completion" {
+		t.Fatalf("unexpected event_type %q", message.GetEventType())
+	}
+	if message.GetMetadata().GetFields()["pipeline_deal_id"].GetStringValue() != "deal_123" {
+		t.Fatalf("unexpected pipeline_deal_id %#v", message.GetMetadata().GetFields()["pipeline_deal_id"])
 	}
 }

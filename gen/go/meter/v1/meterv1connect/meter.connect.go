@@ -36,18 +36,26 @@ const (
 	// MeterServiceRecordUsageProcedure is the fully-qualified name of the MeterService's RecordUsage
 	// RPC.
 	MeterServiceRecordUsageProcedure = "/meter.v1.MeterService/RecordUsage"
+	// MeterServiceRecordUsageBatchProcedure is the fully-qualified name of the MeterService's
+	// RecordUsageBatch RPC.
+	MeterServiceRecordUsageBatchProcedure = "/meter.v1.MeterService/RecordUsageBatch"
 	// MeterServiceQueryUsageProcedure is the fully-qualified name of the MeterService's QueryUsage RPC.
 	MeterServiceQueryUsageProcedure = "/meter.v1.MeterService/QueryUsage"
 	// MeterServiceGetUsageSummaryProcedure is the fully-qualified name of the MeterService's
 	// GetUsageSummary RPC.
 	MeterServiceGetUsageSummaryProcedure = "/meter.v1.MeterService/GetUsageSummary"
+	// MeterServiceGetMeterSummaryProcedure is the fully-qualified name of the MeterService's
+	// GetMeterSummary RPC.
+	MeterServiceGetMeterSummaryProcedure = "/meter.v1.MeterService/GetMeterSummary"
 )
 
 // MeterServiceClient is a client for the meter.v1.MeterService service.
 type MeterServiceClient interface {
 	RecordUsage(context.Context, *connect.Request[v1.RecordUsageRequest]) (*connect.Response[v1.RecordUsageResponse], error)
-	QueryUsage(context.Context, *connect.Request[v1.QueryUsageRequest]) (*connect.Response[v1.QueryUsageResponse], error)
-	GetUsageSummary(context.Context, *connect.Request[v1.GetUsageSummaryRequest]) (*connect.Response[v1.GetUsageSummaryResponse], error)
+	RecordUsageBatch(context.Context, *connect.Request[v1.RecordUsageBatchRequest]) (*connect.Response[v1.RecordUsageBatchResponse], error)
+	QueryUsage(context.Context, *connect.Request[v1.UsageQuery]) (*connect.Response[v1.UsageQueryResponse], error)
+	GetUsageSummary(context.Context, *connect.Request[v1.UsageSummaryQuery]) (*connect.Response[v1.UsageSummaryResponse], error)
+	GetMeterSummary(context.Context, *connect.Request[v1.MeterSummaryQuery]) (*connect.Response[v1.MeterSummaryResponse], error)
 }
 
 // NewMeterServiceClient constructs a client for the meter.v1.MeterService service. By default, it
@@ -67,16 +75,28 @@ func NewMeterServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			connect.WithSchema(meterServiceMethods.ByName("RecordUsage")),
 			connect.WithClientOptions(opts...),
 		),
-		queryUsage: connect.NewClient[v1.QueryUsageRequest, v1.QueryUsageResponse](
+		recordUsageBatch: connect.NewClient[v1.RecordUsageBatchRequest, v1.RecordUsageBatchResponse](
+			httpClient,
+			baseURL+MeterServiceRecordUsageBatchProcedure,
+			connect.WithSchema(meterServiceMethods.ByName("RecordUsageBatch")),
+			connect.WithClientOptions(opts...),
+		),
+		queryUsage: connect.NewClient[v1.UsageQuery, v1.UsageQueryResponse](
 			httpClient,
 			baseURL+MeterServiceQueryUsageProcedure,
 			connect.WithSchema(meterServiceMethods.ByName("QueryUsage")),
 			connect.WithClientOptions(opts...),
 		),
-		getUsageSummary: connect.NewClient[v1.GetUsageSummaryRequest, v1.GetUsageSummaryResponse](
+		getUsageSummary: connect.NewClient[v1.UsageSummaryQuery, v1.UsageSummaryResponse](
 			httpClient,
 			baseURL+MeterServiceGetUsageSummaryProcedure,
 			connect.WithSchema(meterServiceMethods.ByName("GetUsageSummary")),
+			connect.WithClientOptions(opts...),
+		),
+		getMeterSummary: connect.NewClient[v1.MeterSummaryQuery, v1.MeterSummaryResponse](
+			httpClient,
+			baseURL+MeterServiceGetMeterSummaryProcedure,
+			connect.WithSchema(meterServiceMethods.ByName("GetMeterSummary")),
 			connect.WithClientOptions(opts...),
 		),
 	}
@@ -84,9 +104,11 @@ func NewMeterServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 
 // meterServiceClient implements MeterServiceClient.
 type meterServiceClient struct {
-	recordUsage     *connect.Client[v1.RecordUsageRequest, v1.RecordUsageResponse]
-	queryUsage      *connect.Client[v1.QueryUsageRequest, v1.QueryUsageResponse]
-	getUsageSummary *connect.Client[v1.GetUsageSummaryRequest, v1.GetUsageSummaryResponse]
+	recordUsage      *connect.Client[v1.RecordUsageRequest, v1.RecordUsageResponse]
+	recordUsageBatch *connect.Client[v1.RecordUsageBatchRequest, v1.RecordUsageBatchResponse]
+	queryUsage       *connect.Client[v1.UsageQuery, v1.UsageQueryResponse]
+	getUsageSummary  *connect.Client[v1.UsageSummaryQuery, v1.UsageSummaryResponse]
+	getMeterSummary  *connect.Client[v1.MeterSummaryQuery, v1.MeterSummaryResponse]
 }
 
 // RecordUsage calls meter.v1.MeterService.RecordUsage.
@@ -94,21 +116,33 @@ func (c *meterServiceClient) RecordUsage(ctx context.Context, req *connect.Reque
 	return c.recordUsage.CallUnary(ctx, req)
 }
 
+// RecordUsageBatch calls meter.v1.MeterService.RecordUsageBatch.
+func (c *meterServiceClient) RecordUsageBatch(ctx context.Context, req *connect.Request[v1.RecordUsageBatchRequest]) (*connect.Response[v1.RecordUsageBatchResponse], error) {
+	return c.recordUsageBatch.CallUnary(ctx, req)
+}
+
 // QueryUsage calls meter.v1.MeterService.QueryUsage.
-func (c *meterServiceClient) QueryUsage(ctx context.Context, req *connect.Request[v1.QueryUsageRequest]) (*connect.Response[v1.QueryUsageResponse], error) {
+func (c *meterServiceClient) QueryUsage(ctx context.Context, req *connect.Request[v1.UsageQuery]) (*connect.Response[v1.UsageQueryResponse], error) {
 	return c.queryUsage.CallUnary(ctx, req)
 }
 
 // GetUsageSummary calls meter.v1.MeterService.GetUsageSummary.
-func (c *meterServiceClient) GetUsageSummary(ctx context.Context, req *connect.Request[v1.GetUsageSummaryRequest]) (*connect.Response[v1.GetUsageSummaryResponse], error) {
+func (c *meterServiceClient) GetUsageSummary(ctx context.Context, req *connect.Request[v1.UsageSummaryQuery]) (*connect.Response[v1.UsageSummaryResponse], error) {
 	return c.getUsageSummary.CallUnary(ctx, req)
+}
+
+// GetMeterSummary calls meter.v1.MeterService.GetMeterSummary.
+func (c *meterServiceClient) GetMeterSummary(ctx context.Context, req *connect.Request[v1.MeterSummaryQuery]) (*connect.Response[v1.MeterSummaryResponse], error) {
+	return c.getMeterSummary.CallUnary(ctx, req)
 }
 
 // MeterServiceHandler is an implementation of the meter.v1.MeterService service.
 type MeterServiceHandler interface {
 	RecordUsage(context.Context, *connect.Request[v1.RecordUsageRequest]) (*connect.Response[v1.RecordUsageResponse], error)
-	QueryUsage(context.Context, *connect.Request[v1.QueryUsageRequest]) (*connect.Response[v1.QueryUsageResponse], error)
-	GetUsageSummary(context.Context, *connect.Request[v1.GetUsageSummaryRequest]) (*connect.Response[v1.GetUsageSummaryResponse], error)
+	RecordUsageBatch(context.Context, *connect.Request[v1.RecordUsageBatchRequest]) (*connect.Response[v1.RecordUsageBatchResponse], error)
+	QueryUsage(context.Context, *connect.Request[v1.UsageQuery]) (*connect.Response[v1.UsageQueryResponse], error)
+	GetUsageSummary(context.Context, *connect.Request[v1.UsageSummaryQuery]) (*connect.Response[v1.UsageSummaryResponse], error)
+	GetMeterSummary(context.Context, *connect.Request[v1.MeterSummaryQuery]) (*connect.Response[v1.MeterSummaryResponse], error)
 }
 
 // NewMeterServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -124,6 +158,12 @@ func NewMeterServiceHandler(svc MeterServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(meterServiceMethods.ByName("RecordUsage")),
 		connect.WithHandlerOptions(opts...),
 	)
+	meterServiceRecordUsageBatchHandler := connect.NewUnaryHandler(
+		MeterServiceRecordUsageBatchProcedure,
+		svc.RecordUsageBatch,
+		connect.WithSchema(meterServiceMethods.ByName("RecordUsageBatch")),
+		connect.WithHandlerOptions(opts...),
+	)
 	meterServiceQueryUsageHandler := connect.NewUnaryHandler(
 		MeterServiceQueryUsageProcedure,
 		svc.QueryUsage,
@@ -136,14 +176,24 @@ func NewMeterServiceHandler(svc MeterServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(meterServiceMethods.ByName("GetUsageSummary")),
 		connect.WithHandlerOptions(opts...),
 	)
+	meterServiceGetMeterSummaryHandler := connect.NewUnaryHandler(
+		MeterServiceGetMeterSummaryProcedure,
+		svc.GetMeterSummary,
+		connect.WithSchema(meterServiceMethods.ByName("GetMeterSummary")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/meter.v1.MeterService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case MeterServiceRecordUsageProcedure:
 			meterServiceRecordUsageHandler.ServeHTTP(w, r)
+		case MeterServiceRecordUsageBatchProcedure:
+			meterServiceRecordUsageBatchHandler.ServeHTTP(w, r)
 		case MeterServiceQueryUsageProcedure:
 			meterServiceQueryUsageHandler.ServeHTTP(w, r)
 		case MeterServiceGetUsageSummaryProcedure:
 			meterServiceGetUsageSummaryHandler.ServeHTTP(w, r)
+		case MeterServiceGetMeterSummaryProcedure:
+			meterServiceGetMeterSummaryHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -157,10 +207,18 @@ func (UnimplementedMeterServiceHandler) RecordUsage(context.Context, *connect.Re
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("meter.v1.MeterService.RecordUsage is not implemented"))
 }
 
-func (UnimplementedMeterServiceHandler) QueryUsage(context.Context, *connect.Request[v1.QueryUsageRequest]) (*connect.Response[v1.QueryUsageResponse], error) {
+func (UnimplementedMeterServiceHandler) RecordUsageBatch(context.Context, *connect.Request[v1.RecordUsageBatchRequest]) (*connect.Response[v1.RecordUsageBatchResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("meter.v1.MeterService.RecordUsageBatch is not implemented"))
+}
+
+func (UnimplementedMeterServiceHandler) QueryUsage(context.Context, *connect.Request[v1.UsageQuery]) (*connect.Response[v1.UsageQueryResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("meter.v1.MeterService.QueryUsage is not implemented"))
 }
 
-func (UnimplementedMeterServiceHandler) GetUsageSummary(context.Context, *connect.Request[v1.GetUsageSummaryRequest]) (*connect.Response[v1.GetUsageSummaryResponse], error) {
+func (UnimplementedMeterServiceHandler) GetUsageSummary(context.Context, *connect.Request[v1.UsageSummaryQuery]) (*connect.Response[v1.UsageSummaryResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("meter.v1.MeterService.GetUsageSummary is not implemented"))
+}
+
+func (UnimplementedMeterServiceHandler) GetMeterSummary(context.Context, *connect.Request[v1.MeterSummaryQuery]) (*connect.Response[v1.MeterSummaryResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("meter.v1.MeterService.GetMeterSummary is not implemented"))
 }
