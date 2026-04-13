@@ -2,6 +2,9 @@ package contractfixtures
 
 import (
 	"bytes"
+	"path/filepath"
+	"reflect"
+	"sort"
 	"testing"
 
 	configv1 "github.com/evalops/proto/gen/go/config/v1"
@@ -226,5 +229,50 @@ func TestUnmarshalProtoJSONLoadsConfigFixture(t *testing.T) {
 	}
 	if message.GetFlags()[2].GetRolloutPercent() != 0 {
 		t.Fatalf("unexpected third rollout_percent %d", message.GetFlags()[2].GetRolloutPercent())
+	}
+}
+
+func TestCatalogMatchesFixtureTree(t *testing.T) {
+	t.Parallel()
+
+	matches, err := filepath.Glob(filepath.Join("..", "proto", "*", "v1", "testdata", "*.json"))
+	if err != nil {
+		t.Fatalf("glob fixture tree: %v", err)
+	}
+
+	paths := make([]string, 0, len(matches))
+	for _, match := range matches {
+		rel, err := filepath.Rel(filepath.Join("..", "proto"), match)
+		if err != nil {
+			t.Fatalf("rel fixture path: %v", err)
+		}
+		paths = append(paths, filepath.ToSlash(rel))
+	}
+
+	catalog := Catalog()
+	sort.Strings(paths)
+	sort.Strings(catalog)
+
+	if !reflect.DeepEqual(catalog, paths) {
+		t.Fatalf("fixture catalog drifted:\nwant %v\n got %v", paths, catalog)
+	}
+}
+
+func TestCatalogFixturesAreReadable(t *testing.T) {
+	t.Parallel()
+
+	for _, fixture := range Catalog() {
+		fixture := fixture
+		t.Run(fixture, func(t *testing.T) {
+			t.Parallel()
+
+			data, err := Read(fixture)
+			if err != nil {
+				t.Fatalf("read fixture: %v", err)
+			}
+			if len(data) == 0 {
+				t.Fatal("expected fixture bytes")
+			}
+		})
 	}
 }
