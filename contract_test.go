@@ -590,6 +590,43 @@ func TestCloudEventPipelineActivityCreateRepliedFixtureMatchesProtoContract(t *t
 	}
 }
 
+func TestCloudEventPipelineSignalCreateLinkedInActiveFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message eventsv1.CloudEvent
+	loadProtoJSONFixture(t, filepath.Join("proto", "events", "v1", "testdata", "cloud_event_pipeline_signal_create_linkedin_active.json"), &message)
+
+	if message.GetSubject() != "pipeline.changes.signal.create" {
+		t.Fatalf("expected subject pipeline.changes.signal.create, got %q", message.GetSubject())
+	}
+	if message.GetTenantId() != "11111111-1111-1111-1111-111111111111" {
+		t.Fatalf("expected tenant_id 11111111-1111-1111-1111-111111111111, got %q", message.GetTenantId())
+	}
+	if message.GetDataContentType() != "application/protobuf" {
+		t.Fatalf("expected data_content_type application/protobuf, got %q", message.GetDataContentType())
+	}
+
+	var unpacked eventsv1.Change
+	if err := message.GetData().UnmarshalTo(&unpacked); err != nil {
+		t.Fatalf("unpack Change payload: %v", err)
+	}
+
+	if unpacked.GetAggregateType() != "signal" || unpacked.GetOperation() != "create" {
+		t.Fatalf("expected signal/create, got %q/%q", unpacked.GetAggregateType(), unpacked.GetOperation())
+	}
+
+	payload := unpacked.GetPayload().AsMap()
+	if payload["signal_type"] != "linkedin_active" {
+		t.Fatalf("expected signal_type linkedin_active, got %#v", payload["signal_type"])
+	}
+	if payload["source"] != "linkedin" {
+		t.Fatalf("expected source linkedin, got %#v", payload["source"])
+	}
+	if payload["strength"] != float64(87) {
+		t.Fatalf("expected strength 87, got %#v", payload["strength"])
+	}
+}
+
 func TestCloudEventEvaluationCompletedTechnicalCapabilityFixtureMatchesProtoContract(t *testing.T) {
 	t.Parallel()
 
