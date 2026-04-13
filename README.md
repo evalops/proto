@@ -226,6 +226,28 @@ and publishes it automatically on `main` when Artifact Registry or
 driven from the built `gen/dist/**/*_pb.js` tree, so new generated modules have
 to be exported explicitly instead of silently skipping package validation.
 
+### Python Package
+
+`proto` now also commits generated Python protobuf modules under `gen/python`
+and builds a wheel from that tree in CI. That gives Python consumers a stable
+artifact path for local sync or packaging checks without forcing every repo to
+run `buf generate` itself.
+
+Local usage from the checked-in generated tree looks like:
+
+```bash
+PYTHONPATH=gen/python python - <<'PY'
+from config.v1.config_pb2 import FeatureFlagSnapshot
+from events.v1.cloudevent_pb2 import CloudEvent
+
+print(FeatureFlagSnapshot.__name__, CloudEvent.__name__)
+PY
+```
+
+The wheel build uses the same generated modules and smoke-imports them in CI, so
+Python contract drift now fails closed the same way the Go and TypeScript
+surfaces do.
+
 ## Event Envelope Guidance
 
 `events/v1.CloudEvent` is the canonical typed envelope for the shared internal
@@ -267,7 +289,7 @@ make lint
 # Check for breaking changes against main
 make breaking
 
-# Regenerate Go and TypeScript packages
+# Regenerate Go, TypeScript, and Python packages
 make generate
 
 # Run contract tests for generated packages
@@ -355,6 +377,7 @@ proto/                  source .proto files
 gen/                    generated code (committed)
   go/                   Go protobuf + Connect-RPC packages
   ts/                   TypeScript protobuf-es + Connect-ES packages
+  python/               Python protobuf packages
 .github/workflows/      CI: lint, breaking, generate, build
 ```
 
@@ -366,6 +389,7 @@ The CI pipeline runs on every push to `main` and every PR:
 2. `buf breaking` — checks for wire-incompatible changes against `main` (PRs only).
 3. `buf generate` — regenerates code and fails if the committed code is stale.
 4. `go test` — verifies the generated Go packages and contract tests pass.
+5. `python-package` — builds and smoke-installs the generated Python wheel.
 
 ## Related Issues
 
