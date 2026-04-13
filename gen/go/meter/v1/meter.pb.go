@@ -1128,6 +1128,914 @@ func (x *MeterSummaryResponse) GetBuckets() []*MeterSummaryBucket {
 	return nil
 }
 
+type WideEventMetrics struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	InputTokens        int64                  `protobuf:"varint,1,opt,name=input_tokens,json=inputTokens,proto3" json:"input_tokens,omitempty"`
+	OutputTokens       int64                  `protobuf:"varint,2,opt,name=output_tokens,json=outputTokens,proto3" json:"output_tokens,omitempty"`
+	CacheReadTokens    int64                  `protobuf:"varint,3,opt,name=cache_read_tokens,json=cacheReadTokens,proto3" json:"cache_read_tokens,omitempty"`
+	CacheWriteTokens   int64                  `protobuf:"varint,4,opt,name=cache_write_tokens,json=cacheWriteTokens,proto3" json:"cache_write_tokens,omitempty"`
+	TotalCostUsd       float64                `protobuf:"fixed64,5,opt,name=total_cost_usd,json=totalCostUsd,proto3" json:"total_cost_usd,omitempty"`
+	DurationMs         int64                  `protobuf:"varint,6,opt,name=duration_ms,json=durationMs,proto3" json:"duration_ms,omitempty"`
+	TimeToFirstTokenMs int64                  `protobuf:"varint,7,opt,name=time_to_first_token_ms,json=timeToFirstTokenMs,proto3" json:"time_to_first_token_ms,omitempty"`
+	ToolCallsCount     int64                  `protobuf:"varint,8,opt,name=tool_calls_count,json=toolCallsCount,proto3" json:"tool_calls_count,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *WideEventMetrics) Reset() {
+	*x = WideEventMetrics{}
+	mi := &file_meter_v1_meter_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *WideEventMetrics) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WideEventMetrics) ProtoMessage() {}
+
+func (x *WideEventMetrics) ProtoReflect() protoreflect.Message {
+	mi := &file_meter_v1_meter_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WideEventMetrics.ProtoReflect.Descriptor instead.
+func (*WideEventMetrics) Descriptor() ([]byte, []int) {
+	return file_meter_v1_meter_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *WideEventMetrics) GetInputTokens() int64 {
+	if x != nil {
+		return x.InputTokens
+	}
+	return 0
+}
+
+func (x *WideEventMetrics) GetOutputTokens() int64 {
+	if x != nil {
+		return x.OutputTokens
+	}
+	return 0
+}
+
+func (x *WideEventMetrics) GetCacheReadTokens() int64 {
+	if x != nil {
+		return x.CacheReadTokens
+	}
+	return 0
+}
+
+func (x *WideEventMetrics) GetCacheWriteTokens() int64 {
+	if x != nil {
+		return x.CacheWriteTokens
+	}
+	return 0
+}
+
+func (x *WideEventMetrics) GetTotalCostUsd() float64 {
+	if x != nil {
+		return x.TotalCostUsd
+	}
+	return 0
+}
+
+func (x *WideEventMetrics) GetDurationMs() int64 {
+	if x != nil {
+		return x.DurationMs
+	}
+	return 0
+}
+
+func (x *WideEventMetrics) GetTimeToFirstTokenMs() int64 {
+	if x != nil {
+		return x.TimeToFirstTokenMs
+	}
+	return 0
+}
+
+func (x *WideEventMetrics) GetToolCallsCount() int64 {
+	if x != nil {
+		return x.ToolCallsCount
+	}
+	return 0
+}
+
+type IngestWideEventRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Timestamp     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	TeamId        string                 `protobuf:"bytes,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	AgentId       string                 `protobuf:"bytes,3,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`
+	Surface       string                 `protobuf:"bytes,4,opt,name=surface,proto3" json:"surface,omitempty"`
+	EventType     string                 `protobuf:"bytes,5,opt,name=event_type,json=eventType,proto3" json:"event_type,omitempty"`
+	Model         string                 `protobuf:"bytes,6,opt,name=model,proto3" json:"model,omitempty"`
+	Provider      string                 `protobuf:"bytes,7,opt,name=provider,proto3" json:"provider,omitempty"`
+	RequestId     string                 `protobuf:"bytes,8,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Metadata      *structpb.Struct       `protobuf:"bytes,9,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Data          *structpb.Struct       `protobuf:"bytes,10,opt,name=data,proto3" json:"data,omitempty"`
+	Metrics       *WideEventMetrics      `protobuf:"bytes,11,opt,name=metrics,proto3" json:"metrics,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IngestWideEventRequest) Reset() {
+	*x = IngestWideEventRequest{}
+	mi := &file_meter_v1_meter_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IngestWideEventRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IngestWideEventRequest) ProtoMessage() {}
+
+func (x *IngestWideEventRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_meter_v1_meter_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IngestWideEventRequest.ProtoReflect.Descriptor instead.
+func (*IngestWideEventRequest) Descriptor() ([]byte, []int) {
+	return file_meter_v1_meter_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *IngestWideEventRequest) GetTimestamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Timestamp
+	}
+	return nil
+}
+
+func (x *IngestWideEventRequest) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *IngestWideEventRequest) GetAgentId() string {
+	if x != nil {
+		return x.AgentId
+	}
+	return ""
+}
+
+func (x *IngestWideEventRequest) GetSurface() string {
+	if x != nil {
+		return x.Surface
+	}
+	return ""
+}
+
+func (x *IngestWideEventRequest) GetEventType() string {
+	if x != nil {
+		return x.EventType
+	}
+	return ""
+}
+
+func (x *IngestWideEventRequest) GetModel() string {
+	if x != nil {
+		return x.Model
+	}
+	return ""
+}
+
+func (x *IngestWideEventRequest) GetProvider() string {
+	if x != nil {
+		return x.Provider
+	}
+	return ""
+}
+
+func (x *IngestWideEventRequest) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *IngestWideEventRequest) GetMetadata() *structpb.Struct {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
+func (x *IngestWideEventRequest) GetData() *structpb.Struct {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+func (x *IngestWideEventRequest) GetMetrics() *WideEventMetrics {
+	if x != nil {
+		return x.Metrics
+	}
+	return nil
+}
+
+type WideEvent struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Timestamp      *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	OrganizationId string                 `protobuf:"bytes,3,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
+	TeamId         string                 `protobuf:"bytes,4,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	AgentId        string                 `protobuf:"bytes,5,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`
+	Surface        string                 `protobuf:"bytes,6,opt,name=surface,proto3" json:"surface,omitempty"`
+	EventType      string                 `protobuf:"bytes,7,opt,name=event_type,json=eventType,proto3" json:"event_type,omitempty"`
+	Model          string                 `protobuf:"bytes,8,opt,name=model,proto3" json:"model,omitempty"`
+	Provider       string                 `protobuf:"bytes,9,opt,name=provider,proto3" json:"provider,omitempty"`
+	RequestId      string                 `protobuf:"bytes,10,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
+	Metadata       *structpb.Struct       `protobuf:"bytes,11,opt,name=metadata,proto3" json:"metadata,omitempty"`
+	Data           *structpb.Struct       `protobuf:"bytes,12,opt,name=data,proto3" json:"data,omitempty"`
+	Metrics        *WideEventMetrics      `protobuf:"bytes,13,opt,name=metrics,proto3" json:"metrics,omitempty"`
+	CreatedAt      *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *WideEvent) Reset() {
+	*x = WideEvent{}
+	mi := &file_meter_v1_meter_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *WideEvent) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*WideEvent) ProtoMessage() {}
+
+func (x *WideEvent) ProtoReflect() protoreflect.Message {
+	mi := &file_meter_v1_meter_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use WideEvent.ProtoReflect.Descriptor instead.
+func (*WideEvent) Descriptor() ([]byte, []int) {
+	return file_meter_v1_meter_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *WideEvent) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *WideEvent) GetTimestamp() *timestamppb.Timestamp {
+	if x != nil {
+		return x.Timestamp
+	}
+	return nil
+}
+
+func (x *WideEvent) GetOrganizationId() string {
+	if x != nil {
+		return x.OrganizationId
+	}
+	return ""
+}
+
+func (x *WideEvent) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *WideEvent) GetAgentId() string {
+	if x != nil {
+		return x.AgentId
+	}
+	return ""
+}
+
+func (x *WideEvent) GetSurface() string {
+	if x != nil {
+		return x.Surface
+	}
+	return ""
+}
+
+func (x *WideEvent) GetEventType() string {
+	if x != nil {
+		return x.EventType
+	}
+	return ""
+}
+
+func (x *WideEvent) GetModel() string {
+	if x != nil {
+		return x.Model
+	}
+	return ""
+}
+
+func (x *WideEvent) GetProvider() string {
+	if x != nil {
+		return x.Provider
+	}
+	return ""
+}
+
+func (x *WideEvent) GetRequestId() string {
+	if x != nil {
+		return x.RequestId
+	}
+	return ""
+}
+
+func (x *WideEvent) GetMetadata() *structpb.Struct {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
+func (x *WideEvent) GetData() *structpb.Struct {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+func (x *WideEvent) GetMetrics() *WideEventMetrics {
+	if x != nil {
+		return x.Metrics
+	}
+	return nil
+}
+
+func (x *WideEvent) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+type IngestWideEventResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Event         *WideEvent             `protobuf:"bytes,1,opt,name=event,proto3" json:"event,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *IngestWideEventResponse) Reset() {
+	*x = IngestWideEventResponse{}
+	mi := &file_meter_v1_meter_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *IngestWideEventResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*IngestWideEventResponse) ProtoMessage() {}
+
+func (x *IngestWideEventResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_meter_v1_meter_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use IngestWideEventResponse.ProtoReflect.Descriptor instead.
+func (*IngestWideEventResponse) Descriptor() ([]byte, []int) {
+	return file_meter_v1_meter_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *IngestWideEventResponse) GetEvent() *WideEvent {
+	if x != nil {
+		return x.Event
+	}
+	return nil
+}
+
+type QueryWideEventsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	AgentId       string                 `protobuf:"bytes,2,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`
+	Surface       string                 `protobuf:"bytes,3,opt,name=surface,proto3" json:"surface,omitempty"`
+	EventType     string                 `protobuf:"bytes,4,opt,name=event_type,json=eventType,proto3" json:"event_type,omitempty"`
+	Model         string                 `protobuf:"bytes,5,opt,name=model,proto3" json:"model,omitempty"`
+	Provider      string                 `protobuf:"bytes,6,opt,name=provider,proto3" json:"provider,omitempty"`
+	MetadataKey   string                 `protobuf:"bytes,7,opt,name=metadata_key,json=metadataKey,proto3" json:"metadata_key,omitempty"`
+	MetadataValue string                 `protobuf:"bytes,8,opt,name=metadata_value,json=metadataValue,proto3" json:"metadata_value,omitempty"`
+	StartTime     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	EndTime       *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`
+	Limit         int32                  `protobuf:"varint,11,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,12,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *QueryWideEventsRequest) Reset() {
+	*x = QueryWideEventsRequest{}
+	mi := &file_meter_v1_meter_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *QueryWideEventsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryWideEventsRequest) ProtoMessage() {}
+
+func (x *QueryWideEventsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_meter_v1_meter_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use QueryWideEventsRequest.ProtoReflect.Descriptor instead.
+func (*QueryWideEventsRequest) Descriptor() ([]byte, []int) {
+	return file_meter_v1_meter_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *QueryWideEventsRequest) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *QueryWideEventsRequest) GetAgentId() string {
+	if x != nil {
+		return x.AgentId
+	}
+	return ""
+}
+
+func (x *QueryWideEventsRequest) GetSurface() string {
+	if x != nil {
+		return x.Surface
+	}
+	return ""
+}
+
+func (x *QueryWideEventsRequest) GetEventType() string {
+	if x != nil {
+		return x.EventType
+	}
+	return ""
+}
+
+func (x *QueryWideEventsRequest) GetModel() string {
+	if x != nil {
+		return x.Model
+	}
+	return ""
+}
+
+func (x *QueryWideEventsRequest) GetProvider() string {
+	if x != nil {
+		return x.Provider
+	}
+	return ""
+}
+
+func (x *QueryWideEventsRequest) GetMetadataKey() string {
+	if x != nil {
+		return x.MetadataKey
+	}
+	return ""
+}
+
+func (x *QueryWideEventsRequest) GetMetadataValue() string {
+	if x != nil {
+		return x.MetadataValue
+	}
+	return ""
+}
+
+func (x *QueryWideEventsRequest) GetStartTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartTime
+	}
+	return nil
+}
+
+func (x *QueryWideEventsRequest) GetEndTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.EndTime
+	}
+	return nil
+}
+
+func (x *QueryWideEventsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *QueryWideEventsRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type QueryWideEventsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Events        []*WideEvent           `protobuf:"bytes,1,rep,name=events,proto3" json:"events,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	HasMore       bool                   `protobuf:"varint,3,opt,name=has_more,json=hasMore,proto3" json:"has_more,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *QueryWideEventsResponse) Reset() {
+	*x = QueryWideEventsResponse{}
+	mi := &file_meter_v1_meter_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *QueryWideEventsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryWideEventsResponse) ProtoMessage() {}
+
+func (x *QueryWideEventsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_meter_v1_meter_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use QueryWideEventsResponse.ProtoReflect.Descriptor instead.
+func (*QueryWideEventsResponse) Descriptor() ([]byte, []int) {
+	return file_meter_v1_meter_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *QueryWideEventsResponse) GetEvents() []*WideEvent {
+	if x != nil {
+		return x.Events
+	}
+	return nil
+}
+
+func (x *QueryWideEventsResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *QueryWideEventsResponse) GetHasMore() bool {
+	if x != nil {
+		return x.HasMore
+	}
+	return false
+}
+
+type GetEventDashboardRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	AgentId       string                 `protobuf:"bytes,2,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`
+	Surface       string                 `protobuf:"bytes,3,opt,name=surface,proto3" json:"surface,omitempty"`
+	EventType     string                 `protobuf:"bytes,4,opt,name=event_type,json=eventType,proto3" json:"event_type,omitempty"`
+	Model         string                 `protobuf:"bytes,5,opt,name=model,proto3" json:"model,omitempty"`
+	Provider      string                 `protobuf:"bytes,6,opt,name=provider,proto3" json:"provider,omitempty"`
+	MetadataKey   string                 `protobuf:"bytes,7,opt,name=metadata_key,json=metadataKey,proto3" json:"metadata_key,omitempty"`
+	MetadataValue string                 `protobuf:"bytes,8,opt,name=metadata_value,json=metadataValue,proto3" json:"metadata_value,omitempty"`
+	StartTime     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`
+	EndTime       *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`
+	TopN          int32                  `protobuf:"varint,11,opt,name=top_n,json=topN,proto3" json:"top_n,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetEventDashboardRequest) Reset() {
+	*x = GetEventDashboardRequest{}
+	mi := &file_meter_v1_meter_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetEventDashboardRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetEventDashboardRequest) ProtoMessage() {}
+
+func (x *GetEventDashboardRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_meter_v1_meter_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetEventDashboardRequest.ProtoReflect.Descriptor instead.
+func (*GetEventDashboardRequest) Descriptor() ([]byte, []int) {
+	return file_meter_v1_meter_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *GetEventDashboardRequest) GetTeamId() string {
+	if x != nil {
+		return x.TeamId
+	}
+	return ""
+}
+
+func (x *GetEventDashboardRequest) GetAgentId() string {
+	if x != nil {
+		return x.AgentId
+	}
+	return ""
+}
+
+func (x *GetEventDashboardRequest) GetSurface() string {
+	if x != nil {
+		return x.Surface
+	}
+	return ""
+}
+
+func (x *GetEventDashboardRequest) GetEventType() string {
+	if x != nil {
+		return x.EventType
+	}
+	return ""
+}
+
+func (x *GetEventDashboardRequest) GetModel() string {
+	if x != nil {
+		return x.Model
+	}
+	return ""
+}
+
+func (x *GetEventDashboardRequest) GetProvider() string {
+	if x != nil {
+		return x.Provider
+	}
+	return ""
+}
+
+func (x *GetEventDashboardRequest) GetMetadataKey() string {
+	if x != nil {
+		return x.MetadataKey
+	}
+	return ""
+}
+
+func (x *GetEventDashboardRequest) GetMetadataValue() string {
+	if x != nil {
+		return x.MetadataValue
+	}
+	return ""
+}
+
+func (x *GetEventDashboardRequest) GetStartTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartTime
+	}
+	return nil
+}
+
+func (x *GetEventDashboardRequest) GetEndTime() *timestamppb.Timestamp {
+	if x != nil {
+		return x.EndTime
+	}
+	return nil
+}
+
+func (x *GetEventDashboardRequest) GetTopN() int32 {
+	if x != nil {
+		return x.TopN
+	}
+	return 0
+}
+
+type EventDashboardBucket struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Key           string                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Count         int64                  `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
+	TotalCostUsd  float64                `protobuf:"fixed64,3,opt,name=total_cost_usd,json=totalCostUsd,proto3" json:"total_cost_usd,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EventDashboardBucket) Reset() {
+	*x = EventDashboardBucket{}
+	mi := &file_meter_v1_meter_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EventDashboardBucket) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EventDashboardBucket) ProtoMessage() {}
+
+func (x *EventDashboardBucket) ProtoReflect() protoreflect.Message {
+	mi := &file_meter_v1_meter_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EventDashboardBucket.ProtoReflect.Descriptor instead.
+func (*EventDashboardBucket) Descriptor() ([]byte, []int) {
+	return file_meter_v1_meter_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *EventDashboardBucket) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *EventDashboardBucket) GetCount() int64 {
+	if x != nil {
+		return x.Count
+	}
+	return 0
+}
+
+func (x *EventDashboardBucket) GetTotalCostUsd() float64 {
+	if x != nil {
+		return x.TotalCostUsd
+	}
+	return 0
+}
+
+type GetEventDashboardResponse struct {
+	state                 protoimpl.MessageState  `protogen:"open.v1"`
+	TotalEvents           int64                   `protobuf:"varint,1,opt,name=total_events,json=totalEvents,proto3" json:"total_events,omitempty"`
+	TotalInputTokens      int64                   `protobuf:"varint,2,opt,name=total_input_tokens,json=totalInputTokens,proto3" json:"total_input_tokens,omitempty"`
+	TotalOutputTokens     int64                   `protobuf:"varint,3,opt,name=total_output_tokens,json=totalOutputTokens,proto3" json:"total_output_tokens,omitempty"`
+	TotalCacheReadTokens  int64                   `protobuf:"varint,4,opt,name=total_cache_read_tokens,json=totalCacheReadTokens,proto3" json:"total_cache_read_tokens,omitempty"`
+	TotalCacheWriteTokens int64                   `protobuf:"varint,5,opt,name=total_cache_write_tokens,json=totalCacheWriteTokens,proto3" json:"total_cache_write_tokens,omitempty"`
+	TotalCostUsd          float64                 `protobuf:"fixed64,6,opt,name=total_cost_usd,json=totalCostUsd,proto3" json:"total_cost_usd,omitempty"`
+	ByEventType           []*EventDashboardBucket `protobuf:"bytes,7,rep,name=by_event_type,json=byEventType,proto3" json:"by_event_type,omitempty"`
+	BySurface             []*EventDashboardBucket `protobuf:"bytes,8,rep,name=by_surface,json=bySurface,proto3" json:"by_surface,omitempty"`
+	ByModel               []*EventDashboardBucket `protobuf:"bytes,9,rep,name=by_model,json=byModel,proto3" json:"by_model,omitempty"`
+	ByProvider            []*EventDashboardBucket `protobuf:"bytes,10,rep,name=by_provider,json=byProvider,proto3" json:"by_provider,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
+}
+
+func (x *GetEventDashboardResponse) Reset() {
+	*x = GetEventDashboardResponse{}
+	mi := &file_meter_v1_meter_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetEventDashboardResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetEventDashboardResponse) ProtoMessage() {}
+
+func (x *GetEventDashboardResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_meter_v1_meter_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetEventDashboardResponse.ProtoReflect.Descriptor instead.
+func (*GetEventDashboardResponse) Descriptor() ([]byte, []int) {
+	return file_meter_v1_meter_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *GetEventDashboardResponse) GetTotalEvents() int64 {
+	if x != nil {
+		return x.TotalEvents
+	}
+	return 0
+}
+
+func (x *GetEventDashboardResponse) GetTotalInputTokens() int64 {
+	if x != nil {
+		return x.TotalInputTokens
+	}
+	return 0
+}
+
+func (x *GetEventDashboardResponse) GetTotalOutputTokens() int64 {
+	if x != nil {
+		return x.TotalOutputTokens
+	}
+	return 0
+}
+
+func (x *GetEventDashboardResponse) GetTotalCacheReadTokens() int64 {
+	if x != nil {
+		return x.TotalCacheReadTokens
+	}
+	return 0
+}
+
+func (x *GetEventDashboardResponse) GetTotalCacheWriteTokens() int64 {
+	if x != nil {
+		return x.TotalCacheWriteTokens
+	}
+	return 0
+}
+
+func (x *GetEventDashboardResponse) GetTotalCostUsd() float64 {
+	if x != nil {
+		return x.TotalCostUsd
+	}
+	return 0
+}
+
+func (x *GetEventDashboardResponse) GetByEventType() []*EventDashboardBucket {
+	if x != nil {
+		return x.ByEventType
+	}
+	return nil
+}
+
+func (x *GetEventDashboardResponse) GetBySurface() []*EventDashboardBucket {
+	if x != nil {
+		return x.BySurface
+	}
+	return nil
+}
+
+func (x *GetEventDashboardResponse) GetByModel() []*EventDashboardBucket {
+	if x != nil {
+		return x.ByModel
+	}
+	return nil
+}
+
+func (x *GetEventDashboardResponse) GetByProvider() []*EventDashboardBucket {
+	if x != nil {
+		return x.ByProvider
+	}
+	return nil
+}
+
 var File_meter_v1_meter_proto protoreflect.FileDescriptor
 
 const file_meter_v1_meter_proto_rawDesc = "" +
@@ -1229,7 +2137,106 @@ const file_meter_v1_meter_proto_rawDesc = "" +
 	"\frecord_count\x18\x03 \x01(\x03R\vrecordCount\"i\n" +
 	"\x14MeterSummaryResponse\x12\x19\n" +
 	"\bmeter_id\x18\x01 \x01(\tR\ameterId\x126\n" +
-	"\abuckets\x18\x02 \x03(\v2\x1c.meter.v1.MeterSummaryBucketR\abuckets*\xe1\x01\n" +
+	"\abuckets\x18\x02 \x03(\v2\x1c.meter.v1.MeterSummaryBucketR\abuckets\"\xd9\x02\n" +
+	"\x10WideEventMetrics\x12!\n" +
+	"\finput_tokens\x18\x01 \x01(\x03R\vinputTokens\x12#\n" +
+	"\routput_tokens\x18\x02 \x01(\x03R\foutputTokens\x12*\n" +
+	"\x11cache_read_tokens\x18\x03 \x01(\x03R\x0fcacheReadTokens\x12,\n" +
+	"\x12cache_write_tokens\x18\x04 \x01(\x03R\x10cacheWriteTokens\x12$\n" +
+	"\x0etotal_cost_usd\x18\x05 \x01(\x01R\ftotalCostUsd\x12\x1f\n" +
+	"\vduration_ms\x18\x06 \x01(\x03R\n" +
+	"durationMs\x122\n" +
+	"\x16time_to_first_token_ms\x18\a \x01(\x03R\x12timeToFirstTokenMs\x12(\n" +
+	"\x10tool_calls_count\x18\b \x01(\x03R\x0etoolCallsCount\"\xa8\x03\n" +
+	"\x16IngestWideEventRequest\x128\n" +
+	"\ttimestamp\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12\x17\n" +
+	"\ateam_id\x18\x02 \x01(\tR\x06teamId\x12\x19\n" +
+	"\bagent_id\x18\x03 \x01(\tR\aagentId\x12\x18\n" +
+	"\asurface\x18\x04 \x01(\tR\asurface\x12\x1d\n" +
+	"\n" +
+	"event_type\x18\x05 \x01(\tR\teventType\x12\x14\n" +
+	"\x05model\x18\x06 \x01(\tR\x05model\x12\x1a\n" +
+	"\bprovider\x18\a \x01(\tR\bprovider\x12\x1d\n" +
+	"\n" +
+	"request_id\x18\b \x01(\tR\trequestId\x123\n" +
+	"\bmetadata\x18\t \x01(\v2\x17.google.protobuf.StructR\bmetadata\x12+\n" +
+	"\x04data\x18\n" +
+	" \x01(\v2\x17.google.protobuf.StructR\x04data\x124\n" +
+	"\ametrics\x18\v \x01(\v2\x1a.meter.v1.WideEventMetricsR\ametrics\"\x8f\x04\n" +
+	"\tWideEvent\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x128\n" +
+	"\ttimestamp\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\ttimestamp\x12'\n" +
+	"\x0forganization_id\x18\x03 \x01(\tR\x0eorganizationId\x12\x17\n" +
+	"\ateam_id\x18\x04 \x01(\tR\x06teamId\x12\x19\n" +
+	"\bagent_id\x18\x05 \x01(\tR\aagentId\x12\x18\n" +
+	"\asurface\x18\x06 \x01(\tR\asurface\x12\x1d\n" +
+	"\n" +
+	"event_type\x18\a \x01(\tR\teventType\x12\x14\n" +
+	"\x05model\x18\b \x01(\tR\x05model\x12\x1a\n" +
+	"\bprovider\x18\t \x01(\tR\bprovider\x12\x1d\n" +
+	"\n" +
+	"request_id\x18\n" +
+	" \x01(\tR\trequestId\x123\n" +
+	"\bmetadata\x18\v \x01(\v2\x17.google.protobuf.StructR\bmetadata\x12+\n" +
+	"\x04data\x18\f \x01(\v2\x17.google.protobuf.StructR\x04data\x124\n" +
+	"\ametrics\x18\r \x01(\v2\x1a.meter.v1.WideEventMetricsR\ametrics\x129\n" +
+	"\n" +
+	"created_at\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"D\n" +
+	"\x17IngestWideEventResponse\x12)\n" +
+	"\x05event\x18\x01 \x01(\v2\x13.meter.v1.WideEventR\x05event\"\xa1\x03\n" +
+	"\x16QueryWideEventsRequest\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x19\n" +
+	"\bagent_id\x18\x02 \x01(\tR\aagentId\x12\x18\n" +
+	"\asurface\x18\x03 \x01(\tR\asurface\x12\x1d\n" +
+	"\n" +
+	"event_type\x18\x04 \x01(\tR\teventType\x12\x14\n" +
+	"\x05model\x18\x05 \x01(\tR\x05model\x12\x1a\n" +
+	"\bprovider\x18\x06 \x01(\tR\bprovider\x12!\n" +
+	"\fmetadata_key\x18\a \x01(\tR\vmetadataKey\x12%\n" +
+	"\x0emetadata_value\x18\b \x01(\tR\rmetadataValue\x129\n" +
+	"\n" +
+	"start_time\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tstartTime\x125\n" +
+	"\bend_time\x18\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\aendTime\x12\x14\n" +
+	"\x05limit\x18\v \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\f \x01(\x05R\x06offset\"w\n" +
+	"\x17QueryWideEventsResponse\x12+\n" +
+	"\x06events\x18\x01 \x03(\v2\x13.meter.v1.WideEventR\x06events\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x19\n" +
+	"\bhas_more\x18\x03 \x01(\bR\ahasMore\"\x8a\x03\n" +
+	"\x18GetEventDashboardRequest\x12\x17\n" +
+	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x19\n" +
+	"\bagent_id\x18\x02 \x01(\tR\aagentId\x12\x18\n" +
+	"\asurface\x18\x03 \x01(\tR\asurface\x12\x1d\n" +
+	"\n" +
+	"event_type\x18\x04 \x01(\tR\teventType\x12\x14\n" +
+	"\x05model\x18\x05 \x01(\tR\x05model\x12\x1a\n" +
+	"\bprovider\x18\x06 \x01(\tR\bprovider\x12!\n" +
+	"\fmetadata_key\x18\a \x01(\tR\vmetadataKey\x12%\n" +
+	"\x0emetadata_value\x18\b \x01(\tR\rmetadataValue\x129\n" +
+	"\n" +
+	"start_time\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tstartTime\x125\n" +
+	"\bend_time\x18\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\aendTime\x12\x13\n" +
+	"\x05top_n\x18\v \x01(\x05R\x04topN\"d\n" +
+	"\x14EventDashboardBucket\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05count\x18\x02 \x01(\x03R\x05count\x12$\n" +
+	"\x0etotal_cost_usd\x18\x03 \x01(\x01R\ftotalCostUsd\"\xb1\x04\n" +
+	"\x19GetEventDashboardResponse\x12!\n" +
+	"\ftotal_events\x18\x01 \x01(\x03R\vtotalEvents\x12,\n" +
+	"\x12total_input_tokens\x18\x02 \x01(\x03R\x10totalInputTokens\x12.\n" +
+	"\x13total_output_tokens\x18\x03 \x01(\x03R\x11totalOutputTokens\x125\n" +
+	"\x17total_cache_read_tokens\x18\x04 \x01(\x03R\x14totalCacheReadTokens\x127\n" +
+	"\x18total_cache_write_tokens\x18\x05 \x01(\x03R\x15totalCacheWriteTokens\x12$\n" +
+	"\x0etotal_cost_usd\x18\x06 \x01(\x01R\ftotalCostUsd\x12B\n" +
+	"\rby_event_type\x18\a \x03(\v2\x1e.meter.v1.EventDashboardBucketR\vbyEventType\x12=\n" +
+	"\n" +
+	"by_surface\x18\b \x03(\v2\x1e.meter.v1.EventDashboardBucketR\tbySurface\x129\n" +
+	"\bby_model\x18\t \x03(\v2\x1e.meter.v1.EventDashboardBucketR\abyModel\x12?\n" +
+	"\vby_provider\x18\n" +
+	" \x03(\v2\x1e.meter.v1.EventDashboardBucketR\n" +
+	"byProvider*\xe1\x01\n" +
 	"\x0eSummaryGroupBy\x12 \n" +
 	"\x1cSUMMARY_GROUP_BY_UNSPECIFIED\x10\x00\x12\x1a\n" +
 	"\x16SUMMARY_GROUP_BY_MODEL\x10\x01\x12\x1d\n" +
@@ -1237,14 +2244,17 @@ const file_meter_v1_meter_proto_rawDesc = "" +
 	"\x15SUMMARY_GROUP_BY_TEAM\x10\x03\x12\x1a\n" +
 	"\x16SUMMARY_GROUP_BY_AGENT\x10\x04\x12\x1c\n" +
 	"\x18SUMMARY_GROUP_BY_SURFACE\x10\x05\x12\x1d\n" +
-	"\x19SUMMARY_GROUP_BY_METADATA\x10\x062\x97\x03\n" +
+	"\x19SUMMARY_GROUP_BY_METADATA\x10\x062\xa5\x05\n" +
 	"\fMeterService\x12J\n" +
 	"\vRecordUsage\x12\x1c.meter.v1.RecordUsageRequest\x1a\x1d.meter.v1.RecordUsageResponse\x12Y\n" +
 	"\x10RecordUsageBatch\x12!.meter.v1.RecordUsageBatchRequest\x1a\".meter.v1.RecordUsageBatchResponse\x12@\n" +
 	"\n" +
 	"QueryUsage\x12\x14.meter.v1.UsageQuery\x1a\x1c.meter.v1.UsageQueryResponse\x12N\n" +
 	"\x0fGetUsageSummary\x12\x1b.meter.v1.UsageSummaryQuery\x1a\x1e.meter.v1.UsageSummaryResponse\x12N\n" +
-	"\x0fGetMeterSummary\x12\x1b.meter.v1.MeterSummaryQuery\x1a\x1e.meter.v1.MeterSummaryResponseB2Z0github.com/evalops/proto/gen/go/meter/v1;meterv1b\x06proto3"
+	"\x0fGetMeterSummary\x12\x1b.meter.v1.MeterSummaryQuery\x1a\x1e.meter.v1.MeterSummaryResponse\x12V\n" +
+	"\x0fIngestWideEvent\x12 .meter.v1.IngestWideEventRequest\x1a!.meter.v1.IngestWideEventResponse\x12V\n" +
+	"\x0fQueryWideEvents\x12 .meter.v1.QueryWideEventsRequest\x1a!.meter.v1.QueryWideEventsResponse\x12\\\n" +
+	"\x11GetEventDashboard\x12\".meter.v1.GetEventDashboardRequest\x1a#.meter.v1.GetEventDashboardResponseB2Z0github.com/evalops/proto/gen/go/meter/v1;meterv1b\x06proto3"
 
 var (
 	file_meter_v1_meter_proto_rawDescOnce sync.Once
@@ -1259,61 +2269,95 @@ func file_meter_v1_meter_proto_rawDescGZIP() []byte {
 }
 
 var file_meter_v1_meter_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_meter_v1_meter_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_meter_v1_meter_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
 var file_meter_v1_meter_proto_goTypes = []any{
-	(SummaryGroupBy)(0),              // 0: meter.v1.SummaryGroupBy
-	(*RecordUsageRequest)(nil),       // 1: meter.v1.RecordUsageRequest
-	(*RecordUsageResponse)(nil),      // 2: meter.v1.RecordUsageResponse
-	(*RecordUsageBatchRequest)(nil),  // 3: meter.v1.RecordUsageBatchRequest
-	(*RecordUsageBatchResponse)(nil), // 4: meter.v1.RecordUsageBatchResponse
-	(*UsageRecord)(nil),              // 5: meter.v1.UsageRecord
-	(*UsageQuery)(nil),               // 6: meter.v1.UsageQuery
-	(*UsageQueryResponse)(nil),       // 7: meter.v1.UsageQueryResponse
-	(*UsageSummaryQuery)(nil),        // 8: meter.v1.UsageSummaryQuery
-	(*UsageSummary)(nil),             // 9: meter.v1.UsageSummary
-	(*UsageSummaryResponse)(nil),     // 10: meter.v1.UsageSummaryResponse
-	(*MeterSummaryQuery)(nil),        // 11: meter.v1.MeterSummaryQuery
-	(*MeterSummaryBucket)(nil),       // 12: meter.v1.MeterSummaryBucket
-	(*MeterSummaryResponse)(nil),     // 13: meter.v1.MeterSummaryResponse
-	(*structpb.Struct)(nil),          // 14: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),    // 15: google.protobuf.Timestamp
+	(SummaryGroupBy)(0),               // 0: meter.v1.SummaryGroupBy
+	(*RecordUsageRequest)(nil),        // 1: meter.v1.RecordUsageRequest
+	(*RecordUsageResponse)(nil),       // 2: meter.v1.RecordUsageResponse
+	(*RecordUsageBatchRequest)(nil),   // 3: meter.v1.RecordUsageBatchRequest
+	(*RecordUsageBatchResponse)(nil),  // 4: meter.v1.RecordUsageBatchResponse
+	(*UsageRecord)(nil),               // 5: meter.v1.UsageRecord
+	(*UsageQuery)(nil),                // 6: meter.v1.UsageQuery
+	(*UsageQueryResponse)(nil),        // 7: meter.v1.UsageQueryResponse
+	(*UsageSummaryQuery)(nil),         // 8: meter.v1.UsageSummaryQuery
+	(*UsageSummary)(nil),              // 9: meter.v1.UsageSummary
+	(*UsageSummaryResponse)(nil),      // 10: meter.v1.UsageSummaryResponse
+	(*MeterSummaryQuery)(nil),         // 11: meter.v1.MeterSummaryQuery
+	(*MeterSummaryBucket)(nil),        // 12: meter.v1.MeterSummaryBucket
+	(*MeterSummaryResponse)(nil),      // 13: meter.v1.MeterSummaryResponse
+	(*WideEventMetrics)(nil),          // 14: meter.v1.WideEventMetrics
+	(*IngestWideEventRequest)(nil),    // 15: meter.v1.IngestWideEventRequest
+	(*WideEvent)(nil),                 // 16: meter.v1.WideEvent
+	(*IngestWideEventResponse)(nil),   // 17: meter.v1.IngestWideEventResponse
+	(*QueryWideEventsRequest)(nil),    // 18: meter.v1.QueryWideEventsRequest
+	(*QueryWideEventsResponse)(nil),   // 19: meter.v1.QueryWideEventsResponse
+	(*GetEventDashboardRequest)(nil),  // 20: meter.v1.GetEventDashboardRequest
+	(*EventDashboardBucket)(nil),      // 21: meter.v1.EventDashboardBucket
+	(*GetEventDashboardResponse)(nil), // 22: meter.v1.GetEventDashboardResponse
+	(*structpb.Struct)(nil),           // 23: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),     // 24: google.protobuf.Timestamp
 }
 var file_meter_v1_meter_proto_depIdxs = []int32{
-	14, // 0: meter.v1.RecordUsageRequest.metadata:type_name -> google.protobuf.Struct
-	14, // 1: meter.v1.RecordUsageRequest.data:type_name -> google.protobuf.Struct
+	23, // 0: meter.v1.RecordUsageRequest.metadata:type_name -> google.protobuf.Struct
+	23, // 1: meter.v1.RecordUsageRequest.data:type_name -> google.protobuf.Struct
 	5,  // 2: meter.v1.RecordUsageResponse.record:type_name -> meter.v1.UsageRecord
 	1,  // 3: meter.v1.RecordUsageBatchRequest.records:type_name -> meter.v1.RecordUsageRequest
 	5,  // 4: meter.v1.RecordUsageBatchResponse.records:type_name -> meter.v1.UsageRecord
-	15, // 5: meter.v1.UsageRecord.timestamp:type_name -> google.protobuf.Timestamp
-	14, // 6: meter.v1.UsageRecord.data:type_name -> google.protobuf.Struct
-	14, // 7: meter.v1.UsageRecord.metadata:type_name -> google.protobuf.Struct
-	15, // 8: meter.v1.UsageRecord.created_at:type_name -> google.protobuf.Timestamp
-	15, // 9: meter.v1.UsageQuery.start_time:type_name -> google.protobuf.Timestamp
-	15, // 10: meter.v1.UsageQuery.end_time:type_name -> google.protobuf.Timestamp
+	24, // 5: meter.v1.UsageRecord.timestamp:type_name -> google.protobuf.Timestamp
+	23, // 6: meter.v1.UsageRecord.data:type_name -> google.protobuf.Struct
+	23, // 7: meter.v1.UsageRecord.metadata:type_name -> google.protobuf.Struct
+	24, // 8: meter.v1.UsageRecord.created_at:type_name -> google.protobuf.Timestamp
+	24, // 9: meter.v1.UsageQuery.start_time:type_name -> google.protobuf.Timestamp
+	24, // 10: meter.v1.UsageQuery.end_time:type_name -> google.protobuf.Timestamp
 	5,  // 11: meter.v1.UsageQueryResponse.records:type_name -> meter.v1.UsageRecord
 	0,  // 12: meter.v1.UsageSummaryQuery.group_by:type_name -> meter.v1.SummaryGroupBy
-	15, // 13: meter.v1.UsageSummaryQuery.start_time:type_name -> google.protobuf.Timestamp
-	15, // 14: meter.v1.UsageSummaryQuery.end_time:type_name -> google.protobuf.Timestamp
+	24, // 13: meter.v1.UsageSummaryQuery.start_time:type_name -> google.protobuf.Timestamp
+	24, // 14: meter.v1.UsageSummaryQuery.end_time:type_name -> google.protobuf.Timestamp
 	9,  // 15: meter.v1.UsageSummaryResponse.buckets:type_name -> meter.v1.UsageSummary
 	0,  // 16: meter.v1.MeterSummaryQuery.group_by:type_name -> meter.v1.SummaryGroupBy
-	15, // 17: meter.v1.MeterSummaryQuery.start_time:type_name -> google.protobuf.Timestamp
-	15, // 18: meter.v1.MeterSummaryQuery.end_time:type_name -> google.protobuf.Timestamp
+	24, // 17: meter.v1.MeterSummaryQuery.start_time:type_name -> google.protobuf.Timestamp
+	24, // 18: meter.v1.MeterSummaryQuery.end_time:type_name -> google.protobuf.Timestamp
 	12, // 19: meter.v1.MeterSummaryResponse.buckets:type_name -> meter.v1.MeterSummaryBucket
-	1,  // 20: meter.v1.MeterService.RecordUsage:input_type -> meter.v1.RecordUsageRequest
-	3,  // 21: meter.v1.MeterService.RecordUsageBatch:input_type -> meter.v1.RecordUsageBatchRequest
-	6,  // 22: meter.v1.MeterService.QueryUsage:input_type -> meter.v1.UsageQuery
-	8,  // 23: meter.v1.MeterService.GetUsageSummary:input_type -> meter.v1.UsageSummaryQuery
-	11, // 24: meter.v1.MeterService.GetMeterSummary:input_type -> meter.v1.MeterSummaryQuery
-	2,  // 25: meter.v1.MeterService.RecordUsage:output_type -> meter.v1.RecordUsageResponse
-	4,  // 26: meter.v1.MeterService.RecordUsageBatch:output_type -> meter.v1.RecordUsageBatchResponse
-	7,  // 27: meter.v1.MeterService.QueryUsage:output_type -> meter.v1.UsageQueryResponse
-	10, // 28: meter.v1.MeterService.GetUsageSummary:output_type -> meter.v1.UsageSummaryResponse
-	13, // 29: meter.v1.MeterService.GetMeterSummary:output_type -> meter.v1.MeterSummaryResponse
-	25, // [25:30] is the sub-list for method output_type
-	20, // [20:25] is the sub-list for method input_type
-	20, // [20:20] is the sub-list for extension type_name
-	20, // [20:20] is the sub-list for extension extendee
-	0,  // [0:20] is the sub-list for field type_name
+	24, // 20: meter.v1.IngestWideEventRequest.timestamp:type_name -> google.protobuf.Timestamp
+	23, // 21: meter.v1.IngestWideEventRequest.metadata:type_name -> google.protobuf.Struct
+	23, // 22: meter.v1.IngestWideEventRequest.data:type_name -> google.protobuf.Struct
+	14, // 23: meter.v1.IngestWideEventRequest.metrics:type_name -> meter.v1.WideEventMetrics
+	24, // 24: meter.v1.WideEvent.timestamp:type_name -> google.protobuf.Timestamp
+	23, // 25: meter.v1.WideEvent.metadata:type_name -> google.protobuf.Struct
+	23, // 26: meter.v1.WideEvent.data:type_name -> google.protobuf.Struct
+	14, // 27: meter.v1.WideEvent.metrics:type_name -> meter.v1.WideEventMetrics
+	24, // 28: meter.v1.WideEvent.created_at:type_name -> google.protobuf.Timestamp
+	16, // 29: meter.v1.IngestWideEventResponse.event:type_name -> meter.v1.WideEvent
+	24, // 30: meter.v1.QueryWideEventsRequest.start_time:type_name -> google.protobuf.Timestamp
+	24, // 31: meter.v1.QueryWideEventsRequest.end_time:type_name -> google.protobuf.Timestamp
+	16, // 32: meter.v1.QueryWideEventsResponse.events:type_name -> meter.v1.WideEvent
+	24, // 33: meter.v1.GetEventDashboardRequest.start_time:type_name -> google.protobuf.Timestamp
+	24, // 34: meter.v1.GetEventDashboardRequest.end_time:type_name -> google.protobuf.Timestamp
+	21, // 35: meter.v1.GetEventDashboardResponse.by_event_type:type_name -> meter.v1.EventDashboardBucket
+	21, // 36: meter.v1.GetEventDashboardResponse.by_surface:type_name -> meter.v1.EventDashboardBucket
+	21, // 37: meter.v1.GetEventDashboardResponse.by_model:type_name -> meter.v1.EventDashboardBucket
+	21, // 38: meter.v1.GetEventDashboardResponse.by_provider:type_name -> meter.v1.EventDashboardBucket
+	1,  // 39: meter.v1.MeterService.RecordUsage:input_type -> meter.v1.RecordUsageRequest
+	3,  // 40: meter.v1.MeterService.RecordUsageBatch:input_type -> meter.v1.RecordUsageBatchRequest
+	6,  // 41: meter.v1.MeterService.QueryUsage:input_type -> meter.v1.UsageQuery
+	8,  // 42: meter.v1.MeterService.GetUsageSummary:input_type -> meter.v1.UsageSummaryQuery
+	11, // 43: meter.v1.MeterService.GetMeterSummary:input_type -> meter.v1.MeterSummaryQuery
+	15, // 44: meter.v1.MeterService.IngestWideEvent:input_type -> meter.v1.IngestWideEventRequest
+	18, // 45: meter.v1.MeterService.QueryWideEvents:input_type -> meter.v1.QueryWideEventsRequest
+	20, // 46: meter.v1.MeterService.GetEventDashboard:input_type -> meter.v1.GetEventDashboardRequest
+	2,  // 47: meter.v1.MeterService.RecordUsage:output_type -> meter.v1.RecordUsageResponse
+	4,  // 48: meter.v1.MeterService.RecordUsageBatch:output_type -> meter.v1.RecordUsageBatchResponse
+	7,  // 49: meter.v1.MeterService.QueryUsage:output_type -> meter.v1.UsageQueryResponse
+	10, // 50: meter.v1.MeterService.GetUsageSummary:output_type -> meter.v1.UsageSummaryResponse
+	13, // 51: meter.v1.MeterService.GetMeterSummary:output_type -> meter.v1.MeterSummaryResponse
+	17, // 52: meter.v1.MeterService.IngestWideEvent:output_type -> meter.v1.IngestWideEventResponse
+	19, // 53: meter.v1.MeterService.QueryWideEvents:output_type -> meter.v1.QueryWideEventsResponse
+	22, // 54: meter.v1.MeterService.GetEventDashboard:output_type -> meter.v1.GetEventDashboardResponse
+	47, // [47:55] is the sub-list for method output_type
+	39, // [39:47] is the sub-list for method input_type
+	39, // [39:39] is the sub-list for extension type_name
+	39, // [39:39] is the sub-list for extension extendee
+	0,  // [0:39] is the sub-list for field type_name
 }
 
 func init() { file_meter_v1_meter_proto_init() }
@@ -1327,7 +2371,7 @@ func file_meter_v1_meter_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_meter_v1_meter_proto_rawDesc), len(file_meter_v1_meter_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   13,
+			NumMessages:   22,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
