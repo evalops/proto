@@ -203,11 +203,14 @@ func TestLoadFeatureFlagSnapshot(t *testing.T) {
 	if message.GetSchemaVersion() != 1 {
 		t.Fatalf("unexpected schema_version %d", message.GetSchemaVersion())
 	}
-	if len(message.GetFlags()) != 6 {
-		t.Fatalf("expected 6 flags, got %d", len(message.GetFlags()))
+	if len(message.GetFlags()) != 8 {
+		t.Fatalf("expected 8 flags, got %d", len(message.GetFlags()))
 	}
 	if message.GetFlags()[0].GetKey() != "llm_gateway.model_routing.provider_failover" {
 		t.Fatalf("unexpected first flag key %q", message.GetFlags()[0].GetKey())
+	}
+	if message.GetFlags()[6].GetKey() != "platform.kill_switches.gate.control_api" {
+		t.Fatalf("unexpected seventh flag key %q", message.GetFlags()[6].GetKey())
 	}
 }
 
