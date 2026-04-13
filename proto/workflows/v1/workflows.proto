@@ -36,6 +36,12 @@ service WorkflowService {
   // StartRun begins execution of a workflow definition version.
   rpc StartRun(StartRunRequest) returns (StartRunResponse);
 
+  // HandleTrigger processes an asynchronous workflow trigger. It starts
+  // matching latest workflow versions for EVENT, WEBHOOK, or SCHEDULE
+  // triggers and may also satisfy WAIT_FOR_EVENT steps when event
+  // metadata is present.
+  rpc HandleTrigger(HandleTriggerRequest) returns (HandleTriggerResponse);
+
   // GetRun retrieves a workflow run by ID.
   rpc GetRun(GetRunRequest) returns (GetRunResponse);
 
@@ -489,6 +495,57 @@ message StartRunRequest {
 
 message StartRunResponse {
   WorkflowRun run = 1;
+}
+
+message HandleTriggerRequest {
+  string workspace_id = 1;
+
+  // trigger_type selects how the request is matched against WorkflowTrigger.
+  // Supported values are EVENT, WEBHOOK, and SCHEDULE.
+  TriggerType trigger_type = 2;
+
+  // trigger_event_id references the events/v1 CloudEvent.id that initiated
+  // this trigger when trigger_type is EVENT or WEBHOOK.
+  string trigger_event_id = 3;
+
+  // For EVENT and optional WAIT_FOR_EVENT satisfaction: the
+  // events/v1 CloudEvent.type value.
+  string event_type = 4;
+
+  // For EVENT and optional WAIT_FOR_EVENT satisfaction: the
+  // events/v1 CloudEvent.subject value.
+  string event_subject = 5;
+
+  // For WEBHOOK: the tap/v1 TapEventData.provider to match.
+  string tap_provider = 6;
+
+  // For WEBHOOK: the tap/v1 TapEventData.entity_type to match.
+  string tap_entity_type = 7;
+
+  // For WEBHOOK: the tap/v1 TapEventData.action to match.
+  string tap_action = 8;
+
+  // For SCHEDULE: the cron expression that fired.
+  string cron_expr = 9;
+
+  string initiator_agent_id = 10;
+  string initiator_user_id = 11;
+  string entity_id = 12;
+  string entity_type = 13;
+
+  // input_payload is passed to newly started runs and, when event metadata
+  // is present, to WAIT_FOR_EVENT steps completed by this trigger.
+  google.protobuf.Struct input_payload = 14;
+}
+
+message HandleTriggerResponse {
+  // started_runs contains runs created by matching workflow triggers.
+  repeated WorkflowRun started_runs = 1;
+
+  // updated_runs contains existing runs advanced by satisfying
+  // WAIT_FOR_EVENT steps. Runs already present in started_runs should not
+  // be repeated here.
+  repeated WorkflowRun updated_runs = 2;
 }
 
 message GetRunRequest {

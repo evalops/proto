@@ -46,6 +46,8 @@ const (
 	NotificationsGetPreferencesResponse         = "notifications/v1/testdata/get_preferences_response.json"
 	ObjectivesCreateResponse                    = "objectives/v1/testdata/create_response.json"
 	SkillsSearchResponse                        = "skills/v1/testdata/search_response.json"
+	WorkflowsHandleTriggerRequest               = "workflows/v1/testdata/handle_trigger_request.json"
+	WorkflowsHandleTriggerResponse              = "workflows/v1/testdata/handle_trigger_response.json"
 	WorkflowsPublishVersionResponse             = "workflows/v1/testdata/publish_version_response.json"
 	WorkflowsGetRunResponse                     = "workflows/v1/testdata/get_run_response.json"
 )
@@ -80,6 +82,8 @@ var fixtureCatalog = []string{
 	NotificationsGetPreferencesResponse,
 	ObjectivesCreateResponse,
 	SkillsSearchResponse,
+	WorkflowsHandleTriggerRequest,
+	WorkflowsHandleTriggerResponse,
 	WorkflowsPublishVersionResponse,
 	WorkflowsGetRunResponse,
 }
