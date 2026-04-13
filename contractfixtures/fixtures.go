@@ -8,10 +8,9 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/evalops/proto/eventhelpers"
 	eventsv1 "github.com/evalops/proto/gen/go/events/v1"
 	tapv1 "github.com/evalops/proto/gen/go/tap/v1"
-	"google.golang.org/protobuf/encoding/protojson"
-	"google.golang.org/protobuf/proto"
 )
 
 const (
@@ -49,11 +48,15 @@ func moduleRoot() (string, error) {
 }
 
 func LoadCloudEvent(name string) (*eventsv1.CloudEvent, error) {
-	var message eventsv1.CloudEvent
-	if err := unmarshalProtoJSONFixture(name, &message); err != nil {
+	data, err := Read(name)
+	if err != nil {
 		return nil, err
 	}
-	return &message, nil
+	message, err := eventhelpers.UnmarshalCloudEventProtoJSON(data)
+	if err != nil {
+		return nil, fmt.Errorf("unmarshal fixture %q: %w", name, err)
+	}
+	return message, nil
 }
 
 func LoadChangeFixture(name string) (*eventsv1.CloudEvent, *eventsv1.Change, error) {
@@ -61,11 +64,11 @@ func LoadChangeFixture(name string) (*eventsv1.CloudEvent, *eventsv1.Change, err
 	if err != nil {
 		return nil, nil, err
 	}
-	var change eventsv1.Change
-	if err := envelope.GetData().UnmarshalTo(&change); err != nil {
+	change, err := eventhelpers.UnpackChange(envelope)
+	if err != nil {
 		return nil, nil, fmt.Errorf("unmarshal change fixture %q: %w", name, err)
 	}
-	return envelope, &change, nil
+	return envelope, change, nil
 }
 
 func LoadTapFixture(name string) (*eventsv1.CloudEvent, *tapv1.TapEventData, error) {
@@ -73,20 +76,9 @@ func LoadTapFixture(name string) (*eventsv1.CloudEvent, *tapv1.TapEventData, err
 	if err != nil {
 		return nil, nil, err
 	}
-	var data tapv1.TapEventData
-	if err := envelope.GetData().UnmarshalTo(&data); err != nil {
+	data, err := eventhelpers.UnpackTapEventData(envelope)
+	if err != nil {
 		return nil, nil, fmt.Errorf("unmarshal tap fixture %q: %w", name, err)
 	}
-	return envelope, &data, nil
-}
-
-func unmarshalProtoJSONFixture(name string, message proto.Message) error {
-	data, err := Read(name)
-	if err != nil {
-		return err
-	}
-	if err := protojson.Unmarshal(data, message); err != nil {
-		return fmt.Errorf("unmarshal fixture %q: %w", name, err)
-	}
-	return nil
+	return envelope, data, nil
 }
