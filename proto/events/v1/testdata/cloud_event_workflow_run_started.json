@@ -9,6 +9,8 @@
   "tenant_id": "11111111-1111-1111-1111-111111111111",
   "data": {
     "@type": "type.googleapis.com/workflows.v1.WorkflowRunLifecycleEvent",
+    "operation": "started",
+    "recorded_at": "2026-04-13T14:30:00Z",
     "run": {
       "id": "wfr_outbound_acme_001",
       "definition_id": "wf_outbound_sdr",

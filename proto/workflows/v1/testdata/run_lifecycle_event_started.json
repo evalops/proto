@@ -1,4 +1,6 @@
 {
+  "operation": "started",
+  "recorded_at": "2026-04-13T14:30:00Z",
   "run": {
     "id": "wfr_outbound_acme_001",
     "definition_id": "wf_outbound_sdr",

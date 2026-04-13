@@ -419,6 +419,8 @@ message StepRun {
 // `workflows.changes.run.started` and `workflows.changes.run.completed`).
 message WorkflowRunLifecycleEvent {
   WorkflowRun run = 1;
+  string operation = 2;
+  google.protobuf.Timestamp recorded_at = 3;
 }
 
 // WorkflowStepLifecycleEvent is the typed payload for workflow step lifecycle
@@ -441,6 +443,8 @@ message WorkflowStepLifecycleEvent {
   string entity_type = 12;
   double workflow_total_cost_usd = 13;
   StepRun step = 14;
+  string operation = 15;
+  google.protobuf.Timestamp recorded_at = 16;
 }
 
 // ---------------------------------------------------------------------------

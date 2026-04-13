@@ -10,6 +10,8 @@
   "entity_id": "canonical_acme_vp_sales",
   "entity_type": "ENTITY_TYPE_CONTACT",
   "workflow_total_cost_usd": 0.055,
+  "operation": "waiting",
+  "recorded_at": "2026-04-13T14:34:46Z",
   "step": {
     "step_id": "approve-high-value",
     "step_name": "Manager Approval",
