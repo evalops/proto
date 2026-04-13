@@ -277,6 +277,7 @@ type StoreRequest struct {
 	Agent         string                 `protobuf:"bytes,9,opt,name=agent,proto3" json:"agent,omitempty"`
 	IsPolicy      bool                   `protobuf:"varint,10,opt,name=is_policy,json=isPolicy,proto3" json:"is_policy,omitempty"`
 	Tags          []string               `protobuf:"bytes,11,rep,name=tags,proto3" json:"tags,omitempty"`
+	Id            string                 `protobuf:"bytes,12,opt,name=id,proto3" json:"id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -386,6 +387,13 @@ func (x *StoreRequest) GetTags() []string {
 		return x.Tags
 	}
 	return nil
+}
+
+func (x *StoreRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
 }
 
 type StoreResponse struct {
@@ -1403,7 +1411,7 @@ const file_memory_v1_memory_proto_rawDesc = "" +
 	"created_at\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
 	"updated_at\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x12\n" +
-	"\x04tags\x18\x12 \x03(\tR\x04tags\"\xbb\x02\n" +
+	"\x04tags\x18\x12 \x03(\tR\x04tags\"\xcb\x02\n" +
 	"\fStoreRequest\x12&\n" +
 	"\x05scope\x18\x01 \x01(\x0e2\x10.memory.v1.ScopeR\x05scope\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\x12\x12\n" +
@@ -1421,7 +1429,8 @@ const file_memory_v1_memory_proto_rawDesc = "" +
 	"\x05agent\x18\t \x01(\tR\x05agent\x12\x1b\n" +
 	"\tis_policy\x18\n" +
 	" \x01(\bR\bisPolicy\x12\x12\n" +
-	"\x04tags\x18\v \x03(\tR\x04tags\":\n" +
+	"\x04tags\x18\v \x03(\tR\x04tags\x12\x0e\n" +
+	"\x02id\x18\f \x01(\tR\x02id\":\n" +
 	"\rStoreResponse\x12)\n" +
 	"\x06memory\x18\x01 \x01(\v2\x11.memory.v1.MemoryR\x06memory\"\xf7\x01\n" +
 	"\rRecallRequest\x12\x14\n" +

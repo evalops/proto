@@ -69,6 +69,7 @@ message StoreRequest {
   string agent = 9;
   bool is_policy = 10;
   repeated string tags = 11;
+  string id = 12;
 }
 
 message StoreResponse {
