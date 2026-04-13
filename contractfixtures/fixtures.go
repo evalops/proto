@@ -17,6 +17,9 @@ import (
 )
 
 const (
+	AgentsRegisterResponse                      = "agents/v1/testdata/register_response.json"
+	AgentsPushConfigResponse                    = "agents/v1/testdata/push_config_response.json"
+	AgentsDelegateResponse                      = "agents/v1/testdata/delegate_response.json"
 	ApprovalsRequestApprovalRequest             = "approvals/v1/testdata/request_approval_request.json"
 	ConfigFeatureFlagSnapshot                   = "config/v1/testdata/feature_flag_snapshot.json"
 	ConnectorsRegisterConnectionRequest         = "connectors/v1/testdata/register_connection_request.json"
@@ -43,9 +46,14 @@ const (
 	NotificationsGetPreferencesResponse         = "notifications/v1/testdata/get_preferences_response.json"
 	ObjectivesCreateResponse                    = "objectives/v1/testdata/create_response.json"
 	SkillsSearchResponse                        = "skills/v1/testdata/search_response.json"
+	WorkflowsPublishVersionResponse             = "workflows/v1/testdata/publish_version_response.json"
+	WorkflowsGetRunResponse                     = "workflows/v1/testdata/get_run_response.json"
 )
 
 var fixtureCatalog = []string{
+	AgentsRegisterResponse,
+	AgentsPushConfigResponse,
+	AgentsDelegateResponse,
 	ApprovalsRequestApprovalRequest,
 	ConfigFeatureFlagSnapshot,
 	ConnectorsRegisterConnectionRequest,
@@ -72,6 +80,8 @@ var fixtureCatalog = []string{
 	NotificationsGetPreferencesResponse,
 	ObjectivesCreateResponse,
 	SkillsSearchResponse,
+	WorkflowsPublishVersionResponse,
+	WorkflowsGetRunResponse,
 }
 
 var embeddedFixtures = map[string][]byte{

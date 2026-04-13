@@ -1,0 +1,64 @@
+{
+  "config": {
+    "version": 3,
+    "agent_id": "agent_sdr_outbound",
+    "skill_ids": [
+      "skill_prospect_research",
+      "skill_outreach_sequence",
+      "skill_deal_qualification"
+    ],
+    "prompt_bindings": {
+      "sdr-outreach": "production",
+      "lead-qualification": "canary",
+      "company-research": "production"
+    },
+    "model_preferences": {
+      "ensemble": "claude-opus-4.6",
+      "slack": "claude-sonnet-4.6"
+    },
+    "integration_ids": [
+      "conn_hubspot_prod",
+      "conn_linkedin_prod",
+      "conn_gmail_prod"
+    ],
+    "entity_type_scopes": [
+      "ENTITY_TYPE_CONTACT",
+      "ENTITY_TYPE_COMPANY",
+      "ENTITY_TYPE_DEAL"
+    ],
+    "max_concurrent_objectives": 5,
+    "cost_budget_usd": 50.0,
+    "notification_channel": "DELIVERY_CHANNEL_SLACK",
+    "parameters": {
+      "max_outreach_per_day": 25,
+      "cool_off_hours": 72,
+      "preferred_timezone": "America/Los_Angeles"
+    },
+    "author": "user_founder_01",
+    "created_at": "2026-04-13T10:00:00Z"
+  },
+  "agent": {
+    "id": "agent_sdr_outbound",
+    "workspace_id": "11111111-1111-1111-1111-111111111111",
+    "name": "Outbound SDR",
+    "description": "Autonomous outbound sales development representative. Prospects leads, enriches contact data, and initiates outreach sequences through connected CRM integrations.",
+    "agent_type": "sdr",
+    "capabilities": [
+      "hubspot-read",
+      "hubspot-write",
+      "email-send",
+      "linkedin-research",
+      "entity-resolve"
+    ],
+    "surfaces": [
+      "ensemble",
+      "slack"
+    ],
+    "status": "AGENT_STATUS_ACTIVE",
+    "active_config_version": 3,
+    "owner_id": "user_founder_01",
+    "last_heartbeat_at": "2026-04-13T14:30:00Z",
+    "created_at": "2026-04-10T09:00:00Z",
+    "updated_at": "2026-04-13T14:35:00Z"
+  }
+}

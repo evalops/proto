@@ -1,0 +1,26 @@
+{
+  "agent": {
+    "id": "agent_sdr_outbound",
+    "workspace_id": "11111111-1111-1111-1111-111111111111",
+    "name": "Outbound SDR",
+    "description": "Autonomous outbound sales development representative. Prospects leads, enriches contact data, and initiates outreach sequences through connected CRM integrations.",
+    "agent_type": "sdr",
+    "capabilities": [
+      "hubspot-read",
+      "hubspot-write",
+      "email-send",
+      "linkedin-research",
+      "entity-resolve"
+    ],
+    "surfaces": [
+      "ensemble",
+      "slack"
+    ],
+    "status": "AGENT_STATUS_ACTIVE",
+    "active_config_version": 1,
+    "owner_id": "user_founder_01",
+    "last_heartbeat_at": "2026-04-13T14:30:00Z",
+    "created_at": "2026-04-10T09:00:00Z",
+    "updated_at": "2026-04-13T14:30:00Z"
+  }
+}

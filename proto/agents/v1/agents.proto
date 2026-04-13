@@ -1,0 +1,367 @@
+syntax = "proto3";
+
+package agents.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/agents/v1;agentsv1";
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+// AgentService manages agent definitions, versioned configuration, and
+// cross-agent delegation. Every string agent_id in the platform (meter,
+// objectives, approvals, governance, memory) resolves to an Agent record
+// owned by this service.
+service AgentService {
+  // Register creates a new agent definition.
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+
+  // Get retrieves an agent by ID.
+  rpc Get(GetRequest) returns (GetResponse);
+
+  // List returns agents matching the query filters.
+  rpc List(ListRequest) returns (ListResponse);
+
+  // Update modifies mutable agent metadata (name, description, surfaces).
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+
+  // Deregister removes an agent from the registry.
+  rpc Deregister(DeregisterRequest) returns (DeregisterResponse);
+
+  // PushConfig creates a new immutable configuration version for an agent.
+  // The agent's active_config_version advances atomically.
+  rpc PushConfig(PushConfigRequest) returns (PushConfigResponse);
+
+  // GetConfig retrieves a specific configuration version.
+  rpc GetConfig(GetConfigRequest) returns (GetConfigResponse);
+
+  // ListConfigs returns all configuration versions for an agent.
+  rpc ListConfigs(ListConfigsRequest) returns (ListConfigsResponse);
+
+  // RollbackConfig atomically reverts an agent to a prior configuration version.
+  rpc RollbackConfig(RollbackConfigRequest) returns (RollbackConfigResponse);
+
+  // Delegate requests that another agent (or any agent with a matching
+  // capability) accept a unit of work. The delegation is tracked as a
+  // DelegationRecord and linked to the originating objective and optional
+  // workflow step.
+  rpc Delegate(DelegateRequest) returns (DelegateResponse);
+
+  // ResolveDelegation records the outcome of a delegation.
+  rpc ResolveDelegation(ResolveDelegationRequest) returns (ResolveDelegationResponse);
+
+  // GetDelegation retrieves a delegation record by ID.
+  rpc GetDelegation(GetDelegationRequest) returns (GetDelegationResponse);
+
+  // ListDelegations returns delegations matching the query filters.
+  rpc ListDelegations(ListDelegationsRequest) returns (ListDelegationsResponse);
+
+  // Heartbeat records agent liveness. The registry uses this to maintain
+  // presence state and route capability-based delegation requests.
+  rpc Heartbeat(HeartbeatRequest) returns (HeartbeatResponse);
+}
+
+// AgentStatus describes the operational state of an agent.
+enum AgentStatus {
+  AGENT_STATUS_UNSPECIFIED = 0;
+  AGENT_STATUS_ACTIVE = 1;
+  AGENT_STATUS_IDLE = 2;
+  AGENT_STATUS_BUSY = 3;
+  AGENT_STATUS_OFFLINE = 4;
+  AGENT_STATUS_DEGRADED = 5;
+  AGENT_STATUS_SUSPENDED = 6;
+}
+
+// DelegationStatus describes the lifecycle state of a delegation.
+enum DelegationStatus {
+  DELEGATION_STATUS_UNSPECIFIED = 0;
+  DELEGATION_STATUS_PENDING = 1;
+  DELEGATION_STATUS_ACCEPTED = 2;
+  DELEGATION_STATUS_REJECTED = 3;
+  DELEGATION_STATUS_COMPLETED = 4;
+  DELEGATION_STATUS_FAILED = 5;
+  DELEGATION_STATUS_TIMED_OUT = 6;
+}
+
+// Agent is the canonical agent definition record.
+// The id field is the value stored in every agent_id / agent string field
+// across the platform: meter/v1 RecordUsageRequest.agent_id,
+// objectives/v1 Objective.agent_id, approvals/v1 ApprovalRequest.agent_id,
+// governance/v1 EvaluateActionRequest.agent_id, memory/v1 Memory.agent,
+// and events/v1 Change.actor_id when actor_type is "agent".
+message Agent {
+  string id = 1;
+  string workspace_id = 2;
+  string name = 3;
+  string description = 4;
+
+  // agent_type aligns with identity/v1 IntrospectResponse.agent_type and
+  // IssueAgentTokenRequest.agent_type. Examples: "sdr", "support", "coding",
+  // "ops", "research".
+  string agent_type = 5;
+
+  // capabilities aligns with identity/v1 IntrospectResponse.capabilities and
+  // IssueAgentTokenRequest.capabilities. Used by capability-based delegation
+  // routing. Examples: "hubspot-write", "email-send", "code-review".
+  repeated string capabilities = 6;
+
+  // surfaces this agent can operate on. Aligns with the surface field in
+  // meter/v1, objectives/v1, approvals/v1. Examples: "ensemble", "chat",
+  // "maestro", "conductor", "slack".
+  repeated string surfaces = 7;
+
+  AgentStatus status = 8;
+  int32 active_config_version = 9;
+  string owner_id = 10;
+  google.protobuf.Timestamp last_heartbeat_at = 11;
+  google.protobuf.Timestamp created_at = 12;
+  google.protobuf.Timestamp updated_at = 13;
+}
+
+// AgentConfig is an immutable snapshot of everything that shapes an agent's
+// behavior. Promotion and rollback are both config version reassignments —
+// the same pattern as prompts/v1 Label.
+message AgentConfig {
+  int32 version = 1;
+  string agent_id = 2;
+
+  // skill_ids reference skills/v1 Skill.id — the reusable capabilities
+  // this agent has loaded.
+  repeated string skill_ids = 3;
+
+  // prompt_bindings maps prompt name to label (e.g., "sdr-outreach" -> "production").
+  // Aligns with prompts/v1 ResolveRequest.name and ResolveRequest.label.
+  map<string, string> prompt_bindings = 4;
+
+  // model_preferences maps surface to preferred model identifier
+  // (e.g., "ensemble" -> "claude-opus-4.6"). Aligns with meter/v1
+  // RecordUsageRequest.model and keys/v1 ResolveProviderRefRequest.provider.
+  map<string, string> model_preferences = 5;
+
+  // integration_ids reference connectors/v1 Connection.id — the external
+  // system connections this agent is authorized to use.
+  repeated string integration_ids = 6;
+
+  // entity_type_scopes restrict which entities/v1 EntityType values this
+  // agent can operate on. Empty means unrestricted.
+  repeated string entity_type_scopes = 7;
+
+  // max_concurrent_objectives caps the number of objectives/v1 Objective
+  // records this agent can hold in RUNNING or BLOCKED state simultaneously.
+  int32 max_concurrent_objectives = 8;
+
+  // cost_budget_usd is the per-period spend ceiling enforced against
+  // meter/v1 usage records for this agent.
+  double cost_budget_usd = 9;
+
+  // notification_channel specifies the preferred notifications/v1
+  // DeliveryChannel for this agent's escalations. Stored as string to
+  // avoid cross-package import (e.g., "DELIVERY_CHANNEL_SLACK").
+  string notification_channel = 10;
+
+  // parameters holds arbitrary agent-specific tuning knobs.
+  google.protobuf.Struct parameters = 11;
+
+  string author = 12;
+  google.protobuf.Timestamp created_at = 13;
+}
+
+// DelegationRecord tracks a typed hand-off between agents. The from_agent_id
+// creates an objective (objectives/v1) or references a workflow step
+// (workflows/v1 StepRun) and delegates execution to another agent resolved
+// by ID or by capability through the registry.
+message DelegationRecord {
+  string id = 1;
+  string workspace_id = 2;
+  string from_agent_id = 3;
+  string to_agent_id = 4;
+  string required_capability = 5;
+
+  // objective_id links to the objectives/v1 Objective created for this
+  // delegated unit of work.
+  string objective_id = 6;
+
+  // workflow_run_id and workflow_step_id link to workflows/v1 when this
+  // delegation occurs within a workflow execution.
+  string workflow_run_id = 7;
+  string workflow_step_id = 8;
+
+  DelegationStatus status = 9;
+  bytes context_payload = 10;
+  bytes result_payload = 11;
+  string reason = 12;
+  string error_message = 13;
+  google.protobuf.Timestamp created_at = 14;
+  google.protobuf.Timestamp resolved_at = 15;
+}
+
+// ---------------------------------------------------------------------------
+// RPC request/response messages
+// ---------------------------------------------------------------------------
+
+message RegisterRequest {
+  string workspace_id = 1;
+  string name = 2;
+  string description = 3;
+  string agent_type = 4;
+  repeated string capabilities = 5;
+  repeated string surfaces = 6;
+  string owner_id = 7;
+}
+
+message RegisterResponse {
+  Agent agent = 1;
+}
+
+message GetRequest {
+  string id = 1;
+}
+
+message GetResponse {
+  Agent agent = 1;
+}
+
+message ListRequest {
+  string workspace_id = 1;
+  string agent_type = 2;
+  string capability = 3;
+  string surface = 4;
+  AgentStatus status = 5;
+  int32 limit = 6;
+  int32 offset = 7;
+}
+
+message ListResponse {
+  repeated Agent agents = 1;
+  int32 total = 2;
+}
+
+message UpdateRequest {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  repeated string capabilities = 4;
+  repeated string surfaces = 5;
+}
+
+message UpdateResponse {
+  Agent agent = 1;
+}
+
+message DeregisterRequest {
+  string id = 1;
+  string reason = 2;
+}
+
+message DeregisterResponse {}
+
+message PushConfigRequest {
+  string agent_id = 1;
+  repeated string skill_ids = 2;
+  map<string, string> prompt_bindings = 3;
+  map<string, string> model_preferences = 4;
+  repeated string integration_ids = 5;
+  repeated string entity_type_scopes = 6;
+  int32 max_concurrent_objectives = 7;
+  double cost_budget_usd = 8;
+  string notification_channel = 9;
+  google.protobuf.Struct parameters = 10;
+  string author = 11;
+}
+
+message PushConfigResponse {
+  AgentConfig config = 1;
+  Agent agent = 2;
+}
+
+message GetConfigRequest {
+  string agent_id = 1;
+  int32 version = 2;
+}
+
+message GetConfigResponse {
+  AgentConfig config = 1;
+}
+
+message ListConfigsRequest {
+  string agent_id = 1;
+}
+
+message ListConfigsResponse {
+  repeated AgentConfig configs = 1;
+}
+
+message RollbackConfigRequest {
+  string agent_id = 1;
+  int32 target_version = 2;
+  string actor = 3;
+  string reason = 4;
+}
+
+message RollbackConfigResponse {
+  AgentConfig config = 1;
+  Agent agent = 2;
+}
+
+message DelegateRequest {
+  string from_agent_id = 1;
+  // Specify to_agent_id for direct delegation, or required_capability for
+  // capability-based routing through the registry.
+  string to_agent_id = 2;
+  string required_capability = 3;
+  string objective_id = 4;
+  string workflow_run_id = 5;
+  string workflow_step_id = 6;
+  bytes context_payload = 7;
+  string reason = 8;
+}
+
+message DelegateResponse {
+  DelegationRecord delegation = 1;
+}
+
+message ResolveDelegationRequest {
+  string delegation_id = 1;
+  DelegationStatus status = 2;
+  bytes result_payload = 3;
+  string error_message = 4;
+}
+
+message ResolveDelegationResponse {
+  DelegationRecord delegation = 1;
+}
+
+message GetDelegationRequest {
+  string id = 1;
+}
+
+message GetDelegationResponse {
+  DelegationRecord delegation = 1;
+}
+
+message ListDelegationsRequest {
+  string workspace_id = 1;
+  string from_agent_id = 2;
+  string to_agent_id = 3;
+  DelegationStatus status = 4;
+  string workflow_run_id = 5;
+  int32 limit = 6;
+  int32 offset = 7;
+}
+
+message ListDelegationsResponse {
+  repeated DelegationRecord delegations = 1;
+  int32 total = 2;
+}
+
+message HeartbeatRequest {
+  string agent_id = 1;
+  AgentStatus status = 2;
+  // current_objective_ids lists the objectives/v1 Objective.id values this
+  // agent currently holds. Used for capacity-aware delegation routing.
+  repeated string current_objective_ids = 3;
+  string surface = 4;
+}
+
+message HeartbeatResponse {
+  google.protobuf.Timestamp next_heartbeat_by = 1;
+}
