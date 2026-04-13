@@ -81,6 +81,33 @@
         "platform-app"
       ],
       "description": "Kill switch for Prompts resolve and bulk-resolve APIs."
+    },
+    {
+      "key": "platform.kill_switches.dagster.wide_events_ingestion_schedule",
+      "enabled": false,
+      "rollout_percent": 0,
+      "owners": [
+        "platform-app"
+      ],
+      "description": "Kill switch for Dagster wide-events ingestion schedule ticks."
+    },
+    {
+      "key": "platform.kill_switches.dagster.platform_delivery_snapshot_schedule",
+      "enabled": false,
+      "rollout_percent": 0,
+      "owners": [
+        "platform-app"
+      ],
+      "description": "Kill switch for Dagster platform delivery snapshot schedule ticks."
+    },
+    {
+      "key": "platform.kill_switches.dagster.dbt_analytics_schedule",
+      "enabled": false,
+      "rollout_percent": 0,
+      "owners": [
+        "platform-app"
+      ],
+      "description": "Kill switch for Dagster dbt analytics schedule ticks."
     }
   ]
 }
