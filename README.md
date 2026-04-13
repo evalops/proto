@@ -33,6 +33,7 @@ packages instead of maintaining their own hand-written struct copies.
 | `audit/v1` | Audit event recording, actors, resources, querying, export | llm-gateway, chat, gate, platform |
 | `memory/v1` | Semantic memory storage, recall, embeddings, consolidation | chat, ensemble, platform |
 | `approvals/v1` | Approval workflows, policies, decisions, habits, escalation | approvals, ensemble, maestro, chat, objectives |
+| `config/v1` | Shared runtime config snapshots and feature-flag state | deploy, llm-gateway, maestro, gate |
 | `connectors/v1` | Integration connections, health, source-of-truth, capabilities | connectors, pipeline, parker, entities, objectives |
 | `entities/v1` | Canonical entity resolution, search, links, correlation graph | entities, pipeline, parker, connectors, ensemble |
 | `governance/v1` | Safety evaluation, PII detection, retention, legal holds | governance, approvals, objectives, ensemble, chat |
@@ -240,6 +241,10 @@ bus.
   `UnpackTapEventData`. `NewCloudEvent` also stamps
   `extensions.dataschema=buf.build/evalops/proto/<message>` so published
   envelopes stay self-describing across service boundaries.
+- Use `config/v1.FeatureFlagSnapshot` when a repo needs a shared on-disk or
+  over-the-wire representation for lightweight runtime config or feature flags.
+  The initial production deploy bundle publishes that schema as canonical
+  protojson instead of a repo-local YAML shape.
 
 ## Development
 
@@ -324,6 +329,7 @@ proto/                  source .proto files
   memory/v1/            semantic memory storage and recall
     testdata/           canonical protojson fixtures for contract tests
   approvals/v1/         approval workflows, policies, decisions, habits
+  config/v1/            runtime config snapshots and feature-flag state
   connectors/v1/        integration lifecycle, health, source-of-truth
   entities/v1/          canonical entity resolution and search
   governance/v1/        safety evaluation, PII detection, retention
