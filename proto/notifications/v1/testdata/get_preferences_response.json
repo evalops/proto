@@ -1,0 +1,19 @@
+{
+  "preferences": {
+    "user_id": "user_123",
+    "workspace_id": "ws_notifications",
+    "default_channel": "DELIVERY_CHANNEL_SLACK",
+    "quiet_hours_start": "22:00",
+    "quiet_hours_end": "07:00",
+    "escalation_rules": [
+      {
+        "if_unacknowledged_after_seconds": 900,
+        "escalate_to_channel": "DELIVERY_CHANNEL_IN_APP"
+      },
+      {
+        "if_unacknowledged_after_seconds": 1800,
+        "escalate_to_channel": "DELIVERY_CHANNEL_EMAIL"
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "entity": {
+    "id": "ent_contact_123",
+    "workspace_id": "ws_entities",
+    "primary_type": "ENTITY_TYPE_CONTACT",
+    "primary_name": "Jamie Rivers",
+    "refs": [
+      {
+        "integration_id": "hubspot",
+        "record_id": "contact_42",
+        "entity_type": "ENTITY_TYPE_CONTACT",
+        "display_name": "Jamie Rivers",
+        "emails": [
+          "jamie@example.com"
+        ],
+        "domains": [
+          "example.com"
+        ],
+        "confidence": 0.95
+      },
+      {
+        "integration_id": "salesforce",
+        "record_id": "0038Y00001ABCDQ",
+        "entity_type": "ENTITY_TYPE_CONTACT",
+        "display_name": "Jamie Rivers",
+        "emails": [
+          "jamie@example.com"
+        ],
+        "domains": [],
+        "confidence": 0.88
+      }
+    ],
+    "created_at": "2026-04-13T00:00:00Z",
+    "updated_at": "2026-04-13T00:04:00Z"
+  }
+}
