@@ -5,11 +5,13 @@ on:
     paths:
       - '.github/workflows/**'
       - 'scripts/check-workflow-security-baseline.sh'
+      - 'scripts/verify-action-pins.sh'
   push:
     branches: ['main']
     paths:
       - '.github/workflows/**'
       - 'scripts/check-workflow-security-baseline.sh'
+      - 'scripts/verify-action-pins.sh'
   workflow_dispatch:
 
 permissions:
@@ -30,3 +32,8 @@ jobs:
           CHECK_ALL_WORKFLOWS: ${{ github.event_name == 'workflow_dispatch' && 'true' || 'false' }}
           ENFORCE_SHA_PINS: 'true'
         run: ./scripts/check-workflow-security-baseline.sh
+
+      - name: Verify action SHA pins resolve
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: ./scripts/verify-action-pins.sh
