@@ -1950,8 +1950,15 @@ type StartRunRequest struct {
 	EntityType        string                 `protobuf:"bytes,7,opt,name=entity_type,json=entityType,proto3" json:"entity_type,omitempty"`
 	ParentRunId       string                 `protobuf:"bytes,8,opt,name=parent_run_id,json=parentRunId,proto3" json:"parent_run_id,omitempty"`
 	InputPayload      *structpb.Struct       `protobuf:"bytes,9,opt,name=input_payload,json=inputPayload,proto3" json:"input_payload,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	// trigger_type allows callers to start non-manual runs explicitly.
+	// When omitted, services may infer WORKFLOW from parent_run_id or
+	// default to MANUAL.
+	TriggerType TriggerType `protobuf:"varint,10,opt,name=trigger_type,json=triggerType,proto3,enum=workflows.v1.TriggerType" json:"trigger_type,omitempty"`
+	// trigger_event_id references the events/v1 CloudEvent.id that started
+	// this run when trigger_type is EVENT or WEBHOOK.
+	TriggerEventId string `protobuf:"bytes,11,opt,name=trigger_event_id,json=triggerEventId,proto3" json:"trigger_event_id,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *StartRunRequest) Reset() {
@@ -2045,6 +2052,20 @@ func (x *StartRunRequest) GetInputPayload() *structpb.Struct {
 		return x.InputPayload
 	}
 	return nil
+}
+
+func (x *StartRunRequest) GetTriggerType() TriggerType {
+	if x != nil {
+		return x.TriggerType
+	}
+	return TriggerType_TRIGGER_TYPE_UNSPECIFIED
+}
+
+func (x *StartRunRequest) GetTriggerEventId() string {
+	if x != nil {
+		return x.TriggerEventId
+	}
+	return ""
 }
 
 type StartRunResponse struct {
@@ -3051,7 +3072,7 @@ const file_workflows_v1_workflows_proto_rawDesc = "" +
 	"\x13ListVersionsRequest\x12#\n" +
 	"\rdefinition_id\x18\x01 \x01(\tR\fdefinitionId\"Q\n" +
 	"\x14ListVersionsResponse\x129\n" +
-	"\bversions\x18\x01 \x03(\v2\x1d.workflows.v1.WorkflowVersionR\bversions\"\x82\x03\n" +
+	"\bversions\x18\x01 \x03(\v2\x1d.workflows.v1.WorkflowVersionR\bversions\"\xea\x03\n" +
 	"\x0fStartRunRequest\x12#\n" +
 	"\rdefinition_id\x18\x01 \x01(\tR\fdefinitionId\x12-\n" +
 	"\x12definition_version\x18\x02 \x01(\x05R\x11definitionVersion\x12!\n" +
@@ -3062,7 +3083,10 @@ const file_workflows_v1_workflows_proto_rawDesc = "" +
 	"\ventity_type\x18\a \x01(\tR\n" +
 	"entityType\x12\"\n" +
 	"\rparent_run_id\x18\b \x01(\tR\vparentRunId\x12<\n" +
-	"\rinput_payload\x18\t \x01(\v2\x17.google.protobuf.StructR\finputPayload\"?\n" +
+	"\rinput_payload\x18\t \x01(\v2\x17.google.protobuf.StructR\finputPayload\x12<\n" +
+	"\ftrigger_type\x18\n" +
+	" \x01(\x0e2\x19.workflows.v1.TriggerTypeR\vtriggerType\x12(\n" +
+	"\x10trigger_event_id\x18\v \x01(\tR\x0etriggerEventId\"?\n" +
 	"\x10StartRunResponse\x12+\n" +
 	"\x03run\x18\x01 \x01(\v2\x19.workflows.v1.WorkflowRunR\x03run\"\x1f\n" +
 	"\rGetRunRequest\x12\x0e\n" +
@@ -3260,49 +3284,50 @@ var file_workflows_v1_workflows_proto_depIdxs = []int32{
 	4,  // 32: workflows.v1.PublishVersionResponse.definition:type_name -> workflows.v1.WorkflowDefinition
 	5,  // 33: workflows.v1.ListVersionsResponse.versions:type_name -> workflows.v1.WorkflowVersion
 	39, // 34: workflows.v1.StartRunRequest.input_payload:type_name -> google.protobuf.Struct
-	10, // 35: workflows.v1.StartRunResponse.run:type_name -> workflows.v1.WorkflowRun
-	10, // 36: workflows.v1.GetRunResponse.run:type_name -> workflows.v1.WorkflowRun
-	1,  // 37: workflows.v1.ListRunsRequest.state:type_name -> workflows.v1.WorkflowState
-	10, // 38: workflows.v1.ListRunsResponse.runs:type_name -> workflows.v1.WorkflowRun
-	2,  // 39: workflows.v1.TransitionStepRequest.state:type_name -> workflows.v1.StepRunState
-	39, // 40: workflows.v1.TransitionStepRequest.output_payload:type_name -> google.protobuf.Struct
-	11, // 41: workflows.v1.TransitionStepResponse.step:type_name -> workflows.v1.StepRun
-	10, // 42: workflows.v1.TransitionStepResponse.run:type_name -> workflows.v1.WorkflowRun
-	10, // 43: workflows.v1.PauseRunResponse.run:type_name -> workflows.v1.WorkflowRun
-	10, // 44: workflows.v1.ResumeRunResponse.run:type_name -> workflows.v1.WorkflowRun
-	10, // 45: workflows.v1.CancelRunResponse.run:type_name -> workflows.v1.WorkflowRun
-	10, // 46: workflows.v1.CompensateRunResponse.run:type_name -> workflows.v1.WorkflowRun
-	12, // 47: workflows.v1.WorkflowService.CreateDefinition:input_type -> workflows.v1.CreateDefinitionRequest
-	14, // 48: workflows.v1.WorkflowService.GetDefinition:input_type -> workflows.v1.GetDefinitionRequest
-	16, // 49: workflows.v1.WorkflowService.ListDefinitions:input_type -> workflows.v1.ListDefinitionsRequest
-	18, // 50: workflows.v1.WorkflowService.PublishVersion:input_type -> workflows.v1.PublishVersionRequest
-	20, // 51: workflows.v1.WorkflowService.ListVersions:input_type -> workflows.v1.ListVersionsRequest
-	22, // 52: workflows.v1.WorkflowService.StartRun:input_type -> workflows.v1.StartRunRequest
-	24, // 53: workflows.v1.WorkflowService.GetRun:input_type -> workflows.v1.GetRunRequest
-	26, // 54: workflows.v1.WorkflowService.ListRuns:input_type -> workflows.v1.ListRunsRequest
-	28, // 55: workflows.v1.WorkflowService.TransitionStep:input_type -> workflows.v1.TransitionStepRequest
-	30, // 56: workflows.v1.WorkflowService.PauseRun:input_type -> workflows.v1.PauseRunRequest
-	32, // 57: workflows.v1.WorkflowService.ResumeRun:input_type -> workflows.v1.ResumeRunRequest
-	34, // 58: workflows.v1.WorkflowService.CancelRun:input_type -> workflows.v1.CancelRunRequest
-	36, // 59: workflows.v1.WorkflowService.CompensateRun:input_type -> workflows.v1.CompensateRunRequest
-	13, // 60: workflows.v1.WorkflowService.CreateDefinition:output_type -> workflows.v1.CreateDefinitionResponse
-	15, // 61: workflows.v1.WorkflowService.GetDefinition:output_type -> workflows.v1.GetDefinitionResponse
-	17, // 62: workflows.v1.WorkflowService.ListDefinitions:output_type -> workflows.v1.ListDefinitionsResponse
-	19, // 63: workflows.v1.WorkflowService.PublishVersion:output_type -> workflows.v1.PublishVersionResponse
-	21, // 64: workflows.v1.WorkflowService.ListVersions:output_type -> workflows.v1.ListVersionsResponse
-	23, // 65: workflows.v1.WorkflowService.StartRun:output_type -> workflows.v1.StartRunResponse
-	25, // 66: workflows.v1.WorkflowService.GetRun:output_type -> workflows.v1.GetRunResponse
-	27, // 67: workflows.v1.WorkflowService.ListRuns:output_type -> workflows.v1.ListRunsResponse
-	29, // 68: workflows.v1.WorkflowService.TransitionStep:output_type -> workflows.v1.TransitionStepResponse
-	31, // 69: workflows.v1.WorkflowService.PauseRun:output_type -> workflows.v1.PauseRunResponse
-	33, // 70: workflows.v1.WorkflowService.ResumeRun:output_type -> workflows.v1.ResumeRunResponse
-	35, // 71: workflows.v1.WorkflowService.CancelRun:output_type -> workflows.v1.CancelRunResponse
-	37, // 72: workflows.v1.WorkflowService.CompensateRun:output_type -> workflows.v1.CompensateRunResponse
-	60, // [60:73] is the sub-list for method output_type
-	47, // [47:60] is the sub-list for method input_type
-	47, // [47:47] is the sub-list for extension type_name
-	47, // [47:47] is the sub-list for extension extendee
-	0,  // [0:47] is the sub-list for field type_name
+	3,  // 35: workflows.v1.StartRunRequest.trigger_type:type_name -> workflows.v1.TriggerType
+	10, // 36: workflows.v1.StartRunResponse.run:type_name -> workflows.v1.WorkflowRun
+	10, // 37: workflows.v1.GetRunResponse.run:type_name -> workflows.v1.WorkflowRun
+	1,  // 38: workflows.v1.ListRunsRequest.state:type_name -> workflows.v1.WorkflowState
+	10, // 39: workflows.v1.ListRunsResponse.runs:type_name -> workflows.v1.WorkflowRun
+	2,  // 40: workflows.v1.TransitionStepRequest.state:type_name -> workflows.v1.StepRunState
+	39, // 41: workflows.v1.TransitionStepRequest.output_payload:type_name -> google.protobuf.Struct
+	11, // 42: workflows.v1.TransitionStepResponse.step:type_name -> workflows.v1.StepRun
+	10, // 43: workflows.v1.TransitionStepResponse.run:type_name -> workflows.v1.WorkflowRun
+	10, // 44: workflows.v1.PauseRunResponse.run:type_name -> workflows.v1.WorkflowRun
+	10, // 45: workflows.v1.ResumeRunResponse.run:type_name -> workflows.v1.WorkflowRun
+	10, // 46: workflows.v1.CancelRunResponse.run:type_name -> workflows.v1.WorkflowRun
+	10, // 47: workflows.v1.CompensateRunResponse.run:type_name -> workflows.v1.WorkflowRun
+	12, // 48: workflows.v1.WorkflowService.CreateDefinition:input_type -> workflows.v1.CreateDefinitionRequest
+	14, // 49: workflows.v1.WorkflowService.GetDefinition:input_type -> workflows.v1.GetDefinitionRequest
+	16, // 50: workflows.v1.WorkflowService.ListDefinitions:input_type -> workflows.v1.ListDefinitionsRequest
+	18, // 51: workflows.v1.WorkflowService.PublishVersion:input_type -> workflows.v1.PublishVersionRequest
+	20, // 52: workflows.v1.WorkflowService.ListVersions:input_type -> workflows.v1.ListVersionsRequest
+	22, // 53: workflows.v1.WorkflowService.StartRun:input_type -> workflows.v1.StartRunRequest
+	24, // 54: workflows.v1.WorkflowService.GetRun:input_type -> workflows.v1.GetRunRequest
+	26, // 55: workflows.v1.WorkflowService.ListRuns:input_type -> workflows.v1.ListRunsRequest
+	28, // 56: workflows.v1.WorkflowService.TransitionStep:input_type -> workflows.v1.TransitionStepRequest
+	30, // 57: workflows.v1.WorkflowService.PauseRun:input_type -> workflows.v1.PauseRunRequest
+	32, // 58: workflows.v1.WorkflowService.ResumeRun:input_type -> workflows.v1.ResumeRunRequest
+	34, // 59: workflows.v1.WorkflowService.CancelRun:input_type -> workflows.v1.CancelRunRequest
+	36, // 60: workflows.v1.WorkflowService.CompensateRun:input_type -> workflows.v1.CompensateRunRequest
+	13, // 61: workflows.v1.WorkflowService.CreateDefinition:output_type -> workflows.v1.CreateDefinitionResponse
+	15, // 62: workflows.v1.WorkflowService.GetDefinition:output_type -> workflows.v1.GetDefinitionResponse
+	17, // 63: workflows.v1.WorkflowService.ListDefinitions:output_type -> workflows.v1.ListDefinitionsResponse
+	19, // 64: workflows.v1.WorkflowService.PublishVersion:output_type -> workflows.v1.PublishVersionResponse
+	21, // 65: workflows.v1.WorkflowService.ListVersions:output_type -> workflows.v1.ListVersionsResponse
+	23, // 66: workflows.v1.WorkflowService.StartRun:output_type -> workflows.v1.StartRunResponse
+	25, // 67: workflows.v1.WorkflowService.GetRun:output_type -> workflows.v1.GetRunResponse
+	27, // 68: workflows.v1.WorkflowService.ListRuns:output_type -> workflows.v1.ListRunsResponse
+	29, // 69: workflows.v1.WorkflowService.TransitionStep:output_type -> workflows.v1.TransitionStepResponse
+	31, // 70: workflows.v1.WorkflowService.PauseRun:output_type -> workflows.v1.PauseRunResponse
+	33, // 71: workflows.v1.WorkflowService.ResumeRun:output_type -> workflows.v1.ResumeRunResponse
+	35, // 72: workflows.v1.WorkflowService.CancelRun:output_type -> workflows.v1.CancelRunResponse
+	37, // 73: workflows.v1.WorkflowService.CompensateRun:output_type -> workflows.v1.CompensateRunResponse
+	61, // [61:74] is the sub-list for method output_type
+	48, // [48:61] is the sub-list for method input_type
+	48, // [48:48] is the sub-list for extension type_name
+	48, // [48:48] is the sub-list for extension extendee
+	0,  // [0:48] is the sub-list for field type_name
 }
 
 func init() { file_workflows_v1_workflows_proto_init() }

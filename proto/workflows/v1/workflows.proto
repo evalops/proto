@@ -476,6 +476,15 @@ message StartRunRequest {
   string entity_type = 7;
   string parent_run_id = 8;
   google.protobuf.Struct input_payload = 9;
+
+  // trigger_type allows callers to start non-manual runs explicitly.
+  // When omitted, services may infer WORKFLOW from parent_run_id or
+  // default to MANUAL.
+  TriggerType trigger_type = 10;
+
+  // trigger_event_id references the events/v1 CloudEvent.id that started
+  // this run when trigger_type is EVENT or WEBHOOK.
+  string trigger_event_id = 11;
 }
 
 message StartRunResponse {
