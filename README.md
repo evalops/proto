@@ -189,9 +189,27 @@ resp, err := client.RecordUsage(ctx, connect.NewRequest(req))
 
 ```typescript
 import { RecallRequest } from "@evalops/proto/memory/v1/memory_pb";
-import { createClient } from "@connectrpc/connect-web";
-import { MemoryService } from "@evalops/proto/memory/v1/memory_connect";
+import { CloudEventSchema } from "@evalops/proto/events/v1/cloudevent_pb";
 ```
+
+### TypeScript Package
+
+`proto` also publishes the generated TypeScript contract surface from the repo
+root as `@evalops/proto`.
+
+Current package surface:
+
+- protobuf-es message modules like `@evalops/proto/memory/v1/memory_pb`
+- shared event contracts like `@evalops/proto/events/v1/cloudevent_pb`
+
+The generated `_connect` descriptors remain checked into the repo, but the
+published package currently exports the stable `_pb` modules only. That keeps
+the registry surface aligned with the protobuf-es runtime shape we validate in
+CI today.
+
+CI validates the package on pull requests, and the `NPM Publish` workflow packs
+and publishes it automatically on `main` when Artifact Registry or
+`NPM_PUBLISH_NPMRC` publish credentials are configured.
 
 ## Event Envelope Guidance
 

@@ -10,7 +10,7 @@ plugins:
   # TypeScript
   - remote: buf.build/bufbuild/es
     out: gen/ts
-    opt: target=ts,import_extension=none
+    opt: target=ts,import_extension=.js
   - remote: buf.build/connectrpc/es
     out: gen/ts
-    opt: target=ts,import_extension=none
+    opt: target=ts,import_extension=.js

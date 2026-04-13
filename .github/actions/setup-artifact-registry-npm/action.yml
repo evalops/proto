@@ -1,0 +1,83 @@
+name: Setup Artifact Registry npm Auth
+description: Write a scoped .npmrc for the EvalOps Artifact Registry after Google Cloud auth is configured.
+inputs:
+  project-id:
+    description: GCP project that owns the Artifact Registry npm repository.
+    required: true
+  region:
+    description: GCP region that hosts the Artifact Registry npm repository.
+    required: true
+  repository:
+    description: Artifact Registry npm repository name.
+    default: "evalops-js"
+  scope:
+    description: npm scope that should resolve through the Artifact Registry npm repository.
+    default: "@evalops"
+  userconfig-path:
+    description: Path to the .npmrc file that should be written. Defaults to ~/.npmrc when omitted.
+    default: ""
+  access-token:
+    description: Optional short-lived Google OAuth access token. When omitted, the action uses gcloud auth print-access-token.
+    default: ""
+outputs:
+  registry-host:
+    description: Artifact Registry npm host.
+    value: ${{ steps.write.outputs.registry-host }}
+  registry-url:
+    description: Scoped Artifact Registry npm registry URL.
+    value: ${{ steps.write.outputs.registry-url }}
+  npmrc-path:
+    description: Path to the generated .npmrc file.
+    value: ${{ steps.write.outputs.npmrc-path }}
+runs:
+  using: composite
+  steps:
+    - name: Write scoped Artifact Registry npm config
+      id: write
+      shell: bash
+      env:
+        ACTION_PATH: ${{ github.action_path }}
+        INPUT_ACCESS_TOKEN: ${{ inputs.access-token }}
+        INPUT_PROJECT_ID: ${{ inputs.project-id }}
+        INPUT_REGION: ${{ inputs.region }}
+        INPUT_REPOSITORY: ${{ inputs.repository }}
+        INPUT_SCOPE: ${{ inputs.scope }}
+        INPUT_USERCONFIG_PATH: ${{ inputs.userconfig-path }}
+      run: |
+        set -euo pipefail
+
+        output_path="${INPUT_USERCONFIG_PATH}"
+        if [[ -z "${output_path}" ]]; then
+          output_path="${HOME}/.npmrc"
+        fi
+
+        args=(
+          --project-id "${INPUT_PROJECT_ID}"
+          --region "${INPUT_REGION}"
+          --repository "${INPUT_REPOSITORY}"
+          --scope "${INPUT_SCOPE}"
+          --output "${output_path}"
+        )
+
+        if [[ -n "${INPUT_ACCESS_TOKEN}" ]]; then
+          args+=(--access-token "${INPUT_ACCESS_TOKEN}")
+        fi
+
+        "${ACTION_PATH}/write-npmrc.sh" "${args[@]}"
+
+        registry_host="${INPUT_REGION}-npm.pkg.dev"
+        registry_path="${registry_host}/${INPUT_PROJECT_ID}/${INPUT_REPOSITORY}/"
+        registry_url="https://${registry_path}"
+
+        {
+          echo "NPM_CONFIG_USERCONFIG=${output_path}"
+          echo "npm_config_userconfig=${output_path}"
+          echo "ARTIFACT_REGISTRY_NPM_HOST=${registry_host}"
+          echo "ARTIFACT_REGISTRY_NPM_REGISTRY_URL=${registry_url}"
+        } >> "${GITHUB_ENV}"
+
+        {
+          echo "registry-host=${registry_host}"
+          echo "registry-url=${registry_url}"
+          echo "npmrc-path=${output_path}"
+        } >> "${GITHUB_OUTPUT}"
