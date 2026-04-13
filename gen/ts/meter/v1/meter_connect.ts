@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetUsageSummaryRequest, GetUsageSummaryResponse, QueryUsageRequest, QueryUsageResponse, RecordUsageRequest, RecordUsageResponse } from "./meter_pb.js";
+import { MeterSummaryQuery, MeterSummaryResponse, RecordUsageBatchRequest, RecordUsageBatchResponse, RecordUsageRequest, RecordUsageResponse, UsageQuery, UsageQueryResponse, UsageSummaryQuery, UsageSummaryResponse } from "./meter_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -24,12 +24,21 @@ export const MeterService = {
       kind: MethodKind.Unary,
     },
     /**
+     * @generated from rpc meter.v1.MeterService.RecordUsageBatch
+     */
+    recordUsageBatch: {
+      name: "RecordUsageBatch",
+      I: RecordUsageBatchRequest,
+      O: RecordUsageBatchResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
      * @generated from rpc meter.v1.MeterService.QueryUsage
      */
     queryUsage: {
       name: "QueryUsage",
-      I: QueryUsageRequest,
-      O: QueryUsageResponse,
+      I: UsageQuery,
+      O: UsageQueryResponse,
       kind: MethodKind.Unary,
     },
     /**
@@ -37,8 +46,17 @@ export const MeterService = {
      */
     getUsageSummary: {
       name: "GetUsageSummary",
-      I: GetUsageSummaryRequest,
-      O: GetUsageSummaryResponse,
+      I: UsageSummaryQuery,
+      O: UsageSummaryResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc meter.v1.MeterService.GetMeterSummary
+     */
+    getMeterSummary: {
+      name: "GetMeterSummary",
+      I: MeterSummaryQuery,
+      O: MeterSummaryResponse,
       kind: MethodKind.Unary,
     },
   }

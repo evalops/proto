@@ -1,0 +1,23 @@
+{
+  "team_id": "team_eng",
+  "agent_id": "agent_writer",
+  "surface": "maestro",
+  "event_type": "llm.completion",
+  "model": "claude-opus-4.6",
+  "provider": "anthropic",
+  "input_tokens": "125",
+  "output_tokens": "47",
+  "cache_read_tokens": "8",
+  "cache_write_tokens": "0",
+  "total_cost_usd": 0.0142,
+  "request_id": "req_meter_fixture_1",
+  "metadata": {
+    "pipeline_deal_id": "deal_123",
+    "workspace_id": "ws_pipeline"
+  },
+  "data": {
+    "temperature": 0.2,
+    "tool_calls": 1,
+    "provider_request_id": "anthropic_req_1"
+  }
+}

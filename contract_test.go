@@ -13,6 +13,7 @@ import (
 	eventsv1 "github.com/evalops/proto/gen/go/events/v1"
 	governancev1 "github.com/evalops/proto/gen/go/governance/v1"
 	memoryv1 "github.com/evalops/proto/gen/go/memory/v1"
+	meterv1 "github.com/evalops/proto/gen/go/meter/v1"
 	notificationsv1 "github.com/evalops/proto/gen/go/notifications/v1"
 	objectivesv1 "github.com/evalops/proto/gen/go/objectives/v1"
 	skillsv1 "github.com/evalops/proto/gen/go/skills/v1"
@@ -159,6 +160,95 @@ func TestMemoryRecallResponseFixtureMatchesProtoContract(t *testing.T) {
 	}
 	if result.GetSimilarity() != float32(0.82) {
 		t.Fatalf("expected similarity 0.82, got %v", result.GetSimilarity())
+	}
+}
+
+func TestMeterRecordUsageRequestFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message meterv1.RecordUsageRequest
+	loadProtoJSONFixture(t, filepath.Join("proto", "meter", "v1", "testdata", "record_usage_request.json"), &message)
+
+	if message.GetTeamId() != "team_eng" {
+		t.Fatalf("expected team_id team_eng, got %q", message.GetTeamId())
+	}
+	if message.GetEventType() != "llm.completion" {
+		t.Fatalf("expected event_type llm.completion, got %q", message.GetEventType())
+	}
+	if message.GetMetadata().GetFields()["pipeline_deal_id"].GetStringValue() != "deal_123" {
+		t.Fatalf("expected pipeline_deal_id deal_123, got %#v", message.GetMetadata().GetFields()["pipeline_deal_id"])
+	}
+	if message.GetData().GetFields()["temperature"].GetNumberValue() != 0.2 {
+		t.Fatalf("expected temperature 0.2, got %#v", message.GetData().GetFields()["temperature"])
+	}
+}
+
+func TestMeterRecordUsageResponseFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message meterv1.RecordUsageResponse
+	loadProtoJSONFixture(t, filepath.Join("proto", "meter", "v1", "testdata", "record_usage_response.json"), &message)
+
+	record := message.GetRecord()
+	if record.GetOrganizationId() != "org_123" {
+		t.Fatalf("expected organization_id org_123, got %q", record.GetOrganizationId())
+	}
+	if record.GetCreatedAt().AsTime().Format(time.RFC3339) != "2026-04-13T08:15:01Z" {
+		t.Fatalf("unexpected created_at %s", record.GetCreatedAt().AsTime().Format(time.RFC3339))
+	}
+	if record.GetMetadata().GetFields()["pipeline_deal_id"].GetStringValue() != "deal_123" {
+		t.Fatalf("expected pipeline_deal_id deal_123, got %#v", record.GetMetadata().GetFields()["pipeline_deal_id"])
+	}
+}
+
+func TestMeterQueryUsageResponseFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message meterv1.UsageQueryResponse
+	loadProtoJSONFixture(t, filepath.Join("proto", "meter", "v1", "testdata", "query_usage_response.json"), &message)
+
+	if len(message.GetRecords()) != 2 {
+		t.Fatalf("expected 2 records, got %d", len(message.GetRecords()))
+	}
+	if message.GetRecords()[1].GetProvider() != "openai" {
+		t.Fatalf("expected second provider openai, got %q", message.GetRecords()[1].GetProvider())
+	}
+	if message.GetRecords()[1].GetData().GetFields()["temperature"].GetNumberValue() != 0.7 {
+		t.Fatalf("expected second record temperature 0.7, got %#v", message.GetRecords()[1].GetData().GetFields()["temperature"])
+	}
+}
+
+func TestMeterUsageSummaryResponseFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message meterv1.UsageSummaryResponse
+	loadProtoJSONFixture(t, filepath.Join("proto", "meter", "v1", "testdata", "usage_summary_response.json"), &message)
+
+	if len(message.GetBuckets()) != 2 {
+		t.Fatalf("expected 2 buckets, got %d", len(message.GetBuckets()))
+	}
+	if message.GetBuckets()[0].GetKey() != "claude-opus-4.6" {
+		t.Fatalf("unexpected first bucket key %q", message.GetBuckets()[0].GetKey())
+	}
+	if message.GetBuckets()[0].GetTotalCostUsd() != 0.0142 {
+		t.Fatalf("unexpected first bucket cost %v", message.GetBuckets()[0].GetTotalCostUsd())
+	}
+}
+
+func TestMeterSummaryResponseFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message meterv1.MeterSummaryResponse
+	loadProtoJSONFixture(t, filepath.Join("proto", "meter", "v1", "testdata", "meter_summary_response.json"), &message)
+
+	if message.GetMeterId() != "input_tokens" {
+		t.Fatalf("expected meter_id input_tokens, got %q", message.GetMeterId())
+	}
+	if len(message.GetBuckets()) != 2 {
+		t.Fatalf("expected 2 buckets, got %d", len(message.GetBuckets()))
+	}
+	if message.GetBuckets()[0].GetValue() != 125 {
+		t.Fatalf("expected first bucket value 125, got %v", message.GetBuckets()[0].GetValue())
 	}
 }
 

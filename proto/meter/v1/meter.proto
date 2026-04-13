@@ -4,99 +4,135 @@ package meter.v1;
 
 option go_package = "github.com/evalops/proto/gen/go/meter/v1;meterv1";
 
+import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 
 // MeterService records and queries usage across EvalOps services.
 service MeterService {
   rpc RecordUsage(RecordUsageRequest) returns (RecordUsageResponse);
-  rpc QueryUsage(QueryUsageRequest) returns (QueryUsageResponse);
-  rpc GetUsageSummary(GetUsageSummaryRequest) returns (GetUsageSummaryResponse);
+  rpc RecordUsageBatch(RecordUsageBatchRequest) returns (RecordUsageBatchResponse);
+  rpc QueryUsage(UsageQuery) returns (UsageQueryResponse);
+  rpc GetUsageSummary(UsageSummaryQuery) returns (UsageSummaryResponse);
+  rpc GetMeterSummary(MeterSummaryQuery) returns (MeterSummaryResponse);
 }
 
-// RecordUsageRequest is the canonical type for recording token/cost usage.
-// Replaces hand-written structs in llm-gateway and chat.
+enum SummaryGroupBy {
+  SUMMARY_GROUP_BY_UNSPECIFIED = 0;
+  SUMMARY_GROUP_BY_MODEL = 1;
+  SUMMARY_GROUP_BY_PROVIDER = 2;
+  SUMMARY_GROUP_BY_TEAM = 3;
+  SUMMARY_GROUP_BY_AGENT = 4;
+  SUMMARY_GROUP_BY_SURFACE = 5;
+  SUMMARY_GROUP_BY_METADATA = 6;
+}
+
 message RecordUsageRequest {
-  string organization_id = 1;
-  string user_id = 2;
-  string agent_id = 3;
-  string team_id = 4;
+  string team_id = 1;
+  string agent_id = 2;
+  string surface = 3;
+  string event_type = 4;
   string model = 5;
   string provider = 6;
-  int64 prompt_tokens = 7;
-  int64 completion_tokens = 8;
-  int64 total_tokens = 9;
-  int64 cached_tokens = 10;
-  int64 reasoning_tokens = 11;
-  int64 cost_micros = 12;
-  string request_id = 13;
-  string surface = 14;
-  google.protobuf.Timestamp recorded_at = 15;
+  int64 input_tokens = 7;
+  int64 output_tokens = 8;
+  int64 cache_read_tokens = 9;
+  int64 cache_write_tokens = 10;
+  double total_cost_usd = 11;
+  string request_id = 12;
+  google.protobuf.Struct metadata = 13;
+  google.protobuf.Struct data = 14;
 }
 
 message RecordUsageResponse {
-  string id = 1;
+  UsageRecord record = 1;
+}
+
+message RecordUsageBatchRequest {
+  repeated RecordUsageRequest records = 1;
+}
+
+message RecordUsageBatchResponse {
+  repeated UsageRecord records = 1;
 }
 
 message UsageRecord {
   string id = 1;
-  string organization_id = 2;
-  string user_id = 3;
-  string agent_id = 4;
-  string team_id = 5;
-  string model = 6;
-  string provider = 7;
-  int64 prompt_tokens = 8;
-  int64 completion_tokens = 9;
-  int64 total_tokens = 10;
-  int64 cached_tokens = 11;
-  int64 reasoning_tokens = 12;
-  int64 cost_micros = 13;
-  string request_id = 14;
-  string surface = 15;
-  google.protobuf.Timestamp recorded_at = 16;
+  google.protobuf.Timestamp timestamp = 2;
+  string organization_id = 3;
+  string team_id = 4;
+  string agent_id = 5;
+  string surface = 6;
+  string event_type = 7;
+  string model = 8;
+  string provider = 9;
+  int64 input_tokens = 10;
+  int64 output_tokens = 11;
+  int64 cache_read_tokens = 12;
+  int64 cache_write_tokens = 13;
+  double total_cost_usd = 14;
+  string request_id = 15;
+  google.protobuf.Struct data = 16;
+  google.protobuf.Struct metadata = 17;
+  google.protobuf.Timestamp created_at = 18;
 }
 
-message QueryUsageRequest {
-  string organization_id = 1;
-  string user_id = 2;
-  string agent_id = 3;
-  string team_id = 4;
-  string model = 5;
-  string provider = 6;
+message UsageQuery {
+  string team_id = 1;
+  string agent_id = 2;
+  string event_type = 3;
+  string model = 4;
+  string provider = 5;
+  string metadata_key = 6;
+  string metadata_value = 7;
+  google.protobuf.Timestamp start_time = 8;
+  google.protobuf.Timestamp end_time = 9;
+}
+
+message UsageQueryResponse {
+  repeated UsageRecord records = 1;
+}
+
+message UsageSummaryQuery {
+  string team_id = 1;
+  string agent_id = 2;
+  SummaryGroupBy group_by = 3;
+  string group_metadata_key = 4;
+  string metadata_key = 5;
+  string metadata_value = 6;
   google.protobuf.Timestamp start_time = 7;
   google.protobuf.Timestamp end_time = 8;
-  int32 limit = 9;
-  int32 offset = 10;
-}
-
-message QueryUsageResponse {
-  repeated UsageRecord records = 1;
-  int32 total = 2;
-}
-
-message GetUsageSummaryRequest {
-  string organization_id = 1;
-  google.protobuf.Timestamp start_time = 2;
-  google.protobuf.Timestamp end_time = 3;
-  string group_by = 4;
-}
-
-message GetUsageSummaryResponse {
-  UsageSummary summary = 1;
 }
 
 message UsageSummary {
-  int64 total_tokens = 1;
-  int64 total_prompt_tokens = 2;
-  int64 total_completion_tokens = 3;
-  int64 total_cost_micros = 4;
-  int32 total_requests = 5;
-  repeated UsageBucket buckets = 6;
+  string key = 1;
+  int64 total_input_tokens = 2;
+  int64 total_output_tokens = 3;
+  int64 total_cache_read_tokens = 4;
+  int64 total_cache_write_tokens = 5;
+  double total_cost_usd = 6;
+  int64 record_count = 7;
 }
 
-message UsageBucket {
+message UsageSummaryResponse {
+  repeated UsageSummary buckets = 1;
+}
+
+message MeterSummaryQuery {
+  string meter_id = 1;
+  string team_id = 2;
+  string agent_id = 3;
+  SummaryGroupBy group_by = 4;
+  google.protobuf.Timestamp start_time = 5;
+  google.protobuf.Timestamp end_time = 6;
+}
+
+message MeterSummaryBucket {
   string key = 1;
-  int64 tokens = 2;
-  int64 cost_micros = 3;
-  int32 requests = 4;
+  double value = 2;
+  int64 record_count = 3;
+}
+
+message MeterSummaryResponse {
+  string meter_id = 1;
+  repeated MeterSummaryBucket buckets = 2;
 }
