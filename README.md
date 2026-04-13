@@ -198,6 +198,12 @@ Fixture-backed contract examples live alongside the owning proto package under
 canonical protojson field names because `make test` unmarshals them through the
 generated types.
 
+High-risk boundary fixtures belong there too. The current catalog includes
+canonical `events/v1.CloudEvent` examples for `pipeline.changes.activity.create`
+with `outcome=replied` and `parker.changes.work_relationship.update` with
+`status=terminated`, so downstream consumers can pin the semantics they depend
+on instead of only the wire shape.
+
 ## Adding a New Proto
 
 1. Create `proto/<service>/v1/<file>.proto`.
