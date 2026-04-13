@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { MeterSummaryQuery, MeterSummaryResponse, RecordUsageBatchRequest, RecordUsageBatchResponse, RecordUsageRequest, RecordUsageResponse, UsageQuery, UsageQueryResponse, UsageSummaryQuery, UsageSummaryResponse } from "./meter_pb.js";
+import { GetEventDashboardRequest, GetEventDashboardResponse, IngestWideEventRequest, IngestWideEventResponse, MeterSummaryQuery, MeterSummaryResponse, QueryWideEventsRequest, QueryWideEventsResponse, RecordUsageBatchRequest, RecordUsageBatchResponse, RecordUsageRequest, RecordUsageResponse, UsageQuery, UsageQueryResponse, UsageSummaryQuery, UsageSummaryResponse } from "./meter_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -57,6 +57,33 @@ export const MeterService = {
       name: "GetMeterSummary",
       I: MeterSummaryQuery,
       O: MeterSummaryResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc meter.v1.MeterService.IngestWideEvent
+     */
+    ingestWideEvent: {
+      name: "IngestWideEvent",
+      I: IngestWideEventRequest,
+      O: IngestWideEventResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc meter.v1.MeterService.QueryWideEvents
+     */
+    queryWideEvents: {
+      name: "QueryWideEvents",
+      I: QueryWideEventsRequest,
+      O: QueryWideEventsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc meter.v1.MeterService.GetEventDashboard
+     */
+    getEventDashboard: {
+      name: "GetEventDashboard",
+      I: GetEventDashboardRequest,
+      O: GetEventDashboardResponse,
       kind: MethodKind.Unary,
     },
   }

@@ -47,6 +47,15 @@ const (
 	// MeterServiceGetMeterSummaryProcedure is the fully-qualified name of the MeterService's
 	// GetMeterSummary RPC.
 	MeterServiceGetMeterSummaryProcedure = "/meter.v1.MeterService/GetMeterSummary"
+	// MeterServiceIngestWideEventProcedure is the fully-qualified name of the MeterService's
+	// IngestWideEvent RPC.
+	MeterServiceIngestWideEventProcedure = "/meter.v1.MeterService/IngestWideEvent"
+	// MeterServiceQueryWideEventsProcedure is the fully-qualified name of the MeterService's
+	// QueryWideEvents RPC.
+	MeterServiceQueryWideEventsProcedure = "/meter.v1.MeterService/QueryWideEvents"
+	// MeterServiceGetEventDashboardProcedure is the fully-qualified name of the MeterService's
+	// GetEventDashboard RPC.
+	MeterServiceGetEventDashboardProcedure = "/meter.v1.MeterService/GetEventDashboard"
 )
 
 // MeterServiceClient is a client for the meter.v1.MeterService service.
@@ -56,6 +65,9 @@ type MeterServiceClient interface {
 	QueryUsage(context.Context, *connect.Request[v1.UsageQuery]) (*connect.Response[v1.UsageQueryResponse], error)
 	GetUsageSummary(context.Context, *connect.Request[v1.UsageSummaryQuery]) (*connect.Response[v1.UsageSummaryResponse], error)
 	GetMeterSummary(context.Context, *connect.Request[v1.MeterSummaryQuery]) (*connect.Response[v1.MeterSummaryResponse], error)
+	IngestWideEvent(context.Context, *connect.Request[v1.IngestWideEventRequest]) (*connect.Response[v1.IngestWideEventResponse], error)
+	QueryWideEvents(context.Context, *connect.Request[v1.QueryWideEventsRequest]) (*connect.Response[v1.QueryWideEventsResponse], error)
+	GetEventDashboard(context.Context, *connect.Request[v1.GetEventDashboardRequest]) (*connect.Response[v1.GetEventDashboardResponse], error)
 }
 
 // NewMeterServiceClient constructs a client for the meter.v1.MeterService service. By default, it
@@ -99,16 +111,37 @@ func NewMeterServiceClient(httpClient connect.HTTPClient, baseURL string, opts .
 			connect.WithSchema(meterServiceMethods.ByName("GetMeterSummary")),
 			connect.WithClientOptions(opts...),
 		),
+		ingestWideEvent: connect.NewClient[v1.IngestWideEventRequest, v1.IngestWideEventResponse](
+			httpClient,
+			baseURL+MeterServiceIngestWideEventProcedure,
+			connect.WithSchema(meterServiceMethods.ByName("IngestWideEvent")),
+			connect.WithClientOptions(opts...),
+		),
+		queryWideEvents: connect.NewClient[v1.QueryWideEventsRequest, v1.QueryWideEventsResponse](
+			httpClient,
+			baseURL+MeterServiceQueryWideEventsProcedure,
+			connect.WithSchema(meterServiceMethods.ByName("QueryWideEvents")),
+			connect.WithClientOptions(opts...),
+		),
+		getEventDashboard: connect.NewClient[v1.GetEventDashboardRequest, v1.GetEventDashboardResponse](
+			httpClient,
+			baseURL+MeterServiceGetEventDashboardProcedure,
+			connect.WithSchema(meterServiceMethods.ByName("GetEventDashboard")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
 // meterServiceClient implements MeterServiceClient.
 type meterServiceClient struct {
-	recordUsage      *connect.Client[v1.RecordUsageRequest, v1.RecordUsageResponse]
-	recordUsageBatch *connect.Client[v1.RecordUsageBatchRequest, v1.RecordUsageBatchResponse]
-	queryUsage       *connect.Client[v1.UsageQuery, v1.UsageQueryResponse]
-	getUsageSummary  *connect.Client[v1.UsageSummaryQuery, v1.UsageSummaryResponse]
-	getMeterSummary  *connect.Client[v1.MeterSummaryQuery, v1.MeterSummaryResponse]
+	recordUsage       *connect.Client[v1.RecordUsageRequest, v1.RecordUsageResponse]
+	recordUsageBatch  *connect.Client[v1.RecordUsageBatchRequest, v1.RecordUsageBatchResponse]
+	queryUsage        *connect.Client[v1.UsageQuery, v1.UsageQueryResponse]
+	getUsageSummary   *connect.Client[v1.UsageSummaryQuery, v1.UsageSummaryResponse]
+	getMeterSummary   *connect.Client[v1.MeterSummaryQuery, v1.MeterSummaryResponse]
+	ingestWideEvent   *connect.Client[v1.IngestWideEventRequest, v1.IngestWideEventResponse]
+	queryWideEvents   *connect.Client[v1.QueryWideEventsRequest, v1.QueryWideEventsResponse]
+	getEventDashboard *connect.Client[v1.GetEventDashboardRequest, v1.GetEventDashboardResponse]
 }
 
 // RecordUsage calls meter.v1.MeterService.RecordUsage.
@@ -136,6 +169,21 @@ func (c *meterServiceClient) GetMeterSummary(ctx context.Context, req *connect.R
 	return c.getMeterSummary.CallUnary(ctx, req)
 }
 
+// IngestWideEvent calls meter.v1.MeterService.IngestWideEvent.
+func (c *meterServiceClient) IngestWideEvent(ctx context.Context, req *connect.Request[v1.IngestWideEventRequest]) (*connect.Response[v1.IngestWideEventResponse], error) {
+	return c.ingestWideEvent.CallUnary(ctx, req)
+}
+
+// QueryWideEvents calls meter.v1.MeterService.QueryWideEvents.
+func (c *meterServiceClient) QueryWideEvents(ctx context.Context, req *connect.Request[v1.QueryWideEventsRequest]) (*connect.Response[v1.QueryWideEventsResponse], error) {
+	return c.queryWideEvents.CallUnary(ctx, req)
+}
+
+// GetEventDashboard calls meter.v1.MeterService.GetEventDashboard.
+func (c *meterServiceClient) GetEventDashboard(ctx context.Context, req *connect.Request[v1.GetEventDashboardRequest]) (*connect.Response[v1.GetEventDashboardResponse], error) {
+	return c.getEventDashboard.CallUnary(ctx, req)
+}
+
 // MeterServiceHandler is an implementation of the meter.v1.MeterService service.
 type MeterServiceHandler interface {
 	RecordUsage(context.Context, *connect.Request[v1.RecordUsageRequest]) (*connect.Response[v1.RecordUsageResponse], error)
@@ -143,6 +191,9 @@ type MeterServiceHandler interface {
 	QueryUsage(context.Context, *connect.Request[v1.UsageQuery]) (*connect.Response[v1.UsageQueryResponse], error)
 	GetUsageSummary(context.Context, *connect.Request[v1.UsageSummaryQuery]) (*connect.Response[v1.UsageSummaryResponse], error)
 	GetMeterSummary(context.Context, *connect.Request[v1.MeterSummaryQuery]) (*connect.Response[v1.MeterSummaryResponse], error)
+	IngestWideEvent(context.Context, *connect.Request[v1.IngestWideEventRequest]) (*connect.Response[v1.IngestWideEventResponse], error)
+	QueryWideEvents(context.Context, *connect.Request[v1.QueryWideEventsRequest]) (*connect.Response[v1.QueryWideEventsResponse], error)
+	GetEventDashboard(context.Context, *connect.Request[v1.GetEventDashboardRequest]) (*connect.Response[v1.GetEventDashboardResponse], error)
 }
 
 // NewMeterServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -182,6 +233,24 @@ func NewMeterServiceHandler(svc MeterServiceHandler, opts ...connect.HandlerOpti
 		connect.WithSchema(meterServiceMethods.ByName("GetMeterSummary")),
 		connect.WithHandlerOptions(opts...),
 	)
+	meterServiceIngestWideEventHandler := connect.NewUnaryHandler(
+		MeterServiceIngestWideEventProcedure,
+		svc.IngestWideEvent,
+		connect.WithSchema(meterServiceMethods.ByName("IngestWideEvent")),
+		connect.WithHandlerOptions(opts...),
+	)
+	meterServiceQueryWideEventsHandler := connect.NewUnaryHandler(
+		MeterServiceQueryWideEventsProcedure,
+		svc.QueryWideEvents,
+		connect.WithSchema(meterServiceMethods.ByName("QueryWideEvents")),
+		connect.WithHandlerOptions(opts...),
+	)
+	meterServiceGetEventDashboardHandler := connect.NewUnaryHandler(
+		MeterServiceGetEventDashboardProcedure,
+		svc.GetEventDashboard,
+		connect.WithSchema(meterServiceMethods.ByName("GetEventDashboard")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/meter.v1.MeterService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case MeterServiceRecordUsageProcedure:
@@ -194,6 +263,12 @@ func NewMeterServiceHandler(svc MeterServiceHandler, opts ...connect.HandlerOpti
 			meterServiceGetUsageSummaryHandler.ServeHTTP(w, r)
 		case MeterServiceGetMeterSummaryProcedure:
 			meterServiceGetMeterSummaryHandler.ServeHTTP(w, r)
+		case MeterServiceIngestWideEventProcedure:
+			meterServiceIngestWideEventHandler.ServeHTTP(w, r)
+		case MeterServiceQueryWideEventsProcedure:
+			meterServiceQueryWideEventsHandler.ServeHTTP(w, r)
+		case MeterServiceGetEventDashboardProcedure:
+			meterServiceGetEventDashboardHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -221,4 +296,16 @@ func (UnimplementedMeterServiceHandler) GetUsageSummary(context.Context, *connec
 
 func (UnimplementedMeterServiceHandler) GetMeterSummary(context.Context, *connect.Request[v1.MeterSummaryQuery]) (*connect.Response[v1.MeterSummaryResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("meter.v1.MeterService.GetMeterSummary is not implemented"))
+}
+
+func (UnimplementedMeterServiceHandler) IngestWideEvent(context.Context, *connect.Request[v1.IngestWideEventRequest]) (*connect.Response[v1.IngestWideEventResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("meter.v1.MeterService.IngestWideEvent is not implemented"))
+}
+
+func (UnimplementedMeterServiceHandler) QueryWideEvents(context.Context, *connect.Request[v1.QueryWideEventsRequest]) (*connect.Response[v1.QueryWideEventsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("meter.v1.MeterService.QueryWideEvents is not implemented"))
+}
+
+func (UnimplementedMeterServiceHandler) GetEventDashboard(context.Context, *connect.Request[v1.GetEventDashboardRequest]) (*connect.Response[v1.GetEventDashboardResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("meter.v1.MeterService.GetEventDashboard is not implemented"))
 }
