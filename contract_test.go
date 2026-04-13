@@ -8,6 +8,7 @@ import (
 	"time"
 
 	approvalsv1 "github.com/evalops/proto/gen/go/approvals/v1"
+	configv1 "github.com/evalops/proto/gen/go/config/v1"
 	connectorsv1 "github.com/evalops/proto/gen/go/connectors/v1"
 	entitiesv1 "github.com/evalops/proto/gen/go/entities/v1"
 	eventsv1 "github.com/evalops/proto/gen/go/events/v1"
@@ -124,6 +125,68 @@ func TestMemoryRecallResponseRoundTripPreservesNestedMetadata(t *testing.T) {
 	}
 	if result.GetSimilarity() != float32(0.82) {
 		t.Fatalf("expected similarity 0.82, got %v", result.GetSimilarity())
+	}
+}
+
+func TestFeatureFlagSnapshotProtoJSONUsesStableProtoFieldNames(t *testing.T) {
+	t.Parallel()
+
+	payload := &configv1.FeatureFlagSnapshot{
+		SchemaVersion: 1,
+		Flags: []*configv1.FeatureFlag{
+			{
+				Key:            "platform.kill_switches.llm_gateway.inference",
+				Enabled:        true,
+				RolloutPercent: 100,
+				Owners:         []string{"platform-app"},
+				Description:    "Master kill switch for managed llm-gateway inference execution.",
+			},
+		},
+	}
+
+	encoded, err := protojson.MarshalOptions{UseProtoNames: true}.Marshal(payload)
+	if err != nil {
+		t.Fatalf("marshal FeatureFlagSnapshot: %v", err)
+	}
+
+	var decoded map[string]any
+	if err := json.Unmarshal(encoded, &decoded); err != nil {
+		t.Fatalf("decode FeatureFlagSnapshot JSON: %v", err)
+	}
+
+	for _, field := range []string{"schema_version", "flags"} {
+		if _, ok := decoded[field]; !ok {
+			t.Fatalf("expected proto JSON to contain %q, got %s", field, string(encoded))
+		}
+	}
+	if _, ok := decoded["schemaVersion"]; ok {
+		t.Fatalf("expected proto JSON to omit camelCase schemaVersion, got %s", string(encoded))
+	}
+}
+
+func TestFeatureFlagSnapshotFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message configv1.FeatureFlagSnapshot
+	loadProtoJSONFixture(t, filepath.Join("proto", "config", "v1", "testdata", "feature_flag_snapshot.json"), &message)
+
+	if message.GetSchemaVersion() != 1 {
+		t.Fatalf("expected schema_version 1, got %d", message.GetSchemaVersion())
+	}
+	if len(message.GetFlags()) != 6 {
+		t.Fatalf("expected 6 flags, got %d", len(message.GetFlags()))
+	}
+	if message.GetFlags()[0].GetKey() != "llm_gateway.model_routing.provider_failover" {
+		t.Fatalf("unexpected first flag key %q", message.GetFlags()[0].GetKey())
+	}
+	if !message.GetFlags()[1].GetEnabled() {
+		t.Fatal("expected second flag to be enabled")
+	}
+	if message.GetFlags()[2].GetEnabled() {
+		t.Fatal("expected third flag to be disabled")
+	}
+	if message.GetFlags()[5].GetRolloutPercent() != 100 {
+		t.Fatalf("expected rollout_percent 100, got %d", message.GetFlags()[5].GetRolloutPercent())
 	}
 }
 
