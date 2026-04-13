@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x16memory/v1/memory.proto\x12\tmemory.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb1\x04\n\x06Memory\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12&\n\x05scope\x18\x02 \x01(\x0e\x32\x10.memory.v1.ScopeR\x05scope\x12\x18\n\x07\x63ontent\x18\x03 \x01(\tR\x07\x63ontent\x12\x12\n\x04type\x18\x04 \x01(\tR\x04type\x12\x16\n\x06source\x18\x05 \x01(\tR\x06source\x12\x1e\n\nconfidence\x18\x06 \x01(\x02R\nconfidence\x12\x16\n\x06pinned\x18\x07 \x01(\x08R\x06pinned\x12 \n\tembedding\x18\x08 \x03(\x02\x42\x02\x10\x01R\tembedding\x12!\n\x0cworkspace_id\x18\t \x01(\tR\x0bworkspaceId\x12\x17\n\x07user_id\x18\n \x01(\tR\x06userId\x12\x1d\n\nproject_id\x18\x0b \x01(\tR\tprojectId\x12\x17\n\x07team_id\x18\x0c \x01(\tR\x06teamId\x12\x1e\n\nrepository\x18\r \x01(\tR\nrepository\x12\x14\n\x05\x61gent\x18\x0e \x01(\tR\x05\x61gent\x12\x1b\n\tis_policy\x18\x0f \x01(\x08R\x08isPolicy\x12\x39\n\ncreated_at\x18\x10 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x39\n\nupdated_at\x18\x11 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x12\n\x04tags\x18\x12 \x03(\tR\x04tags\"\xcb\x02\n\x0cStoreRequest\x12&\n\x05scope\x18\x01 \x01(\x0e\x32\x10.memory.v1.ScopeR\x05scope\x12\x18\n\x07\x63ontent\x18\x02 \x01(\tR\x07\x63ontent\x12\x12\n\x04type\x18\x03 \x01(\tR\x04type\x12\x16\n\x06source\x18\x04 \x01(\tR\x06source\x12\x1e\n\nconfidence\x18\x05 \x01(\x02R\nconfidence\x12\x1d\n\nproject_id\x18\x06 \x01(\tR\tprojectId\x12\x17\n\x07team_id\x18\x07 \x01(\tR\x06teamId\x12\x1e\n\nrepository\x18\x08 \x01(\tR\nrepository\x12\x14\n\x05\x61gent\x18\t \x01(\tR\x05\x61gent\x12\x1b\n\tis_policy\x18\n \x01(\x08R\x08isPolicy\x12\x12\n\x04tags\x18\x0b \x03(\tR\x04tags\x12\x0e\n\x02id\x18\x0c \x01(\tR\x02id\":\n\rStoreResponse\x12)\n\x06memory\x18\x01 \x01(\x0b\x32\x11.memory.v1.MemoryR\x06memory\"\xf7\x01\n\rRecallRequest\x12\x14\n\x05query\x18\x01 \x01(\tR\x05query\x12&\n\x05scope\x18\x02 \x01(\x0e\x32\x10.memory.v1.ScopeR\x05scope\x12\x13\n\x05top_k\x18\x03 \x01(\x05R\x04topK\x12%\n\x0emin_similarity\x18\x04 \x01(\x02R\rminSimilarity\x12\x1d\n\nproject_id\x18\x05 \x01(\tR\tprojectId\x12\x17\n\x07team_id\x18\x06 \x01(\tR\x06teamId\x12\x1e\n\nrepository\x18\x07 \x01(\tR\nrepository\x12\x14\n\x05\x61gent\x18\x08 \x01(\tR\x05\x61gent\"\xe3\x01\n\x16RecallKnowledgeRequest\x12\x1e\n\nconditions\x18\x01 \x03(\tR\nconditions\x12&\n\x05scope\x18\x02 \x01(\x0e\x32\x10.memory.v1.ScopeR\x05scope\x12\x13\n\x05top_k\x18\x03 \x01(\x05R\x04topK\x12\x1d\n\nproject_id\x18\x04 \x01(\tR\tprojectId\x12\x17\n\x07team_id\x18\x05 \x01(\tR\x06teamId\x12\x1e\n\nrepository\x18\x06 \x01(\tR\nrepository\x12\x14\n\x05\x61gent\x18\x07 \x01(\tR\x05\x61gent\"C\n\x0eRecallResponse\x12\x31\n\x07results\x18\x01 \x03(\x0b\x32\x17.memory.v1.RecallResultR\x07results\"L\n\x17RecallKnowledgeResponse\x12\x31\n\x07results\x18\x01 \x03(\x0b\x32\x17.memory.v1.RecallResultR\x07results\"Y\n\x0cRecallResult\x12)\n\x06memory\x18\x01 \x01(\x0b\x32\x11.memory.v1.MemoryR\x06memory\x12\x1e\n\nsimilarity\x18\x02 \x01(\x02R\nsimilarity\"\x81\x01\n\rUpdateRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n\x07\x63ontent\x18\x02 \x01(\tR\x07\x63ontent\x12\x12\n\x04type\x18\x03 \x01(\tR\x04type\x12\x1e\n\nconfidence\x18\x04 \x01(\x02R\nconfidence\x12\x12\n\x04tags\x18\x05 \x03(\tR\x04tags\";\n\x0eUpdateResponse\x12)\n\x06memory\x18\x01 \x01(\x0b\x32\x11.memory.v1.MemoryR\x06memory\"\x1f\n\rDeleteRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x10\n\x0e\x44\x65leteResponse\"\xd1\x01\n\x0bListRequest\x12&\n\x05scope\x18\x01 \x01(\x0e\x32\x10.memory.v1.ScopeR\x05scope\x12\x1d\n\nproject_id\x18\x02 \x01(\tR\tprojectId\x12\x17\n\x07team_id\x18\x03 \x01(\tR\x06teamId\x12\x1e\n\nrepository\x18\x04 \x01(\tR\nrepository\x12\x14\n\x05\x61gent\x18\x05 \x01(\tR\x05\x61gent\x12\x14\n\x05limit\x18\x06 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x07 \x01(\x05R\x06offset\"\xde\x01\n\x18GetOperatingRulesRequest\x12&\n\x05scope\x18\x01 \x01(\x0e\x32\x10.memory.v1.ScopeR\x05scope\x12\x1d\n\nproject_id\x18\x02 \x01(\tR\tprojectId\x12\x17\n\x07team_id\x18\x03 \x01(\tR\x06teamId\x12\x1e\n\nrepository\x18\x04 \x01(\tR\nrepository\x12\x14\n\x05\x61gent\x18\x05 \x01(\tR\x05\x61gent\x12\x14\n\x05limit\x18\x06 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x07 \x01(\x05R\x06offset\"n\n\x0cListResponse\x12-\n\x08memories\x18\x01 \x03(\x0b\x32\x11.memory.v1.MemoryR\x08memories\x12\x14\n\x05total\x18\x02 \x01(\x05R\x05total\x12\x19\n\x08has_more\x18\x03 \x01(\x08R\x07hasMore\"{\n\x19GetOperatingRulesResponse\x12-\n\x08memories\x18\x01 \x03(\x0b\x32\x11.memory.v1.MemoryR\x08memories\x12\x14\n\x05total\x18\x02 \x01(\x05R\x05total\x12\x19\n\x08has_more\x18\x03 \x01(\x08R\x07hasMore\"[\n\x12\x43onsolidateRequest\x12&\n\x05scope\x18\x01 \x01(\x0e\x32\x10.memory.v1.ScopeR\x05scope\x12\x1d\n\nproject_id\x18\x02 \x01(\tR\tprojectId\"E\n\x13\x43onsolidateResponse\x12\x16\n\x06merged\x18\x01 \x01(\x05R\x06merged\x12\x16\n\x06pruned\x18\x02 \x01(\x05R\x06pruned*z\n\x05Scope\x12\x15\n\x11SCOPE_UNSPECIFIED\x10\x00\x12\x0e\n\nSCOPE_USER\x10\x01\x12\x0e\n\nSCOPE_TEAM\x10\x02\x12\x16\n\x12SCOPE_ORGANIZATION\x10\x03\x12\x0f\n\x0bSCOPE_AGENT\x10\x04\x12\x11\n\rSCOPE_PROJECT\x10\x05\x32\xc9\x04\n\rMemoryService\x12:\n\x05Store\x12\x17.memory.v1.StoreRequest\x1a\x18.memory.v1.StoreResponse\x12=\n\x06Recall\x12\x18.memory.v1.RecallRequest\x1a\x19.memory.v1.RecallResponse\x12X\n\x0fRecallKnowledge\x12!.memory.v1.RecallKnowledgeRequest\x1a\".memory.v1.RecallKnowledgeResponse\x12=\n\x06Update\x12\x18.memory.v1.UpdateRequest\x1a\x19.memory.v1.UpdateResponse\x12=\n\x06\x44\x65lete\x12\x18.memory.v1.DeleteRequest\x1a\x19.memory.v1.DeleteResponse\x12\x37\n\x04List\x12\x16.memory.v1.ListRequest\x1a\x17.memory.v1.ListResponse\x12^\n\x11GetOperatingRules\x12#.memory.v1.GetOperatingRulesRequest\x1a$.memory.v1.GetOperatingRulesResponse\x12L\n\x0b\x43onsolidate\x12\x1d.memory.v1.ConsolidateRequest\x1a\x1e.memory.v1.ConsolidateResponseB4Z2github.com/evalops/proto/gen/go/memory/v1;memoryv1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x16memory/v1/memory.proto\x12\tmemory.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb1\x04\n\x06Memory\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12&\n\x05scope\x18\x02 \x01(\x0e\x32\x10.memory.v1.ScopeR\x05scope\x12\x18\n\x07\x63ontent\x18\x03 \x01(\tR\x07\x63ontent\x12\x12\n\x04type\x18\x04 \x01(\tR\x04type\x12\x16\n\x06source\x18\x05 \x01(\tR\x06source\x12\x1e\n\nconfidence\x18\x06 \x01(\x02R\nconfidence\x12\x16\n\x06pinned\x18\x07 \x01(\x08R\x06pinned\x12 \n\tembedding\x18\x08 \x03(\x02\x42\x02\x10\x01R\tembedding\x12!\n\x0cworkspace_id\x18\t \x01(\tR\x0bworkspaceId\x12\x17\n\x07user_id\x18\n \x01(\tR\x06userId\x12\x1d\n\nproject_id\x18\x0b \x01(\tR\tprojectId\x12\x17\n\x07team_id\x18\x0c \x01(\tR\x06teamId\x12\x1e\n\nrepository\x18\r \x01(\tR\nrepository\x12\x14\n\x05\x61gent\x18\x0e \x01(\tR\x05\x61gent\x12\x1b\n\tis_policy\x18\x0f \x01(\x08R\x08isPolicy\x12\x39\n\ncreated_at\x18\x10 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tcreatedAt\x12\x39\n\nupdated_at\x18\x11 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\tupdatedAt\x12\x12\n\x04tags\x18\x12 \x03(\tR\x04tags\"\xcb\x02\n\x0cStoreRequest\x12&\n\x05scope\x18\x01 \x01(\x0e\x32\x10.memory.v1.ScopeR\x05scope\x12\x18\n\x07\x63ontent\x18\x02 \x01(\tR\x07\x63ontent\x12\x12\n\x04type\x18\x03 \x01(\tR\x04type\x12\x16\n\x06source\x18\x04 \x01(\tR\x06source\x12\x1e\n\nconfidence\x18\x05 \x01(\x02R\nconfidence\x12\x1d\n\nproject_id\x18\x06 \x01(\tR\tprojectId\x12\x17\n\x07team_id\x18\x07 \x01(\tR\x06teamId\x12\x1e\n\nrepository\x18\x08 \x01(\tR\nrepository\x12\x14\n\x05\x61gent\x18\t \x01(\tR\x05\x61gent\x12\x1b\n\tis_policy\x18\n \x01(\x08R\x08isPolicy\x12\x12\n\x04tags\x18\x0b \x03(\tR\x04tags\x12\x0e\n\x02id\x18\x0c \x01(\tR\x02id\":\n\rStoreResponse\x12)\n\x06memory\x18\x01 \x01(\x0b\x32\x11.memory.v1.MemoryR\x06memory\"\x8b\x02\n\rRecallRequest\x12\x14\n\x05query\x18\x01 \x01(\tR\x05query\x12&\n\x05scope\x18\x02 \x01(\x0e\x32\x10.memory.v1.ScopeR\x05scope\x12\x13\n\x05top_k\x18\x03 \x01(\x05R\x04topK\x12%\n\x0emin_similarity\x18\x04 \x01(\x02R\rminSimilarity\x12\x1d\n\nproject_id\x18\x05 \x01(\tR\tprojectId\x12\x17\n\x07team_id\x18\x06 \x01(\tR\x06teamId\x12\x1e\n\nrepository\x18\x07 \x01(\tR\nrepository\x12\x14\n\x05\x61gent\x18\x08 \x01(\tR\x05\x61gent\x12\x12\n\x04type\x18\t \x01(\tR\x04type\"\xe3\x01\n\x16RecallKnowledgeRequest\x12\x1e\n\nconditions\x18\x01 \x03(\tR\nconditions\x12&\n\x05scope\x18\x02 \x01(\x0e\x32\x10.memory.v1.ScopeR\x05scope\x12\x13\n\x05top_k\x18\x03 \x01(\x05R\x04topK\x12\x1d\n\nproject_id\x18\x04 \x01(\tR\tprojectId\x12\x17\n\x07team_id\x18\x05 \x01(\tR\x06teamId\x12\x1e\n\nrepository\x18\x06 \x01(\tR\nrepository\x12\x14\n\x05\x61gent\x18\x07 \x01(\tR\x05\x61gent\"C\n\x0eRecallResponse\x12\x31\n\x07results\x18\x01 \x03(\x0b\x32\x17.memory.v1.RecallResultR\x07results\"L\n\x17RecallKnowledgeResponse\x12\x31\n\x07results\x18\x01 \x03(\x0b\x32\x17.memory.v1.RecallResultR\x07results\"Y\n\x0cRecallResult\x12)\n\x06memory\x18\x01 \x01(\x0b\x32\x11.memory.v1.MemoryR\x06memory\x12\x1e\n\nsimilarity\x18\x02 \x01(\x02R\nsimilarity\"\x81\x01\n\rUpdateRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n\x07\x63ontent\x18\x02 \x01(\tR\x07\x63ontent\x12\x12\n\x04type\x18\x03 \x01(\tR\x04type\x12\x1e\n\nconfidence\x18\x04 \x01(\x02R\nconfidence\x12\x12\n\x04tags\x18\x05 \x03(\tR\x04tags\";\n\x0eUpdateResponse\x12)\n\x06memory\x18\x01 \x01(\x0b\x32\x11.memory.v1.MemoryR\x06memory\"\x1f\n\rDeleteRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"\x10\n\x0e\x44\x65leteResponse\"\xe5\x01\n\x0bListRequest\x12&\n\x05scope\x18\x01 \x01(\x0e\x32\x10.memory.v1.ScopeR\x05scope\x12\x1d\n\nproject_id\x18\x02 \x01(\tR\tprojectId\x12\x17\n\x07team_id\x18\x03 \x01(\tR\x06teamId\x12\x1e\n\nrepository\x18\x04 \x01(\tR\nrepository\x12\x14\n\x05\x61gent\x18\x05 \x01(\tR\x05\x61gent\x12\x14\n\x05limit\x18\x06 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x07 \x01(\x05R\x06offset\x12\x12\n\x04type\x18\x08 \x01(\tR\x04type\"\xde\x01\n\x18GetOperatingRulesRequest\x12&\n\x05scope\x18\x01 \x01(\x0e\x32\x10.memory.v1.ScopeR\x05scope\x12\x1d\n\nproject_id\x18\x02 \x01(\tR\tprojectId\x12\x17\n\x07team_id\x18\x03 \x01(\tR\x06teamId\x12\x1e\n\nrepository\x18\x04 \x01(\tR\nrepository\x12\x14\n\x05\x61gent\x18\x05 \x01(\tR\x05\x61gent\x12\x14\n\x05limit\x18\x06 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x07 \x01(\x05R\x06offset\"n\n\x0cListResponse\x12-\n\x08memories\x18\x01 \x03(\x0b\x32\x11.memory.v1.MemoryR\x08memories\x12\x14\n\x05total\x18\x02 \x01(\x05R\x05total\x12\x19\n\x08has_more\x18\x03 \x01(\x08R\x07hasMore\"{\n\x19GetOperatingRulesResponse\x12-\n\x08memories\x18\x01 \x03(\x0b\x32\x11.memory.v1.MemoryR\x08memories\x12\x14\n\x05total\x18\x02 \x01(\x05R\x05total\x12\x19\n\x08has_more\x18\x03 \x01(\x08R\x07hasMore\"[\n\x12\x43onsolidateRequest\x12&\n\x05scope\x18\x01 \x01(\x0e\x32\x10.memory.v1.ScopeR\x05scope\x12\x1d\n\nproject_id\x18\x02 \x01(\tR\tprojectId\"E\n\x13\x43onsolidateResponse\x12\x16\n\x06merged\x18\x01 \x01(\x05R\x06merged\x12\x16\n\x06pruned\x18\x02 \x01(\x05R\x06pruned*z\n\x05Scope\x12\x15\n\x11SCOPE_UNSPECIFIED\x10\x00\x12\x0e\n\nSCOPE_USER\x10\x01\x12\x0e\n\nSCOPE_TEAM\x10\x02\x12\x16\n\x12SCOPE_ORGANIZATION\x10\x03\x12\x0f\n\x0bSCOPE_AGENT\x10\x04\x12\x11\n\rSCOPE_PROJECT\x10\x05\x32\xc9\x04\n\rMemoryService\x12:\n\x05Store\x12\x17.memory.v1.StoreRequest\x1a\x18.memory.v1.StoreResponse\x12=\n\x06Recall\x12\x18.memory.v1.RecallRequest\x1a\x19.memory.v1.RecallResponse\x12X\n\x0fRecallKnowledge\x12!.memory.v1.RecallKnowledgeRequest\x1a\".memory.v1.RecallKnowledgeResponse\x12=\n\x06Update\x12\x18.memory.v1.UpdateRequest\x1a\x19.memory.v1.UpdateResponse\x12=\n\x06\x44\x65lete\x12\x18.memory.v1.DeleteRequest\x1a\x19.memory.v1.DeleteResponse\x12\x37\n\x04List\x12\x16.memory.v1.ListRequest\x1a\x17.memory.v1.ListResponse\x12^\n\x11GetOperatingRules\x12#.memory.v1.GetOperatingRulesRequest\x1a$.memory.v1.GetOperatingRulesResponse\x12L\n\x0b\x43onsolidate\x12\x1d.memory.v1.ConsolidateRequest\x1a\x1e.memory.v1.ConsolidateResponseB4Z2github.com/evalops/proto/gen/go/memory/v1;memoryv1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -35,8 +35,8 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._serialized_options = b'Z2github.com/evalops/proto/gen/go/memory/v1;memoryv1'
   _globals['_MEMORY'].fields_by_name['embedding']._loaded_options = None
   _globals['_MEMORY'].fields_by_name['embedding']._serialized_options = b'\020\001'
-  _globals['_SCOPE']._serialized_start=2828
-  _globals['_SCOPE']._serialized_end=2950
+  _globals['_SCOPE']._serialized_start=2868
+  _globals['_SCOPE']._serialized_end=2990
   _globals['_MEMORY']._serialized_start=71
   _globals['_MEMORY']._serialized_end=632
   _globals['_STOREREQUEST']._serialized_start=635
@@ -44,35 +44,35 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_STORERESPONSE']._serialized_start=968
   _globals['_STORERESPONSE']._serialized_end=1026
   _globals['_RECALLREQUEST']._serialized_start=1029
-  _globals['_RECALLREQUEST']._serialized_end=1276
-  _globals['_RECALLKNOWLEDGEREQUEST']._serialized_start=1279
-  _globals['_RECALLKNOWLEDGEREQUEST']._serialized_end=1506
-  _globals['_RECALLRESPONSE']._serialized_start=1508
-  _globals['_RECALLRESPONSE']._serialized_end=1575
-  _globals['_RECALLKNOWLEDGERESPONSE']._serialized_start=1577
-  _globals['_RECALLKNOWLEDGERESPONSE']._serialized_end=1653
-  _globals['_RECALLRESULT']._serialized_start=1655
-  _globals['_RECALLRESULT']._serialized_end=1744
-  _globals['_UPDATEREQUEST']._serialized_start=1747
-  _globals['_UPDATEREQUEST']._serialized_end=1876
-  _globals['_UPDATERESPONSE']._serialized_start=1878
-  _globals['_UPDATERESPONSE']._serialized_end=1937
-  _globals['_DELETEREQUEST']._serialized_start=1939
-  _globals['_DELETEREQUEST']._serialized_end=1970
-  _globals['_DELETERESPONSE']._serialized_start=1972
-  _globals['_DELETERESPONSE']._serialized_end=1988
-  _globals['_LISTREQUEST']._serialized_start=1991
-  _globals['_LISTREQUEST']._serialized_end=2200
-  _globals['_GETOPERATINGRULESREQUEST']._serialized_start=2203
-  _globals['_GETOPERATINGRULESREQUEST']._serialized_end=2425
-  _globals['_LISTRESPONSE']._serialized_start=2427
-  _globals['_LISTRESPONSE']._serialized_end=2537
-  _globals['_GETOPERATINGRULESRESPONSE']._serialized_start=2539
-  _globals['_GETOPERATINGRULESRESPONSE']._serialized_end=2662
-  _globals['_CONSOLIDATEREQUEST']._serialized_start=2664
-  _globals['_CONSOLIDATEREQUEST']._serialized_end=2755
-  _globals['_CONSOLIDATERESPONSE']._serialized_start=2757
-  _globals['_CONSOLIDATERESPONSE']._serialized_end=2826
-  _globals['_MEMORYSERVICE']._serialized_start=2953
-  _globals['_MEMORYSERVICE']._serialized_end=3538
+  _globals['_RECALLREQUEST']._serialized_end=1296
+  _globals['_RECALLKNOWLEDGEREQUEST']._serialized_start=1299
+  _globals['_RECALLKNOWLEDGEREQUEST']._serialized_end=1526
+  _globals['_RECALLRESPONSE']._serialized_start=1528
+  _globals['_RECALLRESPONSE']._serialized_end=1595
+  _globals['_RECALLKNOWLEDGERESPONSE']._serialized_start=1597
+  _globals['_RECALLKNOWLEDGERESPONSE']._serialized_end=1673
+  _globals['_RECALLRESULT']._serialized_start=1675
+  _globals['_RECALLRESULT']._serialized_end=1764
+  _globals['_UPDATEREQUEST']._serialized_start=1767
+  _globals['_UPDATEREQUEST']._serialized_end=1896
+  _globals['_UPDATERESPONSE']._serialized_start=1898
+  _globals['_UPDATERESPONSE']._serialized_end=1957
+  _globals['_DELETEREQUEST']._serialized_start=1959
+  _globals['_DELETEREQUEST']._serialized_end=1990
+  _globals['_DELETERESPONSE']._serialized_start=1992
+  _globals['_DELETERESPONSE']._serialized_end=2008
+  _globals['_LISTREQUEST']._serialized_start=2011
+  _globals['_LISTREQUEST']._serialized_end=2240
+  _globals['_GETOPERATINGRULESREQUEST']._serialized_start=2243
+  _globals['_GETOPERATINGRULESREQUEST']._serialized_end=2465
+  _globals['_LISTRESPONSE']._serialized_start=2467
+  _globals['_LISTRESPONSE']._serialized_end=2577
+  _globals['_GETOPERATINGRULESRESPONSE']._serialized_start=2579
+  _globals['_GETOPERATINGRULESRESPONSE']._serialized_end=2702
+  _globals['_CONSOLIDATEREQUEST']._serialized_start=2704
+  _globals['_CONSOLIDATEREQUEST']._serialized_end=2795
+  _globals['_CONSOLIDATERESPONSE']._serialized_start=2797
+  _globals['_CONSOLIDATERESPONSE']._serialized_end=2866
+  _globals['_MEMORYSERVICE']._serialized_start=2993
+  _globals['_MEMORYSERVICE']._serialized_end=3578
 # @@protoc_insertion_point(module_scope)

@@ -450,6 +450,7 @@ type RecallRequest struct {
 	TeamId        string                 `protobuf:"bytes,6,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	Repository    string                 `protobuf:"bytes,7,opt,name=repository,proto3" json:"repository,omitempty"`
 	Agent         string                 `protobuf:"bytes,8,opt,name=agent,proto3" json:"agent,omitempty"`
+	Type          string                 `protobuf:"bytes,9,opt,name=type,proto3" json:"type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -536,6 +537,13 @@ func (x *RecallRequest) GetRepository() string {
 func (x *RecallRequest) GetAgent() string {
 	if x != nil {
 		return x.Agent
+	}
+	return ""
+}
+
+func (x *RecallRequest) GetType() string {
+	if x != nil {
+		return x.Type
 	}
 	return ""
 }
@@ -981,6 +989,7 @@ type ListRequest struct {
 	Agent         string                 `protobuf:"bytes,5,opt,name=agent,proto3" json:"agent,omitempty"`
 	Limit         int32                  `protobuf:"varint,6,opt,name=limit,proto3" json:"limit,omitempty"`
 	Offset        int32                  `protobuf:"varint,7,opt,name=offset,proto3" json:"offset,omitempty"`
+	Type          string                 `protobuf:"bytes,8,opt,name=type,proto3" json:"type,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1062,6 +1071,13 @@ func (x *ListRequest) GetOffset() int32 {
 		return x.Offset
 	}
 	return 0
+}
+
+func (x *ListRequest) GetType() string {
+	if x != nil {
+		return x.Type
+	}
+	return ""
 }
 
 type GetOperatingRulesRequest struct {
@@ -1432,7 +1448,7 @@ const file_memory_v1_memory_proto_rawDesc = "" +
 	"\x04tags\x18\v \x03(\tR\x04tags\x12\x0e\n" +
 	"\x02id\x18\f \x01(\tR\x02id\":\n" +
 	"\rStoreResponse\x12)\n" +
-	"\x06memory\x18\x01 \x01(\v2\x11.memory.v1.MemoryR\x06memory\"\xf7\x01\n" +
+	"\x06memory\x18\x01 \x01(\v2\x11.memory.v1.MemoryR\x06memory\"\x8b\x02\n" +
 	"\rRecallRequest\x12\x14\n" +
 	"\x05query\x18\x01 \x01(\tR\x05query\x12&\n" +
 	"\x05scope\x18\x02 \x01(\x0e2\x10.memory.v1.ScopeR\x05scope\x12\x13\n" +
@@ -1444,7 +1460,8 @@ const file_memory_v1_memory_proto_rawDesc = "" +
 	"\n" +
 	"repository\x18\a \x01(\tR\n" +
 	"repository\x12\x14\n" +
-	"\x05agent\x18\b \x01(\tR\x05agent\"\xe3\x01\n" +
+	"\x05agent\x18\b \x01(\tR\x05agent\x12\x12\n" +
+	"\x04type\x18\t \x01(\tR\x04type\"\xe3\x01\n" +
 	"\x16RecallKnowledgeRequest\x12\x1e\n" +
 	"\n" +
 	"conditions\x18\x01 \x03(\tR\n" +
@@ -1479,7 +1496,7 @@ const file_memory_v1_memory_proto_rawDesc = "" +
 	"\x06memory\x18\x01 \x01(\v2\x11.memory.v1.MemoryR\x06memory\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x10\n" +
-	"\x0eDeleteResponse\"\xd1\x01\n" +
+	"\x0eDeleteResponse\"\xe5\x01\n" +
 	"\vListRequest\x12&\n" +
 	"\x05scope\x18\x01 \x01(\x0e2\x10.memory.v1.ScopeR\x05scope\x12\x1d\n" +
 	"\n" +
@@ -1490,7 +1507,8 @@ const file_memory_v1_memory_proto_rawDesc = "" +
 	"repository\x12\x14\n" +
 	"\x05agent\x18\x05 \x01(\tR\x05agent\x12\x14\n" +
 	"\x05limit\x18\x06 \x01(\x05R\x05limit\x12\x16\n" +
-	"\x06offset\x18\a \x01(\x05R\x06offset\"\xde\x01\n" +
+	"\x06offset\x18\a \x01(\x05R\x06offset\x12\x12\n" +
+	"\x04type\x18\b \x01(\tR\x04type\"\xde\x01\n" +
 	"\x18GetOperatingRulesRequest\x12&\n" +
 	"\x05scope\x18\x01 \x01(\x0e2\x10.memory.v1.ScopeR\x05scope\x12\x1d\n" +
 	"\n" +
