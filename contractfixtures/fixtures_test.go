@@ -76,6 +76,24 @@ func TestUnmarshalProtoJSONLoadsMeterFixture(t *testing.T) {
 	}
 }
 
+func TestUnmarshalProtoJSONLoadsLLMGatewayMeterFixture(t *testing.T) {
+	t.Parallel()
+
+	var message meterv1.RecordUsageRequest
+	if err := UnmarshalProtoJSON(MeterRecordUsageRequestLLMGatewayResponses, &message); err != nil {
+		t.Fatalf("load llm-gateway meter record usage request: %v", err)
+	}
+	if message.GetEventType() != "llm.completion" {
+		t.Fatalf("unexpected event_type %q", message.GetEventType())
+	}
+	if message.GetRequestId() != "resp_meter" {
+		t.Fatalf("unexpected request_id %q", message.GetRequestId())
+	}
+	if message.GetData().GetFields()["endpoint"].GetStringValue() != "/v1/responses" {
+		t.Fatalf("unexpected endpoint %#v", message.GetData().GetFields()["endpoint"])
+	}
+}
+
 func TestLoadFeatureFlagSnapshot(t *testing.T) {
 	t.Parallel()
 
