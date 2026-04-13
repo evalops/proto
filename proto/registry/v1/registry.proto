@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package registry.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/registry/v1;registryv1";
+
+import "google/protobuf/timestamp.proto";
+
+// RegistryService provides agent presence and capability discovery across
+// EvalOps product surfaces.
+//
+// Canonical contract for evalops/registry, replacing hand-written JSON clients
+// in downstream services such as chat.
+service RegistryService {
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc List(ListRequest) returns (ListResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+  rpc Heartbeat(HeartbeatRequest) returns (HeartbeatResponse);
+  rpc Discover(DiscoverRequest) returns (DiscoverResponse);
+}
+
+message Capacity {
+  int32 current = 1;
+  int32 max = 2;
+}
+
+message Agent {
+  string id = 1;
+  string organization_id = 2;
+  string surface = 3;
+  repeated string capabilities = 4;
+  string status = 5;
+  Capacity capacity = 6;
+  map<string, string> metadata = 7;
+  google.protobuf.Timestamp heartbeat_at = 8;
+  google.protobuf.Timestamp registered_at = 9;
+}
+
+message RegisterRequest {
+  string surface = 1;
+  repeated string capabilities = 2;
+  string status = 3;
+  Capacity capacity = 4;
+  map<string, string> metadata = 5;
+}
+
+message RegisterResponse {
+  Agent agent = 1;
+}
+
+message GetRequest {
+  string id = 1;
+}
+
+message GetResponse {
+  Agent agent = 1;
+}
+
+message ListRequest {
+  string surface = 1;
+  string capability = 2;
+  string status = 3;
+  int32 limit = 4;
+  int32 offset = 5;
+}
+
+message ListResponse {
+  repeated Agent agents = 1;
+}
+
+message DeleteRequest {
+  string id = 1;
+}
+
+message DeleteResponse {
+  Agent agent = 1;
+}
+
+message HeartbeatRequest {
+  string id = 1;
+  string status = 2;
+  Capacity capacity = 3;
+}
+
+message HeartbeatResponse {
+  Agent agent = 1;
+}
+
+message DiscoverRequest {
+  string capability = 1;
+  repeated string capabilities = 2;
+  map<string, string> metadata = 3;
+  string surface = 4;
+  string status = 5;
+  int32 limit = 6;
+}
+
+message DiscoverResponse {
+  repeated Agent agents = 1;
+}
