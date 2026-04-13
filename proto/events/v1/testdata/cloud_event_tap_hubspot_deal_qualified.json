@@ -1,0 +1,33 @@
+{
+  "spec_version": "1.0",
+  "id": "evt_tap_hubspot_deal_qualified_1",
+  "type": "ensemble.tap.hubspot.deal.updated",
+  "source": "ensemble-tap",
+  "subject": "hubspot/deal/deal_123",
+  "time": "2026-04-12T15:20:00Z",
+  "data_content_type": "application/protobuf",
+  "tenant_id": "11111111-1111-1111-1111-111111111111",
+  "data": {
+    "@type": "type.googleapis.com/tap.v1.TapEventData",
+    "provider": "hubspot",
+    "entity_type": "deal",
+    "entity_id": "deal_123",
+    "action": "updated",
+    "changes": {
+      "stage": {
+        "from": "new",
+        "to": "qualified"
+      }
+    },
+    "snapshot": {
+      "stage": "qualified",
+      "company_domain": "acme.com",
+      "primary_contact_email": "jamie@acme.com",
+      "website": "https://www.acme.com"
+    },
+    "provider_event_id": "evt_provider_1",
+    "provider_timestamp": "2026-04-12T15:20:00Z",
+    "tenant_id": "11111111-1111-1111-1111-111111111111",
+    "request_id": "req_789"
+  }
+}
