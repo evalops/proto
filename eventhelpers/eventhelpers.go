@@ -22,6 +22,7 @@ const CanonicalDataContentType = "application/protobuf"
 var (
 	errMessageNil  = errors.New("message_nil")
 	errEnvelopeNil = errors.New("envelope_nil")
+	errDataNil     = errors.New("data_nil")
 	errTargetNil   = errors.New("target_nil")
 )
 
@@ -131,7 +132,7 @@ func UnpackData(envelope *eventsv1.CloudEvent, target proto.Message) error {
 		return errTargetNil
 	}
 	if envelope.GetData() == nil {
-		return nil
+		return errDataNil
 	}
 	return envelope.GetData().UnmarshalTo(target)
 }
