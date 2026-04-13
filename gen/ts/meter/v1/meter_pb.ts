@@ -12,7 +12,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
  * Describes the file meter/v1/meter.proto.
  */
 export const file_meter_v1_meter: GenFile = /*@__PURE__*/
-  fileDesc("ChRtZXRlci92MS9tZXRlci5wcm90bxIIbWV0ZXIudjEi3wIKElJlY29yZFVzYWdlUmVxdWVzdBIPCgd0ZWFtX2lkGAEgASgJEhAKCGFnZW50X2lkGAIgASgJEg8KB3N1cmZhY2UYAyABKAkSEgoKZXZlbnRfdHlwZRgEIAEoCRINCgVtb2RlbBgFIAEoCRIQCghwcm92aWRlchgGIAEoCRIUCgxpbnB1dF90b2tlbnMYByABKAMSFQoNb3V0cHV0X3Rva2VucxgIIAEoAxIZChFjYWNoZV9yZWFkX3Rva2VucxgJIAEoAxIaChJjYWNoZV93cml0ZV90b2tlbnMYCiABKAMSFgoOdG90YWxfY29zdF91c2QYCyABKAESEgoKcmVxdWVzdF9pZBgMIAEoCRIpCghtZXRhZGF0YRgNIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QSJQoEZGF0YRgOIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QiPAoTUmVjb3JkVXNhZ2VSZXNwb25zZRIlCgZyZWNvcmQYASABKAsyFS5tZXRlci52MS5Vc2FnZVJlY29yZCJIChdSZWNvcmRVc2FnZUJhdGNoUmVxdWVzdBItCgdyZWNvcmRzGAEgAygLMhwubWV0ZXIudjEuUmVjb3JkVXNhZ2VSZXF1ZXN0IkIKGFJlY29yZFVzYWdlQmF0Y2hSZXNwb25zZRImCgdyZWNvcmRzGAEgAygLMhUubWV0ZXIudjEuVXNhZ2VSZWNvcmQi3AMKC1VzYWdlUmVjb3JkEgoKAmlkGAEgASgJEi0KCXRpbWVzdGFtcBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASFwoPb3JnYW5pemF0aW9uX2lkGAMgASgJEg8KB3RlYW1faWQYBCABKAkSEAoIYWdlbnRfaWQYBSABKAkSDwoHc3VyZmFjZRgGIAEoCRISCgpldmVudF90eXBlGAcgASgJEg0KBW1vZGVsGAggASgJEhAKCHByb3ZpZGVyGAkgASgJEhQKDGlucHV0X3Rva2VucxgKIAEoAxIVCg1vdXRwdXRfdG9rZW5zGAsgASgDEhkKEWNhY2hlX3JlYWRfdG9rZW5zGAwgASgDEhoKEmNhY2hlX3dyaXRlX3Rva2VucxgNIAEoAxIWCg50b3RhbF9jb3N0X3VzZBgOIAEoARISCgpyZXF1ZXN0X2lkGA8gASgJEiUKBGRhdGEYECABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0EikKCG1ldGFkYXRhGBEgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdBIuCgpjcmVhdGVkX2F0GBIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCLwAQoKVXNhZ2VRdWVyeRIPCgd0ZWFtX2lkGAEgASgJEhAKCGFnZW50X2lkGAIgASgJEhIKCmV2ZW50X3R5cGUYAyABKAkSDQoFbW9kZWwYBCABKAkSEAoIcHJvdmlkZXIYBSABKAkSFAoMbWV0YWRhdGFfa2V5GAYgASgJEhYKDm1ldGFkYXRhX3ZhbHVlGAcgASgJEi4KCnN0YXJ0X3RpbWUYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEiwKCGVuZF90aW1lGAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCI8ChJVc2FnZVF1ZXJ5UmVzcG9uc2USJgoHcmVjb3JkcxgBIAMoCzIVLm1ldGVyLnYxLlVzYWdlUmVjb3JkIooCChFVc2FnZVN1bW1hcnlRdWVyeRIPCgd0ZWFtX2lkGAEgASgJEhAKCGFnZW50X2lkGAIgASgJEioKCGdyb3VwX2J5GAMgASgOMhgubWV0ZXIudjEuU3VtbWFyeUdyb3VwQnkSGgoSZ3JvdXBfbWV0YWRhdGFfa2V5GAQgASgJEhQKDG1ldGFkYXRhX2tleRgFIAEoCRIWCg5tZXRhZGF0YV92YWx1ZRgGIAEoCRIuCgpzdGFydF90aW1lGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIsCghlbmRfdGltZRgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAixQEKDFVzYWdlU3VtbWFyeRILCgNrZXkYASABKAkSGgoSdG90YWxfaW5wdXRfdG9rZW5zGAIgASgDEhsKE3RvdGFsX291dHB1dF90b2tlbnMYAyABKAMSHwoXdG90YWxfY2FjaGVfcmVhZF90b2tlbnMYBCABKAMSIAoYdG90YWxfY2FjaGVfd3JpdGVfdG9rZW5zGAUgASgDEhYKDnRvdGFsX2Nvc3RfdXNkGAYgASgBEhQKDHJlY29yZF9jb3VudBgHIAEoAyI/ChRVc2FnZVN1bW1hcnlSZXNwb25zZRInCgdidWNrZXRzGAEgAygLMhYubWV0ZXIudjEuVXNhZ2VTdW1tYXJ5ItIBChFNZXRlclN1bW1hcnlRdWVyeRIQCghtZXRlcl9pZBgBIAEoCRIPCgd0ZWFtX2lkGAIgASgJEhAKCGFnZW50X2lkGAMgASgJEioKCGdyb3VwX2J5GAQgASgOMhgubWV0ZXIudjEuU3VtbWFyeUdyb3VwQnkSLgoKc3RhcnRfdGltZRgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLAoIZW5kX3RpbWUYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIkYKEk1ldGVyU3VtbWFyeUJ1Y2tldBILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAESFAoMcmVjb3JkX2NvdW50GAMgASgDIlcKFE1ldGVyU3VtbWFyeVJlc3BvbnNlEhAKCG1ldGVyX2lkGAEgASgJEi0KB2J1Y2tldHMYAiADKAsyHC5tZXRlci52MS5NZXRlclN1bW1hcnlCdWNrZXQq4QEKDlN1bW1hcnlHcm91cEJ5EiAKHFNVTU1BUllfR1JPVVBfQllfVU5TUEVDSUZJRUQQABIaChZTVU1NQVJZX0dST1VQX0JZX01PREVMEAESHQoZU1VNTUFSWV9HUk9VUF9CWV9QUk9WSURFUhACEhkKFVNVTU1BUllfR1JPVVBfQllfVEVBTRADEhoKFlNVTU1BUllfR1JPVVBfQllfQUdFTlQQBBIcChhTVU1NQVJZX0dST1VQX0JZX1NVUkZBQ0UQBRIdChlTVU1NQVJZX0dST1VQX0JZX01FVEFEQVRBEAYylwMKDE1ldGVyU2VydmljZRJKCgtSZWNvcmRVc2FnZRIcLm1ldGVyLnYxLlJlY29yZFVzYWdlUmVxdWVzdBodLm1ldGVyLnYxLlJlY29yZFVzYWdlUmVzcG9uc2USWQoQUmVjb3JkVXNhZ2VCYXRjaBIhLm1ldGVyLnYxLlJlY29yZFVzYWdlQmF0Y2hSZXF1ZXN0GiIubWV0ZXIudjEuUmVjb3JkVXNhZ2VCYXRjaFJlc3BvbnNlEkAKClF1ZXJ5VXNhZ2USFC5tZXRlci52MS5Vc2FnZVF1ZXJ5GhwubWV0ZXIudjEuVXNhZ2VRdWVyeVJlc3BvbnNlEk4KD0dldFVzYWdlU3VtbWFyeRIbLm1ldGVyLnYxLlVzYWdlU3VtbWFyeVF1ZXJ5Gh4ubWV0ZXIudjEuVXNhZ2VTdW1tYXJ5UmVzcG9uc2USTgoPR2V0TWV0ZXJTdW1tYXJ5EhsubWV0ZXIudjEuTWV0ZXJTdW1tYXJ5UXVlcnkaHi5tZXRlci52MS5NZXRlclN1bW1hcnlSZXNwb25zZUIyWjBnaXRodWIuY29tL2V2YWxvcHMvcHJvdG8vZ2VuL2dvL21ldGVyL3YxO21ldGVydjFiBnByb3RvMw", [file_google_protobuf_struct, file_google_protobuf_timestamp]);
+  fileDesc("ChRtZXRlci92MS9tZXRlci5wcm90bxIIbWV0ZXIudjEi3wIKElJlY29yZFVzYWdlUmVxdWVzdBIPCgd0ZWFtX2lkGAEgASgJEhAKCGFnZW50X2lkGAIgASgJEg8KB3N1cmZhY2UYAyABKAkSEgoKZXZlbnRfdHlwZRgEIAEoCRINCgVtb2RlbBgFIAEoCRIQCghwcm92aWRlchgGIAEoCRIUCgxpbnB1dF90b2tlbnMYByABKAMSFQoNb3V0cHV0X3Rva2VucxgIIAEoAxIZChFjYWNoZV9yZWFkX3Rva2VucxgJIAEoAxIaChJjYWNoZV93cml0ZV90b2tlbnMYCiABKAMSFgoOdG90YWxfY29zdF91c2QYCyABKAESEgoKcmVxdWVzdF9pZBgMIAEoCRIpCghtZXRhZGF0YRgNIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QSJQoEZGF0YRgOIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QiPAoTUmVjb3JkVXNhZ2VSZXNwb25zZRIlCgZyZWNvcmQYASABKAsyFS5tZXRlci52MS5Vc2FnZVJlY29yZCJIChdSZWNvcmRVc2FnZUJhdGNoUmVxdWVzdBItCgdyZWNvcmRzGAEgAygLMhwubWV0ZXIudjEuUmVjb3JkVXNhZ2VSZXF1ZXN0IkIKGFJlY29yZFVzYWdlQmF0Y2hSZXNwb25zZRImCgdyZWNvcmRzGAEgAygLMhUubWV0ZXIudjEuVXNhZ2VSZWNvcmQi3AMKC1VzYWdlUmVjb3JkEgoKAmlkGAEgASgJEi0KCXRpbWVzdGFtcBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASFwoPb3JnYW5pemF0aW9uX2lkGAMgASgJEg8KB3RlYW1faWQYBCABKAkSEAoIYWdlbnRfaWQYBSABKAkSDwoHc3VyZmFjZRgGIAEoCRISCgpldmVudF90eXBlGAcgASgJEg0KBW1vZGVsGAggASgJEhAKCHByb3ZpZGVyGAkgASgJEhQKDGlucHV0X3Rva2VucxgKIAEoAxIVCg1vdXRwdXRfdG9rZW5zGAsgASgDEhkKEWNhY2hlX3JlYWRfdG9rZW5zGAwgASgDEhoKEmNhY2hlX3dyaXRlX3Rva2VucxgNIAEoAxIWCg50b3RhbF9jb3N0X3VzZBgOIAEoARISCgpyZXF1ZXN0X2lkGA8gASgJEiUKBGRhdGEYECABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0EikKCG1ldGFkYXRhGBEgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdBIuCgpjcmVhdGVkX2F0GBIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCLwAQoKVXNhZ2VRdWVyeRIPCgd0ZWFtX2lkGAEgASgJEhAKCGFnZW50X2lkGAIgASgJEhIKCmV2ZW50X3R5cGUYAyABKAkSDQoFbW9kZWwYBCABKAkSEAoIcHJvdmlkZXIYBSABKAkSFAoMbWV0YWRhdGFfa2V5GAYgASgJEhYKDm1ldGFkYXRhX3ZhbHVlGAcgASgJEi4KCnN0YXJ0X3RpbWUYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEiwKCGVuZF90aW1lGAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCI8ChJVc2FnZVF1ZXJ5UmVzcG9uc2USJgoHcmVjb3JkcxgBIAMoCzIVLm1ldGVyLnYxLlVzYWdlUmVjb3JkIooCChFVc2FnZVN1bW1hcnlRdWVyeRIPCgd0ZWFtX2lkGAEgASgJEhAKCGFnZW50X2lkGAIgASgJEioKCGdyb3VwX2J5GAMgASgOMhgubWV0ZXIudjEuU3VtbWFyeUdyb3VwQnkSGgoSZ3JvdXBfbWV0YWRhdGFfa2V5GAQgASgJEhQKDG1ldGFkYXRhX2tleRgFIAEoCRIWCg5tZXRhZGF0YV92YWx1ZRgGIAEoCRIuCgpzdGFydF90aW1lGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIsCghlbmRfdGltZRgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAixQEKDFVzYWdlU3VtbWFyeRILCgNrZXkYASABKAkSGgoSdG90YWxfaW5wdXRfdG9rZW5zGAIgASgDEhsKE3RvdGFsX291dHB1dF90b2tlbnMYAyABKAMSHwoXdG90YWxfY2FjaGVfcmVhZF90b2tlbnMYBCABKAMSIAoYdG90YWxfY2FjaGVfd3JpdGVfdG9rZW5zGAUgASgDEhYKDnRvdGFsX2Nvc3RfdXNkGAYgASgBEhQKDHJlY29yZF9jb3VudBgHIAEoAyI/ChRVc2FnZVN1bW1hcnlSZXNwb25zZRInCgdidWNrZXRzGAEgAygLMhYubWV0ZXIudjEuVXNhZ2VTdW1tYXJ5ItIBChFNZXRlclN1bW1hcnlRdWVyeRIQCghtZXRlcl9pZBgBIAEoCRIPCgd0ZWFtX2lkGAIgASgJEhAKCGFnZW50X2lkGAMgASgJEioKCGdyb3VwX2J5GAQgASgOMhgubWV0ZXIudjEuU3VtbWFyeUdyb3VwQnkSLgoKc3RhcnRfdGltZRgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLAoIZW5kX3RpbWUYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIkYKEk1ldGVyU3VtbWFyeUJ1Y2tldBILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAESFAoMcmVjb3JkX2NvdW50GAMgASgDIlcKFE1ldGVyU3VtbWFyeVJlc3BvbnNlEhAKCG1ldGVyX2lkGAEgASgJEi0KB2J1Y2tldHMYAiADKAsyHC5tZXRlci52MS5NZXRlclN1bW1hcnlCdWNrZXQi3QEKEFdpZGVFdmVudE1ldHJpY3MSFAoMaW5wdXRfdG9rZW5zGAEgASgDEhUKDW91dHB1dF90b2tlbnMYAiABKAMSGQoRY2FjaGVfcmVhZF90b2tlbnMYAyABKAMSGgoSY2FjaGVfd3JpdGVfdG9rZW5zGAQgASgDEhYKDnRvdGFsX2Nvc3RfdXNkGAUgASgBEhMKC2R1cmF0aW9uX21zGAYgASgDEh4KFnRpbWVfdG9fZmlyc3RfdG9rZW5fbXMYByABKAMSGAoQdG9vbF9jYWxsc19jb3VudBgIIAEoAyLDAgoWSW5nZXN0V2lkZUV2ZW50UmVxdWVzdBItCgl0aW1lc3RhbXAYASABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg8KB3RlYW1faWQYAiABKAkSEAoIYWdlbnRfaWQYAyABKAkSDwoHc3VyZmFjZRgEIAEoCRISCgpldmVudF90eXBlGAUgASgJEg0KBW1vZGVsGAYgASgJEhAKCHByb3ZpZGVyGAcgASgJEhIKCnJlcXVlc3RfaWQYCCABKAkSKQoIbWV0YWRhdGEYCSABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0EiUKBGRhdGEYCiABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0EisKB21ldHJpY3MYCyABKAsyGi5tZXRlci52MS5XaWRlRXZlbnRNZXRyaWNzIosDCglXaWRlRXZlbnQSCgoCaWQYASABKAkSLQoJdGltZXN0YW1wGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIXCg9vcmdhbml6YXRpb25faWQYAyABKAkSDwoHdGVhbV9pZBgEIAEoCRIQCghhZ2VudF9pZBgFIAEoCRIPCgdzdXJmYWNlGAYgASgJEhIKCmV2ZW50X3R5cGUYByABKAkSDQoFbW9kZWwYCCABKAkSEAoIcHJvdmlkZXIYCSABKAkSEgoKcmVxdWVzdF9pZBgKIAEoCRIpCghtZXRhZGF0YRgLIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QSJQoEZGF0YRgMIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QSKwoHbWV0cmljcxgNIAEoCzIaLm1ldGVyLnYxLldpZGVFdmVudE1ldHJpY3MSLgoKY3JlYXRlZF9hdBgOIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAiPQoXSW5nZXN0V2lkZUV2ZW50UmVzcG9uc2USIgoFZXZlbnQYASABKAsyEy5tZXRlci52MS5XaWRlRXZlbnQirAIKFlF1ZXJ5V2lkZUV2ZW50c1JlcXVlc3QSDwoHdGVhbV9pZBgBIAEoCRIQCghhZ2VudF9pZBgCIAEoCRIPCgdzdXJmYWNlGAMgASgJEhIKCmV2ZW50X3R5cGUYBCABKAkSDQoFbW9kZWwYBSABKAkSEAoIcHJvdmlkZXIYBiABKAkSFAoMbWV0YWRhdGFfa2V5GAcgASgJEhYKDm1ldGFkYXRhX3ZhbHVlGAggASgJEi4KCnN0YXJ0X3RpbWUYCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEiwKCGVuZF90aW1lGAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBINCgVsaW1pdBgLIAEoBRIOCgZvZmZzZXQYDCABKAUiXwoXUXVlcnlXaWRlRXZlbnRzUmVzcG9uc2USIwoGZXZlbnRzGAEgAygLMhMubWV0ZXIudjEuV2lkZUV2ZW50Eg0KBXRvdGFsGAIgASgFEhAKCGhhc19tb3JlGAMgASgIIp4CChhHZXRFdmVudERhc2hib2FyZFJlcXVlc3QSDwoHdGVhbV9pZBgBIAEoCRIQCghhZ2VudF9pZBgCIAEoCRIPCgdzdXJmYWNlGAMgASgJEhIKCmV2ZW50X3R5cGUYBCABKAkSDQoFbW9kZWwYBSABKAkSEAoIcHJvdmlkZXIYBiABKAkSFAoMbWV0YWRhdGFfa2V5GAcgASgJEhYKDm1ldGFkYXRhX3ZhbHVlGAggASgJEi4KCnN0YXJ0X3RpbWUYCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEiwKCGVuZF90aW1lGAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBINCgV0b3BfbhgLIAEoBSJKChRFdmVudERhc2hib2FyZEJ1Y2tldBILCgNrZXkYASABKAkSDQoFY291bnQYAiABKAMSFgoOdG90YWxfY29zdF91c2QYAyABKAEilwMKGUdldEV2ZW50RGFzaGJvYXJkUmVzcG9uc2USFAoMdG90YWxfZXZlbnRzGAEgASgDEhoKEnRvdGFsX2lucHV0X3Rva2VucxgCIAEoAxIbChN0b3RhbF9vdXRwdXRfdG9rZW5zGAMgASgDEh8KF3RvdGFsX2NhY2hlX3JlYWRfdG9rZW5zGAQgASgDEiAKGHRvdGFsX2NhY2hlX3dyaXRlX3Rva2VucxgFIAEoAxIWCg50b3RhbF9jb3N0X3VzZBgGIAEoARI1Cg1ieV9ldmVudF90eXBlGAcgAygLMh4ubWV0ZXIudjEuRXZlbnREYXNoYm9hcmRCdWNrZXQSMgoKYnlfc3VyZmFjZRgIIAMoCzIeLm1ldGVyLnYxLkV2ZW50RGFzaGJvYXJkQnVja2V0EjAKCGJ5X21vZGVsGAkgAygLMh4ubWV0ZXIudjEuRXZlbnREYXNoYm9hcmRCdWNrZXQSMwoLYnlfcHJvdmlkZXIYCiADKAsyHi5tZXRlci52MS5FdmVudERhc2hib2FyZEJ1Y2tldCrhAQoOU3VtbWFyeUdyb3VwQnkSIAocU1VNTUFSWV9HUk9VUF9CWV9VTlNQRUNJRklFRBAAEhoKFlNVTU1BUllfR1JPVVBfQllfTU9ERUwQARIdChlTVU1NQVJZX0dST1VQX0JZX1BST1ZJREVSEAISGQoVU1VNTUFSWV9HUk9VUF9CWV9URUFNEAMSGgoWU1VNTUFSWV9HUk9VUF9CWV9BR0VOVBAEEhwKGFNVTU1BUllfR1JPVVBfQllfU1VSRkFDRRAFEh0KGVNVTU1BUllfR1JPVVBfQllfTUVUQURBVEEQBjKlBQoMTWV0ZXJTZXJ2aWNlEkoKC1JlY29yZFVzYWdlEhwubWV0ZXIudjEuUmVjb3JkVXNhZ2VSZXF1ZXN0Gh0ubWV0ZXIudjEuUmVjb3JkVXNhZ2VSZXNwb25zZRJZChBSZWNvcmRVc2FnZUJhdGNoEiEubWV0ZXIudjEuUmVjb3JkVXNhZ2VCYXRjaFJlcXVlc3QaIi5tZXRlci52MS5SZWNvcmRVc2FnZUJhdGNoUmVzcG9uc2USQAoKUXVlcnlVc2FnZRIULm1ldGVyLnYxLlVzYWdlUXVlcnkaHC5tZXRlci52MS5Vc2FnZVF1ZXJ5UmVzcG9uc2USTgoPR2V0VXNhZ2VTdW1tYXJ5EhsubWV0ZXIudjEuVXNhZ2VTdW1tYXJ5UXVlcnkaHi5tZXRlci52MS5Vc2FnZVN1bW1hcnlSZXNwb25zZRJOCg9HZXRNZXRlclN1bW1hcnkSGy5tZXRlci52MS5NZXRlclN1bW1hcnlRdWVyeRoeLm1ldGVyLnYxLk1ldGVyU3VtbWFyeVJlc3BvbnNlElYKD0luZ2VzdFdpZGVFdmVudBIgLm1ldGVyLnYxLkluZ2VzdFdpZGVFdmVudFJlcXVlc3QaIS5tZXRlci52MS5Jbmdlc3RXaWRlRXZlbnRSZXNwb25zZRJWCg9RdWVyeVdpZGVFdmVudHMSIC5tZXRlci52MS5RdWVyeVdpZGVFdmVudHNSZXF1ZXN0GiEubWV0ZXIudjEuUXVlcnlXaWRlRXZlbnRzUmVzcG9uc2USXAoRR2V0RXZlbnREYXNoYm9hcmQSIi5tZXRlci52MS5HZXRFdmVudERhc2hib2FyZFJlcXVlc3QaIy5tZXRlci52MS5HZXRFdmVudERhc2hib2FyZFJlc3BvbnNlQjJaMGdpdGh1Yi5jb20vZXZhbG9wcy9wcm90by9nZW4vZ28vbWV0ZXIvdjE7bWV0ZXJ2MWIGcHJvdG8z", [file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
  * @generated from message meter.v1.RecordUsageRequest
@@ -531,6 +531,479 @@ export const MeterSummaryResponseSchema: GenMessage<MeterSummaryResponse> = /*@_
   messageDesc(file_meter_v1_meter, 12);
 
 /**
+ * @generated from message meter.v1.WideEventMetrics
+ */
+export type WideEventMetrics = Message<"meter.v1.WideEventMetrics"> & {
+  /**
+   * @generated from field: int64 input_tokens = 1;
+   */
+  inputTokens: bigint;
+
+  /**
+   * @generated from field: int64 output_tokens = 2;
+   */
+  outputTokens: bigint;
+
+  /**
+   * @generated from field: int64 cache_read_tokens = 3;
+   */
+  cacheReadTokens: bigint;
+
+  /**
+   * @generated from field: int64 cache_write_tokens = 4;
+   */
+  cacheWriteTokens: bigint;
+
+  /**
+   * @generated from field: double total_cost_usd = 5;
+   */
+  totalCostUsd: number;
+
+  /**
+   * @generated from field: int64 duration_ms = 6;
+   */
+  durationMs: bigint;
+
+  /**
+   * @generated from field: int64 time_to_first_token_ms = 7;
+   */
+  timeToFirstTokenMs: bigint;
+
+  /**
+   * @generated from field: int64 tool_calls_count = 8;
+   */
+  toolCallsCount: bigint;
+};
+
+/**
+ * Describes the message meter.v1.WideEventMetrics.
+ * Use `create(WideEventMetricsSchema)` to create a new message.
+ */
+export const WideEventMetricsSchema: GenMessage<WideEventMetrics> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 13);
+
+/**
+ * @generated from message meter.v1.IngestWideEventRequest
+ */
+export type IngestWideEventRequest = Message<"meter.v1.IngestWideEventRequest"> & {
+  /**
+   * @generated from field: google.protobuf.Timestamp timestamp = 1;
+   */
+  timestamp?: Timestamp;
+
+  /**
+   * @generated from field: string team_id = 2;
+   */
+  teamId: string;
+
+  /**
+   * @generated from field: string agent_id = 3;
+   */
+  agentId: string;
+
+  /**
+   * @generated from field: string surface = 4;
+   */
+  surface: string;
+
+  /**
+   * @generated from field: string event_type = 5;
+   */
+  eventType: string;
+
+  /**
+   * @generated from field: string model = 6;
+   */
+  model: string;
+
+  /**
+   * @generated from field: string provider = 7;
+   */
+  provider: string;
+
+  /**
+   * @generated from field: string request_id = 8;
+   */
+  requestId: string;
+
+  /**
+   * @generated from field: google.protobuf.Struct metadata = 9;
+   */
+  metadata?: JsonObject;
+
+  /**
+   * @generated from field: google.protobuf.Struct data = 10;
+   */
+  data?: JsonObject;
+
+  /**
+   * @generated from field: meter.v1.WideEventMetrics metrics = 11;
+   */
+  metrics?: WideEventMetrics;
+};
+
+/**
+ * Describes the message meter.v1.IngestWideEventRequest.
+ * Use `create(IngestWideEventRequestSchema)` to create a new message.
+ */
+export const IngestWideEventRequestSchema: GenMessage<IngestWideEventRequest> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 14);
+
+/**
+ * @generated from message meter.v1.WideEvent
+ */
+export type WideEvent = Message<"meter.v1.WideEvent"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp timestamp = 2;
+   */
+  timestamp?: Timestamp;
+
+  /**
+   * @generated from field: string organization_id = 3;
+   */
+  organizationId: string;
+
+  /**
+   * @generated from field: string team_id = 4;
+   */
+  teamId: string;
+
+  /**
+   * @generated from field: string agent_id = 5;
+   */
+  agentId: string;
+
+  /**
+   * @generated from field: string surface = 6;
+   */
+  surface: string;
+
+  /**
+   * @generated from field: string event_type = 7;
+   */
+  eventType: string;
+
+  /**
+   * @generated from field: string model = 8;
+   */
+  model: string;
+
+  /**
+   * @generated from field: string provider = 9;
+   */
+  provider: string;
+
+  /**
+   * @generated from field: string request_id = 10;
+   */
+  requestId: string;
+
+  /**
+   * @generated from field: google.protobuf.Struct metadata = 11;
+   */
+  metadata?: JsonObject;
+
+  /**
+   * @generated from field: google.protobuf.Struct data = 12;
+   */
+  data?: JsonObject;
+
+  /**
+   * @generated from field: meter.v1.WideEventMetrics metrics = 13;
+   */
+  metrics?: WideEventMetrics;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 14;
+   */
+  createdAt?: Timestamp;
+};
+
+/**
+ * Describes the message meter.v1.WideEvent.
+ * Use `create(WideEventSchema)` to create a new message.
+ */
+export const WideEventSchema: GenMessage<WideEvent> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 15);
+
+/**
+ * @generated from message meter.v1.IngestWideEventResponse
+ */
+export type IngestWideEventResponse = Message<"meter.v1.IngestWideEventResponse"> & {
+  /**
+   * @generated from field: meter.v1.WideEvent event = 1;
+   */
+  event?: WideEvent;
+};
+
+/**
+ * Describes the message meter.v1.IngestWideEventResponse.
+ * Use `create(IngestWideEventResponseSchema)` to create a new message.
+ */
+export const IngestWideEventResponseSchema: GenMessage<IngestWideEventResponse> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 16);
+
+/**
+ * @generated from message meter.v1.QueryWideEventsRequest
+ */
+export type QueryWideEventsRequest = Message<"meter.v1.QueryWideEventsRequest"> & {
+  /**
+   * @generated from field: string team_id = 1;
+   */
+  teamId: string;
+
+  /**
+   * @generated from field: string agent_id = 2;
+   */
+  agentId: string;
+
+  /**
+   * @generated from field: string surface = 3;
+   */
+  surface: string;
+
+  /**
+   * @generated from field: string event_type = 4;
+   */
+  eventType: string;
+
+  /**
+   * @generated from field: string model = 5;
+   */
+  model: string;
+
+  /**
+   * @generated from field: string provider = 6;
+   */
+  provider: string;
+
+  /**
+   * @generated from field: string metadata_key = 7;
+   */
+  metadataKey: string;
+
+  /**
+   * @generated from field: string metadata_value = 8;
+   */
+  metadataValue: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp start_time = 9;
+   */
+  startTime?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp end_time = 10;
+   */
+  endTime?: Timestamp;
+
+  /**
+   * @generated from field: int32 limit = 11;
+   */
+  limit: number;
+
+  /**
+   * @generated from field: int32 offset = 12;
+   */
+  offset: number;
+};
+
+/**
+ * Describes the message meter.v1.QueryWideEventsRequest.
+ * Use `create(QueryWideEventsRequestSchema)` to create a new message.
+ */
+export const QueryWideEventsRequestSchema: GenMessage<QueryWideEventsRequest> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 17);
+
+/**
+ * @generated from message meter.v1.QueryWideEventsResponse
+ */
+export type QueryWideEventsResponse = Message<"meter.v1.QueryWideEventsResponse"> & {
+  /**
+   * @generated from field: repeated meter.v1.WideEvent events = 1;
+   */
+  events: WideEvent[];
+
+  /**
+   * @generated from field: int32 total = 2;
+   */
+  total: number;
+
+  /**
+   * @generated from field: bool has_more = 3;
+   */
+  hasMore: boolean;
+};
+
+/**
+ * Describes the message meter.v1.QueryWideEventsResponse.
+ * Use `create(QueryWideEventsResponseSchema)` to create a new message.
+ */
+export const QueryWideEventsResponseSchema: GenMessage<QueryWideEventsResponse> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 18);
+
+/**
+ * @generated from message meter.v1.GetEventDashboardRequest
+ */
+export type GetEventDashboardRequest = Message<"meter.v1.GetEventDashboardRequest"> & {
+  /**
+   * @generated from field: string team_id = 1;
+   */
+  teamId: string;
+
+  /**
+   * @generated from field: string agent_id = 2;
+   */
+  agentId: string;
+
+  /**
+   * @generated from field: string surface = 3;
+   */
+  surface: string;
+
+  /**
+   * @generated from field: string event_type = 4;
+   */
+  eventType: string;
+
+  /**
+   * @generated from field: string model = 5;
+   */
+  model: string;
+
+  /**
+   * @generated from field: string provider = 6;
+   */
+  provider: string;
+
+  /**
+   * @generated from field: string metadata_key = 7;
+   */
+  metadataKey: string;
+
+  /**
+   * @generated from field: string metadata_value = 8;
+   */
+  metadataValue: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp start_time = 9;
+   */
+  startTime?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp end_time = 10;
+   */
+  endTime?: Timestamp;
+
+  /**
+   * @generated from field: int32 top_n = 11;
+   */
+  topN: number;
+};
+
+/**
+ * Describes the message meter.v1.GetEventDashboardRequest.
+ * Use `create(GetEventDashboardRequestSchema)` to create a new message.
+ */
+export const GetEventDashboardRequestSchema: GenMessage<GetEventDashboardRequest> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 19);
+
+/**
+ * @generated from message meter.v1.EventDashboardBucket
+ */
+export type EventDashboardBucket = Message<"meter.v1.EventDashboardBucket"> & {
+  /**
+   * @generated from field: string key = 1;
+   */
+  key: string;
+
+  /**
+   * @generated from field: int64 count = 2;
+   */
+  count: bigint;
+
+  /**
+   * @generated from field: double total_cost_usd = 3;
+   */
+  totalCostUsd: number;
+};
+
+/**
+ * Describes the message meter.v1.EventDashboardBucket.
+ * Use `create(EventDashboardBucketSchema)` to create a new message.
+ */
+export const EventDashboardBucketSchema: GenMessage<EventDashboardBucket> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 20);
+
+/**
+ * @generated from message meter.v1.GetEventDashboardResponse
+ */
+export type GetEventDashboardResponse = Message<"meter.v1.GetEventDashboardResponse"> & {
+  /**
+   * @generated from field: int64 total_events = 1;
+   */
+  totalEvents: bigint;
+
+  /**
+   * @generated from field: int64 total_input_tokens = 2;
+   */
+  totalInputTokens: bigint;
+
+  /**
+   * @generated from field: int64 total_output_tokens = 3;
+   */
+  totalOutputTokens: bigint;
+
+  /**
+   * @generated from field: int64 total_cache_read_tokens = 4;
+   */
+  totalCacheReadTokens: bigint;
+
+  /**
+   * @generated from field: int64 total_cache_write_tokens = 5;
+   */
+  totalCacheWriteTokens: bigint;
+
+  /**
+   * @generated from field: double total_cost_usd = 6;
+   */
+  totalCostUsd: number;
+
+  /**
+   * @generated from field: repeated meter.v1.EventDashboardBucket by_event_type = 7;
+   */
+  byEventType: EventDashboardBucket[];
+
+  /**
+   * @generated from field: repeated meter.v1.EventDashboardBucket by_surface = 8;
+   */
+  bySurface: EventDashboardBucket[];
+
+  /**
+   * @generated from field: repeated meter.v1.EventDashboardBucket by_model = 9;
+   */
+  byModel: EventDashboardBucket[];
+
+  /**
+   * @generated from field: repeated meter.v1.EventDashboardBucket by_provider = 10;
+   */
+  byProvider: EventDashboardBucket[];
+};
+
+/**
+ * Describes the message meter.v1.GetEventDashboardResponse.
+ * Use `create(GetEventDashboardResponseSchema)` to create a new message.
+ */
+export const GetEventDashboardResponseSchema: GenMessage<GetEventDashboardResponse> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 21);
+
+/**
  * @generated from enum meter.v1.SummaryGroupBy
  */
 export enum SummaryGroupBy {
@@ -621,6 +1094,30 @@ export const MeterService: GenService<{
     methodKind: "unary";
     input: typeof MeterSummaryQuerySchema;
     output: typeof MeterSummaryResponseSchema;
+  },
+  /**
+   * @generated from rpc meter.v1.MeterService.IngestWideEvent
+   */
+  ingestWideEvent: {
+    methodKind: "unary";
+    input: typeof IngestWideEventRequestSchema;
+    output: typeof IngestWideEventResponseSchema;
+  },
+  /**
+   * @generated from rpc meter.v1.MeterService.QueryWideEvents
+   */
+  queryWideEvents: {
+    methodKind: "unary";
+    input: typeof QueryWideEventsRequestSchema;
+    output: typeof QueryWideEventsResponseSchema;
+  },
+  /**
+   * @generated from rpc meter.v1.MeterService.GetEventDashboard
+   */
+  getEventDashboard: {
+    methodKind: "unary";
+    input: typeof GetEventDashboardRequestSchema;
+    output: typeof GetEventDashboardResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_meter_v1_meter, 0);
