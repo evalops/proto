@@ -1,0 +1,40 @@
+{
+  "spec_version": "1.0",
+  "id": "evt_pipeline_activity_replied_1",
+  "type": "pipeline.changes.activity.create",
+  "source": "pipeline",
+  "subject": "pipeline.changes.activity.create",
+  "time": "2026-04-13T00:30:00.123456789Z",
+  "data_content_type": "application/protobuf",
+  "tenant_id": "11111111-1111-1111-1111-111111111111",
+  "data": {
+    "@type": "type.googleapis.com/events.v1.Change",
+    "seq": "108",
+    "organization_id": "11111111-1111-1111-1111-111111111111",
+    "aggregate_type": "activity",
+    "aggregate_id": "33333333-3333-3333-3333-333333333333",
+    "operation": "create",
+    "actor_type": "service",
+    "actor_id": "pipeline-api",
+    "aggregate_version": "1",
+    "recorded_at": "2026-04-13T00:30:00.123456789Z",
+    "payload": {
+      "id": "33333333-3333-3333-3333-333333333333",
+      "organization_id": "11111111-1111-1111-1111-111111111111",
+      "owner_type": "contact",
+      "owner_id": "44444444-4444-4444-4444-444444444444",
+      "activity_type": "email_sent",
+      "channel": "email",
+      "direction": "outbound",
+      "subject": "Re: Intro to EvalOps",
+      "body": "Thanks, this looks useful.",
+      "outcome": "replied",
+      "external_ref": "gmail-thread-123",
+      "occurred_at": "2026-04-13T00:29:00Z",
+      "created_at": "2026-04-13T00:30:00.123456789Z"
+    }
+  },
+  "extensions": {
+    "dataschema": "buf.build/evalops/proto/events.v1.Change"
+  }
+}
