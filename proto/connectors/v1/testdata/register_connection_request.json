@@ -1,0 +1,14 @@
+{
+  "workspace_id": "ws_connectors",
+  "provider_id": "hubspot",
+  "display_name": "HubSpot CRM",
+  "auth_type": "AUTH_TYPE_OAUTH2",
+  "scopes": [
+    "crm.objects.contacts.read",
+    "crm.objects.companies.read"
+  ],
+  "credentials": {
+    "client_id": "hubspot-client-id",
+    "secret_ref": "gsm://evalops/hubspot-client-secret"
+  }
+}

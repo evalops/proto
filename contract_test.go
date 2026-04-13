@@ -7,8 +7,15 @@ import (
 	"testing"
 	"time"
 
+	approvalsv1 "github.com/evalops/proto/gen/go/approvals/v1"
+	connectorsv1 "github.com/evalops/proto/gen/go/connectors/v1"
+	entitiesv1 "github.com/evalops/proto/gen/go/entities/v1"
 	eventsv1 "github.com/evalops/proto/gen/go/events/v1"
+	governancev1 "github.com/evalops/proto/gen/go/governance/v1"
 	memoryv1 "github.com/evalops/proto/gen/go/memory/v1"
+	notificationsv1 "github.com/evalops/proto/gen/go/notifications/v1"
+	objectivesv1 "github.com/evalops/proto/gen/go/objectives/v1"
+	skillsv1 "github.com/evalops/proto/gen/go/skills/v1"
 	tapv1 "github.com/evalops/proto/gen/go/tap/v1"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
@@ -354,6 +361,134 @@ func TestCloudEventTapFixtureMatchesProtoContract(t *testing.T) {
 	}
 	if unpacked.GetChanges()["stage"].GetTo().GetStringValue() != "qualified" {
 		t.Fatalf("expected stage transition to qualified, got %#v", unpacked.GetChanges()["stage"].GetTo())
+	}
+}
+
+func TestApprovalsRequestApprovalFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message approvalsv1.RequestApprovalRequest
+	loadProtoJSONFixture(t, filepath.Join("proto", "approvals", "v1", "testdata", "request_approval_request.json"), &message)
+
+	if message.GetWorkspaceId() != "ws_approval" {
+		t.Fatalf("expected workspace_id ws_approval, got %q", message.GetWorkspaceId())
+	}
+	if message.GetRiskLevel() != approvalsv1.RiskLevel_RISK_LEVEL_HIGH {
+		t.Fatalf("expected RISK_LEVEL_HIGH, got %v", message.GetRiskLevel())
+	}
+	if string(message.GetActionPayload()) != `{"path":"/tmp/secret.txt","recursive":false}` {
+		t.Fatalf("unexpected action_payload %q", string(message.GetActionPayload()))
+	}
+}
+
+func TestConnectorsRegisterConnectionFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message connectorsv1.RegisterConnectionRequest
+	loadProtoJSONFixture(t, filepath.Join("proto", "connectors", "v1", "testdata", "register_connection_request.json"), &message)
+
+	if message.GetProviderId() != "hubspot" {
+		t.Fatalf("expected provider_id hubspot, got %q", message.GetProviderId())
+	}
+	if message.GetAuthType() != connectorsv1.AuthType_AUTH_TYPE_OAUTH2 {
+		t.Fatalf("expected AUTH_TYPE_OAUTH2, got %v", message.GetAuthType())
+	}
+	if message.GetCredentials()["secret_ref"] != "gsm://evalops/hubspot-client-secret" {
+		t.Fatalf("expected secret_ref credential, got %#v", message.GetCredentials())
+	}
+}
+
+func TestEntitiesGetCanonicalFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message entitiesv1.GetCanonicalResponse
+	loadProtoJSONFixture(t, filepath.Join("proto", "entities", "v1", "testdata", "get_canonical_response.json"), &message)
+
+	entity := message.GetEntity()
+	if entity.GetPrimaryType() != entitiesv1.EntityType_ENTITY_TYPE_CONTACT {
+		t.Fatalf("expected ENTITY_TYPE_CONTACT, got %v", entity.GetPrimaryType())
+	}
+	if len(entity.GetRefs()) != 2 {
+		t.Fatalf("expected 2 refs, got %d", len(entity.GetRefs()))
+	}
+	if entity.GetRefs()[0].GetEmails()[0] != "jamie@example.com" {
+		t.Fatalf("expected primary email jamie@example.com, got %#v", entity.GetRefs()[0].GetEmails())
+	}
+}
+
+func TestGovernanceEvaluateActionFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message governancev1.EvaluateActionRequest
+	loadProtoJSONFixture(t, filepath.Join("proto", "governance", "v1", "testdata", "evaluate_action_request.json"), &message)
+
+	if message.GetWorkspaceId() != "ws_governance" {
+		t.Fatalf("expected workspace_id ws_governance, got %q", message.GetWorkspaceId())
+	}
+	if string(message.GetActionPayload()) != `{"credential":"sk-live-123","target":"slack"}` {
+		t.Fatalf("unexpected action_payload %q", string(message.GetActionPayload()))
+	}
+}
+
+func TestNotificationsGetPreferencesFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message notificationsv1.GetPreferencesResponse
+	loadProtoJSONFixture(t, filepath.Join("proto", "notifications", "v1", "testdata", "get_preferences_response.json"), &message)
+
+	preferences := message.GetPreferences()
+	if preferences.GetDefaultChannel() != notificationsv1.DeliveryChannel_DELIVERY_CHANNEL_SLACK {
+		t.Fatalf("expected DELIVERY_CHANNEL_SLACK, got %v", preferences.GetDefaultChannel())
+	}
+	if len(preferences.GetEscalationRules()) != 2 {
+		t.Fatalf("expected 2 escalation rules, got %d", len(preferences.GetEscalationRules()))
+	}
+	if preferences.GetEscalationRules()[1].GetEscalateToChannel() != notificationsv1.DeliveryChannel_DELIVERY_CHANNEL_EMAIL {
+		t.Fatalf("expected second escalation rule to target email, got %v", preferences.GetEscalationRules()[1].GetEscalateToChannel())
+	}
+}
+
+func TestObjectivesCreateResponseFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message objectivesv1.CreateResponse
+	loadProtoJSONFixture(t, filepath.Join("proto", "objectives", "v1", "testdata", "create_response.json"), &message)
+
+	objective := message.GetObjective()
+	if objective.GetState() != objectivesv1.ObjectiveState_OBJECTIVE_STATE_RUNNING {
+		t.Fatalf("expected OBJECTIVE_STATE_RUNNING, got %v", objective.GetState())
+	}
+	if len(objective.GetProvenance()) != 1 {
+		t.Fatalf("expected 1 provenance record, got %d", len(objective.GetProvenance()))
+	}
+	if len(objective.GetMutations()) != 1 {
+		t.Fatalf("expected 1 mutation record, got %d", len(objective.GetMutations()))
+	}
+	if objective.GetMutations()[0].GetStatus() != objectivesv1.MutationStatus_MUTATION_STATUS_APPROVED {
+		t.Fatalf("expected first mutation to be approved, got %v", objective.GetMutations()[0].GetStatus())
+	}
+}
+
+func TestSkillsSearchResponseFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message skillsv1.SearchResponse
+	loadProtoJSONFixture(t, filepath.Join("proto", "skills", "v1", "testdata", "search_response.json"), &message)
+
+	if message.GetTotal() != 2 {
+		t.Fatalf("expected total 2, got %d", message.GetTotal())
+	}
+	if len(message.GetSkills()) != 2 {
+		t.Fatalf("expected 2 skills, got %d", len(message.GetSkills()))
+	}
+	if message.GetSkills()[0].GetScope() != skillsv1.SkillScope_SKILL_SCOPE_WORKSPACE {
+		t.Fatalf("expected first skill to be workspace-scoped, got %v", message.GetSkills()[0].GetScope())
+	}
+	if len(message.GetSkills()[1].GetTags()) != 2 {
+		t.Fatalf("expected second skill to have 2 tags, got %#v", message.GetSkills()[1].GetTags())
+	}
+	if message.GetSkills()[1].GetTags()[1] != "metrics" {
+		t.Fatalf("expected second skill second tag to be metrics, got %#v", message.GetSkills()[1].GetTags())
 	}
 }
 

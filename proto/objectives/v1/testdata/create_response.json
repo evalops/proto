@@ -1,0 +1,36 @@
+{
+  "objective": {
+    "id": "obj_123",
+    "workspace_id": "ws_objectives",
+    "agent_id": "agent_outbound",
+    "surface": "ensemble",
+    "title": "Follow up with ACME after demo",
+    "description": "Send the post-demo recap and schedule next steps.",
+    "state": "OBJECTIVE_STATE_RUNNING",
+    "provenance": [
+      {
+        "source_integration": "hubspot",
+        "source_id": "deal_42",
+        "freshness_seconds": 300,
+        "confidence": 0.91
+      }
+    ],
+    "mutations": [
+      {
+        "target_integration": "hubspot",
+        "operation": "deal.update",
+        "status": "MUTATION_STATUS_APPROVED",
+        "approval_id": "apr_123"
+      }
+    ],
+    "wake_schedule": {
+      "wake_at": "2026-04-13T00:30:00Z",
+      "reason": "wait_for_customer_reply",
+      "retry_count": 1,
+      "max_retries": 5,
+      "backoff_seconds": 600
+    },
+    "created_at": "2026-04-13T00:00:00Z",
+    "updated_at": "2026-04-13T00:05:00Z"
+  }
+}

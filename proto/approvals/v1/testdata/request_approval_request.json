@@ -1,0 +1,9 @@
+{
+  "workspace_id": "ws_approval",
+  "agent_id": "agent_maestro",
+  "surface": "chat",
+  "action_type": "file.delete",
+  "action_payload": "eyJwYXRoIjoiL3RtcC9zZWNyZXQudHh0IiwicmVjdXJzaXZlIjpmYWxzZX0=",
+  "risk_level": "RISK_LEVEL_HIGH",
+  "context_json": "{\"repository\":\"evalops/deploy\",\"branch\":\"main\"}"
+}

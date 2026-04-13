@@ -1,0 +1,6 @@
+{
+  "workspace_id": "ws_governance",
+  "agent_id": "agent_guard",
+  "action_type": "credential.share",
+  "action_payload": "eyJjcmVkZW50aWFsIjoic2stbGl2ZS0xMjMiLCJ0YXJnZXQiOiJzbGFjayJ9"
+}
