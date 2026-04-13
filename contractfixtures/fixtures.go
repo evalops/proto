@@ -17,22 +17,62 @@ import (
 )
 
 const (
+	ApprovalsRequestApprovalRequest             = "approvals/v1/testdata/request_approval_request.json"
 	ConfigFeatureFlagSnapshot                   = "config/v1/testdata/feature_flag_snapshot.json"
+	ConnectorsRegisterConnectionRequest         = "connectors/v1/testdata/register_connection_request.json"
+	EntitiesGetCanonicalResponse                = "entities/v1/testdata/get_canonical_response.json"
+	EventChange                                 = "events/v1/testdata/cloud_event_change.json"
 	EventEvaluationCompletedTechnicalCapability = "events/v1/testdata/cloud_event_evaluation_completed_technical_capability.json"
 	EventPipelineActivityCreateReplied          = "events/v1/testdata/cloud_event_pipeline_activity_create_replied.json"
 	EventPipelineDealUpdateClosedWon            = "events/v1/testdata/cloud_event_pipeline_deal_update_closed_won.json"
 	EventPipelineSignalCreateLinkedInActive     = "events/v1/testdata/cloud_event_pipeline_signal_create_linkedin_active.json"
 	EventParkerWorkRelationshipUpdateTerminated = "events/v1/testdata/cloud_event_parker_work_relationship_update_terminated.json"
+	EventTap                                    = "events/v1/testdata/cloud_event_tap.json"
 	EventTapHubspotDealQualified                = "events/v1/testdata/cloud_event_tap_hubspot_deal_qualified.json"
+	GovernanceEvaluateActionRequest             = "governance/v1/testdata/evaluate_action_request.json"
 	KeysResolveProviderRefRequest               = "keys/v1/testdata/resolve_provider_ref_request.json"
 	KeysResolveProviderRefResponse              = "keys/v1/testdata/resolve_provider_ref_response.json"
+	MemoryRecallResponse                        = "memory/v1/testdata/recall_response.json"
+	MemoryStoreRequest                          = "memory/v1/testdata/store_request.json"
 	MeterRecordUsageRequestLLMGatewayResponses  = "meter/v1/testdata/record_usage_request_llm_gateway_responses.json"
 	MeterRecordUsageRequest                     = "meter/v1/testdata/record_usage_request.json"
 	MeterRecordUsageResponse                    = "meter/v1/testdata/record_usage_response.json"
 	MeterUsageQueryResponse                     = "meter/v1/testdata/query_usage_response.json"
 	MeterUsageSummaryResponse                   = "meter/v1/testdata/usage_summary_response.json"
 	MeterMeterSummaryResponse                   = "meter/v1/testdata/meter_summary_response.json"
+	NotificationsGetPreferencesResponse         = "notifications/v1/testdata/get_preferences_response.json"
+	ObjectivesCreateResponse                    = "objectives/v1/testdata/create_response.json"
+	SkillsSearchResponse                        = "skills/v1/testdata/search_response.json"
 )
+
+var fixtureCatalog = []string{
+	ApprovalsRequestApprovalRequest,
+	ConfigFeatureFlagSnapshot,
+	ConnectorsRegisterConnectionRequest,
+	EntitiesGetCanonicalResponse,
+	EventChange,
+	EventEvaluationCompletedTechnicalCapability,
+	EventPipelineActivityCreateReplied,
+	EventPipelineDealUpdateClosedWon,
+	EventPipelineSignalCreateLinkedInActive,
+	EventParkerWorkRelationshipUpdateTerminated,
+	EventTap,
+	EventTapHubspotDealQualified,
+	GovernanceEvaluateActionRequest,
+	KeysResolveProviderRefRequest,
+	KeysResolveProviderRefResponse,
+	MemoryRecallResponse,
+	MemoryStoreRequest,
+	MeterMeterSummaryResponse,
+	MeterRecordUsageRequest,
+	MeterRecordUsageRequestLLMGatewayResponses,
+	MeterRecordUsageResponse,
+	MeterUsageQueryResponse,
+	MeterUsageSummaryResponse,
+	NotificationsGetPreferencesResponse,
+	ObjectivesCreateResponse,
+	SkillsSearchResponse,
+}
 
 var embeddedFixtures = map[string][]byte{
 	EventEvaluationCompletedTechnicalCapability: []byte(`{
@@ -220,6 +260,11 @@ var embeddedFixtures = map[string][]byte{
     "updated_at": "2026-04-13T11:30:00Z"
   }
 }`),
+}
+
+// Catalog returns the canonical contract fixture paths exported by this module.
+func Catalog() []string {
+	return append([]string(nil), fixtureCatalog...)
 }
 
 // Read returns a canonical proto fixture from the proto fixture catalog.
