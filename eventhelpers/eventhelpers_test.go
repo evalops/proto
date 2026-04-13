@@ -1,0 +1,117 @@
+package eventhelpers
+
+import (
+	"testing"
+	"time"
+
+	eventsv1 "github.com/evalops/proto/gen/go/events/v1"
+	tapv1 "github.com/evalops/proto/gen/go/tap/v1"
+	"google.golang.org/protobuf/types/known/structpb"
+)
+
+func TestNewCloudEventRoundTripPreservesTypedChangePayload(t *testing.T) {
+	t.Parallel()
+
+	change := &eventsv1.Change{
+		Seq:            42,
+		OrganizationId: "11111111-1111-1111-1111-111111111111",
+		AggregateType:  "activity",
+		AggregateId:    "33333333-3333-3333-3333-333333333333",
+		Operation:      "create",
+		Payload: mustStruct(t, map[string]any{
+			"outcome": "replied",
+			"subject": "Re: Intro to EvalOps",
+		}),
+	}
+
+	envelope, err := NewCloudEvent(
+		"evt_123",
+		"pipeline.changes.activity.create",
+		"pipeline",
+		"pipeline.changes.activity.create",
+		change.GetOrganizationId(),
+		time.Date(2026, 4, 13, 0, 30, 0, 123456789, time.UTC),
+		change,
+	)
+	if err != nil {
+		t.Fatalf("NewCloudEvent() error = %v", err)
+	}
+
+	payload, err := MarshalProtoJSON(envelope)
+	if err != nil {
+		t.Fatalf("MarshalProtoJSON() error = %v", err)
+	}
+
+	decoded, err := UnmarshalCloudEventProtoJSON(payload)
+	if err != nil {
+		t.Fatalf("UnmarshalCloudEventProtoJSON() error = %v", err)
+	}
+	if decoded.GetSpecVersion() != "1.0" {
+		t.Fatalf("unexpected spec_version %q", decoded.GetSpecVersion())
+	}
+	if decoded.GetDataContentType() != CanonicalDataContentType {
+		t.Fatalf("unexpected data_content_type %q", decoded.GetDataContentType())
+	}
+	if decoded.GetSubject() != "pipeline.changes.activity.create" {
+		t.Fatalf("unexpected subject %q", decoded.GetSubject())
+	}
+
+	unpacked, err := UnpackChange(decoded)
+	if err != nil {
+		t.Fatalf("UnpackChange() error = %v", err)
+	}
+	if unpacked.GetPayload().GetFields()["outcome"].GetStringValue() != "replied" {
+		t.Fatalf("unexpected payload %#v", unpacked.GetPayload().AsMap())
+	}
+}
+
+func TestUnpackTapEventDataRoundTrip(t *testing.T) {
+	t.Parallel()
+
+	data := &tapv1.TapEventData{
+		Provider:   "hubspot",
+		TenantId:   "11111111-1111-1111-1111-111111111111",
+		EntityType: "deal",
+		EntityId:   "deal_123",
+		Changes: map[string]*tapv1.FieldChange{
+			"stage": {
+				From: structpb.NewStringValue("new"),
+				To:   structpb.NewStringValue("qualified"),
+			},
+		},
+	}
+
+	envelope, err := NewCloudEvent(
+		"evt_456",
+		"ensemble.tap.hubspot.deal.updated",
+		"ensemble-tap",
+		"hubspot/deal/deal_123",
+		data.GetTenantId(),
+		time.Date(2026, 4, 13, 1, 0, 0, 0, time.UTC),
+		data,
+	)
+	if err != nil {
+		t.Fatalf("NewCloudEvent() error = %v", err)
+	}
+
+	unpacked, err := UnpackTapEventData(envelope)
+	if err != nil {
+		t.Fatalf("UnpackTapEventData() error = %v", err)
+	}
+	if unpacked.GetProvider() != "hubspot" {
+		t.Fatalf("unexpected provider %q", unpacked.GetProvider())
+	}
+	if unpacked.GetChanges()["stage"].GetTo().GetStringValue() != "qualified" {
+		t.Fatalf("unexpected stage change %#v", unpacked.GetChanges()["stage"].GetTo())
+	}
+}
+
+func mustStruct(t *testing.T, fields map[string]any) *structpb.Struct {
+	t.Helper()
+
+	message, err := structpb.NewStruct(fields)
+	if err != nil {
+		t.Fatalf("NewStruct() error = %v", err)
+	}
+	return message
+}
