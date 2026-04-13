@@ -1,0 +1,6 @@
+{
+  "provider": "openai",
+  "environment": "production",
+  "credential_name": "default",
+  "team_id": "team_platform"
+}

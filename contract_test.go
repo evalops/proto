@@ -13,6 +13,7 @@ import (
 	entitiesv1 "github.com/evalops/proto/gen/go/entities/v1"
 	eventsv1 "github.com/evalops/proto/gen/go/events/v1"
 	governancev1 "github.com/evalops/proto/gen/go/governance/v1"
+	keysv1 "github.com/evalops/proto/gen/go/keys/v1"
 	memoryv1 "github.com/evalops/proto/gen/go/memory/v1"
 	meterv1 "github.com/evalops/proto/gen/go/meter/v1"
 	notificationsv1 "github.com/evalops/proto/gen/go/notifications/v1"
@@ -723,6 +724,31 @@ func TestGovernanceEvaluateActionFixtureMatchesProtoContract(t *testing.T) {
 	}
 	if string(message.GetActionPayload()) != `{"credential":"sk-live-123","target":"slack"}` {
 		t.Fatalf("unexpected action_payload %q", string(message.GetActionPayload()))
+	}
+}
+
+func TestKeysResolveProviderRefFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var request keysv1.ResolveProviderRefRequest
+	loadProtoJSONFixture(t, filepath.Join("proto", "keys", "v1", "testdata", "resolve_provider_ref_request.json"), &request)
+	if request.GetProvider() != "openai" {
+		t.Fatalf("expected provider openai, got %q", request.GetProvider())
+	}
+	if request.GetEnvironment() != "production" {
+		t.Fatalf("expected environment production, got %q", request.GetEnvironment())
+	}
+	if request.GetTeamId() != "team_platform" {
+		t.Fatalf("expected team_id team_platform, got %q", request.GetTeamId())
+	}
+
+	var response keysv1.ResolveProviderRefResponse
+	loadProtoJSONFixture(t, filepath.Join("proto", "keys", "v1", "testdata", "resolve_provider_ref_response.json"), &response)
+	if response.GetProviderRef().GetEndpointUrl() != "https://api.openai.com/v1" {
+		t.Fatalf("expected endpoint_url https://api.openai.com/v1, got %q", response.GetProviderRef().GetEndpointUrl())
+	}
+	if response.GetProviderRef().GetCredentialData().GetFields()["api_key"].GetStringValue() != "sk-live-123" {
+		t.Fatalf("unexpected credential_data api_key %#v", response.GetProviderRef().GetCredentialData().GetFields()["api_key"])
 	}
 }
 
