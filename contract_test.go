@@ -20,6 +20,7 @@ import (
 	objectivesv1 "github.com/evalops/proto/gen/go/objectives/v1"
 	skillsv1 "github.com/evalops/proto/gen/go/skills/v1"
 	tapv1 "github.com/evalops/proto/gen/go/tap/v1"
+	workflowsv1 "github.com/evalops/proto/gen/go/workflows/v1"
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/anypb"
@@ -759,6 +760,88 @@ func TestCloudEventParkerWorkRelationshipUpdateTerminatedFixtureMatchesProtoCont
 	}
 	if payload["employment_type"] != "full_time" {
 		t.Fatalf("expected employment_type full_time, got %#v", payload["employment_type"])
+	}
+}
+
+func TestWorkflowRunLifecycleEventFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message workflowsv1.WorkflowRunLifecycleEvent
+	loadProtoJSONFixture(t, filepath.Join("proto", "workflows", "v1", "testdata", "run_lifecycle_event_started.json"), &message)
+
+	if message.GetRun().GetId() != "wfr_outbound_acme_001" {
+		t.Fatalf("expected run.id wfr_outbound_acme_001, got %q", message.GetRun().GetId())
+	}
+	if message.GetRun().GetState() != workflowsv1.WorkflowState_WORKFLOW_STATE_RUNNING {
+		t.Fatalf("expected run.state WORKFLOW_STATE_RUNNING, got %s", message.GetRun().GetState())
+	}
+	if got := message.GetRun().GetSteps()[0].GetObjectiveId(); got != "obj_research_acme" {
+		t.Fatalf("expected first step objective_id obj_research_acme, got %q", got)
+	}
+}
+
+func TestWorkflowStepLifecycleEventFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message workflowsv1.WorkflowStepLifecycleEvent
+	loadProtoJSONFixture(t, filepath.Join("proto", "workflows", "v1", "testdata", "step_lifecycle_event_waiting.json"), &message)
+
+	if message.GetRunId() != "wfr_outbound_acme_001" {
+		t.Fatalf("expected run_id wfr_outbound_acme_001, got %q", message.GetRunId())
+	}
+	if message.GetWorkflowState() != workflowsv1.WorkflowState_WORKFLOW_STATE_RUNNING {
+		t.Fatalf("expected workflow_state WORKFLOW_STATE_RUNNING, got %s", message.GetWorkflowState())
+	}
+	if message.GetStep().GetState() != workflowsv1.StepRunState_STEP_RUN_STATE_WAITING {
+		t.Fatalf("expected step.state STEP_RUN_STATE_WAITING, got %s", message.GetStep().GetState())
+	}
+	if message.GetStep().GetApprovalRequestId() != "apr_acme_outreach_001" {
+		t.Fatalf("expected approval_request_id apr_acme_outreach_001, got %q", message.GetStep().GetApprovalRequestId())
+	}
+}
+
+func TestCloudEventWorkflowRunStartedFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message eventsv1.CloudEvent
+	loadProtoJSONFixture(t, filepath.Join("proto", "events", "v1", "testdata", "cloud_event_workflow_run_started.json"), &message)
+
+	if message.GetSubject() != "workflows.changes.run.started" {
+		t.Fatalf("expected subject workflows.changes.run.started, got %q", message.GetSubject())
+	}
+	if message.GetTenantId() != "11111111-1111-1111-1111-111111111111" {
+		t.Fatalf("expected tenant_id 11111111-1111-1111-1111-111111111111, got %q", message.GetTenantId())
+	}
+	var unpacked workflowsv1.WorkflowRunLifecycleEvent
+	if err := message.GetData().UnmarshalTo(&unpacked); err != nil {
+		t.Fatalf("unpack WorkflowRunLifecycleEvent payload: %v", err)
+	}
+	if unpacked.GetRun().GetState() != workflowsv1.WorkflowState_WORKFLOW_STATE_RUNNING {
+		t.Fatalf("expected run.state WORKFLOW_STATE_RUNNING, got %s", unpacked.GetRun().GetState())
+	}
+}
+
+func TestCloudEventWorkflowStepWaitingFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message eventsv1.CloudEvent
+	loadProtoJSONFixture(t, filepath.Join("proto", "events", "v1", "testdata", "cloud_event_workflow_step_waiting.json"), &message)
+
+	if message.GetSubject() != "workflows.changes.step.waiting" {
+		t.Fatalf("expected subject workflows.changes.step.waiting, got %q", message.GetSubject())
+	}
+	if message.GetTenantId() != "11111111-1111-1111-1111-111111111111" {
+		t.Fatalf("expected tenant_id 11111111-1111-1111-1111-111111111111, got %q", message.GetTenantId())
+	}
+	var unpacked workflowsv1.WorkflowStepLifecycleEvent
+	if err := message.GetData().UnmarshalTo(&unpacked); err != nil {
+		t.Fatalf("unpack WorkflowStepLifecycleEvent payload: %v", err)
+	}
+	if unpacked.GetStep().GetStepId() != "approve-high-value" {
+		t.Fatalf("expected step_id approve-high-value, got %q", unpacked.GetStep().GetStepId())
+	}
+	if unpacked.GetStep().GetState() != workflowsv1.StepRunState_STEP_RUN_STATE_WAITING {
+		t.Fatalf("expected step.state STEP_RUN_STATE_WAITING, got %s", unpacked.GetStep().GetState())
 	}
 }
 

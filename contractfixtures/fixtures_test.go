@@ -11,6 +11,7 @@ import (
 	eventsv1 "github.com/evalops/proto/gen/go/events/v1"
 	keysv1 "github.com/evalops/proto/gen/go/keys/v1"
 	meterv1 "github.com/evalops/proto/gen/go/meter/v1"
+	workflowsv1 "github.com/evalops/proto/gen/go/workflows/v1"
 )
 
 func TestReadSupportsRelativeFixturePaths(t *testing.T) {
@@ -70,6 +71,42 @@ func TestLoadChangeFixtureSupportsPipelineDealFixture(t *testing.T) {
 	}
 	if got := message.GetPayload().AsMap()["stage"]; got != "closed_won" {
 		t.Fatalf("unexpected stage %#v", got)
+	}
+}
+
+func TestLoadWorkflowRunLifecycleEvent(t *testing.T) {
+	t.Parallel()
+
+	message, err := LoadWorkflowRunLifecycleEvent(WorkflowsRunLifecycleEventStarted)
+	if err != nil {
+		t.Fatalf("load workflow run lifecycle event: %v", err)
+	}
+	if message.GetRun().GetId() != "wfr_outbound_acme_001" {
+		t.Fatalf("unexpected run.id %q", message.GetRun().GetId())
+	}
+	if message.GetRun().GetState() != workflowsv1.WorkflowState_WORKFLOW_STATE_RUNNING {
+		t.Fatalf("unexpected run.state %s", message.GetRun().GetState())
+	}
+	if len(message.GetRun().GetSteps()) != 2 {
+		t.Fatalf("expected 2 steps, got %d", len(message.GetRun().GetSteps()))
+	}
+}
+
+func TestLoadWorkflowStepLifecycleEvent(t *testing.T) {
+	t.Parallel()
+
+	message, err := LoadWorkflowStepLifecycleEvent(WorkflowsStepLifecycleEventWaiting)
+	if err != nil {
+		t.Fatalf("load workflow step lifecycle event: %v", err)
+	}
+	if message.GetRunId() != "wfr_outbound_acme_001" {
+		t.Fatalf("unexpected run_id %q", message.GetRunId())
+	}
+	if message.GetWorkflowState() != workflowsv1.WorkflowState_WORKFLOW_STATE_RUNNING {
+		t.Fatalf("unexpected workflow_state %s", message.GetWorkflowState())
+	}
+	if message.GetStep().GetState() != workflowsv1.StepRunState_STEP_RUN_STATE_WAITING {
+		t.Fatalf("unexpected step.state %s", message.GetStep().GetState())
 	}
 }
 
