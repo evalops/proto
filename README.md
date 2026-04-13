@@ -208,6 +208,10 @@ bus.
   `specversion`/`datacontenttype` and JSON `data` while they migrate. Consumers
   should tolerate both shapes until the bus converges, but new typed contracts
   should start from `events/v1.CloudEvent`.
+- Use `github.com/evalops/proto/eventhelpers` to build and unpack canonical
+  envelopes instead of re-implementing `Any` packing, protojson marshaling, and
+  type assertions in each service. The package exports `NewCloudEvent`,
+  `MarshalProtoJSON`, `UnpackChange`, and `UnpackTapEventData`.
 
 ## Development
 
