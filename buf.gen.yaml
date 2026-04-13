@@ -14,3 +14,6 @@ plugins:
   - remote: buf.build/connectrpc/es
     out: gen/ts
     opt: target=ts,import_extension=.js
+  # Python
+  - remote: buf.build/protocolbuffers/python
+    out: gen/python

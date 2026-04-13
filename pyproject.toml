@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=80", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evalops-proto-python"
+version = "0.1.0"
+description = "Generated Python protobuf types for EvalOps shared contracts"
+requires-python = ">=3.10"
+dependencies = ["protobuf>=7.34.1,<8"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-dir]
+"" = "gen/python"
+
+[tool.setuptools.packages.find]
+where = ["gen/python"]
+namespaces = true
+include = ["*"]
