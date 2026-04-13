@@ -1,0 +1,16 @@
+{
+  "delegation": {
+    "id": "del_001",
+    "workspace_id": "11111111-1111-1111-1111-111111111111",
+    "from_agent_id": "agent_sdr_outbound",
+    "to_agent_id": "agent_research",
+    "required_capability": "company-research",
+    "objective_id": "obj_research_acme",
+    "workflow_run_id": "wfr_outbound_acme_001",
+    "workflow_step_id": "research-company",
+    "status": "DELEGATION_STATUS_ACCEPTED",
+    "context_payload": "eyJjb21wYW55X2RvbWFpbiI6ImFjbWUuY29tIiwiZGVhbF9pZCI6ImRlYWwtMTIzIn0=",
+    "reason": "SDR agent needs company research before outreach. Delegating to research specialist with company-research capability.",
+    "created_at": "2026-04-13T14:35:00Z"
+  }
+}

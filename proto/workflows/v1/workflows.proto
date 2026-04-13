@@ -1,0 +1,562 @@
+syntax = "proto3";
+
+package workflows.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/workflows/v1;workflowsv1";
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+// WorkflowService manages multi-agent process definitions and their
+// executions. A workflow composes multiple objectives/v1 Objective records
+// into a DAG with typed step semantics, approval gates, governance checks,
+// event waits, branching, and compensation.
+//
+// Where objectives/v1 tracks a single agent doing a single thing, a workflow
+// tracks the process: prospect -> qualify -> outreach -> follow-up -> close.
+// Each step in a running workflow creates an objective, delegates to an agent
+// (agents/v1), and feeds its output to the next step.
+service WorkflowService {
+  // CreateDefinition registers a new workflow definition.
+  rpc CreateDefinition(CreateDefinitionRequest) returns (CreateDefinitionResponse);
+
+  // GetDefinition retrieves a workflow definition by ID.
+  rpc GetDefinition(GetDefinitionRequest) returns (GetDefinitionResponse);
+
+  // ListDefinitions returns workflow definitions matching the query filters.
+  rpc ListDefinitions(ListDefinitionsRequest) returns (ListDefinitionsResponse);
+
+  // PublishVersion creates an immutable version snapshot of a definition.
+  // Runs always reference a specific definition version.
+  rpc PublishVersion(PublishVersionRequest) returns (PublishVersionResponse);
+
+  // ListVersions returns all published versions of a definition.
+  rpc ListVersions(ListVersionsRequest) returns (ListVersionsResponse);
+
+  // StartRun begins execution of a workflow definition version.
+  rpc StartRun(StartRunRequest) returns (StartRunResponse);
+
+  // GetRun retrieves a workflow run by ID.
+  rpc GetRun(GetRunRequest) returns (GetRunResponse);
+
+  // ListRuns returns workflow runs matching the query filters.
+  rpc ListRuns(ListRunsRequest) returns (ListRunsResponse);
+
+  // TransitionStep records a step state change. Called by the orchestrator
+  // as agents complete objectives, approvals resolve, or events arrive.
+  rpc TransitionStep(TransitionStepRequest) returns (TransitionStepResponse);
+
+  // PauseRun suspends a running workflow. Steps in RUNNING state continue
+  // to completion but no new steps are started.
+  rpc PauseRun(PauseRunRequest) returns (PauseRunResponse);
+
+  // ResumeRun resumes a paused workflow.
+  rpc ResumeRun(ResumeRunRequest) returns (ResumeRunResponse);
+
+  // CancelRun terminates a workflow. In-progress steps are cancelled and
+  // no compensation is triggered.
+  rpc CancelRun(CancelRunRequest) returns (CancelRunResponse);
+
+  // CompensateRun triggers the compensation path for a failed workflow,
+  // executing compensation steps in reverse topological order.
+  rpc CompensateRun(CompensateRunRequest) returns (CompensateRunResponse);
+}
+
+// ---------------------------------------------------------------------------
+// Enums
+// ---------------------------------------------------------------------------
+
+// StepType describes the semantic kind of a workflow step.
+enum StepType {
+  STEP_TYPE_UNSPECIFIED = 0;
+
+  // An agent executes an action. Creates an objectives/v1 Objective and
+  // optionally delegates via agents/v1 Delegate.
+  STEP_TYPE_AGENT_ACTION = 1;
+
+  // Blocks until an approvals/v1 ApprovalRequest is resolved.
+  // The approval_request_id on StepRun links to the pending approval.
+  STEP_TYPE_APPROVAL_GATE = 2;
+
+  // Evaluates the action through governance/v1 EvaluateAction.
+  // A DENY decision fails the step; REQUIRE_APPROVAL inserts an
+  // implicit approval gate.
+  STEP_TYPE_GOVERNANCE_CHECK = 3;
+
+  // Blocks until a matching events/v1 CloudEvent arrives on the bus.
+  // event_type_pattern and event_subject_pattern on StepDefinition
+  // control the match.
+  STEP_TYPE_WAIT_FOR_EVENT = 4;
+
+  // Evaluates condition_expr and routes to one of multiple outgoing edges.
+  STEP_TYPE_BRANCH = 5;
+
+  // Fans out to multiple steps concurrently. All children must complete
+  // before the parent step completes.
+  STEP_TYPE_PARALLEL = 6;
+
+  // Sends a notifications/v1 notification. Non-blocking by default.
+  STEP_TYPE_NOTIFICATION = 7;
+
+  // Requires a human to perform an action and mark the step complete
+  // through the API or a product surface.
+  STEP_TYPE_HUMAN_TASK = 8;
+}
+
+// WorkflowState describes the lifecycle state of a workflow run.
+enum WorkflowState {
+  WORKFLOW_STATE_UNSPECIFIED = 0;
+  WORKFLOW_STATE_PENDING = 1;
+  WORKFLOW_STATE_RUNNING = 2;
+  WORKFLOW_STATE_PAUSED = 3;
+  WORKFLOW_STATE_COMPENSATING = 4;
+  WORKFLOW_STATE_COMPLETED = 5;
+  WORKFLOW_STATE_FAILED = 6;
+  WORKFLOW_STATE_CANCELLED = 7;
+}
+
+// StepRunState describes the lifecycle state of an individual step execution.
+enum StepRunState {
+  STEP_RUN_STATE_UNSPECIFIED = 0;
+  STEP_RUN_STATE_PENDING = 1;
+  STEP_RUN_STATE_RUNNING = 2;
+  STEP_RUN_STATE_WAITING = 3;
+  STEP_RUN_STATE_COMPLETED = 4;
+  STEP_RUN_STATE_FAILED = 5;
+  STEP_RUN_STATE_SKIPPED = 6;
+  STEP_RUN_STATE_COMPENSATED = 7;
+  STEP_RUN_STATE_CANCELLED = 8;
+}
+
+// TriggerType describes what initiates a workflow run.
+enum TriggerType {
+  TRIGGER_TYPE_UNSPECIFIED = 0;
+
+  // Started by an events/v1 CloudEvent matching the trigger pattern.
+  TRIGGER_TYPE_EVENT = 1;
+
+  // Started on a cron schedule.
+  TRIGGER_TYPE_SCHEDULE = 2;
+
+  // Started by a human or agent through the API.
+  TRIGGER_TYPE_MANUAL = 3;
+
+  // Started by a tap/v1 TapEventData webhook from an external provider.
+  TRIGGER_TYPE_WEBHOOK = 4;
+
+  // Started by another workflow's step (nested/sub-workflow).
+  TRIGGER_TYPE_WORKFLOW = 5;
+}
+
+// ---------------------------------------------------------------------------
+// Definition messages
+// ---------------------------------------------------------------------------
+
+// WorkflowDefinition is a named, versioned process template.
+message WorkflowDefinition {
+  string id = 1;
+  string workspace_id = 2;
+  string name = 3;
+  string description = 4;
+  int32 latest_version = 5;
+  repeated string tags = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+}
+
+// WorkflowVersion is an immutable snapshot of a workflow's step graph.
+// Follows the same versioning pattern as prompts/v1 Version and
+// skills/v1 SkillVersion.
+message WorkflowVersion {
+  string id = 1;
+  string definition_id = 2;
+  int32 version = 3;
+  repeated StepDefinition steps = 4;
+  repeated Edge edges = 5;
+  WorkflowTrigger trigger = 6;
+  RetryPolicy default_retry_policy = 7;
+  int32 timeout_seconds = 8;
+  string author = 9;
+  google.protobuf.Timestamp created_at = 10;
+}
+
+// StepDefinition is a single node in the workflow DAG.
+message StepDefinition {
+  // Unique identifier within the workflow (e.g., "prospect", "qualify",
+  // "send-outreach"). Referenced by Edge.from_step_id / Edge.to_step_id
+  // and by StepRun.step_id.
+  string id = 1;
+  string name = 2;
+  StepType step_type = 3;
+
+  // For AGENT_ACTION: the agents/v1 Agent.id to assign, or empty for
+  // capability-based routing.
+  string agent_id = 4;
+
+  // For AGENT_ACTION: the agents/v1 capability required. Used when
+  // agent_id is empty to resolve the best available agent through the
+  // registry.
+  string required_capability = 5;
+
+  // For AGENT_ACTION: the action type passed to governance/v1
+  // EvaluateActionRequest.action_type and approvals/v1
+  // RequestApprovalRequest.action_type.
+  string action_type = 6;
+
+  // For APPROVAL_GATE: the approvals/v1 RiskLevel for this gate.
+  // Stored as string to avoid cross-package import (e.g., "RISK_LEVEL_HIGH").
+  string risk_level = 7;
+
+  // For WAIT_FOR_EVENT: the events/v1 CloudEvent.type pattern to match.
+  string event_type_pattern = 8;
+
+  // For WAIT_FOR_EVENT: the events/v1 CloudEvent.subject pattern to match.
+  string event_subject_pattern = 9;
+
+  // For NOTIFICATION: the notifications/v1 DeliveryChannel to use.
+  // Stored as string (e.g., "DELIVERY_CHANNEL_SLACK").
+  string notification_channel = 10;
+
+  // For NOTIFICATION: the notification template.
+  string notification_template = 11;
+
+  // For BRANCH: the expression evaluated to select outgoing edges.
+  // References step output fields from prior steps.
+  string condition_expr = 12;
+
+  // The step to execute if this step fails and the workflow enters
+  // COMPENSATING state. References another StepDefinition.id in the
+  // same workflow.
+  string compensation_step_id = 13;
+
+  // Step-specific parameters. For AGENT_ACTION, passed as the objective
+  // description or context. For WAIT_FOR_EVENT, may contain
+  // timeout_seconds. For HUMAN_TASK, contains instructions.
+  google.protobuf.Struct config = 14;
+
+  // Per-step retry policy. Falls back to WorkflowVersion.default_retry_policy.
+  RetryPolicy retry_policy = 15;
+
+  // Per-step timeout. Falls back to WorkflowVersion.timeout_seconds.
+  int32 timeout_seconds = 16;
+
+  // prompt_name references prompts/v1 Prompt.name for agent action steps.
+  // Resolved through prompts/v1 Resolve at execution time using the
+  // label from the agent's agents/v1 AgentConfig.prompt_bindings.
+  string prompt_name = 17;
+
+  // skill_id references skills/v1 Skill.id required for this step.
+  string skill_id = 18;
+}
+
+// Edge defines a directed connection between two steps in the DAG.
+message Edge {
+  string from_step_id = 1;
+  string to_step_id = 2;
+
+  // Optional condition for BRANCH steps. When the from_step is a BRANCH,
+  // each outgoing edge has a condition_expr evaluated against the step's
+  // output. The first matching edge is followed.
+  string condition_expr = 3;
+
+  // label for the edge, useful for debugging and visualization
+  // (e.g., "approved", "denied", "high-value", "default").
+  string label = 4;
+}
+
+// WorkflowTrigger defines what automatically starts a workflow run.
+message WorkflowTrigger {
+  TriggerType trigger_type = 1;
+
+  // For EVENT: the events/v1 CloudEvent.type to match.
+  string event_type = 2;
+
+  // For EVENT: the events/v1 CloudEvent.subject to match.
+  string event_subject = 3;
+
+  // For WEBHOOK: the tap/v1 TapEventData.provider to match.
+  string tap_provider = 4;
+
+  // For WEBHOOK: the tap/v1 TapEventData.entity_type to match.
+  string tap_entity_type = 5;
+
+  // For WEBHOOK: the tap/v1 TapEventData.action to match.
+  string tap_action = 6;
+
+  // For SCHEDULE: the cron expression.
+  string cron_expr = 7;
+
+  // For WORKFLOW: the parent workflows/v1 WorkflowDefinition.id.
+  string parent_workflow_id = 8;
+
+  // Filter expression applied to the trigger payload. Only events matching
+  // this expression start a run.
+  string filter_expr = 9;
+}
+
+// RetryPolicy controls retry behavior for steps. Mirrors the pattern in
+// objectives/v1 WakeSchedule (retry_count, max_retries, backoff_seconds).
+message RetryPolicy {
+  int32 max_retries = 1;
+  int32 backoff_seconds = 2;
+  float backoff_multiplier = 3;
+}
+
+// ---------------------------------------------------------------------------
+// Run messages
+// ---------------------------------------------------------------------------
+
+// WorkflowRun is a live execution of a workflow definition version.
+message WorkflowRun {
+  string id = 1;
+  string definition_id = 2;
+  int32 definition_version = 3;
+  string workspace_id = 4;
+  WorkflowState state = 5;
+  repeated StepRun steps = 6;
+
+  // trigger_event_id references the events/v1 CloudEvent.id that started
+  // this run, if trigger_type is EVENT or WEBHOOK.
+  string trigger_event_id = 7;
+
+  TriggerType trigger_type = 8;
+
+  // initiator_agent_id references agents/v1 Agent.id if an agent started
+  // this run. For MANUAL triggers, this may be empty (human-initiated).
+  string initiator_agent_id = 9;
+
+  // initiator_user_id references identity/v1 Member.user_id if a human
+  // started this run.
+  string initiator_user_id = 10;
+
+  // parent_run_id references another WorkflowRun.id when this run is a
+  // sub-workflow started by a WORKFLOW trigger.
+  string parent_run_id = 11;
+
+  // entity_id references entities/v1 CanonicalEntity.id — the primary
+  // entity this workflow operates on (e.g., a contact being prospected,
+  // a deal being closed).
+  string entity_id = 12;
+
+  // entity_type aligns with entities/v1 EntityType. Stored as string
+  // to avoid cross-package import (e.g., "ENTITY_TYPE_DEAL").
+  string entity_type = 13;
+
+  // input_payload is the trigger data passed to the first step.
+  google.protobuf.Struct input_payload = 14;
+
+  // output_payload is the final result produced by the terminal step.
+  google.protobuf.Struct output_payload = 15;
+
+  // total_cost_usd is the sum of meter/v1 usage records attributed to
+  // this workflow run's steps.
+  double total_cost_usd = 16;
+
+  google.protobuf.Timestamp started_at = 17;
+  google.protobuf.Timestamp completed_at = 18;
+}
+
+// StepRun is the execution record for a single step within a workflow run.
+message StepRun {
+  // step_id references StepDefinition.id from the workflow version.
+  string step_id = 1;
+
+  string step_name = 2;
+  StepType step_type = 3;
+  StepRunState state = 4;
+
+  // objective_id links to objectives/v1 Objective.id — the objective
+  // created when this AGENT_ACTION step begins execution.
+  string objective_id = 5;
+
+  // agent_id links to agents/v1 Agent.id — the agent assigned to this step.
+  string agent_id = 6;
+
+  // delegation_id links to agents/v1 DelegationRecord.id when the step
+  // was fulfilled through capability-based delegation.
+  string delegation_id = 7;
+
+  // approval_request_id links to approvals/v1 ApprovalRequest.id for
+  // APPROVAL_GATE steps or when governance/v1 returns REQUIRE_APPROVAL.
+  string approval_request_id = 8;
+
+  // governance_decision stores the governance/v1 ActionDecision result.
+  // Stored as string (e.g., "ACTION_DECISION_ALLOW").
+  string governance_decision = 9;
+
+  // event_id references the events/v1 CloudEvent.id that satisfied a
+  // WAIT_FOR_EVENT step.
+  string event_id = 10;
+
+  // notification_id references notifications/v1 Notification.id for
+  // NOTIFICATION steps.
+  string notification_id = 11;
+
+  // input_payload is the data this step received from upstream steps.
+  google.protobuf.Struct input_payload = 12;
+
+  // output_payload is the data this step produced for downstream steps.
+  google.protobuf.Struct output_payload = 13;
+
+  string error_message = 14;
+  int32 retry_count = 15;
+
+  // cost_usd is the meter/v1 cost attributed to this step's execution.
+  double cost_usd = 16;
+
+  google.protobuf.Timestamp started_at = 17;
+  google.protobuf.Timestamp completed_at = 18;
+}
+
+// ---------------------------------------------------------------------------
+// RPC request/response messages
+// ---------------------------------------------------------------------------
+
+message CreateDefinitionRequest {
+  string workspace_id = 1;
+  string name = 2;
+  string description = 3;
+  repeated string tags = 4;
+}
+
+message CreateDefinitionResponse {
+  WorkflowDefinition definition = 1;
+}
+
+message GetDefinitionRequest {
+  string id = 1;
+}
+
+message GetDefinitionResponse {
+  WorkflowDefinition definition = 1;
+}
+
+message ListDefinitionsRequest {
+  string workspace_id = 1;
+  string tag = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+}
+
+message ListDefinitionsResponse {
+  repeated WorkflowDefinition definitions = 1;
+  int32 total = 2;
+}
+
+message PublishVersionRequest {
+  string definition_id = 1;
+  repeated StepDefinition steps = 2;
+  repeated Edge edges = 3;
+  WorkflowTrigger trigger = 4;
+  RetryPolicy default_retry_policy = 5;
+  int32 timeout_seconds = 6;
+  string author = 7;
+}
+
+message PublishVersionResponse {
+  WorkflowVersion version = 1;
+  WorkflowDefinition definition = 2;
+}
+
+message ListVersionsRequest {
+  string definition_id = 1;
+}
+
+message ListVersionsResponse {
+  repeated WorkflowVersion versions = 1;
+}
+
+message StartRunRequest {
+  string definition_id = 1;
+  int32 definition_version = 2;
+  string workspace_id = 3;
+  string initiator_agent_id = 4;
+  string initiator_user_id = 5;
+  string entity_id = 6;
+  string entity_type = 7;
+  string parent_run_id = 8;
+  google.protobuf.Struct input_payload = 9;
+}
+
+message StartRunResponse {
+  WorkflowRun run = 1;
+}
+
+message GetRunRequest {
+  string id = 1;
+}
+
+message GetRunResponse {
+  WorkflowRun run = 1;
+}
+
+message ListRunsRequest {
+  string workspace_id = 1;
+  string definition_id = 2;
+  WorkflowState state = 3;
+  string entity_id = 4;
+  string initiator_agent_id = 5;
+  int32 limit = 6;
+  int32 offset = 7;
+}
+
+message ListRunsResponse {
+  repeated WorkflowRun runs = 1;
+  int32 total = 2;
+}
+
+message TransitionStepRequest {
+  string run_id = 1;
+  string step_id = 2;
+  StepRunState state = 3;
+  string objective_id = 4;
+  string agent_id = 5;
+  string delegation_id = 6;
+  string approval_request_id = 7;
+  string governance_decision = 8;
+  string event_id = 9;
+  string notification_id = 10;
+  google.protobuf.Struct output_payload = 11;
+  string error_message = 12;
+  double cost_usd = 13;
+}
+
+message TransitionStepResponse {
+  StepRun step = 1;
+  WorkflowRun run = 2;
+}
+
+message PauseRunRequest {
+  string id = 1;
+  string reason = 2;
+}
+
+message PauseRunResponse {
+  WorkflowRun run = 1;
+}
+
+message ResumeRunRequest {
+  string id = 1;
+}
+
+message ResumeRunResponse {
+  WorkflowRun run = 1;
+}
+
+message CancelRunRequest {
+  string id = 1;
+  string reason = 2;
+}
+
+message CancelRunResponse {
+  WorkflowRun run = 1;
+}
+
+message CompensateRunRequest {
+  string id = 1;
+  string reason = 2;
+}
+
+message CompensateRunResponse {
+  WorkflowRun run = 1;
+}

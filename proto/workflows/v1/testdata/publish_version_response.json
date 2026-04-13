@@ -1,0 +1,159 @@
+{
+  "version": {
+    "id": "wfv_outbound_v2",
+    "definition_id": "wf_outbound_sdr",
+    "version": 2,
+    "steps": [
+      {
+        "id": "research-company",
+        "name": "Research Company",
+        "step_type": "STEP_TYPE_AGENT_ACTION",
+        "required_capability": "company-research",
+        "action_type": "company.research",
+        "prompt_name": "company-research",
+        "skill_id": "skill_prospect_research",
+        "timeout_seconds": 300
+      },
+      {
+        "id": "qualify-lead",
+        "name": "Qualify Lead",
+        "step_type": "STEP_TYPE_AGENT_ACTION",
+        "agent_id": "agent_sdr_outbound",
+        "action_type": "lead.qualify",
+        "prompt_name": "lead-qualification",
+        "skill_id": "skill_deal_qualification",
+        "timeout_seconds": 120
+      },
+      {
+        "id": "check-governance",
+        "name": "Outreach Safety Check",
+        "step_type": "STEP_TYPE_GOVERNANCE_CHECK",
+        "action_type": "email.send",
+        "risk_level": "RISK_LEVEL_MEDIUM"
+      },
+      {
+        "id": "route-by-value",
+        "name": "Route by Deal Value",
+        "step_type": "STEP_TYPE_BRANCH",
+        "condition_expr": "qualify_lead.output.deal_value_usd"
+      },
+      {
+        "id": "approve-high-value",
+        "name": "Manager Approval",
+        "step_type": "STEP_TYPE_APPROVAL_GATE",
+        "action_type": "outreach.high_value",
+        "risk_level": "RISK_LEVEL_HIGH"
+      },
+      {
+        "id": "send-outreach",
+        "name": "Send Outreach",
+        "step_type": "STEP_TYPE_AGENT_ACTION",
+        "agent_id": "agent_sdr_outbound",
+        "action_type": "email.send",
+        "prompt_name": "sdr-outreach",
+        "skill_id": "skill_outreach_sequence",
+        "compensation_step_id": "notify-outreach-failed",
+        "timeout_seconds": 60
+      },
+      {
+        "id": "notify-team",
+        "name": "Notify Sales Team",
+        "step_type": "STEP_TYPE_NOTIFICATION",
+        "notification_channel": "DELIVERY_CHANNEL_SLACK",
+        "notification_template": "outreach-sent"
+      },
+      {
+        "id": "wait-for-reply",
+        "name": "Wait for Reply",
+        "step_type": "STEP_TYPE_WAIT_FOR_EVENT",
+        "event_type_pattern": "ensemble.tap.gmail.message.received",
+        "event_subject_pattern": "ensemble.tap.gmail.message.received",
+        "timeout_seconds": 259200,
+        "config": {
+          "timeout_action": "follow_up"
+        }
+      },
+      {
+        "id": "notify-outreach-failed",
+        "name": "Notify Outreach Failure",
+        "step_type": "STEP_TYPE_NOTIFICATION",
+        "notification_channel": "DELIVERY_CHANNEL_SLACK",
+        "notification_template": "outreach-failed-compensation"
+      }
+    ],
+    "edges": [
+      {
+        "from_step_id": "research-company",
+        "to_step_id": "qualify-lead",
+        "label": "research-complete"
+      },
+      {
+        "from_step_id": "qualify-lead",
+        "to_step_id": "check-governance",
+        "label": "qualified"
+      },
+      {
+        "from_step_id": "check-governance",
+        "to_step_id": "route-by-value",
+        "label": "governance-passed"
+      },
+      {
+        "from_step_id": "route-by-value",
+        "to_step_id": "approve-high-value",
+        "condition_expr": "deal_value_usd >= 50000",
+        "label": "high-value"
+      },
+      {
+        "from_step_id": "route-by-value",
+        "to_step_id": "send-outreach",
+        "condition_expr": "deal_value_usd < 50000",
+        "label": "standard"
+      },
+      {
+        "from_step_id": "approve-high-value",
+        "to_step_id": "send-outreach",
+        "label": "approved"
+      },
+      {
+        "from_step_id": "send-outreach",
+        "to_step_id": "notify-team",
+        "label": "sent"
+      },
+      {
+        "from_step_id": "notify-team",
+        "to_step_id": "wait-for-reply",
+        "label": "notified"
+      }
+    ],
+    "trigger": {
+      "trigger_type": "TRIGGER_TYPE_WEBHOOK",
+      "tap_provider": "hubspot",
+      "tap_entity_type": "contact",
+      "tap_action": "created",
+      "filter_expr": "snapshot.lifecycle_stage == 'lead'"
+    },
+    "default_retry_policy": {
+      "max_retries": 3,
+      "backoff_seconds": 30,
+      "backoff_multiplier": 2.0
+    },
+    "timeout_seconds": 604800,
+    "author": "user_founder_01",
+    "created_at": "2026-04-13T10:00:00Z"
+  },
+  "definition": {
+    "id": "wf_outbound_sdr",
+    "workspace_id": "11111111-1111-1111-1111-111111111111",
+    "name": "Outbound SDR Pipeline",
+    "description": "End-to-end outbound sales workflow: research company, qualify lead, check governance, route by deal value, obtain approval for high-value deals, send personalized outreach, and wait for reply.",
+    "latest_version": 2,
+    "tags": [
+      "outbound",
+      "sdr",
+      "sales",
+      "pipeline"
+    ],
+    "created_at": "2026-04-10T09:00:00Z",
+    "updated_at": "2026-04-13T10:00:00Z"
+  }
+}
