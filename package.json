@@ -1,0 +1,106 @@
+{
+  "name": "@evalops/proto",
+  "version": "0.1.0",
+  "description": "Generated TypeScript protobuf types and Connect descriptors for evalops/proto",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "README.md",
+    "gen/dist",
+    "package.json"
+  ],
+  "exports": {
+    "./approvals/v1/approvals_pb": {
+      "types": "./gen/dist/approvals/v1/approvals_pb.d.ts",
+      "import": "./gen/dist/approvals/v1/approvals_pb.js"
+    },
+    "./audit/v1/audit_pb": {
+      "types": "./gen/dist/audit/v1/audit_pb.d.ts",
+      "import": "./gen/dist/audit/v1/audit_pb.js"
+    },
+    "./connectors/v1/connectors_pb": {
+      "types": "./gen/dist/connectors/v1/connectors_pb.d.ts",
+      "import": "./gen/dist/connectors/v1/connectors_pb.js"
+    },
+    "./entities/v1/entities_pb": {
+      "types": "./gen/dist/entities/v1/entities_pb.d.ts",
+      "import": "./gen/dist/entities/v1/entities_pb.js"
+    },
+    "./events/v1/change_pb": {
+      "types": "./gen/dist/events/v1/change_pb.d.ts",
+      "import": "./gen/dist/events/v1/change_pb.js"
+    },
+    "./events/v1/cloudevent_pb": {
+      "types": "./gen/dist/events/v1/cloudevent_pb.d.ts",
+      "import": "./gen/dist/events/v1/cloudevent_pb.js"
+    },
+    "./governance/v1/governance_pb": {
+      "types": "./gen/dist/governance/v1/governance_pb.d.ts",
+      "import": "./gen/dist/governance/v1/governance_pb.js"
+    },
+    "./identity/v1/organizations_pb": {
+      "types": "./gen/dist/identity/v1/organizations_pb.d.ts",
+      "import": "./gen/dist/identity/v1/organizations_pb.js"
+    },
+    "./identity/v1/sessions_pb": {
+      "types": "./gen/dist/identity/v1/sessions_pb.d.ts",
+      "import": "./gen/dist/identity/v1/sessions_pb.js"
+    },
+    "./identity/v1/tokens_pb": {
+      "types": "./gen/dist/identity/v1/tokens_pb.d.ts",
+      "import": "./gen/dist/identity/v1/tokens_pb.js"
+    },
+    "./memory/v1/memory_pb": {
+      "types": "./gen/dist/memory/v1/memory_pb.d.ts",
+      "import": "./gen/dist/memory/v1/memory_pb.js"
+    },
+    "./meter/v1/meter_pb": {
+      "types": "./gen/dist/meter/v1/meter_pb.d.ts",
+      "import": "./gen/dist/meter/v1/meter_pb.js"
+    },
+    "./notifications/v1/notifications_pb": {
+      "types": "./gen/dist/notifications/v1/notifications_pb.d.ts",
+      "import": "./gen/dist/notifications/v1/notifications_pb.js"
+    },
+    "./objectives/v1/objectives_pb": {
+      "types": "./gen/dist/objectives/v1/objectives_pb.d.ts",
+      "import": "./gen/dist/objectives/v1/objectives_pb.js"
+    },
+    "./prompts/v1/prompts_pb": {
+      "types": "./gen/dist/prompts/v1/prompts_pb.d.ts",
+      "import": "./gen/dist/prompts/v1/prompts_pb.js"
+    },
+    "./skills/v1/skills_pb": {
+      "types": "./gen/dist/skills/v1/skills_pb.d.ts",
+      "import": "./gen/dist/skills/v1/skills_pb.js"
+    },
+    "./tap/v1/event_pb": {
+      "types": "./gen/dist/tap/v1/event_pb.d.ts",
+      "import": "./gen/dist/tap/v1/event_pb.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.package.json",
+    "check:package": "npm run build && node --input-type=module -e \"const memory = await import('@evalops/proto/memory/v1/memory_pb'); const events = await import('@evalops/proto/events/v1/cloudevent_pb'); const prompts = await import('@evalops/proto/prompts/v1/prompts_pb'); if (!memory.RecallRequestSchema || !events.CloudEventSchema || !prompts.ResolveRequestSchema) throw new Error('package exports failed');\"",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evalops/proto.git"
+  },
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/evalops/proto/issues"
+  },
+  "homepage": "https://github.com/evalops/proto#readme",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "^2.11.0"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.2"
+  }
+}
