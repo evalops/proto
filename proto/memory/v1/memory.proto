@@ -85,6 +85,7 @@ message RecallRequest {
   string team_id = 6;
   string repository = 7;
   string agent = 8;
+  string type = 9;
 }
 
 message RecallKnowledgeRequest {
@@ -136,6 +137,7 @@ message ListRequest {
   string agent = 5;
   int32 limit = 6;
   int32 offset = 7;
+  string type = 8;
 }
 
 message GetOperatingRulesRequest {
