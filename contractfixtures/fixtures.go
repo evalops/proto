@@ -20,6 +20,7 @@ const (
 	ConfigFeatureFlagSnapshot                   = "config/v1/testdata/feature_flag_snapshot.json"
 	EventEvaluationCompletedTechnicalCapability = "events/v1/testdata/cloud_event_evaluation_completed_technical_capability.json"
 	EventPipelineActivityCreateReplied          = "events/v1/testdata/cloud_event_pipeline_activity_create_replied.json"
+	EventPipelineDealUpdateClosedWon            = "events/v1/testdata/cloud_event_pipeline_deal_update_closed_won.json"
 	EventPipelineSignalCreateLinkedInActive     = "events/v1/testdata/cloud_event_pipeline_signal_create_linkedin_active.json"
 	EventParkerWorkRelationshipUpdateTerminated = "events/v1/testdata/cloud_event_parker_work_relationship_update_terminated.json"
 	EventTapHubspotDealQualified                = "events/v1/testdata/cloud_event_tap_hubspot_deal_qualified.json"
@@ -82,6 +83,47 @@ var embeddedFixtures = map[string][]byte{
   },
   "extensions": {
     "dataschema": "buf.build/evalops/proto/events.v1.EvaluationCompleted"
+  }
+}`),
+	EventPipelineDealUpdateClosedWon: []byte(`{
+  "spec_version": "1.0",
+  "id": "evt_pipeline_deal_closed_won_1",
+  "type": "pipeline.changes.deal.update",
+  "source": "pipeline",
+  "subject": "pipeline.changes.deal.update",
+  "time": "2026-04-13T09:15:00.345678901Z",
+  "data_content_type": "application/protobuf",
+  "tenant_id": "11111111-1111-1111-1111-111111111111",
+  "data": {
+    "@type": "type.googleapis.com/events.v1.Change",
+    "seq": "312",
+    "organization_id": "11111111-1111-1111-1111-111111111111",
+    "aggregate_type": "deal",
+    "aggregate_id": "66666666-6666-6666-6666-666666666666",
+    "operation": "update",
+    "actor_type": "service",
+    "actor_id": "pipeline-api",
+    "aggregate_version": "9",
+    "recorded_at": "2026-04-13T09:15:00.345678901Z",
+    "payload": {
+      "id": "66666666-6666-6666-6666-666666666666",
+      "organization_id": "11111111-1111-1111-1111-111111111111",
+      "contact_id": "44444444-4444-4444-4444-444444444444",
+      "company_id": "77777777-7777-7777-7777-777777777777",
+      "title": "Acme expansion",
+      "stage": "closed_won",
+      "value": 120000,
+      "currency": "USD",
+      "probability": 100,
+      "expected_close": "2026-04-30",
+      "owner_id": "owner_123",
+      "version": 9,
+      "created_at": "2026-04-10T16:00:00Z",
+      "updated_at": "2026-04-13T09:15:00.345678901Z"
+    }
+  },
+  "extensions": {
+    "dataschema": "buf.build/evalops/proto/events.v1.Change"
   }
 }`),
 	EventPipelineSignalCreateLinkedInActive: []byte(`{

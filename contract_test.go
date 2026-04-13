@@ -627,6 +627,43 @@ func TestCloudEventPipelineSignalCreateLinkedInActiveFixtureMatchesProtoContract
 	}
 }
 
+func TestCloudEventPipelineDealUpdateClosedWonFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message eventsv1.CloudEvent
+	loadProtoJSONFixture(t, filepath.Join("proto", "events", "v1", "testdata", "cloud_event_pipeline_deal_update_closed_won.json"), &message)
+
+	if message.GetSubject() != "pipeline.changes.deal.update" {
+		t.Fatalf("expected subject pipeline.changes.deal.update, got %q", message.GetSubject())
+	}
+	if message.GetTenantId() != "11111111-1111-1111-1111-111111111111" {
+		t.Fatalf("expected tenant_id 11111111-1111-1111-1111-111111111111, got %q", message.GetTenantId())
+	}
+	if message.GetDataContentType() != "application/protobuf" {
+		t.Fatalf("expected data_content_type application/protobuf, got %q", message.GetDataContentType())
+	}
+
+	var unpacked eventsv1.Change
+	if err := message.GetData().UnmarshalTo(&unpacked); err != nil {
+		t.Fatalf("unpack Change payload: %v", err)
+	}
+
+	if unpacked.GetAggregateType() != "deal" || unpacked.GetOperation() != "update" {
+		t.Fatalf("expected deal/update, got %q/%q", unpacked.GetAggregateType(), unpacked.GetOperation())
+	}
+
+	payload := unpacked.GetPayload().AsMap()
+	if payload["stage"] != "closed_won" {
+		t.Fatalf("expected stage closed_won, got %#v", payload["stage"])
+	}
+	if payload["title"] != "Acme expansion" {
+		t.Fatalf("expected title Acme expansion, got %#v", payload["title"])
+	}
+	if payload["value"] != float64(120000) {
+		t.Fatalf("expected value 120000, got %#v", payload["value"])
+	}
+}
+
 func TestCloudEventEvaluationCompletedTechnicalCapabilityFixtureMatchesProtoContract(t *testing.T) {
 	t.Parallel()
 
