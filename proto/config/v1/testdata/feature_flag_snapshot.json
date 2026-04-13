@@ -54,6 +54,24 @@
         "platform-app"
       ],
       "description": "Master kill switch for Maestro-triggered autonomous actions."
+    },
+    {
+      "key": "platform.kill_switches.gate.control_api",
+      "enabled": false,
+      "rollout_percent": 0,
+      "owners": [
+        "platform-app"
+      ],
+      "description": "Kill switch for Gate control-plane HTTP and Connect admin surfaces."
+    },
+    {
+      "key": "platform.kill_switches.gate.connector_proxy",
+      "enabled": false,
+      "rollout_percent": 0,
+      "owners": [
+        "platform-app"
+      ],
+      "description": "Kill switch for Gate connector proxying of new upstream sessions."
     }
   ]
 }
