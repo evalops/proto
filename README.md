@@ -222,7 +222,9 @@ CI today.
 
 CI validates the package on pull requests, and the `NPM Publish` workflow packs
 and publishes it automatically on `main` when Artifact Registry or
-`NPM_PUBLISH_NPMRC` publish credentials are configured.
+`NPM_PUBLISH_NPMRC` publish credentials are configured. The package check is
+driven from the built `gen/dist/**/*_pb.js` tree, so new generated modules have
+to be exported explicitly instead of silently skipping package validation.
 
 ## Event Envelope Guidance
 
