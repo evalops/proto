@@ -241,14 +241,20 @@ generated types.
 High-risk boundary fixtures belong there too. The current catalog includes
 canonical `events/v1.CloudEvent` examples for `pipeline.changes.activity.create`
 with `outcome=replied` and `parker.changes.work_relationship.update` with
-`status=terminated`, so downstream consumers can pin the semantics they depend
-on instead of only the wire shape.
+`status=terminated`. It also includes a Tap -> Pipeline boundary fixture for
+`ensemble.tap.hubspot.deal.updated` with a qualified stage change and a real
+UUID tenant, so downstream consumers can pin the semantics they depend on
+instead of only the wire shape.
 
 Go consumers can import those fixtures directly from
 `github.com/evalops/proto/contractfixtures` instead of copying JSON into each
 repo. For example, `contractfixtures.Read(contractfixtures.EventPipelineActivityCreateReplied)`
 returns the canonical protojson fixture bytes that service-side tests can decode
 and compare against their own publisher or consumer behavior.
+
+For typed helpers, use `contractfixtures.LoadChangeFixture(...)` or
+`contractfixtures.LoadTapFixture(...)` to unpack the canonical
+`events/v1.CloudEvent` envelope and its typed payload in one call.
 
 ## Adding a New Proto
 
