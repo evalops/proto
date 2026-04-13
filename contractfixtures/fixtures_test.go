@@ -52,6 +52,24 @@ func TestLoadChangeFixtureSupportsPipelineSignalFixture(t *testing.T) {
 	}
 }
 
+func TestLoadChangeFixtureSupportsPipelineDealFixture(t *testing.T) {
+	t.Parallel()
+
+	envelope, message, err := LoadChangeFixture(EventPipelineDealUpdateClosedWon)
+	if err != nil {
+		t.Fatalf("load pipeline deal fixture: %v", err)
+	}
+	if envelope.GetType() != "pipeline.changes.deal.update" {
+		t.Fatalf("unexpected type %q", envelope.GetType())
+	}
+	if message.GetAggregateType() != "deal" || message.GetOperation() != "update" {
+		t.Fatalf("unexpected aggregate/operation %q/%q", message.GetAggregateType(), message.GetOperation())
+	}
+	if got := message.GetPayload().AsMap()["stage"]; got != "closed_won" {
+		t.Fatalf("unexpected stage %#v", got)
+	}
+}
+
 func TestReadRejectsEscapingPaths(t *testing.T) {
 	t.Parallel()
 

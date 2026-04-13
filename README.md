@@ -283,7 +283,8 @@ generated types.
 High-risk boundary fixtures belong there too. The current catalog includes
 canonical `events/v1.CloudEvent` examples for `pipeline.changes.activity.create`
 with `outcome=replied`, `pipeline.changes.signal.create` with
-`signal_type=linkedin_active`, and `parker.changes.work_relationship.update` with
+`signal_type=linkedin_active`, `pipeline.changes.deal.update` with
+`stage=closed_won`, and `parker.changes.work_relationship.update` with
 `status=terminated`, plus `evaluation.completed` with a typed
 `events/v1.EvaluationCompleted` payload for the Fermata -> Pipeline capability
 signal seam. It also includes a Tap -> Pipeline boundary fixture for
