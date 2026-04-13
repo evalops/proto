@@ -1,5 +1,6 @@
 {
   "workspace_id": "ws_approval",
+  "approver_user_id": "user_approver",
   "agent_id": "agent_maestro",
   "surface": "chat",
   "action_type": "file.delete",
