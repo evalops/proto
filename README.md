@@ -236,7 +236,10 @@ bus.
 - Use `github.com/evalops/proto/eventhelpers` to build and unpack canonical
   envelopes instead of re-implementing `Any` packing, protojson marshaling, and
   type assertions in each service. The package exports `NewCloudEvent`,
-  `MarshalProtoJSON`, `UnpackChange`, and `UnpackTapEventData`.
+  `NewChange`, `MarshalProtoJSON`, `UnpackChange`, and
+  `UnpackTapEventData`. `NewCloudEvent` also stamps
+  `extensions.dataschema=buf.build/evalops/proto/<message>` so published
+  envelopes stay self-describing across service boundaries.
 
 ## Development
 

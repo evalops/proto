@@ -1,6 +1,8 @@
 package eventhelpers
 
 import (
+	"bytes"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"strings"
@@ -11,6 +13,7 @@ import (
 	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/anypb"
+	"google.golang.org/protobuf/types/known/structpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
@@ -72,11 +75,51 @@ func NewCloudEvent(id, eventType, source, subject, tenantID string, occurredAt t
 		DataContentType: CanonicalDataContentType,
 		TenantId:        strings.TrimSpace(tenantID),
 		Data:            anyPayload,
+		Extensions: map[string]*structpb.Value{
+			"dataschema": structpb.NewStringValue(dataschemaFor(payload)),
+		},
 	}
 	if !occurredAt.IsZero() {
 		envelope.Time = timestamppb.New(occurredAt.UTC())
 	}
 	return envelope, nil
+}
+
+// NewChange converts a canonical change payload into the shared events/v1.Change message.
+func NewChange(
+	seq int64,
+	organizationID string,
+	aggregateType string,
+	aggregateID string,
+	operation string,
+	actorType string,
+	actorID string,
+	aggregateVersion int64,
+	recordedAt time.Time,
+	rawPayload []byte,
+) (*eventsv1.Change, error) {
+	payload, err := payloadStructFromJSON(rawPayload)
+	if err != nil {
+		return nil, err
+	}
+
+	var timestamp *timestamppb.Timestamp
+	if !recordedAt.IsZero() {
+		timestamp = timestamppb.New(recordedAt.UTC())
+	}
+
+	return &eventsv1.Change{
+		Seq:              seq,
+		OrganizationId:   strings.TrimSpace(organizationID),
+		AggregateType:    strings.TrimSpace(aggregateType),
+		AggregateId:      strings.TrimSpace(aggregateID),
+		Operation:        strings.TrimSpace(operation),
+		ActorType:        strings.TrimSpace(actorType),
+		ActorId:          strings.TrimSpace(actorID),
+		AggregateVersion: aggregateVersion,
+		RecordedAt:       timestamp,
+		Payload:          payload,
+	}, nil
 }
 
 // UnpackData unmarshals the typed Any payload from a canonical CloudEvent.
@@ -105,6 +148,32 @@ func UnpackTapEventData(envelope *eventsv1.CloudEvent) (*tapv1.TapEventData, err
 	message := &tapv1.TapEventData{}
 	if err := UnpackData(envelope, message); err != nil {
 		return nil, err
+	}
+	return message, nil
+}
+
+func dataschemaFor(payload proto.Message) string {
+	return "buf.build/evalops/proto/" + string(payload.ProtoReflect().Descriptor().FullName())
+}
+
+func payloadStructFromJSON(rawPayload []byte) (*structpb.Struct, error) {
+	trimmed := bytes.TrimSpace(rawPayload)
+	if len(trimmed) == 0 || bytes.Equal(trimmed, []byte("null")) {
+		return nil, nil
+	}
+
+	var value any
+	if err := json.Unmarshal(trimmed, &value); err != nil {
+		return nil, fmt.Errorf("unmarshal change payload: %w", err)
+	}
+	fields, ok := value.(map[string]any)
+	if !ok {
+		return nil, fmt.Errorf("change payload must be a JSON object")
+	}
+
+	message, err := structpb.NewStruct(fields)
+	if err != nil {
+		return nil, fmt.Errorf("encode canonical change payload: %w", err)
 	}
 	return message, nil
 }
