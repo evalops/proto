@@ -36,3 +36,24 @@ func TestReadRejectsEscapingPaths(t *testing.T) {
 		t.Fatal("expected escaping path to fail")
 	}
 }
+
+func TestLoadTapFixture(t *testing.T) {
+	t.Parallel()
+
+	envelope, data, err := LoadTapFixture(EventTapHubspotDealQualified)
+	if err != nil {
+		t.Fatalf("load tap fixture: %v", err)
+	}
+	if envelope.GetType() != "ensemble.tap.hubspot.deal.updated" {
+		t.Fatalf("unexpected type %q", envelope.GetType())
+	}
+	if envelope.GetTenantId() != "11111111-1111-1111-1111-111111111111" {
+		t.Fatalf("unexpected tenant_id %q", envelope.GetTenantId())
+	}
+	if data.GetProvider() != "hubspot" {
+		t.Fatalf("unexpected provider %q", data.GetProvider())
+	}
+	if data.GetChanges()["stage"].GetTo().GetStringValue() != "qualified" {
+		t.Fatalf("unexpected stage change %#v", data.GetChanges()["stage"].GetTo())
+	}
+}

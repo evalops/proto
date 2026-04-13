@@ -364,6 +364,41 @@ func TestCloudEventTapFixtureMatchesProtoContract(t *testing.T) {
 	}
 }
 
+func TestCloudEventTapHubspotDealQualifiedFixtureMatchesProtoContract(t *testing.T) {
+	t.Parallel()
+
+	var message eventsv1.CloudEvent
+	loadProtoJSONFixture(t, filepath.Join("proto", "events", "v1", "testdata", "cloud_event_tap_hubspot_deal_qualified.json"), &message)
+
+	if message.GetType() != "ensemble.tap.hubspot.deal.updated" {
+		t.Fatalf("expected type ensemble.tap.hubspot.deal.updated, got %q", message.GetType())
+	}
+	if message.GetSubject() != "hubspot/deal/deal_123" {
+		t.Fatalf("expected subject hubspot/deal/deal_123, got %q", message.GetSubject())
+	}
+	if message.GetTenantId() != "11111111-1111-1111-1111-111111111111" {
+		t.Fatalf("expected tenant_id 11111111-1111-1111-1111-111111111111, got %q", message.GetTenantId())
+	}
+
+	var unpacked tapv1.TapEventData
+	if err := message.GetData().UnmarshalTo(&unpacked); err != nil {
+		t.Fatalf("unpack TapEventData payload: %v", err)
+	}
+
+	if unpacked.GetProvider() != "hubspot" {
+		t.Fatalf("expected provider hubspot, got %q", unpacked.GetProvider())
+	}
+	if unpacked.GetTenantId() != message.GetTenantId() {
+		t.Fatalf("expected payload tenant_id %q, got %q", message.GetTenantId(), unpacked.GetTenantId())
+	}
+	if unpacked.GetSnapshot().AsMap()["company_domain"] != "acme.com" {
+		t.Fatalf("expected company_domain acme.com, got %#v", unpacked.GetSnapshot().AsMap()["company_domain"])
+	}
+	if unpacked.GetChanges()["stage"].GetTo().GetStringValue() != "qualified" {
+		t.Fatalf("expected stage transition to qualified, got %#v", unpacked.GetChanges()["stage"].GetTo())
+	}
+}
+
 func TestCloudEventPipelineActivityCreateRepliedFixtureMatchesProtoContract(t *testing.T) {
 	t.Parallel()
 
