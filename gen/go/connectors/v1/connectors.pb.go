@@ -206,8 +206,11 @@ type Connection struct {
 	LastHealthyAt *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=last_healthy_at,json=lastHealthyAt,proto3" json:"last_healthy_at,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	// credential_refs mirrors non-secret credential references such as vault or
+	// secret-manager handles. Raw credential material must not be returned here.
+	CredentialRefs map[string]string `protobuf:"bytes,11,rep,name=credential_refs,json=credentialRefs,proto3" json:"credential_refs,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *Connection) Reset() {
@@ -306,6 +309,13 @@ func (x *Connection) GetCreatedAt() *timestamppb.Timestamp {
 func (x *Connection) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
+	}
+	return nil
+}
+
+func (x *Connection) GetCredentialRefs() map[string]string {
+	if x != nil {
+		return x.CredentialRefs
 	}
 	return nil
 }
@@ -1473,7 +1483,7 @@ var File_connectors_v1_connectors_proto protoreflect.FileDescriptor
 
 const file_connectors_v1_connectors_proto_rawDesc = "" +
 	"\n" +
-	"\x1econnectors/v1/connectors.proto\x12\rconnectors.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xcd\x03\n" +
+	"\x1econnectors/v1/connectors.proto\x12\rconnectors.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe8\x04\n" +
 	"\n" +
 	"Connection\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12!\n" +
@@ -1489,7 +1499,11 @@ const file_connectors_v1_connectors_proto_rawDesc = "" +
 	"created_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
 	"updated_at\x18\n" +
-	" \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"\xcb\x01\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12V\n" +
+	"\x0fcredential_refs\x18\v \x03(\v2-.connectors.v1.Connection.CredentialRefsEntryR\x0ecredentialRefs\x1aA\n" +
+	"\x13CredentialRefsEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"\xcb\x01\n" +
 	"\x10ConnectionHealth\x123\n" +
 	"\x06status\x18\x01 \x01(\x0e2\x1b.connectors.v1.HealthStatusR\x06status\x12\x1d\n" +
 	"\n" +
@@ -1609,7 +1623,7 @@ func file_connectors_v1_connectors_proto_rawDescGZIP() []byte {
 }
 
 var file_connectors_v1_connectors_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_connectors_v1_connectors_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
+var file_connectors_v1_connectors_proto_msgTypes = make([]protoimpl.MessageInfo, 26)
 var file_connectors_v1_connectors_proto_goTypes = []any{
 	(AuthType)(0),                          // 0: connectors.v1.AuthType
 	(HealthStatus)(0),                      // 1: connectors.v1.HealthStatus
@@ -1638,56 +1652,58 @@ var file_connectors_v1_connectors_proto_goTypes = []any{
 	(*SetSourceOfTruthPolicyResponse)(nil), // 24: connectors.v1.SetSourceOfTruthPolicyResponse
 	(*GetCapabilitiesRequest)(nil),         // 25: connectors.v1.GetCapabilitiesRequest
 	(*GetCapabilitiesResponse)(nil),        // 26: connectors.v1.GetCapabilitiesResponse
-	nil,                                    // 27: connectors.v1.RegisterConnectionRequest.CredentialsEntry
-	(*timestamppb.Timestamp)(nil),          // 28: google.protobuf.Timestamp
+	nil,                                    // 27: connectors.v1.Connection.CredentialRefsEntry
+	nil,                                    // 28: connectors.v1.RegisterConnectionRequest.CredentialsEntry
+	(*timestamppb.Timestamp)(nil),          // 29: google.protobuf.Timestamp
 }
 var file_connectors_v1_connectors_proto_depIdxs = []int32{
 	0,  // 0: connectors.v1.Connection.auth_type:type_name -> connectors.v1.AuthType
 	1,  // 1: connectors.v1.Connection.health_status:type_name -> connectors.v1.HealthStatus
-	28, // 2: connectors.v1.Connection.last_healthy_at:type_name -> google.protobuf.Timestamp
-	28, // 3: connectors.v1.Connection.created_at:type_name -> google.protobuf.Timestamp
-	28, // 4: connectors.v1.Connection.updated_at:type_name -> google.protobuf.Timestamp
-	1,  // 5: connectors.v1.ConnectionHealth.status:type_name -> connectors.v1.HealthStatus
-	28, // 6: connectors.v1.ConnectionHealth.last_check_at:type_name -> google.protobuf.Timestamp
-	2,  // 7: connectors.v1.SourceOfTruthPolicy.area:type_name -> connectors.v1.SourceOfTruthArea
-	0,  // 8: connectors.v1.RegisterConnectionRequest.auth_type:type_name -> connectors.v1.AuthType
-	27, // 9: connectors.v1.RegisterConnectionRequest.credentials:type_name -> connectors.v1.RegisterConnectionRequest.CredentialsEntry
-	3,  // 10: connectors.v1.RegisterConnectionResponse.connection:type_name -> connectors.v1.Connection
-	3,  // 11: connectors.v1.GetConnectionResponse.connection:type_name -> connectors.v1.Connection
-	3,  // 12: connectors.v1.ListConnectionsResponse.connections:type_name -> connectors.v1.Connection
-	3,  // 13: connectors.v1.RefreshConnectionResponse.connection:type_name -> connectors.v1.Connection
-	4,  // 14: connectors.v1.GetHealthResponse.health:type_name -> connectors.v1.ConnectionHealth
-	2,  // 15: connectors.v1.ResolveSourceOfTruthRequest.area:type_name -> connectors.v1.SourceOfTruthArea
-	5,  // 16: connectors.v1.ResolveSourceOfTruthResponse.policy:type_name -> connectors.v1.SourceOfTruthPolicy
-	3,  // 17: connectors.v1.ResolveSourceOfTruthResponse.primary_connection:type_name -> connectors.v1.Connection
-	6,  // 18: connectors.v1.GetDegradedReadPolicyResponse.policy:type_name -> connectors.v1.DegradedReadPolicy
-	5,  // 19: connectors.v1.SetSourceOfTruthPolicyRequest.policy:type_name -> connectors.v1.SourceOfTruthPolicy
-	5,  // 20: connectors.v1.SetSourceOfTruthPolicyResponse.policy:type_name -> connectors.v1.SourceOfTruthPolicy
-	7,  // 21: connectors.v1.ConnectorService.RegisterConnection:input_type -> connectors.v1.RegisterConnectionRequest
-	9,  // 22: connectors.v1.ConnectorService.GetConnection:input_type -> connectors.v1.GetConnectionRequest
-	11, // 23: connectors.v1.ConnectorService.ListConnections:input_type -> connectors.v1.ListConnectionsRequest
-	13, // 24: connectors.v1.ConnectorService.RefreshConnection:input_type -> connectors.v1.RefreshConnectionRequest
-	15, // 25: connectors.v1.ConnectorService.RevokeConnection:input_type -> connectors.v1.RevokeConnectionRequest
-	17, // 26: connectors.v1.ConnectorService.GetHealth:input_type -> connectors.v1.GetHealthRequest
-	19, // 27: connectors.v1.ConnectorService.ResolveSourceOfTruth:input_type -> connectors.v1.ResolveSourceOfTruthRequest
-	21, // 28: connectors.v1.ConnectorService.GetDegradedReadPolicy:input_type -> connectors.v1.GetDegradedReadPolicyRequest
-	23, // 29: connectors.v1.ConnectorService.SetSourceOfTruthPolicy:input_type -> connectors.v1.SetSourceOfTruthPolicyRequest
-	25, // 30: connectors.v1.ConnectorService.GetCapabilities:input_type -> connectors.v1.GetCapabilitiesRequest
-	8,  // 31: connectors.v1.ConnectorService.RegisterConnection:output_type -> connectors.v1.RegisterConnectionResponse
-	10, // 32: connectors.v1.ConnectorService.GetConnection:output_type -> connectors.v1.GetConnectionResponse
-	12, // 33: connectors.v1.ConnectorService.ListConnections:output_type -> connectors.v1.ListConnectionsResponse
-	14, // 34: connectors.v1.ConnectorService.RefreshConnection:output_type -> connectors.v1.RefreshConnectionResponse
-	16, // 35: connectors.v1.ConnectorService.RevokeConnection:output_type -> connectors.v1.RevokeConnectionResponse
-	18, // 36: connectors.v1.ConnectorService.GetHealth:output_type -> connectors.v1.GetHealthResponse
-	20, // 37: connectors.v1.ConnectorService.ResolveSourceOfTruth:output_type -> connectors.v1.ResolveSourceOfTruthResponse
-	22, // 38: connectors.v1.ConnectorService.GetDegradedReadPolicy:output_type -> connectors.v1.GetDegradedReadPolicyResponse
-	24, // 39: connectors.v1.ConnectorService.SetSourceOfTruthPolicy:output_type -> connectors.v1.SetSourceOfTruthPolicyResponse
-	26, // 40: connectors.v1.ConnectorService.GetCapabilities:output_type -> connectors.v1.GetCapabilitiesResponse
-	31, // [31:41] is the sub-list for method output_type
-	21, // [21:31] is the sub-list for method input_type
-	21, // [21:21] is the sub-list for extension type_name
-	21, // [21:21] is the sub-list for extension extendee
-	0,  // [0:21] is the sub-list for field type_name
+	29, // 2: connectors.v1.Connection.last_healthy_at:type_name -> google.protobuf.Timestamp
+	29, // 3: connectors.v1.Connection.created_at:type_name -> google.protobuf.Timestamp
+	29, // 4: connectors.v1.Connection.updated_at:type_name -> google.protobuf.Timestamp
+	27, // 5: connectors.v1.Connection.credential_refs:type_name -> connectors.v1.Connection.CredentialRefsEntry
+	1,  // 6: connectors.v1.ConnectionHealth.status:type_name -> connectors.v1.HealthStatus
+	29, // 7: connectors.v1.ConnectionHealth.last_check_at:type_name -> google.protobuf.Timestamp
+	2,  // 8: connectors.v1.SourceOfTruthPolicy.area:type_name -> connectors.v1.SourceOfTruthArea
+	0,  // 9: connectors.v1.RegisterConnectionRequest.auth_type:type_name -> connectors.v1.AuthType
+	28, // 10: connectors.v1.RegisterConnectionRequest.credentials:type_name -> connectors.v1.RegisterConnectionRequest.CredentialsEntry
+	3,  // 11: connectors.v1.RegisterConnectionResponse.connection:type_name -> connectors.v1.Connection
+	3,  // 12: connectors.v1.GetConnectionResponse.connection:type_name -> connectors.v1.Connection
+	3,  // 13: connectors.v1.ListConnectionsResponse.connections:type_name -> connectors.v1.Connection
+	3,  // 14: connectors.v1.RefreshConnectionResponse.connection:type_name -> connectors.v1.Connection
+	4,  // 15: connectors.v1.GetHealthResponse.health:type_name -> connectors.v1.ConnectionHealth
+	2,  // 16: connectors.v1.ResolveSourceOfTruthRequest.area:type_name -> connectors.v1.SourceOfTruthArea
+	5,  // 17: connectors.v1.ResolveSourceOfTruthResponse.policy:type_name -> connectors.v1.SourceOfTruthPolicy
+	3,  // 18: connectors.v1.ResolveSourceOfTruthResponse.primary_connection:type_name -> connectors.v1.Connection
+	6,  // 19: connectors.v1.GetDegradedReadPolicyResponse.policy:type_name -> connectors.v1.DegradedReadPolicy
+	5,  // 20: connectors.v1.SetSourceOfTruthPolicyRequest.policy:type_name -> connectors.v1.SourceOfTruthPolicy
+	5,  // 21: connectors.v1.SetSourceOfTruthPolicyResponse.policy:type_name -> connectors.v1.SourceOfTruthPolicy
+	7,  // 22: connectors.v1.ConnectorService.RegisterConnection:input_type -> connectors.v1.RegisterConnectionRequest
+	9,  // 23: connectors.v1.ConnectorService.GetConnection:input_type -> connectors.v1.GetConnectionRequest
+	11, // 24: connectors.v1.ConnectorService.ListConnections:input_type -> connectors.v1.ListConnectionsRequest
+	13, // 25: connectors.v1.ConnectorService.RefreshConnection:input_type -> connectors.v1.RefreshConnectionRequest
+	15, // 26: connectors.v1.ConnectorService.RevokeConnection:input_type -> connectors.v1.RevokeConnectionRequest
+	17, // 27: connectors.v1.ConnectorService.GetHealth:input_type -> connectors.v1.GetHealthRequest
+	19, // 28: connectors.v1.ConnectorService.ResolveSourceOfTruth:input_type -> connectors.v1.ResolveSourceOfTruthRequest
+	21, // 29: connectors.v1.ConnectorService.GetDegradedReadPolicy:input_type -> connectors.v1.GetDegradedReadPolicyRequest
+	23, // 30: connectors.v1.ConnectorService.SetSourceOfTruthPolicy:input_type -> connectors.v1.SetSourceOfTruthPolicyRequest
+	25, // 31: connectors.v1.ConnectorService.GetCapabilities:input_type -> connectors.v1.GetCapabilitiesRequest
+	8,  // 32: connectors.v1.ConnectorService.RegisterConnection:output_type -> connectors.v1.RegisterConnectionResponse
+	10, // 33: connectors.v1.ConnectorService.GetConnection:output_type -> connectors.v1.GetConnectionResponse
+	12, // 34: connectors.v1.ConnectorService.ListConnections:output_type -> connectors.v1.ListConnectionsResponse
+	14, // 35: connectors.v1.ConnectorService.RefreshConnection:output_type -> connectors.v1.RefreshConnectionResponse
+	16, // 36: connectors.v1.ConnectorService.RevokeConnection:output_type -> connectors.v1.RevokeConnectionResponse
+	18, // 37: connectors.v1.ConnectorService.GetHealth:output_type -> connectors.v1.GetHealthResponse
+	20, // 38: connectors.v1.ConnectorService.ResolveSourceOfTruth:output_type -> connectors.v1.ResolveSourceOfTruthResponse
+	22, // 39: connectors.v1.ConnectorService.GetDegradedReadPolicy:output_type -> connectors.v1.GetDegradedReadPolicyResponse
+	24, // 40: connectors.v1.ConnectorService.SetSourceOfTruthPolicy:output_type -> connectors.v1.SetSourceOfTruthPolicyResponse
+	26, // 41: connectors.v1.ConnectorService.GetCapabilities:output_type -> connectors.v1.GetCapabilitiesResponse
+	32, // [32:42] is the sub-list for method output_type
+	22, // [22:32] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_connectors_v1_connectors_proto_init() }
@@ -1701,7 +1717,7 @@ func file_connectors_v1_connectors_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_connectors_v1_connectors_proto_rawDesc), len(file_connectors_v1_connectors_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   25,
+			NumMessages:   26,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
