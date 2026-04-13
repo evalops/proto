@@ -156,10 +156,16 @@ import (
 
 // Use generated types directly
 req := &meterv1.RecordUsageRequest{
-    OrganizationId: orgID,
-    Model:          "claude-opus-4.6",
-    PromptTokens:   1250,
-    CostMicros:     42300,
+    TeamId:       "team-platform",
+    AgentId:      "agent_writer",
+    Surface:      "maestro",
+    EventType:    "llm.completion",
+    Model:        "claude-opus-4.6",
+    Provider:     "anthropic",
+    InputTokens:  1250,
+    OutputTokens: 340,
+    TotalCostUsd: 0.0423,
+    RequestId:    "req_789",
 }
 
 // Resolve the active prompt version at inference time
@@ -200,6 +206,7 @@ root as `@evalops/proto`.
 Current package surface:
 
 - protobuf-es message modules like `@evalops/proto/memory/v1/memory_pb`
+- metering contracts like `@evalops/proto/meter/v1/meter_pb`
 - shared event contracts like `@evalops/proto/events/v1/cloudevent_pb`
 
 The generated `_connect` descriptors remain checked into the repo, but the

@@ -1,0 +1,15 @@
+{
+  "meter_id": "input_tokens",
+  "buckets": [
+    {
+      "key": "claude-opus-4.6",
+      "value": 125,
+      "record_count": "1"
+    },
+    {
+      "key": "gpt-4.1",
+      "value": 260,
+      "record_count": "1"
+    }
+  ]
+}

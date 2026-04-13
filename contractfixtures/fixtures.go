@@ -11,12 +11,19 @@ import (
 	"github.com/evalops/proto/eventhelpers"
 	eventsv1 "github.com/evalops/proto/gen/go/events/v1"
 	tapv1 "github.com/evalops/proto/gen/go/tap/v1"
+	"google.golang.org/protobuf/encoding/protojson"
+	"google.golang.org/protobuf/proto"
 )
 
 const (
 	EventPipelineActivityCreateReplied          = "events/v1/testdata/cloud_event_pipeline_activity_create_replied.json"
 	EventParkerWorkRelationshipUpdateTerminated = "events/v1/testdata/cloud_event_parker_work_relationship_update_terminated.json"
 	EventTapHubspotDealQualified                = "events/v1/testdata/cloud_event_tap_hubspot_deal_qualified.json"
+	MeterRecordUsageRequest                     = "meter/v1/testdata/record_usage_request.json"
+	MeterRecordUsageResponse                    = "meter/v1/testdata/record_usage_response.json"
+	MeterUsageQueryResponse                     = "meter/v1/testdata/query_usage_response.json"
+	MeterUsageSummaryResponse                   = "meter/v1/testdata/usage_summary_response.json"
+	MeterMeterSummaryResponse                   = "meter/v1/testdata/meter_summary_response.json"
 )
 
 // Read returns a canonical proto fixture from the proto fixture catalog.
@@ -81,4 +88,17 @@ func LoadTapFixture(name string) (*eventsv1.CloudEvent, *tapv1.TapEventData, err
 		return nil, nil, fmt.Errorf("unmarshal tap fixture %q: %w", name, err)
 	}
 	return envelope, data, nil
+}
+
+// UnmarshalProtoJSON reads a canonical fixture and unmarshals it with strict
+// protojson parsing, rejecting unknown fields.
+func UnmarshalProtoJSON(name string, message proto.Message) error {
+	data, err := Read(name)
+	if err != nil {
+		return err
+	}
+	if err := (protojson.UnmarshalOptions{DiscardUnknown: false}).Unmarshal(data, message); err != nil {
+		return fmt.Errorf("unmarshal fixture %q: %w", name, err)
+	}
+	return nil
 }

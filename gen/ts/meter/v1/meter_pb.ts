@@ -2,44 +2,41 @@
 // @generated from file meter/v1/meter.proto (package meter.v1, syntax proto3)
 /* eslint-disable */
 
-import type { GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
-import { fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
+import type { GenEnum, GenFile, GenMessage, GenService } from "@bufbuild/protobuf/codegenv2";
+import { enumDesc, fileDesc, messageDesc, serviceDesc } from "@bufbuild/protobuf/codegenv2";
 import type { Timestamp } from "@bufbuild/protobuf/wkt";
-import { file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
-import type { Message } from "@bufbuild/protobuf";
+import { file_google_protobuf_struct, file_google_protobuf_timestamp } from "@bufbuild/protobuf/wkt";
+import type { JsonObject, Message } from "@bufbuild/protobuf";
 
 /**
  * Describes the file meter/v1/meter.proto.
  */
 export const file_meter_v1_meter: GenFile = /*@__PURE__*/
-  fileDesc("ChRtZXRlci92MS9tZXRlci5wcm90bxIIbWV0ZXIudjEi5gIKElJlY29yZFVzYWdlUmVxdWVzdBIXCg9vcmdhbml6YXRpb25faWQYASABKAkSDwoHdXNlcl9pZBgCIAEoCRIQCghhZ2VudF9pZBgDIAEoCRIPCgd0ZWFtX2lkGAQgASgJEg0KBW1vZGVsGAUgASgJEhAKCHByb3ZpZGVyGAYgASgJEhUKDXByb21wdF90b2tlbnMYByABKAMSGQoRY29tcGxldGlvbl90b2tlbnMYCCABKAMSFAoMdG90YWxfdG9rZW5zGAkgASgDEhUKDWNhY2hlZF90b2tlbnMYCiABKAMSGAoQcmVhc29uaW5nX3Rva2VucxgLIAEoAxITCgtjb3N0X21pY3JvcxgMIAEoAxISCgpyZXF1ZXN0X2lkGA0gASgJEg8KB3N1cmZhY2UYDiABKAkSLwoLcmVjb3JkZWRfYXQYDyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIiEKE1JlY29yZFVzYWdlUmVzcG9uc2USCgoCaWQYASABKAki6wIKC1VzYWdlUmVjb3JkEgoKAmlkGAEgASgJEhcKD29yZ2FuaXphdGlvbl9pZBgCIAEoCRIPCgd1c2VyX2lkGAMgASgJEhAKCGFnZW50X2lkGAQgASgJEg8KB3RlYW1faWQYBSABKAkSDQoFbW9kZWwYBiABKAkSEAoIcHJvdmlkZXIYByABKAkSFQoNcHJvbXB0X3Rva2VucxgIIAEoAxIZChFjb21wbGV0aW9uX3Rva2VucxgJIAEoAxIUCgx0b3RhbF90b2tlbnMYCiABKAMSFQoNY2FjaGVkX3Rva2VucxgLIAEoAxIYChByZWFzb25pbmdfdG9rZW5zGAwgASgDEhMKC2Nvc3RfbWljcm9zGA0gASgDEhIKCnJlcXVlc3RfaWQYDiABKAkSDwoHc3VyZmFjZRgPIAEoCRIvCgtyZWNvcmRlZF9hdBgQIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAi/gEKEVF1ZXJ5VXNhZ2VSZXF1ZXN0EhcKD29yZ2FuaXphdGlvbl9pZBgBIAEoCRIPCgd1c2VyX2lkGAIgASgJEhAKCGFnZW50X2lkGAMgASgJEg8KB3RlYW1faWQYBCABKAkSDQoFbW9kZWwYBSABKAkSEAoIcHJvdmlkZXIYBiABKAkSLgoKc3RhcnRfdGltZRgHIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLAoIZW5kX3RpbWUYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEg0KBWxpbWl0GAkgASgFEg4KBm9mZnNldBgKIAEoBSJLChJRdWVyeVVzYWdlUmVzcG9uc2USJgoHcmVjb3JkcxgBIAMoCzIVLm1ldGVyLnYxLlVzYWdlUmVjb3JkEg0KBXRvdGFsGAIgASgFIqEBChZHZXRVc2FnZVN1bW1hcnlSZXF1ZXN0EhcKD29yZ2FuaXphdGlvbl9pZBgBIAEoCRIuCgpzdGFydF90aW1lGAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIsCghlbmRfdGltZRgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASEAoIZ3JvdXBfYnkYBCABKAkiQgoXR2V0VXNhZ2VTdW1tYXJ5UmVzcG9uc2USJwoHc3VtbWFyeRgBIAEoCzIWLm1ldGVyLnYxLlVzYWdlU3VtbWFyeSK9AQoMVXNhZ2VTdW1tYXJ5EhQKDHRvdGFsX3Rva2VucxgBIAEoAxIbChN0b3RhbF9wcm9tcHRfdG9rZW5zGAIgASgDEh8KF3RvdGFsX2NvbXBsZXRpb25fdG9rZW5zGAMgASgDEhkKEXRvdGFsX2Nvc3RfbWljcm9zGAQgASgDEhYKDnRvdGFsX3JlcXVlc3RzGAUgASgFEiYKB2J1Y2tldHMYBiADKAsyFS5tZXRlci52MS5Vc2FnZUJ1Y2tldCJRCgtVc2FnZUJ1Y2tldBILCgNrZXkYASABKAkSDgoGdG9rZW5zGAIgASgDEhMKC2Nvc3RfbWljcm9zGAMgASgDEhAKCHJlcXVlc3RzGAQgASgFMvsBCgxNZXRlclNlcnZpY2USSgoLUmVjb3JkVXNhZ2USHC5tZXRlci52MS5SZWNvcmRVc2FnZVJlcXVlc3QaHS5tZXRlci52MS5SZWNvcmRVc2FnZVJlc3BvbnNlEkcKClF1ZXJ5VXNhZ2USGy5tZXRlci52MS5RdWVyeVVzYWdlUmVxdWVzdBocLm1ldGVyLnYxLlF1ZXJ5VXNhZ2VSZXNwb25zZRJWCg9HZXRVc2FnZVN1bW1hcnkSIC5tZXRlci52MS5HZXRVc2FnZVN1bW1hcnlSZXF1ZXN0GiEubWV0ZXIudjEuR2V0VXNhZ2VTdW1tYXJ5UmVzcG9uc2VCMlowZ2l0aHViLmNvbS9ldmFsb3BzL3Byb3RvL2dlbi9nby9tZXRlci92MTttZXRlcnYxYgZwcm90bzM", [file_google_protobuf_timestamp]);
+  fileDesc("ChRtZXRlci92MS9tZXRlci5wcm90bxIIbWV0ZXIudjEi3wIKElJlY29yZFVzYWdlUmVxdWVzdBIPCgd0ZWFtX2lkGAEgASgJEhAKCGFnZW50X2lkGAIgASgJEg8KB3N1cmZhY2UYAyABKAkSEgoKZXZlbnRfdHlwZRgEIAEoCRINCgVtb2RlbBgFIAEoCRIQCghwcm92aWRlchgGIAEoCRIUCgxpbnB1dF90b2tlbnMYByABKAMSFQoNb3V0cHV0X3Rva2VucxgIIAEoAxIZChFjYWNoZV9yZWFkX3Rva2VucxgJIAEoAxIaChJjYWNoZV93cml0ZV90b2tlbnMYCiABKAMSFgoOdG90YWxfY29zdF91c2QYCyABKAESEgoKcmVxdWVzdF9pZBgMIAEoCRIpCghtZXRhZGF0YRgNIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QSJQoEZGF0YRgOIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QiPAoTUmVjb3JkVXNhZ2VSZXNwb25zZRIlCgZyZWNvcmQYASABKAsyFS5tZXRlci52MS5Vc2FnZVJlY29yZCJIChdSZWNvcmRVc2FnZUJhdGNoUmVxdWVzdBItCgdyZWNvcmRzGAEgAygLMhwubWV0ZXIudjEuUmVjb3JkVXNhZ2VSZXF1ZXN0IkIKGFJlY29yZFVzYWdlQmF0Y2hSZXNwb25zZRImCgdyZWNvcmRzGAEgAygLMhUubWV0ZXIudjEuVXNhZ2VSZWNvcmQi3AMKC1VzYWdlUmVjb3JkEgoKAmlkGAEgASgJEi0KCXRpbWVzdGFtcBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASFwoPb3JnYW5pemF0aW9uX2lkGAMgASgJEg8KB3RlYW1faWQYBCABKAkSEAoIYWdlbnRfaWQYBSABKAkSDwoHc3VyZmFjZRgGIAEoCRISCgpldmVudF90eXBlGAcgASgJEg0KBW1vZGVsGAggASgJEhAKCHByb3ZpZGVyGAkgASgJEhQKDGlucHV0X3Rva2VucxgKIAEoAxIVCg1vdXRwdXRfdG9rZW5zGAsgASgDEhkKEWNhY2hlX3JlYWRfdG9rZW5zGAwgASgDEhoKEmNhY2hlX3dyaXRlX3Rva2VucxgNIAEoAxIWCg50b3RhbF9jb3N0X3VzZBgOIAEoARISCgpyZXF1ZXN0X2lkGA8gASgJEiUKBGRhdGEYECABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0EikKCG1ldGFkYXRhGBEgASgLMhcuZ29vZ2xlLnByb3RvYnVmLlN0cnVjdBIuCgpjcmVhdGVkX2F0GBIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCLwAQoKVXNhZ2VRdWVyeRIPCgd0ZWFtX2lkGAEgASgJEhAKCGFnZW50X2lkGAIgASgJEhIKCmV2ZW50X3R5cGUYAyABKAkSDQoFbW9kZWwYBCABKAkSEAoIcHJvdmlkZXIYBSABKAkSFAoMbWV0YWRhdGFfa2V5GAYgASgJEhYKDm1ldGFkYXRhX3ZhbHVlGAcgASgJEi4KCnN0YXJ0X3RpbWUYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEiwKCGVuZF90aW1lGAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCI8ChJVc2FnZVF1ZXJ5UmVzcG9uc2USJgoHcmVjb3JkcxgBIAMoCzIVLm1ldGVyLnYxLlVzYWdlUmVjb3JkIooCChFVc2FnZVN1bW1hcnlRdWVyeRIPCgd0ZWFtX2lkGAEgASgJEhAKCGFnZW50X2lkGAIgASgJEioKCGdyb3VwX2J5GAMgASgOMhgubWV0ZXIudjEuU3VtbWFyeUdyb3VwQnkSGgoSZ3JvdXBfbWV0YWRhdGFfa2V5GAQgASgJEhQKDG1ldGFkYXRhX2tleRgFIAEoCRIWCg5tZXRhZGF0YV92YWx1ZRgGIAEoCRIuCgpzdGFydF90aW1lGAcgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIsCghlbmRfdGltZRgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAixQEKDFVzYWdlU3VtbWFyeRILCgNrZXkYASABKAkSGgoSdG90YWxfaW5wdXRfdG9rZW5zGAIgASgDEhsKE3RvdGFsX291dHB1dF90b2tlbnMYAyABKAMSHwoXdG90YWxfY2FjaGVfcmVhZF90b2tlbnMYBCABKAMSIAoYdG90YWxfY2FjaGVfd3JpdGVfdG9rZW5zGAUgASgDEhYKDnRvdGFsX2Nvc3RfdXNkGAYgASgBEhQKDHJlY29yZF9jb3VudBgHIAEoAyI/ChRVc2FnZVN1bW1hcnlSZXNwb25zZRInCgdidWNrZXRzGAEgAygLMhYubWV0ZXIudjEuVXNhZ2VTdW1tYXJ5ItIBChFNZXRlclN1bW1hcnlRdWVyeRIQCghtZXRlcl9pZBgBIAEoCRIPCgd0ZWFtX2lkGAIgASgJEhAKCGFnZW50X2lkGAMgASgJEioKCGdyb3VwX2J5GAQgASgOMhgubWV0ZXIudjEuU3VtbWFyeUdyb3VwQnkSLgoKc3RhcnRfdGltZRgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLAoIZW5kX3RpbWUYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIkYKEk1ldGVyU3VtbWFyeUJ1Y2tldBILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAESFAoMcmVjb3JkX2NvdW50GAMgASgDIlcKFE1ldGVyU3VtbWFyeVJlc3BvbnNlEhAKCG1ldGVyX2lkGAEgASgJEi0KB2J1Y2tldHMYAiADKAsyHC5tZXRlci52MS5NZXRlclN1bW1hcnlCdWNrZXQq4QEKDlN1bW1hcnlHcm91cEJ5EiAKHFNVTU1BUllfR1JPVVBfQllfVU5TUEVDSUZJRUQQABIaChZTVU1NQVJZX0dST1VQX0JZX01PREVMEAESHQoZU1VNTUFSWV9HUk9VUF9CWV9QUk9WSURFUhACEhkKFVNVTU1BUllfR1JPVVBfQllfVEVBTRADEhoKFlNVTU1BUllfR1JPVVBfQllfQUdFTlQQBBIcChhTVU1NQVJZX0dST1VQX0JZX1NVUkZBQ0UQBRIdChlTVU1NQVJZX0dST1VQX0JZX01FVEFEQVRBEAYylwMKDE1ldGVyU2VydmljZRJKCgtSZWNvcmRVc2FnZRIcLm1ldGVyLnYxLlJlY29yZFVzYWdlUmVxdWVzdBodLm1ldGVyLnYxLlJlY29yZFVzYWdlUmVzcG9uc2USWQoQUmVjb3JkVXNhZ2VCYXRjaBIhLm1ldGVyLnYxLlJlY29yZFVzYWdlQmF0Y2hSZXF1ZXN0GiIubWV0ZXIudjEuUmVjb3JkVXNhZ2VCYXRjaFJlc3BvbnNlEkAKClF1ZXJ5VXNhZ2USFC5tZXRlci52MS5Vc2FnZVF1ZXJ5GhwubWV0ZXIudjEuVXNhZ2VRdWVyeVJlc3BvbnNlEk4KD0dldFVzYWdlU3VtbWFyeRIbLm1ldGVyLnYxLlVzYWdlU3VtbWFyeVF1ZXJ5Gh4ubWV0ZXIudjEuVXNhZ2VTdW1tYXJ5UmVzcG9uc2USTgoPR2V0TWV0ZXJTdW1tYXJ5EhsubWV0ZXIudjEuTWV0ZXJTdW1tYXJ5UXVlcnkaHi5tZXRlci52MS5NZXRlclN1bW1hcnlSZXNwb25zZUIyWjBnaXRodWIuY29tL2V2YWxvcHMvcHJvdG8vZ2VuL2dvL21ldGVyL3YxO21ldGVydjFiBnByb3RvMw", [file_google_protobuf_struct, file_google_protobuf_timestamp]);
 
 /**
- * RecordUsageRequest is the canonical type for recording token/cost usage.
- * Replaces hand-written structs in llm-gateway and chat.
- *
  * @generated from message meter.v1.RecordUsageRequest
  */
 export type RecordUsageRequest = Message<"meter.v1.RecordUsageRequest"> & {
   /**
-   * @generated from field: string organization_id = 1;
+   * @generated from field: string team_id = 1;
    */
-  organizationId: string;
+  teamId: string;
 
   /**
-   * @generated from field: string user_id = 2;
-   */
-  userId: string;
-
-  /**
-   * @generated from field: string agent_id = 3;
+   * @generated from field: string agent_id = 2;
    */
   agentId: string;
 
   /**
-   * @generated from field: string team_id = 4;
+   * @generated from field: string surface = 3;
    */
-  teamId: string;
+  surface: string;
+
+  /**
+   * @generated from field: string event_type = 4;
+   */
+  eventType: string;
 
   /**
    * @generated from field: string model = 5;
@@ -52,49 +49,44 @@ export type RecordUsageRequest = Message<"meter.v1.RecordUsageRequest"> & {
   provider: string;
 
   /**
-   * @generated from field: int64 prompt_tokens = 7;
+   * @generated from field: int64 input_tokens = 7;
    */
-  promptTokens: bigint;
+  inputTokens: bigint;
 
   /**
-   * @generated from field: int64 completion_tokens = 8;
+   * @generated from field: int64 output_tokens = 8;
    */
-  completionTokens: bigint;
+  outputTokens: bigint;
 
   /**
-   * @generated from field: int64 total_tokens = 9;
+   * @generated from field: int64 cache_read_tokens = 9;
    */
-  totalTokens: bigint;
+  cacheReadTokens: bigint;
 
   /**
-   * @generated from field: int64 cached_tokens = 10;
+   * @generated from field: int64 cache_write_tokens = 10;
    */
-  cachedTokens: bigint;
+  cacheWriteTokens: bigint;
 
   /**
-   * @generated from field: int64 reasoning_tokens = 11;
+   * @generated from field: double total_cost_usd = 11;
    */
-  reasoningTokens: bigint;
+  totalCostUsd: number;
 
   /**
-   * @generated from field: int64 cost_micros = 12;
-   */
-  costMicros: bigint;
-
-  /**
-   * @generated from field: string request_id = 13;
+   * @generated from field: string request_id = 12;
    */
   requestId: string;
 
   /**
-   * @generated from field: string surface = 14;
+   * @generated from field: google.protobuf.Struct metadata = 13;
    */
-  surface: string;
+  metadata?: JsonObject;
 
   /**
-   * @generated from field: google.protobuf.Timestamp recorded_at = 15;
+   * @generated from field: google.protobuf.Struct data = 14;
    */
-  recordedAt?: Timestamp;
+  data?: JsonObject;
 };
 
 /**
@@ -109,9 +101,9 @@ export const RecordUsageRequestSchema: GenMessage<RecordUsageRequest> = /*@__PUR
  */
 export type RecordUsageResponse = Message<"meter.v1.RecordUsageResponse"> & {
   /**
-   * @generated from field: string id = 1;
+   * @generated from field: meter.v1.UsageRecord record = 1;
    */
-  id: string;
+  record?: UsageRecord;
 };
 
 /**
@@ -120,6 +112,40 @@ export type RecordUsageResponse = Message<"meter.v1.RecordUsageResponse"> & {
  */
 export const RecordUsageResponseSchema: GenMessage<RecordUsageResponse> = /*@__PURE__*/
   messageDesc(file_meter_v1_meter, 1);
+
+/**
+ * @generated from message meter.v1.RecordUsageBatchRequest
+ */
+export type RecordUsageBatchRequest = Message<"meter.v1.RecordUsageBatchRequest"> & {
+  /**
+   * @generated from field: repeated meter.v1.RecordUsageRequest records = 1;
+   */
+  records: RecordUsageRequest[];
+};
+
+/**
+ * Describes the message meter.v1.RecordUsageBatchRequest.
+ * Use `create(RecordUsageBatchRequestSchema)` to create a new message.
+ */
+export const RecordUsageBatchRequestSchema: GenMessage<RecordUsageBatchRequest> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 2);
+
+/**
+ * @generated from message meter.v1.RecordUsageBatchResponse
+ */
+export type RecordUsageBatchResponse = Message<"meter.v1.RecordUsageBatchResponse"> & {
+  /**
+   * @generated from field: repeated meter.v1.UsageRecord records = 1;
+   */
+  records: UsageRecord[];
+};
+
+/**
+ * Describes the message meter.v1.RecordUsageBatchResponse.
+ * Use `create(RecordUsageBatchResponseSchema)` to create a new message.
+ */
+export const RecordUsageBatchResponseSchema: GenMessage<RecordUsageBatchResponse> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 3);
 
 /**
  * @generated from message meter.v1.UsageRecord
@@ -131,106 +157,14 @@ export type UsageRecord = Message<"meter.v1.UsageRecord"> & {
   id: string;
 
   /**
-   * @generated from field: string organization_id = 2;
+   * @generated from field: google.protobuf.Timestamp timestamp = 2;
+   */
+  timestamp?: Timestamp;
+
+  /**
+   * @generated from field: string organization_id = 3;
    */
   organizationId: string;
-
-  /**
-   * @generated from field: string user_id = 3;
-   */
-  userId: string;
-
-  /**
-   * @generated from field: string agent_id = 4;
-   */
-  agentId: string;
-
-  /**
-   * @generated from field: string team_id = 5;
-   */
-  teamId: string;
-
-  /**
-   * @generated from field: string model = 6;
-   */
-  model: string;
-
-  /**
-   * @generated from field: string provider = 7;
-   */
-  provider: string;
-
-  /**
-   * @generated from field: int64 prompt_tokens = 8;
-   */
-  promptTokens: bigint;
-
-  /**
-   * @generated from field: int64 completion_tokens = 9;
-   */
-  completionTokens: bigint;
-
-  /**
-   * @generated from field: int64 total_tokens = 10;
-   */
-  totalTokens: bigint;
-
-  /**
-   * @generated from field: int64 cached_tokens = 11;
-   */
-  cachedTokens: bigint;
-
-  /**
-   * @generated from field: int64 reasoning_tokens = 12;
-   */
-  reasoningTokens: bigint;
-
-  /**
-   * @generated from field: int64 cost_micros = 13;
-   */
-  costMicros: bigint;
-
-  /**
-   * @generated from field: string request_id = 14;
-   */
-  requestId: string;
-
-  /**
-   * @generated from field: string surface = 15;
-   */
-  surface: string;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp recorded_at = 16;
-   */
-  recordedAt?: Timestamp;
-};
-
-/**
- * Describes the message meter.v1.UsageRecord.
- * Use `create(UsageRecordSchema)` to create a new message.
- */
-export const UsageRecordSchema: GenMessage<UsageRecord> = /*@__PURE__*/
-  messageDesc(file_meter_v1_meter, 2);
-
-/**
- * @generated from message meter.v1.QueryUsageRequest
- */
-export type QueryUsageRequest = Message<"meter.v1.QueryUsageRequest"> & {
-  /**
-   * @generated from field: string organization_id = 1;
-   */
-  organizationId: string;
-
-  /**
-   * @generated from field: string user_id = 2;
-   */
-  userId: string;
-
-  /**
-   * @generated from field: string agent_id = 3;
-   */
-  agentId: string;
 
   /**
    * @generated from field: string team_id = 4;
@@ -238,14 +172,190 @@ export type QueryUsageRequest = Message<"meter.v1.QueryUsageRequest"> & {
   teamId: string;
 
   /**
-   * @generated from field: string model = 5;
+   * @generated from field: string agent_id = 5;
+   */
+  agentId: string;
+
+  /**
+   * @generated from field: string surface = 6;
+   */
+  surface: string;
+
+  /**
+   * @generated from field: string event_type = 7;
+   */
+  eventType: string;
+
+  /**
+   * @generated from field: string model = 8;
    */
   model: string;
 
   /**
-   * @generated from field: string provider = 6;
+   * @generated from field: string provider = 9;
    */
   provider: string;
+
+  /**
+   * @generated from field: int64 input_tokens = 10;
+   */
+  inputTokens: bigint;
+
+  /**
+   * @generated from field: int64 output_tokens = 11;
+   */
+  outputTokens: bigint;
+
+  /**
+   * @generated from field: int64 cache_read_tokens = 12;
+   */
+  cacheReadTokens: bigint;
+
+  /**
+   * @generated from field: int64 cache_write_tokens = 13;
+   */
+  cacheWriteTokens: bigint;
+
+  /**
+   * @generated from field: double total_cost_usd = 14;
+   */
+  totalCostUsd: number;
+
+  /**
+   * @generated from field: string request_id = 15;
+   */
+  requestId: string;
+
+  /**
+   * @generated from field: google.protobuf.Struct data = 16;
+   */
+  data?: JsonObject;
+
+  /**
+   * @generated from field: google.protobuf.Struct metadata = 17;
+   */
+  metadata?: JsonObject;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 18;
+   */
+  createdAt?: Timestamp;
+};
+
+/**
+ * Describes the message meter.v1.UsageRecord.
+ * Use `create(UsageRecordSchema)` to create a new message.
+ */
+export const UsageRecordSchema: GenMessage<UsageRecord> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 4);
+
+/**
+ * @generated from message meter.v1.UsageQuery
+ */
+export type UsageQuery = Message<"meter.v1.UsageQuery"> & {
+  /**
+   * @generated from field: string team_id = 1;
+   */
+  teamId: string;
+
+  /**
+   * @generated from field: string agent_id = 2;
+   */
+  agentId: string;
+
+  /**
+   * @generated from field: string event_type = 3;
+   */
+  eventType: string;
+
+  /**
+   * @generated from field: string model = 4;
+   */
+  model: string;
+
+  /**
+   * @generated from field: string provider = 5;
+   */
+  provider: string;
+
+  /**
+   * @generated from field: string metadata_key = 6;
+   */
+  metadataKey: string;
+
+  /**
+   * @generated from field: string metadata_value = 7;
+   */
+  metadataValue: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp start_time = 8;
+   */
+  startTime?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp end_time = 9;
+   */
+  endTime?: Timestamp;
+};
+
+/**
+ * Describes the message meter.v1.UsageQuery.
+ * Use `create(UsageQuerySchema)` to create a new message.
+ */
+export const UsageQuerySchema: GenMessage<UsageQuery> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 5);
+
+/**
+ * @generated from message meter.v1.UsageQueryResponse
+ */
+export type UsageQueryResponse = Message<"meter.v1.UsageQueryResponse"> & {
+  /**
+   * @generated from field: repeated meter.v1.UsageRecord records = 1;
+   */
+  records: UsageRecord[];
+};
+
+/**
+ * Describes the message meter.v1.UsageQueryResponse.
+ * Use `create(UsageQueryResponseSchema)` to create a new message.
+ */
+export const UsageQueryResponseSchema: GenMessage<UsageQueryResponse> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 6);
+
+/**
+ * @generated from message meter.v1.UsageSummaryQuery
+ */
+export type UsageSummaryQuery = Message<"meter.v1.UsageSummaryQuery"> & {
+  /**
+   * @generated from field: string team_id = 1;
+   */
+  teamId: string;
+
+  /**
+   * @generated from field: string agent_id = 2;
+   */
+  agentId: string;
+
+  /**
+   * @generated from field: meter.v1.SummaryGroupBy group_by = 3;
+   */
+  groupBy: SummaryGroupBy;
+
+  /**
+   * @generated from field: string group_metadata_key = 4;
+   */
+  groupMetadataKey: string;
+
+  /**
+   * @generated from field: string metadata_key = 5;
+   */
+  metadataKey: string;
+
+  /**
+   * @generated from field: string metadata_value = 6;
+   */
+  metadataValue: string;
 
   /**
    * @generated from field: google.protobuf.Timestamp start_time = 7;
@@ -256,129 +366,53 @@ export type QueryUsageRequest = Message<"meter.v1.QueryUsageRequest"> & {
    * @generated from field: google.protobuf.Timestamp end_time = 8;
    */
   endTime?: Timestamp;
-
-  /**
-   * @generated from field: int32 limit = 9;
-   */
-  limit: number;
-
-  /**
-   * @generated from field: int32 offset = 10;
-   */
-  offset: number;
 };
 
 /**
- * Describes the message meter.v1.QueryUsageRequest.
- * Use `create(QueryUsageRequestSchema)` to create a new message.
+ * Describes the message meter.v1.UsageSummaryQuery.
+ * Use `create(UsageSummaryQuerySchema)` to create a new message.
  */
-export const QueryUsageRequestSchema: GenMessage<QueryUsageRequest> = /*@__PURE__*/
-  messageDesc(file_meter_v1_meter, 3);
-
-/**
- * @generated from message meter.v1.QueryUsageResponse
- */
-export type QueryUsageResponse = Message<"meter.v1.QueryUsageResponse"> & {
-  /**
-   * @generated from field: repeated meter.v1.UsageRecord records = 1;
-   */
-  records: UsageRecord[];
-
-  /**
-   * @generated from field: int32 total = 2;
-   */
-  total: number;
-};
-
-/**
- * Describes the message meter.v1.QueryUsageResponse.
- * Use `create(QueryUsageResponseSchema)` to create a new message.
- */
-export const QueryUsageResponseSchema: GenMessage<QueryUsageResponse> = /*@__PURE__*/
-  messageDesc(file_meter_v1_meter, 4);
-
-/**
- * @generated from message meter.v1.GetUsageSummaryRequest
- */
-export type GetUsageSummaryRequest = Message<"meter.v1.GetUsageSummaryRequest"> & {
-  /**
-   * @generated from field: string organization_id = 1;
-   */
-  organizationId: string;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp start_time = 2;
-   */
-  startTime?: Timestamp;
-
-  /**
-   * @generated from field: google.protobuf.Timestamp end_time = 3;
-   */
-  endTime?: Timestamp;
-
-  /**
-   * @generated from field: string group_by = 4;
-   */
-  groupBy: string;
-};
-
-/**
- * Describes the message meter.v1.GetUsageSummaryRequest.
- * Use `create(GetUsageSummaryRequestSchema)` to create a new message.
- */
-export const GetUsageSummaryRequestSchema: GenMessage<GetUsageSummaryRequest> = /*@__PURE__*/
-  messageDesc(file_meter_v1_meter, 5);
-
-/**
- * @generated from message meter.v1.GetUsageSummaryResponse
- */
-export type GetUsageSummaryResponse = Message<"meter.v1.GetUsageSummaryResponse"> & {
-  /**
-   * @generated from field: meter.v1.UsageSummary summary = 1;
-   */
-  summary?: UsageSummary;
-};
-
-/**
- * Describes the message meter.v1.GetUsageSummaryResponse.
- * Use `create(GetUsageSummaryResponseSchema)` to create a new message.
- */
-export const GetUsageSummaryResponseSchema: GenMessage<GetUsageSummaryResponse> = /*@__PURE__*/
-  messageDesc(file_meter_v1_meter, 6);
+export const UsageSummaryQuerySchema: GenMessage<UsageSummaryQuery> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 7);
 
 /**
  * @generated from message meter.v1.UsageSummary
  */
 export type UsageSummary = Message<"meter.v1.UsageSummary"> & {
   /**
-   * @generated from field: int64 total_tokens = 1;
+   * @generated from field: string key = 1;
    */
-  totalTokens: bigint;
+  key: string;
 
   /**
-   * @generated from field: int64 total_prompt_tokens = 2;
+   * @generated from field: int64 total_input_tokens = 2;
    */
-  totalPromptTokens: bigint;
+  totalInputTokens: bigint;
 
   /**
-   * @generated from field: int64 total_completion_tokens = 3;
+   * @generated from field: int64 total_output_tokens = 3;
    */
-  totalCompletionTokens: bigint;
+  totalOutputTokens: bigint;
 
   /**
-   * @generated from field: int64 total_cost_micros = 4;
+   * @generated from field: int64 total_cache_read_tokens = 4;
    */
-  totalCostMicros: bigint;
+  totalCacheReadTokens: bigint;
 
   /**
-   * @generated from field: int32 total_requests = 5;
+   * @generated from field: int64 total_cache_write_tokens = 5;
    */
-  totalRequests: number;
+  totalCacheWriteTokens: bigint;
 
   /**
-   * @generated from field: repeated meter.v1.UsageBucket buckets = 6;
+   * @generated from field: double total_cost_usd = 6;
    */
-  buckets: UsageBucket[];
+  totalCostUsd: number;
+
+  /**
+   * @generated from field: int64 record_count = 7;
+   */
+  recordCount: bigint;
 };
 
 /**
@@ -386,39 +420,161 @@ export type UsageSummary = Message<"meter.v1.UsageSummary"> & {
  * Use `create(UsageSummarySchema)` to create a new message.
  */
 export const UsageSummarySchema: GenMessage<UsageSummary> = /*@__PURE__*/
-  messageDesc(file_meter_v1_meter, 7);
+  messageDesc(file_meter_v1_meter, 8);
 
 /**
- * @generated from message meter.v1.UsageBucket
+ * @generated from message meter.v1.UsageSummaryResponse
  */
-export type UsageBucket = Message<"meter.v1.UsageBucket"> & {
+export type UsageSummaryResponse = Message<"meter.v1.UsageSummaryResponse"> & {
+  /**
+   * @generated from field: repeated meter.v1.UsageSummary buckets = 1;
+   */
+  buckets: UsageSummary[];
+};
+
+/**
+ * Describes the message meter.v1.UsageSummaryResponse.
+ * Use `create(UsageSummaryResponseSchema)` to create a new message.
+ */
+export const UsageSummaryResponseSchema: GenMessage<UsageSummaryResponse> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 9);
+
+/**
+ * @generated from message meter.v1.MeterSummaryQuery
+ */
+export type MeterSummaryQuery = Message<"meter.v1.MeterSummaryQuery"> & {
+  /**
+   * @generated from field: string meter_id = 1;
+   */
+  meterId: string;
+
+  /**
+   * @generated from field: string team_id = 2;
+   */
+  teamId: string;
+
+  /**
+   * @generated from field: string agent_id = 3;
+   */
+  agentId: string;
+
+  /**
+   * @generated from field: meter.v1.SummaryGroupBy group_by = 4;
+   */
+  groupBy: SummaryGroupBy;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp start_time = 5;
+   */
+  startTime?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp end_time = 6;
+   */
+  endTime?: Timestamp;
+};
+
+/**
+ * Describes the message meter.v1.MeterSummaryQuery.
+ * Use `create(MeterSummaryQuerySchema)` to create a new message.
+ */
+export const MeterSummaryQuerySchema: GenMessage<MeterSummaryQuery> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 10);
+
+/**
+ * @generated from message meter.v1.MeterSummaryBucket
+ */
+export type MeterSummaryBucket = Message<"meter.v1.MeterSummaryBucket"> & {
   /**
    * @generated from field: string key = 1;
    */
   key: string;
 
   /**
-   * @generated from field: int64 tokens = 2;
+   * @generated from field: double value = 2;
    */
-  tokens: bigint;
+  value: number;
 
   /**
-   * @generated from field: int64 cost_micros = 3;
+   * @generated from field: int64 record_count = 3;
    */
-  costMicros: bigint;
-
-  /**
-   * @generated from field: int32 requests = 4;
-   */
-  requests: number;
+  recordCount: bigint;
 };
 
 /**
- * Describes the message meter.v1.UsageBucket.
- * Use `create(UsageBucketSchema)` to create a new message.
+ * Describes the message meter.v1.MeterSummaryBucket.
+ * Use `create(MeterSummaryBucketSchema)` to create a new message.
  */
-export const UsageBucketSchema: GenMessage<UsageBucket> = /*@__PURE__*/
-  messageDesc(file_meter_v1_meter, 8);
+export const MeterSummaryBucketSchema: GenMessage<MeterSummaryBucket> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 11);
+
+/**
+ * @generated from message meter.v1.MeterSummaryResponse
+ */
+export type MeterSummaryResponse = Message<"meter.v1.MeterSummaryResponse"> & {
+  /**
+   * @generated from field: string meter_id = 1;
+   */
+  meterId: string;
+
+  /**
+   * @generated from field: repeated meter.v1.MeterSummaryBucket buckets = 2;
+   */
+  buckets: MeterSummaryBucket[];
+};
+
+/**
+ * Describes the message meter.v1.MeterSummaryResponse.
+ * Use `create(MeterSummaryResponseSchema)` to create a new message.
+ */
+export const MeterSummaryResponseSchema: GenMessage<MeterSummaryResponse> = /*@__PURE__*/
+  messageDesc(file_meter_v1_meter, 12);
+
+/**
+ * @generated from enum meter.v1.SummaryGroupBy
+ */
+export enum SummaryGroupBy {
+  /**
+   * @generated from enum value: SUMMARY_GROUP_BY_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: SUMMARY_GROUP_BY_MODEL = 1;
+   */
+  MODEL = 1,
+
+  /**
+   * @generated from enum value: SUMMARY_GROUP_BY_PROVIDER = 2;
+   */
+  PROVIDER = 2,
+
+  /**
+   * @generated from enum value: SUMMARY_GROUP_BY_TEAM = 3;
+   */
+  TEAM = 3,
+
+  /**
+   * @generated from enum value: SUMMARY_GROUP_BY_AGENT = 4;
+   */
+  AGENT = 4,
+
+  /**
+   * @generated from enum value: SUMMARY_GROUP_BY_SURFACE = 5;
+   */
+  SURFACE = 5,
+
+  /**
+   * @generated from enum value: SUMMARY_GROUP_BY_METADATA = 6;
+   */
+  METADATA = 6,
+}
+
+/**
+ * Describes the enum meter.v1.SummaryGroupBy.
+ */
+export const SummaryGroupBySchema: GenEnum<SummaryGroupBy> = /*@__PURE__*/
+  enumDesc(file_meter_v1_meter, 0);
 
 /**
  * MeterService records and queries usage across EvalOps services.
@@ -435,20 +591,36 @@ export const MeterService: GenService<{
     output: typeof RecordUsageResponseSchema;
   },
   /**
+   * @generated from rpc meter.v1.MeterService.RecordUsageBatch
+   */
+  recordUsageBatch: {
+    methodKind: "unary";
+    input: typeof RecordUsageBatchRequestSchema;
+    output: typeof RecordUsageBatchResponseSchema;
+  },
+  /**
    * @generated from rpc meter.v1.MeterService.QueryUsage
    */
   queryUsage: {
     methodKind: "unary";
-    input: typeof QueryUsageRequestSchema;
-    output: typeof QueryUsageResponseSchema;
+    input: typeof UsageQuerySchema;
+    output: typeof UsageQueryResponseSchema;
   },
   /**
    * @generated from rpc meter.v1.MeterService.GetUsageSummary
    */
   getUsageSummary: {
     methodKind: "unary";
-    input: typeof GetUsageSummaryRequestSchema;
-    output: typeof GetUsageSummaryResponseSchema;
+    input: typeof UsageSummaryQuerySchema;
+    output: typeof UsageSummaryResponseSchema;
+  },
+  /**
+   * @generated from rpc meter.v1.MeterService.GetMeterSummary
+   */
+  getMeterSummary: {
+    methodKind: "unary";
+    input: typeof MeterSummaryQuerySchema;
+    output: typeof MeterSummaryResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_meter_v1_meter, 0);

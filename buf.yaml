@@ -7,10 +7,15 @@ lint:
   except:
     - PACKAGE_VERSION_SUFFIX
   ignore_only:
+    RPC_REQUEST_STANDARD_NAME:
+      - proto/meter/v1/meter.proto
     RPC_REQUEST_RESPONSE_UNIQUE:
       - proto/prompts/v1/prompts.proto
     RPC_RESPONSE_STANDARD_NAME:
+      - proto/meter/v1/meter.proto
       - proto/prompts/v1/prompts.proto
 breaking:
   use:
     - FILE
+  ignore:
+    - proto/meter/v1/meter.proto
