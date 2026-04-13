@@ -82,7 +82,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.package.json",
-    "check:package": "npm run build && node --input-type=module -e \"const memory = await import('@evalops/proto/memory/v1/memory_pb'); const events = await import('@evalops/proto/events/v1/cloudevent_pb'); const prompts = await import('@evalops/proto/prompts/v1/prompts_pb'); if (!memory.RecallRequestSchema || !events.CloudEventSchema || !prompts.ResolveRequestSchema) throw new Error('package exports failed');\"",
+    "check:package": "npm run build && node --input-type=module -e \"const memory = await import('@evalops/proto/memory/v1/memory_pb'); const meter = await import('@evalops/proto/meter/v1/meter_pb'); const events = await import('@evalops/proto/events/v1/cloudevent_pb'); const prompts = await import('@evalops/proto/prompts/v1/prompts_pb'); if (!memory.RecallRequestSchema || !meter.RecordUsageRequestSchema || !events.CloudEventSchema || !prompts.ResolveRequestSchema) throw new Error('package exports failed');\"",
     "prepare": "npm run build"
   },
   "repository": {
