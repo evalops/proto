@@ -55,6 +55,9 @@ func TestNewCloudEventRoundTripPreservesTypedChangePayload(t *testing.T) {
 	if decoded.GetSubject() != "pipeline.changes.activity.create" {
 		t.Fatalf("unexpected subject %q", decoded.GetSubject())
 	}
+	if got := decoded.GetExtensions()["dataschema"].GetStringValue(); got != "buf.build/evalops/proto/events.v1.Change" {
+		t.Fatalf("unexpected dataschema %q", got)
+	}
 
 	unpacked, err := UnpackChange(decoded)
 	if err != nil {
@@ -103,6 +106,47 @@ func TestUnpackTapEventDataRoundTrip(t *testing.T) {
 	}
 	if unpacked.GetChanges()["stage"].GetTo().GetStringValue() != "qualified" {
 		t.Fatalf("unexpected stage change %#v", unpacked.GetChanges()["stage"].GetTo())
+	}
+	if got := envelope.GetExtensions()["dataschema"].GetStringValue(); got != "buf.build/evalops/proto/tap.v1.TapEventData" {
+		t.Fatalf("unexpected dataschema %q", got)
+	}
+}
+
+func TestNewChangeBuildsCanonicalMessageFromJSONPayload(t *testing.T) {
+	t.Parallel()
+
+	change, err := NewChange(
+		108,
+		"11111111-1111-1111-1111-111111111111",
+		"activity",
+		"33333333-3333-3333-3333-333333333333",
+		"create",
+		"service",
+		"pipeline-api",
+		1,
+		time.Date(2026, 4, 13, 0, 30, 0, 123456789, time.UTC),
+		[]byte(`{"outcome":"replied","channel":"email"}`),
+	)
+	if err != nil {
+		t.Fatalf("NewChange() error = %v", err)
+	}
+
+	if change.GetSeq() != 108 {
+		t.Fatalf("unexpected seq %d", change.GetSeq())
+	}
+	if change.GetRecordedAt().AsTime() != time.Date(2026, 4, 13, 0, 30, 0, 123456789, time.UTC) {
+		t.Fatalf("unexpected recorded_at %s", change.GetRecordedAt().AsTime())
+	}
+	if change.GetPayload().GetFields()["outcome"].GetStringValue() != "replied" {
+		t.Fatalf("unexpected payload %#v", change.GetPayload().AsMap())
+	}
+}
+
+func TestNewChangeRejectsNonObjectPayload(t *testing.T) {
+	t.Parallel()
+
+	if _, err := NewChange(1, "org", "activity", "agg", "create", "service", "svc", 1, time.Time{}, []byte(`["bad"]`)); err == nil {
+		t.Fatal("expected non-object payload error")
 	}
 }
 
