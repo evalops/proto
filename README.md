@@ -32,6 +32,13 @@ packages instead of maintaining their own hand-written struct copies.
 | `meter/v1` | Usage recording, querying, cost attribution | llm-gateway, chat, platform |
 | `audit/v1` | Audit event recording, actors, resources, querying, export | llm-gateway, chat, gate, platform |
 | `memory/v1` | Semantic memory storage, recall, embeddings, consolidation | chat, ensemble, platform |
+| `approvals/v1` | Approval workflows, policies, decisions, habits, escalation | approvals, ensemble, maestro, chat, objectives |
+| `connectors/v1` | Integration connections, health, source-of-truth, capabilities | connectors, pipeline, parker, entities, objectives |
+| `entities/v1` | Canonical entity resolution, search, links, correlation graph | entities, pipeline, parker, connectors, ensemble |
+| `governance/v1` | Safety evaluation, PII detection, retention, legal holds | governance, approvals, objectives, ensemble, chat |
+| `notifications/v1` | Notification delivery, preferences, channels, status | notifications, approvals, objectives, pipeline, parker |
+| `objectives/v1` | Objective lifecycle, wake scheduling, provenance, mutations | objectives, approvals, governance, pipeline, parker |
+| `skills/v1` | Shared skill registry, versions, search, import/export | skills, chat, ensemble, maestro, pipeline |
 | `events/v1` | Shared NATS event envelope and change journal payloads | service-runtime, pipeline, parker |
 | `tap/v1` | Normalized tap webhook payloads and field-level diffs | ensemble-tap, pipeline |
 | `prompts/v1` | Prompt versioning, deployment tracking, eval linkage, resolution | prompts, llm-gateway, fermata, maestro, ensemble |
@@ -47,6 +54,13 @@ flowchart TD
     Meter[meter]
     Audit[audit]
     Memory[memory]
+    Approvals[approvals]
+    Connectors[connectors]
+    Entities[entities]
+    Governance[governance]
+    Notifications[notifications]
+    Objectives[objectives]
+    Skills[skills]
     Gateway[llm-gateway]
     Chat[chat]
     Gate[gate]
@@ -68,6 +82,32 @@ flowchart TD
     Proto -->|memory/v1| Memory
     Proto -->|memory/v1| Chat
     Proto -->|memory/v1| Ensemble
+    Proto -->|approvals/v1| Approvals
+    Proto -->|approvals/v1| Chat
+    Proto -->|approvals/v1| Ensemble
+    Proto -->|approvals/v1| Objectives
+    Proto -->|connectors/v1| Connectors
+    Proto -->|connectors/v1| Pipeline
+    Proto -->|connectors/v1| Parker
+    Proto -->|connectors/v1| Entities
+    Proto -->|entities/v1| Entities
+    Proto -->|entities/v1| Pipeline
+    Proto -->|entities/v1| Parker
+    Proto -->|entities/v1| Ensemble
+    Proto -->|governance/v1| Governance
+    Proto -->|governance/v1| Approvals
+    Proto -->|governance/v1| Objectives
+    Proto -->|governance/v1| Chat
+    Proto -->|notifications/v1| Notifications
+    Proto -->|notifications/v1| Approvals
+    Proto -->|notifications/v1| Objectives
+    Proto -->|objectives/v1| Objectives
+    Proto -->|objectives/v1| Approvals
+    Proto -->|objectives/v1| Governance
+    Proto -->|skills/v1| Skills
+    Proto -->|skills/v1| Chat
+    Proto -->|skills/v1| Ensemble
+    Proto -->|skills/v1| Maestro[maestro]
     Proto -->|events/v1| SRT
     Proto -->|events/v1| Parker[Parker]
     Proto -->|events/v1| Pipeline[Pipeline]
@@ -239,6 +279,13 @@ proto/                  source .proto files
   audit/v1/             audit event recording and querying
   memory/v1/            semantic memory storage and recall
     testdata/           canonical protojson fixtures for contract tests
+  approvals/v1/         approval workflows, policies, decisions, habits
+  connectors/v1/        integration lifecycle, health, source-of-truth
+  entities/v1/          canonical entity resolution and search
+  governance/v1/        safety evaluation, PII detection, retention
+  notifications/v1/     multi-channel delivery, preferences, status
+  objectives/v1/        objective lifecycle, provenance, wake scheduling
+  skills/v1/            shared skill registry and version history
   events/v1/            CloudEvent envelope and change journal payloads
     testdata/           typed event fixtures for cross-service contracts
   tap/v1/               normalized provider event payloads
