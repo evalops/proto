@@ -10,6 +10,10 @@
     "package.json"
   ],
   "exports": {
+    "./agents/v1/agents_pb": {
+      "types": "./gen/dist/agents/v1/agents_pb.d.ts",
+      "import": "./gen/dist/agents/v1/agents_pb.js"
+    },
     "./approvals/v1/approvals_pb": {
       "types": "./gen/dist/approvals/v1/approvals_pb.d.ts",
       "import": "./gen/dist/approvals/v1/approvals_pb.js"
@@ -89,6 +93,10 @@
     "./tap/v1/event_pb": {
       "types": "./gen/dist/tap/v1/event_pb.d.ts",
       "import": "./gen/dist/tap/v1/event_pb.js"
+    },
+    "./workflows/v1/workflows_pb": {
+      "types": "./gen/dist/workflows/v1/workflows_pb.d.ts",
+      "import": "./gen/dist/workflows/v1/workflows_pb.js"
     },
     "./package.json": "./package.json"
   },
