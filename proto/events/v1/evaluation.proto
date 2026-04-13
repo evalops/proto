@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package events.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/events/v1;eventsv1";
+
+import "google/protobuf/timestamp.proto";
+
+// EvaluationCompleted is the canonical typed payload for evaluation.completed
+// events that downstream services consume as pipeline signals.
+message EvaluationCompleted {
+  string signal_type = 1;
+  string summary = 2;
+  optional double success_rate = 3;
+  repeated string company_domains = 4;
+  repeated string company_names = 5;
+  repeated string deal_ids = 6;
+  EvaluationRun run = 7;
+  EvaluationMetrics metrics = 8;
+}
+
+message EvaluationRun {
+  string id = 1;
+  string test_suite_id = 2;
+  string test_suite_name = 3;
+  string name = 4;
+  string description = 5;
+  repeated string tags = 6;
+  google.protobuf.Timestamp completed_at = 7;
+}
+
+message EvaluationMetrics {
+  optional int64 total_tests = 1;
+  optional int64 passed_tests = 2;
+  optional int64 failed_tests = 3;
+  optional double total_cost = 4;
+  optional double duration = 5;
+  optional double success_rate = 6;
+}

@@ -18,6 +18,7 @@ import (
 
 const (
 	ConfigFeatureFlagSnapshot                   = "config/v1/testdata/feature_flag_snapshot.json"
+	EventEvaluationCompletedTechnicalCapability = "events/v1/testdata/cloud_event_evaluation_completed_technical_capability.json"
 	EventPipelineActivityCreateReplied          = "events/v1/testdata/cloud_event_pipeline_activity_create_replied.json"
 	EventParkerWorkRelationshipUpdateTerminated = "events/v1/testdata/cloud_event_parker_work_relationship_update_terminated.json"
 	EventTapHubspotDealQualified                = "events/v1/testdata/cloud_event_tap_hubspot_deal_qualified.json"
@@ -30,6 +31,56 @@ const (
 )
 
 var embeddedFixtures = map[string][]byte{
+	EventEvaluationCompletedTechnicalCapability: []byte(`{
+  "spec_version": "1.0",
+  "id": "evt_eval_completed_technical_capability_1",
+  "type": "evaluation.completed",
+  "source": "fermata",
+  "subject": "product.evaluation.completed",
+  "time": "2026-04-13T12:00:00Z",
+  "data_content_type": "application/protobuf",
+  "tenant_id": "11111111-1111-1111-1111-111111111111",
+  "data": {
+    "@type": "type.googleapis.com/events.v1.EvaluationCompleted",
+    "signal_type": "technical_capability",
+    "summary": "Claude beats GPT-4 on latency by 40% on enterprise workloads.",
+    "success_rate": 0.9,
+    "company_domains": [
+      "acme.com"
+    ],
+    "company_names": [
+      "Acme Corporation"
+    ],
+    "deal_ids": [
+      "deal-123"
+    ],
+    "run": {
+      "id": "run-1",
+      "test_suite_id": "suite-1",
+      "test_suite_name": "Latency benchmark",
+      "name": "Enterprise latency proof",
+      "description": "Claude beats GPT-4 on latency by 40% on enterprise workloads.",
+      "tags": [
+        "pipeline:signal_type=technical_capability",
+        "pipeline:company_domain=acme.com",
+        "pipeline:company_name=Acme Corporation",
+        "pipeline:deal_id=deal-123"
+      ],
+      "completed_at": "2026-04-13T12:00:00Z"
+    },
+    "metrics": {
+      "total_tests": "20",
+      "passed_tests": "18",
+      "failed_tests": "2",
+      "total_cost": 4.2,
+      "duration": 12.5,
+      "success_rate": 0.9
+    }
+  },
+  "extensions": {
+    "dataschema": "buf.build/evalops/proto/events.v1.EvaluationCompleted"
+  }
+}`),
 	MeterRecordUsageRequestLLMGatewayResponses: []byte(`{
   "team_id": "team_eng",
   "agent_id": "agent_456",
@@ -128,6 +179,18 @@ func LoadChangeFixture(name string) (*eventsv1.CloudEvent, *eventsv1.Change, err
 		return nil, nil, fmt.Errorf("unmarshal change fixture %q: %w", name, err)
 	}
 	return envelope, change, nil
+}
+
+func LoadEvaluationCompletedFixture(name string) (*eventsv1.CloudEvent, *eventsv1.EvaluationCompleted, error) {
+	envelope, err := LoadCloudEvent(name)
+	if err != nil {
+		return nil, nil, err
+	}
+	message, err := eventhelpers.UnpackEvaluationCompleted(envelope)
+	if err != nil {
+		return nil, nil, fmt.Errorf("unmarshal evaluation fixture %q: %w", name, err)
+	}
+	return envelope, message, nil
 }
 
 func LoadTapFixture(name string) (*eventsv1.CloudEvent, *tapv1.TapEventData, error) {
