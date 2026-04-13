@@ -7,7 +7,7 @@ name = "evalops-proto-python"
 version = "0.1.0"
 description = "Generated Python protobuf types for EvalOps shared contracts"
 requires-python = ">=3.10"
-dependencies = ["protobuf>=7,<8"]
+dependencies = ["protobuf>=7.34.1,<8"]
 
 [tool.setuptools]
 include-package-data = true
@@ -18,21 +18,4 @@ include-package-data = true
 [tool.setuptools.packages.find]
 where = ["gen/python"]
 namespaces = true
-include = [
-  "approvals*",
-  "audit*",
-  "config*",
-  "connectors*",
-  "entities*",
-  "events*",
-  "governance*",
-  "identity*",
-  "keys*",
-  "memory*",
-  "meter*",
-  "notifications*",
-  "objectives*",
-  "prompts*",
-  "skills*",
-  "tap*",
-]
+include = ["*"]

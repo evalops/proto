@@ -246,7 +246,9 @@ PY
 
 The wheel build uses the same generated modules and smoke-imports them in CI, so
 Python contract drift now fails closed the same way the Go and TypeScript
-surfaces do.
+surfaces do. Package discovery is driven from the generated `gen/python` tree
+itself, which keeps new protobuf packages from being silently omitted from the
+published wheel as the schema surface grows.
 
 ## Event Envelope Guidance
 
