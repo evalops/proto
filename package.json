@@ -94,7 +94,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.package.json",
-    "check:package": "npm run build && node --input-type=module -e \"const config = await import('@evalops/proto/config/v1/config_pb'); const cloudEvent = await import('@evalops/proto/events/v1/cloudevent_pb'); const evaluation = await import('@evalops/proto/events/v1/evaluation_pb'); const keys = await import('@evalops/proto/keys/v1/keys_pb'); const memory = await import('@evalops/proto/memory/v1/memory_pb'); const meter = await import('@evalops/proto/meter/v1/meter_pb'); const prompts = await import('@evalops/proto/prompts/v1/prompts_pb'); if (!config.FeatureFlagSnapshotSchema || !cloudEvent.CloudEventSchema || !evaluation.EvaluationCompletedSchema || !keys.ResolveProviderRefResponseSchema || !memory.RecallRequestSchema || !meter.RecordUsageRequestSchema || !prompts.ResolveRequestSchema) throw new Error('package exports failed');\"",
+    "check:package": "npm run build && node scripts/check-package-exports.mjs",
     "prepare": "npm run build"
   },
   "repository": {
