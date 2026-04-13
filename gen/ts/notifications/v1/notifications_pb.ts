@@ -166,6 +166,9 @@ export type SendRequest = Message<"notifications.v1.SendRequest"> & {
   recipientId: string;
 
   /**
+   * If channel is unspecified, the notifications service may resolve it from
+   * the recipient's preferences before falling back to a safe default.
+   *
    * @generated from field: notifications.v1.DeliveryChannel channel = 3;
    */
   channel: DeliveryChannel;

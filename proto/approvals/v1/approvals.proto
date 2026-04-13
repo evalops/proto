@@ -47,6 +47,7 @@ enum ActionAuthority {
 message ApprovalRequest {
   string id = 1;
   string workspace_id = 2;
+  string approver_user_id = 11;
   string agent_id = 3;
   string surface = 4;
   string action_type = 5;
@@ -91,6 +92,7 @@ message ApprovalHabit {
 
 message RequestApprovalRequest {
   string workspace_id = 1;
+  string approver_user_id = 8;
   string agent_id = 2;
   string surface = 3;
   string action_type = 4;

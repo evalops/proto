@@ -189,19 +189,20 @@ func (ActionAuthority) EnumDescriptor() ([]byte, []int) {
 
 // ApprovalRequest is the canonical approval request record.
 type ApprovalRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	WorkspaceId   string                 `protobuf:"bytes,2,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
-	AgentId       string                 `protobuf:"bytes,3,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`
-	Surface       string                 `protobuf:"bytes,4,opt,name=surface,proto3" json:"surface,omitempty"`
-	ActionType    string                 `protobuf:"bytes,5,opt,name=action_type,json=actionType,proto3" json:"action_type,omitempty"`
-	ActionPayload []byte                 `protobuf:"bytes,6,opt,name=action_payload,json=actionPayload,proto3" json:"action_payload,omitempty"`
-	RiskLevel     RiskLevel              `protobuf:"varint,7,opt,name=risk_level,json=riskLevel,proto3,enum=approvals.v1.RiskLevel" json:"risk_level,omitempty"`
-	ContextJson   string                 `protobuf:"bytes,8,opt,name=context_json,json=contextJson,proto3" json:"context_json,omitempty"`
-	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Id             string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	WorkspaceId    string                 `protobuf:"bytes,2,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	ApproverUserId string                 `protobuf:"bytes,11,opt,name=approver_user_id,json=approverUserId,proto3" json:"approver_user_id,omitempty"`
+	AgentId        string                 `protobuf:"bytes,3,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`
+	Surface        string                 `protobuf:"bytes,4,opt,name=surface,proto3" json:"surface,omitempty"`
+	ActionType     string                 `protobuf:"bytes,5,opt,name=action_type,json=actionType,proto3" json:"action_type,omitempty"`
+	ActionPayload  []byte                 `protobuf:"bytes,6,opt,name=action_payload,json=actionPayload,proto3" json:"action_payload,omitempty"`
+	RiskLevel      RiskLevel              `protobuf:"varint,7,opt,name=risk_level,json=riskLevel,proto3,enum=approvals.v1.RiskLevel" json:"risk_level,omitempty"`
+	ContextJson    string                 `protobuf:"bytes,8,opt,name=context_json,json=contextJson,proto3" json:"context_json,omitempty"`
+	CreatedAt      *timestamppb.Timestamp `protobuf:"bytes,9,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt      *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *ApprovalRequest) Reset() {
@@ -244,6 +245,13 @@ func (x *ApprovalRequest) GetId() string {
 func (x *ApprovalRequest) GetWorkspaceId() string {
 	if x != nil {
 		return x.WorkspaceId
+	}
+	return ""
+}
+
+func (x *ApprovalRequest) GetApproverUserId() string {
+	if x != nil {
+		return x.ApproverUserId
 	}
 	return ""
 }
@@ -581,16 +589,17 @@ func (x *ApprovalHabit) GetObservationCount() int32 {
 }
 
 type RequestApprovalRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	WorkspaceId   string                 `protobuf:"bytes,1,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
-	AgentId       string                 `protobuf:"bytes,2,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`
-	Surface       string                 `protobuf:"bytes,3,opt,name=surface,proto3" json:"surface,omitempty"`
-	ActionType    string                 `protobuf:"bytes,4,opt,name=action_type,json=actionType,proto3" json:"action_type,omitempty"`
-	ActionPayload []byte                 `protobuf:"bytes,5,opt,name=action_payload,json=actionPayload,proto3" json:"action_payload,omitempty"`
-	RiskLevel     RiskLevel              `protobuf:"varint,6,opt,name=risk_level,json=riskLevel,proto3,enum=approvals.v1.RiskLevel" json:"risk_level,omitempty"`
-	ContextJson   string                 `protobuf:"bytes,7,opt,name=context_json,json=contextJson,proto3" json:"context_json,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	WorkspaceId    string                 `protobuf:"bytes,1,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	ApproverUserId string                 `protobuf:"bytes,8,opt,name=approver_user_id,json=approverUserId,proto3" json:"approver_user_id,omitempty"`
+	AgentId        string                 `protobuf:"bytes,2,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`
+	Surface        string                 `protobuf:"bytes,3,opt,name=surface,proto3" json:"surface,omitempty"`
+	ActionType     string                 `protobuf:"bytes,4,opt,name=action_type,json=actionType,proto3" json:"action_type,omitempty"`
+	ActionPayload  []byte                 `protobuf:"bytes,5,opt,name=action_payload,json=actionPayload,proto3" json:"action_payload,omitempty"`
+	RiskLevel      RiskLevel              `protobuf:"varint,6,opt,name=risk_level,json=riskLevel,proto3,enum=approvals.v1.RiskLevel" json:"risk_level,omitempty"`
+	ContextJson    string                 `protobuf:"bytes,7,opt,name=context_json,json=contextJson,proto3" json:"context_json,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *RequestApprovalRequest) Reset() {
@@ -626,6 +635,13 @@ func (*RequestApprovalRequest) Descriptor() ([]byte, []int) {
 func (x *RequestApprovalRequest) GetWorkspaceId() string {
 	if x != nil {
 		return x.WorkspaceId
+	}
+	return ""
+}
+
+func (x *RequestApprovalRequest) GetApproverUserId() string {
+	if x != nil {
+		return x.ApproverUserId
 	}
 	return ""
 }
@@ -1304,10 +1320,11 @@ var File_approvals_v1_approvals_proto protoreflect.FileDescriptor
 
 const file_approvals_v1_approvals_proto_rawDesc = "" +
 	"\n" +
-	"\x1capprovals/v1/approvals.proto\x12\fapprovals.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\x92\x03\n" +
+	"\x1capprovals/v1/approvals.proto\x12\fapprovals.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbc\x03\n" +
 	"\x0fApprovalRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12!\n" +
-	"\fworkspace_id\x18\x02 \x01(\tR\vworkspaceId\x12\x19\n" +
+	"\fworkspace_id\x18\x02 \x01(\tR\vworkspaceId\x12(\n" +
+	"\x10approver_user_id\x18\v \x01(\tR\x0eapproverUserId\x12\x19\n" +
 	"\bagent_id\x18\x03 \x01(\tR\aagentId\x12\x18\n" +
 	"\asurface\x18\x04 \x01(\tR\asurface\x12\x1f\n" +
 	"\vaction_type\x18\x05 \x01(\tR\n" +
@@ -1343,9 +1360,10 @@ const file_approvals_v1_approvals_proto_rawDesc = "" +
 	"\rApprovalHabit\x12\x18\n" +
 	"\apattern\x18\x01 \x01(\tR\apattern\x126\n" +
 	"\x17auto_approve_confidence\x18\x02 \x01(\x02R\x15autoApproveConfidence\x12+\n" +
-	"\x11observation_count\x18\x03 \x01(\x05R\x10observationCount\"\x93\x02\n" +
+	"\x11observation_count\x18\x03 \x01(\x05R\x10observationCount\"\xbd\x02\n" +
 	"\x16RequestApprovalRequest\x12!\n" +
-	"\fworkspace_id\x18\x01 \x01(\tR\vworkspaceId\x12\x19\n" +
+	"\fworkspace_id\x18\x01 \x01(\tR\vworkspaceId\x12(\n" +
+	"\x10approver_user_id\x18\b \x01(\tR\x0eapproverUserId\x12\x19\n" +
 	"\bagent_id\x18\x02 \x01(\tR\aagentId\x12\x18\n" +
 	"\asurface\x18\x03 \x01(\tR\asurface\x12\x1f\n" +
 	"\vaction_type\x18\x04 \x01(\tR\n" +
