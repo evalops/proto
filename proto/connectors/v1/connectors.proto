@@ -1,0 +1,175 @@
+syntax = "proto3";
+
+package connectors.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/connectors/v1;connectorsv1";
+
+import "google/protobuf/timestamp.proto";
+
+// ConnectorService manages external integration connections.
+service ConnectorService {
+  rpc RegisterConnection(RegisterConnectionRequest) returns (RegisterConnectionResponse);
+  rpc GetConnection(GetConnectionRequest) returns (GetConnectionResponse);
+  rpc ListConnections(ListConnectionsRequest) returns (ListConnectionsResponse);
+  rpc RefreshConnection(RefreshConnectionRequest) returns (RefreshConnectionResponse);
+  rpc RevokeConnection(RevokeConnectionRequest) returns (RevokeConnectionResponse);
+  rpc GetHealth(GetHealthRequest) returns (GetHealthResponse);
+  rpc ResolveSourceOfTruth(ResolveSourceOfTruthRequest) returns (ResolveSourceOfTruthResponse);
+  rpc GetDegradedReadPolicy(GetDegradedReadPolicyRequest) returns (GetDegradedReadPolicyResponse);
+  rpc SetSourceOfTruthPolicy(SetSourceOfTruthPolicyRequest) returns (SetSourceOfTruthPolicyResponse);
+  rpc GetCapabilities(GetCapabilitiesRequest) returns (GetCapabilitiesResponse);
+}
+
+// AuthType describes the authentication method for a connection.
+enum AuthType {
+  AUTH_TYPE_UNSPECIFIED = 0;
+  AUTH_TYPE_OAUTH2 = 1;
+  AUTH_TYPE_API_KEY = 2;
+  AUTH_TYPE_BASIC = 3;
+  AUTH_TYPE_MTLS = 4;
+}
+
+// HealthStatus describes the health state of a connection.
+enum HealthStatus {
+  HEALTH_STATUS_UNSPECIFIED = 0;
+  HEALTH_STATUS_HEALTHY = 1;
+  HEALTH_STATUS_DEGRADED = 2;
+  HEALTH_STATUS_UNHEALTHY = 3;
+  HEALTH_STATUS_UNKNOWN = 4;
+}
+
+// SourceOfTruthArea identifies a functional domain for source-of-truth resolution.
+enum SourceOfTruthArea {
+  SOURCE_OF_TRUTH_AREA_UNSPECIFIED = 0;
+  SOURCE_OF_TRUTH_AREA_CRM = 1;
+  SOURCE_OF_TRUTH_AREA_SUPPORT = 2;
+  SOURCE_OF_TRUTH_AREA_BILLING = 3;
+  SOURCE_OF_TRUTH_AREA_ANALYTICS = 4;
+  SOURCE_OF_TRUTH_AREA_HRIS = 5;
+}
+
+// Connection is the canonical external integration connection record.
+message Connection {
+  string id = 1;
+  string workspace_id = 2;
+  string provider_id = 3;
+  string display_name = 4;
+  AuthType auth_type = 5;
+  repeated string scopes = 6;
+  HealthStatus health_status = 7;
+  google.protobuf.Timestamp last_healthy_at = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+}
+
+// ConnectionHealth provides detailed health information for a connection.
+message ConnectionHealth {
+  HealthStatus status = 1;
+  int32 latency_ms = 2;
+  google.protobuf.Timestamp last_check_at = 3;
+  string error_message = 4;
+}
+
+// SourceOfTruthPolicy defines which connection is authoritative for a domain.
+message SourceOfTruthPolicy {
+  string workspace_id = 1;
+  SourceOfTruthArea area = 2;
+  string primary_connection_id = 3;
+  string fallback_connection_id = 4;
+}
+
+// DegradedReadPolicy defines behavior when the primary source is unavailable.
+message DegradedReadPolicy {
+  string mode = 1;
+  repeated string allowed_integrations = 2;
+  int32 max_age_minutes = 3;
+  bool queue_primary_refresh = 4;
+}
+
+message RegisterConnectionRequest {
+  string workspace_id = 1;
+  string provider_id = 2;
+  string display_name = 3;
+  AuthType auth_type = 4;
+  repeated string scopes = 5;
+  map<string, string> credentials = 6;
+}
+
+message RegisterConnectionResponse {
+  Connection connection = 1;
+}
+
+message GetConnectionRequest {
+  string id = 1;
+}
+
+message GetConnectionResponse {
+  Connection connection = 1;
+}
+
+message ListConnectionsRequest {
+  string workspace_id = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+}
+
+message ListConnectionsResponse {
+  repeated Connection connections = 1;
+  int32 total = 2;
+}
+
+message RefreshConnectionRequest {
+  string id = 1;
+}
+
+message RefreshConnectionResponse {
+  Connection connection = 1;
+}
+
+message RevokeConnectionRequest {
+  string id = 1;
+}
+
+message RevokeConnectionResponse {}
+
+message GetHealthRequest {
+  string connection_id = 1;
+}
+
+message GetHealthResponse {
+  ConnectionHealth health = 1;
+}
+
+message ResolveSourceOfTruthRequest {
+  string workspace_id = 1;
+  SourceOfTruthArea area = 2;
+}
+
+message ResolveSourceOfTruthResponse {
+  SourceOfTruthPolicy policy = 1;
+  Connection primary_connection = 2;
+}
+
+message GetDegradedReadPolicyRequest {
+  string workspace_id = 1;
+}
+
+message GetDegradedReadPolicyResponse {
+  DegradedReadPolicy policy = 1;
+}
+
+message SetSourceOfTruthPolicyRequest {
+  SourceOfTruthPolicy policy = 1;
+}
+
+message SetSourceOfTruthPolicyResponse {
+  SourceOfTruthPolicy policy = 1;
+}
+
+message GetCapabilitiesRequest {
+  string connection_id = 1;
+}
+
+message GetCapabilitiesResponse {
+  repeated string capabilities = 1;
+}
