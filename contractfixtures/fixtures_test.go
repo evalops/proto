@@ -34,6 +34,24 @@ func TestReadSupportsProtoPrefixedFixturePaths(t *testing.T) {
 	}
 }
 
+func TestLoadChangeFixtureSupportsPipelineSignalFixture(t *testing.T) {
+	t.Parallel()
+
+	envelope, message, err := LoadChangeFixture(EventPipelineSignalCreateLinkedInActive)
+	if err != nil {
+		t.Fatalf("load pipeline signal fixture: %v", err)
+	}
+	if envelope.GetType() != "pipeline.changes.signal.create" {
+		t.Fatalf("unexpected type %q", envelope.GetType())
+	}
+	if message.GetAggregateType() != "signal" || message.GetOperation() != "create" {
+		t.Fatalf("unexpected aggregate/operation %q/%q", message.GetAggregateType(), message.GetOperation())
+	}
+	if got := message.GetPayload().AsMap()["signal_type"]; got != "linkedin_active" {
+		t.Fatalf("unexpected signal_type %#v", got)
+	}
+}
+
 func TestReadRejectsEscapingPaths(t *testing.T) {
 	t.Parallel()
 

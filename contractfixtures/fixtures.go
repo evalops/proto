@@ -20,6 +20,7 @@ const (
 	ConfigFeatureFlagSnapshot                   = "config/v1/testdata/feature_flag_snapshot.json"
 	EventEvaluationCompletedTechnicalCapability = "events/v1/testdata/cloud_event_evaluation_completed_technical_capability.json"
 	EventPipelineActivityCreateReplied          = "events/v1/testdata/cloud_event_pipeline_activity_create_replied.json"
+	EventPipelineSignalCreateLinkedInActive     = "events/v1/testdata/cloud_event_pipeline_signal_create_linkedin_active.json"
 	EventParkerWorkRelationshipUpdateTerminated = "events/v1/testdata/cloud_event_parker_work_relationship_update_terminated.json"
 	EventTapHubspotDealQualified                = "events/v1/testdata/cloud_event_tap_hubspot_deal_qualified.json"
 	KeysResolveProviderRefRequest               = "keys/v1/testdata/resolve_provider_ref_request.json"
@@ -81,6 +82,46 @@ var embeddedFixtures = map[string][]byte{
   },
   "extensions": {
     "dataschema": "buf.build/evalops/proto/events.v1.EvaluationCompleted"
+  }
+}`),
+	EventPipelineSignalCreateLinkedInActive: []byte(`{
+  "spec_version": "1.0",
+  "id": "evt_pipeline_signal_linkedin_active_1",
+  "type": "pipeline.changes.signal.create",
+  "source": "pipeline",
+  "subject": "pipeline.changes.signal.create",
+  "time": "2026-04-13T08:45:00.23456789Z",
+  "data_content_type": "application/protobuf",
+  "tenant_id": "11111111-1111-1111-1111-111111111111",
+  "data": {
+    "@type": "type.googleapis.com/events.v1.Change",
+    "seq": "205",
+    "organization_id": "11111111-1111-1111-1111-111111111111",
+    "aggregate_type": "signal",
+    "aggregate_id": "55555555-5555-5555-5555-555555555555",
+    "operation": "create",
+    "actor_type": "service",
+    "actor_id": "pipeline-api",
+    "aggregate_version": "1",
+    "recorded_at": "2026-04-13T08:45:00.23456789Z",
+    "payload": {
+      "id": "55555555-5555-5555-5555-555555555555",
+      "organization_id": "11111111-1111-1111-1111-111111111111",
+      "owner_type": "contact",
+      "owner_id": "44444444-4444-4444-4444-444444444444",
+      "signal_type": "linkedin_active",
+      "source": "linkedin",
+      "strength": 87,
+      "data": {
+        "company_name": "Acme Corporation",
+        "recent_title": "VP Sales"
+      },
+      "created_at": "2026-04-13T08:45:00.23456789Z",
+      "updated_at": "2026-04-13T08:45:00.23456789Z"
+    }
+  },
+  "extensions": {
+    "dataschema": "buf.build/evalops/proto/events.v1.Change"
   }
 }`),
 	MeterRecordUsageRequestLLMGatewayResponses: []byte(`{
