@@ -37,12 +37,18 @@ const (
 	MemoryServiceStoreProcedure = "/memory.v1.MemoryService/Store"
 	// MemoryServiceRecallProcedure is the fully-qualified name of the MemoryService's Recall RPC.
 	MemoryServiceRecallProcedure = "/memory.v1.MemoryService/Recall"
+	// MemoryServiceRecallKnowledgeProcedure is the fully-qualified name of the MemoryService's
+	// RecallKnowledge RPC.
+	MemoryServiceRecallKnowledgeProcedure = "/memory.v1.MemoryService/RecallKnowledge"
 	// MemoryServiceUpdateProcedure is the fully-qualified name of the MemoryService's Update RPC.
 	MemoryServiceUpdateProcedure = "/memory.v1.MemoryService/Update"
 	// MemoryServiceDeleteProcedure is the fully-qualified name of the MemoryService's Delete RPC.
 	MemoryServiceDeleteProcedure = "/memory.v1.MemoryService/Delete"
 	// MemoryServiceListProcedure is the fully-qualified name of the MemoryService's List RPC.
 	MemoryServiceListProcedure = "/memory.v1.MemoryService/List"
+	// MemoryServiceGetOperatingRulesProcedure is the fully-qualified name of the MemoryService's
+	// GetOperatingRules RPC.
+	MemoryServiceGetOperatingRulesProcedure = "/memory.v1.MemoryService/GetOperatingRules"
 	// MemoryServiceConsolidateProcedure is the fully-qualified name of the MemoryService's Consolidate
 	// RPC.
 	MemoryServiceConsolidateProcedure = "/memory.v1.MemoryService/Consolidate"
@@ -52,9 +58,11 @@ const (
 type MemoryServiceClient interface {
 	Store(context.Context, *connect.Request[v1.StoreRequest]) (*connect.Response[v1.StoreResponse], error)
 	Recall(context.Context, *connect.Request[v1.RecallRequest]) (*connect.Response[v1.RecallResponse], error)
+	RecallKnowledge(context.Context, *connect.Request[v1.RecallKnowledgeRequest]) (*connect.Response[v1.RecallKnowledgeResponse], error)
 	Update(context.Context, *connect.Request[v1.UpdateRequest]) (*connect.Response[v1.UpdateResponse], error)
 	Delete(context.Context, *connect.Request[v1.DeleteRequest]) (*connect.Response[v1.DeleteResponse], error)
 	List(context.Context, *connect.Request[v1.ListRequest]) (*connect.Response[v1.ListResponse], error)
+	GetOperatingRules(context.Context, *connect.Request[v1.GetOperatingRulesRequest]) (*connect.Response[v1.GetOperatingRulesResponse], error)
 	Consolidate(context.Context, *connect.Request[v1.ConsolidateRequest]) (*connect.Response[v1.ConsolidateResponse], error)
 }
 
@@ -81,6 +89,12 @@ func NewMemoryServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(memoryServiceMethods.ByName("Recall")),
 			connect.WithClientOptions(opts...),
 		),
+		recallKnowledge: connect.NewClient[v1.RecallKnowledgeRequest, v1.RecallKnowledgeResponse](
+			httpClient,
+			baseURL+MemoryServiceRecallKnowledgeProcedure,
+			connect.WithSchema(memoryServiceMethods.ByName("RecallKnowledge")),
+			connect.WithClientOptions(opts...),
+		),
 		update: connect.NewClient[v1.UpdateRequest, v1.UpdateResponse](
 			httpClient,
 			baseURL+MemoryServiceUpdateProcedure,
@@ -99,6 +113,12 @@ func NewMemoryServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(memoryServiceMethods.ByName("List")),
 			connect.WithClientOptions(opts...),
 		),
+		getOperatingRules: connect.NewClient[v1.GetOperatingRulesRequest, v1.GetOperatingRulesResponse](
+			httpClient,
+			baseURL+MemoryServiceGetOperatingRulesProcedure,
+			connect.WithSchema(memoryServiceMethods.ByName("GetOperatingRules")),
+			connect.WithClientOptions(opts...),
+		),
 		consolidate: connect.NewClient[v1.ConsolidateRequest, v1.ConsolidateResponse](
 			httpClient,
 			baseURL+MemoryServiceConsolidateProcedure,
@@ -110,12 +130,14 @@ func NewMemoryServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 
 // memoryServiceClient implements MemoryServiceClient.
 type memoryServiceClient struct {
-	store       *connect.Client[v1.StoreRequest, v1.StoreResponse]
-	recall      *connect.Client[v1.RecallRequest, v1.RecallResponse]
-	update      *connect.Client[v1.UpdateRequest, v1.UpdateResponse]
-	delete      *connect.Client[v1.DeleteRequest, v1.DeleteResponse]
-	list        *connect.Client[v1.ListRequest, v1.ListResponse]
-	consolidate *connect.Client[v1.ConsolidateRequest, v1.ConsolidateResponse]
+	store             *connect.Client[v1.StoreRequest, v1.StoreResponse]
+	recall            *connect.Client[v1.RecallRequest, v1.RecallResponse]
+	recallKnowledge   *connect.Client[v1.RecallKnowledgeRequest, v1.RecallKnowledgeResponse]
+	update            *connect.Client[v1.UpdateRequest, v1.UpdateResponse]
+	delete            *connect.Client[v1.DeleteRequest, v1.DeleteResponse]
+	list              *connect.Client[v1.ListRequest, v1.ListResponse]
+	getOperatingRules *connect.Client[v1.GetOperatingRulesRequest, v1.GetOperatingRulesResponse]
+	consolidate       *connect.Client[v1.ConsolidateRequest, v1.ConsolidateResponse]
 }
 
 // Store calls memory.v1.MemoryService.Store.
@@ -126,6 +148,11 @@ func (c *memoryServiceClient) Store(ctx context.Context, req *connect.Request[v1
 // Recall calls memory.v1.MemoryService.Recall.
 func (c *memoryServiceClient) Recall(ctx context.Context, req *connect.Request[v1.RecallRequest]) (*connect.Response[v1.RecallResponse], error) {
 	return c.recall.CallUnary(ctx, req)
+}
+
+// RecallKnowledge calls memory.v1.MemoryService.RecallKnowledge.
+func (c *memoryServiceClient) RecallKnowledge(ctx context.Context, req *connect.Request[v1.RecallKnowledgeRequest]) (*connect.Response[v1.RecallKnowledgeResponse], error) {
+	return c.recallKnowledge.CallUnary(ctx, req)
 }
 
 // Update calls memory.v1.MemoryService.Update.
@@ -143,6 +170,11 @@ func (c *memoryServiceClient) List(ctx context.Context, req *connect.Request[v1.
 	return c.list.CallUnary(ctx, req)
 }
 
+// GetOperatingRules calls memory.v1.MemoryService.GetOperatingRules.
+func (c *memoryServiceClient) GetOperatingRules(ctx context.Context, req *connect.Request[v1.GetOperatingRulesRequest]) (*connect.Response[v1.GetOperatingRulesResponse], error) {
+	return c.getOperatingRules.CallUnary(ctx, req)
+}
+
 // Consolidate calls memory.v1.MemoryService.Consolidate.
 func (c *memoryServiceClient) Consolidate(ctx context.Context, req *connect.Request[v1.ConsolidateRequest]) (*connect.Response[v1.ConsolidateResponse], error) {
 	return c.consolidate.CallUnary(ctx, req)
@@ -152,9 +184,11 @@ func (c *memoryServiceClient) Consolidate(ctx context.Context, req *connect.Requ
 type MemoryServiceHandler interface {
 	Store(context.Context, *connect.Request[v1.StoreRequest]) (*connect.Response[v1.StoreResponse], error)
 	Recall(context.Context, *connect.Request[v1.RecallRequest]) (*connect.Response[v1.RecallResponse], error)
+	RecallKnowledge(context.Context, *connect.Request[v1.RecallKnowledgeRequest]) (*connect.Response[v1.RecallKnowledgeResponse], error)
 	Update(context.Context, *connect.Request[v1.UpdateRequest]) (*connect.Response[v1.UpdateResponse], error)
 	Delete(context.Context, *connect.Request[v1.DeleteRequest]) (*connect.Response[v1.DeleteResponse], error)
 	List(context.Context, *connect.Request[v1.ListRequest]) (*connect.Response[v1.ListResponse], error)
+	GetOperatingRules(context.Context, *connect.Request[v1.GetOperatingRulesRequest]) (*connect.Response[v1.GetOperatingRulesResponse], error)
 	Consolidate(context.Context, *connect.Request[v1.ConsolidateRequest]) (*connect.Response[v1.ConsolidateResponse], error)
 }
 
@@ -177,6 +211,12 @@ func NewMemoryServiceHandler(svc MemoryServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(memoryServiceMethods.ByName("Recall")),
 		connect.WithHandlerOptions(opts...),
 	)
+	memoryServiceRecallKnowledgeHandler := connect.NewUnaryHandler(
+		MemoryServiceRecallKnowledgeProcedure,
+		svc.RecallKnowledge,
+		connect.WithSchema(memoryServiceMethods.ByName("RecallKnowledge")),
+		connect.WithHandlerOptions(opts...),
+	)
 	memoryServiceUpdateHandler := connect.NewUnaryHandler(
 		MemoryServiceUpdateProcedure,
 		svc.Update,
@@ -195,6 +235,12 @@ func NewMemoryServiceHandler(svc MemoryServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(memoryServiceMethods.ByName("List")),
 		connect.WithHandlerOptions(opts...),
 	)
+	memoryServiceGetOperatingRulesHandler := connect.NewUnaryHandler(
+		MemoryServiceGetOperatingRulesProcedure,
+		svc.GetOperatingRules,
+		connect.WithSchema(memoryServiceMethods.ByName("GetOperatingRules")),
+		connect.WithHandlerOptions(opts...),
+	)
 	memoryServiceConsolidateHandler := connect.NewUnaryHandler(
 		MemoryServiceConsolidateProcedure,
 		svc.Consolidate,
@@ -207,12 +253,16 @@ func NewMemoryServiceHandler(svc MemoryServiceHandler, opts ...connect.HandlerOp
 			memoryServiceStoreHandler.ServeHTTP(w, r)
 		case MemoryServiceRecallProcedure:
 			memoryServiceRecallHandler.ServeHTTP(w, r)
+		case MemoryServiceRecallKnowledgeProcedure:
+			memoryServiceRecallKnowledgeHandler.ServeHTTP(w, r)
 		case MemoryServiceUpdateProcedure:
 			memoryServiceUpdateHandler.ServeHTTP(w, r)
 		case MemoryServiceDeleteProcedure:
 			memoryServiceDeleteHandler.ServeHTTP(w, r)
 		case MemoryServiceListProcedure:
 			memoryServiceListHandler.ServeHTTP(w, r)
+		case MemoryServiceGetOperatingRulesProcedure:
+			memoryServiceGetOperatingRulesHandler.ServeHTTP(w, r)
 		case MemoryServiceConsolidateProcedure:
 			memoryServiceConsolidateHandler.ServeHTTP(w, r)
 		default:
@@ -232,6 +282,10 @@ func (UnimplementedMemoryServiceHandler) Recall(context.Context, *connect.Reques
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("memory.v1.MemoryService.Recall is not implemented"))
 }
 
+func (UnimplementedMemoryServiceHandler) RecallKnowledge(context.Context, *connect.Request[v1.RecallKnowledgeRequest]) (*connect.Response[v1.RecallKnowledgeResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("memory.v1.MemoryService.RecallKnowledge is not implemented"))
+}
+
 func (UnimplementedMemoryServiceHandler) Update(context.Context, *connect.Request[v1.UpdateRequest]) (*connect.Response[v1.UpdateResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("memory.v1.MemoryService.Update is not implemented"))
 }
@@ -242,6 +296,10 @@ func (UnimplementedMemoryServiceHandler) Delete(context.Context, *connect.Reques
 
 func (UnimplementedMemoryServiceHandler) List(context.Context, *connect.Request[v1.ListRequest]) (*connect.Response[v1.ListResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("memory.v1.MemoryService.List is not implemented"))
+}
+
+func (UnimplementedMemoryServiceHandler) GetOperatingRules(context.Context, *connect.Request[v1.GetOperatingRulesRequest]) (*connect.Response[v1.GetOperatingRulesResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("memory.v1.MemoryService.GetOperatingRules is not implemented"))
 }
 
 func (UnimplementedMemoryServiceHandler) Consolidate(context.Context, *connect.Request[v1.ConsolidateRequest]) (*connect.Response[v1.ConsolidateResponse], error) {
