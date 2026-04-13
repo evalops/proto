@@ -206,8 +206,8 @@ func TestLoadFeatureFlagSnapshot(t *testing.T) {
 	if message.GetSchemaVersion() != 1 {
 		t.Fatalf("unexpected schema_version %d", message.GetSchemaVersion())
 	}
-	if len(message.GetFlags()) != 9 {
-		t.Fatalf("expected 9 flags, got %d", len(message.GetFlags()))
+	if len(message.GetFlags()) != 12 {
+		t.Fatalf("expected 12 flags, got %d", len(message.GetFlags()))
 	}
 	if message.GetFlags()[0].GetKey() != "llm_gateway.model_routing.provider_failover" {
 		t.Fatalf("unexpected first flag key %q", message.GetFlags()[0].GetKey())
@@ -217,6 +217,9 @@ func TestLoadFeatureFlagSnapshot(t *testing.T) {
 	}
 	if message.GetFlags()[8].GetKey() != "platform.kill_switches.prompts.resolve_api" {
 		t.Fatalf("unexpected ninth flag key %q", message.GetFlags()[8].GetKey())
+	}
+	if message.GetFlags()[11].GetKey() != "platform.kill_switches.dagster.dbt_analytics_schedule" {
+		t.Fatalf("unexpected twelfth flag key %q", message.GetFlags()[11].GetKey())
 	}
 }
 

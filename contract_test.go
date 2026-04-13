@@ -174,8 +174,8 @@ func TestFeatureFlagSnapshotFixtureMatchesProtoContract(t *testing.T) {
 	if message.GetSchemaVersion() != 1 {
 		t.Fatalf("expected schema_version 1, got %d", message.GetSchemaVersion())
 	}
-	if len(message.GetFlags()) != 9 {
-		t.Fatalf("expected 9 flags, got %d", len(message.GetFlags()))
+	if len(message.GetFlags()) != 12 {
+		t.Fatalf("expected 12 flags, got %d", len(message.GetFlags()))
 	}
 	if message.GetFlags()[0].GetKey() != "llm_gateway.model_routing.provider_failover" {
 		t.Fatalf("unexpected first flag key %q", message.GetFlags()[0].GetKey())
@@ -203,6 +203,18 @@ func TestFeatureFlagSnapshotFixtureMatchesProtoContract(t *testing.T) {
 	}
 	if message.GetFlags()[8].GetEnabled() {
 		t.Fatal("expected prompts resolve kill switch to default to disabled")
+	}
+	if message.GetFlags()[9].GetKey() != "platform.kill_switches.dagster.wide_events_ingestion_schedule" {
+		t.Fatalf("unexpected tenth flag key %q", message.GetFlags()[9].GetKey())
+	}
+	if message.GetFlags()[10].GetKey() != "platform.kill_switches.dagster.platform_delivery_snapshot_schedule" {
+		t.Fatalf("unexpected eleventh flag key %q", message.GetFlags()[10].GetKey())
+	}
+	if message.GetFlags()[11].GetKey() != "platform.kill_switches.dagster.dbt_analytics_schedule" {
+		t.Fatalf("unexpected twelfth flag key %q", message.GetFlags()[11].GetKey())
+	}
+	if message.GetFlags()[11].GetEnabled() {
+		t.Fatal("expected Dagster dbt analytics kill switch to default to disabled")
 	}
 }
 
