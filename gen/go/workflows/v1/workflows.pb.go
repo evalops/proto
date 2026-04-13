@@ -2112,6 +2112,224 @@ func (x *StartRunResponse) GetRun() *WorkflowRun {
 	return nil
 }
 
+type HandleTriggerRequest struct {
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	WorkspaceId string                 `protobuf:"bytes,1,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	// trigger_type selects how the request is matched against WorkflowTrigger.
+	// Supported values are EVENT, WEBHOOK, and SCHEDULE.
+	TriggerType TriggerType `protobuf:"varint,2,opt,name=trigger_type,json=triggerType,proto3,enum=workflows.v1.TriggerType" json:"trigger_type,omitempty"`
+	// trigger_event_id references the events/v1 CloudEvent.id that initiated
+	// this trigger when trigger_type is EVENT or WEBHOOK.
+	TriggerEventId string `protobuf:"bytes,3,opt,name=trigger_event_id,json=triggerEventId,proto3" json:"trigger_event_id,omitempty"`
+	// For EVENT and optional WAIT_FOR_EVENT satisfaction: the
+	// events/v1 CloudEvent.type value.
+	EventType string `protobuf:"bytes,4,opt,name=event_type,json=eventType,proto3" json:"event_type,omitempty"`
+	// For EVENT and optional WAIT_FOR_EVENT satisfaction: the
+	// events/v1 CloudEvent.subject value.
+	EventSubject string `protobuf:"bytes,5,opt,name=event_subject,json=eventSubject,proto3" json:"event_subject,omitempty"`
+	// For WEBHOOK: the tap/v1 TapEventData.provider to match.
+	TapProvider string `protobuf:"bytes,6,opt,name=tap_provider,json=tapProvider,proto3" json:"tap_provider,omitempty"`
+	// For WEBHOOK: the tap/v1 TapEventData.entity_type to match.
+	TapEntityType string `protobuf:"bytes,7,opt,name=tap_entity_type,json=tapEntityType,proto3" json:"tap_entity_type,omitempty"`
+	// For WEBHOOK: the tap/v1 TapEventData.action to match.
+	TapAction string `protobuf:"bytes,8,opt,name=tap_action,json=tapAction,proto3" json:"tap_action,omitempty"`
+	// For SCHEDULE: the cron expression that fired.
+	CronExpr         string `protobuf:"bytes,9,opt,name=cron_expr,json=cronExpr,proto3" json:"cron_expr,omitempty"`
+	InitiatorAgentId string `protobuf:"bytes,10,opt,name=initiator_agent_id,json=initiatorAgentId,proto3" json:"initiator_agent_id,omitempty"`
+	InitiatorUserId  string `protobuf:"bytes,11,opt,name=initiator_user_id,json=initiatorUserId,proto3" json:"initiator_user_id,omitempty"`
+	EntityId         string `protobuf:"bytes,12,opt,name=entity_id,json=entityId,proto3" json:"entity_id,omitempty"`
+	EntityType       string `protobuf:"bytes,13,opt,name=entity_type,json=entityType,proto3" json:"entity_type,omitempty"`
+	// input_payload is passed to newly started runs and, when event metadata
+	// is present, to WAIT_FOR_EVENT steps completed by this trigger.
+	InputPayload  *structpb.Struct `protobuf:"bytes,14,opt,name=input_payload,json=inputPayload,proto3" json:"input_payload,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HandleTriggerRequest) Reset() {
+	*x = HandleTriggerRequest{}
+	mi := &file_workflows_v1_workflows_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HandleTriggerRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HandleTriggerRequest) ProtoMessage() {}
+
+func (x *HandleTriggerRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_workflows_v1_workflows_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HandleTriggerRequest.ProtoReflect.Descriptor instead.
+func (*HandleTriggerRequest) Descriptor() ([]byte, []int) {
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *HandleTriggerRequest) GetWorkspaceId() string {
+	if x != nil {
+		return x.WorkspaceId
+	}
+	return ""
+}
+
+func (x *HandleTriggerRequest) GetTriggerType() TriggerType {
+	if x != nil {
+		return x.TriggerType
+	}
+	return TriggerType_TRIGGER_TYPE_UNSPECIFIED
+}
+
+func (x *HandleTriggerRequest) GetTriggerEventId() string {
+	if x != nil {
+		return x.TriggerEventId
+	}
+	return ""
+}
+
+func (x *HandleTriggerRequest) GetEventType() string {
+	if x != nil {
+		return x.EventType
+	}
+	return ""
+}
+
+func (x *HandleTriggerRequest) GetEventSubject() string {
+	if x != nil {
+		return x.EventSubject
+	}
+	return ""
+}
+
+func (x *HandleTriggerRequest) GetTapProvider() string {
+	if x != nil {
+		return x.TapProvider
+	}
+	return ""
+}
+
+func (x *HandleTriggerRequest) GetTapEntityType() string {
+	if x != nil {
+		return x.TapEntityType
+	}
+	return ""
+}
+
+func (x *HandleTriggerRequest) GetTapAction() string {
+	if x != nil {
+		return x.TapAction
+	}
+	return ""
+}
+
+func (x *HandleTriggerRequest) GetCronExpr() string {
+	if x != nil {
+		return x.CronExpr
+	}
+	return ""
+}
+
+func (x *HandleTriggerRequest) GetInitiatorAgentId() string {
+	if x != nil {
+		return x.InitiatorAgentId
+	}
+	return ""
+}
+
+func (x *HandleTriggerRequest) GetInitiatorUserId() string {
+	if x != nil {
+		return x.InitiatorUserId
+	}
+	return ""
+}
+
+func (x *HandleTriggerRequest) GetEntityId() string {
+	if x != nil {
+		return x.EntityId
+	}
+	return ""
+}
+
+func (x *HandleTriggerRequest) GetEntityType() string {
+	if x != nil {
+		return x.EntityType
+	}
+	return ""
+}
+
+func (x *HandleTriggerRequest) GetInputPayload() *structpb.Struct {
+	if x != nil {
+		return x.InputPayload
+	}
+	return nil
+}
+
+type HandleTriggerResponse struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// started_runs contains runs created by matching workflow triggers.
+	StartedRuns []*WorkflowRun `protobuf:"bytes,1,rep,name=started_runs,json=startedRuns,proto3" json:"started_runs,omitempty"`
+	// updated_runs contains existing runs advanced by satisfying
+	// WAIT_FOR_EVENT steps. Runs already present in started_runs should not
+	// be repeated here.
+	UpdatedRuns   []*WorkflowRun `protobuf:"bytes,2,rep,name=updated_runs,json=updatedRuns,proto3" json:"updated_runs,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HandleTriggerResponse) Reset() {
+	*x = HandleTriggerResponse{}
+	mi := &file_workflows_v1_workflows_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HandleTriggerResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HandleTriggerResponse) ProtoMessage() {}
+
+func (x *HandleTriggerResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_workflows_v1_workflows_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HandleTriggerResponse.ProtoReflect.Descriptor instead.
+func (*HandleTriggerResponse) Descriptor() ([]byte, []int) {
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *HandleTriggerResponse) GetStartedRuns() []*WorkflowRun {
+	if x != nil {
+		return x.StartedRuns
+	}
+	return nil
+}
+
+func (x *HandleTriggerResponse) GetUpdatedRuns() []*WorkflowRun {
+	if x != nil {
+		return x.UpdatedRuns
+	}
+	return nil
+}
+
 type GetRunRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -2121,7 +2339,7 @@ type GetRunRequest struct {
 
 func (x *GetRunRequest) Reset() {
 	*x = GetRunRequest{}
-	mi := &file_workflows_v1_workflows_proto_msgTypes[20]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2133,7 +2351,7 @@ func (x *GetRunRequest) String() string {
 func (*GetRunRequest) ProtoMessage() {}
 
 func (x *GetRunRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_workflows_v1_workflows_proto_msgTypes[20]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2146,7 +2364,7 @@ func (x *GetRunRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRunRequest.ProtoReflect.Descriptor instead.
 func (*GetRunRequest) Descriptor() ([]byte, []int) {
-	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{20}
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *GetRunRequest) GetId() string {
@@ -2165,7 +2383,7 @@ type GetRunResponse struct {
 
 func (x *GetRunResponse) Reset() {
 	*x = GetRunResponse{}
-	mi := &file_workflows_v1_workflows_proto_msgTypes[21]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2177,7 +2395,7 @@ func (x *GetRunResponse) String() string {
 func (*GetRunResponse) ProtoMessage() {}
 
 func (x *GetRunResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_workflows_v1_workflows_proto_msgTypes[21]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2190,7 +2408,7 @@ func (x *GetRunResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRunResponse.ProtoReflect.Descriptor instead.
 func (*GetRunResponse) Descriptor() ([]byte, []int) {
-	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{21}
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *GetRunResponse) GetRun() *WorkflowRun {
@@ -2215,7 +2433,7 @@ type ListRunsRequest struct {
 
 func (x *ListRunsRequest) Reset() {
 	*x = ListRunsRequest{}
-	mi := &file_workflows_v1_workflows_proto_msgTypes[22]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2227,7 +2445,7 @@ func (x *ListRunsRequest) String() string {
 func (*ListRunsRequest) ProtoMessage() {}
 
 func (x *ListRunsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_workflows_v1_workflows_proto_msgTypes[22]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2240,7 +2458,7 @@ func (x *ListRunsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRunsRequest.ProtoReflect.Descriptor instead.
 func (*ListRunsRequest) Descriptor() ([]byte, []int) {
-	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{22}
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *ListRunsRequest) GetWorkspaceId() string {
@@ -2302,7 +2520,7 @@ type ListRunsResponse struct {
 
 func (x *ListRunsResponse) Reset() {
 	*x = ListRunsResponse{}
-	mi := &file_workflows_v1_workflows_proto_msgTypes[23]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2314,7 +2532,7 @@ func (x *ListRunsResponse) String() string {
 func (*ListRunsResponse) ProtoMessage() {}
 
 func (x *ListRunsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_workflows_v1_workflows_proto_msgTypes[23]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2327,7 +2545,7 @@ func (x *ListRunsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListRunsResponse.ProtoReflect.Descriptor instead.
 func (*ListRunsResponse) Descriptor() ([]byte, []int) {
-	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{23}
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *ListRunsResponse) GetRuns() []*WorkflowRun {
@@ -2365,7 +2583,7 @@ type TransitionStepRequest struct {
 
 func (x *TransitionStepRequest) Reset() {
 	*x = TransitionStepRequest{}
-	mi := &file_workflows_v1_workflows_proto_msgTypes[24]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2377,7 +2595,7 @@ func (x *TransitionStepRequest) String() string {
 func (*TransitionStepRequest) ProtoMessage() {}
 
 func (x *TransitionStepRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_workflows_v1_workflows_proto_msgTypes[24]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2390,7 +2608,7 @@ func (x *TransitionStepRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransitionStepRequest.ProtoReflect.Descriptor instead.
 func (*TransitionStepRequest) Descriptor() ([]byte, []int) {
-	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{24}
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *TransitionStepRequest) GetRunId() string {
@@ -2494,7 +2712,7 @@ type TransitionStepResponse struct {
 
 func (x *TransitionStepResponse) Reset() {
 	*x = TransitionStepResponse{}
-	mi := &file_workflows_v1_workflows_proto_msgTypes[25]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2506,7 +2724,7 @@ func (x *TransitionStepResponse) String() string {
 func (*TransitionStepResponse) ProtoMessage() {}
 
 func (x *TransitionStepResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_workflows_v1_workflows_proto_msgTypes[25]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2519,7 +2737,7 @@ func (x *TransitionStepResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransitionStepResponse.ProtoReflect.Descriptor instead.
 func (*TransitionStepResponse) Descriptor() ([]byte, []int) {
-	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{25}
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *TransitionStepResponse) GetStep() *StepRun {
@@ -2546,7 +2764,7 @@ type PauseRunRequest struct {
 
 func (x *PauseRunRequest) Reset() {
 	*x = PauseRunRequest{}
-	mi := &file_workflows_v1_workflows_proto_msgTypes[26]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2558,7 +2776,7 @@ func (x *PauseRunRequest) String() string {
 func (*PauseRunRequest) ProtoMessage() {}
 
 func (x *PauseRunRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_workflows_v1_workflows_proto_msgTypes[26]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2571,7 +2789,7 @@ func (x *PauseRunRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PauseRunRequest.ProtoReflect.Descriptor instead.
 func (*PauseRunRequest) Descriptor() ([]byte, []int) {
-	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{26}
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *PauseRunRequest) GetId() string {
@@ -2597,7 +2815,7 @@ type PauseRunResponse struct {
 
 func (x *PauseRunResponse) Reset() {
 	*x = PauseRunResponse{}
-	mi := &file_workflows_v1_workflows_proto_msgTypes[27]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2609,7 +2827,7 @@ func (x *PauseRunResponse) String() string {
 func (*PauseRunResponse) ProtoMessage() {}
 
 func (x *PauseRunResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_workflows_v1_workflows_proto_msgTypes[27]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2622,7 +2840,7 @@ func (x *PauseRunResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PauseRunResponse.ProtoReflect.Descriptor instead.
 func (*PauseRunResponse) Descriptor() ([]byte, []int) {
-	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{27}
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *PauseRunResponse) GetRun() *WorkflowRun {
@@ -2641,7 +2859,7 @@ type ResumeRunRequest struct {
 
 func (x *ResumeRunRequest) Reset() {
 	*x = ResumeRunRequest{}
-	mi := &file_workflows_v1_workflows_proto_msgTypes[28]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2653,7 +2871,7 @@ func (x *ResumeRunRequest) String() string {
 func (*ResumeRunRequest) ProtoMessage() {}
 
 func (x *ResumeRunRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_workflows_v1_workflows_proto_msgTypes[28]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2666,7 +2884,7 @@ func (x *ResumeRunRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResumeRunRequest.ProtoReflect.Descriptor instead.
 func (*ResumeRunRequest) Descriptor() ([]byte, []int) {
-	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{28}
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *ResumeRunRequest) GetId() string {
@@ -2685,7 +2903,7 @@ type ResumeRunResponse struct {
 
 func (x *ResumeRunResponse) Reset() {
 	*x = ResumeRunResponse{}
-	mi := &file_workflows_v1_workflows_proto_msgTypes[29]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2697,7 +2915,7 @@ func (x *ResumeRunResponse) String() string {
 func (*ResumeRunResponse) ProtoMessage() {}
 
 func (x *ResumeRunResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_workflows_v1_workflows_proto_msgTypes[29]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2710,7 +2928,7 @@ func (x *ResumeRunResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResumeRunResponse.ProtoReflect.Descriptor instead.
 func (*ResumeRunResponse) Descriptor() ([]byte, []int) {
-	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{29}
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *ResumeRunResponse) GetRun() *WorkflowRun {
@@ -2730,7 +2948,7 @@ type CancelRunRequest struct {
 
 func (x *CancelRunRequest) Reset() {
 	*x = CancelRunRequest{}
-	mi := &file_workflows_v1_workflows_proto_msgTypes[30]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2742,7 +2960,7 @@ func (x *CancelRunRequest) String() string {
 func (*CancelRunRequest) ProtoMessage() {}
 
 func (x *CancelRunRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_workflows_v1_workflows_proto_msgTypes[30]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2755,7 +2973,7 @@ func (x *CancelRunRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CancelRunRequest.ProtoReflect.Descriptor instead.
 func (*CancelRunRequest) Descriptor() ([]byte, []int) {
-	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{30}
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *CancelRunRequest) GetId() string {
@@ -2781,7 +2999,7 @@ type CancelRunResponse struct {
 
 func (x *CancelRunResponse) Reset() {
 	*x = CancelRunResponse{}
-	mi := &file_workflows_v1_workflows_proto_msgTypes[31]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2793,7 +3011,7 @@ func (x *CancelRunResponse) String() string {
 func (*CancelRunResponse) ProtoMessage() {}
 
 func (x *CancelRunResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_workflows_v1_workflows_proto_msgTypes[31]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2806,7 +3024,7 @@ func (x *CancelRunResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CancelRunResponse.ProtoReflect.Descriptor instead.
 func (*CancelRunResponse) Descriptor() ([]byte, []int) {
-	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{31}
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *CancelRunResponse) GetRun() *WorkflowRun {
@@ -2826,7 +3044,7 @@ type CompensateRunRequest struct {
 
 func (x *CompensateRunRequest) Reset() {
 	*x = CompensateRunRequest{}
-	mi := &file_workflows_v1_workflows_proto_msgTypes[32]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2838,7 +3056,7 @@ func (x *CompensateRunRequest) String() string {
 func (*CompensateRunRequest) ProtoMessage() {}
 
 func (x *CompensateRunRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_workflows_v1_workflows_proto_msgTypes[32]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2851,7 +3069,7 @@ func (x *CompensateRunRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CompensateRunRequest.ProtoReflect.Descriptor instead.
 func (*CompensateRunRequest) Descriptor() ([]byte, []int) {
-	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{32}
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *CompensateRunRequest) GetId() string {
@@ -2877,7 +3095,7 @@ type CompensateRunResponse struct {
 
 func (x *CompensateRunResponse) Reset() {
 	*x = CompensateRunResponse{}
-	mi := &file_workflows_v1_workflows_proto_msgTypes[33]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2889,7 +3107,7 @@ func (x *CompensateRunResponse) String() string {
 func (*CompensateRunResponse) ProtoMessage() {}
 
 func (x *CompensateRunResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_workflows_v1_workflows_proto_msgTypes[33]
+	mi := &file_workflows_v1_workflows_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2902,7 +3120,7 @@ func (x *CompensateRunResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CompensateRunResponse.ProtoReflect.Descriptor instead.
 func (*CompensateRunResponse) Descriptor() ([]byte, []int) {
-	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{33}
+	return file_workflows_v1_workflows_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *CompensateRunResponse) GetRun() *WorkflowRun {
@@ -3088,7 +3306,29 @@ const file_workflows_v1_workflows_proto_rawDesc = "" +
 	" \x01(\x0e2\x19.workflows.v1.TriggerTypeR\vtriggerType\x12(\n" +
 	"\x10trigger_event_id\x18\v \x01(\tR\x0etriggerEventId\"?\n" +
 	"\x10StartRunResponse\x12+\n" +
-	"\x03run\x18\x01 \x01(\v2\x19.workflows.v1.WorkflowRunR\x03run\"\x1f\n" +
+	"\x03run\x18\x01 \x01(\v2\x19.workflows.v1.WorkflowRunR\x03run\"\xc2\x04\n" +
+	"\x14HandleTriggerRequest\x12!\n" +
+	"\fworkspace_id\x18\x01 \x01(\tR\vworkspaceId\x12<\n" +
+	"\ftrigger_type\x18\x02 \x01(\x0e2\x19.workflows.v1.TriggerTypeR\vtriggerType\x12(\n" +
+	"\x10trigger_event_id\x18\x03 \x01(\tR\x0etriggerEventId\x12\x1d\n" +
+	"\n" +
+	"event_type\x18\x04 \x01(\tR\teventType\x12#\n" +
+	"\revent_subject\x18\x05 \x01(\tR\feventSubject\x12!\n" +
+	"\ftap_provider\x18\x06 \x01(\tR\vtapProvider\x12&\n" +
+	"\x0ftap_entity_type\x18\a \x01(\tR\rtapEntityType\x12\x1d\n" +
+	"\n" +
+	"tap_action\x18\b \x01(\tR\ttapAction\x12\x1b\n" +
+	"\tcron_expr\x18\t \x01(\tR\bcronExpr\x12,\n" +
+	"\x12initiator_agent_id\x18\n" +
+	" \x01(\tR\x10initiatorAgentId\x12*\n" +
+	"\x11initiator_user_id\x18\v \x01(\tR\x0finitiatorUserId\x12\x1b\n" +
+	"\tentity_id\x18\f \x01(\tR\bentityId\x12\x1f\n" +
+	"\ventity_type\x18\r \x01(\tR\n" +
+	"entityType\x12<\n" +
+	"\rinput_payload\x18\x0e \x01(\v2\x17.google.protobuf.StructR\finputPayload\"\x93\x01\n" +
+	"\x15HandleTriggerResponse\x12<\n" +
+	"\fstarted_runs\x18\x01 \x03(\v2\x19.workflows.v1.WorkflowRunR\vstartedRuns\x12<\n" +
+	"\fupdated_runs\x18\x02 \x03(\v2\x19.workflows.v1.WorkflowRunR\vupdatedRuns\"\x1f\n" +
 	"\rGetRunRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"=\n" +
 	"\x0eGetRunResponse\x12+\n" +
@@ -3176,14 +3416,15 @@ const file_workflows_v1_workflows_proto_rawDesc = "" +
 	"\x15TRIGGER_TYPE_SCHEDULE\x10\x02\x12\x17\n" +
 	"\x13TRIGGER_TYPE_MANUAL\x10\x03\x12\x18\n" +
 	"\x14TRIGGER_TYPE_WEBHOOK\x10\x04\x12\x19\n" +
-	"\x15TRIGGER_TYPE_WORKFLOW\x10\x052\xdb\b\n" +
+	"\x15TRIGGER_TYPE_WORKFLOW\x10\x052\xb5\t\n" +
 	"\x0fWorkflowService\x12a\n" +
 	"\x10CreateDefinition\x12%.workflows.v1.CreateDefinitionRequest\x1a&.workflows.v1.CreateDefinitionResponse\x12X\n" +
 	"\rGetDefinition\x12\".workflows.v1.GetDefinitionRequest\x1a#.workflows.v1.GetDefinitionResponse\x12^\n" +
 	"\x0fListDefinitions\x12$.workflows.v1.ListDefinitionsRequest\x1a%.workflows.v1.ListDefinitionsResponse\x12[\n" +
 	"\x0ePublishVersion\x12#.workflows.v1.PublishVersionRequest\x1a$.workflows.v1.PublishVersionResponse\x12U\n" +
 	"\fListVersions\x12!.workflows.v1.ListVersionsRequest\x1a\".workflows.v1.ListVersionsResponse\x12I\n" +
-	"\bStartRun\x12\x1d.workflows.v1.StartRunRequest\x1a\x1e.workflows.v1.StartRunResponse\x12C\n" +
+	"\bStartRun\x12\x1d.workflows.v1.StartRunRequest\x1a\x1e.workflows.v1.StartRunResponse\x12X\n" +
+	"\rHandleTrigger\x12\".workflows.v1.HandleTriggerRequest\x1a#.workflows.v1.HandleTriggerResponse\x12C\n" +
 	"\x06GetRun\x12\x1b.workflows.v1.GetRunRequest\x1a\x1c.workflows.v1.GetRunResponse\x12I\n" +
 	"\bListRuns\x12\x1d.workflows.v1.ListRunsRequest\x1a\x1e.workflows.v1.ListRunsResponse\x12[\n" +
 	"\x0eTransitionStep\x12#.workflows.v1.TransitionStepRequest\x1a$.workflows.v1.TransitionStepResponse\x12I\n" +
@@ -3205,7 +3446,7 @@ func file_workflows_v1_workflows_proto_rawDescGZIP() []byte {
 }
 
 var file_workflows_v1_workflows_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_workflows_v1_workflows_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
+var file_workflows_v1_workflows_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
 var file_workflows_v1_workflows_proto_goTypes = []any{
 	(StepType)(0),                    // 0: workflows.v1.StepType
 	(WorkflowState)(0),               // 1: workflows.v1.WorkflowState
@@ -3231,48 +3472,50 @@ var file_workflows_v1_workflows_proto_goTypes = []any{
 	(*ListVersionsResponse)(nil),     // 21: workflows.v1.ListVersionsResponse
 	(*StartRunRequest)(nil),          // 22: workflows.v1.StartRunRequest
 	(*StartRunResponse)(nil),         // 23: workflows.v1.StartRunResponse
-	(*GetRunRequest)(nil),            // 24: workflows.v1.GetRunRequest
-	(*GetRunResponse)(nil),           // 25: workflows.v1.GetRunResponse
-	(*ListRunsRequest)(nil),          // 26: workflows.v1.ListRunsRequest
-	(*ListRunsResponse)(nil),         // 27: workflows.v1.ListRunsResponse
-	(*TransitionStepRequest)(nil),    // 28: workflows.v1.TransitionStepRequest
-	(*TransitionStepResponse)(nil),   // 29: workflows.v1.TransitionStepResponse
-	(*PauseRunRequest)(nil),          // 30: workflows.v1.PauseRunRequest
-	(*PauseRunResponse)(nil),         // 31: workflows.v1.PauseRunResponse
-	(*ResumeRunRequest)(nil),         // 32: workflows.v1.ResumeRunRequest
-	(*ResumeRunResponse)(nil),        // 33: workflows.v1.ResumeRunResponse
-	(*CancelRunRequest)(nil),         // 34: workflows.v1.CancelRunRequest
-	(*CancelRunResponse)(nil),        // 35: workflows.v1.CancelRunResponse
-	(*CompensateRunRequest)(nil),     // 36: workflows.v1.CompensateRunRequest
-	(*CompensateRunResponse)(nil),    // 37: workflows.v1.CompensateRunResponse
-	(*timestamppb.Timestamp)(nil),    // 38: google.protobuf.Timestamp
-	(*structpb.Struct)(nil),          // 39: google.protobuf.Struct
+	(*HandleTriggerRequest)(nil),     // 24: workflows.v1.HandleTriggerRequest
+	(*HandleTriggerResponse)(nil),    // 25: workflows.v1.HandleTriggerResponse
+	(*GetRunRequest)(nil),            // 26: workflows.v1.GetRunRequest
+	(*GetRunResponse)(nil),           // 27: workflows.v1.GetRunResponse
+	(*ListRunsRequest)(nil),          // 28: workflows.v1.ListRunsRequest
+	(*ListRunsResponse)(nil),         // 29: workflows.v1.ListRunsResponse
+	(*TransitionStepRequest)(nil),    // 30: workflows.v1.TransitionStepRequest
+	(*TransitionStepResponse)(nil),   // 31: workflows.v1.TransitionStepResponse
+	(*PauseRunRequest)(nil),          // 32: workflows.v1.PauseRunRequest
+	(*PauseRunResponse)(nil),         // 33: workflows.v1.PauseRunResponse
+	(*ResumeRunRequest)(nil),         // 34: workflows.v1.ResumeRunRequest
+	(*ResumeRunResponse)(nil),        // 35: workflows.v1.ResumeRunResponse
+	(*CancelRunRequest)(nil),         // 36: workflows.v1.CancelRunRequest
+	(*CancelRunResponse)(nil),        // 37: workflows.v1.CancelRunResponse
+	(*CompensateRunRequest)(nil),     // 38: workflows.v1.CompensateRunRequest
+	(*CompensateRunResponse)(nil),    // 39: workflows.v1.CompensateRunResponse
+	(*timestamppb.Timestamp)(nil),    // 40: google.protobuf.Timestamp
+	(*structpb.Struct)(nil),          // 41: google.protobuf.Struct
 }
 var file_workflows_v1_workflows_proto_depIdxs = []int32{
-	38, // 0: workflows.v1.WorkflowDefinition.created_at:type_name -> google.protobuf.Timestamp
-	38, // 1: workflows.v1.WorkflowDefinition.updated_at:type_name -> google.protobuf.Timestamp
+	40, // 0: workflows.v1.WorkflowDefinition.created_at:type_name -> google.protobuf.Timestamp
+	40, // 1: workflows.v1.WorkflowDefinition.updated_at:type_name -> google.protobuf.Timestamp
 	6,  // 2: workflows.v1.WorkflowVersion.steps:type_name -> workflows.v1.StepDefinition
 	7,  // 3: workflows.v1.WorkflowVersion.edges:type_name -> workflows.v1.Edge
 	8,  // 4: workflows.v1.WorkflowVersion.trigger:type_name -> workflows.v1.WorkflowTrigger
 	9,  // 5: workflows.v1.WorkflowVersion.default_retry_policy:type_name -> workflows.v1.RetryPolicy
-	38, // 6: workflows.v1.WorkflowVersion.created_at:type_name -> google.protobuf.Timestamp
+	40, // 6: workflows.v1.WorkflowVersion.created_at:type_name -> google.protobuf.Timestamp
 	0,  // 7: workflows.v1.StepDefinition.step_type:type_name -> workflows.v1.StepType
-	39, // 8: workflows.v1.StepDefinition.config:type_name -> google.protobuf.Struct
+	41, // 8: workflows.v1.StepDefinition.config:type_name -> google.protobuf.Struct
 	9,  // 9: workflows.v1.StepDefinition.retry_policy:type_name -> workflows.v1.RetryPolicy
 	3,  // 10: workflows.v1.WorkflowTrigger.trigger_type:type_name -> workflows.v1.TriggerType
 	1,  // 11: workflows.v1.WorkflowRun.state:type_name -> workflows.v1.WorkflowState
 	11, // 12: workflows.v1.WorkflowRun.steps:type_name -> workflows.v1.StepRun
 	3,  // 13: workflows.v1.WorkflowRun.trigger_type:type_name -> workflows.v1.TriggerType
-	39, // 14: workflows.v1.WorkflowRun.input_payload:type_name -> google.protobuf.Struct
-	39, // 15: workflows.v1.WorkflowRun.output_payload:type_name -> google.protobuf.Struct
-	38, // 16: workflows.v1.WorkflowRun.started_at:type_name -> google.protobuf.Timestamp
-	38, // 17: workflows.v1.WorkflowRun.completed_at:type_name -> google.protobuf.Timestamp
+	41, // 14: workflows.v1.WorkflowRun.input_payload:type_name -> google.protobuf.Struct
+	41, // 15: workflows.v1.WorkflowRun.output_payload:type_name -> google.protobuf.Struct
+	40, // 16: workflows.v1.WorkflowRun.started_at:type_name -> google.protobuf.Timestamp
+	40, // 17: workflows.v1.WorkflowRun.completed_at:type_name -> google.protobuf.Timestamp
 	0,  // 18: workflows.v1.StepRun.step_type:type_name -> workflows.v1.StepType
 	2,  // 19: workflows.v1.StepRun.state:type_name -> workflows.v1.StepRunState
-	39, // 20: workflows.v1.StepRun.input_payload:type_name -> google.protobuf.Struct
-	39, // 21: workflows.v1.StepRun.output_payload:type_name -> google.protobuf.Struct
-	38, // 22: workflows.v1.StepRun.started_at:type_name -> google.protobuf.Timestamp
-	38, // 23: workflows.v1.StepRun.completed_at:type_name -> google.protobuf.Timestamp
+	41, // 20: workflows.v1.StepRun.input_payload:type_name -> google.protobuf.Struct
+	41, // 21: workflows.v1.StepRun.output_payload:type_name -> google.protobuf.Struct
+	40, // 22: workflows.v1.StepRun.started_at:type_name -> google.protobuf.Timestamp
+	40, // 23: workflows.v1.StepRun.completed_at:type_name -> google.protobuf.Timestamp
 	4,  // 24: workflows.v1.CreateDefinitionResponse.definition:type_name -> workflows.v1.WorkflowDefinition
 	4,  // 25: workflows.v1.GetDefinitionResponse.definition:type_name -> workflows.v1.WorkflowDefinition
 	4,  // 26: workflows.v1.ListDefinitionsResponse.definitions:type_name -> workflows.v1.WorkflowDefinition
@@ -3283,51 +3526,57 @@ var file_workflows_v1_workflows_proto_depIdxs = []int32{
 	5,  // 31: workflows.v1.PublishVersionResponse.version:type_name -> workflows.v1.WorkflowVersion
 	4,  // 32: workflows.v1.PublishVersionResponse.definition:type_name -> workflows.v1.WorkflowDefinition
 	5,  // 33: workflows.v1.ListVersionsResponse.versions:type_name -> workflows.v1.WorkflowVersion
-	39, // 34: workflows.v1.StartRunRequest.input_payload:type_name -> google.protobuf.Struct
+	41, // 34: workflows.v1.StartRunRequest.input_payload:type_name -> google.protobuf.Struct
 	3,  // 35: workflows.v1.StartRunRequest.trigger_type:type_name -> workflows.v1.TriggerType
 	10, // 36: workflows.v1.StartRunResponse.run:type_name -> workflows.v1.WorkflowRun
-	10, // 37: workflows.v1.GetRunResponse.run:type_name -> workflows.v1.WorkflowRun
-	1,  // 38: workflows.v1.ListRunsRequest.state:type_name -> workflows.v1.WorkflowState
-	10, // 39: workflows.v1.ListRunsResponse.runs:type_name -> workflows.v1.WorkflowRun
-	2,  // 40: workflows.v1.TransitionStepRequest.state:type_name -> workflows.v1.StepRunState
-	39, // 41: workflows.v1.TransitionStepRequest.output_payload:type_name -> google.protobuf.Struct
-	11, // 42: workflows.v1.TransitionStepResponse.step:type_name -> workflows.v1.StepRun
-	10, // 43: workflows.v1.TransitionStepResponse.run:type_name -> workflows.v1.WorkflowRun
-	10, // 44: workflows.v1.PauseRunResponse.run:type_name -> workflows.v1.WorkflowRun
-	10, // 45: workflows.v1.ResumeRunResponse.run:type_name -> workflows.v1.WorkflowRun
-	10, // 46: workflows.v1.CancelRunResponse.run:type_name -> workflows.v1.WorkflowRun
-	10, // 47: workflows.v1.CompensateRunResponse.run:type_name -> workflows.v1.WorkflowRun
-	12, // 48: workflows.v1.WorkflowService.CreateDefinition:input_type -> workflows.v1.CreateDefinitionRequest
-	14, // 49: workflows.v1.WorkflowService.GetDefinition:input_type -> workflows.v1.GetDefinitionRequest
-	16, // 50: workflows.v1.WorkflowService.ListDefinitions:input_type -> workflows.v1.ListDefinitionsRequest
-	18, // 51: workflows.v1.WorkflowService.PublishVersion:input_type -> workflows.v1.PublishVersionRequest
-	20, // 52: workflows.v1.WorkflowService.ListVersions:input_type -> workflows.v1.ListVersionsRequest
-	22, // 53: workflows.v1.WorkflowService.StartRun:input_type -> workflows.v1.StartRunRequest
-	24, // 54: workflows.v1.WorkflowService.GetRun:input_type -> workflows.v1.GetRunRequest
-	26, // 55: workflows.v1.WorkflowService.ListRuns:input_type -> workflows.v1.ListRunsRequest
-	28, // 56: workflows.v1.WorkflowService.TransitionStep:input_type -> workflows.v1.TransitionStepRequest
-	30, // 57: workflows.v1.WorkflowService.PauseRun:input_type -> workflows.v1.PauseRunRequest
-	32, // 58: workflows.v1.WorkflowService.ResumeRun:input_type -> workflows.v1.ResumeRunRequest
-	34, // 59: workflows.v1.WorkflowService.CancelRun:input_type -> workflows.v1.CancelRunRequest
-	36, // 60: workflows.v1.WorkflowService.CompensateRun:input_type -> workflows.v1.CompensateRunRequest
-	13, // 61: workflows.v1.WorkflowService.CreateDefinition:output_type -> workflows.v1.CreateDefinitionResponse
-	15, // 62: workflows.v1.WorkflowService.GetDefinition:output_type -> workflows.v1.GetDefinitionResponse
-	17, // 63: workflows.v1.WorkflowService.ListDefinitions:output_type -> workflows.v1.ListDefinitionsResponse
-	19, // 64: workflows.v1.WorkflowService.PublishVersion:output_type -> workflows.v1.PublishVersionResponse
-	21, // 65: workflows.v1.WorkflowService.ListVersions:output_type -> workflows.v1.ListVersionsResponse
-	23, // 66: workflows.v1.WorkflowService.StartRun:output_type -> workflows.v1.StartRunResponse
-	25, // 67: workflows.v1.WorkflowService.GetRun:output_type -> workflows.v1.GetRunResponse
-	27, // 68: workflows.v1.WorkflowService.ListRuns:output_type -> workflows.v1.ListRunsResponse
-	29, // 69: workflows.v1.WorkflowService.TransitionStep:output_type -> workflows.v1.TransitionStepResponse
-	31, // 70: workflows.v1.WorkflowService.PauseRun:output_type -> workflows.v1.PauseRunResponse
-	33, // 71: workflows.v1.WorkflowService.ResumeRun:output_type -> workflows.v1.ResumeRunResponse
-	35, // 72: workflows.v1.WorkflowService.CancelRun:output_type -> workflows.v1.CancelRunResponse
-	37, // 73: workflows.v1.WorkflowService.CompensateRun:output_type -> workflows.v1.CompensateRunResponse
-	61, // [61:74] is the sub-list for method output_type
-	48, // [48:61] is the sub-list for method input_type
-	48, // [48:48] is the sub-list for extension type_name
-	48, // [48:48] is the sub-list for extension extendee
-	0,  // [0:48] is the sub-list for field type_name
+	3,  // 37: workflows.v1.HandleTriggerRequest.trigger_type:type_name -> workflows.v1.TriggerType
+	41, // 38: workflows.v1.HandleTriggerRequest.input_payload:type_name -> google.protobuf.Struct
+	10, // 39: workflows.v1.HandleTriggerResponse.started_runs:type_name -> workflows.v1.WorkflowRun
+	10, // 40: workflows.v1.HandleTriggerResponse.updated_runs:type_name -> workflows.v1.WorkflowRun
+	10, // 41: workflows.v1.GetRunResponse.run:type_name -> workflows.v1.WorkflowRun
+	1,  // 42: workflows.v1.ListRunsRequest.state:type_name -> workflows.v1.WorkflowState
+	10, // 43: workflows.v1.ListRunsResponse.runs:type_name -> workflows.v1.WorkflowRun
+	2,  // 44: workflows.v1.TransitionStepRequest.state:type_name -> workflows.v1.StepRunState
+	41, // 45: workflows.v1.TransitionStepRequest.output_payload:type_name -> google.protobuf.Struct
+	11, // 46: workflows.v1.TransitionStepResponse.step:type_name -> workflows.v1.StepRun
+	10, // 47: workflows.v1.TransitionStepResponse.run:type_name -> workflows.v1.WorkflowRun
+	10, // 48: workflows.v1.PauseRunResponse.run:type_name -> workflows.v1.WorkflowRun
+	10, // 49: workflows.v1.ResumeRunResponse.run:type_name -> workflows.v1.WorkflowRun
+	10, // 50: workflows.v1.CancelRunResponse.run:type_name -> workflows.v1.WorkflowRun
+	10, // 51: workflows.v1.CompensateRunResponse.run:type_name -> workflows.v1.WorkflowRun
+	12, // 52: workflows.v1.WorkflowService.CreateDefinition:input_type -> workflows.v1.CreateDefinitionRequest
+	14, // 53: workflows.v1.WorkflowService.GetDefinition:input_type -> workflows.v1.GetDefinitionRequest
+	16, // 54: workflows.v1.WorkflowService.ListDefinitions:input_type -> workflows.v1.ListDefinitionsRequest
+	18, // 55: workflows.v1.WorkflowService.PublishVersion:input_type -> workflows.v1.PublishVersionRequest
+	20, // 56: workflows.v1.WorkflowService.ListVersions:input_type -> workflows.v1.ListVersionsRequest
+	22, // 57: workflows.v1.WorkflowService.StartRun:input_type -> workflows.v1.StartRunRequest
+	24, // 58: workflows.v1.WorkflowService.HandleTrigger:input_type -> workflows.v1.HandleTriggerRequest
+	26, // 59: workflows.v1.WorkflowService.GetRun:input_type -> workflows.v1.GetRunRequest
+	28, // 60: workflows.v1.WorkflowService.ListRuns:input_type -> workflows.v1.ListRunsRequest
+	30, // 61: workflows.v1.WorkflowService.TransitionStep:input_type -> workflows.v1.TransitionStepRequest
+	32, // 62: workflows.v1.WorkflowService.PauseRun:input_type -> workflows.v1.PauseRunRequest
+	34, // 63: workflows.v1.WorkflowService.ResumeRun:input_type -> workflows.v1.ResumeRunRequest
+	36, // 64: workflows.v1.WorkflowService.CancelRun:input_type -> workflows.v1.CancelRunRequest
+	38, // 65: workflows.v1.WorkflowService.CompensateRun:input_type -> workflows.v1.CompensateRunRequest
+	13, // 66: workflows.v1.WorkflowService.CreateDefinition:output_type -> workflows.v1.CreateDefinitionResponse
+	15, // 67: workflows.v1.WorkflowService.GetDefinition:output_type -> workflows.v1.GetDefinitionResponse
+	17, // 68: workflows.v1.WorkflowService.ListDefinitions:output_type -> workflows.v1.ListDefinitionsResponse
+	19, // 69: workflows.v1.WorkflowService.PublishVersion:output_type -> workflows.v1.PublishVersionResponse
+	21, // 70: workflows.v1.WorkflowService.ListVersions:output_type -> workflows.v1.ListVersionsResponse
+	23, // 71: workflows.v1.WorkflowService.StartRun:output_type -> workflows.v1.StartRunResponse
+	25, // 72: workflows.v1.WorkflowService.HandleTrigger:output_type -> workflows.v1.HandleTriggerResponse
+	27, // 73: workflows.v1.WorkflowService.GetRun:output_type -> workflows.v1.GetRunResponse
+	29, // 74: workflows.v1.WorkflowService.ListRuns:output_type -> workflows.v1.ListRunsResponse
+	31, // 75: workflows.v1.WorkflowService.TransitionStep:output_type -> workflows.v1.TransitionStepResponse
+	33, // 76: workflows.v1.WorkflowService.PauseRun:output_type -> workflows.v1.PauseRunResponse
+	35, // 77: workflows.v1.WorkflowService.ResumeRun:output_type -> workflows.v1.ResumeRunResponse
+	37, // 78: workflows.v1.WorkflowService.CancelRun:output_type -> workflows.v1.CancelRunResponse
+	39, // 79: workflows.v1.WorkflowService.CompensateRun:output_type -> workflows.v1.CompensateRunResponse
+	66, // [66:80] is the sub-list for method output_type
+	52, // [52:66] is the sub-list for method input_type
+	52, // [52:52] is the sub-list for extension type_name
+	52, // [52:52] is the sub-list for extension extendee
+	0,  // [0:52] is the sub-list for field type_name
 }
 
 func init() { file_workflows_v1_workflows_proto_init() }
@@ -3341,7 +3590,7 @@ func file_workflows_v1_workflows_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_workflows_v1_workflows_proto_rawDesc), len(file_workflows_v1_workflows_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   34,
+			NumMessages:   36,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

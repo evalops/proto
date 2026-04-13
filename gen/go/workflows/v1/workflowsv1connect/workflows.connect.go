@@ -51,6 +51,9 @@ const (
 	// WorkflowServiceStartRunProcedure is the fully-qualified name of the WorkflowService's StartRun
 	// RPC.
 	WorkflowServiceStartRunProcedure = "/workflows.v1.WorkflowService/StartRun"
+	// WorkflowServiceHandleTriggerProcedure is the fully-qualified name of the WorkflowService's
+	// HandleTrigger RPC.
+	WorkflowServiceHandleTriggerProcedure = "/workflows.v1.WorkflowService/HandleTrigger"
 	// WorkflowServiceGetRunProcedure is the fully-qualified name of the WorkflowService's GetRun RPC.
 	WorkflowServiceGetRunProcedure = "/workflows.v1.WorkflowService/GetRun"
 	// WorkflowServiceListRunsProcedure is the fully-qualified name of the WorkflowService's ListRuns
@@ -88,6 +91,11 @@ type WorkflowServiceClient interface {
 	ListVersions(context.Context, *connect.Request[v1.ListVersionsRequest]) (*connect.Response[v1.ListVersionsResponse], error)
 	// StartRun begins execution of a workflow definition version.
 	StartRun(context.Context, *connect.Request[v1.StartRunRequest]) (*connect.Response[v1.StartRunResponse], error)
+	// HandleTrigger processes an asynchronous workflow trigger. It starts
+	// matching latest workflow versions for EVENT, WEBHOOK, or SCHEDULE
+	// triggers and may also satisfy WAIT_FOR_EVENT steps when event
+	// metadata is present.
+	HandleTrigger(context.Context, *connect.Request[v1.HandleTriggerRequest]) (*connect.Response[v1.HandleTriggerResponse], error)
 	// GetRun retrieves a workflow run by ID.
 	GetRun(context.Context, *connect.Request[v1.GetRunRequest]) (*connect.Response[v1.GetRunResponse], error)
 	// ListRuns returns workflow runs matching the query filters.
@@ -155,6 +163,12 @@ func NewWorkflowServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithSchema(workflowServiceMethods.ByName("StartRun")),
 			connect.WithClientOptions(opts...),
 		),
+		handleTrigger: connect.NewClient[v1.HandleTriggerRequest, v1.HandleTriggerResponse](
+			httpClient,
+			baseURL+WorkflowServiceHandleTriggerProcedure,
+			connect.WithSchema(workflowServiceMethods.ByName("HandleTrigger")),
+			connect.WithClientOptions(opts...),
+		),
 		getRun: connect.NewClient[v1.GetRunRequest, v1.GetRunResponse](
 			httpClient,
 			baseURL+WorkflowServiceGetRunProcedure,
@@ -208,6 +222,7 @@ type workflowServiceClient struct {
 	publishVersion   *connect.Client[v1.PublishVersionRequest, v1.PublishVersionResponse]
 	listVersions     *connect.Client[v1.ListVersionsRequest, v1.ListVersionsResponse]
 	startRun         *connect.Client[v1.StartRunRequest, v1.StartRunResponse]
+	handleTrigger    *connect.Client[v1.HandleTriggerRequest, v1.HandleTriggerResponse]
 	getRun           *connect.Client[v1.GetRunRequest, v1.GetRunResponse]
 	listRuns         *connect.Client[v1.ListRunsRequest, v1.ListRunsResponse]
 	transitionStep   *connect.Client[v1.TransitionStepRequest, v1.TransitionStepResponse]
@@ -245,6 +260,11 @@ func (c *workflowServiceClient) ListVersions(ctx context.Context, req *connect.R
 // StartRun calls workflows.v1.WorkflowService.StartRun.
 func (c *workflowServiceClient) StartRun(ctx context.Context, req *connect.Request[v1.StartRunRequest]) (*connect.Response[v1.StartRunResponse], error) {
 	return c.startRun.CallUnary(ctx, req)
+}
+
+// HandleTrigger calls workflows.v1.WorkflowService.HandleTrigger.
+func (c *workflowServiceClient) HandleTrigger(ctx context.Context, req *connect.Request[v1.HandleTriggerRequest]) (*connect.Response[v1.HandleTriggerResponse], error) {
+	return c.handleTrigger.CallUnary(ctx, req)
 }
 
 // GetRun calls workflows.v1.WorkflowService.GetRun.
@@ -297,6 +317,11 @@ type WorkflowServiceHandler interface {
 	ListVersions(context.Context, *connect.Request[v1.ListVersionsRequest]) (*connect.Response[v1.ListVersionsResponse], error)
 	// StartRun begins execution of a workflow definition version.
 	StartRun(context.Context, *connect.Request[v1.StartRunRequest]) (*connect.Response[v1.StartRunResponse], error)
+	// HandleTrigger processes an asynchronous workflow trigger. It starts
+	// matching latest workflow versions for EVENT, WEBHOOK, or SCHEDULE
+	// triggers and may also satisfy WAIT_FOR_EVENT steps when event
+	// metadata is present.
+	HandleTrigger(context.Context, *connect.Request[v1.HandleTriggerRequest]) (*connect.Response[v1.HandleTriggerResponse], error)
 	// GetRun retrieves a workflow run by ID.
 	GetRun(context.Context, *connect.Request[v1.GetRunRequest]) (*connect.Response[v1.GetRunResponse], error)
 	// ListRuns returns workflow runs matching the query filters.
@@ -360,6 +385,12 @@ func NewWorkflowServiceHandler(svc WorkflowServiceHandler, opts ...connect.Handl
 		connect.WithSchema(workflowServiceMethods.ByName("StartRun")),
 		connect.WithHandlerOptions(opts...),
 	)
+	workflowServiceHandleTriggerHandler := connect.NewUnaryHandler(
+		WorkflowServiceHandleTriggerProcedure,
+		svc.HandleTrigger,
+		connect.WithSchema(workflowServiceMethods.ByName("HandleTrigger")),
+		connect.WithHandlerOptions(opts...),
+	)
 	workflowServiceGetRunHandler := connect.NewUnaryHandler(
 		WorkflowServiceGetRunProcedure,
 		svc.GetRun,
@@ -416,6 +447,8 @@ func NewWorkflowServiceHandler(svc WorkflowServiceHandler, opts ...connect.Handl
 			workflowServiceListVersionsHandler.ServeHTTP(w, r)
 		case WorkflowServiceStartRunProcedure:
 			workflowServiceStartRunHandler.ServeHTTP(w, r)
+		case WorkflowServiceHandleTriggerProcedure:
+			workflowServiceHandleTriggerHandler.ServeHTTP(w, r)
 		case WorkflowServiceGetRunProcedure:
 			workflowServiceGetRunHandler.ServeHTTP(w, r)
 		case WorkflowServiceListRunsProcedure:
@@ -461,6 +494,10 @@ func (UnimplementedWorkflowServiceHandler) ListVersions(context.Context, *connec
 
 func (UnimplementedWorkflowServiceHandler) StartRun(context.Context, *connect.Request[v1.StartRunRequest]) (*connect.Response[v1.StartRunResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("workflows.v1.WorkflowService.StartRun is not implemented"))
+}
+
+func (UnimplementedWorkflowServiceHandler) HandleTrigger(context.Context, *connect.Request[v1.HandleTriggerRequest]) (*connect.Response[v1.HandleTriggerResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("workflows.v1.WorkflowService.HandleTrigger is not implemented"))
 }
 
 func (UnimplementedWorkflowServiceHandler) GetRun(context.Context, *connect.Request[v1.GetRunRequest]) (*connect.Response[v1.GetRunResponse], error) {

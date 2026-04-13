@@ -1,0 +1,73 @@
+{
+  "started_runs": [
+    {
+      "id": "wfr_contact_created_001",
+      "definition_id": "wf_contact_intake",
+      "definition_version": 3,
+      "workspace_id": "11111111-1111-1111-1111-111111111111",
+      "state": "WORKFLOW_STATE_RUNNING",
+      "steps": [
+        {
+          "step_id": "research-contact",
+          "step_name": "Research Contact",
+          "step_type": "STEP_TYPE_AGENT_ACTION",
+          "state": "STEP_RUN_STATE_RUNNING",
+          "objective_id": "obj_contact_research_001",
+          "agent_id": "agent_research"
+        }
+      ],
+      "trigger_event_id": "evt_contact_created_1",
+      "trigger_type": "TRIGGER_TYPE_EVENT",
+      "initiator_user_id": "user_sdr_01",
+      "entity_id": "contact_123",
+      "entity_type": "ENTITY_TYPE_CONTACT",
+      "input_payload": {
+        "contact_id": "contact_123",
+        "company": "Acme Corporation"
+      },
+      "started_at": "2026-04-13T21:30:00Z"
+    }
+  ],
+  "updated_runs": [
+    {
+      "id": "wfr_wait_reply_001",
+      "definition_id": "wf_reply_follow_up",
+      "definition_version": 1,
+      "workspace_id": "11111111-1111-1111-1111-111111111111",
+      "state": "WORKFLOW_STATE_RUNNING",
+      "steps": [
+        {
+          "step_id": "wait-for-reply",
+          "step_name": "Wait for Reply",
+          "step_type": "STEP_TYPE_WAIT_FOR_EVENT",
+          "state": "STEP_RUN_STATE_COMPLETED",
+          "event_id": "evt_contact_created_1",
+          "output_payload": {
+            "contact_id": "contact_123",
+            "company": "Acme Corporation"
+          },
+          "started_at": "2026-04-13T21:20:00Z",
+          "completed_at": "2026-04-13T21:30:00Z"
+        },
+        {
+          "step_id": "send-follow-up",
+          "step_name": "Send Follow Up",
+          "step_type": "STEP_TYPE_AGENT_ACTION",
+          "state": "STEP_RUN_STATE_RUNNING",
+          "objective_id": "obj_follow_up_001",
+          "agent_id": "agent_outreach",
+          "input_payload": {
+            "contact_id": "contact_123",
+            "company": "Acme Corporation"
+          },
+          "started_at": "2026-04-13T21:30:00Z"
+        }
+      ],
+      "trigger_event_id": "evt_tap_hubspot_contact_created_001",
+      "trigger_type": "TRIGGER_TYPE_WEBHOOK",
+      "entity_id": "contact_123",
+      "entity_type": "ENTITY_TYPE_CONTACT",
+      "started_at": "2026-04-13T21:20:00Z"
+    }
+  ]
+}
