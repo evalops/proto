@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package config.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/config/v1;configv1";
+
+// FeatureFlagSnapshot is the canonical shared snapshot for lightweight dynamic
+// runtime configuration and feature-flag state.
+message FeatureFlagSnapshot {
+  uint32 schema_version = 1;
+  repeated FeatureFlag flags = 2;
+}
+
+// FeatureFlag describes a single rollout, migration, or kill-switch control.
+message FeatureFlag {
+  string key = 1;
+  bool enabled = 2;
+  uint32 rollout_percent = 3;
+  repeated string owners = 4;
+  string description = 5;
+}

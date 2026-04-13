@@ -18,6 +18,10 @@
       "types": "./gen/dist/audit/v1/audit_pb.d.ts",
       "import": "./gen/dist/audit/v1/audit_pb.js"
     },
+    "./config/v1/config_pb": {
+      "types": "./gen/dist/config/v1/config_pb.d.ts",
+      "import": "./gen/dist/config/v1/config_pb.js"
+    },
     "./connectors/v1/connectors_pb": {
       "types": "./gen/dist/connectors/v1/connectors_pb.d.ts",
       "import": "./gen/dist/connectors/v1/connectors_pb.js"
@@ -82,7 +86,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.package.json",
-    "check:package": "npm run build && node --input-type=module -e \"const memory = await import('@evalops/proto/memory/v1/memory_pb'); const meter = await import('@evalops/proto/meter/v1/meter_pb'); const events = await import('@evalops/proto/events/v1/cloudevent_pb'); const prompts = await import('@evalops/proto/prompts/v1/prompts_pb'); if (!memory.RecallRequestSchema || !meter.RecordUsageRequestSchema || !events.CloudEventSchema || !prompts.ResolveRequestSchema) throw new Error('package exports failed');\"",
+    "check:package": "npm run build && node --input-type=module -e \"const config = await import('@evalops/proto/config/v1/config_pb'); const memory = await import('@evalops/proto/memory/v1/memory_pb'); const meter = await import('@evalops/proto/meter/v1/meter_pb'); const events = await import('@evalops/proto/events/v1/cloudevent_pb'); const prompts = await import('@evalops/proto/prompts/v1/prompts_pb'); if (!config.FeatureFlagSnapshotSchema || !memory.RecallRequestSchema || !meter.RecordUsageRequestSchema || !events.CloudEventSchema || !prompts.ResolveRequestSchema) throw new Error('package exports failed');\"",
     "prepare": "npm run build"
   },
   "repository": {

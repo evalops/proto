@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "flags": [
+    {
+      "key": "llm_gateway.model_routing.provider_failover",
+      "enabled": true,
+      "rollout_percent": 100,
+      "owners": [
+        "platform-app"
+      ],
+      "description": "Allow managed inference requests to fail over between approved providers."
+    },
+    {
+      "key": "llm_gateway.model_routing.openai_responses_api",
+      "enabled": true,
+      "rollout_percent": 100,
+      "owners": [
+        "platform-app"
+      ],
+      "description": "Prefer the OpenAI Responses API path for managed provider execution."
+    },
+    {
+      "key": "maestro.agent_authority.draft_and_confirm_default",
+      "enabled": false,
+      "rollout_percent": 0,
+      "owners": [
+        "platform-app"
+      ],
+      "description": "Force new autonomous workflows into draft-and-confirm mode by default."
+    },
+    {
+      "key": "platform.migrations.proto_event_envelopes",
+      "enabled": true,
+      "rollout_percent": 100,
+      "owners": [
+        "platform-app"
+      ],
+      "description": "Prefer canonical events/v1.CloudEvent envelopes on shared NATS subjects."
+    },
+    {
+      "key": "platform.kill_switches.llm_gateway.inference",
+      "enabled": true,
+      "rollout_percent": 100,
+      "owners": [
+        "platform-app"
+      ],
+      "description": "Master kill switch for managed llm-gateway inference execution."
+    },
+    {
+      "key": "platform.kill_switches.maestro.autonomous_actions",
+      "enabled": true,
+      "rollout_percent": 100,
+      "owners": [
+        "platform-app"
+      ],
+      "description": "Master kill switch for Maestro-triggered autonomous actions."
+    }
+  ]
+}

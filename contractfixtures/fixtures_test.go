@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"testing"
 
+	configv1 "github.com/evalops/proto/gen/go/config/v1"
 	meterv1 "github.com/evalops/proto/gen/go/meter/v1"
 )
 
@@ -72,5 +73,35 @@ func TestUnmarshalProtoJSONLoadsMeterFixture(t *testing.T) {
 	}
 	if message.GetMetadata().GetFields()["pipeline_deal_id"].GetStringValue() != "deal_123" {
 		t.Fatalf("unexpected pipeline_deal_id %#v", message.GetMetadata().GetFields()["pipeline_deal_id"])
+	}
+}
+
+func TestLoadFeatureFlagSnapshot(t *testing.T) {
+	t.Parallel()
+
+	message, err := LoadFeatureFlagSnapshot(ConfigFeatureFlagSnapshot)
+	if err != nil {
+		t.Fatalf("load feature flag snapshot: %v", err)
+	}
+	if message.GetSchemaVersion() != 1 {
+		t.Fatalf("unexpected schema_version %d", message.GetSchemaVersion())
+	}
+	if len(message.GetFlags()) != 6 {
+		t.Fatalf("expected 6 flags, got %d", len(message.GetFlags()))
+	}
+	if message.GetFlags()[0].GetKey() != "llm_gateway.model_routing.provider_failover" {
+		t.Fatalf("unexpected first flag key %q", message.GetFlags()[0].GetKey())
+	}
+}
+
+func TestUnmarshalProtoJSONLoadsConfigFixture(t *testing.T) {
+	t.Parallel()
+
+	var message configv1.FeatureFlagSnapshot
+	if err := UnmarshalProtoJSON(ConfigFeatureFlagSnapshot, &message); err != nil {
+		t.Fatalf("load config feature flag snapshot: %v", err)
+	}
+	if message.GetFlags()[2].GetRolloutPercent() != 0 {
+		t.Fatalf("unexpected third rollout_percent %d", message.GetFlags()[2].GetRolloutPercent())
 	}
 }
