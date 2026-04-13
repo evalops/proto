@@ -1,0 +1,170 @@
+name: NPM Publish
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: npm-publish-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99 # v1.50.0
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - run: buf generate
+
+      - name: Check generated code is up to date
+        run: |
+          if [ -n "$(git status --porcelain gen/)" ]; then
+            echo "Generated code is out of date. Run 'buf generate' and commit the result."
+            git diff gen/
+            exit 1
+          fi
+
+      - run: npm run check:package
+
+      - id: package
+        run: |
+          echo "name=$(node -p 'require(\"./package.json\").name')" >> "$GITHUB_OUTPUT"
+          echo "version=$(node -p 'require(\"./package.json\").version')" >> "$GITHUB_OUTPUT"
+
+      - id: pack
+        run: |
+          PACK_JSON=$(npm pack --json)
+          echo "$PACK_JSON"
+          FILE=$(echo "$PACK_JSON" | jq -r '.[0].filename')
+          echo "tarball=$FILE" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: npm-tarball-${{ github.sha }}
+          path: ${{ steps.pack.outputs.tarball }}
+
+      - id: publish-config
+        env:
+          GCP_WORKLOAD_IDENTITY_PROVIDER: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          NPM_PUBLISH_NPMRC: ${{ secrets.NPM_PUBLISH_NPMRC }}
+          NPM_PUBLISH_REGISTRY: ${{ vars.NPM_PUBLISH_REGISTRY }}
+          ARTIFACT_REGISTRY_NPM_PROJECT_ID: ${{ vars.ARTIFACT_REGISTRY_NPM_PROJECT_ID }}
+          ARTIFACT_REGISTRY_NPM_REGION: ${{ vars.ARTIFACT_REGISTRY_NPM_REGION }}
+          ARTIFACT_REGISTRY_NPM_REPOSITORY: ${{ vars.ARTIFACT_REGISTRY_NPM_REPOSITORY }}
+          ARTIFACT_REGISTRY_NPM_SCOPE: ${{ vars.ARTIFACT_REGISTRY_NPM_SCOPE }}
+        run: |
+          project_id="${ARTIFACT_REGISTRY_NPM_PROJECT_ID:-evalops-prod}"
+          region="${ARTIFACT_REGISTRY_NPM_REGION:-us-central1}"
+          repository="${ARTIFACT_REGISTRY_NPM_REPOSITORY:-evalops-js}"
+          scope="${ARTIFACT_REGISTRY_NPM_SCOPE:-@evalops}"
+          artifact_registry_url="https://${region}-npm.pkg.dev/${project_id}/${repository}/"
+
+          if [ -n "${GCP_WORKLOAD_IDENTITY_PROVIDER:-}" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            echo "mode=artifact-registry" >> "$GITHUB_OUTPUT"
+            echo "registry=${artifact_registry_url}" >> "$GITHUB_OUTPUT"
+            echo "project-id=${project_id}" >> "$GITHUB_OUTPUT"
+            echo "region=${region}" >> "$GITHUB_OUTPUT"
+            echo "repository=${repository}" >> "$GITHUB_OUTPUT"
+            echo "scope=${scope}" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [ -z "${NPM_PUBLISH_NPMRC:-}" ]; then
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "mode=disabled" >> "$GITHUB_OUTPUT"
+            if [ -n "${NPM_PUBLISH_REGISTRY:-}" ]; then
+              echo "registry=${NPM_PUBLISH_REGISTRY}" >> "$GITHUB_OUTPUT"
+            fi
+            exit 0
+          fi
+
+          echo "enabled=true" >> "$GITHUB_OUTPUT"
+          echo "mode=npmrc-secret" >> "$GITHUB_OUTPUT"
+          if [ -n "${NPM_PUBLISH_REGISTRY:-}" ]; then
+            echo "registry=${NPM_PUBLISH_REGISTRY}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - if: ${{ steps.publish-config.outputs.mode == 'artifact-registry' }}
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.ARTIFACT_REGISTRY_NPM_SERVICE_ACCOUNT != '' && vars.ARTIFACT_REGISTRY_NPM_SERVICE_ACCOUNT || 'github-actions@evalops-prod.iam.gserviceaccount.com' }}
+
+      - if: ${{ steps.publish-config.outputs.mode == 'artifact-registry' }}
+        uses: google-github-actions/setup-gcloud@aa5489c8933f4cc7a4f7d45035b3b1440c9c10db # v3.0.1
+
+      - if: ${{ steps.publish-config.outputs.mode == 'artifact-registry' }}
+        uses: ./.github/actions/setup-artifact-registry-npm
+        with:
+          project-id: ${{ steps.publish-config.outputs.project-id }}
+          region: ${{ steps.publish-config.outputs.region }}
+          repository: ${{ steps.publish-config.outputs.repository }}
+          scope: ${{ steps.publish-config.outputs.scope }}
+
+      - if: ${{ steps.publish-config.outputs.mode == 'npmrc-secret' }}
+        name: Write publish npmrc from secret
+        env:
+          NPM_PUBLISH_NPMRC: ${{ secrets.NPM_PUBLISH_NPMRC }}
+        run: |
+          printf '%s\n' "$NPM_PUBLISH_NPMRC" > "$HOME/.npmrc"
+          {
+            echo "NPM_CONFIG_USERCONFIG=$HOME/.npmrc"
+            echo "npm_config_userconfig=$HOME/.npmrc"
+          } >> "$GITHUB_ENV"
+
+      - id: publish
+        if: ${{ steps.publish-config.outputs.enabled == 'true' }}
+        name: Publish package tarball
+        env:
+          PUBLISH_REGISTRY: ${{ steps.publish-config.outputs.registry }}
+        run: |
+          publish_args=("${{ steps.pack.outputs.tarball }}")
+          if [ -n "${PUBLISH_REGISTRY:-}" ]; then
+            publish_args+=(--registry "${PUBLISH_REGISTRY}")
+          fi
+          npm publish "${publish_args[@]}"
+
+      - if: ${{ steps.publish-config.outputs.enabled == 'true' }}
+        name: Smoke install from configured registry
+        run: |
+          temp_dir="$(mktemp -d)"
+          cat > "$temp_dir/package.json" <<'JSON'
+          {
+            "name": "proto-install-smoke",
+            "private": true,
+            "type": "module"
+          }
+          JSON
+          cp "$HOME/.npmrc" "$temp_dir/.npmrc"
+          cd "$temp_dir"
+          npm install "${{ steps.package.outputs.name }}@${{ steps.package.outputs.version }}"
+          node --input-type=module -e "const memory = await import('@evalops/proto/memory/v1/memory_pb'); const events = await import('@evalops/proto/events/v1/cloudevent_pb'); const prompts = await import('@evalops/proto/prompts/v1/prompts_pb'); if (!memory.RecallRequestSchema || !events.CloudEventSchema || !prompts.ResolveRequestSchema) throw new Error('registry smoke install failed');"
+
+      - if: ${{ steps.publish-config.outputs.enabled != 'true' }}
+        name: Explain skipped publish
+        run: |
+          {
+            echo "Registry publish was skipped because neither Artifact Registry WIF auth nor \`NPM_PUBLISH_NPMRC\` is configured."
+            echo "The tarball artifact was still produced and uploaded for this run."
+            echo "Preferred path: configure \`GCP_WORKLOAD_IDENTITY_PROVIDER\` and the Artifact Registry repository variables."
+            echo "Fallback path: configure a full registry-specific npmrc in the repository or organization secret \`NPM_PUBLISH_NPMRC\`."
+            if [ -n "${{ steps.publish-config.outputs.registry }}" ]; then
+              echo "Intended registry: \`${{ steps.publish-config.outputs.registry }}\`"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
