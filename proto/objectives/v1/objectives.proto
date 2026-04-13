@@ -1,0 +1,173 @@
+syntax = "proto3";
+
+package objectives.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/objectives/v1;objectivesv1";
+
+import "google/protobuf/timestamp.proto";
+
+// ObjectiveService manages agent objectives and their lifecycle.
+service ObjectiveService {
+  rpc Create(CreateRequest) returns (CreateResponse);
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc Transition(TransitionRequest) returns (TransitionResponse);
+  rpc Wake(WakeRequest) returns (WakeResponse);
+  rpc Query(QueryRequest) returns (QueryResponse);
+  rpc RecordProvenance(RecordProvenanceRequest) returns (RecordProvenanceResponse);
+  rpc RecordMutation(RecordMutationRequest) returns (RecordMutationResponse);
+  rpc GetGovernanceEvaluation(GetGovernanceEvaluationRequest) returns (GetGovernanceEvaluationResponse);
+  rpc Cancel(CancelRequest) returns (CancelResponse);
+}
+
+// ObjectiveState describes the lifecycle state of an objective.
+enum ObjectiveState {
+  OBJECTIVE_STATE_UNSPECIFIED = 0;
+  OBJECTIVE_STATE_PENDING = 1;
+  OBJECTIVE_STATE_RUNNING = 2;
+  OBJECTIVE_STATE_BLOCKED = 3;
+  OBJECTIVE_STATE_DEGRADED = 4;
+  OBJECTIVE_STATE_AWAITING_APPROVAL = 5;
+  OBJECTIVE_STATE_QUEUED = 6;
+  OBJECTIVE_STATE_COMPLETED = 7;
+  OBJECTIVE_STATE_FAILED = 8;
+  OBJECTIVE_STATE_CANCELLED = 9;
+}
+
+// MutationStatus describes the status of a mutation operation.
+enum MutationStatus {
+  MUTATION_STATUS_UNSPECIFIED = 0;
+  MUTATION_STATUS_PENDING = 1;
+  MUTATION_STATUS_APPROVED = 2;
+  MUTATION_STATUS_DENIED = 3;
+  MUTATION_STATUS_EXECUTED = 4;
+  MUTATION_STATUS_ROLLED_BACK = 5;
+}
+
+// Objective is the canonical agent objective record.
+message Objective {
+  string id = 1;
+  string workspace_id = 2;
+  string agent_id = 3;
+  string surface = 4;
+  string title = 5;
+  string description = 6;
+  ObjectiveState state = 7;
+  repeated ProvenanceRecord provenance = 8;
+  repeated MutationRecord mutations = 9;
+  WakeSchedule wake_schedule = 10;
+  google.protobuf.Timestamp created_at = 11;
+  google.protobuf.Timestamp updated_at = 12;
+}
+
+// ProvenanceRecord tracks where data came from.
+message ProvenanceRecord {
+  string source_integration = 1;
+  string source_id = 2;
+  int32 freshness_seconds = 3;
+  float confidence = 4;
+}
+
+// MutationRecord tracks a write operation performed by an objective.
+message MutationRecord {
+  string target_integration = 1;
+  string operation = 2;
+  MutationStatus status = 3;
+  string approval_id = 4;
+}
+
+// WakeSchedule defines when and how an objective should be reactivated.
+message WakeSchedule {
+  google.protobuf.Timestamp wake_at = 1;
+  string reason = 2;
+  int32 retry_count = 3;
+  int32 max_retries = 4;
+  int32 backoff_seconds = 5;
+}
+
+message CreateRequest {
+  string workspace_id = 1;
+  string agent_id = 2;
+  string surface = 3;
+  string title = 4;
+  string description = 5;
+}
+
+message CreateResponse {
+  Objective objective = 1;
+}
+
+message GetRequest {
+  string id = 1;
+}
+
+message GetResponse {
+  Objective objective = 1;
+}
+
+message TransitionRequest {
+  string id = 1;
+  ObjectiveState state = 2;
+  string reason = 3;
+}
+
+message TransitionResponse {
+  Objective objective = 1;
+}
+
+message WakeRequest {
+  string id = 1;
+}
+
+message WakeResponse {
+  Objective objective = 1;
+}
+
+message QueryRequest {
+  string workspace_id = 1;
+  string agent_id = 2;
+  ObjectiveState state = 3;
+  int32 limit = 4;
+  int32 offset = 5;
+}
+
+message QueryResponse {
+  repeated Objective objectives = 1;
+  int32 total = 2;
+}
+
+message RecordProvenanceRequest {
+  string objective_id = 1;
+  ProvenanceRecord provenance = 2;
+}
+
+message RecordProvenanceResponse {
+  Objective objective = 1;
+}
+
+message RecordMutationRequest {
+  string objective_id = 1;
+  MutationRecord mutation = 2;
+}
+
+message RecordMutationResponse {
+  Objective objective = 1;
+}
+
+message GetGovernanceEvaluationRequest {
+  string objective_id = 1;
+}
+
+message GetGovernanceEvaluationResponse {
+  string objective_id = 1;
+  bool compliant = 2;
+  repeated string violations = 3;
+}
+
+message CancelRequest {
+  string id = 1;
+  string reason = 2;
+}
+
+message CancelResponse {
+  Objective objective = 1;
+}
