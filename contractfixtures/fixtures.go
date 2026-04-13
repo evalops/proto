@@ -29,6 +29,36 @@ const (
 	MeterMeterSummaryResponse                   = "meter/v1/testdata/meter_summary_response.json"
 )
 
+var embeddedFixtures = map[string][]byte{
+	MeterRecordUsageRequestLLMGatewayResponses: []byte(`{
+  "team_id": "team_eng",
+  "agent_id": "agent_456",
+  "surface": "chat",
+  "event_type": "llm.completion",
+  "model": "gpt-5.4",
+  "provider": "openai",
+  "input_tokens": "100",
+  "output_tokens": "50",
+  "cache_read_tokens": "0",
+  "cache_write_tokens": "0",
+  "total_cost_usd": 0.001,
+  "request_id": "resp_meter",
+  "metadata": {
+    "agent_id": "agent_456",
+    "surface": "chat",
+    "pipeline_deal_id": "deal_123",
+    "pipeline_sequence_id": "seq_456",
+    "endpoint": "/v1/responses",
+    "provider_ref_id": "pref_000001",
+    "pricing_status": "gateway_estimated"
+  },
+  "data": {
+    "endpoint": "/v1/responses",
+    "provider_ref_id": "pref_000001"
+  }
+}`),
+}
+
 // Read returns a canonical proto fixture from the proto fixture catalog.
 // Callers can pass either a path rooted at proto/ or a service-relative path.
 func Read(name string) ([]byte, error) {
@@ -39,14 +69,33 @@ func Read(name string) ([]byte, error) {
 	if strings.HasPrefix(cleaned, "../") {
 		return nil, fmt.Errorf("fixture path %q escapes the fixture catalog", name)
 	}
+	if data, ok := embeddedFixture(cleaned); ok {
+		return data, nil
+	}
 	if !strings.HasPrefix(cleaned, "proto/") {
 		cleaned = path.Join("proto", cleaned)
+	}
+	if data, ok := embeddedFixture(cleaned); ok {
+		return data, nil
 	}
 	root, err := moduleRoot()
 	if err != nil {
 		return nil, err
 	}
 	return os.ReadFile(filepath.Join(root, filepath.FromSlash(cleaned)))
+}
+
+func embeddedFixture(name string) ([]byte, bool) {
+	if data, ok := embeddedFixtures[name]; ok {
+		return append([]byte(nil), data...), true
+	}
+	if strings.HasPrefix(name, "proto/") {
+		trimmed := strings.TrimPrefix(name, "proto/")
+		if data, ok := embeddedFixtures[trimmed]; ok {
+			return append([]byte(nil), data...), true
+		}
+	}
+	return nil, false
 }
 
 func moduleRoot() (string, error) {
