@@ -14,6 +14,9 @@ service MeterService {
   rpc QueryUsage(UsageQuery) returns (UsageQueryResponse);
   rpc GetUsageSummary(UsageSummaryQuery) returns (UsageSummaryResponse);
   rpc GetMeterSummary(MeterSummaryQuery) returns (MeterSummaryResponse);
+  rpc IngestWideEvent(IngestWideEventRequest) returns (IngestWideEventResponse);
+  rpc QueryWideEvents(QueryWideEventsRequest) returns (QueryWideEventsResponse);
+  rpc GetEventDashboard(GetEventDashboardRequest) returns (GetEventDashboardResponse);
 }
 
 enum SummaryGroupBy {
@@ -135,4 +138,104 @@ message MeterSummaryBucket {
 message MeterSummaryResponse {
   string meter_id = 1;
   repeated MeterSummaryBucket buckets = 2;
+}
+
+message WideEventMetrics {
+  int64 input_tokens = 1;
+  int64 output_tokens = 2;
+  int64 cache_read_tokens = 3;
+  int64 cache_write_tokens = 4;
+  double total_cost_usd = 5;
+  int64 duration_ms = 6;
+  int64 time_to_first_token_ms = 7;
+  int64 tool_calls_count = 8;
+}
+
+message IngestWideEventRequest {
+  google.protobuf.Timestamp timestamp = 1;
+  string team_id = 2;
+  string agent_id = 3;
+  string surface = 4;
+  string event_type = 5;
+  string model = 6;
+  string provider = 7;
+  string request_id = 8;
+  google.protobuf.Struct metadata = 9;
+  google.protobuf.Struct data = 10;
+  WideEventMetrics metrics = 11;
+}
+
+message WideEvent {
+  string id = 1;
+  google.protobuf.Timestamp timestamp = 2;
+  string organization_id = 3;
+  string team_id = 4;
+  string agent_id = 5;
+  string surface = 6;
+  string event_type = 7;
+  string model = 8;
+  string provider = 9;
+  string request_id = 10;
+  google.protobuf.Struct metadata = 11;
+  google.protobuf.Struct data = 12;
+  WideEventMetrics metrics = 13;
+  google.protobuf.Timestamp created_at = 14;
+}
+
+message IngestWideEventResponse {
+  WideEvent event = 1;
+}
+
+message QueryWideEventsRequest {
+  string team_id = 1;
+  string agent_id = 2;
+  string surface = 3;
+  string event_type = 4;
+  string model = 5;
+  string provider = 6;
+  string metadata_key = 7;
+  string metadata_value = 8;
+  google.protobuf.Timestamp start_time = 9;
+  google.protobuf.Timestamp end_time = 10;
+  int32 limit = 11;
+  int32 offset = 12;
+}
+
+message QueryWideEventsResponse {
+  repeated WideEvent events = 1;
+  int32 total = 2;
+  bool has_more = 3;
+}
+
+message GetEventDashboardRequest {
+  string team_id = 1;
+  string agent_id = 2;
+  string surface = 3;
+  string event_type = 4;
+  string model = 5;
+  string provider = 6;
+  string metadata_key = 7;
+  string metadata_value = 8;
+  google.protobuf.Timestamp start_time = 9;
+  google.protobuf.Timestamp end_time = 10;
+  int32 top_n = 11;
+}
+
+message EventDashboardBucket {
+  string key = 1;
+  int64 count = 2;
+  double total_cost_usd = 3;
+}
+
+message GetEventDashboardResponse {
+  int64 total_events = 1;
+  int64 total_input_tokens = 2;
+  int64 total_output_tokens = 3;
+  int64 total_cache_read_tokens = 4;
+  int64 total_cache_write_tokens = 5;
+  double total_cost_usd = 6;
+  repeated EventDashboardBucket by_event_type = 7;
+  repeated EventDashboardBucket by_surface = 8;
+  repeated EventDashboardBucket by_model = 9;
+  repeated EventDashboardBucket by_provider = 10;
 }
