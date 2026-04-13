@@ -1,0 +1,16 @@
+{
+  "workspace_id": "11111111-1111-1111-1111-111111111111",
+  "trigger_type": "TRIGGER_TYPE_EVENT",
+  "trigger_event_id": "evt_contact_created_1",
+  "event_type": "contact.created",
+  "event_subject": "crm.contact",
+  "initiator_user_id": "user_sdr_01",
+  "entity_id": "contact_123",
+  "entity_type": "ENTITY_TYPE_CONTACT",
+  "input_payload": {
+    "contact_id": "contact_123",
+    "email": "jane.doe@acme.com",
+    "company": "Acme Corporation",
+    "title": "VP Sales"
+  }
+}

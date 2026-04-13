@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CancelRunRequest, CancelRunResponse, CompensateRunRequest, CompensateRunResponse, CreateDefinitionRequest, CreateDefinitionResponse, GetDefinitionRequest, GetDefinitionResponse, GetRunRequest, GetRunResponse, ListDefinitionsRequest, ListDefinitionsResponse, ListRunsRequest, ListRunsResponse, ListVersionsRequest, ListVersionsResponse, PauseRunRequest, PauseRunResponse, PublishVersionRequest, PublishVersionResponse, ResumeRunRequest, ResumeRunResponse, StartRunRequest, StartRunResponse, TransitionStepRequest, TransitionStepResponse } from "./workflows_pb.js";
+import { CancelRunRequest, CancelRunResponse, CompensateRunRequest, CompensateRunResponse, CreateDefinitionRequest, CreateDefinitionResponse, GetDefinitionRequest, GetDefinitionResponse, GetRunRequest, GetRunResponse, HandleTriggerRequest, HandleTriggerResponse, ListDefinitionsRequest, ListDefinitionsResponse, ListRunsRequest, ListRunsResponse, ListVersionsRequest, ListVersionsResponse, PauseRunRequest, PauseRunResponse, PublishVersionRequest, PublishVersionResponse, ResumeRunRequest, ResumeRunResponse, StartRunRequest, StartRunResponse, TransitionStepRequest, TransitionStepResponse } from "./workflows_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -87,6 +87,20 @@ export const WorkflowService = {
       name: "StartRun",
       I: StartRunRequest,
       O: StartRunResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * HandleTrigger processes an asynchronous workflow trigger. It starts
+     * matching latest workflow versions for EVENT, WEBHOOK, or SCHEDULE
+     * triggers and may also satisfy WAIT_FOR_EVENT steps when event
+     * metadata is present.
+     *
+     * @generated from rpc workflows.v1.WorkflowService.HandleTrigger
+     */
+    handleTrigger: {
+      name: "HandleTrigger",
+      I: HandleTriggerRequest,
+      O: HandleTriggerResponse,
       kind: MethodKind.Unary,
     },
     /**
