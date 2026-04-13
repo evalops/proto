@@ -6,6 +6,7 @@ import (
 
 	configv1 "github.com/evalops/proto/gen/go/config/v1"
 	eventsv1 "github.com/evalops/proto/gen/go/events/v1"
+	keysv1 "github.com/evalops/proto/gen/go/keys/v1"
 	meterv1 "github.com/evalops/proto/gen/go/meter/v1"
 )
 
@@ -123,6 +124,36 @@ func TestUnmarshalProtoJSONLoadsLLMGatewayMeterFixture(t *testing.T) {
 	}
 	if message.GetData().GetFields()["endpoint"].GetStringValue() != "/v1/responses" {
 		t.Fatalf("unexpected endpoint %#v", message.GetData().GetFields()["endpoint"])
+	}
+}
+
+func TestUnmarshalProtoJSONLoadsKeysResolveRequestFixture(t *testing.T) {
+	t.Parallel()
+
+	var message keysv1.ResolveProviderRefRequest
+	if err := UnmarshalProtoJSON(KeysResolveProviderRefRequest, &message); err != nil {
+		t.Fatalf("load keys resolve provider ref request: %v", err)
+	}
+	if message.GetProvider() != "openai" {
+		t.Fatalf("unexpected provider %q", message.GetProvider())
+	}
+	if message.GetTeamId() != "team_platform" {
+		t.Fatalf("unexpected team_id %q", message.GetTeamId())
+	}
+}
+
+func TestUnmarshalProtoJSONLoadsKeysResolveFixture(t *testing.T) {
+	t.Parallel()
+
+	var message keysv1.ResolveProviderRefResponse
+	if err := UnmarshalProtoJSON(KeysResolveProviderRefResponse, &message); err != nil {
+		t.Fatalf("load keys resolve provider ref response: %v", err)
+	}
+	if message.GetProviderRef().GetId() != "pref_000001" {
+		t.Fatalf("unexpected provider_ref.id %q", message.GetProviderRef().GetId())
+	}
+	if message.GetProviderRef().GetCredentialData().GetFields()["api_key"].GetStringValue() != "sk-live-123" {
+		t.Fatalf("unexpected credential_data api_key %#v", message.GetProviderRef().GetCredentialData().GetFields()["api_key"])
 	}
 }
 

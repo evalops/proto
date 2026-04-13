@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package keys.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/keys/v1;keysv1";
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+// ProviderRefsService resolves the managed provider credentials and endpoint
+// metadata that downstream services need to talk to external model vendors.
+service ProviderRefsService {
+  rpc UpsertProviderRef(UpsertProviderRefRequest) returns (UpsertProviderRefResponse);
+  rpc ResolveProviderRef(ResolveProviderRefRequest) returns (ResolveProviderRefResponse);
+  rpc DeleteProviderRef(DeleteProviderRefRequest) returns (DeleteProviderRefResponse);
+}
+
+message ProviderRef {
+  string id = 1;
+  string organization_id = 2;
+  string provider = 3;
+  string environment = 4;
+  string credential_name = 5;
+  string team_id = 6;
+  string credential_type = 7;
+  string endpoint_url = 8;
+  string region = 9;
+  google.protobuf.Struct credential_data = 10;
+  google.protobuf.Struct provider_config = 11;
+  google.protobuf.Timestamp created_at = 12;
+  google.protobuf.Timestamp updated_at = 13;
+}
+
+message UpsertProviderRefRequest {
+  string provider = 1;
+  string environment = 2;
+  string credential_name = 3;
+  string team_id = 4;
+  string credential_type = 5;
+  string endpoint_url = 6;
+  string region = 7;
+  google.protobuf.Struct credential_data = 8;
+  google.protobuf.Struct provider_config = 9;
+}
+
+message ResolveProviderRefRequest {
+  string provider = 1;
+  string environment = 2;
+  string credential_name = 3;
+  string team_id = 4;
+}
+
+message DeleteProviderRefRequest {
+  string provider = 1;
+  string environment = 2;
+  string credential_name = 3;
+  string team_id = 4;
+}
+
+message UpsertProviderRefResponse {
+  ProviderRef provider_ref = 1;
+}
+
+message ResolveProviderRefResponse {
+  ProviderRef provider_ref = 1;
+}
+
+message DeleteProviderRefResponse {
+  ProviderRef provider_ref = 1;
+}
