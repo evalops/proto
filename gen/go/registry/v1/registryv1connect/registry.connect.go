@@ -40,6 +40,8 @@ const (
 	RegistryServiceGetProcedure = "/registry.v1.RegistryService/Get"
 	// RegistryServiceListProcedure is the fully-qualified name of the RegistryService's List RPC.
 	RegistryServiceListProcedure = "/registry.v1.RegistryService/List"
+	// RegistryServiceUpdateProcedure is the fully-qualified name of the RegistryService's Update RPC.
+	RegistryServiceUpdateProcedure = "/registry.v1.RegistryService/Update"
 	// RegistryServiceDeleteProcedure is the fully-qualified name of the RegistryService's Delete RPC.
 	RegistryServiceDeleteProcedure = "/registry.v1.RegistryService/Delete"
 	// RegistryServiceHeartbeatProcedure is the fully-qualified name of the RegistryService's Heartbeat
@@ -55,6 +57,7 @@ type RegistryServiceClient interface {
 	Register(context.Context, *connect.Request[v1.RegisterRequest]) (*connect.Response[v1.RegisterResponse], error)
 	Get(context.Context, *connect.Request[v1.GetRequest]) (*connect.Response[v1.GetResponse], error)
 	List(context.Context, *connect.Request[v1.ListRequest]) (*connect.Response[v1.ListResponse], error)
+	Update(context.Context, *connect.Request[v1.UpdateRequest]) (*connect.Response[v1.UpdateResponse], error)
 	Delete(context.Context, *connect.Request[v1.DeleteRequest]) (*connect.Response[v1.DeleteResponse], error)
 	Heartbeat(context.Context, *connect.Request[v1.HeartbeatRequest]) (*connect.Response[v1.HeartbeatResponse], error)
 	Discover(context.Context, *connect.Request[v1.DiscoverRequest]) (*connect.Response[v1.DiscoverResponse], error)
@@ -89,6 +92,12 @@ func NewRegistryServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithSchema(registryServiceMethods.ByName("List")),
 			connect.WithClientOptions(opts...),
 		),
+		update: connect.NewClient[v1.UpdateRequest, v1.UpdateResponse](
+			httpClient,
+			baseURL+RegistryServiceUpdateProcedure,
+			connect.WithSchema(registryServiceMethods.ByName("Update")),
+			connect.WithClientOptions(opts...),
+		),
 		delete: connect.NewClient[v1.DeleteRequest, v1.DeleteResponse](
 			httpClient,
 			baseURL+RegistryServiceDeleteProcedure,
@@ -115,6 +124,7 @@ type registryServiceClient struct {
 	register  *connect.Client[v1.RegisterRequest, v1.RegisterResponse]
 	get       *connect.Client[v1.GetRequest, v1.GetResponse]
 	list      *connect.Client[v1.ListRequest, v1.ListResponse]
+	update    *connect.Client[v1.UpdateRequest, v1.UpdateResponse]
 	delete    *connect.Client[v1.DeleteRequest, v1.DeleteResponse]
 	heartbeat *connect.Client[v1.HeartbeatRequest, v1.HeartbeatResponse]
 	discover  *connect.Client[v1.DiscoverRequest, v1.DiscoverResponse]
@@ -133,6 +143,11 @@ func (c *registryServiceClient) Get(ctx context.Context, req *connect.Request[v1
 // List calls registry.v1.RegistryService.List.
 func (c *registryServiceClient) List(ctx context.Context, req *connect.Request[v1.ListRequest]) (*connect.Response[v1.ListResponse], error) {
 	return c.list.CallUnary(ctx, req)
+}
+
+// Update calls registry.v1.RegistryService.Update.
+func (c *registryServiceClient) Update(ctx context.Context, req *connect.Request[v1.UpdateRequest]) (*connect.Response[v1.UpdateResponse], error) {
+	return c.update.CallUnary(ctx, req)
 }
 
 // Delete calls registry.v1.RegistryService.Delete.
@@ -155,6 +170,7 @@ type RegistryServiceHandler interface {
 	Register(context.Context, *connect.Request[v1.RegisterRequest]) (*connect.Response[v1.RegisterResponse], error)
 	Get(context.Context, *connect.Request[v1.GetRequest]) (*connect.Response[v1.GetResponse], error)
 	List(context.Context, *connect.Request[v1.ListRequest]) (*connect.Response[v1.ListResponse], error)
+	Update(context.Context, *connect.Request[v1.UpdateRequest]) (*connect.Response[v1.UpdateResponse], error)
 	Delete(context.Context, *connect.Request[v1.DeleteRequest]) (*connect.Response[v1.DeleteResponse], error)
 	Heartbeat(context.Context, *connect.Request[v1.HeartbeatRequest]) (*connect.Response[v1.HeartbeatResponse], error)
 	Discover(context.Context, *connect.Request[v1.DiscoverRequest]) (*connect.Response[v1.DiscoverResponse], error)
@@ -185,6 +201,12 @@ func NewRegistryServiceHandler(svc RegistryServiceHandler, opts ...connect.Handl
 		connect.WithSchema(registryServiceMethods.ByName("List")),
 		connect.WithHandlerOptions(opts...),
 	)
+	registryServiceUpdateHandler := connect.NewUnaryHandler(
+		RegistryServiceUpdateProcedure,
+		svc.Update,
+		connect.WithSchema(registryServiceMethods.ByName("Update")),
+		connect.WithHandlerOptions(opts...),
+	)
 	registryServiceDeleteHandler := connect.NewUnaryHandler(
 		RegistryServiceDeleteProcedure,
 		svc.Delete,
@@ -211,6 +233,8 @@ func NewRegistryServiceHandler(svc RegistryServiceHandler, opts ...connect.Handl
 			registryServiceGetHandler.ServeHTTP(w, r)
 		case RegistryServiceListProcedure:
 			registryServiceListHandler.ServeHTTP(w, r)
+		case RegistryServiceUpdateProcedure:
+			registryServiceUpdateHandler.ServeHTTP(w, r)
 		case RegistryServiceDeleteProcedure:
 			registryServiceDeleteHandler.ServeHTTP(w, r)
 		case RegistryServiceHeartbeatProcedure:
@@ -236,6 +260,10 @@ func (UnimplementedRegistryServiceHandler) Get(context.Context, *connect.Request
 
 func (UnimplementedRegistryServiceHandler) List(context.Context, *connect.Request[v1.ListRequest]) (*connect.Response[v1.ListResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("registry.v1.RegistryService.List is not implemented"))
+}
+
+func (UnimplementedRegistryServiceHandler) Update(context.Context, *connect.Request[v1.UpdateRequest]) (*connect.Response[v1.UpdateResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("registry.v1.RegistryService.Update is not implemented"))
 }
 
 func (UnimplementedRegistryServiceHandler) Delete(context.Context, *connect.Request[v1.DeleteRequest]) (*connect.Response[v1.DeleteResponse], error) {

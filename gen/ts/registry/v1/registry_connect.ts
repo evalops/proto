@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { DeleteRequest, DeleteResponse, DiscoverRequest, DiscoverResponse, GetRequest, GetResponse, HeartbeatRequest, HeartbeatResponse, ListRequest, ListResponse, RegisterRequest, RegisterResponse } from "./registry_pb.js";
+import { DeleteRequest, DeleteResponse, DiscoverRequest, DiscoverResponse, GetRequest, GetResponse, HeartbeatRequest, HeartbeatResponse, ListRequest, ListResponse, RegisterRequest, RegisterResponse, UpdateRequest, UpdateResponse } from "./registry_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -43,6 +43,15 @@ export const RegistryService = {
       name: "List",
       I: ListRequest,
       O: ListResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc registry.v1.RegistryService.Update
+     */
+    update: {
+      name: "Update",
+      I: UpdateRequest,
+      O: UpdateResponse,
       kind: MethodKind.Unary,
     },
     /**

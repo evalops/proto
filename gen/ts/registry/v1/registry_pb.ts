@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file registry/v1/registry.proto.
  */
 export const file_registry_v1_registry: GenFile = /*@__PURE__*/
-  fileDesc("ChpyZWdpc3RyeS92MS9yZWdpc3RyeS5wcm90bxILcmVnaXN0cnkudjEiKAoIQ2FwYWNpdHkSDwoHY3VycmVudBgBIAEoBRILCgNtYXgYAiABKAUi1gIKBUFnZW50EgoKAmlkGAEgASgJEhcKD29yZ2FuaXphdGlvbl9pZBgCIAEoCRIPCgdzdXJmYWNlGAMgASgJEhQKDGNhcGFiaWxpdGllcxgEIAMoCRIOCgZzdGF0dXMYBSABKAkSJwoIY2FwYWNpdHkYBiABKAsyFS5yZWdpc3RyeS52MS5DYXBhY2l0eRIyCghtZXRhZGF0YRgHIAMoCzIgLnJlZ2lzdHJ5LnYxLkFnZW50Lk1ldGFkYXRhRW50cnkSMAoMaGVhcnRiZWF0X2F0GAggASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIxCg1yZWdpc3RlcmVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBovCg1NZXRhZGF0YUVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEi4AEKD1JlZ2lzdGVyUmVxdWVzdBIPCgdzdXJmYWNlGAEgASgJEhQKDGNhcGFiaWxpdGllcxgCIAMoCRIOCgZzdGF0dXMYAyABKAkSJwoIY2FwYWNpdHkYBCABKAsyFS5yZWdpc3RyeS52MS5DYXBhY2l0eRI8CghtZXRhZGF0YRgFIAMoCzIqLnJlZ2lzdHJ5LnYxLlJlZ2lzdGVyUmVxdWVzdC5NZXRhZGF0YUVudHJ5Gi8KDU1ldGFkYXRhRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASI1ChBSZWdpc3RlclJlc3BvbnNlEiEKBWFnZW50GAEgASgLMhIucmVnaXN0cnkudjEuQWdlbnQiGAoKR2V0UmVxdWVzdBIKCgJpZBgBIAEoCSIwCgtHZXRSZXNwb25zZRIhCgVhZ2VudBgBIAEoCzISLnJlZ2lzdHJ5LnYxLkFnZW50ImEKC0xpc3RSZXF1ZXN0Eg8KB3N1cmZhY2UYASABKAkSEgoKY2FwYWJpbGl0eRgCIAEoCRIOCgZzdGF0dXMYAyABKAkSDQoFbGltaXQYBCABKAUSDgoGb2Zmc2V0GAUgASgFIjIKDExpc3RSZXNwb25zZRIiCgZhZ2VudHMYASADKAsyEi5yZWdpc3RyeS52MS5BZ2VudCIbCg1EZWxldGVSZXF1ZXN0EgoKAmlkGAEgASgJIjMKDkRlbGV0ZVJlc3BvbnNlEiEKBWFnZW50GAEgASgLMhIucmVnaXN0cnkudjEuQWdlbnQiVwoQSGVhcnRiZWF0UmVxdWVzdBIKCgJpZBgBIAEoCRIOCgZzdGF0dXMYAiABKAkSJwoIY2FwYWNpdHkYAyABKAsyFS5yZWdpc3RyeS52MS5DYXBhY2l0eSI2ChFIZWFydGJlYXRSZXNwb25zZRIhCgVhZ2VudBgBIAEoCzISLnJlZ2lzdHJ5LnYxLkFnZW50ItoBCg9EaXNjb3ZlclJlcXVlc3QSEgoKY2FwYWJpbGl0eRgBIAEoCRIUCgxjYXBhYmlsaXRpZXMYAiADKAkSPAoIbWV0YWRhdGEYAyADKAsyKi5yZWdpc3RyeS52MS5EaXNjb3ZlclJlcXVlc3QuTWV0YWRhdGFFbnRyeRIPCgdzdXJmYWNlGAQgASgJEg4KBnN0YXR1cxgFIAEoCRINCgVsaW1pdBgGIAEoBRovCg1NZXRhZGF0YUVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiNgoQRGlzY292ZXJSZXNwb25zZRIiCgZhZ2VudHMYASADKAsyEi5yZWdpc3RyeS52MS5BZ2VudDKpAwoPUmVnaXN0cnlTZXJ2aWNlEkcKCFJlZ2lzdGVyEhwucmVnaXN0cnkudjEuUmVnaXN0ZXJSZXF1ZXN0Gh0ucmVnaXN0cnkudjEuUmVnaXN0ZXJSZXNwb25zZRI4CgNHZXQSFy5yZWdpc3RyeS52MS5HZXRSZXF1ZXN0GhgucmVnaXN0cnkudjEuR2V0UmVzcG9uc2USOwoETGlzdBIYLnJlZ2lzdHJ5LnYxLkxpc3RSZXF1ZXN0GhkucmVnaXN0cnkudjEuTGlzdFJlc3BvbnNlEkEKBkRlbGV0ZRIaLnJlZ2lzdHJ5LnYxLkRlbGV0ZVJlcXVlc3QaGy5yZWdpc3RyeS52MS5EZWxldGVSZXNwb25zZRJKCglIZWFydGJlYXQSHS5yZWdpc3RyeS52MS5IZWFydGJlYXRSZXF1ZXN0Gh4ucmVnaXN0cnkudjEuSGVhcnRiZWF0UmVzcG9uc2USRwoIRGlzY292ZXISHC5yZWdpc3RyeS52MS5EaXNjb3ZlclJlcXVlc3QaHS5yZWdpc3RyeS52MS5EaXNjb3ZlclJlc3BvbnNlQjhaNmdpdGh1Yi5jb20vZXZhbG9wcy9wcm90by9nZW4vZ28vcmVnaXN0cnkvdjE7cmVnaXN0cnl2MWIGcHJvdG8z", [file_google_protobuf_timestamp]);
+  fileDesc("ChpyZWdpc3RyeS92MS9yZWdpc3RyeS5wcm90bxILcmVnaXN0cnkudjEiKAoIQ2FwYWNpdHkSDwoHY3VycmVudBgBIAEoBRILCgNtYXgYAiABKAUi1gIKBUFnZW50EgoKAmlkGAEgASgJEhcKD29yZ2FuaXphdGlvbl9pZBgCIAEoCRIPCgdzdXJmYWNlGAMgASgJEhQKDGNhcGFiaWxpdGllcxgEIAMoCRIOCgZzdGF0dXMYBSABKAkSJwoIY2FwYWNpdHkYBiABKAsyFS5yZWdpc3RyeS52MS5DYXBhY2l0eRIyCghtZXRhZGF0YRgHIAMoCzIgLnJlZ2lzdHJ5LnYxLkFnZW50Lk1ldGFkYXRhRW50cnkSMAoMaGVhcnRiZWF0X2F0GAggASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIxCg1yZWdpc3RlcmVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBovCg1NZXRhZGF0YUVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEi4AEKD1JlZ2lzdGVyUmVxdWVzdBIPCgdzdXJmYWNlGAEgASgJEhQKDGNhcGFiaWxpdGllcxgCIAMoCRIOCgZzdGF0dXMYAyABKAkSJwoIY2FwYWNpdHkYBCABKAsyFS5yZWdpc3RyeS52MS5DYXBhY2l0eRI8CghtZXRhZGF0YRgFIAMoCzIqLnJlZ2lzdHJ5LnYxLlJlZ2lzdGVyUmVxdWVzdC5NZXRhZGF0YUVudHJ5Gi8KDU1ldGFkYXRhRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASI1ChBSZWdpc3RlclJlc3BvbnNlEiEKBWFnZW50GAEgASgLMhIucmVnaXN0cnkudjEuQWdlbnQiGAoKR2V0UmVxdWVzdBIKCgJpZBgBIAEoCSIwCgtHZXRSZXNwb25zZRIhCgVhZ2VudBgBIAEoCzISLnJlZ2lzdHJ5LnYxLkFnZW50ImEKC0xpc3RSZXF1ZXN0Eg8KB3N1cmZhY2UYASABKAkSEgoKY2FwYWJpbGl0eRgCIAEoCRIOCgZzdGF0dXMYAyABKAkSDQoFbGltaXQYBCABKAUSDgoGb2Zmc2V0GAUgASgFIjIKDExpc3RSZXNwb25zZRIiCgZhZ2VudHMYASADKAsyEi5yZWdpc3RyeS52MS5BZ2VudCLoAQoNVXBkYXRlUmVxdWVzdBIKCgJpZBgBIAEoCRIPCgdzdXJmYWNlGAIgASgJEhQKDGNhcGFiaWxpdGllcxgDIAMoCRIOCgZzdGF0dXMYBCABKAkSJwoIY2FwYWNpdHkYBSABKAsyFS5yZWdpc3RyeS52MS5DYXBhY2l0eRI6CghtZXRhZGF0YRgGIAMoCzIoLnJlZ2lzdHJ5LnYxLlVwZGF0ZVJlcXVlc3QuTWV0YWRhdGFFbnRyeRovCg1NZXRhZGF0YUVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiMwoOVXBkYXRlUmVzcG9uc2USIQoFYWdlbnQYASABKAsyEi5yZWdpc3RyeS52MS5BZ2VudCIbCg1EZWxldGVSZXF1ZXN0EgoKAmlkGAEgASgJIjMKDkRlbGV0ZVJlc3BvbnNlEiEKBWFnZW50GAEgASgLMhIucmVnaXN0cnkudjEuQWdlbnQiVwoQSGVhcnRiZWF0UmVxdWVzdBIKCgJpZBgBIAEoCRIOCgZzdGF0dXMYAiABKAkSJwoIY2FwYWNpdHkYAyABKAsyFS5yZWdpc3RyeS52MS5DYXBhY2l0eSI2ChFIZWFydGJlYXRSZXNwb25zZRIhCgVhZ2VudBgBIAEoCzISLnJlZ2lzdHJ5LnYxLkFnZW50ItoBCg9EaXNjb3ZlclJlcXVlc3QSEgoKY2FwYWJpbGl0eRgBIAEoCRIUCgxjYXBhYmlsaXRpZXMYAiADKAkSPAoIbWV0YWRhdGEYAyADKAsyKi5yZWdpc3RyeS52MS5EaXNjb3ZlclJlcXVlc3QuTWV0YWRhdGFFbnRyeRIPCgdzdXJmYWNlGAQgASgJEg4KBnN0YXR1cxgFIAEoCRINCgVsaW1pdBgGIAEoBRovCg1NZXRhZGF0YUVudHJ5EgsKA2tleRgBIAEoCRINCgV2YWx1ZRgCIAEoCToCOAEiNgoQRGlzY292ZXJSZXNwb25zZRIiCgZhZ2VudHMYASADKAsyEi5yZWdpc3RyeS52MS5BZ2VudDLsAwoPUmVnaXN0cnlTZXJ2aWNlEkcKCFJlZ2lzdGVyEhwucmVnaXN0cnkudjEuUmVnaXN0ZXJSZXF1ZXN0Gh0ucmVnaXN0cnkudjEuUmVnaXN0ZXJSZXNwb25zZRI4CgNHZXQSFy5yZWdpc3RyeS52MS5HZXRSZXF1ZXN0GhgucmVnaXN0cnkudjEuR2V0UmVzcG9uc2USOwoETGlzdBIYLnJlZ2lzdHJ5LnYxLkxpc3RSZXF1ZXN0GhkucmVnaXN0cnkudjEuTGlzdFJlc3BvbnNlEkEKBlVwZGF0ZRIaLnJlZ2lzdHJ5LnYxLlVwZGF0ZVJlcXVlc3QaGy5yZWdpc3RyeS52MS5VcGRhdGVSZXNwb25zZRJBCgZEZWxldGUSGi5yZWdpc3RyeS52MS5EZWxldGVSZXF1ZXN0GhsucmVnaXN0cnkudjEuRGVsZXRlUmVzcG9uc2USSgoJSGVhcnRiZWF0Eh0ucmVnaXN0cnkudjEuSGVhcnRiZWF0UmVxdWVzdBoeLnJlZ2lzdHJ5LnYxLkhlYXJ0YmVhdFJlc3BvbnNlEkcKCERpc2NvdmVyEhwucmVnaXN0cnkudjEuRGlzY292ZXJSZXF1ZXN0Gh0ucmVnaXN0cnkudjEuRGlzY292ZXJSZXNwb25zZUI4WjZnaXRodWIuY29tL2V2YWxvcHMvcHJvdG8vZ2VuL2dvL3JlZ2lzdHJ5L3YxO3JlZ2lzdHJ5djFiBnByb3RvMw", [file_google_protobuf_timestamp]);
 
 /**
  * @generated from message registry.v1.Capacity
@@ -236,6 +236,65 @@ export const ListResponseSchema: GenMessage<ListResponse> = /*@__PURE__*/
   messageDesc(file_registry_v1_registry, 7);
 
 /**
+ * @generated from message registry.v1.UpdateRequest
+ */
+export type UpdateRequest = Message<"registry.v1.UpdateRequest"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * @generated from field: string surface = 2;
+   */
+  surface: string;
+
+  /**
+   * @generated from field: repeated string capabilities = 3;
+   */
+  capabilities: string[];
+
+  /**
+   * @generated from field: string status = 4;
+   */
+  status: string;
+
+  /**
+   * @generated from field: registry.v1.Capacity capacity = 5;
+   */
+  capacity?: Capacity;
+
+  /**
+   * @generated from field: map<string, string> metadata = 6;
+   */
+  metadata: { [key: string]: string };
+};
+
+/**
+ * Describes the message registry.v1.UpdateRequest.
+ * Use `create(UpdateRequestSchema)` to create a new message.
+ */
+export const UpdateRequestSchema: GenMessage<UpdateRequest> = /*@__PURE__*/
+  messageDesc(file_registry_v1_registry, 8);
+
+/**
+ * @generated from message registry.v1.UpdateResponse
+ */
+export type UpdateResponse = Message<"registry.v1.UpdateResponse"> & {
+  /**
+   * @generated from field: registry.v1.Agent agent = 1;
+   */
+  agent?: Agent;
+};
+
+/**
+ * Describes the message registry.v1.UpdateResponse.
+ * Use `create(UpdateResponseSchema)` to create a new message.
+ */
+export const UpdateResponseSchema: GenMessage<UpdateResponse> = /*@__PURE__*/
+  messageDesc(file_registry_v1_registry, 9);
+
+/**
  * @generated from message registry.v1.DeleteRequest
  */
 export type DeleteRequest = Message<"registry.v1.DeleteRequest"> & {
@@ -250,7 +309,7 @@ export type DeleteRequest = Message<"registry.v1.DeleteRequest"> & {
  * Use `create(DeleteRequestSchema)` to create a new message.
  */
 export const DeleteRequestSchema: GenMessage<DeleteRequest> = /*@__PURE__*/
-  messageDesc(file_registry_v1_registry, 8);
+  messageDesc(file_registry_v1_registry, 10);
 
 /**
  * @generated from message registry.v1.DeleteResponse
@@ -267,7 +326,7 @@ export type DeleteResponse = Message<"registry.v1.DeleteResponse"> & {
  * Use `create(DeleteResponseSchema)` to create a new message.
  */
 export const DeleteResponseSchema: GenMessage<DeleteResponse> = /*@__PURE__*/
-  messageDesc(file_registry_v1_registry, 9);
+  messageDesc(file_registry_v1_registry, 11);
 
 /**
  * @generated from message registry.v1.HeartbeatRequest
@@ -294,7 +353,7 @@ export type HeartbeatRequest = Message<"registry.v1.HeartbeatRequest"> & {
  * Use `create(HeartbeatRequestSchema)` to create a new message.
  */
 export const HeartbeatRequestSchema: GenMessage<HeartbeatRequest> = /*@__PURE__*/
-  messageDesc(file_registry_v1_registry, 10);
+  messageDesc(file_registry_v1_registry, 12);
 
 /**
  * @generated from message registry.v1.HeartbeatResponse
@@ -311,7 +370,7 @@ export type HeartbeatResponse = Message<"registry.v1.HeartbeatResponse"> & {
  * Use `create(HeartbeatResponseSchema)` to create a new message.
  */
 export const HeartbeatResponseSchema: GenMessage<HeartbeatResponse> = /*@__PURE__*/
-  messageDesc(file_registry_v1_registry, 11);
+  messageDesc(file_registry_v1_registry, 13);
 
 /**
  * @generated from message registry.v1.DiscoverRequest
@@ -353,7 +412,7 @@ export type DiscoverRequest = Message<"registry.v1.DiscoverRequest"> & {
  * Use `create(DiscoverRequestSchema)` to create a new message.
  */
 export const DiscoverRequestSchema: GenMessage<DiscoverRequest> = /*@__PURE__*/
-  messageDesc(file_registry_v1_registry, 12);
+  messageDesc(file_registry_v1_registry, 14);
 
 /**
  * @generated from message registry.v1.DiscoverResponse
@@ -370,7 +429,7 @@ export type DiscoverResponse = Message<"registry.v1.DiscoverResponse"> & {
  * Use `create(DiscoverResponseSchema)` to create a new message.
  */
 export const DiscoverResponseSchema: GenMessage<DiscoverResponse> = /*@__PURE__*/
-  messageDesc(file_registry_v1_registry, 13);
+  messageDesc(file_registry_v1_registry, 15);
 
 /**
  * RegistryService provides agent presence and capability discovery across
@@ -405,6 +464,14 @@ export const RegistryService: GenService<{
     methodKind: "unary";
     input: typeof ListRequestSchema;
     output: typeof ListResponseSchema;
+  },
+  /**
+   * @generated from rpc registry.v1.RegistryService.Update
+   */
+  update: {
+    methodKind: "unary";
+    input: typeof UpdateRequestSchema;
+    output: typeof UpdateResponseSchema;
   },
   /**
    * @generated from rpc registry.v1.RegistryService.Delete

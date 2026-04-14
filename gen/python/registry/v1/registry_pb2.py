@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1aregistry/v1/registry.proto\x12\x0bregistry.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"6\n\x08\x43\x61pacity\x12\x18\n\x07\x63urrent\x18\x01 \x01(\x05R\x07\x63urrent\x12\x10\n\x03max\x18\x02 \x01(\x05R\x03max\"\xc4\x03\n\x05\x41gent\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\'\n\x0forganization_id\x18\x02 \x01(\tR\x0eorganizationId\x12\x18\n\x07surface\x18\x03 \x01(\tR\x07surface\x12\"\n\x0c\x63\x61pabilities\x18\x04 \x03(\tR\x0c\x63\x61pabilities\x12\x16\n\x06status\x18\x05 \x01(\tR\x06status\x12\x31\n\x08\x63\x61pacity\x18\x06 \x01(\x0b\x32\x15.registry.v1.CapacityR\x08\x63\x61pacity\x12<\n\x08metadata\x18\x07 \x03(\x0b\x32 .registry.v1.Agent.MetadataEntryR\x08metadata\x12=\n\x0cheartbeat_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0bheartbeatAt\x12?\n\rregistered_at\x18\t \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0cregisteredAt\x1a;\n\rMetadataEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\x9f\x02\n\x0fRegisterRequest\x12\x18\n\x07surface\x18\x01 \x01(\tR\x07surface\x12\"\n\x0c\x63\x61pabilities\x18\x02 \x03(\tR\x0c\x63\x61pabilities\x12\x16\n\x06status\x18\x03 \x01(\tR\x06status\x12\x31\n\x08\x63\x61pacity\x18\x04 \x01(\x0b\x32\x15.registry.v1.CapacityR\x08\x63\x61pacity\x12\x46\n\x08metadata\x18\x05 \x03(\x0b\x32*.registry.v1.RegisterRequest.MetadataEntryR\x08metadata\x1a;\n\rMetadataEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"<\n\x10RegisterResponse\x12(\n\x05\x61gent\x18\x01 \x01(\x0b\x32\x12.registry.v1.AgentR\x05\x61gent\"\x1c\n\nGetRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"7\n\x0bGetResponse\x12(\n\x05\x61gent\x18\x01 \x01(\x0b\x32\x12.registry.v1.AgentR\x05\x61gent\"\x8d\x01\n\x0bListRequest\x12\x18\n\x07surface\x18\x01 \x01(\tR\x07surface\x12\x1e\n\ncapability\x18\x02 \x01(\tR\ncapability\x12\x16\n\x06status\x18\x03 \x01(\tR\x06status\x12\x14\n\x05limit\x18\x04 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x05 \x01(\x05R\x06offset\":\n\x0cListResponse\x12*\n\x06\x61gents\x18\x01 \x03(\x0b\x32\x12.registry.v1.AgentR\x06\x61gents\"\x1f\n\rDeleteRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\":\n\x0e\x44\x65leteResponse\x12(\n\x05\x61gent\x18\x01 \x01(\x0b\x32\x12.registry.v1.AgentR\x05\x61gent\"m\n\x10HeartbeatRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n\x06status\x18\x02 \x01(\tR\x06status\x12\x31\n\x08\x63\x61pacity\x18\x03 \x01(\x0b\x32\x15.registry.v1.CapacityR\x08\x63\x61pacity\"=\n\x11HeartbeatResponse\x12(\n\x05\x61gent\x18\x01 \x01(\x0b\x32\x12.registry.v1.AgentR\x05\x61gent\"\xa2\x02\n\x0f\x44iscoverRequest\x12\x1e\n\ncapability\x18\x01 \x01(\tR\ncapability\x12\"\n\x0c\x63\x61pabilities\x18\x02 \x03(\tR\x0c\x63\x61pabilities\x12\x46\n\x08metadata\x18\x03 \x03(\x0b\x32*.registry.v1.DiscoverRequest.MetadataEntryR\x08metadata\x12\x18\n\x07surface\x18\x04 \x01(\tR\x07surface\x12\x16\n\x06status\x18\x05 \x01(\tR\x06status\x12\x14\n\x05limit\x18\x06 \x01(\x05R\x05limit\x1a;\n\rMetadataEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\">\n\x10\x44iscoverResponse\x12*\n\x06\x61gents\x18\x01 \x03(\x0b\x32\x12.registry.v1.AgentR\x06\x61gents2\xa9\x03\n\x0fRegistryService\x12G\n\x08Register\x12\x1c.registry.v1.RegisterRequest\x1a\x1d.registry.v1.RegisterResponse\x12\x38\n\x03Get\x12\x17.registry.v1.GetRequest\x1a\x18.registry.v1.GetResponse\x12;\n\x04List\x12\x18.registry.v1.ListRequest\x1a\x19.registry.v1.ListResponse\x12\x41\n\x06\x44\x65lete\x12\x1a.registry.v1.DeleteRequest\x1a\x1b.registry.v1.DeleteResponse\x12J\n\tHeartbeat\x12\x1d.registry.v1.HeartbeatRequest\x1a\x1e.registry.v1.HeartbeatResponse\x12G\n\x08\x44iscover\x12\x1c.registry.v1.DiscoverRequest\x1a\x1d.registry.v1.DiscoverResponseB8Z6github.com/evalops/proto/gen/go/registry/v1;registryv1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1aregistry/v1/registry.proto\x12\x0bregistry.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"6\n\x08\x43\x61pacity\x12\x18\n\x07\x63urrent\x18\x01 \x01(\x05R\x07\x63urrent\x12\x10\n\x03max\x18\x02 \x01(\x05R\x03max\"\xc4\x03\n\x05\x41gent\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\'\n\x0forganization_id\x18\x02 \x01(\tR\x0eorganizationId\x12\x18\n\x07surface\x18\x03 \x01(\tR\x07surface\x12\"\n\x0c\x63\x61pabilities\x18\x04 \x03(\tR\x0c\x63\x61pabilities\x12\x16\n\x06status\x18\x05 \x01(\tR\x06status\x12\x31\n\x08\x63\x61pacity\x18\x06 \x01(\x0b\x32\x15.registry.v1.CapacityR\x08\x63\x61pacity\x12<\n\x08metadata\x18\x07 \x03(\x0b\x32 .registry.v1.Agent.MetadataEntryR\x08metadata\x12=\n\x0cheartbeat_at\x18\x08 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0bheartbeatAt\x12?\n\rregistered_at\x18\t \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x0cregisteredAt\x1a;\n\rMetadataEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"\x9f\x02\n\x0fRegisterRequest\x12\x18\n\x07surface\x18\x01 \x01(\tR\x07surface\x12\"\n\x0c\x63\x61pabilities\x18\x02 \x03(\tR\x0c\x63\x61pabilities\x12\x16\n\x06status\x18\x03 \x01(\tR\x06status\x12\x31\n\x08\x63\x61pacity\x18\x04 \x01(\x0b\x32\x15.registry.v1.CapacityR\x08\x63\x61pacity\x12\x46\n\x08metadata\x18\x05 \x03(\x0b\x32*.registry.v1.RegisterRequest.MetadataEntryR\x08metadata\x1a;\n\rMetadataEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\"<\n\x10RegisterResponse\x12(\n\x05\x61gent\x18\x01 \x01(\x0b\x32\x12.registry.v1.AgentR\x05\x61gent\"\x1c\n\nGetRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\"7\n\x0bGetResponse\x12(\n\x05\x61gent\x18\x01 \x01(\x0b\x32\x12.registry.v1.AgentR\x05\x61gent\"\x8d\x01\n\x0bListRequest\x12\x18\n\x07surface\x18\x01 \x01(\tR\x07surface\x12\x1e\n\ncapability\x18\x02 \x01(\tR\ncapability\x12\x16\n\x06status\x18\x03 \x01(\tR\x06status\x12\x14\n\x05limit\x18\x04 \x01(\x05R\x05limit\x12\x16\n\x06offset\x18\x05 \x01(\x05R\x06offset\":\n\x0cListResponse\x12*\n\x06\x61gents\x18\x01 \x03(\x0b\x32\x12.registry.v1.AgentR\x06\x61gents\"\xab\x02\n\rUpdateRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n\x07surface\x18\x02 \x01(\tR\x07surface\x12\"\n\x0c\x63\x61pabilities\x18\x03 \x03(\tR\x0c\x63\x61pabilities\x12\x16\n\x06status\x18\x04 \x01(\tR\x06status\x12\x31\n\x08\x63\x61pacity\x18\x05 \x01(\x0b\x32\x15.registry.v1.CapacityR\x08\x63\x61pacity\x12\x44\n\x08metadata\x18\x06 \x03(\x0b\x32(.registry.v1.UpdateRequest.MetadataEntryR\x08metadata\x1a;\n\rMetadataEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\":\n\x0eUpdateResponse\x12(\n\x05\x61gent\x18\x01 \x01(\x0b\x32\x12.registry.v1.AgentR\x05\x61gent\"\x1f\n\rDeleteRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\":\n\x0e\x44\x65leteResponse\x12(\n\x05\x61gent\x18\x01 \x01(\x0b\x32\x12.registry.v1.AgentR\x05\x61gent\"m\n\x10HeartbeatRequest\x12\x0e\n\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n\x06status\x18\x02 \x01(\tR\x06status\x12\x31\n\x08\x63\x61pacity\x18\x03 \x01(\x0b\x32\x15.registry.v1.CapacityR\x08\x63\x61pacity\"=\n\x11HeartbeatResponse\x12(\n\x05\x61gent\x18\x01 \x01(\x0b\x32\x12.registry.v1.AgentR\x05\x61gent\"\xa2\x02\n\x0f\x44iscoverRequest\x12\x1e\n\ncapability\x18\x01 \x01(\tR\ncapability\x12\"\n\x0c\x63\x61pabilities\x18\x02 \x03(\tR\x0c\x63\x61pabilities\x12\x46\n\x08metadata\x18\x03 \x03(\x0b\x32*.registry.v1.DiscoverRequest.MetadataEntryR\x08metadata\x12\x18\n\x07surface\x18\x04 \x01(\tR\x07surface\x12\x16\n\x06status\x18\x05 \x01(\tR\x06status\x12\x14\n\x05limit\x18\x06 \x01(\x05R\x05limit\x1a;\n\rMetadataEntry\x12\x10\n\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n\x05value\x18\x02 \x01(\tR\x05value:\x02\x38\x01\">\n\x10\x44iscoverResponse\x12*\n\x06\x61gents\x18\x01 \x03(\x0b\x32\x12.registry.v1.AgentR\x06\x61gents2\xec\x03\n\x0fRegistryService\x12G\n\x08Register\x12\x1c.registry.v1.RegisterRequest\x1a\x1d.registry.v1.RegisterResponse\x12\x38\n\x03Get\x12\x17.registry.v1.GetRequest\x1a\x18.registry.v1.GetResponse\x12;\n\x04List\x12\x18.registry.v1.ListRequest\x1a\x19.registry.v1.ListResponse\x12\x41\n\x06Update\x12\x1a.registry.v1.UpdateRequest\x1a\x1b.registry.v1.UpdateResponse\x12\x41\n\x06\x44\x65lete\x12\x1a.registry.v1.DeleteRequest\x1a\x1b.registry.v1.DeleteResponse\x12J\n\tHeartbeat\x12\x1d.registry.v1.HeartbeatRequest\x1a\x1e.registry.v1.HeartbeatResponse\x12G\n\x08\x44iscover\x12\x1c.registry.v1.DiscoverRequest\x1a\x1d.registry.v1.DiscoverResponseB8Z6github.com/evalops/proto/gen/go/registry/v1;registryv1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -37,6 +37,8 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_AGENT_METADATAENTRY']._serialized_options = b'8\001'
   _globals['_REGISTERREQUEST_METADATAENTRY']._loaded_options = None
   _globals['_REGISTERREQUEST_METADATAENTRY']._serialized_options = b'8\001'
+  _globals['_UPDATEREQUEST_METADATAENTRY']._loaded_options = None
+  _globals['_UPDATEREQUEST_METADATAENTRY']._serialized_options = b'8\001'
   _globals['_DISCOVERREQUEST_METADATAENTRY']._loaded_options = None
   _globals['_DISCOVERREQUEST_METADATAENTRY']._serialized_options = b'8\001'
   _globals['_CAPACITY']._serialized_start=76
@@ -59,20 +61,26 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_LISTREQUEST']._serialized_end=1168
   _globals['_LISTRESPONSE']._serialized_start=1170
   _globals['_LISTRESPONSE']._serialized_end=1228
-  _globals['_DELETEREQUEST']._serialized_start=1230
-  _globals['_DELETEREQUEST']._serialized_end=1261
-  _globals['_DELETERESPONSE']._serialized_start=1263
-  _globals['_DELETERESPONSE']._serialized_end=1321
-  _globals['_HEARTBEATREQUEST']._serialized_start=1323
-  _globals['_HEARTBEATREQUEST']._serialized_end=1432
-  _globals['_HEARTBEATRESPONSE']._serialized_start=1434
-  _globals['_HEARTBEATRESPONSE']._serialized_end=1495
-  _globals['_DISCOVERREQUEST']._serialized_start=1498
-  _globals['_DISCOVERREQUEST']._serialized_end=1788
+  _globals['_UPDATEREQUEST']._serialized_start=1231
+  _globals['_UPDATEREQUEST']._serialized_end=1530
+  _globals['_UPDATEREQUEST_METADATAENTRY']._serialized_start=526
+  _globals['_UPDATEREQUEST_METADATAENTRY']._serialized_end=585
+  _globals['_UPDATERESPONSE']._serialized_start=1532
+  _globals['_UPDATERESPONSE']._serialized_end=1590
+  _globals['_DELETEREQUEST']._serialized_start=1592
+  _globals['_DELETEREQUEST']._serialized_end=1623
+  _globals['_DELETERESPONSE']._serialized_start=1625
+  _globals['_DELETERESPONSE']._serialized_end=1683
+  _globals['_HEARTBEATREQUEST']._serialized_start=1685
+  _globals['_HEARTBEATREQUEST']._serialized_end=1794
+  _globals['_HEARTBEATRESPONSE']._serialized_start=1796
+  _globals['_HEARTBEATRESPONSE']._serialized_end=1857
+  _globals['_DISCOVERREQUEST']._serialized_start=1860
+  _globals['_DISCOVERREQUEST']._serialized_end=2150
   _globals['_DISCOVERREQUEST_METADATAENTRY']._serialized_start=526
   _globals['_DISCOVERREQUEST_METADATAENTRY']._serialized_end=585
-  _globals['_DISCOVERRESPONSE']._serialized_start=1790
-  _globals['_DISCOVERRESPONSE']._serialized_end=1852
-  _globals['_REGISTRYSERVICE']._serialized_start=1855
-  _globals['_REGISTRYSERVICE']._serialized_end=2280
+  _globals['_DISCOVERRESPONSE']._serialized_start=2152
+  _globals['_DISCOVERRESPONSE']._serialized_end=2214
+  _globals['_REGISTRYSERVICE']._serialized_start=2217
+  _globals['_REGISTRYSERVICE']._serialized_end=2709
 # @@protoc_insertion_point(module_scope)
