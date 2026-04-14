@@ -33,6 +33,7 @@ packages instead of maintaining their own hand-written struct copies.
 | `meter/v1` | Usage recording, querying, cost attribution | llm-gateway, chat, platform |
 | `audit/v1` | Audit event recording, actors, resources, querying, export | llm-gateway, chat, gate, platform |
 | `memory/v1` | Semantic memory storage, recall, embeddings, consolidation | chat, ensemble, platform |
+| `agents/v1` | Agent definitions, versioned configuration, delegation protocol | registry, ensemble, chat, maestro, conductor, all surfaces |
 | `approvals/v1` | Approval workflows, policies, decisions, habits, escalation | approvals, ensemble, maestro, chat, objectives |
 | `config/v1` | Shared runtime config snapshots and feature-flag state | deploy, llm-gateway, maestro, gate |
 | `connectors/v1` | Integration connections, health, source-of-truth, capabilities | connectors, pipeline, parker, entities, objectives |
@@ -43,7 +44,9 @@ packages instead of maintaining their own hand-written struct copies.
 | `skills/v1` | Shared skill registry, versions, search, import/export | skills, chat, ensemble, maestro, pipeline |
 | `events/v1` | Shared NATS event envelope and change journal payloads | service-runtime, pipeline, parker |
 | `tap/v1` | Normalized tap webhook payloads and field-level diffs | ensemble-tap, pipeline |
+| `workflows/v1` | Multi-agent workflow orchestration, DAG execution, compensation | objectives, ensemble, maestro, approvals, governance |
 | `prompts/v1` | Prompt versioning, deployment tracking, eval linkage, resolution | prompts, llm-gateway, fermata, maestro, ensemble |
+| `registry/v1` | Agent presence, capability discovery, heartbeat, capacity routing | registry, ensemble, chat, maestro, conductor |
 
 ## Architecture Diagrams
 
@@ -68,6 +71,8 @@ flowchart TD
     Gate[gate]
     Ensemble[ensemble]
     SRT[service-runtime]
+    Registry[registry]
+    Conductor[conductor]
 
     Proto -->|identity/v1| Identity
     Proto -->|identity/v1| Gateway
@@ -123,6 +128,19 @@ flowchart TD
     Proto -->|prompts/v1| Fermata[fermata]
     Proto -->|prompts/v1| Maestro[maestro]
     Proto -->|prompts/v1| Ensemble
+    Proto -->|agents/v1| Registry
+    Proto -->|agents/v1| Ensemble
+    Proto -->|agents/v1| Chat
+    Proto -->|agents/v1| Maestro
+    Proto -->|registry/v1| Registry
+    Proto -->|registry/v1| Ensemble
+    Proto -->|registry/v1| Chat
+    Proto -->|registry/v1| Maestro
+    Proto -->|workflows/v1| Objectives
+    Proto -->|workflows/v1| Ensemble
+    Proto -->|workflows/v1| Maestro
+    Proto -->|workflows/v1| Approvals
+    Proto -->|workflows/v1| Governance
 ```
 
 ### What This Replaces
@@ -152,11 +170,14 @@ flowchart LR
 
 ```go
 import (
+    agentsv1 "github.com/evalops/proto/gen/go/agents/v1"
     identityv1 "github.com/evalops/proto/gen/go/identity/v1"
     meterv1 "github.com/evalops/proto/gen/go/meter/v1"
     auditv1 "github.com/evalops/proto/gen/go/audit/v1"
     memoryv1 "github.com/evalops/proto/gen/go/memory/v1"
     promptsv1 "github.com/evalops/proto/gen/go/prompts/v1"
+    registryv1 "github.com/evalops/proto/gen/go/registry/v1"
+    workflowsv1 "github.com/evalops/proto/gen/go/workflows/v1"
 )
 
 // Use generated types directly
@@ -214,6 +235,9 @@ Current package surface:
 - managed provider-ref contracts like `@evalops/proto/keys/v1/keys_pb`
 - metering contracts like `@evalops/proto/meter/v1/meter_pb`
 - shared event contracts like `@evalops/proto/events/v1/cloudevent_pb`
+- agent contracts like `@evalops/proto/agents/v1/agents_pb`
+- registry contracts like `@evalops/proto/registry/v1/registry_pb`
+- workflow contracts like `@evalops/proto/workflows/v1/workflows_pb`
 
 The generated `_connect` descriptors remain checked into the repo, but the
 published package currently exports the stable `_pb` modules only. That keeps
@@ -276,6 +300,20 @@ bus.
   over-the-wire representation for lightweight runtime config or feature flags.
   The initial production deploy bundle publishes that schema as canonical
   protojson instead of a repo-local YAML shape.
+
+## MCP Tool Descriptions
+
+`descriptions.yaml` in the repo root maps every RPC operation ID to a
+human-readable description for agent-facing MCP tool surfaces. When platform
+services are exposed through `mcp-openapi`, these descriptions tell agents what
+each tool does, when to use it, and what to expect.
+
+```bash
+mcp-openapi --spec platform.openapi.yaml --descriptions descriptions.yaml
+```
+
+Maintain this file alongside the proto definitions. When a new RPC is added,
+add its description in the same PR.
 
 ## Development
 
@@ -364,6 +402,7 @@ proto/                  source .proto files
   audit/v1/             audit event recording and querying
   memory/v1/            semantic memory storage and recall
     testdata/           canonical protojson fixtures for contract tests
+  agents/v1/            agent definitions, config versioning, delegation
   approvals/v1/         approval workflows, policies, decisions, habits
   config/v1/            runtime config snapshots and feature-flag state
   connectors/v1/        integration lifecycle, health, source-of-truth
@@ -375,7 +414,9 @@ proto/                  source .proto files
   events/v1/            CloudEvent envelope and change journal payloads
     testdata/           typed event fixtures for cross-service contracts
   tap/v1/               normalized provider event payloads
+  workflows/v1/         multi-agent workflow orchestration, DAG execution
   prompts/v1/           prompt versioning, deployment, eval linkage
+  registry/v1/          agent presence, capability discovery, heartbeat
 gen/                    generated code (committed)
   go/                   Go protobuf + Connect-RPC packages
   ts/                   TypeScript protobuf-es + Connect-ES packages
@@ -402,3 +443,5 @@ The CI pipeline runs on every push to `main` and every PR:
 - evalops/audit#23 — adopt audit proto types
 - evalops/memory#32 — adopt memory proto types
 - evalops/service-runtime#24 — shared protobuf event schemas
+- evalops/proto#38 — adopt agents/v1 in registry
+- evalops/proto#39 — adopt workflows/v1 in objectives
