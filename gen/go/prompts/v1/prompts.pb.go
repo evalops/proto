@@ -730,6 +730,8 @@ type ListPromptsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Surface       string                 `protobuf:"bytes,1,opt,name=surface,proto3" json:"surface,omitempty"`
 	Tag           string                 `protobuf:"bytes,2,opt,name=tag,proto3" json:"tag,omitempty"`
+	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,4,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -778,9 +780,25 @@ func (x *ListPromptsRequest) GetTag() string {
 	return ""
 }
 
+func (x *ListPromptsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListPromptsRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
 type ListPromptsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Prompts       []*Prompt              `protobuf:"bytes,1,rep,name=prompts,proto3" json:"prompts,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	HasMore       bool                   `protobuf:"varint,3,opt,name=has_more,json=hasMore,proto3" json:"has_more,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -820,6 +838,20 @@ func (x *ListPromptsResponse) GetPrompts() []*Prompt {
 		return x.Prompts
 	}
 	return nil
+}
+
+func (x *ListPromptsResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *ListPromptsResponse) GetHasMore() bool {
+	if x != nil {
+		return x.HasMore
+	}
+	return false
 }
 
 type CreateVersionRequest struct {
@@ -901,6 +933,8 @@ func (x *CreateVersionRequest) GetVariables() []string {
 type ListVersionsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PromptId      string                 `protobuf:"bytes,1,opt,name=prompt_id,json=promptId,proto3" json:"prompt_id,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -942,9 +976,25 @@ func (x *ListVersionsRequest) GetPromptId() string {
 	return ""
 }
 
+func (x *ListVersionsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListVersionsRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
 type ListVersionsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Versions      []*Version             `protobuf:"bytes,1,rep,name=versions,proto3" json:"versions,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	HasMore       bool                   `protobuf:"varint,3,opt,name=has_more,json=hasMore,proto3" json:"has_more,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -984,6 +1034,20 @@ func (x *ListVersionsResponse) GetVersions() []*Version {
 		return x.Versions
 	}
 	return nil
+}
+
+func (x *ListVersionsResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *ListVersionsResponse) GetHasMore() bool {
+	if x != nil {
+		return x.HasMore
+	}
+	return false
 }
 
 // AssignLabelRequest atomically moves a label pointer to a version.
@@ -1067,6 +1131,8 @@ func (x *AssignLabelRequest) GetRollbackFrom() int32 {
 type ListLabelsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PromptId      string                 `protobuf:"bytes,1,opt,name=prompt_id,json=promptId,proto3" json:"prompt_id,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1108,9 +1174,25 @@ func (x *ListLabelsRequest) GetPromptId() string {
 	return ""
 }
 
+func (x *ListLabelsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListLabelsRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
 type ListLabelsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Labels        []*Label               `protobuf:"bytes,1,rep,name=labels,proto3" json:"labels,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	HasMore       bool                   `protobuf:"varint,3,opt,name=has_more,json=hasMore,proto3" json:"has_more,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1152,9 +1234,25 @@ func (x *ListLabelsResponse) GetLabels() []*Label {
 	return nil
 }
 
+func (x *ListLabelsResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *ListLabelsResponse) GetHasMore() bool {
+	if x != nil {
+		return x.HasMore
+	}
+	return false
+}
+
 type ListDeploymentsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	PromptId      string                 `protobuf:"bytes,1,opt,name=prompt_id,json=promptId,proto3" json:"prompt_id,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,3,opt,name=offset,proto3" json:"offset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1196,9 +1294,25 @@ func (x *ListDeploymentsRequest) GetPromptId() string {
 	return ""
 }
 
+func (x *ListDeploymentsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListDeploymentsRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
 type ListDeploymentsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Deployments   []*Deployment          `protobuf:"bytes,1,rep,name=deployments,proto3" json:"deployments,omitempty"`
+	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	HasMore       bool                   `protobuf:"varint,3,opt,name=has_more,json=hasMore,proto3" json:"has_more,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1238,6 +1352,20 @@ func (x *ListDeploymentsResponse) GetDeployments() []*Deployment {
 		return x.Deployments
 	}
 	return nil
+}
+
+func (x *ListDeploymentsResponse) GetTotal() int32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
+func (x *ListDeploymentsResponse) GetHasMore() bool {
+	if x != nil {
+		return x.HasMore
+	}
+	return false
 }
 
 type LinkEvalRequest struct {
@@ -1588,36 +1716,52 @@ const file_prompts_v1_prompts_proto_rawDesc = "" +
 	"\x04tags\x18\x03 \x03(\tR\x04tags\x123\n" +
 	"\bmetadata\x18\x04 \x01(\v2\x17.google.protobuf.StructR\bmetadata\"\"\n" +
 	"\x10GetPromptRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"@\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"n\n" +
 	"\x12ListPromptsRequest\x12\x18\n" +
 	"\asurface\x18\x01 \x01(\tR\asurface\x12\x10\n" +
-	"\x03tag\x18\x02 \x01(\tR\x03tag\"C\n" +
+	"\x03tag\x18\x02 \x01(\tR\x03tag\x12\x14\n" +
+	"\x05limit\x18\x03 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x04 \x01(\x05R\x06offset\"t\n" +
 	"\x13ListPromptsResponse\x12,\n" +
-	"\aprompts\x18\x01 \x03(\v2\x12.prompts.v1.PromptR\aprompts\"\x99\x01\n" +
+	"\aprompts\x18\x01 \x03(\v2\x12.prompts.v1.PromptR\aprompts\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x19\n" +
+	"\bhas_more\x18\x03 \x01(\bR\ahasMore\"\x99\x01\n" +
 	"\x14CreateVersionRequest\x12\x1b\n" +
 	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\x12\x18\n" +
 	"\acontent\x18\x02 \x01(\tR\acontent\x12\x14\n" +
 	"\x05model\x18\x03 \x01(\tR\x05model\x12\x16\n" +
 	"\x06author\x18\x04 \x01(\tR\x06author\x12\x1c\n" +
-	"\tvariables\x18\x05 \x03(\tR\tvariables\"2\n" +
+	"\tvariables\x18\x05 \x03(\tR\tvariables\"`\n" +
 	"\x13ListVersionsRequest\x12\x1b\n" +
-	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\"G\n" +
+	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"x\n" +
 	"\x14ListVersionsResponse\x12/\n" +
-	"\bversions\x18\x01 \x03(\v2\x13.prompts.v1.VersionR\bversions\"\x9a\x01\n" +
+	"\bversions\x18\x01 \x03(\v2\x13.prompts.v1.VersionR\bversions\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x19\n" +
+	"\bhas_more\x18\x03 \x01(\bR\ahasMore\"\x9a\x01\n" +
 	"\x12AssignLabelRequest\x12\x1b\n" +
 	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
 	"\aversion\x18\x03 \x01(\x05R\aversion\x12\x14\n" +
 	"\x05actor\x18\x04 \x01(\tR\x05actor\x12#\n" +
-	"\rrollback_from\x18\x05 \x01(\x05R\frollbackFrom\"0\n" +
+	"\rrollback_from\x18\x05 \x01(\x05R\frollbackFrom\"^\n" +
 	"\x11ListLabelsRequest\x12\x1b\n" +
-	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\"?\n" +
+	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"p\n" +
 	"\x12ListLabelsResponse\x12)\n" +
-	"\x06labels\x18\x01 \x03(\v2\x11.prompts.v1.LabelR\x06labels\"5\n" +
+	"\x06labels\x18\x01 \x03(\v2\x11.prompts.v1.LabelR\x06labels\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x19\n" +
+	"\bhas_more\x18\x03 \x01(\bR\ahasMore\"c\n" +
 	"\x16ListDeploymentsRequest\x12\x1b\n" +
-	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\"S\n" +
+	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x03 \x01(\x05R\x06offset\"\x84\x01\n" +
 	"\x17ListDeploymentsResponse\x128\n" +
-	"\vdeployments\x18\x01 \x03(\v2\x16.prompts.v1.DeploymentR\vdeployments\"\xb2\x01\n" +
+	"\vdeployments\x18\x01 \x03(\v2\x16.prompts.v1.DeploymentR\vdeployments\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x19\n" +
+	"\bhas_more\x18\x03 \x01(\bR\ahasMore\"\xb2\x01\n" +
 	"\x0fLinkEvalRequest\x12\x1b\n" +
 	"\tprompt_id\x18\x01 \x01(\tR\bpromptId\x12\x1d\n" +
 	"\n" +

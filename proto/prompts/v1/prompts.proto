@@ -114,10 +114,14 @@ message GetPromptRequest {
 message ListPromptsRequest {
   string surface = 1;
   string tag = 2;
+  int32 limit = 3;
+  int32 offset = 4;
 }
 
 message ListPromptsResponse {
   repeated Prompt prompts = 1;
+  int32 total = 2;
+  bool has_more = 3;
 }
 
 message CreateVersionRequest {
@@ -130,10 +134,14 @@ message CreateVersionRequest {
 
 message ListVersionsRequest {
   string prompt_id = 1;
+  int32 limit = 2;
+  int32 offset = 3;
 }
 
 message ListVersionsResponse {
   repeated Version versions = 1;
+  int32 total = 2;
+  bool has_more = 3;
 }
 
 // AssignLabelRequest atomically moves a label pointer to a version.
@@ -148,18 +156,26 @@ message AssignLabelRequest {
 
 message ListLabelsRequest {
   string prompt_id = 1;
+  int32 limit = 2;
+  int32 offset = 3;
 }
 
 message ListLabelsResponse {
   repeated Label labels = 1;
+  int32 total = 2;
+  bool has_more = 3;
 }
 
 message ListDeploymentsRequest {
   string prompt_id = 1;
+  int32 limit = 2;
+  int32 offset = 3;
 }
 
 message ListDeploymentsResponse {
   repeated Deployment deployments = 1;
+  int32 total = 2;
+  bool has_more = 3;
 }
 
 message LinkEvalRequest {
