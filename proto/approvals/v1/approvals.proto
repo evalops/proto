@@ -15,6 +15,7 @@ service ApprovalService {
   rpc ListPending(ListPendingRequest) returns (ListPendingResponse);
   rpc GetHabits(GetHabitsRequest) returns (GetHabitsResponse);
   rpc Escalate(EscalateRequest) returns (EscalateResponse);
+  rpc GetApproval(GetApprovalRequest) returns (GetApprovalResponse);
 }
 
 // RiskLevel classifies the risk of an action.
@@ -158,4 +159,15 @@ message EscalateRequest {
 
 message EscalateResponse {
   ApprovalRequest approval_request = 1;
+}
+
+message GetApprovalRequest {
+  string approval_request_id = 1;
+  string workspace_id = 2;
+}
+
+message GetApprovalResponse {
+  ApprovalRequest approval_request = 1;
+  repeated ApprovalDecision decisions = 2;
+  string state = 3;
 }
