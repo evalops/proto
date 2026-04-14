@@ -54,6 +54,9 @@ const (
 	// ApprovalServiceEscalateProcedure is the fully-qualified name of the ApprovalService's Escalate
 	// RPC.
 	ApprovalServiceEscalateProcedure = "/approvals.v1.ApprovalService/Escalate"
+	// ApprovalServiceGetApprovalProcedure is the fully-qualified name of the ApprovalService's
+	// GetApproval RPC.
+	ApprovalServiceGetApprovalProcedure = "/approvals.v1.ApprovalService/GetApproval"
 )
 
 // ApprovalServiceClient is a client for the approvals.v1.ApprovalService service.
@@ -65,6 +68,7 @@ type ApprovalServiceClient interface {
 	ListPending(context.Context, *connect.Request[v1.ListPendingRequest]) (*connect.Response[v1.ListPendingResponse], error)
 	GetHabits(context.Context, *connect.Request[v1.GetHabitsRequest]) (*connect.Response[v1.GetHabitsResponse], error)
 	Escalate(context.Context, *connect.Request[v1.EscalateRequest]) (*connect.Response[v1.EscalateResponse], error)
+	GetApproval(context.Context, *connect.Request[v1.GetApprovalRequest]) (*connect.Response[v1.GetApprovalResponse], error)
 }
 
 // NewApprovalServiceClient constructs a client for the approvals.v1.ApprovalService service. By
@@ -120,6 +124,12 @@ func NewApprovalServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			connect.WithSchema(approvalServiceMethods.ByName("Escalate")),
 			connect.WithClientOptions(opts...),
 		),
+		getApproval: connect.NewClient[v1.GetApprovalRequest, v1.GetApprovalResponse](
+			httpClient,
+			baseURL+ApprovalServiceGetApprovalProcedure,
+			connect.WithSchema(approvalServiceMethods.ByName("GetApproval")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -132,6 +142,7 @@ type approvalServiceClient struct {
 	listPending     *connect.Client[v1.ListPendingRequest, v1.ListPendingResponse]
 	getHabits       *connect.Client[v1.GetHabitsRequest, v1.GetHabitsResponse]
 	escalate        *connect.Client[v1.EscalateRequest, v1.EscalateResponse]
+	getApproval     *connect.Client[v1.GetApprovalRequest, v1.GetApprovalResponse]
 }
 
 // RequestApproval calls approvals.v1.ApprovalService.RequestApproval.
@@ -169,6 +180,11 @@ func (c *approvalServiceClient) Escalate(ctx context.Context, req *connect.Reque
 	return c.escalate.CallUnary(ctx, req)
 }
 
+// GetApproval calls approvals.v1.ApprovalService.GetApproval.
+func (c *approvalServiceClient) GetApproval(ctx context.Context, req *connect.Request[v1.GetApprovalRequest]) (*connect.Response[v1.GetApprovalResponse], error) {
+	return c.getApproval.CallUnary(ctx, req)
+}
+
 // ApprovalServiceHandler is an implementation of the approvals.v1.ApprovalService service.
 type ApprovalServiceHandler interface {
 	RequestApproval(context.Context, *connect.Request[v1.RequestApprovalRequest]) (*connect.Response[v1.RequestApprovalResponse], error)
@@ -178,6 +194,7 @@ type ApprovalServiceHandler interface {
 	ListPending(context.Context, *connect.Request[v1.ListPendingRequest]) (*connect.Response[v1.ListPendingResponse], error)
 	GetHabits(context.Context, *connect.Request[v1.GetHabitsRequest]) (*connect.Response[v1.GetHabitsResponse], error)
 	Escalate(context.Context, *connect.Request[v1.EscalateRequest]) (*connect.Response[v1.EscalateResponse], error)
+	GetApproval(context.Context, *connect.Request[v1.GetApprovalRequest]) (*connect.Response[v1.GetApprovalResponse], error)
 }
 
 // NewApprovalServiceHandler builds an HTTP handler from the service implementation. It returns the
@@ -229,6 +246,12 @@ func NewApprovalServiceHandler(svc ApprovalServiceHandler, opts ...connect.Handl
 		connect.WithSchema(approvalServiceMethods.ByName("Escalate")),
 		connect.WithHandlerOptions(opts...),
 	)
+	approvalServiceGetApprovalHandler := connect.NewUnaryHandler(
+		ApprovalServiceGetApprovalProcedure,
+		svc.GetApproval,
+		connect.WithSchema(approvalServiceMethods.ByName("GetApproval")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/approvals.v1.ApprovalService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case ApprovalServiceRequestApprovalProcedure:
@@ -245,6 +268,8 @@ func NewApprovalServiceHandler(svc ApprovalServiceHandler, opts ...connect.Handl
 			approvalServiceGetHabitsHandler.ServeHTTP(w, r)
 		case ApprovalServiceEscalateProcedure:
 			approvalServiceEscalateHandler.ServeHTTP(w, r)
+		case ApprovalServiceGetApprovalProcedure:
+			approvalServiceGetApprovalHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -280,4 +305,8 @@ func (UnimplementedApprovalServiceHandler) GetHabits(context.Context, *connect.R
 
 func (UnimplementedApprovalServiceHandler) Escalate(context.Context, *connect.Request[v1.EscalateRequest]) (*connect.Response[v1.EscalateResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("approvals.v1.ApprovalService.Escalate is not implemented"))
+}
+
+func (UnimplementedApprovalServiceHandler) GetApproval(context.Context, *connect.Request[v1.GetApprovalRequest]) (*connect.Response[v1.GetApprovalResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("approvals.v1.ApprovalService.GetApproval is not implemented"))
 }
