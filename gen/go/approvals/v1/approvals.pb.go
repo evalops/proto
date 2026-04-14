@@ -391,11 +391,15 @@ func (x *ApprovalRule) GetDescription() string {
 
 // ApprovalPolicy defines the set of rules for a workspace.
 type ApprovalPolicy struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	WorkspaceId   string                 `protobuf:"bytes,1,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
-	Rules         []*ApprovalRule        `protobuf:"bytes,2,rep,name=rules,proto3" json:"rules,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state                protoimpl.MessageState `protogen:"open.v1"`
+	WorkspaceId          string                 `protobuf:"bytes,1,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	Rules                []*ApprovalRule        `protobuf:"bytes,2,rep,name=rules,proto3" json:"rules,omitempty"`
+	AutoApproveEnabled   bool                   `protobuf:"varint,3,opt,name=auto_approve_enabled,json=autoApproveEnabled,proto3" json:"auto_approve_enabled,omitempty"`
+	AutoApproveThreshold float32                `protobuf:"fixed32,4,opt,name=auto_approve_threshold,json=autoApproveThreshold,proto3" json:"auto_approve_threshold,omitempty"`
+	MinObservations      int32                  `protobuf:"varint,5,opt,name=min_observations,json=minObservations,proto3" json:"min_observations,omitempty"`
+	ExcludedRiskLevels   []RiskLevel            `protobuf:"varint,6,rep,packed,name=excluded_risk_levels,json=excludedRiskLevels,proto3,enum=approvals.v1.RiskLevel" json:"excluded_risk_levels,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *ApprovalPolicy) Reset() {
@@ -438,6 +442,34 @@ func (x *ApprovalPolicy) GetWorkspaceId() string {
 func (x *ApprovalPolicy) GetRules() []*ApprovalRule {
 	if x != nil {
 		return x.Rules
+	}
+	return nil
+}
+
+func (x *ApprovalPolicy) GetAutoApproveEnabled() bool {
+	if x != nil {
+		return x.AutoApproveEnabled
+	}
+	return false
+}
+
+func (x *ApprovalPolicy) GetAutoApproveThreshold() float32 {
+	if x != nil {
+		return x.AutoApproveThreshold
+	}
+	return 0
+}
+
+func (x *ApprovalPolicy) GetMinObservations() int32 {
+	if x != nil {
+		return x.MinObservations
+	}
+	return 0
+}
+
+func (x *ApprovalPolicy) GetExcludedRiskLevels() []RiskLevel {
+	if x != nil {
+		return x.ExcludedRiskLevels
 	}
 	return nil
 }
@@ -533,6 +565,7 @@ type ApprovalHabit struct {
 	Pattern               string                 `protobuf:"bytes,1,opt,name=pattern,proto3" json:"pattern,omitempty"`
 	AutoApproveConfidence float32                `protobuf:"fixed32,2,opt,name=auto_approve_confidence,json=autoApproveConfidence,proto3" json:"auto_approve_confidence,omitempty"`
 	ObservationCount      int32                  `protobuf:"varint,3,opt,name=observation_count,json=observationCount,proto3" json:"observation_count,omitempty"`
+	ApprovedCount         int32                  `protobuf:"varint,4,opt,name=approved_count,json=approvedCount,proto3" json:"approved_count,omitempty"`
 	unknownFields         protoimpl.UnknownFields
 	sizeCache             protoimpl.SizeCache
 }
@@ -584,6 +617,13 @@ func (x *ApprovalHabit) GetAutoApproveConfidence() float32 {
 func (x *ApprovalHabit) GetObservationCount() int32 {
 	if x != nil {
 		return x.ObservationCount
+	}
+	return 0
+}
+
+func (x *ApprovalHabit) GetApprovedCount() int32 {
+	if x != nil {
+		return x.ApprovedCount
 	}
 	return 0
 }
@@ -691,6 +731,8 @@ func (x *RequestApprovalRequest) GetContextJson() string {
 type RequestApprovalResponse struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	ApprovalRequest *ApprovalRequest       `protobuf:"bytes,1,opt,name=approval_request,json=approvalRequest,proto3" json:"approval_request,omitempty"`
+	Decision        *ApprovalDecision      `protobuf:"bytes,2,opt,name=decision,proto3" json:"decision,omitempty"`
+	AutoApproved    bool                   `protobuf:"varint,3,opt,name=auto_approved,json=autoApproved,proto3" json:"auto_approved,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -730,6 +772,20 @@ func (x *RequestApprovalResponse) GetApprovalRequest() *ApprovalRequest {
 		return x.ApprovalRequest
 	}
 	return nil
+}
+
+func (x *RequestApprovalResponse) GetDecision() *ApprovalDecision {
+	if x != nil {
+		return x.Decision
+	}
+	return nil
+}
+
+func (x *RequestApprovalResponse) GetAutoApproved() bool {
+	if x != nil {
+		return x.AutoApproved
+	}
+	return false
 }
 
 type ResolveApprovalRequest struct {
@@ -1456,10 +1512,14 @@ const file_approvals_v1_approvals_proto_rawDesc = "" +
 	"actionType\x12=\n" +
 	"\x0emin_risk_level\x18\x03 \x01(\x0e2\x17.approvals.v1.RiskLevelR\fminRiskLevel\x12;\n" +
 	"\tauthority\x18\x04 \x01(\x0e2\x1d.approvals.v1.ActionAuthorityR\tauthority\x12 \n" +
-	"\vdescription\x18\x05 \x01(\tR\vdescription\"e\n" +
+	"\vdescription\x18\x05 \x01(\tR\vdescription\"\xc3\x02\n" +
 	"\x0eApprovalPolicy\x12!\n" +
 	"\fworkspace_id\x18\x01 \x01(\tR\vworkspaceId\x120\n" +
-	"\x05rules\x18\x02 \x03(\v2\x1a.approvals.v1.ApprovalRuleR\x05rules\"\xfc\x01\n" +
+	"\x05rules\x18\x02 \x03(\v2\x1a.approvals.v1.ApprovalRuleR\x05rules\x120\n" +
+	"\x14auto_approve_enabled\x18\x03 \x01(\bR\x12autoApproveEnabled\x124\n" +
+	"\x16auto_approve_threshold\x18\x04 \x01(\x02R\x14autoApproveThreshold\x12)\n" +
+	"\x10min_observations\x18\x05 \x01(\x05R\x0fminObservations\x12I\n" +
+	"\x14excluded_risk_levels\x18\x06 \x03(\x0e2\x17.approvals.v1.RiskLevelR\x12excludedRiskLevels\"\xfc\x01\n" +
 	"\x10ApprovalDecision\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12.\n" +
 	"\x13approval_request_id\x18\x02 \x01(\tR\x11approvalRequestId\x126\n" +
@@ -1468,11 +1528,12 @@ const file_approvals_v1_approvals_proto_rawDesc = "" +
 	"decided_by\x18\x04 \x01(\tR\tdecidedBy\x12\x16\n" +
 	"\x06reason\x18\x05 \x01(\tR\x06reason\x129\n" +
 	"\n" +
-	"decided_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tdecidedAt\"\x8e\x01\n" +
+	"decided_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tdecidedAt\"\xb5\x01\n" +
 	"\rApprovalHabit\x12\x18\n" +
 	"\apattern\x18\x01 \x01(\tR\apattern\x126\n" +
 	"\x17auto_approve_confidence\x18\x02 \x01(\x02R\x15autoApproveConfidence\x12+\n" +
-	"\x11observation_count\x18\x03 \x01(\x05R\x10observationCount\"\xbd\x02\n" +
+	"\x11observation_count\x18\x03 \x01(\x05R\x10observationCount\x12%\n" +
+	"\x0eapproved_count\x18\x04 \x01(\x05R\rapprovedCount\"\xbd\x02\n" +
 	"\x16RequestApprovalRequest\x12!\n" +
 	"\fworkspace_id\x18\x01 \x01(\tR\vworkspaceId\x12(\n" +
 	"\x10approver_user_id\x18\b \x01(\tR\x0eapproverUserId\x12\x19\n" +
@@ -1483,9 +1544,11 @@ const file_approvals_v1_approvals_proto_rawDesc = "" +
 	"\x0eaction_payload\x18\x05 \x01(\fR\ractionPayload\x126\n" +
 	"\n" +
 	"risk_level\x18\x06 \x01(\x0e2\x17.approvals.v1.RiskLevelR\triskLevel\x12!\n" +
-	"\fcontext_json\x18\a \x01(\tR\vcontextJson\"c\n" +
+	"\fcontext_json\x18\a \x01(\tR\vcontextJson\"\xc4\x01\n" +
 	"\x17RequestApprovalResponse\x12H\n" +
-	"\x10approval_request\x18\x01 \x01(\v2\x1d.approvals.v1.ApprovalRequestR\x0fapprovalRequest\"\xb7\x01\n" +
+	"\x10approval_request\x18\x01 \x01(\v2\x1d.approvals.v1.ApprovalRequestR\x0fapprovalRequest\x12:\n" +
+	"\bdecision\x18\x02 \x01(\v2\x1e.approvals.v1.ApprovalDecisionR\bdecision\x12#\n" +
+	"\rauto_approved\x18\x03 \x01(\bR\fautoApproved\"\xb7\x01\n" +
 	"\x16ResolveApprovalRequest\x12.\n" +
 	"\x13approval_request_id\x18\x01 \x01(\tR\x11approvalRequestId\x126\n" +
 	"\bdecision\x18\x02 \x01(\x0e2\x1a.approvals.v1.DecisionTypeR\bdecision\x12\x1d\n" +
@@ -1600,41 +1663,43 @@ var file_approvals_v1_approvals_proto_depIdxs = []int32{
 	0,  // 3: approvals.v1.ApprovalRule.min_risk_level:type_name -> approvals.v1.RiskLevel
 	2,  // 4: approvals.v1.ApprovalRule.authority:type_name -> approvals.v1.ActionAuthority
 	4,  // 5: approvals.v1.ApprovalPolicy.rules:type_name -> approvals.v1.ApprovalRule
-	1,  // 6: approvals.v1.ApprovalDecision.decision:type_name -> approvals.v1.DecisionType
-	24, // 7: approvals.v1.ApprovalDecision.decided_at:type_name -> google.protobuf.Timestamp
-	0,  // 8: approvals.v1.RequestApprovalRequest.risk_level:type_name -> approvals.v1.RiskLevel
-	3,  // 9: approvals.v1.RequestApprovalResponse.approval_request:type_name -> approvals.v1.ApprovalRequest
-	1,  // 10: approvals.v1.ResolveApprovalRequest.decision:type_name -> approvals.v1.DecisionType
-	6,  // 11: approvals.v1.ResolveApprovalResponse.decision:type_name -> approvals.v1.ApprovalDecision
-	5,  // 12: approvals.v1.GetPolicyResponse.policy:type_name -> approvals.v1.ApprovalPolicy
-	5,  // 13: approvals.v1.SetPolicyRequest.policy:type_name -> approvals.v1.ApprovalPolicy
-	5,  // 14: approvals.v1.SetPolicyResponse.policy:type_name -> approvals.v1.ApprovalPolicy
-	3,  // 15: approvals.v1.ListPendingResponse.requests:type_name -> approvals.v1.ApprovalRequest
-	7,  // 16: approvals.v1.GetHabitsResponse.habits:type_name -> approvals.v1.ApprovalHabit
-	3,  // 17: approvals.v1.EscalateResponse.approval_request:type_name -> approvals.v1.ApprovalRequest
-	3,  // 18: approvals.v1.GetApprovalResponse.approval_request:type_name -> approvals.v1.ApprovalRequest
-	6,  // 19: approvals.v1.GetApprovalResponse.decisions:type_name -> approvals.v1.ApprovalDecision
-	8,  // 20: approvals.v1.ApprovalService.RequestApproval:input_type -> approvals.v1.RequestApprovalRequest
-	10, // 21: approvals.v1.ApprovalService.ResolveApproval:input_type -> approvals.v1.ResolveApprovalRequest
-	12, // 22: approvals.v1.ApprovalService.GetPolicy:input_type -> approvals.v1.GetPolicyRequest
-	14, // 23: approvals.v1.ApprovalService.SetPolicy:input_type -> approvals.v1.SetPolicyRequest
-	16, // 24: approvals.v1.ApprovalService.ListPending:input_type -> approvals.v1.ListPendingRequest
-	18, // 25: approvals.v1.ApprovalService.GetHabits:input_type -> approvals.v1.GetHabitsRequest
-	20, // 26: approvals.v1.ApprovalService.Escalate:input_type -> approvals.v1.EscalateRequest
-	22, // 27: approvals.v1.ApprovalService.GetApproval:input_type -> approvals.v1.GetApprovalRequest
-	9,  // 28: approvals.v1.ApprovalService.RequestApproval:output_type -> approvals.v1.RequestApprovalResponse
-	11, // 29: approvals.v1.ApprovalService.ResolveApproval:output_type -> approvals.v1.ResolveApprovalResponse
-	13, // 30: approvals.v1.ApprovalService.GetPolicy:output_type -> approvals.v1.GetPolicyResponse
-	15, // 31: approvals.v1.ApprovalService.SetPolicy:output_type -> approvals.v1.SetPolicyResponse
-	17, // 32: approvals.v1.ApprovalService.ListPending:output_type -> approvals.v1.ListPendingResponse
-	19, // 33: approvals.v1.ApprovalService.GetHabits:output_type -> approvals.v1.GetHabitsResponse
-	21, // 34: approvals.v1.ApprovalService.Escalate:output_type -> approvals.v1.EscalateResponse
-	23, // 35: approvals.v1.ApprovalService.GetApproval:output_type -> approvals.v1.GetApprovalResponse
-	28, // [28:36] is the sub-list for method output_type
-	20, // [20:28] is the sub-list for method input_type
-	20, // [20:20] is the sub-list for extension type_name
-	20, // [20:20] is the sub-list for extension extendee
-	0,  // [0:20] is the sub-list for field type_name
+	0,  // 6: approvals.v1.ApprovalPolicy.excluded_risk_levels:type_name -> approvals.v1.RiskLevel
+	1,  // 7: approvals.v1.ApprovalDecision.decision:type_name -> approvals.v1.DecisionType
+	24, // 8: approvals.v1.ApprovalDecision.decided_at:type_name -> google.protobuf.Timestamp
+	0,  // 9: approvals.v1.RequestApprovalRequest.risk_level:type_name -> approvals.v1.RiskLevel
+	3,  // 10: approvals.v1.RequestApprovalResponse.approval_request:type_name -> approvals.v1.ApprovalRequest
+	6,  // 11: approvals.v1.RequestApprovalResponse.decision:type_name -> approvals.v1.ApprovalDecision
+	1,  // 12: approvals.v1.ResolveApprovalRequest.decision:type_name -> approvals.v1.DecisionType
+	6,  // 13: approvals.v1.ResolveApprovalResponse.decision:type_name -> approvals.v1.ApprovalDecision
+	5,  // 14: approvals.v1.GetPolicyResponse.policy:type_name -> approvals.v1.ApprovalPolicy
+	5,  // 15: approvals.v1.SetPolicyRequest.policy:type_name -> approvals.v1.ApprovalPolicy
+	5,  // 16: approvals.v1.SetPolicyResponse.policy:type_name -> approvals.v1.ApprovalPolicy
+	3,  // 17: approvals.v1.ListPendingResponse.requests:type_name -> approvals.v1.ApprovalRequest
+	7,  // 18: approvals.v1.GetHabitsResponse.habits:type_name -> approvals.v1.ApprovalHabit
+	3,  // 19: approvals.v1.EscalateResponse.approval_request:type_name -> approvals.v1.ApprovalRequest
+	3,  // 20: approvals.v1.GetApprovalResponse.approval_request:type_name -> approvals.v1.ApprovalRequest
+	6,  // 21: approvals.v1.GetApprovalResponse.decisions:type_name -> approvals.v1.ApprovalDecision
+	8,  // 22: approvals.v1.ApprovalService.RequestApproval:input_type -> approvals.v1.RequestApprovalRequest
+	10, // 23: approvals.v1.ApprovalService.ResolveApproval:input_type -> approvals.v1.ResolveApprovalRequest
+	12, // 24: approvals.v1.ApprovalService.GetPolicy:input_type -> approvals.v1.GetPolicyRequest
+	14, // 25: approvals.v1.ApprovalService.SetPolicy:input_type -> approvals.v1.SetPolicyRequest
+	16, // 26: approvals.v1.ApprovalService.ListPending:input_type -> approvals.v1.ListPendingRequest
+	18, // 27: approvals.v1.ApprovalService.GetHabits:input_type -> approvals.v1.GetHabitsRequest
+	20, // 28: approvals.v1.ApprovalService.Escalate:input_type -> approvals.v1.EscalateRequest
+	22, // 29: approvals.v1.ApprovalService.GetApproval:input_type -> approvals.v1.GetApprovalRequest
+	9,  // 30: approvals.v1.ApprovalService.RequestApproval:output_type -> approvals.v1.RequestApprovalResponse
+	11, // 31: approvals.v1.ApprovalService.ResolveApproval:output_type -> approvals.v1.ResolveApprovalResponse
+	13, // 32: approvals.v1.ApprovalService.GetPolicy:output_type -> approvals.v1.GetPolicyResponse
+	15, // 33: approvals.v1.ApprovalService.SetPolicy:output_type -> approvals.v1.SetPolicyResponse
+	17, // 34: approvals.v1.ApprovalService.ListPending:output_type -> approvals.v1.ListPendingResponse
+	19, // 35: approvals.v1.ApprovalService.GetHabits:output_type -> approvals.v1.GetHabitsResponse
+	21, // 36: approvals.v1.ApprovalService.Escalate:output_type -> approvals.v1.EscalateResponse
+	23, // 37: approvals.v1.ApprovalService.GetApproval:output_type -> approvals.v1.GetApprovalResponse
+	30, // [30:38] is the sub-list for method output_type
+	22, // [22:30] is the sub-list for method input_type
+	22, // [22:22] is the sub-list for extension type_name
+	22, // [22:22] is the sub-list for extension extendee
+	0,  // [0:22] is the sub-list for field type_name
 }
 
 func init() { file_approvals_v1_approvals_proto_init() }

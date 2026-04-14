@@ -72,6 +72,10 @@ message ApprovalRule {
 message ApprovalPolicy {
   string workspace_id = 1;
   repeated ApprovalRule rules = 2;
+  bool auto_approve_enabled = 3;
+  float auto_approve_threshold = 4;
+  int32 min_observations = 5;
+  repeated RiskLevel excluded_risk_levels = 6;
 }
 
 // ApprovalDecision records a decision made on an approval request.
@@ -89,6 +93,7 @@ message ApprovalHabit {
   string pattern = 1;
   float auto_approve_confidence = 2;
   int32 observation_count = 3;
+  int32 approved_count = 4;
 }
 
 message RequestApprovalRequest {
@@ -104,6 +109,8 @@ message RequestApprovalRequest {
 
 message RequestApprovalResponse {
   ApprovalRequest approval_request = 1;
+  ApprovalDecision decision = 2;
+  bool auto_approved = 3;
 }
 
 message ResolveApprovalRequest {
