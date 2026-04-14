@@ -194,8 +194,8 @@ func (ActionAuthority) EnumDescriptor() ([]byte, []int) {
 type AutoApproveConfig struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	Enabled            bool                   `protobuf:"varint,1,opt,name=enabled,proto3" json:"enabled,omitempty"`
-	Threshold          float32                `protobuf:"fixed32,2,opt,name=threshold,proto3" json:"threshold,omitempty"`                                                                                 // minimum confidence (default 0.95)
-	MinObservations    int32                  `protobuf:"varint,3,opt,name=min_observations,json=minObservations,proto3" json:"min_observations,omitempty"`                                               // minimum decisions before activation (default 20)
+	Threshold          *float32               `protobuf:"fixed32,2,opt,name=threshold,proto3,oneof" json:"threshold,omitempty"`                                                                           // minimum confidence (default 0.95)
+	MinObservations    *int32                 `protobuf:"varint,3,opt,name=min_observations,json=minObservations,proto3,oneof" json:"min_observations,omitempty"`                                         // minimum decisions before activation (default 20)
 	ExcludedRiskLevels []RiskLevel            `protobuf:"varint,4,rep,packed,name=excluded_risk_levels,json=excludedRiskLevels,proto3,enum=approvals.v1.RiskLevel" json:"excluded_risk_levels,omitempty"` // always require human
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
@@ -239,15 +239,15 @@ func (x *AutoApproveConfig) GetEnabled() bool {
 }
 
 func (x *AutoApproveConfig) GetThreshold() float32 {
-	if x != nil {
-		return x.Threshold
+	if x != nil && x.Threshold != nil {
+		return *x.Threshold
 	}
 	return 0
 }
 
 func (x *AutoApproveConfig) GetMinObservations() int32 {
-	if x != nil {
-		return x.MinObservations
+	if x != nil && x.MinObservations != nil {
+		return *x.MinObservations
 	}
 	return 0
 }
@@ -1597,12 +1597,15 @@ var File_approvals_v1_approvals_proto protoreflect.FileDescriptor
 
 const file_approvals_v1_approvals_proto_rawDesc = "" +
 	"\n" +
-	"\x1capprovals/v1/approvals.proto\x12\fapprovals.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc1\x01\n" +
+	"\x1capprovals/v1/approvals.proto\x12\fapprovals.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xee\x01\n" +
 	"\x11AutoApproveConfig\x12\x18\n" +
-	"\aenabled\x18\x01 \x01(\bR\aenabled\x12\x1c\n" +
-	"\tthreshold\x18\x02 \x01(\x02R\tthreshold\x12)\n" +
-	"\x10min_observations\x18\x03 \x01(\x05R\x0fminObservations\x12I\n" +
-	"\x14excluded_risk_levels\x18\x04 \x03(\x0e2\x17.approvals.v1.RiskLevelR\x12excludedRiskLevels\"\xa9\x01\n" +
+	"\aenabled\x18\x01 \x01(\bR\aenabled\x12!\n" +
+	"\tthreshold\x18\x02 \x01(\x02H\x00R\tthreshold\x88\x01\x01\x12.\n" +
+	"\x10min_observations\x18\x03 \x01(\x05H\x01R\x0fminObservations\x88\x01\x01\x12I\n" +
+	"\x14excluded_risk_levels\x18\x04 \x03(\x0e2\x17.approvals.v1.RiskLevelR\x12excludedRiskLevelsB\f\n" +
+	"\n" +
+	"_thresholdB\x13\n" +
+	"\x11_min_observations\"\xa9\x01\n" +
 	"\x13AutoApproveEvidence\x12\x18\n" +
 	"\apattern\x18\x01 \x01(\tR\apattern\x12\x1e\n" +
 	"\n" +
@@ -1828,6 +1831,7 @@ func file_approvals_v1_approvals_proto_init() {
 	if File_approvals_v1_approvals_proto != nil {
 		return
 	}
+	file_approvals_v1_approvals_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
