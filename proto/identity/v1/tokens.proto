@@ -57,16 +57,19 @@ message IssueServiceTokenResponse {
 }
 
 message IssueAgentTokenRequest {
-  // Deprecated: identity now resolves agent_type from the registry record
-  // referenced by agent_id instead of trusting caller-provided values.
+  // Deprecated: use agent_id instead. Ignored when agent_id is set.
+  // Accepted for backward compatibility when agent_id is empty.
   string agent_type = 1 [deprecated = true];
-  // Deprecated: identity now resolves capabilities from the registry record
-  // referenced by agent_id instead of trusting caller-provided values.
+  // Deprecated: use agent_id instead. Ignored when agent_id is set.
+  // Accepted for backward compatibility when agent_id is empty.
   repeated string capabilities = 2 [deprecated = true];
   repeated string scopes = 3;
   string surface = 4;
   int32 ttl_seconds = 5;
-  // agent_id must reference an existing agents/v1 Agent record in registry.
+  // When set, the identity service looks up the agent record in registry
+  // and derives agent_type and capabilities from it. Takes precedence over
+  // the deprecated agent_type and capabilities fields. Must reference an
+  // existing agents/v1 Agent record.
   string agent_id = 6;
 }
 
