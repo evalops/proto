@@ -1501,10 +1501,12 @@ func (x *WideEvent) GetCreatedAt() *timestamppb.Timestamp {
 }
 
 type IngestWideEventResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Event         *WideEvent             `protobuf:"bytes,1,opt,name=event,proto3" json:"event,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Event          *WideEvent             `protobuf:"bytes,1,opt,name=event,proto3" json:"event,omitempty"`
+	BudgetExceeded bool                   `protobuf:"varint,2,opt,name=budget_exceeded,json=budgetExceeded,proto3" json:"budget_exceeded,omitempty"` // true when this event pushed the agent or team over budget
+	BudgetMessage  string                 `protobuf:"bytes,3,opt,name=budget_message,json=budgetMessage,proto3" json:"budget_message,omitempty"`     // human-readable budget status, empty when within budget
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *IngestWideEventResponse) Reset() {
@@ -1542,6 +1544,20 @@ func (x *IngestWideEventResponse) GetEvent() *WideEvent {
 		return x.Event
 	}
 	return nil
+}
+
+func (x *IngestWideEventResponse) GetBudgetExceeded() bool {
+	if x != nil {
+		return x.BudgetExceeded
+	}
+	return false
+}
+
+func (x *IngestWideEventResponse) GetBudgetMessage() string {
+	if x != nil {
+		return x.BudgetMessage
+	}
+	return ""
 }
 
 type QueryWideEventsRequest struct {
@@ -2180,9 +2196,11 @@ const file_meter_v1_meter_proto_rawDesc = "" +
 	"\x04data\x18\f \x01(\v2\x17.google.protobuf.StructR\x04data\x124\n" +
 	"\ametrics\x18\r \x01(\v2\x1a.meter.v1.WideEventMetricsR\ametrics\x129\n" +
 	"\n" +
-	"created_at\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"D\n" +
+	"created_at\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\x94\x01\n" +
 	"\x17IngestWideEventResponse\x12)\n" +
-	"\x05event\x18\x01 \x01(\v2\x13.meter.v1.WideEventR\x05event\"\xa1\x03\n" +
+	"\x05event\x18\x01 \x01(\v2\x13.meter.v1.WideEventR\x05event\x12'\n" +
+	"\x0fbudget_exceeded\x18\x02 \x01(\bR\x0ebudgetExceeded\x12%\n" +
+	"\x0ebudget_message\x18\x03 \x01(\tR\rbudgetMessage\"\xa1\x03\n" +
 	"\x16QueryWideEventsRequest\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x19\n" +
 	"\bagent_id\x18\x02 \x01(\tR\aagentId\x12\x18\n" +

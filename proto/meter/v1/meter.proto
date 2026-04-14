@@ -184,6 +184,8 @@ message WideEvent {
 
 message IngestWideEventResponse {
   WideEvent event = 1;
+  bool budget_exceeded = 2;      // true when this event pushed the agent or team over budget
+  string budget_message = 3;     // human-readable budget status, empty when within budget
 }
 
 message QueryWideEventsRequest {
