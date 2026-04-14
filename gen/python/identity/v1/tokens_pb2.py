@@ -25,7 +25,7 @@ _sym_db = _symbol_database.Default()
 from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18identity/v1/tokens.proto\x12\x0bidentity.v1\x1a\x1fgoogle/protobuf/timestamp.proto\")\n\x11IntrospectRequest\x12\x14\n\x05token\x18\x01 \x01(\tR\x05token\"\xf5\x03\n\x12IntrospectResponse\x12\x16\n\x06\x61\x63tive\x18\x01 \x01(\x08R\x06\x61\x63tive\x12\x18\n\x07subject\x18\x02 \x01(\tR\x07subject\x12\x1d\n\ntoken_type\x18\x03 \x01(\tR\ttokenType\x12\x18\n\x07service\x18\x04 \x01(\tR\x07service\x12\'\n\x0forganization_id\x18\x05 \x01(\tR\x0eorganizationId\x12\x16\n\x06scopes\x18\x06 \x03(\tR\x06scopes\x12\x1d\n\nagent_type\x18\x07 \x01(\tR\tagentType\x12\"\n\x0c\x63\x61pabilities\x18\x08 \x03(\tR\x0c\x63\x61pabilities\x12\x15\n\x06run_id\x18\t \x01(\tR\x05runId\x12\x18\n\x07surface\x18\n \x01(\tR\x07surface\x12!\n\x0cuser_subject\x18\x0b \x01(\tR\x0buserSubject\x12\x14\n\x05\x65mail\x18\x0c \x01(\tR\x05\x65mail\x12\x12\n\x04name\x18\r \x01(\tR\x04name\x12\x39\n\nexpires_at\x18\x0e \x01(\x0b\x32\x1a.google.protobuf.TimestampR\texpiresAt\x12\x37\n\tissued_at\x18\x0f \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x08issuedAt\"\x96\x01\n\x18IssueServiceTokenRequest\x12\x18\n\x07service\x18\x01 \x01(\tR\x07service\x12\'\n\x0forganization_id\x18\x02 \x01(\tR\x0eorganizationId\x12\x16\n\x06scopes\x18\x03 \x03(\tR\x06scopes\x12\x1f\n\x0bttl_seconds\x18\x04 \x01(\x05R\nttlSeconds\"l\n\x19IssueServiceTokenResponse\x12\x14\n\x05token\x18\x01 \x01(\tR\x05token\x12\x39\n\nexpires_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\texpiresAt\"\xae\x01\n\x16IssueAgentTokenRequest\x12\x1d\n\nagent_type\x18\x01 \x01(\tR\tagentType\x12\"\n\x0c\x63\x61pabilities\x18\x02 \x03(\tR\x0c\x63\x61pabilities\x12\x16\n\x06scopes\x18\x03 \x03(\tR\x06scopes\x12\x18\n\x07surface\x18\x04 \x01(\tR\x07surface\x12\x1f\n\x0bttl_seconds\x18\x05 \x01(\x05R\nttlSeconds\"j\n\x17IssueAgentTokenResponse\x12\x14\n\x05token\x18\x01 \x01(\tR\x05token\x12\x39\n\nexpires_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\texpiresAt2\x9f\x02\n\x0cTokenService\x12M\n\nIntrospect\x12\x1e.identity.v1.IntrospectRequest\x1a\x1f.identity.v1.IntrospectResponse\x12\x62\n\x11IssueServiceToken\x12%.identity.v1.IssueServiceTokenRequest\x1a&.identity.v1.IssueServiceTokenResponse\x12\\\n\x0fIssueAgentToken\x12#.identity.v1.IssueAgentTokenRequest\x1a$.identity.v1.IssueAgentTokenResponseB8Z6github.com/evalops/proto/gen/go/identity/v1;identityv1b\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x18identity/v1/tokens.proto\x12\x0bidentity.v1\x1a\x1fgoogle/protobuf/timestamp.proto\")\n\x11IntrospectRequest\x12\x14\n\x05token\x18\x01 \x01(\tR\x05token\"\xf5\x03\n\x12IntrospectResponse\x12\x16\n\x06\x61\x63tive\x18\x01 \x01(\x08R\x06\x61\x63tive\x12\x18\n\x07subject\x18\x02 \x01(\tR\x07subject\x12\x1d\n\ntoken_type\x18\x03 \x01(\tR\ttokenType\x12\x18\n\x07service\x18\x04 \x01(\tR\x07service\x12\'\n\x0forganization_id\x18\x05 \x01(\tR\x0eorganizationId\x12\x16\n\x06scopes\x18\x06 \x03(\tR\x06scopes\x12\x1d\n\nagent_type\x18\x07 \x01(\tR\tagentType\x12\"\n\x0c\x63\x61pabilities\x18\x08 \x03(\tR\x0c\x63\x61pabilities\x12\x15\n\x06run_id\x18\t \x01(\tR\x05runId\x12\x18\n\x07surface\x18\n \x01(\tR\x07surface\x12!\n\x0cuser_subject\x18\x0b \x01(\tR\x0buserSubject\x12\x14\n\x05\x65mail\x18\x0c \x01(\tR\x05\x65mail\x12\x12\n\x04name\x18\r \x01(\tR\x04name\x12\x39\n\nexpires_at\x18\x0e \x01(\x0b\x32\x1a.google.protobuf.TimestampR\texpiresAt\x12\x37\n\tissued_at\x18\x0f \x01(\x0b\x32\x1a.google.protobuf.TimestampR\x08issuedAt\"\x96\x01\n\x18IssueServiceTokenRequest\x12\x18\n\x07service\x18\x01 \x01(\tR\x07service\x12\'\n\x0forganization_id\x18\x02 \x01(\tR\x0eorganizationId\x12\x16\n\x06scopes\x18\x03 \x03(\tR\x06scopes\x12\x1f\n\x0bttl_seconds\x18\x04 \x01(\x05R\nttlSeconds\"l\n\x19IssueServiceTokenResponse\x12\x14\n\x05token\x18\x01 \x01(\tR\x05token\x12\x39\n\nexpires_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\texpiresAt\"\xd1\x01\n\x16IssueAgentTokenRequest\x12!\n\nagent_type\x18\x01 \x01(\tB\x02\x18\x01R\tagentType\x12&\n\x0c\x63\x61pabilities\x18\x02 \x03(\tB\x02\x18\x01R\x0c\x63\x61pabilities\x12\x16\n\x06scopes\x18\x03 \x03(\tR\x06scopes\x12\x18\n\x07surface\x18\x04 \x01(\tR\x07surface\x12\x1f\n\x0bttl_seconds\x18\x05 \x01(\x05R\nttlSeconds\x12\x19\n\x08\x61gent_id\x18\x06 \x01(\tR\x07\x61gentId\"j\n\x17IssueAgentTokenResponse\x12\x14\n\x05token\x18\x01 \x01(\tR\x05token\x12\x39\n\nexpires_at\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampR\texpiresAt2\x9f\x02\n\x0cTokenService\x12M\n\nIntrospect\x12\x1e.identity.v1.IntrospectRequest\x1a\x1f.identity.v1.IntrospectResponse\x12\x62\n\x11IssueServiceToken\x12%.identity.v1.IssueServiceTokenRequest\x1a&.identity.v1.IssueServiceTokenResponse\x12\\\n\x0fIssueAgentToken\x12#.identity.v1.IssueAgentTokenRequest\x1a$.identity.v1.IssueAgentTokenResponseB8Z6github.com/evalops/proto/gen/go/identity/v1;identityv1b\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,6 +33,10 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'identity.v1.tokens_pb2', _g
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'Z6github.com/evalops/proto/gen/go/identity/v1;identityv1'
+  _globals['_ISSUEAGENTTOKENREQUEST'].fields_by_name['agent_type']._loaded_options = None
+  _globals['_ISSUEAGENTTOKENREQUEST'].fields_by_name['agent_type']._serialized_options = b'\030\001'
+  _globals['_ISSUEAGENTTOKENREQUEST'].fields_by_name['capabilities']._loaded_options = None
+  _globals['_ISSUEAGENTTOKENREQUEST'].fields_by_name['capabilities']._serialized_options = b'\030\001'
   _globals['_INTROSPECTREQUEST']._serialized_start=74
   _globals['_INTROSPECTREQUEST']._serialized_end=115
   _globals['_INTROSPECTRESPONSE']._serialized_start=118
@@ -42,9 +46,9 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_ISSUESERVICETOKENRESPONSE']._serialized_start=774
   _globals['_ISSUESERVICETOKENRESPONSE']._serialized_end=882
   _globals['_ISSUEAGENTTOKENREQUEST']._serialized_start=885
-  _globals['_ISSUEAGENTTOKENREQUEST']._serialized_end=1059
-  _globals['_ISSUEAGENTTOKENRESPONSE']._serialized_start=1061
-  _globals['_ISSUEAGENTTOKENRESPONSE']._serialized_end=1167
-  _globals['_TOKENSERVICE']._serialized_start=1170
-  _globals['_TOKENSERVICE']._serialized_end=1457
+  _globals['_ISSUEAGENTTOKENREQUEST']._serialized_end=1094
+  _globals['_ISSUEAGENTTOKENRESPONSE']._serialized_start=1096
+  _globals['_ISSUEAGENTTOKENRESPONSE']._serialized_end=1202
+  _globals['_TOKENSERVICE']._serialized_start=1205
+  _globals['_TOKENSERVICE']._serialized_end=1492
 # @@protoc_insertion_point(module_scope)
