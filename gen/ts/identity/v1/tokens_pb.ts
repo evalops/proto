@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file identity/v1/tokens.proto.
  */
 export const file_identity_v1_tokens: GenFile = /*@__PURE__*/
-  fileDesc("ChhpZGVudGl0eS92MS90b2tlbnMucHJvdG8SC2lkZW50aXR5LnYxIiIKEUludHJvc3BlY3RSZXF1ZXN0Eg0KBXRva2VuGAEgASgJIuACChJJbnRyb3NwZWN0UmVzcG9uc2USDgoGYWN0aXZlGAEgASgIEg8KB3N1YmplY3QYAiABKAkSEgoKdG9rZW5fdHlwZRgDIAEoCRIPCgdzZXJ2aWNlGAQgASgJEhcKD29yZ2FuaXphdGlvbl9pZBgFIAEoCRIOCgZzY29wZXMYBiADKAkSEgoKYWdlbnRfdHlwZRgHIAEoCRIUCgxjYXBhYmlsaXRpZXMYCCADKAkSDgoGcnVuX2lkGAkgASgJEg8KB3N1cmZhY2UYCiABKAkSFAoMdXNlcl9zdWJqZWN0GAsgASgJEg0KBWVtYWlsGAwgASgJEgwKBG5hbWUYDSABKAkSLgoKZXhwaXJlc19hdBgOIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLQoJaXNzdWVkX2F0GA8gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCJpChhJc3N1ZVNlcnZpY2VUb2tlblJlcXVlc3QSDwoHc2VydmljZRgBIAEoCRIXCg9vcmdhbml6YXRpb25faWQYAiABKAkSDgoGc2NvcGVzGAMgAygJEhMKC3R0bF9zZWNvbmRzGAQgASgFIloKGUlzc3VlU2VydmljZVRva2VuUmVzcG9uc2USDQoFdG9rZW4YASABKAkSLgoKZXhwaXJlc19hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAieAoWSXNzdWVBZ2VudFRva2VuUmVxdWVzdBISCgphZ2VudF90eXBlGAEgASgJEhQKDGNhcGFiaWxpdGllcxgCIAMoCRIOCgZzY29wZXMYAyADKAkSDwoHc3VyZmFjZRgEIAEoCRITCgt0dGxfc2Vjb25kcxgFIAEoBSJYChdJc3N1ZUFnZW50VG9rZW5SZXNwb25zZRINCgV0b2tlbhgBIAEoCRIuCgpleHBpcmVzX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcDKfAgoMVG9rZW5TZXJ2aWNlEk0KCkludHJvc3BlY3QSHi5pZGVudGl0eS52MS5JbnRyb3NwZWN0UmVxdWVzdBofLmlkZW50aXR5LnYxLkludHJvc3BlY3RSZXNwb25zZRJiChFJc3N1ZVNlcnZpY2VUb2tlbhIlLmlkZW50aXR5LnYxLklzc3VlU2VydmljZVRva2VuUmVxdWVzdBomLmlkZW50aXR5LnYxLklzc3VlU2VydmljZVRva2VuUmVzcG9uc2USXAoPSXNzdWVBZ2VudFRva2VuEiMuaWRlbnRpdHkudjEuSXNzdWVBZ2VudFRva2VuUmVxdWVzdBokLmlkZW50aXR5LnYxLklzc3VlQWdlbnRUb2tlblJlc3BvbnNlQjhaNmdpdGh1Yi5jb20vZXZhbG9wcy9wcm90by9nZW4vZ28vaWRlbnRpdHkvdjE7aWRlbnRpdHl2MWIGcHJvdG8z", [file_google_protobuf_timestamp]);
+  fileDesc("ChhpZGVudGl0eS92MS90b2tlbnMucHJvdG8SC2lkZW50aXR5LnYxIiIKEUludHJvc3BlY3RSZXF1ZXN0Eg0KBXRva2VuGAEgASgJIuACChJJbnRyb3NwZWN0UmVzcG9uc2USDgoGYWN0aXZlGAEgASgIEg8KB3N1YmplY3QYAiABKAkSEgoKdG9rZW5fdHlwZRgDIAEoCRIPCgdzZXJ2aWNlGAQgASgJEhcKD29yZ2FuaXphdGlvbl9pZBgFIAEoCRIOCgZzY29wZXMYBiADKAkSEgoKYWdlbnRfdHlwZRgHIAEoCRIUCgxjYXBhYmlsaXRpZXMYCCADKAkSDgoGcnVuX2lkGAkgASgJEg8KB3N1cmZhY2UYCiABKAkSFAoMdXNlcl9zdWJqZWN0GAsgASgJEg0KBWVtYWlsGAwgASgJEgwKBG5hbWUYDSABKAkSLgoKZXhwaXJlc19hdBgOIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLQoJaXNzdWVkX2F0GA8gASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCJpChhJc3N1ZVNlcnZpY2VUb2tlblJlcXVlc3QSDwoHc2VydmljZRgBIAEoCRIXCg9vcmdhbml6YXRpb25faWQYAiABKAkSDgoGc2NvcGVzGAMgAygJEhMKC3R0bF9zZWNvbmRzGAQgASgFIloKGUlzc3VlU2VydmljZVRva2VuUmVzcG9uc2USDQoFdG9rZW4YASABKAkSLgoKZXhwaXJlc19hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAikgEKFklzc3VlQWdlbnRUb2tlblJlcXVlc3QSFgoKYWdlbnRfdHlwZRgBIAEoCUICGAESGAoMY2FwYWJpbGl0aWVzGAIgAygJQgIYARIOCgZzY29wZXMYAyADKAkSDwoHc3VyZmFjZRgEIAEoCRITCgt0dGxfc2Vjb25kcxgFIAEoBRIQCghhZ2VudF9pZBgGIAEoCSJYChdJc3N1ZUFnZW50VG9rZW5SZXNwb25zZRINCgV0b2tlbhgBIAEoCRIuCgpleHBpcmVzX2F0GAIgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcDKfAgoMVG9rZW5TZXJ2aWNlEk0KCkludHJvc3BlY3QSHi5pZGVudGl0eS52MS5JbnRyb3NwZWN0UmVxdWVzdBofLmlkZW50aXR5LnYxLkludHJvc3BlY3RSZXNwb25zZRJiChFJc3N1ZVNlcnZpY2VUb2tlbhIlLmlkZW50aXR5LnYxLklzc3VlU2VydmljZVRva2VuUmVxdWVzdBomLmlkZW50aXR5LnYxLklzc3VlU2VydmljZVRva2VuUmVzcG9uc2USXAoPSXNzdWVBZ2VudFRva2VuEiMuaWRlbnRpdHkudjEuSXNzdWVBZ2VudFRva2VuUmVxdWVzdBokLmlkZW50aXR5LnYxLklzc3VlQWdlbnRUb2tlblJlc3BvbnNlQjhaNmdpdGh1Yi5jb20vZXZhbG9wcy9wcm90by9nZW4vZ28vaWRlbnRpdHkvdjE7aWRlbnRpdHl2MWIGcHJvdG8z", [file_google_protobuf_timestamp]);
 
 /**
  * @generated from message identity.v1.IntrospectRequest
@@ -182,12 +182,20 @@ export const IssueServiceTokenResponseSchema: GenMessage<IssueServiceTokenRespon
  */
 export type IssueAgentTokenRequest = Message<"identity.v1.IssueAgentTokenRequest"> & {
   /**
-   * @generated from field: string agent_type = 1;
+   * Deprecated: identity now resolves agent_type from the registry record
+   * referenced by agent_id instead of trusting caller-provided values.
+   *
+   * @generated from field: string agent_type = 1 [deprecated = true];
+   * @deprecated
    */
   agentType: string;
 
   /**
-   * @generated from field: repeated string capabilities = 2;
+   * Deprecated: identity now resolves capabilities from the registry record
+   * referenced by agent_id instead of trusting caller-provided values.
+   *
+   * @generated from field: repeated string capabilities = 2 [deprecated = true];
+   * @deprecated
    */
   capabilities: string[];
 
@@ -205,6 +213,13 @@ export type IssueAgentTokenRequest = Message<"identity.v1.IssueAgentTokenRequest
    * @generated from field: int32 ttl_seconds = 5;
    */
   ttlSeconds: number;
+
+  /**
+   * agent_id must reference an existing agents/v1 Agent record in registry.
+   *
+   * @generated from field: string agent_id = 6;
+   */
+  agentId: string;
 };
 
 /**
