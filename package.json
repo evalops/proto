@@ -86,6 +86,10 @@
       "types": "./gen/dist/prompts/v1/prompts_pb.d.ts",
       "import": "./gen/dist/prompts/v1/prompts_pb.js"
     },
+    "./registry/v1/registry_pb": {
+      "types": "./gen/dist/registry/v1/registry_pb.d.ts",
+      "import": "./gen/dist/registry/v1/registry_pb.js"
+    },
     "./skills/v1/skills_pb": {
       "types": "./gen/dist/skills/v1/skills_pb.d.ts",
       "import": "./gen/dist/skills/v1/skills_pb.js"
