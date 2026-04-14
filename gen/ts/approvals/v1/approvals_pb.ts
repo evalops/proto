@@ -12,7 +12,81 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file approvals/v1/approvals.proto.
  */
 export const file_approvals_v1_approvals: GenFile = /*@__PURE__*/
-  fileDesc("ChxhcHByb3ZhbHMvdjEvYXBwcm92YWxzLnByb3RvEgxhcHByb3ZhbHMudjEiwAIKD0FwcHJvdmFsUmVxdWVzdBIKCgJpZBgBIAEoCRIUCgx3b3Jrc3BhY2VfaWQYAiABKAkSGAoQYXBwcm92ZXJfdXNlcl9pZBgLIAEoCRIQCghhZ2VudF9pZBgDIAEoCRIPCgdzdXJmYWNlGAQgASgJEhMKC2FjdGlvbl90eXBlGAUgASgJEhYKDmFjdGlvbl9wYXlsb2FkGAYgASgMEisKCnJpc2tfbGV2ZWwYByABKA4yFy5hcHByb3ZhbHMudjEuUmlza0xldmVsEhQKDGNvbnRleHRfanNvbhgIIAEoCRIuCgpjcmVhdGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgp1cGRhdGVkX2F0GAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCKnAQoMQXBwcm92YWxSdWxlEgoKAmlkGAEgASgJEhMKC2FjdGlvbl90eXBlGAIgASgJEi8KDm1pbl9yaXNrX2xldmVsGAMgASgOMhcuYXBwcm92YWxzLnYxLlJpc2tMZXZlbBIwCglhdXRob3JpdHkYBCABKA4yHS5hcHByb3ZhbHMudjEuQWN0aW9uQXV0aG9yaXR5EhMKC2Rlc2NyaXB0aW9uGAUgASgJIlEKDkFwcHJvdmFsUG9saWN5EhQKDHdvcmtzcGFjZV9pZBgBIAEoCRIpCgVydWxlcxgCIAMoCzIaLmFwcHJvdmFscy52MS5BcHByb3ZhbFJ1bGUivQEKEEFwcHJvdmFsRGVjaXNpb24SCgoCaWQYASABKAkSGwoTYXBwcm92YWxfcmVxdWVzdF9pZBgCIAEoCRIsCghkZWNpc2lvbhgDIAEoDjIaLmFwcHJvdmFscy52MS5EZWNpc2lvblR5cGUSEgoKZGVjaWRlZF9ieRgEIAEoCRIOCgZyZWFzb24YBSABKAkSLgoKZGVjaWRlZF9hdBgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAiXAoNQXBwcm92YWxIYWJpdBIPCgdwYXR0ZXJuGAEgASgJEh8KF2F1dG9fYXBwcm92ZV9jb25maWRlbmNlGAIgASgCEhkKEW9ic2VydmF0aW9uX2NvdW50GAMgASgFItsBChZSZXF1ZXN0QXBwcm92YWxSZXF1ZXN0EhQKDHdvcmtzcGFjZV9pZBgBIAEoCRIYChBhcHByb3Zlcl91c2VyX2lkGAggASgJEhAKCGFnZW50X2lkGAIgASgJEg8KB3N1cmZhY2UYAyABKAkSEwoLYWN0aW9uX3R5cGUYBCABKAkSFgoOYWN0aW9uX3BheWxvYWQYBSABKAwSKwoKcmlza19sZXZlbBgGIAEoDjIXLmFwcHJvdmFscy52MS5SaXNrTGV2ZWwSFAoMY29udGV4dF9qc29uGAcgASgJIlIKF1JlcXVlc3RBcHByb3ZhbFJlc3BvbnNlEjcKEGFwcHJvdmFsX3JlcXVlc3QYASABKAsyHS5hcHByb3ZhbHMudjEuQXBwcm92YWxSZXF1ZXN0IocBChZSZXNvbHZlQXBwcm92YWxSZXF1ZXN0EhsKE2FwcHJvdmFsX3JlcXVlc3RfaWQYASABKAkSLAoIZGVjaXNpb24YAiABKA4yGi5hcHByb3ZhbHMudjEuRGVjaXNpb25UeXBlEhIKCmRlY2lkZWRfYnkYAyABKAkSDgoGcmVhc29uGAQgASgJIksKF1Jlc29sdmVBcHByb3ZhbFJlc3BvbnNlEjAKCGRlY2lzaW9uGAEgASgLMh4uYXBwcm92YWxzLnYxLkFwcHJvdmFsRGVjaXNpb24iKAoQR2V0UG9saWN5UmVxdWVzdBIUCgx3b3Jrc3BhY2VfaWQYASABKAkiQQoRR2V0UG9saWN5UmVzcG9uc2USLAoGcG9saWN5GAEgASgLMhwuYXBwcm92YWxzLnYxLkFwcHJvdmFsUG9saWN5IkAKEFNldFBvbGljeVJlcXVlc3QSLAoGcG9saWN5GAEgASgLMhwuYXBwcm92YWxzLnYxLkFwcHJvdmFsUG9saWN5IkEKEVNldFBvbGljeVJlc3BvbnNlEiwKBnBvbGljeRgBIAEoCzIcLmFwcHJvdmFscy52MS5BcHByb3ZhbFBvbGljeSJJChJMaXN0UGVuZGluZ1JlcXVlc3QSFAoMd29ya3NwYWNlX2lkGAEgASgJEg0KBWxpbWl0GAIgASgFEg4KBm9mZnNldBgDIAEoBSJVChNMaXN0UGVuZGluZ1Jlc3BvbnNlEi8KCHJlcXVlc3RzGAEgAygLMh0uYXBwcm92YWxzLnYxLkFwcHJvdmFsUmVxdWVzdBINCgV0b3RhbBgCIAEoBSIoChBHZXRIYWJpdHNSZXF1ZXN0EhQKDHdvcmtzcGFjZV9pZBgBIAEoCSJAChFHZXRIYWJpdHNSZXNwb25zZRIrCgZoYWJpdHMYASADKAsyGy5hcHByb3ZhbHMudjEuQXBwcm92YWxIYWJpdCI+Cg9Fc2NhbGF0ZVJlcXVlc3QSGwoTYXBwcm92YWxfcmVxdWVzdF9pZBgBIAEoCRIOCgZyZWFzb24YAiABKAkiSwoQRXNjYWxhdGVSZXNwb25zZRI3ChBhcHByb3ZhbF9yZXF1ZXN0GAEgASgLMh0uYXBwcm92YWxzLnYxLkFwcHJvdmFsUmVxdWVzdCJHChJHZXRBcHByb3ZhbFJlcXVlc3QSGwoTYXBwcm92YWxfcmVxdWVzdF9pZBgBIAEoCRIUCgx3b3Jrc3BhY2VfaWQYAiABKAkikAEKE0dldEFwcHJvdmFsUmVzcG9uc2USNwoQYXBwcm92YWxfcmVxdWVzdBgBIAEoCzIdLmFwcHJvdmFscy52MS5BcHByb3ZhbFJlcXVlc3QSMQoJZGVjaXNpb25zGAIgAygLMh4uYXBwcm92YWxzLnYxLkFwcHJvdmFsRGVjaXNpb24SDQoFc3RhdGUYAyABKAkqgAEKCVJpc2tMZXZlbBIaChZSSVNLX0xFVkVMX1VOU1BFQ0lGSUVEEAASEgoOUklTS19MRVZFTF9MT1cQARIVChFSSVNLX0xFVkVMX01FRElVTRACEhMKD1JJU0tfTEVWRUxfSElHSBADEhcKE1JJU0tfTEVWRUxfQ1JJVElDQUwQBCqbAQoMRGVjaXNpb25UeXBlEh0KGURFQ0lTSU9OX1RZUEVfVU5TUEVDSUZJRUQQABIaChZERUNJU0lPTl9UWVBFX0FQUFJPVkVEEAESGAoUREVDSVNJT05fVFlQRV9ERU5JRUQQAhIbChdERUNJU0lPTl9UWVBFX0VTQ0FMQVRFRBADEhkKFURFQ0lTSU9OX1RZUEVfRVhQSVJFRBAEKpQBCg9BY3Rpb25BdXRob3JpdHkSIAocQUNUSU9OX0FVVEhPUklUWV9VTlNQRUNJRklFRBAAEhgKFEFDVElPTl9BVVRIT1JJVFlfT1dOEAESHgoaQUNUSU9OX0FVVEhPUklUWV9SRUNPTU1FTkQQAhIlCiFBQ1RJT05fQVVUSE9SSVRZX1JFUVVJUkVfQVBQUk9WQUwQAzKuBQoPQXBwcm92YWxTZXJ2aWNlEl4KD1JlcXVlc3RBcHByb3ZhbBIkLmFwcHJvdmFscy52MS5SZXF1ZXN0QXBwcm92YWxSZXF1ZXN0GiUuYXBwcm92YWxzLnYxLlJlcXVlc3RBcHByb3ZhbFJlc3BvbnNlEl4KD1Jlc29sdmVBcHByb3ZhbBIkLmFwcHJvdmFscy52MS5SZXNvbHZlQXBwcm92YWxSZXF1ZXN0GiUuYXBwcm92YWxzLnYxLlJlc29sdmVBcHByb3ZhbFJlc3BvbnNlEkwKCUdldFBvbGljeRIeLmFwcHJvdmFscy52MS5HZXRQb2xpY3lSZXF1ZXN0Gh8uYXBwcm92YWxzLnYxLkdldFBvbGljeVJlc3BvbnNlEkwKCVNldFBvbGljeRIeLmFwcHJvdmFscy52MS5TZXRQb2xpY3lSZXF1ZXN0Gh8uYXBwcm92YWxzLnYxLlNldFBvbGljeVJlc3BvbnNlElIKC0xpc3RQZW5kaW5nEiAuYXBwcm92YWxzLnYxLkxpc3RQZW5kaW5nUmVxdWVzdBohLmFwcHJvdmFscy52MS5MaXN0UGVuZGluZ1Jlc3BvbnNlEkwKCUdldEhhYml0cxIeLmFwcHJvdmFscy52MS5HZXRIYWJpdHNSZXF1ZXN0Gh8uYXBwcm92YWxzLnYxLkdldEhhYml0c1Jlc3BvbnNlEkkKCEVzY2FsYXRlEh0uYXBwcm92YWxzLnYxLkVzY2FsYXRlUmVxdWVzdBoeLmFwcHJvdmFscy52MS5Fc2NhbGF0ZVJlc3BvbnNlElIKC0dldEFwcHJvdmFsEiAuYXBwcm92YWxzLnYxLkdldEFwcHJvdmFsUmVxdWVzdBohLmFwcHJvdmFscy52MS5HZXRBcHByb3ZhbFJlc3BvbnNlQjpaOGdpdGh1Yi5jb20vZXZhbG9wcy9wcm90by9nZW4vZ28vYXBwcm92YWxzL3YxO2FwcHJvdmFsc3YxYgZwcm90bzM", [file_google_protobuf_timestamp]);
+  fileDesc("ChxhcHByb3ZhbHMvdjEvYXBwcm92YWxzLnByb3RvEgxhcHByb3ZhbHMudjEiiAEKEUF1dG9BcHByb3ZlQ29uZmlnEg8KB2VuYWJsZWQYASABKAgSEQoJdGhyZXNob2xkGAIgASgCEhgKEG1pbl9vYnNlcnZhdGlvbnMYAyABKAUSNQoUZXhjbHVkZWRfcmlza19sZXZlbHMYBCADKA4yFy5hcHByb3ZhbHMudjEuUmlza0xldmVsInAKE0F1dG9BcHByb3ZlRXZpZGVuY2USDwoHcGF0dGVybhgBIAEoCRISCgpjb25maWRlbmNlGAIgASgCEhkKEW9ic2VydmF0aW9uX2NvdW50GAMgASgFEhkKEXRocmVzaG9sZF9hcHBsaWVkGAQgASgCIsACCg9BcHByb3ZhbFJlcXVlc3QSCgoCaWQYASABKAkSFAoMd29ya3NwYWNlX2lkGAIgASgJEhgKEGFwcHJvdmVyX3VzZXJfaWQYCyABKAkSEAoIYWdlbnRfaWQYAyABKAkSDwoHc3VyZmFjZRgEIAEoCRITCgthY3Rpb25fdHlwZRgFIAEoCRIWCg5hY3Rpb25fcGF5bG9hZBgGIAEoDBIrCgpyaXNrX2xldmVsGAcgASgOMhcuYXBwcm92YWxzLnYxLlJpc2tMZXZlbBIUCgxjb250ZXh0X2pzb24YCCABKAkSLgoKY3JlYXRlZF9hdBgJIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoKdXBkYXRlZF9hdBgKIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAipwEKDEFwcHJvdmFsUnVsZRIKCgJpZBgBIAEoCRITCgthY3Rpb25fdHlwZRgCIAEoCRIvCg5taW5fcmlza19sZXZlbBgDIAEoDjIXLmFwcHJvdmFscy52MS5SaXNrTGV2ZWwSMAoJYXV0aG9yaXR5GAQgASgOMh0uYXBwcm92YWxzLnYxLkFjdGlvbkF1dGhvcml0eRITCgtkZXNjcmlwdGlvbhgFIAEoCSKPAQoOQXBwcm92YWxQb2xpY3kSFAoMd29ya3NwYWNlX2lkGAEgASgJEikKBXJ1bGVzGAIgAygLMhouYXBwcm92YWxzLnYxLkFwcHJvdmFsUnVsZRI8ChNhdXRvX2FwcHJvdmVfY29uZmlnGAMgASgLMh8uYXBwcm92YWxzLnYxLkF1dG9BcHByb3ZlQ29uZmlnIr0BChBBcHByb3ZhbERlY2lzaW9uEgoKAmlkGAEgASgJEhsKE2FwcHJvdmFsX3JlcXVlc3RfaWQYAiABKAkSLAoIZGVjaXNpb24YAyABKA4yGi5hcHByb3ZhbHMudjEuRGVjaXNpb25UeXBlEhIKCmRlY2lkZWRfYnkYBCABKAkSDgoGcmVhc29uGAUgASgJEi4KCmRlY2lkZWRfYXQYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wInQKDUFwcHJvdmFsSGFiaXQSDwoHcGF0dGVybhgBIAEoCRIfChdhdXRvX2FwcHJvdmVfY29uZmlkZW5jZRgCIAEoAhIZChFvYnNlcnZhdGlvbl9jb3VudBgDIAEoBRIWCg5hcHByb3ZlZF9jb3VudBgEIAEoBSLbAQoWUmVxdWVzdEFwcHJvdmFsUmVxdWVzdBIUCgx3b3Jrc3BhY2VfaWQYASABKAkSGAoQYXBwcm92ZXJfdXNlcl9pZBgIIAEoCRIQCghhZ2VudF9pZBgCIAEoCRIPCgdzdXJmYWNlGAMgASgJEhMKC2FjdGlvbl90eXBlGAQgASgJEhYKDmFjdGlvbl9wYXlsb2FkGAUgASgMEisKCnJpc2tfbGV2ZWwYBiABKA4yFy5hcHByb3ZhbHMudjEuUmlza0xldmVsEhQKDGNvbnRleHRfanNvbhgHIAEoCSKUAQoXUmVxdWVzdEFwcHJvdmFsUmVzcG9uc2USNwoQYXBwcm92YWxfcmVxdWVzdBgBIAEoCzIdLmFwcHJvdmFscy52MS5BcHByb3ZhbFJlcXVlc3QSQAoVYXV0b19hcHByb3ZlX2V2aWRlbmNlGAIgASgLMiEuYXBwcm92YWxzLnYxLkF1dG9BcHByb3ZlRXZpZGVuY2UihwEKFlJlc29sdmVBcHByb3ZhbFJlcXVlc3QSGwoTYXBwcm92YWxfcmVxdWVzdF9pZBgBIAEoCRIsCghkZWNpc2lvbhgCIAEoDjIaLmFwcHJvdmFscy52MS5EZWNpc2lvblR5cGUSEgoKZGVjaWRlZF9ieRgDIAEoCRIOCgZyZWFzb24YBCABKAkiSwoXUmVzb2x2ZUFwcHJvdmFsUmVzcG9uc2USMAoIZGVjaXNpb24YASABKAsyHi5hcHByb3ZhbHMudjEuQXBwcm92YWxEZWNpc2lvbiIoChBHZXRQb2xpY3lSZXF1ZXN0EhQKDHdvcmtzcGFjZV9pZBgBIAEoCSJBChFHZXRQb2xpY3lSZXNwb25zZRIsCgZwb2xpY3kYASABKAsyHC5hcHByb3ZhbHMudjEuQXBwcm92YWxQb2xpY3kiQAoQU2V0UG9saWN5UmVxdWVzdBIsCgZwb2xpY3kYASABKAsyHC5hcHByb3ZhbHMudjEuQXBwcm92YWxQb2xpY3kiQQoRU2V0UG9saWN5UmVzcG9uc2USLAoGcG9saWN5GAEgASgLMhwuYXBwcm92YWxzLnYxLkFwcHJvdmFsUG9saWN5IkkKEkxpc3RQZW5kaW5nUmVxdWVzdBIUCgx3b3Jrc3BhY2VfaWQYASABKAkSDQoFbGltaXQYAiABKAUSDgoGb2Zmc2V0GAMgASgFIlUKE0xpc3RQZW5kaW5nUmVzcG9uc2USLwoIcmVxdWVzdHMYASADKAsyHS5hcHByb3ZhbHMudjEuQXBwcm92YWxSZXF1ZXN0Eg0KBXRvdGFsGAIgASgFIigKEEdldEhhYml0c1JlcXVlc3QSFAoMd29ya3NwYWNlX2lkGAEgASgJIkAKEUdldEhhYml0c1Jlc3BvbnNlEisKBmhhYml0cxgBIAMoCzIbLmFwcHJvdmFscy52MS5BcHByb3ZhbEhhYml0Ij4KD0VzY2FsYXRlUmVxdWVzdBIbChNhcHByb3ZhbF9yZXF1ZXN0X2lkGAEgASgJEg4KBnJlYXNvbhgCIAEoCSJLChBFc2NhbGF0ZVJlc3BvbnNlEjcKEGFwcHJvdmFsX3JlcXVlc3QYASABKAsyHS5hcHByb3ZhbHMudjEuQXBwcm92YWxSZXF1ZXN0IkcKEkdldEFwcHJvdmFsUmVxdWVzdBIbChNhcHByb3ZhbF9yZXF1ZXN0X2lkGAEgASgJEhQKDHdvcmtzcGFjZV9pZBgCIAEoCSKQAQoTR2V0QXBwcm92YWxSZXNwb25zZRI3ChBhcHByb3ZhbF9yZXF1ZXN0GAEgASgLMh0uYXBwcm92YWxzLnYxLkFwcHJvdmFsUmVxdWVzdBIxCglkZWNpc2lvbnMYAiADKAsyHi5hcHByb3ZhbHMudjEuQXBwcm92YWxEZWNpc2lvbhINCgVzdGF0ZRgDIAEoCSqAAQoJUmlza0xldmVsEhoKFlJJU0tfTEVWRUxfVU5TUEVDSUZJRUQQABISCg5SSVNLX0xFVkVMX0xPVxABEhUKEVJJU0tfTEVWRUxfTUVESVVNEAISEwoPUklTS19MRVZFTF9ISUdIEAMSFwoTUklTS19MRVZFTF9DUklUSUNBTBAEKrwBCgxEZWNpc2lvblR5cGUSHQoZREVDSVNJT05fVFlQRV9VTlNQRUNJRklFRBAAEhoKFkRFQ0lTSU9OX1RZUEVfQVBQUk9WRUQQARIYChRERUNJU0lPTl9UWVBFX0RFTklFRBACEhsKF0RFQ0lTSU9OX1RZUEVfRVNDQUxBVEVEEAMSGQoVREVDSVNJT05fVFlQRV9FWFBJUkVEEAQSHwobREVDSVNJT05fVFlQRV9BVVRPX0FQUFJPVkVEEAUqlAEKD0FjdGlvbkF1dGhvcml0eRIgChxBQ1RJT05fQVVUSE9SSVRZX1VOU1BFQ0lGSUVEEAASGAoUQUNUSU9OX0FVVEhPUklUWV9PV04QARIeChpBQ1RJT05fQVVUSE9SSVRZX1JFQ09NTUVORBACEiUKIUFDVElPTl9BVVRIT1JJVFlfUkVRVUlSRV9BUFBST1ZBTBADMq4FCg9BcHByb3ZhbFNlcnZpY2USXgoPUmVxdWVzdEFwcHJvdmFsEiQuYXBwcm92YWxzLnYxLlJlcXVlc3RBcHByb3ZhbFJlcXVlc3QaJS5hcHByb3ZhbHMudjEuUmVxdWVzdEFwcHJvdmFsUmVzcG9uc2USXgoPUmVzb2x2ZUFwcHJvdmFsEiQuYXBwcm92YWxzLnYxLlJlc29sdmVBcHByb3ZhbFJlcXVlc3QaJS5hcHByb3ZhbHMudjEuUmVzb2x2ZUFwcHJvdmFsUmVzcG9uc2USTAoJR2V0UG9saWN5Eh4uYXBwcm92YWxzLnYxLkdldFBvbGljeVJlcXVlc3QaHy5hcHByb3ZhbHMudjEuR2V0UG9saWN5UmVzcG9uc2USTAoJU2V0UG9saWN5Eh4uYXBwcm92YWxzLnYxLlNldFBvbGljeVJlcXVlc3QaHy5hcHByb3ZhbHMudjEuU2V0UG9saWN5UmVzcG9uc2USUgoLTGlzdFBlbmRpbmcSIC5hcHByb3ZhbHMudjEuTGlzdFBlbmRpbmdSZXF1ZXN0GiEuYXBwcm92YWxzLnYxLkxpc3RQZW5kaW5nUmVzcG9uc2USTAoJR2V0SGFiaXRzEh4uYXBwcm92YWxzLnYxLkdldEhhYml0c1JlcXVlc3QaHy5hcHByb3ZhbHMudjEuR2V0SGFiaXRzUmVzcG9uc2USSQoIRXNjYWxhdGUSHS5hcHByb3ZhbHMudjEuRXNjYWxhdGVSZXF1ZXN0Gh4uYXBwcm92YWxzLnYxLkVzY2FsYXRlUmVzcG9uc2USUgoLR2V0QXBwcm92YWwSIC5hcHByb3ZhbHMudjEuR2V0QXBwcm92YWxSZXF1ZXN0GiEuYXBwcm92YWxzLnYxLkdldEFwcHJvdmFsUmVzcG9uc2VCOlo4Z2l0aHViLmNvbS9ldmFsb3BzL3Byb3RvL2dlbi9nby9hcHByb3ZhbHMvdjE7YXBwcm92YWxzdjFiBnByb3RvMw", [file_google_protobuf_timestamp]);
+
+/**
+ * AutoApproveConfig controls automatic approval behavior for a workspace.
+ *
+ * @generated from message approvals.v1.AutoApproveConfig
+ */
+export type AutoApproveConfig = Message<"approvals.v1.AutoApproveConfig"> & {
+  /**
+   * @generated from field: bool enabled = 1;
+   */
+  enabled: boolean;
+
+  /**
+   * minimum confidence (default 0.95)
+   *
+   * @generated from field: float threshold = 2;
+   */
+  threshold: number;
+
+  /**
+   * minimum decisions before activation (default 20)
+   *
+   * @generated from field: int32 min_observations = 3;
+   */
+  minObservations: number;
+
+  /**
+   * always require human
+   *
+   * @generated from field: repeated approvals.v1.RiskLevel excluded_risk_levels = 4;
+   */
+  excludedRiskLevels: RiskLevel[];
+};
+
+/**
+ * Describes the message approvals.v1.AutoApproveConfig.
+ * Use `create(AutoApproveConfigSchema)` to create a new message.
+ */
+export const AutoApproveConfigSchema: GenMessage<AutoApproveConfig> = /*@__PURE__*/
+  messageDesc(file_approvals_v1_approvals, 0);
+
+/**
+ * AutoApproveEvidence captures the data behind an automatic approval decision.
+ *
+ * @generated from message approvals.v1.AutoApproveEvidence
+ */
+export type AutoApproveEvidence = Message<"approvals.v1.AutoApproveEvidence"> & {
+  /**
+   * @generated from field: string pattern = 1;
+   */
+  pattern: string;
+
+  /**
+   * @generated from field: float confidence = 2;
+   */
+  confidence: number;
+
+  /**
+   * @generated from field: int32 observation_count = 3;
+   */
+  observationCount: number;
+
+  /**
+   * @generated from field: float threshold_applied = 4;
+   */
+  thresholdApplied: number;
+};
+
+/**
+ * Describes the message approvals.v1.AutoApproveEvidence.
+ * Use `create(AutoApproveEvidenceSchema)` to create a new message.
+ */
+export const AutoApproveEvidenceSchema: GenMessage<AutoApproveEvidence> = /*@__PURE__*/
+  messageDesc(file_approvals_v1_approvals, 1);
 
 /**
  * ApprovalRequest is the canonical approval request record.
@@ -81,7 +155,7 @@ export type ApprovalRequest = Message<"approvals.v1.ApprovalRequest"> & {
  * Use `create(ApprovalRequestSchema)` to create a new message.
  */
 export const ApprovalRequestSchema: GenMessage<ApprovalRequest> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 0);
+  messageDesc(file_approvals_v1_approvals, 2);
 
 /**
  * ApprovalRule defines a single rule within an approval policy.
@@ -120,7 +194,7 @@ export type ApprovalRule = Message<"approvals.v1.ApprovalRule"> & {
  * Use `create(ApprovalRuleSchema)` to create a new message.
  */
 export const ApprovalRuleSchema: GenMessage<ApprovalRule> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 1);
+  messageDesc(file_approvals_v1_approvals, 3);
 
 /**
  * ApprovalPolicy defines the set of rules for a workspace.
@@ -137,6 +211,11 @@ export type ApprovalPolicy = Message<"approvals.v1.ApprovalPolicy"> & {
    * @generated from field: repeated approvals.v1.ApprovalRule rules = 2;
    */
   rules: ApprovalRule[];
+
+  /**
+   * @generated from field: approvals.v1.AutoApproveConfig auto_approve_config = 3;
+   */
+  autoApproveConfig?: AutoApproveConfig;
 };
 
 /**
@@ -144,7 +223,7 @@ export type ApprovalPolicy = Message<"approvals.v1.ApprovalPolicy"> & {
  * Use `create(ApprovalPolicySchema)` to create a new message.
  */
 export const ApprovalPolicySchema: GenMessage<ApprovalPolicy> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 2);
+  messageDesc(file_approvals_v1_approvals, 4);
 
 /**
  * ApprovalDecision records a decision made on an approval request.
@@ -188,7 +267,7 @@ export type ApprovalDecision = Message<"approvals.v1.ApprovalDecision"> & {
  * Use `create(ApprovalDecisionSchema)` to create a new message.
  */
 export const ApprovalDecisionSchema: GenMessage<ApprovalDecision> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 3);
+  messageDesc(file_approvals_v1_approvals, 5);
 
 /**
  * ApprovalHabit captures learned patterns for auto-approval.
@@ -210,6 +289,11 @@ export type ApprovalHabit = Message<"approvals.v1.ApprovalHabit"> & {
    * @generated from field: int32 observation_count = 3;
    */
   observationCount: number;
+
+  /**
+   * @generated from field: int32 approved_count = 4;
+   */
+  approvedCount: number;
 };
 
 /**
@@ -217,7 +301,7 @@ export type ApprovalHabit = Message<"approvals.v1.ApprovalHabit"> & {
  * Use `create(ApprovalHabitSchema)` to create a new message.
  */
 export const ApprovalHabitSchema: GenMessage<ApprovalHabit> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 4);
+  messageDesc(file_approvals_v1_approvals, 6);
 
 /**
  * @generated from message approvals.v1.RequestApprovalRequest
@@ -269,7 +353,7 @@ export type RequestApprovalRequest = Message<"approvals.v1.RequestApprovalReques
  * Use `create(RequestApprovalRequestSchema)` to create a new message.
  */
 export const RequestApprovalRequestSchema: GenMessage<RequestApprovalRequest> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 5);
+  messageDesc(file_approvals_v1_approvals, 7);
 
 /**
  * @generated from message approvals.v1.RequestApprovalResponse
@@ -279,6 +363,11 @@ export type RequestApprovalResponse = Message<"approvals.v1.RequestApprovalRespo
    * @generated from field: approvals.v1.ApprovalRequest approval_request = 1;
    */
   approvalRequest?: ApprovalRequest;
+
+  /**
+   * @generated from field: approvals.v1.AutoApproveEvidence auto_approve_evidence = 2;
+   */
+  autoApproveEvidence?: AutoApproveEvidence;
 };
 
 /**
@@ -286,7 +375,7 @@ export type RequestApprovalResponse = Message<"approvals.v1.RequestApprovalRespo
  * Use `create(RequestApprovalResponseSchema)` to create a new message.
  */
 export const RequestApprovalResponseSchema: GenMessage<RequestApprovalResponse> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 6);
+  messageDesc(file_approvals_v1_approvals, 8);
 
 /**
  * @generated from message approvals.v1.ResolveApprovalRequest
@@ -318,7 +407,7 @@ export type ResolveApprovalRequest = Message<"approvals.v1.ResolveApprovalReques
  * Use `create(ResolveApprovalRequestSchema)` to create a new message.
  */
 export const ResolveApprovalRequestSchema: GenMessage<ResolveApprovalRequest> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 7);
+  messageDesc(file_approvals_v1_approvals, 9);
 
 /**
  * @generated from message approvals.v1.ResolveApprovalResponse
@@ -335,7 +424,7 @@ export type ResolveApprovalResponse = Message<"approvals.v1.ResolveApprovalRespo
  * Use `create(ResolveApprovalResponseSchema)` to create a new message.
  */
 export const ResolveApprovalResponseSchema: GenMessage<ResolveApprovalResponse> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 8);
+  messageDesc(file_approvals_v1_approvals, 10);
 
 /**
  * @generated from message approvals.v1.GetPolicyRequest
@@ -352,7 +441,7 @@ export type GetPolicyRequest = Message<"approvals.v1.GetPolicyRequest"> & {
  * Use `create(GetPolicyRequestSchema)` to create a new message.
  */
 export const GetPolicyRequestSchema: GenMessage<GetPolicyRequest> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 9);
+  messageDesc(file_approvals_v1_approvals, 11);
 
 /**
  * @generated from message approvals.v1.GetPolicyResponse
@@ -369,7 +458,7 @@ export type GetPolicyResponse = Message<"approvals.v1.GetPolicyResponse"> & {
  * Use `create(GetPolicyResponseSchema)` to create a new message.
  */
 export const GetPolicyResponseSchema: GenMessage<GetPolicyResponse> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 10);
+  messageDesc(file_approvals_v1_approvals, 12);
 
 /**
  * @generated from message approvals.v1.SetPolicyRequest
@@ -386,7 +475,7 @@ export type SetPolicyRequest = Message<"approvals.v1.SetPolicyRequest"> & {
  * Use `create(SetPolicyRequestSchema)` to create a new message.
  */
 export const SetPolicyRequestSchema: GenMessage<SetPolicyRequest> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 11);
+  messageDesc(file_approvals_v1_approvals, 13);
 
 /**
  * @generated from message approvals.v1.SetPolicyResponse
@@ -403,7 +492,7 @@ export type SetPolicyResponse = Message<"approvals.v1.SetPolicyResponse"> & {
  * Use `create(SetPolicyResponseSchema)` to create a new message.
  */
 export const SetPolicyResponseSchema: GenMessage<SetPolicyResponse> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 12);
+  messageDesc(file_approvals_v1_approvals, 14);
 
 /**
  * @generated from message approvals.v1.ListPendingRequest
@@ -430,7 +519,7 @@ export type ListPendingRequest = Message<"approvals.v1.ListPendingRequest"> & {
  * Use `create(ListPendingRequestSchema)` to create a new message.
  */
 export const ListPendingRequestSchema: GenMessage<ListPendingRequest> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 13);
+  messageDesc(file_approvals_v1_approvals, 15);
 
 /**
  * @generated from message approvals.v1.ListPendingResponse
@@ -452,7 +541,7 @@ export type ListPendingResponse = Message<"approvals.v1.ListPendingResponse"> & 
  * Use `create(ListPendingResponseSchema)` to create a new message.
  */
 export const ListPendingResponseSchema: GenMessage<ListPendingResponse> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 14);
+  messageDesc(file_approvals_v1_approvals, 16);
 
 /**
  * @generated from message approvals.v1.GetHabitsRequest
@@ -469,7 +558,7 @@ export type GetHabitsRequest = Message<"approvals.v1.GetHabitsRequest"> & {
  * Use `create(GetHabitsRequestSchema)` to create a new message.
  */
 export const GetHabitsRequestSchema: GenMessage<GetHabitsRequest> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 15);
+  messageDesc(file_approvals_v1_approvals, 17);
 
 /**
  * @generated from message approvals.v1.GetHabitsResponse
@@ -486,7 +575,7 @@ export type GetHabitsResponse = Message<"approvals.v1.GetHabitsResponse"> & {
  * Use `create(GetHabitsResponseSchema)` to create a new message.
  */
 export const GetHabitsResponseSchema: GenMessage<GetHabitsResponse> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 16);
+  messageDesc(file_approvals_v1_approvals, 18);
 
 /**
  * @generated from message approvals.v1.EscalateRequest
@@ -508,7 +597,7 @@ export type EscalateRequest = Message<"approvals.v1.EscalateRequest"> & {
  * Use `create(EscalateRequestSchema)` to create a new message.
  */
 export const EscalateRequestSchema: GenMessage<EscalateRequest> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 17);
+  messageDesc(file_approvals_v1_approvals, 19);
 
 /**
  * @generated from message approvals.v1.EscalateResponse
@@ -525,7 +614,7 @@ export type EscalateResponse = Message<"approvals.v1.EscalateResponse"> & {
  * Use `create(EscalateResponseSchema)` to create a new message.
  */
 export const EscalateResponseSchema: GenMessage<EscalateResponse> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 18);
+  messageDesc(file_approvals_v1_approvals, 20);
 
 /**
  * @generated from message approvals.v1.GetApprovalRequest
@@ -547,7 +636,7 @@ export type GetApprovalRequest = Message<"approvals.v1.GetApprovalRequest"> & {
  * Use `create(GetApprovalRequestSchema)` to create a new message.
  */
 export const GetApprovalRequestSchema: GenMessage<GetApprovalRequest> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 19);
+  messageDesc(file_approvals_v1_approvals, 21);
 
 /**
  * @generated from message approvals.v1.GetApprovalResponse
@@ -574,7 +663,7 @@ export type GetApprovalResponse = Message<"approvals.v1.GetApprovalResponse"> & 
  * Use `create(GetApprovalResponseSchema)` to create a new message.
  */
 export const GetApprovalResponseSchema: GenMessage<GetApprovalResponse> = /*@__PURE__*/
-  messageDesc(file_approvals_v1_approvals, 20);
+  messageDesc(file_approvals_v1_approvals, 22);
 
 /**
  * RiskLevel classifies the risk of an action.
@@ -644,6 +733,11 @@ export enum DecisionType {
    * @generated from enum value: DECISION_TYPE_EXPIRED = 4;
    */
   EXPIRED = 4,
+
+  /**
+   * @generated from enum value: DECISION_TYPE_AUTO_APPROVED = 5;
+   */
+  AUTO_APPROVED = 5,
 }
 
 /**
