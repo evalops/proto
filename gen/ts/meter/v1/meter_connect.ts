@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetEventDashboardRequest, GetEventDashboardResponse, IngestWideEventRequest, IngestWideEventResponse, MeterSummaryQuery, MeterSummaryResponse, QueryWideEventsRequest, QueryWideEventsResponse, RecordUsageBatchRequest, RecordUsageBatchResponse, RecordUsageRequest, RecordUsageResponse, UsageQuery, UsageQueryResponse, UsageSummaryQuery, UsageSummaryResponse } from "./meter_pb.js";
+import { GetEventDashboardRequest, GetEventDashboardResponse, GetMeterSummaryRequest, GetMeterSummaryResponse, GetUsageSummaryRequest, GetUsageSummaryResponse, IngestWideEventRequest, IngestWideEventResponse, QueryUsageRequest, QueryUsageResponse, QueryWideEventsRequest, QueryWideEventsResponse, RecordUsageBatchRequest, RecordUsageBatchResponse, RecordUsageRequest, RecordUsageResponse } from "./meter_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -37,8 +37,8 @@ export const MeterService = {
      */
     queryUsage: {
       name: "QueryUsage",
-      I: UsageQuery,
-      O: UsageQueryResponse,
+      I: QueryUsageRequest,
+      O: QueryUsageResponse,
       kind: MethodKind.Unary,
     },
     /**
@@ -46,8 +46,8 @@ export const MeterService = {
      */
     getUsageSummary: {
       name: "GetUsageSummary",
-      I: UsageSummaryQuery,
-      O: UsageSummaryResponse,
+      I: GetUsageSummaryRequest,
+      O: GetUsageSummaryResponse,
       kind: MethodKind.Unary,
     },
     /**
@@ -55,8 +55,8 @@ export const MeterService = {
      */
     getMeterSummary: {
       name: "GetMeterSummary",
-      I: MeterSummaryQuery,
-      O: MeterSummaryResponse,
+      I: GetMeterSummaryRequest,
+      O: GetMeterSummaryResponse,
       kind: MethodKind.Unary,
     },
     /**

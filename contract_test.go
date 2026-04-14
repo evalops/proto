@@ -296,7 +296,7 @@ func TestMeterRecordUsageResponseFixtureMatchesProtoContract(t *testing.T) {
 func TestMeterQueryUsageResponseFixtureMatchesProtoContract(t *testing.T) {
 	t.Parallel()
 
-	var message meterv1.UsageQueryResponse
+	var message meterv1.QueryUsageResponse
 	loadProtoJSONFixture(t, filepath.Join("proto", "meter", "v1", "testdata", "query_usage_response.json"), &message)
 
 	if len(message.GetRecords()) != 2 {
@@ -310,10 +310,10 @@ func TestMeterQueryUsageResponseFixtureMatchesProtoContract(t *testing.T) {
 	}
 }
 
-func TestMeterUsageSummaryResponseFixtureMatchesProtoContract(t *testing.T) {
+func TestMeterGetUsageSummaryResponseFixtureMatchesProtoContract(t *testing.T) {
 	t.Parallel()
 
-	var message meterv1.UsageSummaryResponse
+	var message meterv1.GetUsageSummaryResponse
 	loadProtoJSONFixture(t, filepath.Join("proto", "meter", "v1", "testdata", "usage_summary_response.json"), &message)
 
 	if len(message.GetBuckets()) != 2 {
@@ -327,10 +327,10 @@ func TestMeterUsageSummaryResponseFixtureMatchesProtoContract(t *testing.T) {
 	}
 }
 
-func TestMeterSummaryResponseFixtureMatchesProtoContract(t *testing.T) {
+func TestMeterGetMeterSummaryResponseFixtureMatchesProtoContract(t *testing.T) {
 	t.Parallel()
 
-	var message meterv1.MeterSummaryResponse
+	var message meterv1.GetMeterSummaryResponse
 	loadProtoJSONFixture(t, filepath.Join("proto", "meter", "v1", "testdata", "meter_summary_response.json"), &message)
 
 	if message.GetMeterId() != "input_tokens" {

@@ -11,9 +11,9 @@ import "google/protobuf/timestamp.proto";
 service MeterService {
   rpc RecordUsage(RecordUsageRequest) returns (RecordUsageResponse);
   rpc RecordUsageBatch(RecordUsageBatchRequest) returns (RecordUsageBatchResponse);
-  rpc QueryUsage(UsageQuery) returns (UsageQueryResponse);
-  rpc GetUsageSummary(UsageSummaryQuery) returns (UsageSummaryResponse);
-  rpc GetMeterSummary(MeterSummaryQuery) returns (MeterSummaryResponse);
+  rpc QueryUsage(QueryUsageRequest) returns (QueryUsageResponse);
+  rpc GetUsageSummary(GetUsageSummaryRequest) returns (GetUsageSummaryResponse);
+  rpc GetMeterSummary(GetMeterSummaryRequest) returns (GetMeterSummaryResponse);
   rpc IngestWideEvent(IngestWideEventRequest) returns (IngestWideEventResponse);
   rpc QueryWideEvents(QueryWideEventsRequest) returns (QueryWideEventsResponse);
   rpc GetEventDashboard(GetEventDashboardRequest) returns (GetEventDashboardResponse);
@@ -79,7 +79,7 @@ message UsageRecord {
   google.protobuf.Timestamp created_at = 18;
 }
 
-message UsageQuery {
+message QueryUsageRequest {
   string team_id = 1;
   string agent_id = 2;
   string event_type = 3;
@@ -91,11 +91,11 @@ message UsageQuery {
   google.protobuf.Timestamp end_time = 9;
 }
 
-message UsageQueryResponse {
+message QueryUsageResponse {
   repeated UsageRecord records = 1;
 }
 
-message UsageSummaryQuery {
+message GetUsageSummaryRequest {
   string team_id = 1;
   string agent_id = 2;
   SummaryGroupBy group_by = 3;
@@ -116,11 +116,11 @@ message UsageSummary {
   int64 record_count = 7;
 }
 
-message UsageSummaryResponse {
+message GetUsageSummaryResponse {
   repeated UsageSummary buckets = 1;
 }
 
-message MeterSummaryQuery {
+message GetMeterSummaryRequest {
   string meter_id = 1;
   string team_id = 2;
   string agent_id = 3;
@@ -135,7 +135,7 @@ message MeterSummaryBucket {
   int64 record_count = 3;
 }
 
-message MeterSummaryResponse {
+message GetMeterSummaryResponse {
   string meter_id = 1;
   repeated MeterSummaryBucket buckets = 2;
 }
