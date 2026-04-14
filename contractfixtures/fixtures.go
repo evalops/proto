@@ -43,9 +43,9 @@ const (
 	MeterRecordUsageRequestLLMGatewayResponses  = "meter/v1/testdata/record_usage_request_llm_gateway_responses.json"
 	MeterRecordUsageRequest                     = "meter/v1/testdata/record_usage_request.json"
 	MeterRecordUsageResponse                    = "meter/v1/testdata/record_usage_response.json"
-	MeterUsageQueryResponse                     = "meter/v1/testdata/query_usage_response.json"
-	MeterUsageSummaryResponse                   = "meter/v1/testdata/usage_summary_response.json"
-	MeterMeterSummaryResponse                   = "meter/v1/testdata/meter_summary_response.json"
+	MeterQueryUsageResponse                     = "meter/v1/testdata/query_usage_response.json"
+	MeterGetUsageSummaryResponse                = "meter/v1/testdata/usage_summary_response.json"
+	MeterGetMeterSummaryResponse                = "meter/v1/testdata/meter_summary_response.json"
 	NotificationsGetPreferencesResponse         = "notifications/v1/testdata/get_preferences_response.json"
 	ObjectivesCreateResponse                    = "objectives/v1/testdata/create_response.json"
 	SkillsSearchResponse                        = "skills/v1/testdata/search_response.json"
@@ -80,12 +80,12 @@ var fixtureCatalog = []string{
 	KeysResolveProviderRefResponse,
 	MemoryRecallResponse,
 	MemoryStoreRequest,
-	MeterMeterSummaryResponse,
+	MeterGetMeterSummaryResponse,
 	MeterRecordUsageRequest,
 	MeterRecordUsageRequestLLMGatewayResponses,
 	MeterRecordUsageResponse,
-	MeterUsageQueryResponse,
-	MeterUsageSummaryResponse,
+	MeterQueryUsageResponse,
+	MeterGetUsageSummaryResponse,
 	NotificationsGetPreferencesResponse,
 	ObjectivesCreateResponse,
 	SkillsSearchResponse,
