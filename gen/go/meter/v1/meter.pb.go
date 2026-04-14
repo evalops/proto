@@ -544,7 +544,7 @@ func (x *UsageRecord) GetCreatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-type UsageQuery struct {
+type QueryUsageRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TeamId        string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	AgentId       string                 `protobuf:"bytes,2,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`
@@ -559,20 +559,20 @@ type UsageQuery struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UsageQuery) Reset() {
-	*x = UsageQuery{}
+func (x *QueryUsageRequest) Reset() {
+	*x = QueryUsageRequest{}
 	mi := &file_meter_v1_meter_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UsageQuery) String() string {
+func (x *QueryUsageRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UsageQuery) ProtoMessage() {}
+func (*QueryUsageRequest) ProtoMessage() {}
 
-func (x *UsageQuery) ProtoReflect() protoreflect.Message {
+func (x *QueryUsageRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_meter_v1_meter_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -584,95 +584,95 @@ func (x *UsageQuery) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UsageQuery.ProtoReflect.Descriptor instead.
-func (*UsageQuery) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryUsageRequest.ProtoReflect.Descriptor instead.
+func (*QueryUsageRequest) Descriptor() ([]byte, []int) {
 	return file_meter_v1_meter_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *UsageQuery) GetTeamId() string {
+func (x *QueryUsageRequest) GetTeamId() string {
 	if x != nil {
 		return x.TeamId
 	}
 	return ""
 }
 
-func (x *UsageQuery) GetAgentId() string {
+func (x *QueryUsageRequest) GetAgentId() string {
 	if x != nil {
 		return x.AgentId
 	}
 	return ""
 }
 
-func (x *UsageQuery) GetEventType() string {
+func (x *QueryUsageRequest) GetEventType() string {
 	if x != nil {
 		return x.EventType
 	}
 	return ""
 }
 
-func (x *UsageQuery) GetModel() string {
+func (x *QueryUsageRequest) GetModel() string {
 	if x != nil {
 		return x.Model
 	}
 	return ""
 }
 
-func (x *UsageQuery) GetProvider() string {
+func (x *QueryUsageRequest) GetProvider() string {
 	if x != nil {
 		return x.Provider
 	}
 	return ""
 }
 
-func (x *UsageQuery) GetMetadataKey() string {
+func (x *QueryUsageRequest) GetMetadataKey() string {
 	if x != nil {
 		return x.MetadataKey
 	}
 	return ""
 }
 
-func (x *UsageQuery) GetMetadataValue() string {
+func (x *QueryUsageRequest) GetMetadataValue() string {
 	if x != nil {
 		return x.MetadataValue
 	}
 	return ""
 }
 
-func (x *UsageQuery) GetStartTime() *timestamppb.Timestamp {
+func (x *QueryUsageRequest) GetStartTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.StartTime
 	}
 	return nil
 }
 
-func (x *UsageQuery) GetEndTime() *timestamppb.Timestamp {
+func (x *QueryUsageRequest) GetEndTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.EndTime
 	}
 	return nil
 }
 
-type UsageQueryResponse struct {
+type QueryUsageResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Records       []*UsageRecord         `protobuf:"bytes,1,rep,name=records,proto3" json:"records,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UsageQueryResponse) Reset() {
-	*x = UsageQueryResponse{}
+func (x *QueryUsageResponse) Reset() {
+	*x = QueryUsageResponse{}
 	mi := &file_meter_v1_meter_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UsageQueryResponse) String() string {
+func (x *QueryUsageResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UsageQueryResponse) ProtoMessage() {}
+func (*QueryUsageResponse) ProtoMessage() {}
 
-func (x *UsageQueryResponse) ProtoReflect() protoreflect.Message {
+func (x *QueryUsageResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_meter_v1_meter_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -684,19 +684,19 @@ func (x *UsageQueryResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UsageQueryResponse.ProtoReflect.Descriptor instead.
-func (*UsageQueryResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use QueryUsageResponse.ProtoReflect.Descriptor instead.
+func (*QueryUsageResponse) Descriptor() ([]byte, []int) {
 	return file_meter_v1_meter_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *UsageQueryResponse) GetRecords() []*UsageRecord {
+func (x *QueryUsageResponse) GetRecords() []*UsageRecord {
 	if x != nil {
 		return x.Records
 	}
 	return nil
 }
 
-type UsageSummaryQuery struct {
+type GetUsageSummaryRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	TeamId           string                 `protobuf:"bytes,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
 	AgentId          string                 `protobuf:"bytes,2,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`
@@ -710,20 +710,20 @@ type UsageSummaryQuery struct {
 	sizeCache        protoimpl.SizeCache
 }
 
-func (x *UsageSummaryQuery) Reset() {
-	*x = UsageSummaryQuery{}
+func (x *GetUsageSummaryRequest) Reset() {
+	*x = GetUsageSummaryRequest{}
 	mi := &file_meter_v1_meter_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UsageSummaryQuery) String() string {
+func (x *GetUsageSummaryRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UsageSummaryQuery) ProtoMessage() {}
+func (*GetUsageSummaryRequest) ProtoMessage() {}
 
-func (x *UsageSummaryQuery) ProtoReflect() protoreflect.Message {
+func (x *GetUsageSummaryRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_meter_v1_meter_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -735,61 +735,61 @@ func (x *UsageSummaryQuery) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UsageSummaryQuery.ProtoReflect.Descriptor instead.
-func (*UsageSummaryQuery) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetUsageSummaryRequest.ProtoReflect.Descriptor instead.
+func (*GetUsageSummaryRequest) Descriptor() ([]byte, []int) {
 	return file_meter_v1_meter_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *UsageSummaryQuery) GetTeamId() string {
+func (x *GetUsageSummaryRequest) GetTeamId() string {
 	if x != nil {
 		return x.TeamId
 	}
 	return ""
 }
 
-func (x *UsageSummaryQuery) GetAgentId() string {
+func (x *GetUsageSummaryRequest) GetAgentId() string {
 	if x != nil {
 		return x.AgentId
 	}
 	return ""
 }
 
-func (x *UsageSummaryQuery) GetGroupBy() SummaryGroupBy {
+func (x *GetUsageSummaryRequest) GetGroupBy() SummaryGroupBy {
 	if x != nil {
 		return x.GroupBy
 	}
 	return SummaryGroupBy_SUMMARY_GROUP_BY_UNSPECIFIED
 }
 
-func (x *UsageSummaryQuery) GetGroupMetadataKey() string {
+func (x *GetUsageSummaryRequest) GetGroupMetadataKey() string {
 	if x != nil {
 		return x.GroupMetadataKey
 	}
 	return ""
 }
 
-func (x *UsageSummaryQuery) GetMetadataKey() string {
+func (x *GetUsageSummaryRequest) GetMetadataKey() string {
 	if x != nil {
 		return x.MetadataKey
 	}
 	return ""
 }
 
-func (x *UsageSummaryQuery) GetMetadataValue() string {
+func (x *GetUsageSummaryRequest) GetMetadataValue() string {
 	if x != nil {
 		return x.MetadataValue
 	}
 	return ""
 }
 
-func (x *UsageSummaryQuery) GetStartTime() *timestamppb.Timestamp {
+func (x *GetUsageSummaryRequest) GetStartTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.StartTime
 	}
 	return nil
 }
 
-func (x *UsageSummaryQuery) GetEndTime() *timestamppb.Timestamp {
+func (x *GetUsageSummaryRequest) GetEndTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.EndTime
 	}
@@ -888,27 +888,27 @@ func (x *UsageSummary) GetRecordCount() int64 {
 	return 0
 }
 
-type UsageSummaryResponse struct {
+type GetUsageSummaryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Buckets       []*UsageSummary        `protobuf:"bytes,1,rep,name=buckets,proto3" json:"buckets,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UsageSummaryResponse) Reset() {
-	*x = UsageSummaryResponse{}
+func (x *GetUsageSummaryResponse) Reset() {
+	*x = GetUsageSummaryResponse{}
 	mi := &file_meter_v1_meter_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UsageSummaryResponse) String() string {
+func (x *GetUsageSummaryResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UsageSummaryResponse) ProtoMessage() {}
+func (*GetUsageSummaryResponse) ProtoMessage() {}
 
-func (x *UsageSummaryResponse) ProtoReflect() protoreflect.Message {
+func (x *GetUsageSummaryResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_meter_v1_meter_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -920,19 +920,19 @@ func (x *UsageSummaryResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UsageSummaryResponse.ProtoReflect.Descriptor instead.
-func (*UsageSummaryResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetUsageSummaryResponse.ProtoReflect.Descriptor instead.
+func (*GetUsageSummaryResponse) Descriptor() ([]byte, []int) {
 	return file_meter_v1_meter_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *UsageSummaryResponse) GetBuckets() []*UsageSummary {
+func (x *GetUsageSummaryResponse) GetBuckets() []*UsageSummary {
 	if x != nil {
 		return x.Buckets
 	}
 	return nil
 }
 
-type MeterSummaryQuery struct {
+type GetMeterSummaryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	MeterId       string                 `protobuf:"bytes,1,opt,name=meter_id,json=meterId,proto3" json:"meter_id,omitempty"`
 	TeamId        string                 `protobuf:"bytes,2,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
@@ -944,20 +944,20 @@ type MeterSummaryQuery struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MeterSummaryQuery) Reset() {
-	*x = MeterSummaryQuery{}
+func (x *GetMeterSummaryRequest) Reset() {
+	*x = GetMeterSummaryRequest{}
 	mi := &file_meter_v1_meter_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MeterSummaryQuery) String() string {
+func (x *GetMeterSummaryRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MeterSummaryQuery) ProtoMessage() {}
+func (*GetMeterSummaryRequest) ProtoMessage() {}
 
-func (x *MeterSummaryQuery) ProtoReflect() protoreflect.Message {
+func (x *GetMeterSummaryRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_meter_v1_meter_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -969,47 +969,47 @@ func (x *MeterSummaryQuery) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MeterSummaryQuery.ProtoReflect.Descriptor instead.
-func (*MeterSummaryQuery) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetMeterSummaryRequest.ProtoReflect.Descriptor instead.
+func (*GetMeterSummaryRequest) Descriptor() ([]byte, []int) {
 	return file_meter_v1_meter_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *MeterSummaryQuery) GetMeterId() string {
+func (x *GetMeterSummaryRequest) GetMeterId() string {
 	if x != nil {
 		return x.MeterId
 	}
 	return ""
 }
 
-func (x *MeterSummaryQuery) GetTeamId() string {
+func (x *GetMeterSummaryRequest) GetTeamId() string {
 	if x != nil {
 		return x.TeamId
 	}
 	return ""
 }
 
-func (x *MeterSummaryQuery) GetAgentId() string {
+func (x *GetMeterSummaryRequest) GetAgentId() string {
 	if x != nil {
 		return x.AgentId
 	}
 	return ""
 }
 
-func (x *MeterSummaryQuery) GetGroupBy() SummaryGroupBy {
+func (x *GetMeterSummaryRequest) GetGroupBy() SummaryGroupBy {
 	if x != nil {
 		return x.GroupBy
 	}
 	return SummaryGroupBy_SUMMARY_GROUP_BY_UNSPECIFIED
 }
 
-func (x *MeterSummaryQuery) GetStartTime() *timestamppb.Timestamp {
+func (x *GetMeterSummaryRequest) GetStartTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.StartTime
 	}
 	return nil
 }
 
-func (x *MeterSummaryQuery) GetEndTime() *timestamppb.Timestamp {
+func (x *GetMeterSummaryRequest) GetEndTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.EndTime
 	}
@@ -1076,7 +1076,7 @@ func (x *MeterSummaryBucket) GetRecordCount() int64 {
 	return 0
 }
 
-type MeterSummaryResponse struct {
+type GetMeterSummaryResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	MeterId       string                 `protobuf:"bytes,1,opt,name=meter_id,json=meterId,proto3" json:"meter_id,omitempty"`
 	Buckets       []*MeterSummaryBucket  `protobuf:"bytes,2,rep,name=buckets,proto3" json:"buckets,omitempty"`
@@ -1084,20 +1084,20 @@ type MeterSummaryResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MeterSummaryResponse) Reset() {
-	*x = MeterSummaryResponse{}
+func (x *GetMeterSummaryResponse) Reset() {
+	*x = GetMeterSummaryResponse{}
 	mi := &file_meter_v1_meter_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MeterSummaryResponse) String() string {
+func (x *GetMeterSummaryResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MeterSummaryResponse) ProtoMessage() {}
+func (*GetMeterSummaryResponse) ProtoMessage() {}
 
-func (x *MeterSummaryResponse) ProtoReflect() protoreflect.Message {
+func (x *GetMeterSummaryResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_meter_v1_meter_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1109,19 +1109,19 @@ func (x *MeterSummaryResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MeterSummaryResponse.ProtoReflect.Descriptor instead.
-func (*MeterSummaryResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetMeterSummaryResponse.ProtoReflect.Descriptor instead.
+func (*GetMeterSummaryResponse) Descriptor() ([]byte, []int) {
 	return file_meter_v1_meter_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *MeterSummaryResponse) GetMeterId() string {
+func (x *GetMeterSummaryResponse) GetMeterId() string {
 	if x != nil {
 		return x.MeterId
 	}
 	return ""
 }
 
-func (x *MeterSummaryResponse) GetBuckets() []*MeterSummaryBucket {
+func (x *GetMeterSummaryResponse) GetBuckets() []*MeterSummaryBucket {
 	if x != nil {
 		return x.Buckets
 	}
@@ -2087,9 +2087,8 @@ const file_meter_v1_meter_proto_rawDesc = "" +
 	"\x04data\x18\x10 \x01(\v2\x17.google.protobuf.StructR\x04data\x123\n" +
 	"\bmetadata\x18\x11 \x01(\v2\x17.google.protobuf.StructR\bmetadata\x129\n" +
 	"\n" +
-	"created_at\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xcd\x02\n" +
-	"\n" +
-	"UsageQuery\x12\x17\n" +
+	"created_at\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\"\xd4\x02\n" +
+	"\x11QueryUsageRequest\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x19\n" +
 	"\bagent_id\x18\x02 \x01(\tR\aagentId\x12\x1d\n" +
 	"\n" +
@@ -2101,9 +2100,9 @@ const file_meter_v1_meter_proto_rawDesc = "" +
 	"\n" +
 	"start_time\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tstartTime\x125\n" +
 	"\bend_time\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\aendTime\"E\n" +
-	"\x12UsageQueryResponse\x12/\n" +
-	"\arecords\x18\x01 \x03(\v2\x15.meter.v1.UsageRecordR\arecords\"\xe6\x02\n" +
-	"\x11UsageSummaryQuery\x12\x17\n" +
+	"\x12QueryUsageResponse\x12/\n" +
+	"\arecords\x18\x01 \x03(\v2\x15.meter.v1.UsageRecordR\arecords\"\xeb\x02\n" +
+	"\x16GetUsageSummaryRequest\x12\x17\n" +
 	"\ateam_id\x18\x01 \x01(\tR\x06teamId\x12\x19\n" +
 	"\bagent_id\x18\x02 \x01(\tR\aagentId\x123\n" +
 	"\bgroup_by\x18\x03 \x01(\x0e2\x18.meter.v1.SummaryGroupByR\agroupBy\x12,\n" +
@@ -2120,10 +2119,10 @@ const file_meter_v1_meter_proto_rawDesc = "" +
 	"\x17total_cache_read_tokens\x18\x04 \x01(\x03R\x14totalCacheReadTokens\x127\n" +
 	"\x18total_cache_write_tokens\x18\x05 \x01(\x03R\x15totalCacheWriteTokens\x12$\n" +
 	"\x0etotal_cost_usd\x18\x06 \x01(\x01R\ftotalCostUsd\x12!\n" +
-	"\frecord_count\x18\a \x01(\x03R\vrecordCount\"H\n" +
-	"\x14UsageSummaryResponse\x120\n" +
-	"\abuckets\x18\x01 \x03(\v2\x16.meter.v1.UsageSummaryR\abuckets\"\x89\x02\n" +
-	"\x11MeterSummaryQuery\x12\x19\n" +
+	"\frecord_count\x18\a \x01(\x03R\vrecordCount\"K\n" +
+	"\x17GetUsageSummaryResponse\x120\n" +
+	"\abuckets\x18\x01 \x03(\v2\x16.meter.v1.UsageSummaryR\abuckets\"\x8e\x02\n" +
+	"\x16GetMeterSummaryRequest\x12\x19\n" +
 	"\bmeter_id\x18\x01 \x01(\tR\ameterId\x12\x17\n" +
 	"\ateam_id\x18\x02 \x01(\tR\x06teamId\x12\x19\n" +
 	"\bagent_id\x18\x03 \x01(\tR\aagentId\x123\n" +
@@ -2134,8 +2133,8 @@ const file_meter_v1_meter_proto_rawDesc = "" +
 	"\x12MeterSummaryBucket\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\x01R\x05value\x12!\n" +
-	"\frecord_count\x18\x03 \x01(\x03R\vrecordCount\"i\n" +
-	"\x14MeterSummaryResponse\x12\x19\n" +
+	"\frecord_count\x18\x03 \x01(\x03R\vrecordCount\"l\n" +
+	"\x17GetMeterSummaryResponse\x12\x19\n" +
 	"\bmeter_id\x18\x01 \x01(\tR\ameterId\x126\n" +
 	"\abuckets\x18\x02 \x03(\v2\x1c.meter.v1.MeterSummaryBucketR\abuckets\"\xd9\x02\n" +
 	"\x10WideEventMetrics\x12!\n" +
@@ -2244,14 +2243,14 @@ const file_meter_v1_meter_proto_rawDesc = "" +
 	"\x15SUMMARY_GROUP_BY_TEAM\x10\x03\x12\x1a\n" +
 	"\x16SUMMARY_GROUP_BY_AGENT\x10\x04\x12\x1c\n" +
 	"\x18SUMMARY_GROUP_BY_SURFACE\x10\x05\x12\x1d\n" +
-	"\x19SUMMARY_GROUP_BY_METADATA\x10\x062\xa5\x05\n" +
+	"\x19SUMMARY_GROUP_BY_METADATA\x10\x062\xbc\x05\n" +
 	"\fMeterService\x12J\n" +
 	"\vRecordUsage\x12\x1c.meter.v1.RecordUsageRequest\x1a\x1d.meter.v1.RecordUsageResponse\x12Y\n" +
-	"\x10RecordUsageBatch\x12!.meter.v1.RecordUsageBatchRequest\x1a\".meter.v1.RecordUsageBatchResponse\x12@\n" +
+	"\x10RecordUsageBatch\x12!.meter.v1.RecordUsageBatchRequest\x1a\".meter.v1.RecordUsageBatchResponse\x12G\n" +
 	"\n" +
-	"QueryUsage\x12\x14.meter.v1.UsageQuery\x1a\x1c.meter.v1.UsageQueryResponse\x12N\n" +
-	"\x0fGetUsageSummary\x12\x1b.meter.v1.UsageSummaryQuery\x1a\x1e.meter.v1.UsageSummaryResponse\x12N\n" +
-	"\x0fGetMeterSummary\x12\x1b.meter.v1.MeterSummaryQuery\x1a\x1e.meter.v1.MeterSummaryResponse\x12V\n" +
+	"QueryUsage\x12\x1b.meter.v1.QueryUsageRequest\x1a\x1c.meter.v1.QueryUsageResponse\x12V\n" +
+	"\x0fGetUsageSummary\x12 .meter.v1.GetUsageSummaryRequest\x1a!.meter.v1.GetUsageSummaryResponse\x12V\n" +
+	"\x0fGetMeterSummary\x12 .meter.v1.GetMeterSummaryRequest\x1a!.meter.v1.GetMeterSummaryResponse\x12V\n" +
 	"\x0fIngestWideEvent\x12 .meter.v1.IngestWideEventRequest\x1a!.meter.v1.IngestWideEventResponse\x12V\n" +
 	"\x0fQueryWideEvents\x12 .meter.v1.QueryWideEventsRequest\x1a!.meter.v1.QueryWideEventsResponse\x12\\\n" +
 	"\x11GetEventDashboard\x12\".meter.v1.GetEventDashboardRequest\x1a#.meter.v1.GetEventDashboardResponseB2Z0github.com/evalops/proto/gen/go/meter/v1;meterv1b\x06proto3"
@@ -2277,14 +2276,14 @@ var file_meter_v1_meter_proto_goTypes = []any{
 	(*RecordUsageBatchRequest)(nil),   // 3: meter.v1.RecordUsageBatchRequest
 	(*RecordUsageBatchResponse)(nil),  // 4: meter.v1.RecordUsageBatchResponse
 	(*UsageRecord)(nil),               // 5: meter.v1.UsageRecord
-	(*UsageQuery)(nil),                // 6: meter.v1.UsageQuery
-	(*UsageQueryResponse)(nil),        // 7: meter.v1.UsageQueryResponse
-	(*UsageSummaryQuery)(nil),         // 8: meter.v1.UsageSummaryQuery
+	(*QueryUsageRequest)(nil),         // 6: meter.v1.QueryUsageRequest
+	(*QueryUsageResponse)(nil),        // 7: meter.v1.QueryUsageResponse
+	(*GetUsageSummaryRequest)(nil),    // 8: meter.v1.GetUsageSummaryRequest
 	(*UsageSummary)(nil),              // 9: meter.v1.UsageSummary
-	(*UsageSummaryResponse)(nil),      // 10: meter.v1.UsageSummaryResponse
-	(*MeterSummaryQuery)(nil),         // 11: meter.v1.MeterSummaryQuery
+	(*GetUsageSummaryResponse)(nil),   // 10: meter.v1.GetUsageSummaryResponse
+	(*GetMeterSummaryRequest)(nil),    // 11: meter.v1.GetMeterSummaryRequest
 	(*MeterSummaryBucket)(nil),        // 12: meter.v1.MeterSummaryBucket
-	(*MeterSummaryResponse)(nil),      // 13: meter.v1.MeterSummaryResponse
+	(*GetMeterSummaryResponse)(nil),   // 13: meter.v1.GetMeterSummaryResponse
 	(*WideEventMetrics)(nil),          // 14: meter.v1.WideEventMetrics
 	(*IngestWideEventRequest)(nil),    // 15: meter.v1.IngestWideEventRequest
 	(*WideEvent)(nil),                 // 16: meter.v1.WideEvent
@@ -2307,17 +2306,17 @@ var file_meter_v1_meter_proto_depIdxs = []int32{
 	23, // 6: meter.v1.UsageRecord.data:type_name -> google.protobuf.Struct
 	23, // 7: meter.v1.UsageRecord.metadata:type_name -> google.protobuf.Struct
 	24, // 8: meter.v1.UsageRecord.created_at:type_name -> google.protobuf.Timestamp
-	24, // 9: meter.v1.UsageQuery.start_time:type_name -> google.protobuf.Timestamp
-	24, // 10: meter.v1.UsageQuery.end_time:type_name -> google.protobuf.Timestamp
-	5,  // 11: meter.v1.UsageQueryResponse.records:type_name -> meter.v1.UsageRecord
-	0,  // 12: meter.v1.UsageSummaryQuery.group_by:type_name -> meter.v1.SummaryGroupBy
-	24, // 13: meter.v1.UsageSummaryQuery.start_time:type_name -> google.protobuf.Timestamp
-	24, // 14: meter.v1.UsageSummaryQuery.end_time:type_name -> google.protobuf.Timestamp
-	9,  // 15: meter.v1.UsageSummaryResponse.buckets:type_name -> meter.v1.UsageSummary
-	0,  // 16: meter.v1.MeterSummaryQuery.group_by:type_name -> meter.v1.SummaryGroupBy
-	24, // 17: meter.v1.MeterSummaryQuery.start_time:type_name -> google.protobuf.Timestamp
-	24, // 18: meter.v1.MeterSummaryQuery.end_time:type_name -> google.protobuf.Timestamp
-	12, // 19: meter.v1.MeterSummaryResponse.buckets:type_name -> meter.v1.MeterSummaryBucket
+	24, // 9: meter.v1.QueryUsageRequest.start_time:type_name -> google.protobuf.Timestamp
+	24, // 10: meter.v1.QueryUsageRequest.end_time:type_name -> google.protobuf.Timestamp
+	5,  // 11: meter.v1.QueryUsageResponse.records:type_name -> meter.v1.UsageRecord
+	0,  // 12: meter.v1.GetUsageSummaryRequest.group_by:type_name -> meter.v1.SummaryGroupBy
+	24, // 13: meter.v1.GetUsageSummaryRequest.start_time:type_name -> google.protobuf.Timestamp
+	24, // 14: meter.v1.GetUsageSummaryRequest.end_time:type_name -> google.protobuf.Timestamp
+	9,  // 15: meter.v1.GetUsageSummaryResponse.buckets:type_name -> meter.v1.UsageSummary
+	0,  // 16: meter.v1.GetMeterSummaryRequest.group_by:type_name -> meter.v1.SummaryGroupBy
+	24, // 17: meter.v1.GetMeterSummaryRequest.start_time:type_name -> google.protobuf.Timestamp
+	24, // 18: meter.v1.GetMeterSummaryRequest.end_time:type_name -> google.protobuf.Timestamp
+	12, // 19: meter.v1.GetMeterSummaryResponse.buckets:type_name -> meter.v1.MeterSummaryBucket
 	24, // 20: meter.v1.IngestWideEventRequest.timestamp:type_name -> google.protobuf.Timestamp
 	23, // 21: meter.v1.IngestWideEventRequest.metadata:type_name -> google.protobuf.Struct
 	23, // 22: meter.v1.IngestWideEventRequest.data:type_name -> google.protobuf.Struct
@@ -2339,17 +2338,17 @@ var file_meter_v1_meter_proto_depIdxs = []int32{
 	21, // 38: meter.v1.GetEventDashboardResponse.by_provider:type_name -> meter.v1.EventDashboardBucket
 	1,  // 39: meter.v1.MeterService.RecordUsage:input_type -> meter.v1.RecordUsageRequest
 	3,  // 40: meter.v1.MeterService.RecordUsageBatch:input_type -> meter.v1.RecordUsageBatchRequest
-	6,  // 41: meter.v1.MeterService.QueryUsage:input_type -> meter.v1.UsageQuery
-	8,  // 42: meter.v1.MeterService.GetUsageSummary:input_type -> meter.v1.UsageSummaryQuery
-	11, // 43: meter.v1.MeterService.GetMeterSummary:input_type -> meter.v1.MeterSummaryQuery
+	6,  // 41: meter.v1.MeterService.QueryUsage:input_type -> meter.v1.QueryUsageRequest
+	8,  // 42: meter.v1.MeterService.GetUsageSummary:input_type -> meter.v1.GetUsageSummaryRequest
+	11, // 43: meter.v1.MeterService.GetMeterSummary:input_type -> meter.v1.GetMeterSummaryRequest
 	15, // 44: meter.v1.MeterService.IngestWideEvent:input_type -> meter.v1.IngestWideEventRequest
 	18, // 45: meter.v1.MeterService.QueryWideEvents:input_type -> meter.v1.QueryWideEventsRequest
 	20, // 46: meter.v1.MeterService.GetEventDashboard:input_type -> meter.v1.GetEventDashboardRequest
 	2,  // 47: meter.v1.MeterService.RecordUsage:output_type -> meter.v1.RecordUsageResponse
 	4,  // 48: meter.v1.MeterService.RecordUsageBatch:output_type -> meter.v1.RecordUsageBatchResponse
-	7,  // 49: meter.v1.MeterService.QueryUsage:output_type -> meter.v1.UsageQueryResponse
-	10, // 50: meter.v1.MeterService.GetUsageSummary:output_type -> meter.v1.UsageSummaryResponse
-	13, // 51: meter.v1.MeterService.GetMeterSummary:output_type -> meter.v1.MeterSummaryResponse
+	7,  // 49: meter.v1.MeterService.QueryUsage:output_type -> meter.v1.QueryUsageResponse
+	10, // 50: meter.v1.MeterService.GetUsageSummary:output_type -> meter.v1.GetUsageSummaryResponse
+	13, // 51: meter.v1.MeterService.GetMeterSummary:output_type -> meter.v1.GetMeterSummaryResponse
 	17, // 52: meter.v1.MeterService.IngestWideEvent:output_type -> meter.v1.IngestWideEventResponse
 	19, // 53: meter.v1.MeterService.QueryWideEvents:output_type -> meter.v1.QueryWideEventsResponse
 	22, // 54: meter.v1.MeterService.GetEventDashboard:output_type -> meter.v1.GetEventDashboardResponse
