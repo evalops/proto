@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { EscalateRequest, EscalateResponse, GetHabitsRequest, GetHabitsResponse, GetPolicyRequest, GetPolicyResponse, ListPendingRequest, ListPendingResponse, RequestApprovalRequest, RequestApprovalResponse, ResolveApprovalRequest, ResolveApprovalResponse, SetPolicyRequest, SetPolicyResponse } from "./approvals_pb.js";
+import { EscalateRequest, EscalateResponse, GetApprovalRequest, GetApprovalResponse, GetHabitsRequest, GetHabitsResponse, GetPolicyRequest, GetPolicyResponse, ListPendingRequest, ListPendingResponse, RequestApprovalRequest, RequestApprovalResponse, ResolveApprovalRequest, ResolveApprovalResponse, SetPolicyRequest, SetPolicyResponse } from "./approvals_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -30,6 +30,15 @@ export const ApprovalService = {
       name: "ResolveApproval",
       I: ResolveApprovalRequest,
       O: ResolveApprovalResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc approvals.v1.ApprovalService.GetApproval
+     */
+    getApproval: {
+      name: "GetApproval",
+      I: GetApprovalRequest,
+      O: GetApprovalResponse,
       kind: MethodKind.Unary,
     },
     /**

@@ -39,6 +39,9 @@ const (
 	// ApprovalServiceResolveApprovalProcedure is the fully-qualified name of the ApprovalService's
 	// ResolveApproval RPC.
 	ApprovalServiceResolveApprovalProcedure = "/approvals.v1.ApprovalService/ResolveApproval"
+	// ApprovalServiceGetApprovalProcedure is the fully-qualified name of the ApprovalService's
+	// GetApproval RPC.
+	ApprovalServiceGetApprovalProcedure = "/approvals.v1.ApprovalService/GetApproval"
 	// ApprovalServiceGetPolicyProcedure is the fully-qualified name of the ApprovalService's GetPolicy
 	// RPC.
 	ApprovalServiceGetPolicyProcedure = "/approvals.v1.ApprovalService/GetPolicy"
@@ -60,6 +63,7 @@ const (
 type ApprovalServiceClient interface {
 	RequestApproval(context.Context, *connect.Request[v1.RequestApprovalRequest]) (*connect.Response[v1.RequestApprovalResponse], error)
 	ResolveApproval(context.Context, *connect.Request[v1.ResolveApprovalRequest]) (*connect.Response[v1.ResolveApprovalResponse], error)
+	GetApproval(context.Context, *connect.Request[v1.GetApprovalRequest]) (*connect.Response[v1.GetApprovalResponse], error)
 	GetPolicy(context.Context, *connect.Request[v1.GetPolicyRequest]) (*connect.Response[v1.GetPolicyResponse], error)
 	SetPolicy(context.Context, *connect.Request[v1.SetPolicyRequest]) (*connect.Response[v1.SetPolicyResponse], error)
 	ListPending(context.Context, *connect.Request[v1.ListPendingRequest]) (*connect.Response[v1.ListPendingResponse], error)
@@ -88,6 +92,12 @@ func NewApprovalServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 			httpClient,
 			baseURL+ApprovalServiceResolveApprovalProcedure,
 			connect.WithSchema(approvalServiceMethods.ByName("ResolveApproval")),
+			connect.WithClientOptions(opts...),
+		),
+		getApproval: connect.NewClient[v1.GetApprovalRequest, v1.GetApprovalResponse](
+			httpClient,
+			baseURL+ApprovalServiceGetApprovalProcedure,
+			connect.WithSchema(approvalServiceMethods.ByName("GetApproval")),
 			connect.WithClientOptions(opts...),
 		),
 		getPolicy: connect.NewClient[v1.GetPolicyRequest, v1.GetPolicyResponse](
@@ -127,6 +137,7 @@ func NewApprovalServiceClient(httpClient connect.HTTPClient, baseURL string, opt
 type approvalServiceClient struct {
 	requestApproval *connect.Client[v1.RequestApprovalRequest, v1.RequestApprovalResponse]
 	resolveApproval *connect.Client[v1.ResolveApprovalRequest, v1.ResolveApprovalResponse]
+	getApproval     *connect.Client[v1.GetApprovalRequest, v1.GetApprovalResponse]
 	getPolicy       *connect.Client[v1.GetPolicyRequest, v1.GetPolicyResponse]
 	setPolicy       *connect.Client[v1.SetPolicyRequest, v1.SetPolicyResponse]
 	listPending     *connect.Client[v1.ListPendingRequest, v1.ListPendingResponse]
@@ -142,6 +153,11 @@ func (c *approvalServiceClient) RequestApproval(ctx context.Context, req *connec
 // ResolveApproval calls approvals.v1.ApprovalService.ResolveApproval.
 func (c *approvalServiceClient) ResolveApproval(ctx context.Context, req *connect.Request[v1.ResolveApprovalRequest]) (*connect.Response[v1.ResolveApprovalResponse], error) {
 	return c.resolveApproval.CallUnary(ctx, req)
+}
+
+// GetApproval calls approvals.v1.ApprovalService.GetApproval.
+func (c *approvalServiceClient) GetApproval(ctx context.Context, req *connect.Request[v1.GetApprovalRequest]) (*connect.Response[v1.GetApprovalResponse], error) {
+	return c.getApproval.CallUnary(ctx, req)
 }
 
 // GetPolicy calls approvals.v1.ApprovalService.GetPolicy.
@@ -173,6 +189,7 @@ func (c *approvalServiceClient) Escalate(ctx context.Context, req *connect.Reque
 type ApprovalServiceHandler interface {
 	RequestApproval(context.Context, *connect.Request[v1.RequestApprovalRequest]) (*connect.Response[v1.RequestApprovalResponse], error)
 	ResolveApproval(context.Context, *connect.Request[v1.ResolveApprovalRequest]) (*connect.Response[v1.ResolveApprovalResponse], error)
+	GetApproval(context.Context, *connect.Request[v1.GetApprovalRequest]) (*connect.Response[v1.GetApprovalResponse], error)
 	GetPolicy(context.Context, *connect.Request[v1.GetPolicyRequest]) (*connect.Response[v1.GetPolicyResponse], error)
 	SetPolicy(context.Context, *connect.Request[v1.SetPolicyRequest]) (*connect.Response[v1.SetPolicyResponse], error)
 	ListPending(context.Context, *connect.Request[v1.ListPendingRequest]) (*connect.Response[v1.ListPendingResponse], error)
@@ -197,6 +214,12 @@ func NewApprovalServiceHandler(svc ApprovalServiceHandler, opts ...connect.Handl
 		ApprovalServiceResolveApprovalProcedure,
 		svc.ResolveApproval,
 		connect.WithSchema(approvalServiceMethods.ByName("ResolveApproval")),
+		connect.WithHandlerOptions(opts...),
+	)
+	approvalServiceGetApprovalHandler := connect.NewUnaryHandler(
+		ApprovalServiceGetApprovalProcedure,
+		svc.GetApproval,
+		connect.WithSchema(approvalServiceMethods.ByName("GetApproval")),
 		connect.WithHandlerOptions(opts...),
 	)
 	approvalServiceGetPolicyHandler := connect.NewUnaryHandler(
@@ -235,6 +258,8 @@ func NewApprovalServiceHandler(svc ApprovalServiceHandler, opts ...connect.Handl
 			approvalServiceRequestApprovalHandler.ServeHTTP(w, r)
 		case ApprovalServiceResolveApprovalProcedure:
 			approvalServiceResolveApprovalHandler.ServeHTTP(w, r)
+		case ApprovalServiceGetApprovalProcedure:
+			approvalServiceGetApprovalHandler.ServeHTTP(w, r)
 		case ApprovalServiceGetPolicyProcedure:
 			approvalServiceGetPolicyHandler.ServeHTTP(w, r)
 		case ApprovalServiceSetPolicyProcedure:
@@ -260,6 +285,10 @@ func (UnimplementedApprovalServiceHandler) RequestApproval(context.Context, *con
 
 func (UnimplementedApprovalServiceHandler) ResolveApproval(context.Context, *connect.Request[v1.ResolveApprovalRequest]) (*connect.Response[v1.ResolveApprovalResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("approvals.v1.ApprovalService.ResolveApproval is not implemented"))
+}
+
+func (UnimplementedApprovalServiceHandler) GetApproval(context.Context, *connect.Request[v1.GetApprovalRequest]) (*connect.Response[v1.GetApprovalResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("approvals.v1.ApprovalService.GetApproval is not implemented"))
 }
 
 func (UnimplementedApprovalServiceHandler) GetPolicy(context.Context, *connect.Request[v1.GetPolicyRequest]) (*connect.Response[v1.GetPolicyResponse], error) {

@@ -10,6 +10,7 @@ import "google/protobuf/timestamp.proto";
 service ApprovalService {
   rpc RequestApproval(RequestApprovalRequest) returns (RequestApprovalResponse);
   rpc ResolveApproval(ResolveApprovalRequest) returns (ResolveApprovalResponse);
+  rpc GetApproval(GetApprovalRequest) returns (GetApprovalResponse);
   rpc GetPolicy(GetPolicyRequest) returns (GetPolicyResponse);
   rpc SetPolicy(SetPolicyRequest) returns (SetPolicyResponse);
   rpc ListPending(ListPendingRequest) returns (ListPendingResponse);
@@ -114,6 +115,15 @@ message ResolveApprovalRequest {
 
 message ResolveApprovalResponse {
   ApprovalDecision decision = 1;
+}
+
+message GetApprovalRequest {
+  string approval_request_id = 1;
+}
+
+message GetApprovalResponse {
+  ApprovalRequest request = 1;
+  repeated ApprovalDecision decisions = 2;
 }
 
 message GetPolicyRequest {
