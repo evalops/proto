@@ -1,0 +1,440 @@
+# Canonical MCP tool descriptions for EvalOps platform services.
+# Used by mcp-openapi --descriptions to enrich agent-facing tool descriptions
+# when the generated OpenAPI spec lacks summaries.
+#
+# Maintain this file alongside the proto definitions. When a new RPC is added,
+# add its description here in the same PR.
+
+# --- agents/v1 ---
+AgentService_Register: >-
+  Register a new agent in the platform. Sets agent_type, capabilities, and
+  surfaces. Required before the agent can receive delegations, create
+  objectives, or heartbeat.
+AgentService_Get: >-
+  Retrieve an agent definition by ID. Returns the full Agent record including
+  active config version, status, and last heartbeat.
+AgentService_List: >-
+  List agents matching filters: workspace, agent_type, capability, surface, or
+  status. Used for discovery and capacity planning.
+AgentService_Update: >-
+  Update mutable agent metadata: name, description, capabilities, surfaces.
+  Does not change the agent's configuration version.
+AgentService_Deregister: >-
+  Remove an agent from the registry. Active objectives should be cancelled or
+  reassigned before deregistering.
+AgentService_PushConfig: >-
+  Create a new immutable configuration version for an agent. Atomically advances
+  active_config_version. Config includes skill bindings, prompt labels, integration
+  scopes, model preferences, cost budgets, and notification channel.
+AgentService_GetConfig: >-
+  Retrieve a specific configuration version for an agent. Used for auditing
+  what config was active when an incident occurred.
+AgentService_ListConfigs: >-
+  List all configuration versions for an agent, ordered by version number.
+  Shows the full history of config changes.
+AgentService_RollbackConfig: >-
+  Atomically revert an agent to a prior configuration version. The rolled-back
+  config becomes the new active version. Used when a config change causes
+  degraded agent behavior.
+AgentService_Delegate: >-
+  Request another agent to accept a unit of work. Specify to_agent_id for
+  direct delegation or required_capability for capability-based routing through
+  the registry. Creates a DelegationRecord linked to the originating objective
+  and optional workflow step.
+AgentService_ResolveDelegation: >-
+  Record the outcome of a delegation: COMPLETED with result payload, FAILED
+  with error, REJECTED, or TIMED_OUT.
+AgentService_GetDelegation: >-
+  Retrieve a delegation record by ID. Shows status, context, result, and
+  linked objective/workflow references.
+AgentService_ListDelegations: >-
+  List delegations matching filters: workspace, from/to agent, status, or
+  workflow run. Used for tracking delegation chains and debugging failures.
+AgentService_Heartbeat: >-
+  Record agent liveness and current capacity. Reports status, active
+  objective IDs, and surface. Used by the registry for capacity-aware
+  delegation routing and offline detection.
+
+# --- approvals/v1 ---
+ApprovalService_RequestApproval: >-
+  Create a human-in-the-loop approval request. Blocks the calling agent until
+  a human approves, denies, or the request expires. Linked to governance risk
+  classification. Include risk_level and context_json for reviewer context.
+ApprovalService_ResolveApproval: >-
+  Record a human decision on a pending approval: APPROVED, DENIED, ESCALATED,
+  or EXPIRED. Unblocks the waiting agent.
+ApprovalService_GetPolicy: >-
+  Retrieve the approval policy for a workspace. Returns the set of rules
+  mapping action types and risk levels to authority levels.
+ApprovalService_SetPolicy: >-
+  Update the approval policy for a workspace. Defines which actions agents
+  can perform autonomously (OWN), recommend (RECOMMEND), or require explicit
+  human approval (REQUIRE_APPROVAL).
+ApprovalService_ListPending: >-
+  List pending approval requests for a workspace. Used by product surfaces
+  to show approval queues to human reviewers.
+ApprovalService_GetHabits: >-
+  Retrieve learned approval habits for a workspace. Habits capture repeat
+  patterns where humans consistently approve the same action type, enabling
+  auto-approval for low-risk recurring decisions.
+ApprovalService_Escalate: >-
+  Escalate a pending approval to a higher authority or different channel.
+  Used when the original approver is unavailable or the action requires
+  senior review.
+
+# --- audit/v1 ---
+AuditService_RecordEvent: >-
+  Record a tamper-evident audit event. Includes actor, resource, action,
+  outcome, before/after state, and data classification level. Each event
+  is checksummed and linked to the previous event for integrity verification.
+AuditService_QueryEvents: >-
+  Query audit events by actor, resource, action, organization, workspace,
+  data classification, or time range. Returns paginated results ordered
+  by timestamp.
+AuditService_ExportEvents: >-
+  Stream audit events for compliance export. Server-streaming RPC that
+  yields events matching the query filters. Used for SOC 2, HIPAA, and
+  NIST CSF compliance reporting.
+
+# --- connectors/v1 ---
+ConnectorService_RegisterConnection: >-
+  Register a new external integration connection. Stores OAuth credentials,
+  sets auth type, and initializes health monitoring.
+ConnectorService_GetConnection: >-
+  Retrieve connection details by ID, including current health status and
+  last healthy timestamp.
+ConnectorService_ListConnections: >-
+  List all connections for a workspace. Used by product surfaces to show
+  integration status dashboards.
+ConnectorService_RefreshConnection: >-
+  Force a credential refresh for a connection. Rotates OAuth tokens and
+  re-validates connectivity.
+ConnectorService_RevokeConnection: >-
+  Revoke and delete a connection. Invalidates stored credentials.
+ConnectorService_GetHealth: >-
+  Get detailed health information for a connection, including latency,
+  last check time, and error details.
+ConnectorService_ResolveSourceOfTruth: >-
+  Determine which connection is authoritative for a given domain (CRM,
+  support, billing, analytics, HRIS). Returns the primary and fallback
+  connections.
+ConnectorService_GetDegradedReadPolicy: >-
+  Get the degraded-read policy for a workspace. Defines behavior when the
+  primary source-of-truth connection is unavailable: which integrations
+  to fall back to, max data staleness, and whether to queue a refresh.
+ConnectorService_SetSourceOfTruthPolicy: >-
+  Set which connection is authoritative for a domain. Configures primary
+  and fallback connections for source-of-truth resolution.
+ConnectorService_GetCapabilities: >-
+  List the capabilities of a connection (e.g., read, write, webhook,
+  bulk-export). Used to determine what operations an agent can perform
+  through this integration.
+
+# --- entities/v1 ---
+EntityService_Resolve: >-
+  Resolve a record from an external system to its canonical entity.
+  Given an integration ID and record ID, returns the unified entity
+  that record belongs to.
+EntityService_Correlate: >-
+  Find correlated entities across systems by email, domain, or company
+  name. Returns confidence-scored correlation groups.
+EntityService_GetCanonical: >-
+  Retrieve a canonical entity by ID. Returns the unified record with
+  all cross-system references.
+EntityService_Search: >-
+  Full-text search across canonical entities. Filter by type (contact,
+  company, deal, ticket, customer, opportunity).
+EntityService_LinkEntity: >-
+  Manually link an external system record to a canonical entity. Creates
+  a CrossSystemRef with the specified confidence.
+EntityService_UnlinkEntity: >-
+  Remove a cross-system reference from a canonical entity. Used to correct
+  false-positive correlations.
+EntityService_GetCorrelationGraph: >-
+  Retrieve the correlation graph for a canonical entity at a specified
+  depth. Shows how entities are connected across systems.
+EntityService_IngestResult: >-
+  Ingest a record from an external system for entity resolution. Creates
+  or updates the canonical entity and returns whether a new entity was
+  created.
+
+# --- governance/v1 ---
+GovernanceService_EvaluateAction: >-
+  Evaluate an agent action against workspace safety rules. Returns ALLOW,
+  DENY, or REQUIRE_APPROVAL with risk level and matched rule IDs. Must be
+  called before CI modifications, email sends, CRM mutations, and any
+  action classified RISK_LEVEL_MEDIUM or above.
+GovernanceService_DetectPII: >-
+  Scan text for personally identifiable information. Returns PII spans
+  with category (email, phone, SSN, credit card, address, person name),
+  byte offsets, and confidence scores.
+GovernanceService_ClassifyRisk: >-
+  Classify the risk level of a proposed action without evaluating full
+  safety rules. Returns LOW, MEDIUM, HIGH, or CRITICAL with reasons.
+GovernanceService_CheckCredentialExposure: >-
+  Scan text for exposed credentials (API keys, tokens, passwords).
+  Returns whether credentials were found, their types, and locations.
+GovernanceService_GetRetentionPolicy: >-
+  Get the data retention policy for a workspace. Returns retention
+  period in days and whether legal holds override normal retention.
+GovernanceService_SetRetentionPolicy: >-
+  Set the data retention policy for a workspace.
+GovernanceService_CheckLegalHold: >-
+  Check whether a legal hold prevents data deletion for a given scope
+  within a workspace. Returns active holds with reasons and expiry.
+GovernanceService_SetLegalHold: >-
+  Create or update a legal hold that prevents data deletion. Used for
+  compliance, litigation, or regulatory requirements.
+GovernanceService_GetSafetyPolicy: >-
+  Get the safety policy for a workspace. Returns the set of rules that
+  governance evaluates actions against.
+GovernanceService_SetSafetyPolicy: >-
+  Set the safety policy for a workspace. Defines patterns, risk levels,
+  and decisions (ALLOW/DENY/REQUIRE_APPROVAL) for agent actions.
+
+# --- identity/v1 ---
+TokenService_Introspect: >-
+  Validate a bearer token and return resolved claims. Returns active status,
+  subject, organization, scopes, agent type, capabilities, surface, and
+  expiry. Used by every service for authentication.
+TokenService_IssueServiceToken: >-
+  Mint a short-lived token for service-to-service calls. Scoped to a
+  specific service and organization with explicit scope list.
+TokenService_IssueAgentToken: >-
+  Mint a token scoped to an agent identity. Includes agent_type,
+  capabilities, scopes, and surface. Used when an agent needs to
+  authenticate to other platform services.
+
+# --- keys/v1 ---
+ProviderRefsService_UpsertProviderRef: >-
+  Create or update a managed provider credential reference. Stores
+  encrypted credentials, endpoint URL, and provider config for a
+  specific provider/environment/team combination.
+ProviderRefsService_ResolveProviderRef: >-
+  Resolve the active credential for a provider/environment/team. Returns
+  the full ProviderRef with decrypted credential data. Called by
+  llm-gateway before routing inference requests.
+ProviderRefsService_DeleteProviderRef: >-
+  Delete a provider credential reference.
+
+# --- memory/v1 ---
+MemoryService_Store: >-
+  Store a memory with semantic embedding for future recall. Scoped by
+  organization, team, project, repository, or agent. Set is_policy=true
+  for operating rules that agents should load on startup.
+MemoryService_Recall: >-
+  Semantic recall: find memories similar to a query. Returns ranked results
+  with similarity scores. Filter by scope, project, team, repository, or
+  agent.
+MemoryService_RecallKnowledge: >-
+  Condition-based recall: find memories matching a set of conditions.
+  Used for structured knowledge retrieval rather than semantic similarity.
+MemoryService_Update: >-
+  Update a memory's content, type, confidence, or tags. Does not
+  re-compute embeddings automatically.
+MemoryService_Delete: >-
+  Delete a memory by ID.
+MemoryService_List: >-
+  List memories matching scope and filter criteria. Paginated.
+MemoryService_GetOperatingRules: >-
+  Load operating rules (is_policy=true memories) for an agent, project,
+  or team. Call on agent startup to load organizational policies and
+  lessons learned before beginning work.
+MemoryService_Consolidate: >-
+  Merge overlapping and prune stale memories within a scope. Returns
+  counts of merged and pruned records.
+
+# --- meter/v1 ---
+MeterService_RecordUsage: >-
+  Record LLM inference usage for cost attribution. Called by llm-gateway
+  after every inference request. Tracks input/output/cache tokens, cost,
+  model, provider, agent, and surface.
+MeterService_RecordUsageBatch: >-
+  Record multiple usage entries in a single call. Used for bulk
+  backfill or batch processing.
+MeterService_QueryUsage: >-
+  Query raw usage records by team, agent, event type, model, provider,
+  metadata, or time range. Returns individual records.
+MeterService_GetUsageSummary: >-
+  Get aggregated usage summary grouped by model, provider, team, agent,
+  surface, or metadata key. Returns totals for tokens and cost.
+MeterService_GetMeterSummary: >-
+  Get summary for a specific meter ID, grouped by the requested dimension.
+MeterService_IngestWideEvent: >-
+  Ingest a wide event with full metrics (tokens, cost, duration,
+  time-to-first-token, tool call count). Used for observability dashboards.
+MeterService_QueryWideEvents: >-
+  Query wide events with filters and pagination. Used by dashboards and
+  analytics.
+MeterService_GetEventDashboard: >-
+  Get a dashboard summary: total events, tokens, cost, and top-N
+  breakdowns by event type, surface, model, and provider.
+
+# --- notifications/v1 ---
+NotificationService_Send: >-
+  Send a notification to a recipient through their preferred channel
+  (Slack, email, webhook, in-app). Respects quiet hours and preferences.
+NotificationService_SendBatch: >-
+  Send multiple notifications in a single call. Returns per-notification
+  delivery status.
+NotificationService_GetPreferences: >-
+  Get a user's notification preferences for a workspace, including default
+  channel, quiet hours, and escalation rules.
+NotificationService_SetPreferences: >-
+  Set a user's notification preferences.
+NotificationService_ListHistory: >-
+  List notification delivery history for a recipient. Shows delivery status,
+  timestamps, and channels used.
+NotificationService_RegisterChannel: >-
+  Register a notification delivery channel for a workspace (e.g., configure
+  Slack webhook URL or email SMTP settings).
+NotificationService_GetDeliveryStatus: >-
+  Get the current delivery status of a specific notification.
+
+# --- objectives/v1 ---
+ObjectiveService_Create: >-
+  Create a new objective for an agent. Sets workspace, agent, surface,
+  title, and description. The objective starts in PENDING state.
+ObjectiveService_Get: >-
+  Retrieve an objective by ID. Returns the full record including state,
+  provenance, mutations, and wake schedule.
+ObjectiveService_Transition: >-
+  Move an objective to a new lifecycle state. Valid transitions:
+  PENDING->RUNNING, RUNNING->BLOCKED/COMPLETED/FAILED, BLOCKED->RUNNING,
+  AWAITING_APPROVAL->RUNNING/CANCELLED, etc.
+ObjectiveService_Wake: >-
+  Wake a sleeping objective. Called by the scheduler when a wake_schedule
+  fires or by an external event that unblocks the objective.
+ObjectiveService_Query: >-
+  Query objectives by workspace, agent, and state. Paginated.
+ObjectiveService_RecordProvenance: >-
+  Record where data came from for an objective. Tracks source integration,
+  source ID, freshness in seconds, and confidence score.
+ObjectiveService_RecordMutation: >-
+  Record a write operation performed by an objective. Tracks target
+  integration, operation, status (PENDING/APPROVED/EXECUTED/ROLLED_BACK),
+  and linked approval ID.
+ObjectiveService_GetGovernanceEvaluation: >-
+  Get the governance compliance evaluation for an objective. Returns
+  whether the objective is compliant and lists any violations.
+ObjectiveService_Cancel: >-
+  Cancel an objective with a reason. Moves to CANCELLED state.
+
+# --- prompts/v1 ---
+PromptService_CreatePrompt: >-
+  Create a named prompt scoped to an organization and surface. Prompts
+  are versioned separately via CreateVersion.
+PromptService_GetPrompt: >-
+  Retrieve a prompt by ID.
+PromptService_ListPrompts: >-
+  List prompts filtered by surface or tag.
+PromptService_CreateVersion: >-
+  Create an immutable version snapshot of prompt content. Includes the
+  content, target model, author, expected variables, and optional
+  per-model token counts.
+PromptService_ListVersions: >-
+  List all versions of a prompt, ordered by version number.
+PromptService_AssignLabel: >-
+  Atomically move a label pointer (production, staging, canary) to a
+  specific version. Used for promotion, rollback, and canary assignment.
+  Every assignment creates a Deployment audit record.
+PromptService_ListLabels: >-
+  List all labels for a prompt with their current version assignments.
+PromptService_ListDeployments: >-
+  List deployment audit records for a prompt. Shows the history of
+  label assignments including rollbacks.
+PromptService_LinkEval: >-
+  Connect a prompt version to a Fermata evaluation result. Records
+  the eval run ID, score, pass/fail, and URL.
+PromptService_Resolve: >-
+  Hot-path lookup: resolve the active version for a prompt name and label.
+  Defaults to "production" label. Consumers must pin the resolved version
+  at session/sequence start.
+PromptService_ResolveAll: >-
+  Bulk-load all active prompts for a label. Used by llm-gateway at startup
+  to pre-cache all production prompt versions.
+
+# --- registry/v1 ---
+RegistryService_Register: >-
+  Register an agent's presence on a surface with capabilities and capacity.
+  Returns the assigned agent ID.
+RegistryService_Get: >-
+  Retrieve an agent's presence record by ID.
+RegistryService_List: >-
+  List agent presence records filtered by surface, capability, or status.
+RegistryService_Update: >-
+  Update an agent's presence: surface, capabilities, status, capacity, or
+  metadata.
+RegistryService_Delete: >-
+  Remove an agent's presence record from the registry.
+RegistryService_Heartbeat: >-
+  Record agent liveness. Updates status, capacity, and heartbeat timestamp.
+  Agents that miss heartbeats are marked offline.
+RegistryService_Discover: >-
+  Find agents by capability, surface, status, or metadata. Used for
+  capability-based routing when delegating work.
+
+# --- skills/v1 ---
+SkillService_Create: >-
+  Create a new skill definition scoped to a workspace or globally. Sets
+  name, description, scope (global/workspace/personal), content, and tags.
+SkillService_Get: >-
+  Retrieve a skill by ID.
+SkillService_List: >-
+  List skills filtered by workspace and scope. Paginated.
+SkillService_Update: >-
+  Update a skill's name, description, scope, content, or tags.
+SkillService_Delete: >-
+  Delete a skill by ID.
+SkillService_CreateVersion: >-
+  Create an immutable version snapshot of a skill's content.
+SkillService_GetVersion: >-
+  Retrieve a specific version of a skill.
+SkillService_ListVersions: >-
+  List all versions of a skill.
+SkillService_Search: >-
+  Search the shared skill registry by query, scope, and tags. Returns
+  versioned skill definitions that agents can load for specific capabilities.
+SkillService_Import: >-
+  Import a skill from an external format (e.g., SKILL.md).
+SkillService_Export: >-
+  Export a skill to an external format.
+
+# --- workflows/v1 ---
+WorkflowService_CreateDefinition: >-
+  Create a named workflow definition scoped to a workspace. Definitions
+  are versioned separately via PublishVersion.
+WorkflowService_GetDefinition: >-
+  Retrieve a workflow definition by ID.
+WorkflowService_ListDefinitions: >-
+  List workflow definitions filtered by workspace or tag. Paginated.
+WorkflowService_PublishVersion: >-
+  Publish an immutable version of a workflow's step DAG, edges, trigger,
+  retry policy, and timeout. Runs always reference a specific version.
+WorkflowService_ListVersions: >-
+  List all published versions of a workflow definition.
+WorkflowService_StartRun: >-
+  Begin execution of a workflow definition version. Sets the initiating
+  agent or user, target entity, and input payload. The workflow engine
+  identifies root steps and begins executing them.
+WorkflowService_GetRun: >-
+  Retrieve a workflow run by ID. Returns full state including all step
+  runs with their objectives, delegations, approvals, and costs.
+WorkflowService_ListRuns: >-
+  List workflow runs filtered by workspace, definition, state, entity,
+  or initiator. Paginated.
+WorkflowService_TransitionStep: >-
+  Record a step state change within a running workflow. Called by the
+  orchestrator as agents complete objectives, approvals resolve, events
+  arrive, or governance decisions are made.
+WorkflowService_PauseRun: >-
+  Suspend a running workflow. In-progress steps complete but no new steps
+  start until resumed.
+WorkflowService_ResumeRun: >-
+  Resume a paused workflow. Starts the next pending steps.
+WorkflowService_CancelRun: >-
+  Cancel a workflow run. In-progress steps are cancelled. No compensation
+  is triggered.
+WorkflowService_CompensateRun: >-
+  Trigger the compensation path for a failed workflow. Executes
+  compensation steps in reverse topological order to undo completed work.
