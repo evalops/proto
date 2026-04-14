@@ -510,6 +510,134 @@ func (x *ListResponse) GetAgents() []*Agent {
 	return nil
 }
 
+type UpdateRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Surface       string                 `protobuf:"bytes,2,opt,name=surface,proto3" json:"surface,omitempty"`
+	Capabilities  []string               `protobuf:"bytes,3,rep,name=capabilities,proto3" json:"capabilities,omitempty"`
+	Status        string                 `protobuf:"bytes,4,opt,name=status,proto3" json:"status,omitempty"`
+	Capacity      *Capacity              `protobuf:"bytes,5,opt,name=capacity,proto3" json:"capacity,omitempty"`
+	Metadata      map[string]string      `protobuf:"bytes,6,rep,name=metadata,proto3" json:"metadata,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateRequest) Reset() {
+	*x = UpdateRequest{}
+	mi := &file_registry_v1_registry_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateRequest) ProtoMessage() {}
+
+func (x *UpdateRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_registry_v1_registry_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateRequest.ProtoReflect.Descriptor instead.
+func (*UpdateRequest) Descriptor() ([]byte, []int) {
+	return file_registry_v1_registry_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *UpdateRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateRequest) GetSurface() string {
+	if x != nil {
+		return x.Surface
+	}
+	return ""
+}
+
+func (x *UpdateRequest) GetCapabilities() []string {
+	if x != nil {
+		return x.Capabilities
+	}
+	return nil
+}
+
+func (x *UpdateRequest) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *UpdateRequest) GetCapacity() *Capacity {
+	if x != nil {
+		return x.Capacity
+	}
+	return nil
+}
+
+func (x *UpdateRequest) GetMetadata() map[string]string {
+	if x != nil {
+		return x.Metadata
+	}
+	return nil
+}
+
+type UpdateResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Agent         *Agent                 `protobuf:"bytes,1,opt,name=agent,proto3" json:"agent,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateResponse) Reset() {
+	*x = UpdateResponse{}
+	mi := &file_registry_v1_registry_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateResponse) ProtoMessage() {}
+
+func (x *UpdateResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_registry_v1_registry_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateResponse.ProtoReflect.Descriptor instead.
+func (*UpdateResponse) Descriptor() ([]byte, []int) {
+	return file_registry_v1_registry_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *UpdateResponse) GetAgent() *Agent {
+	if x != nil {
+		return x.Agent
+	}
+	return nil
+}
+
 type DeleteRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -519,7 +647,7 @@ type DeleteRequest struct {
 
 func (x *DeleteRequest) Reset() {
 	*x = DeleteRequest{}
-	mi := &file_registry_v1_registry_proto_msgTypes[8]
+	mi := &file_registry_v1_registry_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -531,7 +659,7 @@ func (x *DeleteRequest) String() string {
 func (*DeleteRequest) ProtoMessage() {}
 
 func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_registry_v1_registry_proto_msgTypes[8]
+	mi := &file_registry_v1_registry_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -544,7 +672,7 @@ func (x *DeleteRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteRequest.ProtoReflect.Descriptor instead.
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return file_registry_v1_registry_proto_rawDescGZIP(), []int{8}
+	return file_registry_v1_registry_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *DeleteRequest) GetId() string {
@@ -563,7 +691,7 @@ type DeleteResponse struct {
 
 func (x *DeleteResponse) Reset() {
 	*x = DeleteResponse{}
-	mi := &file_registry_v1_registry_proto_msgTypes[9]
+	mi := &file_registry_v1_registry_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -575,7 +703,7 @@ func (x *DeleteResponse) String() string {
 func (*DeleteResponse) ProtoMessage() {}
 
 func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_registry_v1_registry_proto_msgTypes[9]
+	mi := &file_registry_v1_registry_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -588,7 +716,7 @@ func (x *DeleteResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteResponse.ProtoReflect.Descriptor instead.
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return file_registry_v1_registry_proto_rawDescGZIP(), []int{9}
+	return file_registry_v1_registry_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *DeleteResponse) GetAgent() *Agent {
@@ -609,7 +737,7 @@ type HeartbeatRequest struct {
 
 func (x *HeartbeatRequest) Reset() {
 	*x = HeartbeatRequest{}
-	mi := &file_registry_v1_registry_proto_msgTypes[10]
+	mi := &file_registry_v1_registry_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -621,7 +749,7 @@ func (x *HeartbeatRequest) String() string {
 func (*HeartbeatRequest) ProtoMessage() {}
 
 func (x *HeartbeatRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_registry_v1_registry_proto_msgTypes[10]
+	mi := &file_registry_v1_registry_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -634,7 +762,7 @@ func (x *HeartbeatRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HeartbeatRequest.ProtoReflect.Descriptor instead.
 func (*HeartbeatRequest) Descriptor() ([]byte, []int) {
-	return file_registry_v1_registry_proto_rawDescGZIP(), []int{10}
+	return file_registry_v1_registry_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *HeartbeatRequest) GetId() string {
@@ -667,7 +795,7 @@ type HeartbeatResponse struct {
 
 func (x *HeartbeatResponse) Reset() {
 	*x = HeartbeatResponse{}
-	mi := &file_registry_v1_registry_proto_msgTypes[11]
+	mi := &file_registry_v1_registry_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -679,7 +807,7 @@ func (x *HeartbeatResponse) String() string {
 func (*HeartbeatResponse) ProtoMessage() {}
 
 func (x *HeartbeatResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_registry_v1_registry_proto_msgTypes[11]
+	mi := &file_registry_v1_registry_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -692,7 +820,7 @@ func (x *HeartbeatResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HeartbeatResponse.ProtoReflect.Descriptor instead.
 func (*HeartbeatResponse) Descriptor() ([]byte, []int) {
-	return file_registry_v1_registry_proto_rawDescGZIP(), []int{11}
+	return file_registry_v1_registry_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *HeartbeatResponse) GetAgent() *Agent {
@@ -716,7 +844,7 @@ type DiscoverRequest struct {
 
 func (x *DiscoverRequest) Reset() {
 	*x = DiscoverRequest{}
-	mi := &file_registry_v1_registry_proto_msgTypes[12]
+	mi := &file_registry_v1_registry_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -728,7 +856,7 @@ func (x *DiscoverRequest) String() string {
 func (*DiscoverRequest) ProtoMessage() {}
 
 func (x *DiscoverRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_registry_v1_registry_proto_msgTypes[12]
+	mi := &file_registry_v1_registry_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -741,7 +869,7 @@ func (x *DiscoverRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiscoverRequest.ProtoReflect.Descriptor instead.
 func (*DiscoverRequest) Descriptor() ([]byte, []int) {
-	return file_registry_v1_registry_proto_rawDescGZIP(), []int{12}
+	return file_registry_v1_registry_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *DiscoverRequest) GetCapability() string {
@@ -795,7 +923,7 @@ type DiscoverResponse struct {
 
 func (x *DiscoverResponse) Reset() {
 	*x = DiscoverResponse{}
-	mi := &file_registry_v1_registry_proto_msgTypes[13]
+	mi := &file_registry_v1_registry_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -807,7 +935,7 @@ func (x *DiscoverResponse) String() string {
 func (*DiscoverResponse) ProtoMessage() {}
 
 func (x *DiscoverResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_registry_v1_registry_proto_msgTypes[13]
+	mi := &file_registry_v1_registry_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -820,7 +948,7 @@ func (x *DiscoverResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiscoverResponse.ProtoReflect.Descriptor instead.
 func (*DiscoverResponse) Descriptor() ([]byte, []int) {
-	return file_registry_v1_registry_proto_rawDescGZIP(), []int{13}
+	return file_registry_v1_registry_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *DiscoverResponse) GetAgents() []*Agent {
@@ -876,7 +1004,19 @@ const file_registry_v1_registry_proto_rawDesc = "" +
 	"\x05limit\x18\x04 \x01(\x05R\x05limit\x12\x16\n" +
 	"\x06offset\x18\x05 \x01(\x05R\x06offset\":\n" +
 	"\fListResponse\x12*\n" +
-	"\x06agents\x18\x01 \x03(\v2\x12.registry.v1.AgentR\x06agents\"\x1f\n" +
+	"\x06agents\x18\x01 \x03(\v2\x12.registry.v1.AgentR\x06agents\"\xab\x02\n" +
+	"\rUpdateRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x18\n" +
+	"\asurface\x18\x02 \x01(\tR\asurface\x12\"\n" +
+	"\fcapabilities\x18\x03 \x03(\tR\fcapabilities\x12\x16\n" +
+	"\x06status\x18\x04 \x01(\tR\x06status\x121\n" +
+	"\bcapacity\x18\x05 \x01(\v2\x15.registry.v1.CapacityR\bcapacity\x12D\n" +
+	"\bmetadata\x18\x06 \x03(\v2(.registry.v1.UpdateRequest.MetadataEntryR\bmetadata\x1a;\n" +
+	"\rMetadataEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\":\n" +
+	"\x0eUpdateResponse\x12(\n" +
+	"\x05agent\x18\x01 \x01(\v2\x12.registry.v1.AgentR\x05agent\"\x1f\n" +
 	"\rDeleteRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\":\n" +
 	"\x0eDeleteResponse\x12(\n" +
@@ -900,11 +1040,12 @@ const file_registry_v1_registry_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\">\n" +
 	"\x10DiscoverResponse\x12*\n" +
-	"\x06agents\x18\x01 \x03(\v2\x12.registry.v1.AgentR\x06agents2\xa9\x03\n" +
+	"\x06agents\x18\x01 \x03(\v2\x12.registry.v1.AgentR\x06agents2\xec\x03\n" +
 	"\x0fRegistryService\x12G\n" +
 	"\bRegister\x12\x1c.registry.v1.RegisterRequest\x1a\x1d.registry.v1.RegisterResponse\x128\n" +
 	"\x03Get\x12\x17.registry.v1.GetRequest\x1a\x18.registry.v1.GetResponse\x12;\n" +
 	"\x04List\x12\x18.registry.v1.ListRequest\x1a\x19.registry.v1.ListResponse\x12A\n" +
+	"\x06Update\x12\x1a.registry.v1.UpdateRequest\x1a\x1b.registry.v1.UpdateResponse\x12A\n" +
 	"\x06Delete\x12\x1a.registry.v1.DeleteRequest\x1a\x1b.registry.v1.DeleteResponse\x12J\n" +
 	"\tHeartbeat\x12\x1d.registry.v1.HeartbeatRequest\x1a\x1e.registry.v1.HeartbeatResponse\x12G\n" +
 	"\bDiscover\x12\x1c.registry.v1.DiscoverRequest\x1a\x1d.registry.v1.DiscoverResponseB8Z6github.com/evalops/proto/gen/go/registry/v1;registryv1b\x06proto3"
@@ -921,7 +1062,7 @@ func file_registry_v1_registry_proto_rawDescGZIP() []byte {
 	return file_registry_v1_registry_proto_rawDescData
 }
 
-var file_registry_v1_registry_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_registry_v1_registry_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_registry_v1_registry_proto_goTypes = []any{
 	(*Capacity)(nil),              // 0: registry.v1.Capacity
 	(*Agent)(nil),                 // 1: registry.v1.Agent
@@ -931,49 +1072,57 @@ var file_registry_v1_registry_proto_goTypes = []any{
 	(*GetResponse)(nil),           // 5: registry.v1.GetResponse
 	(*ListRequest)(nil),           // 6: registry.v1.ListRequest
 	(*ListResponse)(nil),          // 7: registry.v1.ListResponse
-	(*DeleteRequest)(nil),         // 8: registry.v1.DeleteRequest
-	(*DeleteResponse)(nil),        // 9: registry.v1.DeleteResponse
-	(*HeartbeatRequest)(nil),      // 10: registry.v1.HeartbeatRequest
-	(*HeartbeatResponse)(nil),     // 11: registry.v1.HeartbeatResponse
-	(*DiscoverRequest)(nil),       // 12: registry.v1.DiscoverRequest
-	(*DiscoverResponse)(nil),      // 13: registry.v1.DiscoverResponse
-	nil,                           // 14: registry.v1.Agent.MetadataEntry
-	nil,                           // 15: registry.v1.RegisterRequest.MetadataEntry
-	nil,                           // 16: registry.v1.DiscoverRequest.MetadataEntry
-	(*timestamppb.Timestamp)(nil), // 17: google.protobuf.Timestamp
+	(*UpdateRequest)(nil),         // 8: registry.v1.UpdateRequest
+	(*UpdateResponse)(nil),        // 9: registry.v1.UpdateResponse
+	(*DeleteRequest)(nil),         // 10: registry.v1.DeleteRequest
+	(*DeleteResponse)(nil),        // 11: registry.v1.DeleteResponse
+	(*HeartbeatRequest)(nil),      // 12: registry.v1.HeartbeatRequest
+	(*HeartbeatResponse)(nil),     // 13: registry.v1.HeartbeatResponse
+	(*DiscoverRequest)(nil),       // 14: registry.v1.DiscoverRequest
+	(*DiscoverResponse)(nil),      // 15: registry.v1.DiscoverResponse
+	nil,                           // 16: registry.v1.Agent.MetadataEntry
+	nil,                           // 17: registry.v1.RegisterRequest.MetadataEntry
+	nil,                           // 18: registry.v1.UpdateRequest.MetadataEntry
+	nil,                           // 19: registry.v1.DiscoverRequest.MetadataEntry
+	(*timestamppb.Timestamp)(nil), // 20: google.protobuf.Timestamp
 }
 var file_registry_v1_registry_proto_depIdxs = []int32{
 	0,  // 0: registry.v1.Agent.capacity:type_name -> registry.v1.Capacity
-	14, // 1: registry.v1.Agent.metadata:type_name -> registry.v1.Agent.MetadataEntry
-	17, // 2: registry.v1.Agent.heartbeat_at:type_name -> google.protobuf.Timestamp
-	17, // 3: registry.v1.Agent.registered_at:type_name -> google.protobuf.Timestamp
+	16, // 1: registry.v1.Agent.metadata:type_name -> registry.v1.Agent.MetadataEntry
+	20, // 2: registry.v1.Agent.heartbeat_at:type_name -> google.protobuf.Timestamp
+	20, // 3: registry.v1.Agent.registered_at:type_name -> google.protobuf.Timestamp
 	0,  // 4: registry.v1.RegisterRequest.capacity:type_name -> registry.v1.Capacity
-	15, // 5: registry.v1.RegisterRequest.metadata:type_name -> registry.v1.RegisterRequest.MetadataEntry
+	17, // 5: registry.v1.RegisterRequest.metadata:type_name -> registry.v1.RegisterRequest.MetadataEntry
 	1,  // 6: registry.v1.RegisterResponse.agent:type_name -> registry.v1.Agent
 	1,  // 7: registry.v1.GetResponse.agent:type_name -> registry.v1.Agent
 	1,  // 8: registry.v1.ListResponse.agents:type_name -> registry.v1.Agent
-	1,  // 9: registry.v1.DeleteResponse.agent:type_name -> registry.v1.Agent
-	0,  // 10: registry.v1.HeartbeatRequest.capacity:type_name -> registry.v1.Capacity
-	1,  // 11: registry.v1.HeartbeatResponse.agent:type_name -> registry.v1.Agent
-	16, // 12: registry.v1.DiscoverRequest.metadata:type_name -> registry.v1.DiscoverRequest.MetadataEntry
-	1,  // 13: registry.v1.DiscoverResponse.agents:type_name -> registry.v1.Agent
-	2,  // 14: registry.v1.RegistryService.Register:input_type -> registry.v1.RegisterRequest
-	4,  // 15: registry.v1.RegistryService.Get:input_type -> registry.v1.GetRequest
-	6,  // 16: registry.v1.RegistryService.List:input_type -> registry.v1.ListRequest
-	8,  // 17: registry.v1.RegistryService.Delete:input_type -> registry.v1.DeleteRequest
-	10, // 18: registry.v1.RegistryService.Heartbeat:input_type -> registry.v1.HeartbeatRequest
-	12, // 19: registry.v1.RegistryService.Discover:input_type -> registry.v1.DiscoverRequest
-	3,  // 20: registry.v1.RegistryService.Register:output_type -> registry.v1.RegisterResponse
-	5,  // 21: registry.v1.RegistryService.Get:output_type -> registry.v1.GetResponse
-	7,  // 22: registry.v1.RegistryService.List:output_type -> registry.v1.ListResponse
-	9,  // 23: registry.v1.RegistryService.Delete:output_type -> registry.v1.DeleteResponse
-	11, // 24: registry.v1.RegistryService.Heartbeat:output_type -> registry.v1.HeartbeatResponse
-	13, // 25: registry.v1.RegistryService.Discover:output_type -> registry.v1.DiscoverResponse
-	20, // [20:26] is the sub-list for method output_type
-	14, // [14:20] is the sub-list for method input_type
-	14, // [14:14] is the sub-list for extension type_name
-	14, // [14:14] is the sub-list for extension extendee
-	0,  // [0:14] is the sub-list for field type_name
+	0,  // 9: registry.v1.UpdateRequest.capacity:type_name -> registry.v1.Capacity
+	18, // 10: registry.v1.UpdateRequest.metadata:type_name -> registry.v1.UpdateRequest.MetadataEntry
+	1,  // 11: registry.v1.UpdateResponse.agent:type_name -> registry.v1.Agent
+	1,  // 12: registry.v1.DeleteResponse.agent:type_name -> registry.v1.Agent
+	0,  // 13: registry.v1.HeartbeatRequest.capacity:type_name -> registry.v1.Capacity
+	1,  // 14: registry.v1.HeartbeatResponse.agent:type_name -> registry.v1.Agent
+	19, // 15: registry.v1.DiscoverRequest.metadata:type_name -> registry.v1.DiscoverRequest.MetadataEntry
+	1,  // 16: registry.v1.DiscoverResponse.agents:type_name -> registry.v1.Agent
+	2,  // 17: registry.v1.RegistryService.Register:input_type -> registry.v1.RegisterRequest
+	4,  // 18: registry.v1.RegistryService.Get:input_type -> registry.v1.GetRequest
+	6,  // 19: registry.v1.RegistryService.List:input_type -> registry.v1.ListRequest
+	8,  // 20: registry.v1.RegistryService.Update:input_type -> registry.v1.UpdateRequest
+	10, // 21: registry.v1.RegistryService.Delete:input_type -> registry.v1.DeleteRequest
+	12, // 22: registry.v1.RegistryService.Heartbeat:input_type -> registry.v1.HeartbeatRequest
+	14, // 23: registry.v1.RegistryService.Discover:input_type -> registry.v1.DiscoverRequest
+	3,  // 24: registry.v1.RegistryService.Register:output_type -> registry.v1.RegisterResponse
+	5,  // 25: registry.v1.RegistryService.Get:output_type -> registry.v1.GetResponse
+	7,  // 26: registry.v1.RegistryService.List:output_type -> registry.v1.ListResponse
+	9,  // 27: registry.v1.RegistryService.Update:output_type -> registry.v1.UpdateResponse
+	11, // 28: registry.v1.RegistryService.Delete:output_type -> registry.v1.DeleteResponse
+	13, // 29: registry.v1.RegistryService.Heartbeat:output_type -> registry.v1.HeartbeatResponse
+	15, // 30: registry.v1.RegistryService.Discover:output_type -> registry.v1.DiscoverResponse
+	24, // [24:31] is the sub-list for method output_type
+	17, // [17:24] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_registry_v1_registry_proto_init() }
@@ -987,7 +1136,7 @@ func file_registry_v1_registry_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_registry_v1_registry_proto_rawDesc), len(file_registry_v1_registry_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   17,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

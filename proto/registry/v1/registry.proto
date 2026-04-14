@@ -15,6 +15,7 @@ service RegistryService {
   rpc Register(RegisterRequest) returns (RegisterResponse);
   rpc Get(GetRequest) returns (GetResponse);
   rpc List(ListRequest) returns (ListResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse);
   rpc Delete(DeleteRequest) returns (DeleteResponse);
   rpc Heartbeat(HeartbeatRequest) returns (HeartbeatResponse);
   rpc Discover(DiscoverRequest) returns (DiscoverResponse);
@@ -67,6 +68,19 @@ message ListRequest {
 
 message ListResponse {
   repeated Agent agents = 1;
+}
+
+message UpdateRequest {
+  string id = 1;
+  string surface = 2;
+  repeated string capabilities = 3;
+  string status = 4;
+  Capacity capacity = 5;
+  map<string, string> metadata = 6;
+}
+
+message UpdateResponse {
+  Agent agent = 1;
 }
 
 message DeleteRequest {
