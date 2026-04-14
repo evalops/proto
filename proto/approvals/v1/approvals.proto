@@ -48,8 +48,8 @@ enum ActionAuthority {
 // AutoApproveConfig controls automatic approval behavior for a workspace.
 message AutoApproveConfig {
   bool enabled = 1;
-  optional float threshold = 2;                 // minimum confidence (default 0.95)
-  optional int32 min_observations = 3;          // minimum decisions before activation (default 20)
+  optional float threshold = 2;                 // Minimum confidence score. Defaults to 0.95 when not set.
+  optional int32 min_observations = 3;          // Minimum decisions before activation. Defaults to 20 when not set.
   repeated RiskLevel excluded_risk_levels = 4;  // always require human
 }
 

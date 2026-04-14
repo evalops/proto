@@ -194,8 +194,8 @@ func (ActionAuthority) EnumDescriptor() ([]byte, []int) {
 type AutoApproveConfig struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
 	Enabled            bool                   `protobuf:"varint,1,opt,name=enabled,proto3" json:"enabled,omitempty"`
-	Threshold          *float32               `protobuf:"fixed32,2,opt,name=threshold,proto3,oneof" json:"threshold,omitempty"`                                                                           // minimum confidence (default 0.95)
-	MinObservations    *int32                 `protobuf:"varint,3,opt,name=min_observations,json=minObservations,proto3,oneof" json:"min_observations,omitempty"`                                         // minimum decisions before activation (default 20)
+	Threshold          *float32               `protobuf:"fixed32,2,opt,name=threshold,proto3,oneof" json:"threshold,omitempty"`                                                                           // Minimum confidence score. Defaults to 0.95 when not set.
+	MinObservations    *int32                 `protobuf:"varint,3,opt,name=min_observations,json=minObservations,proto3,oneof" json:"min_observations,omitempty"`                                         // Minimum decisions before activation. Defaults to 20 when not set.
 	ExcludedRiskLevels []RiskLevel            `protobuf:"varint,4,rep,packed,name=excluded_risk_levels,json=excludedRiskLevels,proto3,enum=approvals.v1.RiskLevel" json:"excluded_risk_levels,omitempty"` // always require human
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache

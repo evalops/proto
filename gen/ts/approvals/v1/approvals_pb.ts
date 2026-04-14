@@ -26,14 +26,14 @@ export type AutoApproveConfig = Message<"approvals.v1.AutoApproveConfig"> & {
   enabled: boolean;
 
   /**
-   * minimum confidence (default 0.95)
+   * Minimum confidence score. Defaults to 0.95 when not set.
    *
    * @generated from field: optional float threshold = 2;
    */
   threshold?: number;
 
   /**
-   * minimum decisions before activation (default 20)
+   * Minimum decisions before activation. Defaults to 20 when not set.
    *
    * @generated from field: optional int32 min_observations = 3;
    */
