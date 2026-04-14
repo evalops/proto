@@ -34,6 +34,7 @@ enum DecisionType {
   DECISION_TYPE_DENIED = 2;
   DECISION_TYPE_ESCALATED = 3;
   DECISION_TYPE_EXPIRED = 4;
+  DECISION_TYPE_AUTO_APPROVED = 5;
 }
 
 // ActionAuthority describes the authority level for an action.
@@ -42,6 +43,22 @@ enum ActionAuthority {
   ACTION_AUTHORITY_OWN = 1;
   ACTION_AUTHORITY_RECOMMEND = 2;
   ACTION_AUTHORITY_REQUIRE_APPROVAL = 3;
+}
+
+// AutoApproveConfig controls automatic approval behavior for a workspace.
+message AutoApproveConfig {
+  bool enabled = 1;
+  optional float threshold = 2;                 // Minimum confidence score. Defaults to 0.95 when not set.
+  optional int32 min_observations = 3;          // Minimum decisions before activation. Defaults to 20 when not set.
+  repeated RiskLevel excluded_risk_levels = 4;  // always require human
+}
+
+// AutoApproveEvidence captures the data behind an automatic approval decision.
+message AutoApproveEvidence {
+  string pattern = 1;
+  float confidence = 2;
+  int32 observation_count = 3;
+  float threshold_applied = 4;
 }
 
 // ApprovalRequest is the canonical approval request record.
@@ -72,6 +89,7 @@ message ApprovalRule {
 message ApprovalPolicy {
   string workspace_id = 1;
   repeated ApprovalRule rules = 2;
+  AutoApproveConfig auto_approve_config = 3;
 }
 
 // ApprovalDecision records a decision made on an approval request.
@@ -89,6 +107,7 @@ message ApprovalHabit {
   string pattern = 1;
   float auto_approve_confidence = 2;
   int32 observation_count = 3;
+  int32 approved_count = 4;
 }
 
 message RequestApprovalRequest {
@@ -104,6 +123,7 @@ message RequestApprovalRequest {
 
 message RequestApprovalResponse {
   ApprovalRequest approval_request = 1;
+  AutoApproveEvidence auto_approve_evidence = 2;
 }
 
 message ResolveApprovalRequest {
