@@ -55,6 +55,11 @@ message ActionEvaluation {
   RiskLevel risk_level = 2;
   repeated string reasons = 3;
   repeated string matched_rules = 4;
+  // Approval habit confidence for this action pattern, if available.
+  // Consumers can show "94% confidence, 2 more approvals until auto-approve"
+  // to help humans understand the trust trajectory.
+  float habit_confidence = 5;
+  int32 habit_observation_count = 6;
 }
 
 // PIIDetectionResult contains all PII spans found in a text.

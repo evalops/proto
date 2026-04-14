@@ -198,13 +198,18 @@ func (RiskLevel) EnumDescriptor() ([]byte, []int) {
 
 // ActionEvaluation is the result of evaluating an action against governance rules.
 type ActionEvaluation struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Decision      ActionDecision         `protobuf:"varint,1,opt,name=decision,proto3,enum=governance.v1.ActionDecision" json:"decision,omitempty"`
-	RiskLevel     RiskLevel              `protobuf:"varint,2,opt,name=risk_level,json=riskLevel,proto3,enum=governance.v1.RiskLevel" json:"risk_level,omitempty"`
-	Reasons       []string               `protobuf:"bytes,3,rep,name=reasons,proto3" json:"reasons,omitempty"`
-	MatchedRules  []string               `protobuf:"bytes,4,rep,name=matched_rules,json=matchedRules,proto3" json:"matched_rules,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state        protoimpl.MessageState `protogen:"open.v1"`
+	Decision     ActionDecision         `protobuf:"varint,1,opt,name=decision,proto3,enum=governance.v1.ActionDecision" json:"decision,omitempty"`
+	RiskLevel    RiskLevel              `protobuf:"varint,2,opt,name=risk_level,json=riskLevel,proto3,enum=governance.v1.RiskLevel" json:"risk_level,omitempty"`
+	Reasons      []string               `protobuf:"bytes,3,rep,name=reasons,proto3" json:"reasons,omitempty"`
+	MatchedRules []string               `protobuf:"bytes,4,rep,name=matched_rules,json=matchedRules,proto3" json:"matched_rules,omitempty"`
+	// Approval habit confidence for this action pattern, if available.
+	// Consumers can show "94% confidence, 2 more approvals until auto-approve"
+	// to help humans understand the trust trajectory.
+	HabitConfidence       float32 `protobuf:"fixed32,5,opt,name=habit_confidence,json=habitConfidence,proto3" json:"habit_confidence,omitempty"`
+	HabitObservationCount int32   `protobuf:"varint,6,opt,name=habit_observation_count,json=habitObservationCount,proto3" json:"habit_observation_count,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
 }
 
 func (x *ActionEvaluation) Reset() {
@@ -263,6 +268,20 @@ func (x *ActionEvaluation) GetMatchedRules() []string {
 		return x.MatchedRules
 	}
 	return nil
+}
+
+func (x *ActionEvaluation) GetHabitConfidence() float32 {
+	if x != nil {
+		return x.HabitConfidence
+	}
+	return 0
+}
+
+func (x *ActionEvaluation) GetHabitObservationCount() int32 {
+	if x != nil {
+		return x.HabitObservationCount
+	}
+	return 0
 }
 
 // PIIDetectionResult contains all PII spans found in a text.
@@ -1651,13 +1670,15 @@ var File_governance_v1_governance_proto protoreflect.FileDescriptor
 
 const file_governance_v1_governance_proto_rawDesc = "" +
 	"\n" +
-	"\x1egovernance/v1/governance.proto\x12\rgovernance.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xc5\x01\n" +
+	"\x1egovernance/v1/governance.proto\x12\rgovernance.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xa8\x02\n" +
 	"\x10ActionEvaluation\x129\n" +
 	"\bdecision\x18\x01 \x01(\x0e2\x1d.governance.v1.ActionDecisionR\bdecision\x127\n" +
 	"\n" +
 	"risk_level\x18\x02 \x01(\x0e2\x18.governance.v1.RiskLevelR\triskLevel\x12\x18\n" +
 	"\areasons\x18\x03 \x03(\tR\areasons\x12#\n" +
-	"\rmatched_rules\x18\x04 \x03(\tR\fmatchedRules\"B\n" +
+	"\rmatched_rules\x18\x04 \x03(\tR\fmatchedRules\x12)\n" +
+	"\x10habit_confidence\x18\x05 \x01(\x02R\x0fhabitConfidence\x126\n" +
+	"\x17habit_observation_count\x18\x06 \x01(\x05R\x15habitObservationCount\"B\n" +
 	"\x12PIIDetectionResult\x12,\n" +
 	"\x05spans\x18\x01 \x03(\v2\x16.governance.v1.PIISpanR\x05spans\"\xb7\x01\n" +
 	"\aPIISpan\x12!\n" +
