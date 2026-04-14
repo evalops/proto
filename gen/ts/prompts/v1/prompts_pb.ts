@@ -12,7 +12,7 @@ import type { JsonObject, Message } from "@bufbuild/protobuf";
  * Describes the file prompts/v1/prompts.proto.
  */
 export const file_prompts_v1_prompts: GenFile = /*@__PURE__*/
-  fileDesc("Chhwcm9tcHRzL3YxL3Byb21wdHMucHJvdG8SCnByb21wdHMudjEi5QEKBlByb21wdBIKCgJpZBgBIAEoCRIXCg9vcmdhbml6YXRpb25faWQYAiABKAkSDAoEbmFtZRgDIAEoCRIPCgdzdXJmYWNlGAQgASgJEgwKBHRhZ3MYBSADKAkSKQoIbWV0YWRhdGEYBiABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Ei4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIqoCCgdWZXJzaW9uEgoKAmlkGAEgASgJEhEKCXByb21wdF9pZBgCIAEoCRIPCgd2ZXJzaW9uGAMgASgFEg8KB2NvbnRlbnQYBCABKAkSDQoFbW9kZWwYBSABKAkSDAoEaGFzaBgGIAEoCRIOCgZhdXRob3IYByABKAkSLgoKY3JlYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASEQoJdmFyaWFibGVzGAkgAygJEjoKDHRva2VuX2NvdW50cxgKIAMoCzIkLnByb21wdHMudjEuVmVyc2lvbi5Ub2tlbkNvdW50c0VudHJ5GjIKEFRva2VuQ291bnRzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgDOgI4ASKQAQoFTGFiZWwSEQoJcHJvbXB0X2lkGAEgASgJEgwKBG5hbWUYAiABKAkSDwoHdmVyc2lvbhgDIAEoBRINCgVhY3RvchgEIAEoCRIVCg1yb2xsYmFja19mcm9tGAUgASgFEi8KC2Fzc2lnbmVkX2F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCLEAQoKRGVwbG95bWVudBIKCgJpZBgBIAEoCRIRCglwcm9tcHRfaWQYAiABKAkSEgoKdmVyc2lvbl9pZBgDIAEoCRIPCgd2ZXJzaW9uGAQgASgFEg8KB3N1cmZhY2UYBSABKAkSCwoDZW52GAYgASgJEg0KBWFjdG9yGAcgASgJEi4KCmNyZWF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhUKDXJvbGxiYWNrX2Zyb20YCSABKAUisQEKCEV2YWxMaW5rEgoKAmlkGAEgASgJEhEKCXByb21wdF9pZBgCIAEoCRISCgp2ZXJzaW9uX2lkGAMgASgJEhMKC2V2YWxfcnVuX2lkGAQgASgJEg0KBXNjb3JlGAUgASgBEgwKBHBhc3MYBiABKAgSEAoIZXZhbF91cmwYByABKAkSLgoKY3JlYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAibQoOUmVzb2x2ZWRQcm9tcHQSEwoLcHJvbXB0X25hbWUYASABKAkSEQoJcHJvbXB0X2lkGAIgASgJEg0KBWxhYmVsGAMgASgJEiQKB3ZlcnNpb24YBCABKAsyEy5wcm9tcHRzLnYxLlZlcnNpb24ibQoTQ3JlYXRlUHJvbXB0UmVxdWVzdBIMCgRuYW1lGAEgASgJEg8KB3N1cmZhY2UYAiABKAkSDAoEdGFncxgDIAMoCRIpCghtZXRhZGF0YRgEIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QiHgoQR2V0UHJvbXB0UmVxdWVzdBIKCgJpZBgBIAEoCSIyChJMaXN0UHJvbXB0c1JlcXVlc3QSDwoHc3VyZmFjZRgBIAEoCRILCgN0YWcYAiABKAkiOgoTTGlzdFByb21wdHNSZXNwb25zZRIjCgdwcm9tcHRzGAEgAygLMhIucHJvbXB0cy52MS5Qcm9tcHQibAoUQ3JlYXRlVmVyc2lvblJlcXVlc3QSEQoJcHJvbXB0X2lkGAEgASgJEg8KB2NvbnRlbnQYAiABKAkSDQoFbW9kZWwYAyABKAkSDgoGYXV0aG9yGAQgASgJEhEKCXZhcmlhYmxlcxgFIAMoCSIoChNMaXN0VmVyc2lvbnNSZXF1ZXN0EhEKCXByb21wdF9pZBgBIAEoCSI9ChRMaXN0VmVyc2lvbnNSZXNwb25zZRIlCgh2ZXJzaW9ucxgBIAMoCzITLnByb21wdHMudjEuVmVyc2lvbiJsChJBc3NpZ25MYWJlbFJlcXVlc3QSEQoJcHJvbXB0X2lkGAEgASgJEgwKBG5hbWUYAiABKAkSDwoHdmVyc2lvbhgDIAEoBRINCgVhY3RvchgEIAEoCRIVCg1yb2xsYmFja19mcm9tGAUgASgFIiYKEUxpc3RMYWJlbHNSZXF1ZXN0EhEKCXByb21wdF9pZBgBIAEoCSI3ChJMaXN0TGFiZWxzUmVzcG9uc2USIQoGbGFiZWxzGAEgAygLMhEucHJvbXB0cy52MS5MYWJlbCIrChZMaXN0RGVwbG95bWVudHNSZXF1ZXN0EhEKCXByb21wdF9pZBgBIAEoCSJGChdMaXN0RGVwbG95bWVudHNSZXNwb25zZRIrCgtkZXBsb3ltZW50cxgBIAMoCzIWLnByb21wdHMudjEuRGVwbG95bWVudCJ8Cg9MaW5rRXZhbFJlcXVlc3QSEQoJcHJvbXB0X2lkGAEgASgJEhIKCnZlcnNpb25faWQYAiABKAkSEwoLZXZhbF9ydW5faWQYAyABKAkSDQoFc2NvcmUYBCABKAESDAoEcGFzcxgFIAEoCBIQCghldmFsX3VybBgGIAEoCSItCg5SZXNvbHZlUmVxdWVzdBIMCgRuYW1lGAEgASgJEg0KBWxhYmVsGAIgASgJIjcKD1Jlc29sdmVSZXNwb25zZRIkCgd2ZXJzaW9uGAEgASgLMhMucHJvbXB0cy52MS5WZXJzaW9uIiIKEVJlc29sdmVBbGxSZXF1ZXN0Eg0KBWxhYmVsGAEgASgJIkEKElJlc29sdmVBbGxSZXNwb25zZRIrCgdwcm9tcHRzGAEgAygLMhoucHJvbXB0cy52MS5SZXNvbHZlZFByb21wdDK5BgoNUHJvbXB0U2VydmljZRJDCgxDcmVhdGVQcm9tcHQSHy5wcm9tcHRzLnYxLkNyZWF0ZVByb21wdFJlcXVlc3QaEi5wcm9tcHRzLnYxLlByb21wdBI9CglHZXRQcm9tcHQSHC5wcm9tcHRzLnYxLkdldFByb21wdFJlcXVlc3QaEi5wcm9tcHRzLnYxLlByb21wdBJOCgtMaXN0UHJvbXB0cxIeLnByb21wdHMudjEuTGlzdFByb21wdHNSZXF1ZXN0Gh8ucHJvbXB0cy52MS5MaXN0UHJvbXB0c1Jlc3BvbnNlEkYKDUNyZWF0ZVZlcnNpb24SIC5wcm9tcHRzLnYxLkNyZWF0ZVZlcnNpb25SZXF1ZXN0GhMucHJvbXB0cy52MS5WZXJzaW9uElEKDExpc3RWZXJzaW9ucxIfLnByb21wdHMudjEuTGlzdFZlcnNpb25zUmVxdWVzdBogLnByb21wdHMudjEuTGlzdFZlcnNpb25zUmVzcG9uc2USQAoLQXNzaWduTGFiZWwSHi5wcm9tcHRzLnYxLkFzc2lnbkxhYmVsUmVxdWVzdBoRLnByb21wdHMudjEuTGFiZWwSSwoKTGlzdExhYmVscxIdLnByb21wdHMudjEuTGlzdExhYmVsc1JlcXVlc3QaHi5wcm9tcHRzLnYxLkxpc3RMYWJlbHNSZXNwb25zZRJaCg9MaXN0RGVwbG95bWVudHMSIi5wcm9tcHRzLnYxLkxpc3REZXBsb3ltZW50c1JlcXVlc3QaIy5wcm9tcHRzLnYxLkxpc3REZXBsb3ltZW50c1Jlc3BvbnNlEj0KCExpbmtFdmFsEhsucHJvbXB0cy52MS5MaW5rRXZhbFJlcXVlc3QaFC5wcm9tcHRzLnYxLkV2YWxMaW5rEkIKB1Jlc29sdmUSGi5wcm9tcHRzLnYxLlJlc29sdmVSZXF1ZXN0GhsucHJvbXB0cy52MS5SZXNvbHZlUmVzcG9uc2USSwoKUmVzb2x2ZUFsbBIdLnByb21wdHMudjEuUmVzb2x2ZUFsbFJlcXVlc3QaHi5wcm9tcHRzLnYxLlJlc29sdmVBbGxSZXNwb25zZUI2WjRnaXRodWIuY29tL2V2YWxvcHMvcHJvdG8vZ2VuL2dvL3Byb21wdHMvdjE7cHJvbXB0c3YxYgZwcm90bzM", [file_google_protobuf_timestamp, file_google_protobuf_struct]);
+  fileDesc("Chhwcm9tcHRzL3YxL3Byb21wdHMucHJvdG8SCnByb21wdHMudjEi5QEKBlByb21wdBIKCgJpZBgBIAEoCRIXCg9vcmdhbml6YXRpb25faWQYAiABKAkSDAoEbmFtZRgDIAEoCRIPCgdzdXJmYWNlGAQgASgJEgwKBHRhZ3MYBSADKAkSKQoIbWV0YWRhdGEYBiABKAsyFy5nb29nbGUucHJvdG9idWYuU3RydWN0Ei4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIqoCCgdWZXJzaW9uEgoKAmlkGAEgASgJEhEKCXByb21wdF9pZBgCIAEoCRIPCgd2ZXJzaW9uGAMgASgFEg8KB2NvbnRlbnQYBCABKAkSDQoFbW9kZWwYBSABKAkSDAoEaGFzaBgGIAEoCRIOCgZhdXRob3IYByABKAkSLgoKY3JlYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASEQoJdmFyaWFibGVzGAkgAygJEjoKDHRva2VuX2NvdW50cxgKIAMoCzIkLnByb21wdHMudjEuVmVyc2lvbi5Ub2tlbkNvdW50c0VudHJ5GjIKEFRva2VuQ291bnRzRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgDOgI4ASKQAQoFTGFiZWwSEQoJcHJvbXB0X2lkGAEgASgJEgwKBG5hbWUYAiABKAkSDwoHdmVyc2lvbhgDIAEoBRINCgVhY3RvchgEIAEoCRIVCg1yb2xsYmFja19mcm9tGAUgASgFEi8KC2Fzc2lnbmVkX2F0GAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCLEAQoKRGVwbG95bWVudBIKCgJpZBgBIAEoCRIRCglwcm9tcHRfaWQYAiABKAkSEgoKdmVyc2lvbl9pZBgDIAEoCRIPCgd2ZXJzaW9uGAQgASgFEg8KB3N1cmZhY2UYBSABKAkSCwoDZW52GAYgASgJEg0KBWFjdG9yGAcgASgJEi4KCmNyZWF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhUKDXJvbGxiYWNrX2Zyb20YCSABKAUisQEKCEV2YWxMaW5rEgoKAmlkGAEgASgJEhEKCXByb21wdF9pZBgCIAEoCRISCgp2ZXJzaW9uX2lkGAMgASgJEhMKC2V2YWxfcnVuX2lkGAQgASgJEg0KBXNjb3JlGAUgASgBEgwKBHBhc3MYBiABKAgSEAoIZXZhbF91cmwYByABKAkSLgoKY3JlYXRlZF9hdBgIIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAibQoOUmVzb2x2ZWRQcm9tcHQSEwoLcHJvbXB0X25hbWUYASABKAkSEQoJcHJvbXB0X2lkGAIgASgJEg0KBWxhYmVsGAMgASgJEiQKB3ZlcnNpb24YBCABKAsyEy5wcm9tcHRzLnYxLlZlcnNpb24ibQoTQ3JlYXRlUHJvbXB0UmVxdWVzdBIMCgRuYW1lGAEgASgJEg8KB3N1cmZhY2UYAiABKAkSDAoEdGFncxgDIAMoCRIpCghtZXRhZGF0YRgEIAEoCzIXLmdvb2dsZS5wcm90b2J1Zi5TdHJ1Y3QiHgoQR2V0UHJvbXB0UmVxdWVzdBIKCgJpZBgBIAEoCSJRChJMaXN0UHJvbXB0c1JlcXVlc3QSDwoHc3VyZmFjZRgBIAEoCRILCgN0YWcYAiABKAkSDQoFbGltaXQYAyABKAUSDgoGb2Zmc2V0GAQgASgFIlsKE0xpc3RQcm9tcHRzUmVzcG9uc2USIwoHcHJvbXB0cxgBIAMoCzISLnByb21wdHMudjEuUHJvbXB0Eg0KBXRvdGFsGAIgASgFEhAKCGhhc19tb3JlGAMgASgIImwKFENyZWF0ZVZlcnNpb25SZXF1ZXN0EhEKCXByb21wdF9pZBgBIAEoCRIPCgdjb250ZW50GAIgASgJEg0KBW1vZGVsGAMgASgJEg4KBmF1dGhvchgEIAEoCRIRCgl2YXJpYWJsZXMYBSADKAkiRwoTTGlzdFZlcnNpb25zUmVxdWVzdBIRCglwcm9tcHRfaWQYASABKAkSDQoFbGltaXQYAiABKAUSDgoGb2Zmc2V0GAMgASgFIl4KFExpc3RWZXJzaW9uc1Jlc3BvbnNlEiUKCHZlcnNpb25zGAEgAygLMhMucHJvbXB0cy52MS5WZXJzaW9uEg0KBXRvdGFsGAIgASgFEhAKCGhhc19tb3JlGAMgASgIImwKEkFzc2lnbkxhYmVsUmVxdWVzdBIRCglwcm9tcHRfaWQYASABKAkSDAoEbmFtZRgCIAEoCRIPCgd2ZXJzaW9uGAMgASgFEg0KBWFjdG9yGAQgASgJEhUKDXJvbGxiYWNrX2Zyb20YBSABKAUiRQoRTGlzdExhYmVsc1JlcXVlc3QSEQoJcHJvbXB0X2lkGAEgASgJEg0KBWxpbWl0GAIgASgFEg4KBm9mZnNldBgDIAEoBSJYChJMaXN0TGFiZWxzUmVzcG9uc2USIQoGbGFiZWxzGAEgAygLMhEucHJvbXB0cy52MS5MYWJlbBINCgV0b3RhbBgCIAEoBRIQCghoYXNfbW9yZRgDIAEoCCJKChZMaXN0RGVwbG95bWVudHNSZXF1ZXN0EhEKCXByb21wdF9pZBgBIAEoCRINCgVsaW1pdBgCIAEoBRIOCgZvZmZzZXQYAyABKAUiZwoXTGlzdERlcGxveW1lbnRzUmVzcG9uc2USKwoLZGVwbG95bWVudHMYASADKAsyFi5wcm9tcHRzLnYxLkRlcGxveW1lbnQSDQoFdG90YWwYAiABKAUSEAoIaGFzX21vcmUYAyABKAgifAoPTGlua0V2YWxSZXF1ZXN0EhEKCXByb21wdF9pZBgBIAEoCRISCgp2ZXJzaW9uX2lkGAIgASgJEhMKC2V2YWxfcnVuX2lkGAMgASgJEg0KBXNjb3JlGAQgASgBEgwKBHBhc3MYBSABKAgSEAoIZXZhbF91cmwYBiABKAkiLQoOUmVzb2x2ZVJlcXVlc3QSDAoEbmFtZRgBIAEoCRINCgVsYWJlbBgCIAEoCSI3Cg9SZXNvbHZlUmVzcG9uc2USJAoHdmVyc2lvbhgBIAEoCzITLnByb21wdHMudjEuVmVyc2lvbiIiChFSZXNvbHZlQWxsUmVxdWVzdBINCgVsYWJlbBgBIAEoCSJBChJSZXNvbHZlQWxsUmVzcG9uc2USKwoHcHJvbXB0cxgBIAMoCzIaLnByb21wdHMudjEuUmVzb2x2ZWRQcm9tcHQyuQYKDVByb21wdFNlcnZpY2USQwoMQ3JlYXRlUHJvbXB0Eh8ucHJvbXB0cy52MS5DcmVhdGVQcm9tcHRSZXF1ZXN0GhIucHJvbXB0cy52MS5Qcm9tcHQSPQoJR2V0UHJvbXB0EhwucHJvbXB0cy52MS5HZXRQcm9tcHRSZXF1ZXN0GhIucHJvbXB0cy52MS5Qcm9tcHQSTgoLTGlzdFByb21wdHMSHi5wcm9tcHRzLnYxLkxpc3RQcm9tcHRzUmVxdWVzdBofLnByb21wdHMudjEuTGlzdFByb21wdHNSZXNwb25zZRJGCg1DcmVhdGVWZXJzaW9uEiAucHJvbXB0cy52MS5DcmVhdGVWZXJzaW9uUmVxdWVzdBoTLnByb21wdHMudjEuVmVyc2lvbhJRCgxMaXN0VmVyc2lvbnMSHy5wcm9tcHRzLnYxLkxpc3RWZXJzaW9uc1JlcXVlc3QaIC5wcm9tcHRzLnYxLkxpc3RWZXJzaW9uc1Jlc3BvbnNlEkAKC0Fzc2lnbkxhYmVsEh4ucHJvbXB0cy52MS5Bc3NpZ25MYWJlbFJlcXVlc3QaES5wcm9tcHRzLnYxLkxhYmVsEksKCkxpc3RMYWJlbHMSHS5wcm9tcHRzLnYxLkxpc3RMYWJlbHNSZXF1ZXN0Gh4ucHJvbXB0cy52MS5MaXN0TGFiZWxzUmVzcG9uc2USWgoPTGlzdERlcGxveW1lbnRzEiIucHJvbXB0cy52MS5MaXN0RGVwbG95bWVudHNSZXF1ZXN0GiMucHJvbXB0cy52MS5MaXN0RGVwbG95bWVudHNSZXNwb25zZRI9CghMaW5rRXZhbBIbLnByb21wdHMudjEuTGlua0V2YWxSZXF1ZXN0GhQucHJvbXB0cy52MS5FdmFsTGluaxJCCgdSZXNvbHZlEhoucHJvbXB0cy52MS5SZXNvbHZlUmVxdWVzdBobLnByb21wdHMudjEuUmVzb2x2ZVJlc3BvbnNlEksKClJlc29sdmVBbGwSHS5wcm9tcHRzLnYxLlJlc29sdmVBbGxSZXF1ZXN0Gh4ucHJvbXB0cy52MS5SZXNvbHZlQWxsUmVzcG9uc2VCNlo0Z2l0aHViLmNvbS9ldmFsb3BzL3Byb3RvL2dlbi9nby9wcm9tcHRzL3YxO3Byb21wdHN2MWIGcHJvdG8z", [file_google_protobuf_timestamp, file_google_protobuf_struct]);
 
 /**
  * Prompt is a named, versioned prompt template scoped to an organization.
@@ -404,6 +404,16 @@ export type ListPromptsRequest = Message<"prompts.v1.ListPromptsRequest"> & {
    * @generated from field: string tag = 2;
    */
   tag: string;
+
+  /**
+   * @generated from field: int32 limit = 3;
+   */
+  limit: number;
+
+  /**
+   * @generated from field: int32 offset = 4;
+   */
+  offset: number;
 };
 
 /**
@@ -421,6 +431,16 @@ export type ListPromptsResponse = Message<"prompts.v1.ListPromptsResponse"> & {
    * @generated from field: repeated prompts.v1.Prompt prompts = 1;
    */
   prompts: Prompt[];
+
+  /**
+   * @generated from field: int32 total = 2;
+   */
+  total: number;
+
+  /**
+   * @generated from field: bool has_more = 3;
+   */
+  hasMore: boolean;
 };
 
 /**
@@ -475,6 +495,16 @@ export type ListVersionsRequest = Message<"prompts.v1.ListVersionsRequest"> & {
    * @generated from field: string prompt_id = 1;
    */
   promptId: string;
+
+  /**
+   * @generated from field: int32 limit = 2;
+   */
+  limit: number;
+
+  /**
+   * @generated from field: int32 offset = 3;
+   */
+  offset: number;
 };
 
 /**
@@ -492,6 +522,16 @@ export type ListVersionsResponse = Message<"prompts.v1.ListVersionsResponse"> & 
    * @generated from field: repeated prompts.v1.Version versions = 1;
    */
   versions: Version[];
+
+  /**
+   * @generated from field: int32 total = 2;
+   */
+  total: number;
+
+  /**
+   * @generated from field: bool has_more = 3;
+   */
+  hasMore: boolean;
 };
 
 /**
@@ -557,6 +597,16 @@ export type ListLabelsRequest = Message<"prompts.v1.ListLabelsRequest"> & {
    * @generated from field: string prompt_id = 1;
    */
   promptId: string;
+
+  /**
+   * @generated from field: int32 limit = 2;
+   */
+  limit: number;
+
+  /**
+   * @generated from field: int32 offset = 3;
+   */
+  offset: number;
 };
 
 /**
@@ -574,6 +624,16 @@ export type ListLabelsResponse = Message<"prompts.v1.ListLabelsResponse"> & {
    * @generated from field: repeated prompts.v1.Label labels = 1;
    */
   labels: Label[];
+
+  /**
+   * @generated from field: int32 total = 2;
+   */
+  total: number;
+
+  /**
+   * @generated from field: bool has_more = 3;
+   */
+  hasMore: boolean;
 };
 
 /**
@@ -591,6 +651,16 @@ export type ListDeploymentsRequest = Message<"prompts.v1.ListDeploymentsRequest"
    * @generated from field: string prompt_id = 1;
    */
   promptId: string;
+
+  /**
+   * @generated from field: int32 limit = 2;
+   */
+  limit: number;
+
+  /**
+   * @generated from field: int32 offset = 3;
+   */
+  offset: number;
 };
 
 /**
@@ -608,6 +678,16 @@ export type ListDeploymentsResponse = Message<"prompts.v1.ListDeploymentsRespons
    * @generated from field: repeated prompts.v1.Deployment deployments = 1;
    */
   deployments: Deployment[];
+
+  /**
+   * @generated from field: int32 total = 2;
+   */
+  total: number;
+
+  /**
+   * @generated from field: bool has_more = 3;
+   */
+  hasMore: boolean;
 };
 
 /**
