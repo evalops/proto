@@ -182,8 +182,8 @@ export const IssueServiceTokenResponseSchema: GenMessage<IssueServiceTokenRespon
  */
 export type IssueAgentTokenRequest = Message<"identity.v1.IssueAgentTokenRequest"> & {
   /**
-   * Deprecated: identity now resolves agent_type from the registry record
-   * referenced by agent_id instead of trusting caller-provided values.
+   * Deprecated: use agent_id instead. Ignored when agent_id is set.
+   * Accepted for backward compatibility when agent_id is empty.
    *
    * @generated from field: string agent_type = 1 [deprecated = true];
    * @deprecated
@@ -191,8 +191,8 @@ export type IssueAgentTokenRequest = Message<"identity.v1.IssueAgentTokenRequest
   agentType: string;
 
   /**
-   * Deprecated: identity now resolves capabilities from the registry record
-   * referenced by agent_id instead of trusting caller-provided values.
+   * Deprecated: use agent_id instead. Ignored when agent_id is set.
+   * Accepted for backward compatibility when agent_id is empty.
    *
    * @generated from field: repeated string capabilities = 2 [deprecated = true];
    * @deprecated
@@ -215,7 +215,10 @@ export type IssueAgentTokenRequest = Message<"identity.v1.IssueAgentTokenRequest
   ttlSeconds: number;
 
   /**
-   * agent_id must reference an existing agents/v1 Agent record in registry.
+   * When set, the identity service looks up the agent record in registry
+   * and derives agent_type and capabilities from it. Takes precedence over
+   * the deprecated agent_type and capabilities fields. Must reference an
+   * existing agents/v1 Agent record.
    *
    * @generated from field: string agent_id = 6;
    */

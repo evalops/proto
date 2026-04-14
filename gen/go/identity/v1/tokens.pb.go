@@ -348,20 +348,23 @@ func (x *IssueServiceTokenResponse) GetExpiresAt() *timestamppb.Timestamp {
 
 type IssueAgentTokenRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
-	// Deprecated: identity now resolves agent_type from the registry record
-	// referenced by agent_id instead of trusting caller-provided values.
+	// Deprecated: use agent_id instead. Ignored when agent_id is set.
+	// Accepted for backward compatibility when agent_id is empty.
 	//
 	// Deprecated: Marked as deprecated in identity/v1/tokens.proto.
 	AgentType string `protobuf:"bytes,1,opt,name=agent_type,json=agentType,proto3" json:"agent_type,omitempty"`
-	// Deprecated: identity now resolves capabilities from the registry record
-	// referenced by agent_id instead of trusting caller-provided values.
+	// Deprecated: use agent_id instead. Ignored when agent_id is set.
+	// Accepted for backward compatibility when agent_id is empty.
 	//
 	// Deprecated: Marked as deprecated in identity/v1/tokens.proto.
 	Capabilities []string `protobuf:"bytes,2,rep,name=capabilities,proto3" json:"capabilities,omitempty"`
 	Scopes       []string `protobuf:"bytes,3,rep,name=scopes,proto3" json:"scopes,omitempty"`
 	Surface      string   `protobuf:"bytes,4,opt,name=surface,proto3" json:"surface,omitempty"`
 	TtlSeconds   int32    `protobuf:"varint,5,opt,name=ttl_seconds,json=ttlSeconds,proto3" json:"ttl_seconds,omitempty"`
-	// agent_id must reference an existing agents/v1 Agent record in registry.
+	// When set, the identity service looks up the agent record in registry
+	// and derives agent_type and capabilities from it. Takes precedence over
+	// the deprecated agent_type and capabilities fields. Must reference an
+	// existing agents/v1 Agent record.
 	AgentId       string `protobuf:"bytes,6,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
