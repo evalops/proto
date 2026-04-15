@@ -45,6 +45,15 @@ const (
 	// AttributionServiceExportReportProcedure is the fully-qualified name of the AttributionService's
 	// ExportReport RPC.
 	AttributionServiceExportReportProcedure = "/attribution.v1.AttributionService/ExportReport"
+	// AttributionServiceRecordSignalsProcedure is the fully-qualified name of the AttributionService's
+	// RecordSignals RPC.
+	AttributionServiceRecordSignalsProcedure = "/attribution.v1.AttributionService/RecordSignals"
+	// AttributionServiceGetSnapshotProcedure is the fully-qualified name of the AttributionService's
+	// GetSnapshot RPC.
+	AttributionServiceGetSnapshotProcedure = "/attribution.v1.AttributionService/GetSnapshot"
+	// AttributionServiceListSnapshotsProcedure is the fully-qualified name of the AttributionService's
+	// ListSnapshots RPC.
+	AttributionServiceListSnapshotsProcedure = "/attribution.v1.AttributionService/ListSnapshots"
 )
 
 // AttributionServiceClient is a client for the attribution.v1.AttributionService service.
@@ -53,6 +62,9 @@ type AttributionServiceClient interface {
 	GetReport(context.Context, *connect.Request[v1.GetReportRequest]) (*connect.Response[v1.GetReportResponse], error)
 	ListReports(context.Context, *connect.Request[v1.ListReportsRequest]) (*connect.Response[v1.ListReportsResponse], error)
 	ExportReport(context.Context, *connect.Request[v1.ExportReportRequest]) (*connect.Response[v1.ExportReportResponse], error)
+	RecordSignals(context.Context, *connect.Request[v1.RecordSignalsRequest]) (*connect.Response[v1.RecordSignalsResponse], error)
+	GetSnapshot(context.Context, *connect.Request[v1.GetSnapshotRequest]) (*connect.Response[v1.GetSnapshotResponse], error)
+	ListSnapshots(context.Context, *connect.Request[v1.ListSnapshotsRequest]) (*connect.Response[v1.ListSnapshotsResponse], error)
 }
 
 // NewAttributionServiceClient constructs a client for the attribution.v1.AttributionService
@@ -90,6 +102,24 @@ func NewAttributionServiceClient(httpClient connect.HTTPClient, baseURL string, 
 			connect.WithSchema(attributionServiceMethods.ByName("ExportReport")),
 			connect.WithClientOptions(opts...),
 		),
+		recordSignals: connect.NewClient[v1.RecordSignalsRequest, v1.RecordSignalsResponse](
+			httpClient,
+			baseURL+AttributionServiceRecordSignalsProcedure,
+			connect.WithSchema(attributionServiceMethods.ByName("RecordSignals")),
+			connect.WithClientOptions(opts...),
+		),
+		getSnapshot: connect.NewClient[v1.GetSnapshotRequest, v1.GetSnapshotResponse](
+			httpClient,
+			baseURL+AttributionServiceGetSnapshotProcedure,
+			connect.WithSchema(attributionServiceMethods.ByName("GetSnapshot")),
+			connect.WithClientOptions(opts...),
+		),
+		listSnapshots: connect.NewClient[v1.ListSnapshotsRequest, v1.ListSnapshotsResponse](
+			httpClient,
+			baseURL+AttributionServiceListSnapshotsProcedure,
+			connect.WithSchema(attributionServiceMethods.ByName("ListSnapshots")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -99,6 +129,9 @@ type attributionServiceClient struct {
 	getReport      *connect.Client[v1.GetReportRequest, v1.GetReportResponse]
 	listReports    *connect.Client[v1.ListReportsRequest, v1.ListReportsResponse]
 	exportReport   *connect.Client[v1.ExportReportRequest, v1.ExportReportResponse]
+	recordSignals  *connect.Client[v1.RecordSignalsRequest, v1.RecordSignalsResponse]
+	getSnapshot    *connect.Client[v1.GetSnapshotRequest, v1.GetSnapshotResponse]
+	listSnapshots  *connect.Client[v1.ListSnapshotsRequest, v1.ListSnapshotsResponse]
 }
 
 // GenerateReport calls attribution.v1.AttributionService.GenerateReport.
@@ -121,12 +154,30 @@ func (c *attributionServiceClient) ExportReport(ctx context.Context, req *connec
 	return c.exportReport.CallUnary(ctx, req)
 }
 
+// RecordSignals calls attribution.v1.AttributionService.RecordSignals.
+func (c *attributionServiceClient) RecordSignals(ctx context.Context, req *connect.Request[v1.RecordSignalsRequest]) (*connect.Response[v1.RecordSignalsResponse], error) {
+	return c.recordSignals.CallUnary(ctx, req)
+}
+
+// GetSnapshot calls attribution.v1.AttributionService.GetSnapshot.
+func (c *attributionServiceClient) GetSnapshot(ctx context.Context, req *connect.Request[v1.GetSnapshotRequest]) (*connect.Response[v1.GetSnapshotResponse], error) {
+	return c.getSnapshot.CallUnary(ctx, req)
+}
+
+// ListSnapshots calls attribution.v1.AttributionService.ListSnapshots.
+func (c *attributionServiceClient) ListSnapshots(ctx context.Context, req *connect.Request[v1.ListSnapshotsRequest]) (*connect.Response[v1.ListSnapshotsResponse], error) {
+	return c.listSnapshots.CallUnary(ctx, req)
+}
+
 // AttributionServiceHandler is an implementation of the attribution.v1.AttributionService service.
 type AttributionServiceHandler interface {
 	GenerateReport(context.Context, *connect.Request[v1.GenerateReportRequest]) (*connect.Response[v1.GenerateReportResponse], error)
 	GetReport(context.Context, *connect.Request[v1.GetReportRequest]) (*connect.Response[v1.GetReportResponse], error)
 	ListReports(context.Context, *connect.Request[v1.ListReportsRequest]) (*connect.Response[v1.ListReportsResponse], error)
 	ExportReport(context.Context, *connect.Request[v1.ExportReportRequest]) (*connect.Response[v1.ExportReportResponse], error)
+	RecordSignals(context.Context, *connect.Request[v1.RecordSignalsRequest]) (*connect.Response[v1.RecordSignalsResponse], error)
+	GetSnapshot(context.Context, *connect.Request[v1.GetSnapshotRequest]) (*connect.Response[v1.GetSnapshotResponse], error)
+	ListSnapshots(context.Context, *connect.Request[v1.ListSnapshotsRequest]) (*connect.Response[v1.ListSnapshotsResponse], error)
 }
 
 // NewAttributionServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -160,6 +211,24 @@ func NewAttributionServiceHandler(svc AttributionServiceHandler, opts ...connect
 		connect.WithSchema(attributionServiceMethods.ByName("ExportReport")),
 		connect.WithHandlerOptions(opts...),
 	)
+	attributionServiceRecordSignalsHandler := connect.NewUnaryHandler(
+		AttributionServiceRecordSignalsProcedure,
+		svc.RecordSignals,
+		connect.WithSchema(attributionServiceMethods.ByName("RecordSignals")),
+		connect.WithHandlerOptions(opts...),
+	)
+	attributionServiceGetSnapshotHandler := connect.NewUnaryHandler(
+		AttributionServiceGetSnapshotProcedure,
+		svc.GetSnapshot,
+		connect.WithSchema(attributionServiceMethods.ByName("GetSnapshot")),
+		connect.WithHandlerOptions(opts...),
+	)
+	attributionServiceListSnapshotsHandler := connect.NewUnaryHandler(
+		AttributionServiceListSnapshotsProcedure,
+		svc.ListSnapshots,
+		connect.WithSchema(attributionServiceMethods.ByName("ListSnapshots")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/attribution.v1.AttributionService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case AttributionServiceGenerateReportProcedure:
@@ -170,6 +239,12 @@ func NewAttributionServiceHandler(svc AttributionServiceHandler, opts ...connect
 			attributionServiceListReportsHandler.ServeHTTP(w, r)
 		case AttributionServiceExportReportProcedure:
 			attributionServiceExportReportHandler.ServeHTTP(w, r)
+		case AttributionServiceRecordSignalsProcedure:
+			attributionServiceRecordSignalsHandler.ServeHTTP(w, r)
+		case AttributionServiceGetSnapshotProcedure:
+			attributionServiceGetSnapshotHandler.ServeHTTP(w, r)
+		case AttributionServiceListSnapshotsProcedure:
+			attributionServiceListSnapshotsHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -193,4 +268,16 @@ func (UnimplementedAttributionServiceHandler) ListReports(context.Context, *conn
 
 func (UnimplementedAttributionServiceHandler) ExportReport(context.Context, *connect.Request[v1.ExportReportRequest]) (*connect.Response[v1.ExportReportResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("attribution.v1.AttributionService.ExportReport is not implemented"))
+}
+
+func (UnimplementedAttributionServiceHandler) RecordSignals(context.Context, *connect.Request[v1.RecordSignalsRequest]) (*connect.Response[v1.RecordSignalsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("attribution.v1.AttributionService.RecordSignals is not implemented"))
+}
+
+func (UnimplementedAttributionServiceHandler) GetSnapshot(context.Context, *connect.Request[v1.GetSnapshotRequest]) (*connect.Response[v1.GetSnapshotResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("attribution.v1.AttributionService.GetSnapshot is not implemented"))
+}
+
+func (UnimplementedAttributionServiceHandler) ListSnapshots(context.Context, *connect.Request[v1.ListSnapshotsRequest]) (*connect.Response[v1.ListSnapshotsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("attribution.v1.AttributionService.ListSnapshots is not implemented"))
 }

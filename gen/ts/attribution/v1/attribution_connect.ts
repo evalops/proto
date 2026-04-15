@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ExportReportRequest, ExportReportResponse, GenerateReportRequest, GenerateReportResponse, GetReportRequest, GetReportResponse, ListReportsRequest, ListReportsResponse } from "./attribution_pb.js";
+import { ExportReportRequest, ExportReportResponse, GenerateReportRequest, GenerateReportResponse, GetReportRequest, GetReportResponse, GetSnapshotRequest, GetSnapshotResponse, ListReportsRequest, ListReportsResponse, ListSnapshotsRequest, ListSnapshotsResponse, RecordSignalsRequest, RecordSignalsResponse } from "./attribution_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -48,6 +48,33 @@ export const AttributionService = {
       name: "ExportReport",
       I: ExportReportRequest,
       O: ExportReportResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc attribution.v1.AttributionService.RecordSignals
+     */
+    recordSignals: {
+      name: "RecordSignals",
+      I: RecordSignalsRequest,
+      O: RecordSignalsResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc attribution.v1.AttributionService.GetSnapshot
+     */
+    getSnapshot: {
+      name: "GetSnapshot",
+      I: GetSnapshotRequest,
+      O: GetSnapshotResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc attribution.v1.AttributionService.ListSnapshots
+     */
+    listSnapshots: {
+      name: "ListSnapshots",
+      I: ListSnapshotsRequest,
+      O: ListSnapshotsResponse,
       kind: MethodKind.Unary,
     },
   }
