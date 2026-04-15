@@ -1,0 +1,60 @@
+name: Fan Out Proto Bump
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  fanout:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        repo:
+          - identity
+          - governance
+          - audit
+          - meter
+          - memory
+          - approvals
+          - connectors
+          - entities
+          - objectives
+          - skills
+          - notifications
+          - registry
+          - keys
+          - pipeline
+          - parker
+          - asb
+          - agent-mcp
+          - llm-gateway
+          - gate
+          - service-runtime
+          - traces
+          - compliance
+          - attribution
+          - prompts
+          - siphon
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Trigger proto bump in ${{ matrix.repo }}
+        env:
+          GH_TOKEN: ${{ secrets.PROTO_FANOUT_PAT }}
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          REPO="evalops/${{ matrix.repo }}"
+          BRANCH="bump-proto-${TAG}"
+
+          echo "Bumping $REPO to proto@${TAG}"
+
+          gh api "repos/${REPO}/dispatches" \
+            --method POST \
+            --field event_type="proto-bump" \
+            --field "client_payload[tag]=${TAG}" \
+            --field "client_payload[branch]=${BRANCH}"
