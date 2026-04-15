@@ -22,6 +22,10 @@
       "types": "./gen/dist/audit/v1/audit_pb.d.ts",
       "import": "./gen/dist/audit/v1/audit_pb.js"
     },
+    "./compliance/v1/compliance_pb": {
+      "types": "./gen/dist/compliance/v1/compliance_pb.d.ts",
+      "import": "./gen/dist/compliance/v1/compliance_pb.js"
+    },
     "./config/v1/config_pb": {
       "types": "./gen/dist/config/v1/config_pb.d.ts",
       "import": "./gen/dist/config/v1/config_pb.js"

@@ -1,0 +1,127 @@
+syntax = "proto3";
+
+package compliance.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/compliance/v1;compliancev1";
+
+import "approvals/v1/approvals.proto";
+import "governance/v1/governance.proto";
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+// ComplianceService generates evidence packages and control coverage views.
+service ComplianceService {
+  rpc GenerateEvidencePackage(GenerateEvidencePackageRequest) returns (GenerateEvidencePackageResponse);
+  rpc DetectGaps(DetectGapsRequest) returns (DetectGapsResponse);
+  rpc GetCoverage(GetCoverageRequest) returns (GetCoverageResponse);
+  rpc ExportPackage(ExportPackageRequest) returns (ExportPackageResponse);
+}
+
+enum ComplianceFramework {
+  COMPLIANCE_FRAMEWORK_UNSPECIFIED = 0;
+  COMPLIANCE_FRAMEWORK_SOC2 = 1;
+  COMPLIANCE_FRAMEWORK_HIPAA = 2;
+  COMPLIANCE_FRAMEWORK_NIST_CSF = 3;
+}
+
+enum ExportFormat {
+  EXPORT_FORMAT_UNSPECIFIED = 0;
+  EXPORT_FORMAT_JSON = 1;
+  EXPORT_FORMAT_CSV = 2;
+}
+
+message EvidenceQuery {
+  string workspace_id = 1;
+  string organization_id = 2;
+  ComplianceFramework framework = 3;
+  google.protobuf.Timestamp start_time = 4;
+  google.protobuf.Timestamp end_time = 5;
+  repeated string approval_request_ids = 6;
+}
+
+message EvidenceItem {
+  string source = 1;
+  string source_id = 2;
+  string actor_id = 3;
+  string actor_name = 4;
+  string action = 5;
+  string resource_type = 6;
+  string resource_id = 7;
+  string outcome = 8;
+  repeated string control_ids = 9;
+  google.protobuf.Struct metadata = 10;
+  google.protobuf.Timestamp observed_at = 11;
+}
+
+message ControlCoverage {
+  string control_id = 1;
+  string control_name = 2;
+  string control_description = 3;
+  int32 evidence_count = 4;
+  bool covered = 5;
+  google.protobuf.Timestamp last_observed_at = 6;
+  repeated string evidence_source_ids = 7;
+}
+
+message ApprovalEvidence {
+  approvals.v1.ApprovalRequest request = 1;
+  repeated approvals.v1.ApprovalDecision decisions = 2;
+  string state = 3;
+}
+
+message GapResult {
+  string control_id = 1;
+  string control_name = 2;
+  string control_description = 3;
+  string reason = 4;
+}
+
+message EvidencePackage {
+  string id = 1;
+  EvidenceQuery query = 2;
+  google.protobuf.Timestamp generated_at = 3;
+  repeated EvidenceItem evidence_items = 4;
+  repeated ControlCoverage control_coverage = 5;
+  repeated GapResult gaps = 6;
+  governance.v1.RetentionPolicy retention_policy = 7;
+  governance.v1.SafetyPolicy safety_policy = 8;
+  repeated ApprovalEvidence approvals = 9;
+}
+
+message GenerateEvidencePackageRequest {
+  EvidenceQuery query = 1;
+}
+
+message GenerateEvidencePackageResponse {
+  EvidencePackage evidence_package = 1;
+}
+
+message DetectGapsRequest {
+  EvidenceQuery query = 1;
+}
+
+message DetectGapsResponse {
+  repeated GapResult gaps = 1;
+}
+
+message GetCoverageRequest {
+  EvidenceQuery query = 1;
+}
+
+message GetCoverageResponse {
+  repeated ControlCoverage control_coverage = 1;
+  int32 covered_controls = 2;
+  int32 total_controls = 3;
+  double coverage_ratio = 4;
+}
+
+message ExportPackageRequest {
+  EvidenceQuery query = 1;
+  ExportFormat format = 2;
+}
+
+message ExportPackageResponse {
+  bytes content = 1;
+  string content_type = 2;
+  string filename = 3;
+}
