@@ -1,0 +1,5 @@
+# Proto contracts are owned by API team
+* @evalops/api-team
+
+# CI/CD changes require SRE review
+.github/ @evalops/sre-team @evalops/api-team
