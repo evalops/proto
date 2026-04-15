@@ -942,6 +942,21 @@ func TestGovernanceEvaluateActionFixtureMatchesProtoContract(t *testing.T) {
 	if string(message.GetActionPayload()) != `{"credential":"sk-live-123","target":"slack"}` {
 		t.Fatalf("unexpected action_payload %q", string(message.GetActionPayload()))
 	}
+	if message.GetContext().GetRecordCount() != 1 {
+		t.Fatalf("expected record_count 1, got %d", message.GetContext().GetRecordCount())
+	}
+	if message.GetContext().GetCurrencyAmount() != 250000 {
+		t.Fatalf("expected currency_amount 250000, got %v", message.GetContext().GetCurrencyAmount())
+	}
+	if message.GetContext().GetCurrencyCode() != "USD" {
+		t.Fatalf("expected currency_code USD, got %q", message.GetContext().GetCurrencyCode())
+	}
+	if message.GetContext().GetEnvironment() != "production" {
+		t.Fatalf("expected environment production, got %q", message.GetContext().GetEnvironment())
+	}
+	if message.GetContext().GetDataClassification() != "restricted" {
+		t.Fatalf("expected data_classification restricted, got %q", message.GetContext().GetDataClassification())
+	}
 }
 
 func TestKeysResolveProviderRefFixtureMatchesProtoContract(t *testing.T) {

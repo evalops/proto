@@ -698,19 +698,96 @@ func (x *SafetyRule) GetDescription() string {
 	return ""
 }
 
+type ActionContext struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	RecordCount        int64                  `protobuf:"varint,1,opt,name=record_count,json=recordCount,proto3" json:"record_count,omitempty"`
+	CurrencyAmount     float64                `protobuf:"fixed64,2,opt,name=currency_amount,json=currencyAmount,proto3" json:"currency_amount,omitempty"`
+	CurrencyCode       string                 `protobuf:"bytes,3,opt,name=currency_code,json=currencyCode,proto3" json:"currency_code,omitempty"`
+	Environment        string                 `protobuf:"bytes,4,opt,name=environment,proto3" json:"environment,omitempty"`
+	DataClassification string                 `protobuf:"bytes,5,opt,name=data_classification,json=dataClassification,proto3" json:"data_classification,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *ActionContext) Reset() {
+	*x = ActionContext{}
+	mi := &file_governance_v1_governance_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ActionContext) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ActionContext) ProtoMessage() {}
+
+func (x *ActionContext) ProtoReflect() protoreflect.Message {
+	mi := &file_governance_v1_governance_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ActionContext.ProtoReflect.Descriptor instead.
+func (*ActionContext) Descriptor() ([]byte, []int) {
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ActionContext) GetRecordCount() int64 {
+	if x != nil {
+		return x.RecordCount
+	}
+	return 0
+}
+
+func (x *ActionContext) GetCurrencyAmount() float64 {
+	if x != nil {
+		return x.CurrencyAmount
+	}
+	return 0
+}
+
+func (x *ActionContext) GetCurrencyCode() string {
+	if x != nil {
+		return x.CurrencyCode
+	}
+	return ""
+}
+
+func (x *ActionContext) GetEnvironment() string {
+	if x != nil {
+		return x.Environment
+	}
+	return ""
+}
+
+func (x *ActionContext) GetDataClassification() string {
+	if x != nil {
+		return x.DataClassification
+	}
+	return ""
+}
+
 type EvaluateActionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	WorkspaceId   string                 `protobuf:"bytes,1,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
 	AgentId       string                 `protobuf:"bytes,2,opt,name=agent_id,json=agentId,proto3" json:"agent_id,omitempty"`
 	ActionType    string                 `protobuf:"bytes,3,opt,name=action_type,json=actionType,proto3" json:"action_type,omitempty"`
 	ActionPayload []byte                 `protobuf:"bytes,4,opt,name=action_payload,json=actionPayload,proto3" json:"action_payload,omitempty"`
+	Context       *ActionContext         `protobuf:"bytes,5,opt,name=context,proto3" json:"context,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *EvaluateActionRequest) Reset() {
 	*x = EvaluateActionRequest{}
-	mi := &file_governance_v1_governance_proto_msgTypes[7]
+	mi := &file_governance_v1_governance_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -722,7 +799,7 @@ func (x *EvaluateActionRequest) String() string {
 func (*EvaluateActionRequest) ProtoMessage() {}
 
 func (x *EvaluateActionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[7]
+	mi := &file_governance_v1_governance_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -735,7 +812,7 @@ func (x *EvaluateActionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EvaluateActionRequest.ProtoReflect.Descriptor instead.
 func (*EvaluateActionRequest) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{7}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *EvaluateActionRequest) GetWorkspaceId() string {
@@ -766,6 +843,13 @@ func (x *EvaluateActionRequest) GetActionPayload() []byte {
 	return nil
 }
 
+func (x *EvaluateActionRequest) GetContext() *ActionContext {
+	if x != nil {
+		return x.Context
+	}
+	return nil
+}
+
 type EvaluateActionResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Evaluation    *ActionEvaluation      `protobuf:"bytes,1,opt,name=evaluation,proto3" json:"evaluation,omitempty"`
@@ -775,7 +859,7 @@ type EvaluateActionResponse struct {
 
 func (x *EvaluateActionResponse) Reset() {
 	*x = EvaluateActionResponse{}
-	mi := &file_governance_v1_governance_proto_msgTypes[8]
+	mi := &file_governance_v1_governance_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -787,7 +871,7 @@ func (x *EvaluateActionResponse) String() string {
 func (*EvaluateActionResponse) ProtoMessage() {}
 
 func (x *EvaluateActionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[8]
+	mi := &file_governance_v1_governance_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -800,7 +884,7 @@ func (x *EvaluateActionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EvaluateActionResponse.ProtoReflect.Descriptor instead.
 func (*EvaluateActionResponse) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{8}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *EvaluateActionResponse) GetEvaluation() *ActionEvaluation {
@@ -820,7 +904,7 @@ type DetectPIIRequest struct {
 
 func (x *DetectPIIRequest) Reset() {
 	*x = DetectPIIRequest{}
-	mi := &file_governance_v1_governance_proto_msgTypes[9]
+	mi := &file_governance_v1_governance_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -832,7 +916,7 @@ func (x *DetectPIIRequest) String() string {
 func (*DetectPIIRequest) ProtoMessage() {}
 
 func (x *DetectPIIRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[9]
+	mi := &file_governance_v1_governance_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -845,7 +929,7 @@ func (x *DetectPIIRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DetectPIIRequest.ProtoReflect.Descriptor instead.
 func (*DetectPIIRequest) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{9}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *DetectPIIRequest) GetText() string {
@@ -871,7 +955,7 @@ type DetectPIIResponse struct {
 
 func (x *DetectPIIResponse) Reset() {
 	*x = DetectPIIResponse{}
-	mi := &file_governance_v1_governance_proto_msgTypes[10]
+	mi := &file_governance_v1_governance_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -883,7 +967,7 @@ func (x *DetectPIIResponse) String() string {
 func (*DetectPIIResponse) ProtoMessage() {}
 
 func (x *DetectPIIResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[10]
+	mi := &file_governance_v1_governance_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -896,7 +980,7 @@ func (x *DetectPIIResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DetectPIIResponse.ProtoReflect.Descriptor instead.
 func (*DetectPIIResponse) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{10}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *DetectPIIResponse) GetResult() *PIIDetectionResult {
@@ -911,13 +995,14 @@ type ClassifyRiskRequest struct {
 	WorkspaceId   string                 `protobuf:"bytes,1,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
 	ActionType    string                 `protobuf:"bytes,2,opt,name=action_type,json=actionType,proto3" json:"action_type,omitempty"`
 	ActionPayload []byte                 `protobuf:"bytes,3,opt,name=action_payload,json=actionPayload,proto3" json:"action_payload,omitempty"`
+	Context       *ActionContext         `protobuf:"bytes,4,opt,name=context,proto3" json:"context,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ClassifyRiskRequest) Reset() {
 	*x = ClassifyRiskRequest{}
-	mi := &file_governance_v1_governance_proto_msgTypes[11]
+	mi := &file_governance_v1_governance_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -929,7 +1014,7 @@ func (x *ClassifyRiskRequest) String() string {
 func (*ClassifyRiskRequest) ProtoMessage() {}
 
 func (x *ClassifyRiskRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[11]
+	mi := &file_governance_v1_governance_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -942,7 +1027,7 @@ func (x *ClassifyRiskRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClassifyRiskRequest.ProtoReflect.Descriptor instead.
 func (*ClassifyRiskRequest) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{11}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ClassifyRiskRequest) GetWorkspaceId() string {
@@ -966,6 +1051,13 @@ func (x *ClassifyRiskRequest) GetActionPayload() []byte {
 	return nil
 }
 
+func (x *ClassifyRiskRequest) GetContext() *ActionContext {
+	if x != nil {
+		return x.Context
+	}
+	return nil
+}
+
 type ClassifyRiskResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	RiskLevel     RiskLevel              `protobuf:"varint,1,opt,name=risk_level,json=riskLevel,proto3,enum=governance.v1.RiskLevel" json:"risk_level,omitempty"`
@@ -976,7 +1068,7 @@ type ClassifyRiskResponse struct {
 
 func (x *ClassifyRiskResponse) Reset() {
 	*x = ClassifyRiskResponse{}
-	mi := &file_governance_v1_governance_proto_msgTypes[12]
+	mi := &file_governance_v1_governance_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -988,7 +1080,7 @@ func (x *ClassifyRiskResponse) String() string {
 func (*ClassifyRiskResponse) ProtoMessage() {}
 
 func (x *ClassifyRiskResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[12]
+	mi := &file_governance_v1_governance_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1001,7 +1093,7 @@ func (x *ClassifyRiskResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ClassifyRiskResponse.ProtoReflect.Descriptor instead.
 func (*ClassifyRiskResponse) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{12}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ClassifyRiskResponse) GetRiskLevel() RiskLevel {
@@ -1027,7 +1119,7 @@ type CheckCredentialExposureRequest struct {
 
 func (x *CheckCredentialExposureRequest) Reset() {
 	*x = CheckCredentialExposureRequest{}
-	mi := &file_governance_v1_governance_proto_msgTypes[13]
+	mi := &file_governance_v1_governance_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1039,7 +1131,7 @@ func (x *CheckCredentialExposureRequest) String() string {
 func (*CheckCredentialExposureRequest) ProtoMessage() {}
 
 func (x *CheckCredentialExposureRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[13]
+	mi := &file_governance_v1_governance_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1052,7 +1144,7 @@ func (x *CheckCredentialExposureRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckCredentialExposureRequest.ProtoReflect.Descriptor instead.
 func (*CheckCredentialExposureRequest) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{13}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *CheckCredentialExposureRequest) GetText() string {
@@ -1073,7 +1165,7 @@ type CheckCredentialExposureResponse struct {
 
 func (x *CheckCredentialExposureResponse) Reset() {
 	*x = CheckCredentialExposureResponse{}
-	mi := &file_governance_v1_governance_proto_msgTypes[14]
+	mi := &file_governance_v1_governance_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1085,7 +1177,7 @@ func (x *CheckCredentialExposureResponse) String() string {
 func (*CheckCredentialExposureResponse) ProtoMessage() {}
 
 func (x *CheckCredentialExposureResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[14]
+	mi := &file_governance_v1_governance_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1098,7 +1190,7 @@ func (x *CheckCredentialExposureResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckCredentialExposureResponse.ProtoReflect.Descriptor instead.
 func (*CheckCredentialExposureResponse) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{14}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *CheckCredentialExposureResponse) GetExposed() bool {
@@ -1131,7 +1223,7 @@ type GetRetentionPolicyRequest struct {
 
 func (x *GetRetentionPolicyRequest) Reset() {
 	*x = GetRetentionPolicyRequest{}
-	mi := &file_governance_v1_governance_proto_msgTypes[15]
+	mi := &file_governance_v1_governance_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1143,7 +1235,7 @@ func (x *GetRetentionPolicyRequest) String() string {
 func (*GetRetentionPolicyRequest) ProtoMessage() {}
 
 func (x *GetRetentionPolicyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[15]
+	mi := &file_governance_v1_governance_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1156,7 +1248,7 @@ func (x *GetRetentionPolicyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRetentionPolicyRequest.ProtoReflect.Descriptor instead.
 func (*GetRetentionPolicyRequest) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{15}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *GetRetentionPolicyRequest) GetWorkspaceId() string {
@@ -1175,7 +1267,7 @@ type GetRetentionPolicyResponse struct {
 
 func (x *GetRetentionPolicyResponse) Reset() {
 	*x = GetRetentionPolicyResponse{}
-	mi := &file_governance_v1_governance_proto_msgTypes[16]
+	mi := &file_governance_v1_governance_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1187,7 +1279,7 @@ func (x *GetRetentionPolicyResponse) String() string {
 func (*GetRetentionPolicyResponse) ProtoMessage() {}
 
 func (x *GetRetentionPolicyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[16]
+	mi := &file_governance_v1_governance_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1200,7 +1292,7 @@ func (x *GetRetentionPolicyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRetentionPolicyResponse.ProtoReflect.Descriptor instead.
 func (*GetRetentionPolicyResponse) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{16}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *GetRetentionPolicyResponse) GetPolicy() *RetentionPolicy {
@@ -1219,7 +1311,7 @@ type SetRetentionPolicyRequest struct {
 
 func (x *SetRetentionPolicyRequest) Reset() {
 	*x = SetRetentionPolicyRequest{}
-	mi := &file_governance_v1_governance_proto_msgTypes[17]
+	mi := &file_governance_v1_governance_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1231,7 +1323,7 @@ func (x *SetRetentionPolicyRequest) String() string {
 func (*SetRetentionPolicyRequest) ProtoMessage() {}
 
 func (x *SetRetentionPolicyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[17]
+	mi := &file_governance_v1_governance_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1244,7 +1336,7 @@ func (x *SetRetentionPolicyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetRetentionPolicyRequest.ProtoReflect.Descriptor instead.
 func (*SetRetentionPolicyRequest) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{17}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *SetRetentionPolicyRequest) GetPolicy() *RetentionPolicy {
@@ -1263,7 +1355,7 @@ type SetRetentionPolicyResponse struct {
 
 func (x *SetRetentionPolicyResponse) Reset() {
 	*x = SetRetentionPolicyResponse{}
-	mi := &file_governance_v1_governance_proto_msgTypes[18]
+	mi := &file_governance_v1_governance_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1275,7 +1367,7 @@ func (x *SetRetentionPolicyResponse) String() string {
 func (*SetRetentionPolicyResponse) ProtoMessage() {}
 
 func (x *SetRetentionPolicyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[18]
+	mi := &file_governance_v1_governance_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1288,7 +1380,7 @@ func (x *SetRetentionPolicyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetRetentionPolicyResponse.ProtoReflect.Descriptor instead.
 func (*SetRetentionPolicyResponse) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{18}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *SetRetentionPolicyResponse) GetPolicy() *RetentionPolicy {
@@ -1308,7 +1400,7 @@ type CheckLegalHoldRequest struct {
 
 func (x *CheckLegalHoldRequest) Reset() {
 	*x = CheckLegalHoldRequest{}
-	mi := &file_governance_v1_governance_proto_msgTypes[19]
+	mi := &file_governance_v1_governance_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1320,7 +1412,7 @@ func (x *CheckLegalHoldRequest) String() string {
 func (*CheckLegalHoldRequest) ProtoMessage() {}
 
 func (x *CheckLegalHoldRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[19]
+	mi := &file_governance_v1_governance_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1333,7 +1425,7 @@ func (x *CheckLegalHoldRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckLegalHoldRequest.ProtoReflect.Descriptor instead.
 func (*CheckLegalHoldRequest) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{19}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *CheckLegalHoldRequest) GetWorkspaceId() string {
@@ -1360,7 +1452,7 @@ type CheckLegalHoldResponse struct {
 
 func (x *CheckLegalHoldResponse) Reset() {
 	*x = CheckLegalHoldResponse{}
-	mi := &file_governance_v1_governance_proto_msgTypes[20]
+	mi := &file_governance_v1_governance_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1372,7 +1464,7 @@ func (x *CheckLegalHoldResponse) String() string {
 func (*CheckLegalHoldResponse) ProtoMessage() {}
 
 func (x *CheckLegalHoldResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[20]
+	mi := &file_governance_v1_governance_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1385,7 +1477,7 @@ func (x *CheckLegalHoldResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CheckLegalHoldResponse.ProtoReflect.Descriptor instead.
 func (*CheckLegalHoldResponse) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{20}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *CheckLegalHoldResponse) GetHeld() bool {
@@ -1411,7 +1503,7 @@ type SetLegalHoldRequest struct {
 
 func (x *SetLegalHoldRequest) Reset() {
 	*x = SetLegalHoldRequest{}
-	mi := &file_governance_v1_governance_proto_msgTypes[21]
+	mi := &file_governance_v1_governance_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1423,7 +1515,7 @@ func (x *SetLegalHoldRequest) String() string {
 func (*SetLegalHoldRequest) ProtoMessage() {}
 
 func (x *SetLegalHoldRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[21]
+	mi := &file_governance_v1_governance_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1436,7 +1528,7 @@ func (x *SetLegalHoldRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetLegalHoldRequest.ProtoReflect.Descriptor instead.
 func (*SetLegalHoldRequest) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{21}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *SetLegalHoldRequest) GetHold() *LegalHold {
@@ -1455,7 +1547,7 @@ type SetLegalHoldResponse struct {
 
 func (x *SetLegalHoldResponse) Reset() {
 	*x = SetLegalHoldResponse{}
-	mi := &file_governance_v1_governance_proto_msgTypes[22]
+	mi := &file_governance_v1_governance_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1467,7 +1559,7 @@ func (x *SetLegalHoldResponse) String() string {
 func (*SetLegalHoldResponse) ProtoMessage() {}
 
 func (x *SetLegalHoldResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[22]
+	mi := &file_governance_v1_governance_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1480,7 +1572,7 @@ func (x *SetLegalHoldResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetLegalHoldResponse.ProtoReflect.Descriptor instead.
 func (*SetLegalHoldResponse) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{22}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *SetLegalHoldResponse) GetHold() *LegalHold {
@@ -1499,7 +1591,7 @@ type GetSafetyPolicyRequest struct {
 
 func (x *GetSafetyPolicyRequest) Reset() {
 	*x = GetSafetyPolicyRequest{}
-	mi := &file_governance_v1_governance_proto_msgTypes[23]
+	mi := &file_governance_v1_governance_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1511,7 +1603,7 @@ func (x *GetSafetyPolicyRequest) String() string {
 func (*GetSafetyPolicyRequest) ProtoMessage() {}
 
 func (x *GetSafetyPolicyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[23]
+	mi := &file_governance_v1_governance_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1524,7 +1616,7 @@ func (x *GetSafetyPolicyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSafetyPolicyRequest.ProtoReflect.Descriptor instead.
 func (*GetSafetyPolicyRequest) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{23}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *GetSafetyPolicyRequest) GetWorkspaceId() string {
@@ -1543,7 +1635,7 @@ type GetSafetyPolicyResponse struct {
 
 func (x *GetSafetyPolicyResponse) Reset() {
 	*x = GetSafetyPolicyResponse{}
-	mi := &file_governance_v1_governance_proto_msgTypes[24]
+	mi := &file_governance_v1_governance_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1555,7 +1647,7 @@ func (x *GetSafetyPolicyResponse) String() string {
 func (*GetSafetyPolicyResponse) ProtoMessage() {}
 
 func (x *GetSafetyPolicyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[24]
+	mi := &file_governance_v1_governance_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1568,7 +1660,7 @@ func (x *GetSafetyPolicyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSafetyPolicyResponse.ProtoReflect.Descriptor instead.
 func (*GetSafetyPolicyResponse) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{24}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *GetSafetyPolicyResponse) GetPolicy() *SafetyPolicy {
@@ -1587,7 +1679,7 @@ type SetSafetyPolicyRequest struct {
 
 func (x *SetSafetyPolicyRequest) Reset() {
 	*x = SetSafetyPolicyRequest{}
-	mi := &file_governance_v1_governance_proto_msgTypes[25]
+	mi := &file_governance_v1_governance_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1599,7 +1691,7 @@ func (x *SetSafetyPolicyRequest) String() string {
 func (*SetSafetyPolicyRequest) ProtoMessage() {}
 
 func (x *SetSafetyPolicyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[25]
+	mi := &file_governance_v1_governance_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1612,7 +1704,7 @@ func (x *SetSafetyPolicyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetSafetyPolicyRequest.ProtoReflect.Descriptor instead.
 func (*SetSafetyPolicyRequest) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{25}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *SetSafetyPolicyRequest) GetPolicy() *SafetyPolicy {
@@ -1631,7 +1723,7 @@ type SetSafetyPolicyResponse struct {
 
 func (x *SetSafetyPolicyResponse) Reset() {
 	*x = SetSafetyPolicyResponse{}
-	mi := &file_governance_v1_governance_proto_msgTypes[26]
+	mi := &file_governance_v1_governance_proto_msgTypes[27]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1643,7 +1735,7 @@ func (x *SetSafetyPolicyResponse) String() string {
 func (*SetSafetyPolicyResponse) ProtoMessage() {}
 
 func (x *SetSafetyPolicyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_governance_v1_governance_proto_msgTypes[26]
+	mi := &file_governance_v1_governance_proto_msgTypes[27]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1656,7 +1748,7 @@ func (x *SetSafetyPolicyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SetSafetyPolicyResponse.ProtoReflect.Descriptor instead.
 func (*SetSafetyPolicyResponse) Descriptor() ([]byte, []int) {
-	return file_governance_v1_governance_proto_rawDescGZIP(), []int{26}
+	return file_governance_v1_governance_proto_rawDescGZIP(), []int{27}
 }
 
 func (x *SetSafetyPolicyResponse) GetPolicy() *SafetyPolicy {
@@ -1716,13 +1808,20 @@ const file_governance_v1_governance_proto_rawDesc = "" +
 	"\x06action\x18\x03 \x01(\x0e2\x1d.governance.v1.ActionDecisionR\x06action\x127\n" +
 	"\n" +
 	"risk_level\x18\x04 \x01(\x0e2\x18.governance.v1.RiskLevelR\triskLevel\x12 \n" +
-	"\vdescription\x18\x05 \x01(\tR\vdescription\"\x9d\x01\n" +
+	"\vdescription\x18\x05 \x01(\tR\vdescription\"\xd3\x01\n" +
+	"\rActionContext\x12!\n" +
+	"\frecord_count\x18\x01 \x01(\x03R\vrecordCount\x12'\n" +
+	"\x0fcurrency_amount\x18\x02 \x01(\x01R\x0ecurrencyAmount\x12#\n" +
+	"\rcurrency_code\x18\x03 \x01(\tR\fcurrencyCode\x12 \n" +
+	"\venvironment\x18\x04 \x01(\tR\venvironment\x12/\n" +
+	"\x13data_classification\x18\x05 \x01(\tR\x12dataClassification\"\xd5\x01\n" +
 	"\x15EvaluateActionRequest\x12!\n" +
 	"\fworkspace_id\x18\x01 \x01(\tR\vworkspaceId\x12\x19\n" +
 	"\bagent_id\x18\x02 \x01(\tR\aagentId\x12\x1f\n" +
 	"\vaction_type\x18\x03 \x01(\tR\n" +
 	"actionType\x12%\n" +
-	"\x0eaction_payload\x18\x04 \x01(\fR\ractionPayload\"Y\n" +
+	"\x0eaction_payload\x18\x04 \x01(\fR\ractionPayload\x126\n" +
+	"\acontext\x18\x05 \x01(\v2\x1c.governance.v1.ActionContextR\acontext\"Y\n" +
 	"\x16EvaluateActionResponse\x12?\n" +
 	"\n" +
 	"evaluation\x18\x01 \x01(\v2\x1f.governance.v1.ActionEvaluationR\n" +
@@ -1733,12 +1832,13 @@ const file_governance_v1_governance_proto_rawDesc = "" +
 	"categories\x18\x02 \x03(\x0e2\x1a.governance.v1.PIICategoryR\n" +
 	"categories\"N\n" +
 	"\x11DetectPIIResponse\x129\n" +
-	"\x06result\x18\x01 \x01(\v2!.governance.v1.PIIDetectionResultR\x06result\"\x80\x01\n" +
+	"\x06result\x18\x01 \x01(\v2!.governance.v1.PIIDetectionResultR\x06result\"\xb8\x01\n" +
 	"\x13ClassifyRiskRequest\x12!\n" +
 	"\fworkspace_id\x18\x01 \x01(\tR\vworkspaceId\x12\x1f\n" +
 	"\vaction_type\x18\x02 \x01(\tR\n" +
 	"actionType\x12%\n" +
-	"\x0eaction_payload\x18\x03 \x01(\fR\ractionPayload\"i\n" +
+	"\x0eaction_payload\x18\x03 \x01(\fR\ractionPayload\x126\n" +
+	"\acontext\x18\x04 \x01(\v2\x1c.governance.v1.ActionContextR\acontext\"i\n" +
 	"\x14ClassifyRiskResponse\x127\n" +
 	"\n" +
 	"risk_level\x18\x01 \x01(\x0e2\x18.governance.v1.RiskLevelR\triskLevel\x12\x18\n" +
@@ -1820,7 +1920,7 @@ func file_governance_v1_governance_proto_rawDescGZIP() []byte {
 }
 
 var file_governance_v1_governance_proto_enumTypes = make([]protoimpl.EnumInfo, 3)
-var file_governance_v1_governance_proto_msgTypes = make([]protoimpl.MessageInfo, 27)
+var file_governance_v1_governance_proto_msgTypes = make([]protoimpl.MessageInfo, 28)
 var file_governance_v1_governance_proto_goTypes = []any{
 	(ActionDecision)(0),                     // 0: governance.v1.ActionDecision
 	(PIICategory)(0),                        // 1: governance.v1.PIICategory
@@ -1832,76 +1932,79 @@ var file_governance_v1_governance_proto_goTypes = []any{
 	(*LegalHold)(nil),                       // 7: governance.v1.LegalHold
 	(*SafetyPolicy)(nil),                    // 8: governance.v1.SafetyPolicy
 	(*SafetyRule)(nil),                      // 9: governance.v1.SafetyRule
-	(*EvaluateActionRequest)(nil),           // 10: governance.v1.EvaluateActionRequest
-	(*EvaluateActionResponse)(nil),          // 11: governance.v1.EvaluateActionResponse
-	(*DetectPIIRequest)(nil),                // 12: governance.v1.DetectPIIRequest
-	(*DetectPIIResponse)(nil),               // 13: governance.v1.DetectPIIResponse
-	(*ClassifyRiskRequest)(nil),             // 14: governance.v1.ClassifyRiskRequest
-	(*ClassifyRiskResponse)(nil),            // 15: governance.v1.ClassifyRiskResponse
-	(*CheckCredentialExposureRequest)(nil),  // 16: governance.v1.CheckCredentialExposureRequest
-	(*CheckCredentialExposureResponse)(nil), // 17: governance.v1.CheckCredentialExposureResponse
-	(*GetRetentionPolicyRequest)(nil),       // 18: governance.v1.GetRetentionPolicyRequest
-	(*GetRetentionPolicyResponse)(nil),      // 19: governance.v1.GetRetentionPolicyResponse
-	(*SetRetentionPolicyRequest)(nil),       // 20: governance.v1.SetRetentionPolicyRequest
-	(*SetRetentionPolicyResponse)(nil),      // 21: governance.v1.SetRetentionPolicyResponse
-	(*CheckLegalHoldRequest)(nil),           // 22: governance.v1.CheckLegalHoldRequest
-	(*CheckLegalHoldResponse)(nil),          // 23: governance.v1.CheckLegalHoldResponse
-	(*SetLegalHoldRequest)(nil),             // 24: governance.v1.SetLegalHoldRequest
-	(*SetLegalHoldResponse)(nil),            // 25: governance.v1.SetLegalHoldResponse
-	(*GetSafetyPolicyRequest)(nil),          // 26: governance.v1.GetSafetyPolicyRequest
-	(*GetSafetyPolicyResponse)(nil),         // 27: governance.v1.GetSafetyPolicyResponse
-	(*SetSafetyPolicyRequest)(nil),          // 28: governance.v1.SetSafetyPolicyRequest
-	(*SetSafetyPolicyResponse)(nil),         // 29: governance.v1.SetSafetyPolicyResponse
-	(*timestamppb.Timestamp)(nil),           // 30: google.protobuf.Timestamp
+	(*ActionContext)(nil),                   // 10: governance.v1.ActionContext
+	(*EvaluateActionRequest)(nil),           // 11: governance.v1.EvaluateActionRequest
+	(*EvaluateActionResponse)(nil),          // 12: governance.v1.EvaluateActionResponse
+	(*DetectPIIRequest)(nil),                // 13: governance.v1.DetectPIIRequest
+	(*DetectPIIResponse)(nil),               // 14: governance.v1.DetectPIIResponse
+	(*ClassifyRiskRequest)(nil),             // 15: governance.v1.ClassifyRiskRequest
+	(*ClassifyRiskResponse)(nil),            // 16: governance.v1.ClassifyRiskResponse
+	(*CheckCredentialExposureRequest)(nil),  // 17: governance.v1.CheckCredentialExposureRequest
+	(*CheckCredentialExposureResponse)(nil), // 18: governance.v1.CheckCredentialExposureResponse
+	(*GetRetentionPolicyRequest)(nil),       // 19: governance.v1.GetRetentionPolicyRequest
+	(*GetRetentionPolicyResponse)(nil),      // 20: governance.v1.GetRetentionPolicyResponse
+	(*SetRetentionPolicyRequest)(nil),       // 21: governance.v1.SetRetentionPolicyRequest
+	(*SetRetentionPolicyResponse)(nil),      // 22: governance.v1.SetRetentionPolicyResponse
+	(*CheckLegalHoldRequest)(nil),           // 23: governance.v1.CheckLegalHoldRequest
+	(*CheckLegalHoldResponse)(nil),          // 24: governance.v1.CheckLegalHoldResponse
+	(*SetLegalHoldRequest)(nil),             // 25: governance.v1.SetLegalHoldRequest
+	(*SetLegalHoldResponse)(nil),            // 26: governance.v1.SetLegalHoldResponse
+	(*GetSafetyPolicyRequest)(nil),          // 27: governance.v1.GetSafetyPolicyRequest
+	(*GetSafetyPolicyResponse)(nil),         // 28: governance.v1.GetSafetyPolicyResponse
+	(*SetSafetyPolicyRequest)(nil),          // 29: governance.v1.SetSafetyPolicyRequest
+	(*SetSafetyPolicyResponse)(nil),         // 30: governance.v1.SetSafetyPolicyResponse
+	(*timestamppb.Timestamp)(nil),           // 31: google.protobuf.Timestamp
 }
 var file_governance_v1_governance_proto_depIdxs = []int32{
 	0,  // 0: governance.v1.ActionEvaluation.decision:type_name -> governance.v1.ActionDecision
 	2,  // 1: governance.v1.ActionEvaluation.risk_level:type_name -> governance.v1.RiskLevel
 	5,  // 2: governance.v1.PIIDetectionResult.spans:type_name -> governance.v1.PIISpan
 	1,  // 3: governance.v1.PIISpan.category:type_name -> governance.v1.PIICategory
-	30, // 4: governance.v1.LegalHold.created_at:type_name -> google.protobuf.Timestamp
-	30, // 5: governance.v1.LegalHold.expires_at:type_name -> google.protobuf.Timestamp
+	31, // 4: governance.v1.LegalHold.created_at:type_name -> google.protobuf.Timestamp
+	31, // 5: governance.v1.LegalHold.expires_at:type_name -> google.protobuf.Timestamp
 	9,  // 6: governance.v1.SafetyPolicy.rules:type_name -> governance.v1.SafetyRule
 	0,  // 7: governance.v1.SafetyRule.action:type_name -> governance.v1.ActionDecision
 	2,  // 8: governance.v1.SafetyRule.risk_level:type_name -> governance.v1.RiskLevel
-	3,  // 9: governance.v1.EvaluateActionResponse.evaluation:type_name -> governance.v1.ActionEvaluation
-	1,  // 10: governance.v1.DetectPIIRequest.categories:type_name -> governance.v1.PIICategory
-	4,  // 11: governance.v1.DetectPIIResponse.result:type_name -> governance.v1.PIIDetectionResult
-	2,  // 12: governance.v1.ClassifyRiskResponse.risk_level:type_name -> governance.v1.RiskLevel
-	6,  // 13: governance.v1.GetRetentionPolicyResponse.policy:type_name -> governance.v1.RetentionPolicy
-	6,  // 14: governance.v1.SetRetentionPolicyRequest.policy:type_name -> governance.v1.RetentionPolicy
-	6,  // 15: governance.v1.SetRetentionPolicyResponse.policy:type_name -> governance.v1.RetentionPolicy
-	7,  // 16: governance.v1.CheckLegalHoldResponse.holds:type_name -> governance.v1.LegalHold
-	7,  // 17: governance.v1.SetLegalHoldRequest.hold:type_name -> governance.v1.LegalHold
-	7,  // 18: governance.v1.SetLegalHoldResponse.hold:type_name -> governance.v1.LegalHold
-	8,  // 19: governance.v1.GetSafetyPolicyResponse.policy:type_name -> governance.v1.SafetyPolicy
-	8,  // 20: governance.v1.SetSafetyPolicyRequest.policy:type_name -> governance.v1.SafetyPolicy
-	8,  // 21: governance.v1.SetSafetyPolicyResponse.policy:type_name -> governance.v1.SafetyPolicy
-	10, // 22: governance.v1.GovernanceService.EvaluateAction:input_type -> governance.v1.EvaluateActionRequest
-	12, // 23: governance.v1.GovernanceService.DetectPII:input_type -> governance.v1.DetectPIIRequest
-	14, // 24: governance.v1.GovernanceService.ClassifyRisk:input_type -> governance.v1.ClassifyRiskRequest
-	16, // 25: governance.v1.GovernanceService.CheckCredentialExposure:input_type -> governance.v1.CheckCredentialExposureRequest
-	18, // 26: governance.v1.GovernanceService.GetRetentionPolicy:input_type -> governance.v1.GetRetentionPolicyRequest
-	20, // 27: governance.v1.GovernanceService.SetRetentionPolicy:input_type -> governance.v1.SetRetentionPolicyRequest
-	22, // 28: governance.v1.GovernanceService.CheckLegalHold:input_type -> governance.v1.CheckLegalHoldRequest
-	24, // 29: governance.v1.GovernanceService.SetLegalHold:input_type -> governance.v1.SetLegalHoldRequest
-	26, // 30: governance.v1.GovernanceService.GetSafetyPolicy:input_type -> governance.v1.GetSafetyPolicyRequest
-	28, // 31: governance.v1.GovernanceService.SetSafetyPolicy:input_type -> governance.v1.SetSafetyPolicyRequest
-	11, // 32: governance.v1.GovernanceService.EvaluateAction:output_type -> governance.v1.EvaluateActionResponse
-	13, // 33: governance.v1.GovernanceService.DetectPII:output_type -> governance.v1.DetectPIIResponse
-	15, // 34: governance.v1.GovernanceService.ClassifyRisk:output_type -> governance.v1.ClassifyRiskResponse
-	17, // 35: governance.v1.GovernanceService.CheckCredentialExposure:output_type -> governance.v1.CheckCredentialExposureResponse
-	19, // 36: governance.v1.GovernanceService.GetRetentionPolicy:output_type -> governance.v1.GetRetentionPolicyResponse
-	21, // 37: governance.v1.GovernanceService.SetRetentionPolicy:output_type -> governance.v1.SetRetentionPolicyResponse
-	23, // 38: governance.v1.GovernanceService.CheckLegalHold:output_type -> governance.v1.CheckLegalHoldResponse
-	25, // 39: governance.v1.GovernanceService.SetLegalHold:output_type -> governance.v1.SetLegalHoldResponse
-	27, // 40: governance.v1.GovernanceService.GetSafetyPolicy:output_type -> governance.v1.GetSafetyPolicyResponse
-	29, // 41: governance.v1.GovernanceService.SetSafetyPolicy:output_type -> governance.v1.SetSafetyPolicyResponse
-	32, // [32:42] is the sub-list for method output_type
-	22, // [22:32] is the sub-list for method input_type
-	22, // [22:22] is the sub-list for extension type_name
-	22, // [22:22] is the sub-list for extension extendee
-	0,  // [0:22] is the sub-list for field type_name
+	10, // 9: governance.v1.EvaluateActionRequest.context:type_name -> governance.v1.ActionContext
+	3,  // 10: governance.v1.EvaluateActionResponse.evaluation:type_name -> governance.v1.ActionEvaluation
+	1,  // 11: governance.v1.DetectPIIRequest.categories:type_name -> governance.v1.PIICategory
+	4,  // 12: governance.v1.DetectPIIResponse.result:type_name -> governance.v1.PIIDetectionResult
+	10, // 13: governance.v1.ClassifyRiskRequest.context:type_name -> governance.v1.ActionContext
+	2,  // 14: governance.v1.ClassifyRiskResponse.risk_level:type_name -> governance.v1.RiskLevel
+	6,  // 15: governance.v1.GetRetentionPolicyResponse.policy:type_name -> governance.v1.RetentionPolicy
+	6,  // 16: governance.v1.SetRetentionPolicyRequest.policy:type_name -> governance.v1.RetentionPolicy
+	6,  // 17: governance.v1.SetRetentionPolicyResponse.policy:type_name -> governance.v1.RetentionPolicy
+	7,  // 18: governance.v1.CheckLegalHoldResponse.holds:type_name -> governance.v1.LegalHold
+	7,  // 19: governance.v1.SetLegalHoldRequest.hold:type_name -> governance.v1.LegalHold
+	7,  // 20: governance.v1.SetLegalHoldResponse.hold:type_name -> governance.v1.LegalHold
+	8,  // 21: governance.v1.GetSafetyPolicyResponse.policy:type_name -> governance.v1.SafetyPolicy
+	8,  // 22: governance.v1.SetSafetyPolicyRequest.policy:type_name -> governance.v1.SafetyPolicy
+	8,  // 23: governance.v1.SetSafetyPolicyResponse.policy:type_name -> governance.v1.SafetyPolicy
+	11, // 24: governance.v1.GovernanceService.EvaluateAction:input_type -> governance.v1.EvaluateActionRequest
+	13, // 25: governance.v1.GovernanceService.DetectPII:input_type -> governance.v1.DetectPIIRequest
+	15, // 26: governance.v1.GovernanceService.ClassifyRisk:input_type -> governance.v1.ClassifyRiskRequest
+	17, // 27: governance.v1.GovernanceService.CheckCredentialExposure:input_type -> governance.v1.CheckCredentialExposureRequest
+	19, // 28: governance.v1.GovernanceService.GetRetentionPolicy:input_type -> governance.v1.GetRetentionPolicyRequest
+	21, // 29: governance.v1.GovernanceService.SetRetentionPolicy:input_type -> governance.v1.SetRetentionPolicyRequest
+	23, // 30: governance.v1.GovernanceService.CheckLegalHold:input_type -> governance.v1.CheckLegalHoldRequest
+	25, // 31: governance.v1.GovernanceService.SetLegalHold:input_type -> governance.v1.SetLegalHoldRequest
+	27, // 32: governance.v1.GovernanceService.GetSafetyPolicy:input_type -> governance.v1.GetSafetyPolicyRequest
+	29, // 33: governance.v1.GovernanceService.SetSafetyPolicy:input_type -> governance.v1.SetSafetyPolicyRequest
+	12, // 34: governance.v1.GovernanceService.EvaluateAction:output_type -> governance.v1.EvaluateActionResponse
+	14, // 35: governance.v1.GovernanceService.DetectPII:output_type -> governance.v1.DetectPIIResponse
+	16, // 36: governance.v1.GovernanceService.ClassifyRisk:output_type -> governance.v1.ClassifyRiskResponse
+	18, // 37: governance.v1.GovernanceService.CheckCredentialExposure:output_type -> governance.v1.CheckCredentialExposureResponse
+	20, // 38: governance.v1.GovernanceService.GetRetentionPolicy:output_type -> governance.v1.GetRetentionPolicyResponse
+	22, // 39: governance.v1.GovernanceService.SetRetentionPolicy:output_type -> governance.v1.SetRetentionPolicyResponse
+	24, // 40: governance.v1.GovernanceService.CheckLegalHold:output_type -> governance.v1.CheckLegalHoldResponse
+	26, // 41: governance.v1.GovernanceService.SetLegalHold:output_type -> governance.v1.SetLegalHoldResponse
+	28, // 42: governance.v1.GovernanceService.GetSafetyPolicy:output_type -> governance.v1.GetSafetyPolicyResponse
+	30, // 43: governance.v1.GovernanceService.SetSafetyPolicy:output_type -> governance.v1.SetSafetyPolicyResponse
+	34, // [34:44] is the sub-list for method output_type
+	24, // [24:34] is the sub-list for method input_type
+	24, // [24:24] is the sub-list for extension type_name
+	24, // [24:24] is the sub-list for extension extendee
+	0,  // [0:24] is the sub-list for field type_name
 }
 
 func init() { file_governance_v1_governance_proto_init() }
@@ -1915,7 +2018,7 @@ func file_governance_v1_governance_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_governance_v1_governance_proto_rawDesc), len(file_governance_v1_governance_proto_rawDesc)),
 			NumEnums:      3,
-			NumMessages:   27,
+			NumMessages:   28,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
