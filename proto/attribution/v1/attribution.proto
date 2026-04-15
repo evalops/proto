@@ -11,6 +11,7 @@ import "traces/v1/traces.proto";
 service AttributionService {
   rpc GenerateReport(GenerateReportRequest) returns (GenerateReportResponse);
   rpc GetReport(GetReportRequest) returns (GetReportResponse);
+  rpc ListReports(ListReportsRequest) returns (ListReportsResponse);
   rpc ExportReport(ExportReportRequest) returns (ExportReportResponse);
 }
 
@@ -110,6 +111,15 @@ message AttributionReport {
   repeated TeamSummary team_summaries = 6;
 }
 
+message AttributionReportSummary {
+  string id = 1;
+  AttributionQuery query = 2;
+  google.protobuf.Timestamp generated_at = 3;
+  int32 deal_count = 4;
+  int32 agent_count = 5;
+  int32 team_count = 6;
+}
+
 message GenerateReportRequest {
   AttributionQuery query = 1;
 }
@@ -124,6 +134,19 @@ message GetReportRequest {
 
 message GetReportResponse {
   AttributionReport report = 1;
+}
+
+message ListReportsRequest {
+  string organization_id = 1;
+  string workspace_id = 2;
+  AttributionModel model = 3;
+  int32 limit = 4;
+  int32 offset = 5;
+}
+
+message ListReportsResponse {
+  repeated AttributionReportSummary reports = 1;
+  bool has_more = 2;
 }
 
 message ExportReportRequest {

@@ -39,6 +39,9 @@ const (
 	// AttributionServiceGetReportProcedure is the fully-qualified name of the AttributionService's
 	// GetReport RPC.
 	AttributionServiceGetReportProcedure = "/attribution.v1.AttributionService/GetReport"
+	// AttributionServiceListReportsProcedure is the fully-qualified name of the AttributionService's
+	// ListReports RPC.
+	AttributionServiceListReportsProcedure = "/attribution.v1.AttributionService/ListReports"
 	// AttributionServiceExportReportProcedure is the fully-qualified name of the AttributionService's
 	// ExportReport RPC.
 	AttributionServiceExportReportProcedure = "/attribution.v1.AttributionService/ExportReport"
@@ -48,6 +51,7 @@ const (
 type AttributionServiceClient interface {
 	GenerateReport(context.Context, *connect.Request[v1.GenerateReportRequest]) (*connect.Response[v1.GenerateReportResponse], error)
 	GetReport(context.Context, *connect.Request[v1.GetReportRequest]) (*connect.Response[v1.GetReportResponse], error)
+	ListReports(context.Context, *connect.Request[v1.ListReportsRequest]) (*connect.Response[v1.ListReportsResponse], error)
 	ExportReport(context.Context, *connect.Request[v1.ExportReportRequest]) (*connect.Response[v1.ExportReportResponse], error)
 }
 
@@ -74,6 +78,12 @@ func NewAttributionServiceClient(httpClient connect.HTTPClient, baseURL string, 
 			connect.WithSchema(attributionServiceMethods.ByName("GetReport")),
 			connect.WithClientOptions(opts...),
 		),
+		listReports: connect.NewClient[v1.ListReportsRequest, v1.ListReportsResponse](
+			httpClient,
+			baseURL+AttributionServiceListReportsProcedure,
+			connect.WithSchema(attributionServiceMethods.ByName("ListReports")),
+			connect.WithClientOptions(opts...),
+		),
 		exportReport: connect.NewClient[v1.ExportReportRequest, v1.ExportReportResponse](
 			httpClient,
 			baseURL+AttributionServiceExportReportProcedure,
@@ -87,6 +97,7 @@ func NewAttributionServiceClient(httpClient connect.HTTPClient, baseURL string, 
 type attributionServiceClient struct {
 	generateReport *connect.Client[v1.GenerateReportRequest, v1.GenerateReportResponse]
 	getReport      *connect.Client[v1.GetReportRequest, v1.GetReportResponse]
+	listReports    *connect.Client[v1.ListReportsRequest, v1.ListReportsResponse]
 	exportReport   *connect.Client[v1.ExportReportRequest, v1.ExportReportResponse]
 }
 
@@ -100,6 +111,11 @@ func (c *attributionServiceClient) GetReport(ctx context.Context, req *connect.R
 	return c.getReport.CallUnary(ctx, req)
 }
 
+// ListReports calls attribution.v1.AttributionService.ListReports.
+func (c *attributionServiceClient) ListReports(ctx context.Context, req *connect.Request[v1.ListReportsRequest]) (*connect.Response[v1.ListReportsResponse], error) {
+	return c.listReports.CallUnary(ctx, req)
+}
+
 // ExportReport calls attribution.v1.AttributionService.ExportReport.
 func (c *attributionServiceClient) ExportReport(ctx context.Context, req *connect.Request[v1.ExportReportRequest]) (*connect.Response[v1.ExportReportResponse], error) {
 	return c.exportReport.CallUnary(ctx, req)
@@ -109,6 +125,7 @@ func (c *attributionServiceClient) ExportReport(ctx context.Context, req *connec
 type AttributionServiceHandler interface {
 	GenerateReport(context.Context, *connect.Request[v1.GenerateReportRequest]) (*connect.Response[v1.GenerateReportResponse], error)
 	GetReport(context.Context, *connect.Request[v1.GetReportRequest]) (*connect.Response[v1.GetReportResponse], error)
+	ListReports(context.Context, *connect.Request[v1.ListReportsRequest]) (*connect.Response[v1.ListReportsResponse], error)
 	ExportReport(context.Context, *connect.Request[v1.ExportReportRequest]) (*connect.Response[v1.ExportReportResponse], error)
 }
 
@@ -131,6 +148,12 @@ func NewAttributionServiceHandler(svc AttributionServiceHandler, opts ...connect
 		connect.WithSchema(attributionServiceMethods.ByName("GetReport")),
 		connect.WithHandlerOptions(opts...),
 	)
+	attributionServiceListReportsHandler := connect.NewUnaryHandler(
+		AttributionServiceListReportsProcedure,
+		svc.ListReports,
+		connect.WithSchema(attributionServiceMethods.ByName("ListReports")),
+		connect.WithHandlerOptions(opts...),
+	)
 	attributionServiceExportReportHandler := connect.NewUnaryHandler(
 		AttributionServiceExportReportProcedure,
 		svc.ExportReport,
@@ -143,6 +166,8 @@ func NewAttributionServiceHandler(svc AttributionServiceHandler, opts ...connect
 			attributionServiceGenerateReportHandler.ServeHTTP(w, r)
 		case AttributionServiceGetReportProcedure:
 			attributionServiceGetReportHandler.ServeHTTP(w, r)
+		case AttributionServiceListReportsProcedure:
+			attributionServiceListReportsHandler.ServeHTTP(w, r)
 		case AttributionServiceExportReportProcedure:
 			attributionServiceExportReportHandler.ServeHTTP(w, r)
 		default:
@@ -160,6 +185,10 @@ func (UnimplementedAttributionServiceHandler) GenerateReport(context.Context, *c
 
 func (UnimplementedAttributionServiceHandler) GetReport(context.Context, *connect.Request[v1.GetReportRequest]) (*connect.Response[v1.GetReportResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("attribution.v1.AttributionService.GetReport is not implemented"))
+}
+
+func (UnimplementedAttributionServiceHandler) ListReports(context.Context, *connect.Request[v1.ListReportsRequest]) (*connect.Response[v1.ListReportsResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("attribution.v1.AttributionService.ListReports is not implemented"))
 }
 
 func (UnimplementedAttributionServiceHandler) ExportReport(context.Context, *connect.Request[v1.ExportReportRequest]) (*connect.Response[v1.ExportReportResponse], error) {
