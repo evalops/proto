@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file governance/v1/governance.proto.
  */
 export const file_governance_v1_governance: GenFile = /*@__PURE__*/
-  fileDesc("Ch5nb3Zlcm5hbmNlL3YxL2dvdmVybmFuY2UucHJvdG8SDWdvdmVybmFuY2UudjEi1AEKEEFjdGlvbkV2YWx1YXRpb24SLwoIZGVjaXNpb24YASABKA4yHS5nb3Zlcm5hbmNlLnYxLkFjdGlvbkRlY2lzaW9uEiwKCnJpc2tfbGV2ZWwYAiABKA4yGC5nb3Zlcm5hbmNlLnYxLlJpc2tMZXZlbBIPCgdyZWFzb25zGAMgAygJEhUKDW1hdGNoZWRfcnVsZXMYBCADKAkSGAoQaGFiaXRfY29uZmlkZW5jZRgFIAEoAhIfChdoYWJpdF9vYnNlcnZhdGlvbl9jb3VudBgGIAEoBSI7ChJQSUlEZXRlY3Rpb25SZXN1bHQSJQoFc3BhbnMYASADKAsyFi5nb3Zlcm5hbmNlLnYxLlBJSVNwYW4igwEKB1BJSVNwYW4SFAoMc3RhcnRfb2Zmc2V0GAEgASgFEhIKCmVuZF9vZmZzZXQYAiABKAUSLAoIY2F0ZWdvcnkYAyABKA4yGi5nb3Zlcm5hbmNlLnYxLlBJSUNhdGVnb3J5EgwKBHRleHQYBCABKAkSEgoKY29uZmlkZW5jZRgFIAEoAiJcCg9SZXRlbnRpb25Qb2xpY3kSFAoMd29ya3NwYWNlX2lkGAEgASgJEhYKDnJldGVudGlvbl9kYXlzGAIgASgFEhsKE2xlZ2FsX2hvbGRfb3ZlcnJpZGUYAyABKAgi0AEKCUxlZ2FsSG9sZBIKCgJpZBgBIAEoCRIUCgx3b3Jrc3BhY2VfaWQYAiABKAkSDQoFc2NvcGUYAyABKAkSDgoGcmVhc29uGAQgASgJEhIKCmNyZWF0ZWRfYnkYBSABKAkSDgoGYWN0aXZlGAYgASgIEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCmV4cGlyZXNfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIk4KDFNhZmV0eVBvbGljeRIUCgx3b3Jrc3BhY2VfaWQYASABKAkSKAoFcnVsZXMYAiADKAsyGS5nb3Zlcm5hbmNlLnYxLlNhZmV0eVJ1bGUimwEKClNhZmV0eVJ1bGUSCgoCaWQYASABKAkSDwoHcGF0dGVybhgCIAEoCRItCgZhY3Rpb24YAyABKA4yHS5nb3Zlcm5hbmNlLnYxLkFjdGlvbkRlY2lzaW9uEiwKCnJpc2tfbGV2ZWwYBCABKA4yGC5nb3Zlcm5hbmNlLnYxLlJpc2tMZXZlbBITCgtkZXNjcmlwdGlvbhgFIAEoCSJsChVFdmFsdWF0ZUFjdGlvblJlcXVlc3QSFAoMd29ya3NwYWNlX2lkGAEgASgJEhAKCGFnZW50X2lkGAIgASgJEhMKC2FjdGlvbl90eXBlGAMgASgJEhYKDmFjdGlvbl9wYXlsb2FkGAQgASgMIk0KFkV2YWx1YXRlQWN0aW9uUmVzcG9uc2USMwoKZXZhbHVhdGlvbhgBIAEoCzIfLmdvdmVybmFuY2UudjEuQWN0aW9uRXZhbHVhdGlvbiJQChBEZXRlY3RQSUlSZXF1ZXN0EgwKBHRleHQYASABKAkSLgoKY2F0ZWdvcmllcxgCIAMoDjIaLmdvdmVybmFuY2UudjEuUElJQ2F0ZWdvcnkiRgoRRGV0ZWN0UElJUmVzcG9uc2USMQoGcmVzdWx0GAEgASgLMiEuZ292ZXJuYW5jZS52MS5QSUlEZXRlY3Rpb25SZXN1bHQiWAoTQ2xhc3NpZnlSaXNrUmVxdWVzdBIUCgx3b3Jrc3BhY2VfaWQYASABKAkSEwoLYWN0aW9uX3R5cGUYAiABKAkSFgoOYWN0aW9uX3BheWxvYWQYAyABKAwiVQoUQ2xhc3NpZnlSaXNrUmVzcG9uc2USLAoKcmlza19sZXZlbBgBIAEoDjIYLmdvdmVybmFuY2UudjEuUmlza0xldmVsEg8KB3JlYXNvbnMYAiADKAkiLgoeQ2hlY2tDcmVkZW50aWFsRXhwb3N1cmVSZXF1ZXN0EgwKBHRleHQYASABKAkiXwofQ2hlY2tDcmVkZW50aWFsRXhwb3N1cmVSZXNwb25zZRIPCgdleHBvc2VkGAEgASgIEhgKEGNyZWRlbnRpYWxfdHlwZXMYAiADKAkSEQoJbG9jYXRpb25zGAMgAygJIjEKGUdldFJldGVudGlvblBvbGljeVJlcXVlc3QSFAoMd29ya3NwYWNlX2lkGAEgASgJIkwKGkdldFJldGVudGlvblBvbGljeVJlc3BvbnNlEi4KBnBvbGljeRgBIAEoCzIeLmdvdmVybmFuY2UudjEuUmV0ZW50aW9uUG9saWN5IksKGVNldFJldGVudGlvblBvbGljeVJlcXVlc3QSLgoGcG9saWN5GAEgASgLMh4uZ292ZXJuYW5jZS52MS5SZXRlbnRpb25Qb2xpY3kiTAoaU2V0UmV0ZW50aW9uUG9saWN5UmVzcG9uc2USLgoGcG9saWN5GAEgASgLMh4uZ292ZXJuYW5jZS52MS5SZXRlbnRpb25Qb2xpY3kiPAoVQ2hlY2tMZWdhbEhvbGRSZXF1ZXN0EhQKDHdvcmtzcGFjZV9pZBgBIAEoCRINCgVzY29wZRgCIAEoCSJPChZDaGVja0xlZ2FsSG9sZFJlc3BvbnNlEgwKBGhlbGQYASABKAgSJwoFaG9sZHMYAiADKAsyGC5nb3Zlcm5hbmNlLnYxLkxlZ2FsSG9sZCI9ChNTZXRMZWdhbEhvbGRSZXF1ZXN0EiYKBGhvbGQYASABKAsyGC5nb3Zlcm5hbmNlLnYxLkxlZ2FsSG9sZCI+ChRTZXRMZWdhbEhvbGRSZXNwb25zZRImCgRob2xkGAEgASgLMhguZ292ZXJuYW5jZS52MS5MZWdhbEhvbGQiLgoWR2V0U2FmZXR5UG9saWN5UmVxdWVzdBIUCgx3b3Jrc3BhY2VfaWQYASABKAkiRgoXR2V0U2FmZXR5UG9saWN5UmVzcG9uc2USKwoGcG9saWN5GAEgASgLMhsuZ292ZXJuYW5jZS52MS5TYWZldHlQb2xpY3kiRQoWU2V0U2FmZXR5UG9saWN5UmVxdWVzdBIrCgZwb2xpY3kYASABKAsyGy5nb3Zlcm5hbmNlLnYxLlNhZmV0eVBvbGljeSJGChdTZXRTYWZldHlQb2xpY3lSZXNwb25zZRIrCgZwb2xpY3kYASABKAsyGy5nb3Zlcm5hbmNlLnYxLlNhZmV0eVBvbGljeSqMAQoOQWN0aW9uRGVjaXNpb24SHwobQUNUSU9OX0RFQ0lTSU9OX1VOU1BFQ0lGSUVEEAASGQoVQUNUSU9OX0RFQ0lTSU9OX0FMTE9XEAESGAoUQUNUSU9OX0RFQ0lTSU9OX0RFTlkQAhIkCiBBQ1RJT05fREVDSVNJT05fUkVRVUlSRV9BUFBST1ZBTBADKuABCgtQSUlDYXRlZ29yeRIcChhQSUlfQ0FURUdPUllfVU5TUEVDSUZJRUQQABIWChJQSUlfQ0FURUdPUllfRU1BSUwQARIWChJQSUlfQ0FURUdPUllfUEhPTkUQAhIUChBQSUlfQ0FURUdPUllfU1NOEAMSHAoYUElJX0NBVEVHT1JZX0NSRURJVF9DQVJEEAQSGAoUUElJX0NBVEVHT1JZX0FERFJFU1MQBRIcChhQSUlfQ0FURUdPUllfUEVSU09OX05BTUUQBhIXChNQSUlfQ0FURUdPUllfQ1VTVE9NEAcqgAEKCVJpc2tMZXZlbBIaChZSSVNLX0xFVkVMX1VOU1BFQ0lGSUVEEAASEgoOUklTS19MRVZFTF9MT1cQARIVChFSSVNLX0xFVkVMX01FRElVTRACEhMKD1JJU0tfTEVWRUxfSElHSBADEhcKE1JJU0tfTEVWRUxfQ1JJVElDQUwQBDLnBwoRR292ZXJuYW5jZVNlcnZpY2USXQoORXZhbHVhdGVBY3Rpb24SJC5nb3Zlcm5hbmNlLnYxLkV2YWx1YXRlQWN0aW9uUmVxdWVzdBolLmdvdmVybmFuY2UudjEuRXZhbHVhdGVBY3Rpb25SZXNwb25zZRJOCglEZXRlY3RQSUkSHy5nb3Zlcm5hbmNlLnYxLkRldGVjdFBJSVJlcXVlc3QaIC5nb3Zlcm5hbmNlLnYxLkRldGVjdFBJSVJlc3BvbnNlElcKDENsYXNzaWZ5UmlzaxIiLmdvdmVybmFuY2UudjEuQ2xhc3NpZnlSaXNrUmVxdWVzdBojLmdvdmVybmFuY2UudjEuQ2xhc3NpZnlSaXNrUmVzcG9uc2USeAoXQ2hlY2tDcmVkZW50aWFsRXhwb3N1cmUSLS5nb3Zlcm5hbmNlLnYxLkNoZWNrQ3JlZGVudGlhbEV4cG9zdXJlUmVxdWVzdBouLmdvdmVybmFuY2UudjEuQ2hlY2tDcmVkZW50aWFsRXhwb3N1cmVSZXNwb25zZRJpChJHZXRSZXRlbnRpb25Qb2xpY3kSKC5nb3Zlcm5hbmNlLnYxLkdldFJldGVudGlvblBvbGljeVJlcXVlc3QaKS5nb3Zlcm5hbmNlLnYxLkdldFJldGVudGlvblBvbGljeVJlc3BvbnNlEmkKElNldFJldGVudGlvblBvbGljeRIoLmdvdmVybmFuY2UudjEuU2V0UmV0ZW50aW9uUG9saWN5UmVxdWVzdBopLmdvdmVybmFuY2UudjEuU2V0UmV0ZW50aW9uUG9saWN5UmVzcG9uc2USXQoOQ2hlY2tMZWdhbEhvbGQSJC5nb3Zlcm5hbmNlLnYxLkNoZWNrTGVnYWxIb2xkUmVxdWVzdBolLmdvdmVybmFuY2UudjEuQ2hlY2tMZWdhbEhvbGRSZXNwb25zZRJXCgxTZXRMZWdhbEhvbGQSIi5nb3Zlcm5hbmNlLnYxLlNldExlZ2FsSG9sZFJlcXVlc3QaIy5nb3Zlcm5hbmNlLnYxLlNldExlZ2FsSG9sZFJlc3BvbnNlEmAKD0dldFNhZmV0eVBvbGljeRIlLmdvdmVybmFuY2UudjEuR2V0U2FmZXR5UG9saWN5UmVxdWVzdBomLmdvdmVybmFuY2UudjEuR2V0U2FmZXR5UG9saWN5UmVzcG9uc2USYAoPU2V0U2FmZXR5UG9saWN5EiUuZ292ZXJuYW5jZS52MS5TZXRTYWZldHlQb2xpY3lSZXF1ZXN0GiYuZ292ZXJuYW5jZS52MS5TZXRTYWZldHlQb2xpY3lSZXNwb25zZUI8WjpnaXRodWIuY29tL2V2YWxvcHMvcHJvdG8vZ2VuL2dvL2dvdmVybmFuY2UvdjE7Z292ZXJuYW5jZXYxYgZwcm90bzM", [file_google_protobuf_timestamp]);
+  fileDesc("Ch5nb3Zlcm5hbmNlL3YxL2dvdmVybmFuY2UucHJvdG8SDWdvdmVybmFuY2UudjEi1AEKEEFjdGlvbkV2YWx1YXRpb24SLwoIZGVjaXNpb24YASABKA4yHS5nb3Zlcm5hbmNlLnYxLkFjdGlvbkRlY2lzaW9uEiwKCnJpc2tfbGV2ZWwYAiABKA4yGC5nb3Zlcm5hbmNlLnYxLlJpc2tMZXZlbBIPCgdyZWFzb25zGAMgAygJEhUKDW1hdGNoZWRfcnVsZXMYBCADKAkSGAoQaGFiaXRfY29uZmlkZW5jZRgFIAEoAhIfChdoYWJpdF9vYnNlcnZhdGlvbl9jb3VudBgGIAEoBSI7ChJQSUlEZXRlY3Rpb25SZXN1bHQSJQoFc3BhbnMYASADKAsyFi5nb3Zlcm5hbmNlLnYxLlBJSVNwYW4igwEKB1BJSVNwYW4SFAoMc3RhcnRfb2Zmc2V0GAEgASgFEhIKCmVuZF9vZmZzZXQYAiABKAUSLAoIY2F0ZWdvcnkYAyABKA4yGi5nb3Zlcm5hbmNlLnYxLlBJSUNhdGVnb3J5EgwKBHRleHQYBCABKAkSEgoKY29uZmlkZW5jZRgFIAEoAiJcCg9SZXRlbnRpb25Qb2xpY3kSFAoMd29ya3NwYWNlX2lkGAEgASgJEhYKDnJldGVudGlvbl9kYXlzGAIgASgFEhsKE2xlZ2FsX2hvbGRfb3ZlcnJpZGUYAyABKAgi0AEKCUxlZ2FsSG9sZBIKCgJpZBgBIAEoCRIUCgx3b3Jrc3BhY2VfaWQYAiABKAkSDQoFc2NvcGUYAyABKAkSDgoGcmVhc29uGAQgASgJEhIKCmNyZWF0ZWRfYnkYBSABKAkSDgoGYWN0aXZlGAYgASgIEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCmV4cGlyZXNfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIk4KDFNhZmV0eVBvbGljeRIUCgx3b3Jrc3BhY2VfaWQYASABKAkSKAoFcnVsZXMYAiADKAsyGS5nb3Zlcm5hbmNlLnYxLlNhZmV0eVJ1bGUimwEKClNhZmV0eVJ1bGUSCgoCaWQYASABKAkSDwoHcGF0dGVybhgCIAEoCRItCgZhY3Rpb24YAyABKA4yHS5nb3Zlcm5hbmNlLnYxLkFjdGlvbkRlY2lzaW9uEiwKCnJpc2tfbGV2ZWwYBCABKA4yGC5nb3Zlcm5hbmNlLnYxLlJpc2tMZXZlbBITCgtkZXNjcmlwdGlvbhgFIAEoCSKHAQoNQWN0aW9uQ29udGV4dBIUCgxyZWNvcmRfY291bnQYASABKAMSFwoPY3VycmVuY3lfYW1vdW50GAIgASgBEhUKDWN1cnJlbmN5X2NvZGUYAyABKAkSEwoLZW52aXJvbm1lbnQYBCABKAkSGwoTZGF0YV9jbGFzc2lmaWNhdGlvbhgFIAEoCSKbAQoVRXZhbHVhdGVBY3Rpb25SZXF1ZXN0EhQKDHdvcmtzcGFjZV9pZBgBIAEoCRIQCghhZ2VudF9pZBgCIAEoCRITCgthY3Rpb25fdHlwZRgDIAEoCRIWCg5hY3Rpb25fcGF5bG9hZBgEIAEoDBItCgdjb250ZXh0GAUgASgLMhwuZ292ZXJuYW5jZS52MS5BY3Rpb25Db250ZXh0Ik0KFkV2YWx1YXRlQWN0aW9uUmVzcG9uc2USMwoKZXZhbHVhdGlvbhgBIAEoCzIfLmdvdmVybmFuY2UudjEuQWN0aW9uRXZhbHVhdGlvbiJQChBEZXRlY3RQSUlSZXF1ZXN0EgwKBHRleHQYASABKAkSLgoKY2F0ZWdvcmllcxgCIAMoDjIaLmdvdmVybmFuY2UudjEuUElJQ2F0ZWdvcnkiRgoRRGV0ZWN0UElJUmVzcG9uc2USMQoGcmVzdWx0GAEgASgLMiEuZ292ZXJuYW5jZS52MS5QSUlEZXRlY3Rpb25SZXN1bHQihwEKE0NsYXNzaWZ5Umlza1JlcXVlc3QSFAoMd29ya3NwYWNlX2lkGAEgASgJEhMKC2FjdGlvbl90eXBlGAIgASgJEhYKDmFjdGlvbl9wYXlsb2FkGAMgASgMEi0KB2NvbnRleHQYBCABKAsyHC5nb3Zlcm5hbmNlLnYxLkFjdGlvbkNvbnRleHQiVQoUQ2xhc3NpZnlSaXNrUmVzcG9uc2USLAoKcmlza19sZXZlbBgBIAEoDjIYLmdvdmVybmFuY2UudjEuUmlza0xldmVsEg8KB3JlYXNvbnMYAiADKAkiLgoeQ2hlY2tDcmVkZW50aWFsRXhwb3N1cmVSZXF1ZXN0EgwKBHRleHQYASABKAkiXwofQ2hlY2tDcmVkZW50aWFsRXhwb3N1cmVSZXNwb25zZRIPCgdleHBvc2VkGAEgASgIEhgKEGNyZWRlbnRpYWxfdHlwZXMYAiADKAkSEQoJbG9jYXRpb25zGAMgAygJIjEKGUdldFJldGVudGlvblBvbGljeVJlcXVlc3QSFAoMd29ya3NwYWNlX2lkGAEgASgJIkwKGkdldFJldGVudGlvblBvbGljeVJlc3BvbnNlEi4KBnBvbGljeRgBIAEoCzIeLmdvdmVybmFuY2UudjEuUmV0ZW50aW9uUG9saWN5IksKGVNldFJldGVudGlvblBvbGljeVJlcXVlc3QSLgoGcG9saWN5GAEgASgLMh4uZ292ZXJuYW5jZS52MS5SZXRlbnRpb25Qb2xpY3kiTAoaU2V0UmV0ZW50aW9uUG9saWN5UmVzcG9uc2USLgoGcG9saWN5GAEgASgLMh4uZ292ZXJuYW5jZS52MS5SZXRlbnRpb25Qb2xpY3kiPAoVQ2hlY2tMZWdhbEhvbGRSZXF1ZXN0EhQKDHdvcmtzcGFjZV9pZBgBIAEoCRINCgVzY29wZRgCIAEoCSJPChZDaGVja0xlZ2FsSG9sZFJlc3BvbnNlEgwKBGhlbGQYASABKAgSJwoFaG9sZHMYAiADKAsyGC5nb3Zlcm5hbmNlLnYxLkxlZ2FsSG9sZCI9ChNTZXRMZWdhbEhvbGRSZXF1ZXN0EiYKBGhvbGQYASABKAsyGC5nb3Zlcm5hbmNlLnYxLkxlZ2FsSG9sZCI+ChRTZXRMZWdhbEhvbGRSZXNwb25zZRImCgRob2xkGAEgASgLMhguZ292ZXJuYW5jZS52MS5MZWdhbEhvbGQiLgoWR2V0U2FmZXR5UG9saWN5UmVxdWVzdBIUCgx3b3Jrc3BhY2VfaWQYASABKAkiRgoXR2V0U2FmZXR5UG9saWN5UmVzcG9uc2USKwoGcG9saWN5GAEgASgLMhsuZ292ZXJuYW5jZS52MS5TYWZldHlQb2xpY3kiRQoWU2V0U2FmZXR5UG9saWN5UmVxdWVzdBIrCgZwb2xpY3kYASABKAsyGy5nb3Zlcm5hbmNlLnYxLlNhZmV0eVBvbGljeSJGChdTZXRTYWZldHlQb2xpY3lSZXNwb25zZRIrCgZwb2xpY3kYASABKAsyGy5nb3Zlcm5hbmNlLnYxLlNhZmV0eVBvbGljeSqMAQoOQWN0aW9uRGVjaXNpb24SHwobQUNUSU9OX0RFQ0lTSU9OX1VOU1BFQ0lGSUVEEAASGQoVQUNUSU9OX0RFQ0lTSU9OX0FMTE9XEAESGAoUQUNUSU9OX0RFQ0lTSU9OX0RFTlkQAhIkCiBBQ1RJT05fREVDSVNJT05fUkVRVUlSRV9BUFBST1ZBTBADKuABCgtQSUlDYXRlZ29yeRIcChhQSUlfQ0FURUdPUllfVU5TUEVDSUZJRUQQABIWChJQSUlfQ0FURUdPUllfRU1BSUwQARIWChJQSUlfQ0FURUdPUllfUEhPTkUQAhIUChBQSUlfQ0FURUdPUllfU1NOEAMSHAoYUElJX0NBVEVHT1JZX0NSRURJVF9DQVJEEAQSGAoUUElJX0NBVEVHT1JZX0FERFJFU1MQBRIcChhQSUlfQ0FURUdPUllfUEVSU09OX05BTUUQBhIXChNQSUlfQ0FURUdPUllfQ1VTVE9NEAcqgAEKCVJpc2tMZXZlbBIaChZSSVNLX0xFVkVMX1VOU1BFQ0lGSUVEEAASEgoOUklTS19MRVZFTF9MT1cQARIVChFSSVNLX0xFVkVMX01FRElVTRACEhMKD1JJU0tfTEVWRUxfSElHSBADEhcKE1JJU0tfTEVWRUxfQ1JJVElDQUwQBDLnBwoRR292ZXJuYW5jZVNlcnZpY2USXQoORXZhbHVhdGVBY3Rpb24SJC5nb3Zlcm5hbmNlLnYxLkV2YWx1YXRlQWN0aW9uUmVxdWVzdBolLmdvdmVybmFuY2UudjEuRXZhbHVhdGVBY3Rpb25SZXNwb25zZRJOCglEZXRlY3RQSUkSHy5nb3Zlcm5hbmNlLnYxLkRldGVjdFBJSVJlcXVlc3QaIC5nb3Zlcm5hbmNlLnYxLkRldGVjdFBJSVJlc3BvbnNlElcKDENsYXNzaWZ5UmlzaxIiLmdvdmVybmFuY2UudjEuQ2xhc3NpZnlSaXNrUmVxdWVzdBojLmdvdmVybmFuY2UudjEuQ2xhc3NpZnlSaXNrUmVzcG9uc2USeAoXQ2hlY2tDcmVkZW50aWFsRXhwb3N1cmUSLS5nb3Zlcm5hbmNlLnYxLkNoZWNrQ3JlZGVudGlhbEV4cG9zdXJlUmVxdWVzdBouLmdvdmVybmFuY2UudjEuQ2hlY2tDcmVkZW50aWFsRXhwb3N1cmVSZXNwb25zZRJpChJHZXRSZXRlbnRpb25Qb2xpY3kSKC5nb3Zlcm5hbmNlLnYxLkdldFJldGVudGlvblBvbGljeVJlcXVlc3QaKS5nb3Zlcm5hbmNlLnYxLkdldFJldGVudGlvblBvbGljeVJlc3BvbnNlEmkKElNldFJldGVudGlvblBvbGljeRIoLmdvdmVybmFuY2UudjEuU2V0UmV0ZW50aW9uUG9saWN5UmVxdWVzdBopLmdvdmVybmFuY2UudjEuU2V0UmV0ZW50aW9uUG9saWN5UmVzcG9uc2USXQoOQ2hlY2tMZWdhbEhvbGQSJC5nb3Zlcm5hbmNlLnYxLkNoZWNrTGVnYWxIb2xkUmVxdWVzdBolLmdvdmVybmFuY2UudjEuQ2hlY2tMZWdhbEhvbGRSZXNwb25zZRJXCgxTZXRMZWdhbEhvbGQSIi5nb3Zlcm5hbmNlLnYxLlNldExlZ2FsSG9sZFJlcXVlc3QaIy5nb3Zlcm5hbmNlLnYxLlNldExlZ2FsSG9sZFJlc3BvbnNlEmAKD0dldFNhZmV0eVBvbGljeRIlLmdvdmVybmFuY2UudjEuR2V0U2FmZXR5UG9saWN5UmVxdWVzdBomLmdvdmVybmFuY2UudjEuR2V0U2FmZXR5UG9saWN5UmVzcG9uc2USYAoPU2V0U2FmZXR5UG9saWN5EiUuZ292ZXJuYW5jZS52MS5TZXRTYWZldHlQb2xpY3lSZXF1ZXN0GiYuZ292ZXJuYW5jZS52MS5TZXRTYWZldHlQb2xpY3lSZXNwb25zZUI8WjpnaXRodWIuY29tL2V2YWxvcHMvcHJvdG8vZ2VuL2dvL2dvdmVybmFuY2UvdjE7Z292ZXJuYW5jZXYxYgZwcm90bzM", [file_google_protobuf_timestamp]);
 
 /**
  * ActionEvaluation is the result of evaluating an action against governance rules.
@@ -267,6 +267,43 @@ export const SafetyRuleSchema: GenMessage<SafetyRule> = /*@__PURE__*/
   messageDesc(file_governance_v1_governance, 6);
 
 /**
+ * @generated from message governance.v1.ActionContext
+ */
+export type ActionContext = Message<"governance.v1.ActionContext"> & {
+  /**
+   * @generated from field: int64 record_count = 1;
+   */
+  recordCount: bigint;
+
+  /**
+   * @generated from field: double currency_amount = 2;
+   */
+  currencyAmount: number;
+
+  /**
+   * @generated from field: string currency_code = 3;
+   */
+  currencyCode: string;
+
+  /**
+   * @generated from field: string environment = 4;
+   */
+  environment: string;
+
+  /**
+   * @generated from field: string data_classification = 5;
+   */
+  dataClassification: string;
+};
+
+/**
+ * Describes the message governance.v1.ActionContext.
+ * Use `create(ActionContextSchema)` to create a new message.
+ */
+export const ActionContextSchema: GenMessage<ActionContext> = /*@__PURE__*/
+  messageDesc(file_governance_v1_governance, 7);
+
+/**
  * @generated from message governance.v1.EvaluateActionRequest
  */
 export type EvaluateActionRequest = Message<"governance.v1.EvaluateActionRequest"> & {
@@ -289,6 +326,11 @@ export type EvaluateActionRequest = Message<"governance.v1.EvaluateActionRequest
    * @generated from field: bytes action_payload = 4;
    */
   actionPayload: Uint8Array;
+
+  /**
+   * @generated from field: governance.v1.ActionContext context = 5;
+   */
+  context?: ActionContext;
 };
 
 /**
@@ -296,7 +338,7 @@ export type EvaluateActionRequest = Message<"governance.v1.EvaluateActionRequest
  * Use `create(EvaluateActionRequestSchema)` to create a new message.
  */
 export const EvaluateActionRequestSchema: GenMessage<EvaluateActionRequest> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 7);
+  messageDesc(file_governance_v1_governance, 8);
 
 /**
  * @generated from message governance.v1.EvaluateActionResponse
@@ -313,7 +355,7 @@ export type EvaluateActionResponse = Message<"governance.v1.EvaluateActionRespon
  * Use `create(EvaluateActionResponseSchema)` to create a new message.
  */
 export const EvaluateActionResponseSchema: GenMessage<EvaluateActionResponse> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 8);
+  messageDesc(file_governance_v1_governance, 9);
 
 /**
  * @generated from message governance.v1.DetectPIIRequest
@@ -335,7 +377,7 @@ export type DetectPIIRequest = Message<"governance.v1.DetectPIIRequest"> & {
  * Use `create(DetectPIIRequestSchema)` to create a new message.
  */
 export const DetectPIIRequestSchema: GenMessage<DetectPIIRequest> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 9);
+  messageDesc(file_governance_v1_governance, 10);
 
 /**
  * @generated from message governance.v1.DetectPIIResponse
@@ -352,7 +394,7 @@ export type DetectPIIResponse = Message<"governance.v1.DetectPIIResponse"> & {
  * Use `create(DetectPIIResponseSchema)` to create a new message.
  */
 export const DetectPIIResponseSchema: GenMessage<DetectPIIResponse> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 10);
+  messageDesc(file_governance_v1_governance, 11);
 
 /**
  * @generated from message governance.v1.ClassifyRiskRequest
@@ -372,6 +414,11 @@ export type ClassifyRiskRequest = Message<"governance.v1.ClassifyRiskRequest"> &
    * @generated from field: bytes action_payload = 3;
    */
   actionPayload: Uint8Array;
+
+  /**
+   * @generated from field: governance.v1.ActionContext context = 4;
+   */
+  context?: ActionContext;
 };
 
 /**
@@ -379,7 +426,7 @@ export type ClassifyRiskRequest = Message<"governance.v1.ClassifyRiskRequest"> &
  * Use `create(ClassifyRiskRequestSchema)` to create a new message.
  */
 export const ClassifyRiskRequestSchema: GenMessage<ClassifyRiskRequest> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 11);
+  messageDesc(file_governance_v1_governance, 12);
 
 /**
  * @generated from message governance.v1.ClassifyRiskResponse
@@ -401,7 +448,7 @@ export type ClassifyRiskResponse = Message<"governance.v1.ClassifyRiskResponse">
  * Use `create(ClassifyRiskResponseSchema)` to create a new message.
  */
 export const ClassifyRiskResponseSchema: GenMessage<ClassifyRiskResponse> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 12);
+  messageDesc(file_governance_v1_governance, 13);
 
 /**
  * @generated from message governance.v1.CheckCredentialExposureRequest
@@ -418,7 +465,7 @@ export type CheckCredentialExposureRequest = Message<"governance.v1.CheckCredent
  * Use `create(CheckCredentialExposureRequestSchema)` to create a new message.
  */
 export const CheckCredentialExposureRequestSchema: GenMessage<CheckCredentialExposureRequest> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 13);
+  messageDesc(file_governance_v1_governance, 14);
 
 /**
  * @generated from message governance.v1.CheckCredentialExposureResponse
@@ -445,7 +492,7 @@ export type CheckCredentialExposureResponse = Message<"governance.v1.CheckCreden
  * Use `create(CheckCredentialExposureResponseSchema)` to create a new message.
  */
 export const CheckCredentialExposureResponseSchema: GenMessage<CheckCredentialExposureResponse> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 14);
+  messageDesc(file_governance_v1_governance, 15);
 
 /**
  * @generated from message governance.v1.GetRetentionPolicyRequest
@@ -462,7 +509,7 @@ export type GetRetentionPolicyRequest = Message<"governance.v1.GetRetentionPolic
  * Use `create(GetRetentionPolicyRequestSchema)` to create a new message.
  */
 export const GetRetentionPolicyRequestSchema: GenMessage<GetRetentionPolicyRequest> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 15);
+  messageDesc(file_governance_v1_governance, 16);
 
 /**
  * @generated from message governance.v1.GetRetentionPolicyResponse
@@ -479,7 +526,7 @@ export type GetRetentionPolicyResponse = Message<"governance.v1.GetRetentionPoli
  * Use `create(GetRetentionPolicyResponseSchema)` to create a new message.
  */
 export const GetRetentionPolicyResponseSchema: GenMessage<GetRetentionPolicyResponse> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 16);
+  messageDesc(file_governance_v1_governance, 17);
 
 /**
  * @generated from message governance.v1.SetRetentionPolicyRequest
@@ -496,7 +543,7 @@ export type SetRetentionPolicyRequest = Message<"governance.v1.SetRetentionPolic
  * Use `create(SetRetentionPolicyRequestSchema)` to create a new message.
  */
 export const SetRetentionPolicyRequestSchema: GenMessage<SetRetentionPolicyRequest> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 17);
+  messageDesc(file_governance_v1_governance, 18);
 
 /**
  * @generated from message governance.v1.SetRetentionPolicyResponse
@@ -513,7 +560,7 @@ export type SetRetentionPolicyResponse = Message<"governance.v1.SetRetentionPoli
  * Use `create(SetRetentionPolicyResponseSchema)` to create a new message.
  */
 export const SetRetentionPolicyResponseSchema: GenMessage<SetRetentionPolicyResponse> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 18);
+  messageDesc(file_governance_v1_governance, 19);
 
 /**
  * @generated from message governance.v1.CheckLegalHoldRequest
@@ -535,7 +582,7 @@ export type CheckLegalHoldRequest = Message<"governance.v1.CheckLegalHoldRequest
  * Use `create(CheckLegalHoldRequestSchema)` to create a new message.
  */
 export const CheckLegalHoldRequestSchema: GenMessage<CheckLegalHoldRequest> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 19);
+  messageDesc(file_governance_v1_governance, 20);
 
 /**
  * @generated from message governance.v1.CheckLegalHoldResponse
@@ -557,7 +604,7 @@ export type CheckLegalHoldResponse = Message<"governance.v1.CheckLegalHoldRespon
  * Use `create(CheckLegalHoldResponseSchema)` to create a new message.
  */
 export const CheckLegalHoldResponseSchema: GenMessage<CheckLegalHoldResponse> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 20);
+  messageDesc(file_governance_v1_governance, 21);
 
 /**
  * @generated from message governance.v1.SetLegalHoldRequest
@@ -574,7 +621,7 @@ export type SetLegalHoldRequest = Message<"governance.v1.SetLegalHoldRequest"> &
  * Use `create(SetLegalHoldRequestSchema)` to create a new message.
  */
 export const SetLegalHoldRequestSchema: GenMessage<SetLegalHoldRequest> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 21);
+  messageDesc(file_governance_v1_governance, 22);
 
 /**
  * @generated from message governance.v1.SetLegalHoldResponse
@@ -591,7 +638,7 @@ export type SetLegalHoldResponse = Message<"governance.v1.SetLegalHoldResponse">
  * Use `create(SetLegalHoldResponseSchema)` to create a new message.
  */
 export const SetLegalHoldResponseSchema: GenMessage<SetLegalHoldResponse> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 22);
+  messageDesc(file_governance_v1_governance, 23);
 
 /**
  * @generated from message governance.v1.GetSafetyPolicyRequest
@@ -608,7 +655,7 @@ export type GetSafetyPolicyRequest = Message<"governance.v1.GetSafetyPolicyReque
  * Use `create(GetSafetyPolicyRequestSchema)` to create a new message.
  */
 export const GetSafetyPolicyRequestSchema: GenMessage<GetSafetyPolicyRequest> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 23);
+  messageDesc(file_governance_v1_governance, 24);
 
 /**
  * @generated from message governance.v1.GetSafetyPolicyResponse
@@ -625,7 +672,7 @@ export type GetSafetyPolicyResponse = Message<"governance.v1.GetSafetyPolicyResp
  * Use `create(GetSafetyPolicyResponseSchema)` to create a new message.
  */
 export const GetSafetyPolicyResponseSchema: GenMessage<GetSafetyPolicyResponse> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 24);
+  messageDesc(file_governance_v1_governance, 25);
 
 /**
  * @generated from message governance.v1.SetSafetyPolicyRequest
@@ -642,7 +689,7 @@ export type SetSafetyPolicyRequest = Message<"governance.v1.SetSafetyPolicyReque
  * Use `create(SetSafetyPolicyRequestSchema)` to create a new message.
  */
 export const SetSafetyPolicyRequestSchema: GenMessage<SetSafetyPolicyRequest> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 25);
+  messageDesc(file_governance_v1_governance, 26);
 
 /**
  * @generated from message governance.v1.SetSafetyPolicyResponse
@@ -659,7 +706,7 @@ export type SetSafetyPolicyResponse = Message<"governance.v1.SetSafetyPolicyResp
  * Use `create(SetSafetyPolicyResponseSchema)` to create a new message.
  */
 export const SetSafetyPolicyResponseSchema: GenMessage<SetSafetyPolicyResponse> = /*@__PURE__*/
-  messageDesc(file_governance_v1_governance, 26);
+  messageDesc(file_governance_v1_governance, 27);
 
 /**
  * ActionDecision describes the governance decision for an action.

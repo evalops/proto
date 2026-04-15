@@ -110,11 +110,20 @@ message SafetyRule {
   string description = 5;
 }
 
+message ActionContext {
+  int64 record_count = 1;
+  double currency_amount = 2;
+  string currency_code = 3;
+  string environment = 4;
+  string data_classification = 5;
+}
+
 message EvaluateActionRequest {
   string workspace_id = 1;
   string agent_id = 2;
   string action_type = 3;
   bytes action_payload = 4;
+  ActionContext context = 5;
 }
 
 message EvaluateActionResponse {
@@ -134,6 +143,7 @@ message ClassifyRiskRequest {
   string workspace_id = 1;
   string action_type = 2;
   bytes action_payload = 3;
+  ActionContext context = 4;
 }
 
 message ClassifyRiskResponse {
