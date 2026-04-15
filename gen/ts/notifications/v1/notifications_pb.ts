@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file notifications/v1/notifications.proto.
  */
 export const file_notifications_v1_notifications: GenFile = /*@__PURE__*/
-  fileDesc("CiRub3RpZmljYXRpb25zL3YxL25vdGlmaWNhdGlvbnMucHJvdG8SEG5vdGlmaWNhdGlvbnMudjEi+AIKDE5vdGlmaWNhdGlvbhIKCgJpZBgBIAEoCRIUCgx3b3Jrc3BhY2VfaWQYAiABKAkSFAoMcmVjaXBpZW50X2lkGAMgASgJEjIKB2NoYW5uZWwYBCABKA4yIS5ub3RpZmljYXRpb25zLnYxLkRlbGl2ZXJ5Q2hhbm5lbBIsCghwcmlvcml0eRgFIAEoDjIaLm5vdGlmaWNhdGlvbnMudjEuUHJpb3JpdHkSDwoHc3ViamVjdBgGIAEoCRIMCgRib2R5GAcgASgJEhUKDW1ldGFkYXRhX2pzb24YCCABKAkSOQoPZGVsaXZlcnlfc3RhdHVzGAkgASgOMiAubm90aWZpY2F0aW9ucy52MS5EZWxpdmVyeVN0YXR1cxIrCgdzZW50X2F0GAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIwCgxkZWxpdmVyZWRfYXQYCyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wInkKDkVzY2FsYXRpb25SdWxlEicKH2lmX3VuYWNrbm93bGVkZ2VkX2FmdGVyX3NlY29uZHMYASABKAUSPgoTZXNjYWxhdGVfdG9fY2hhbm5lbBgCIAEoDjIhLm5vdGlmaWNhdGlvbnMudjEuRGVsaXZlcnlDaGFubmVsIuwBChdOb3RpZmljYXRpb25QcmVmZXJlbmNlcxIPCgd1c2VyX2lkGAEgASgJEhQKDHdvcmtzcGFjZV9pZBgCIAEoCRI6Cg9kZWZhdWx0X2NoYW5uZWwYAyABKA4yIS5ub3RpZmljYXRpb25zLnYxLkRlbGl2ZXJ5Q2hhbm5lbBIZChFxdWlldF9ob3Vyc19zdGFydBgEIAEoCRIXCg9xdWlldF9ob3Vyc19lbmQYBSABKAkSOgoQZXNjYWxhdGlvbl9ydWxlcxgGIAMoCzIgLm5vdGlmaWNhdGlvbnMudjEuRXNjYWxhdGlvblJ1bGUi0QEKC1NlbmRSZXF1ZXN0EhQKDHdvcmtzcGFjZV9pZBgBIAEoCRIUCgxyZWNpcGllbnRfaWQYAiABKAkSMgoHY2hhbm5lbBgDIAEoDjIhLm5vdGlmaWNhdGlvbnMudjEuRGVsaXZlcnlDaGFubmVsEiwKCHByaW9yaXR5GAQgASgOMhoubm90aWZpY2F0aW9ucy52MS5Qcmlvcml0eRIPCgdzdWJqZWN0GAUgASgJEgwKBGJvZHkYBiABKAkSFQoNbWV0YWRhdGFfanNvbhgHIAEoCSJECgxTZW5kUmVzcG9uc2USNAoMbm90aWZpY2F0aW9uGAEgASgLMh4ubm90aWZpY2F0aW9ucy52MS5Ob3RpZmljYXRpb24iSAoQU2VuZEJhdGNoUmVxdWVzdBI0Cg1ub3RpZmljYXRpb25zGAEgAygLMh0ubm90aWZpY2F0aW9ucy52MS5TZW5kUmVxdWVzdCJgChFTZW5kQmF0Y2hSZXNwb25zZRI1Cg1ub3RpZmljYXRpb25zGAEgAygLMh4ubm90aWZpY2F0aW9ucy52MS5Ob3RpZmljYXRpb24SFAoMZmFpbGVkX2NvdW50GAIgASgFIj4KFUdldFByZWZlcmVuY2VzUmVxdWVzdBIPCgd1c2VyX2lkGAEgASgJEhQKDHdvcmtzcGFjZV9pZBgCIAEoCSJYChZHZXRQcmVmZXJlbmNlc1Jlc3BvbnNlEj4KC3ByZWZlcmVuY2VzGAEgASgLMikubm90aWZpY2F0aW9ucy52MS5Ob3RpZmljYXRpb25QcmVmZXJlbmNlcyJXChVTZXRQcmVmZXJlbmNlc1JlcXVlc3QSPgoLcHJlZmVyZW5jZXMYASABKAsyKS5ub3RpZmljYXRpb25zLnYxLk5vdGlmaWNhdGlvblByZWZlcmVuY2VzIlgKFlNldFByZWZlcmVuY2VzUmVzcG9uc2USPgoLcHJlZmVyZW5jZXMYASABKAsyKS5ub3RpZmljYXRpb25zLnYxLk5vdGlmaWNhdGlvblByZWZlcmVuY2VzIl8KEkxpc3RIaXN0b3J5UmVxdWVzdBIUCgx3b3Jrc3BhY2VfaWQYASABKAkSFAoMcmVjaXBpZW50X2lkGAIgASgJEg0KBWxpbWl0GAMgASgFEg4KBm9mZnNldBgEIAEoBSJbChNMaXN0SGlzdG9yeVJlc3BvbnNlEjUKDW5vdGlmaWNhdGlvbnMYASADKAsyHi5ub3RpZmljYXRpb25zLnYxLk5vdGlmaWNhdGlvbhINCgV0b3RhbBgCIAEoBSLXAQoWUmVnaXN0ZXJDaGFubmVsUmVxdWVzdBIUCgx3b3Jrc3BhY2VfaWQYASABKAkSMgoHY2hhbm5lbBgCIAEoDjIhLm5vdGlmaWNhdGlvbnMudjEuRGVsaXZlcnlDaGFubmVsEkQKBmNvbmZpZxgDIAMoCzI0Lm5vdGlmaWNhdGlvbnMudjEuUmVnaXN0ZXJDaGFubmVsUmVxdWVzdC5Db25maWdFbnRyeRotCgtDb25maWdFbnRyeRILCgNrZXkYASABKAkSDQoFdmFsdWUYAiABKAk6AjgBIioKF1JlZ2lzdGVyQ2hhbm5lbFJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgiMwoYR2V0RGVsaXZlcnlTdGF0dXNSZXF1ZXN0EhcKD25vdGlmaWNhdGlvbl9pZBgBIAEoCSKZAQoZR2V0RGVsaXZlcnlTdGF0dXNSZXNwb25zZRIwCgZzdGF0dXMYASABKA4yIC5ub3RpZmljYXRpb25zLnYxLkRlbGl2ZXJ5U3RhdHVzEjMKD2xhc3RfdXBkYXRlZF9hdBgCIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASFQoNZXJyb3JfbWVzc2FnZRgDIAEoCSqmAQoPRGVsaXZlcnlDaGFubmVsEiAKHERFTElWRVJZX0NIQU5ORUxfVU5TUEVDSUZJRUQQABIaChZERUxJVkVSWV9DSEFOTkVMX1NMQUNLEAESGgoWREVMSVZFUllfQ0hBTk5FTF9FTUFJTBACEhwKGERFTElWRVJZX0NIQU5ORUxfV0VCSE9PSxADEhsKF0RFTElWRVJZX0NIQU5ORUxfSU5fQVBQEAQqcwoIUHJpb3JpdHkSGAoUUFJJT1JJVFlfVU5TUEVDSUZJRUQQABIQCgxQUklPUklUWV9MT1cQARITCg9QUklPUklUWV9OT1JNQUwQAhIRCg1QUklPUklUWV9ISUdIEAMSEwoPUFJJT1JJVFlfVVJHRU5UEAQqwAEKDkRlbGl2ZXJ5U3RhdHVzEh8KG0RFTElWRVJZX1NUQVRVU19VTlNQRUNJRklFRBAAEhsKF0RFTElWRVJZX1NUQVRVU19QRU5ESU5HEAESGAoUREVMSVZFUllfU1RBVFVTX1NFTlQQAhIdChlERUxJVkVSWV9TVEFUVVNfREVMSVZFUkVEEAMSGgoWREVMSVZFUllfU1RBVFVTX0ZBSUxFRBAEEhsKF0RFTElWRVJZX1NUQVRVU19CT1VOQ0VEEAUyrgUKE05vdGlmaWNhdGlvblNlcnZpY2USRQoEU2VuZBIdLm5vdGlmaWNhdGlvbnMudjEuU2VuZFJlcXVlc3QaHi5ub3RpZmljYXRpb25zLnYxLlNlbmRSZXNwb25zZRJUCglTZW5kQmF0Y2gSIi5ub3RpZmljYXRpb25zLnYxLlNlbmRCYXRjaFJlcXVlc3QaIy5ub3RpZmljYXRpb25zLnYxLlNlbmRCYXRjaFJlc3BvbnNlEmMKDkdldFByZWZlcmVuY2VzEicubm90aWZpY2F0aW9ucy52MS5HZXRQcmVmZXJlbmNlc1JlcXVlc3QaKC5ub3RpZmljYXRpb25zLnYxLkdldFByZWZlcmVuY2VzUmVzcG9uc2USYwoOU2V0UHJlZmVyZW5jZXMSJy5ub3RpZmljYXRpb25zLnYxLlNldFByZWZlcmVuY2VzUmVxdWVzdBooLm5vdGlmaWNhdGlvbnMudjEuU2V0UHJlZmVyZW5jZXNSZXNwb25zZRJaCgtMaXN0SGlzdG9yeRIkLm5vdGlmaWNhdGlvbnMudjEuTGlzdEhpc3RvcnlSZXF1ZXN0GiUubm90aWZpY2F0aW9ucy52MS5MaXN0SGlzdG9yeVJlc3BvbnNlEmYKD1JlZ2lzdGVyQ2hhbm5lbBIoLm5vdGlmaWNhdGlvbnMudjEuUmVnaXN0ZXJDaGFubmVsUmVxdWVzdBopLm5vdGlmaWNhdGlvbnMudjEuUmVnaXN0ZXJDaGFubmVsUmVzcG9uc2USbAoRR2V0RGVsaXZlcnlTdGF0dXMSKi5ub3RpZmljYXRpb25zLnYxLkdldERlbGl2ZXJ5U3RhdHVzUmVxdWVzdBorLm5vdGlmaWNhdGlvbnMudjEuR2V0RGVsaXZlcnlTdGF0dXNSZXNwb25zZUJCWkBnaXRodWIuY29tL2V2YWxvcHMvcHJvdG8vZ2VuL2dvL25vdGlmaWNhdGlvbnMvdjE7bm90aWZpY2F0aW9uc3YxYgZwcm90bzM", [file_google_protobuf_timestamp]);
+  fileDesc("CiRub3RpZmljYXRpb25zL3YxL25vdGlmaWNhdGlvbnMucHJvdG8SEG5vdGlmaWNhdGlvbnMudjEiyQMKDE5vdGlmaWNhdGlvbhIKCgJpZBgBIAEoCRIUCgx3b3Jrc3BhY2VfaWQYAiABKAkSFAoMcmVjaXBpZW50X2lkGAMgASgJEjIKB2NoYW5uZWwYBCABKA4yIS5ub3RpZmljYXRpb25zLnYxLkRlbGl2ZXJ5Q2hhbm5lbBIsCghwcmlvcml0eRgFIAEoDjIaLm5vdGlmaWNhdGlvbnMudjEuUHJpb3JpdHkSDwoHc3ViamVjdBgGIAEoCRIMCgRib2R5GAcgASgJEhUKDW1ldGFkYXRhX2pzb24YCCABKAkSOQoPZGVsaXZlcnlfc3RhdHVzGAkgASgOMiAubm90aWZpY2F0aW9ucy52MS5EZWxpdmVyeVN0YXR1cxIrCgdzZW50X2F0GAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIwCgxkZWxpdmVyZWRfYXQYCyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjgKCGNhdGVnb3J5GAwgASgOMiYubm90aWZpY2F0aW9ucy52MS5Ob3RpZmljYXRpb25DYXRlZ29yeRIVCg10ZW1wbGF0ZV9uYW1lGA0gASgJInkKDkVzY2FsYXRpb25SdWxlEicKH2lmX3VuYWNrbm93bGVkZ2VkX2FmdGVyX3NlY29uZHMYASABKAUSPgoTZXNjYWxhdGVfdG9fY2hhbm5lbBgCIAEoDjIhLm5vdGlmaWNhdGlvbnMudjEuRGVsaXZlcnlDaGFubmVsIrQCChdOb3RpZmljYXRpb25QcmVmZXJlbmNlcxIPCgd1c2VyX2lkGAEgASgJEhQKDHdvcmtzcGFjZV9pZBgCIAEoCRI6Cg9kZWZhdWx0X2NoYW5uZWwYAyABKA4yIS5ub3RpZmljYXRpb25zLnYxLkRlbGl2ZXJ5Q2hhbm5lbBIZChFxdWlldF9ob3Vyc19zdGFydBgEIAEoCRIXCg9xdWlldF9ob3Vyc19lbmQYBSABKAkSOgoQZXNjYWxhdGlvbl9ydWxlcxgGIAMoCzIgLm5vdGlmaWNhdGlvbnMudjEuRXNjYWxhdGlvblJ1bGUSRgoRY2F0ZWdvcnlfY2hhbm5lbHMYByADKAsyKy5ub3RpZmljYXRpb25zLnYxLkNhdGVnb3J5Q2hhbm5lbFByZWZlcmVuY2UiiQEKGUNhdGVnb3J5Q2hhbm5lbFByZWZlcmVuY2USOAoIY2F0ZWdvcnkYASABKA4yJi5ub3RpZmljYXRpb25zLnYxLk5vdGlmaWNhdGlvbkNhdGVnb3J5EjIKB2NoYW5uZWwYAiABKA4yIS5ub3RpZmljYXRpb25zLnYxLkRlbGl2ZXJ5Q2hhbm5lbCLDAgoUTm90aWZpY2F0aW9uVGVtcGxhdGUSCgoCaWQYASABKAkSFAoMd29ya3NwYWNlX2lkGAIgASgJEgwKBG5hbWUYAyABKAkSOAoIY2F0ZWdvcnkYBCABKA4yJi5ub3RpZmljYXRpb25zLnYxLk5vdGlmaWNhdGlvbkNhdGVnb3J5EjIKB2NoYW5uZWwYBSABKA4yIS5ub3RpZmljYXRpb25zLnYxLkRlbGl2ZXJ5Q2hhbm5lbBIYChBzdWJqZWN0X3RlbXBsYXRlGAYgASgJEhUKDWJvZHlfdGVtcGxhdGUYByABKAkSGgoScmVxdWlyZWRfdmFyaWFibGVzGAggAygJEhAKCGJ1aWx0X2luGAkgASgIEi4KCnVwZGF0ZWRfYXQYCiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIsMCCgtTZW5kUmVxdWVzdBIUCgx3b3Jrc3BhY2VfaWQYASABKAkSFAoMcmVjaXBpZW50X2lkGAIgASgJEjIKB2NoYW5uZWwYAyABKA4yIS5ub3RpZmljYXRpb25zLnYxLkRlbGl2ZXJ5Q2hhbm5lbBIsCghwcmlvcml0eRgEIAEoDjIaLm5vdGlmaWNhdGlvbnMudjEuUHJpb3JpdHkSDwoHc3ViamVjdBgFIAEoCRIMCgRib2R5GAYgASgJEhUKDW1ldGFkYXRhX2pzb24YByABKAkSOAoIY2F0ZWdvcnkYCCABKA4yJi5ub3RpZmljYXRpb25zLnYxLk5vdGlmaWNhdGlvbkNhdGVnb3J5EhUKDXRlbXBsYXRlX25hbWUYCSABKAkSHwoXdGVtcGxhdGVfdmFyaWFibGVzX2pzb24YCiABKAkiRAoMU2VuZFJlc3BvbnNlEjQKDG5vdGlmaWNhdGlvbhgBIAEoCzIeLm5vdGlmaWNhdGlvbnMudjEuTm90aWZpY2F0aW9uIkgKEFNlbmRCYXRjaFJlcXVlc3QSNAoNbm90aWZpY2F0aW9ucxgBIAMoCzIdLm5vdGlmaWNhdGlvbnMudjEuU2VuZFJlcXVlc3QiYAoRU2VuZEJhdGNoUmVzcG9uc2USNQoNbm90aWZpY2F0aW9ucxgBIAMoCzIeLm5vdGlmaWNhdGlvbnMudjEuTm90aWZpY2F0aW9uEhQKDGZhaWxlZF9jb3VudBgCIAEoBSI+ChVHZXRQcmVmZXJlbmNlc1JlcXVlc3QSDwoHdXNlcl9pZBgBIAEoCRIUCgx3b3Jrc3BhY2VfaWQYAiABKAkiWAoWR2V0UHJlZmVyZW5jZXNSZXNwb25zZRI+CgtwcmVmZXJlbmNlcxgBIAEoCzIpLm5vdGlmaWNhdGlvbnMudjEuTm90aWZpY2F0aW9uUHJlZmVyZW5jZXMiVwoVU2V0UHJlZmVyZW5jZXNSZXF1ZXN0Ej4KC3ByZWZlcmVuY2VzGAEgASgLMikubm90aWZpY2F0aW9ucy52MS5Ob3RpZmljYXRpb25QcmVmZXJlbmNlcyJYChZTZXRQcmVmZXJlbmNlc1Jlc3BvbnNlEj4KC3ByZWZlcmVuY2VzGAEgASgLMikubm90aWZpY2F0aW9ucy52MS5Ob3RpZmljYXRpb25QcmVmZXJlbmNlcyJfChJMaXN0SGlzdG9yeVJlcXVlc3QSFAoMd29ya3NwYWNlX2lkGAEgASgJEhQKDHJlY2lwaWVudF9pZBgCIAEoCRINCgVsaW1pdBgDIAEoBRIOCgZvZmZzZXQYBCABKAUiWwoTTGlzdEhpc3RvcnlSZXNwb25zZRI1Cg1ub3RpZmljYXRpb25zGAEgAygLMh4ubm90aWZpY2F0aW9ucy52MS5Ob3RpZmljYXRpb24SDQoFdG90YWwYAiABKAUi1wEKFlJlZ2lzdGVyQ2hhbm5lbFJlcXVlc3QSFAoMd29ya3NwYWNlX2lkGAEgASgJEjIKB2NoYW5uZWwYAiABKA4yIS5ub3RpZmljYXRpb25zLnYxLkRlbGl2ZXJ5Q2hhbm5lbBJECgZjb25maWcYAyADKAsyNC5ub3RpZmljYXRpb25zLnYxLlJlZ2lzdGVyQ2hhbm5lbFJlcXVlc3QuQ29uZmlnRW50cnkaLQoLQ29uZmlnRW50cnkSCwoDa2V5GAEgASgJEg0KBXZhbHVlGAIgASgJOgI4ASIqChdSZWdpc3RlckNoYW5uZWxSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIIjMKGEdldERlbGl2ZXJ5U3RhdHVzUmVxdWVzdBIXCg9ub3RpZmljYXRpb25faWQYASABKAkimQEKGUdldERlbGl2ZXJ5U3RhdHVzUmVzcG9uc2USMAoGc3RhdHVzGAEgASgOMiAubm90aWZpY2F0aW9ucy52MS5EZWxpdmVyeVN0YXR1cxIzCg9sYXN0X3VwZGF0ZWRfYXQYAiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhUKDWVycm9yX21lc3NhZ2UYAyABKAkiUQoVVXBzZXJ0VGVtcGxhdGVSZXF1ZXN0EjgKCHRlbXBsYXRlGAEgASgLMiYubm90aWZpY2F0aW9ucy52MS5Ob3RpZmljYXRpb25UZW1wbGF0ZSJSChZVcHNlcnRUZW1wbGF0ZVJlc3BvbnNlEjgKCHRlbXBsYXRlGAEgASgLMiYubm90aWZpY2F0aW9ucy52MS5Ob3RpZmljYXRpb25UZW1wbGF0ZSK0AQoUTGlzdFRlbXBsYXRlc1JlcXVlc3QSFAoMd29ya3NwYWNlX2lkGAEgASgJEjgKCGNhdGVnb3J5GAIgASgOMiYubm90aWZpY2F0aW9ucy52MS5Ob3RpZmljYXRpb25DYXRlZ29yeRIyCgdjaGFubmVsGAMgASgOMiEubm90aWZpY2F0aW9ucy52MS5EZWxpdmVyeUNoYW5uZWwSGAoQaW5jbHVkZV9idWlsdF9pbhgEIAEoCCJSChVMaXN0VGVtcGxhdGVzUmVzcG9uc2USOQoJdGVtcGxhdGVzGAEgAygLMiYubm90aWZpY2F0aW9ucy52MS5Ob3RpZmljYXRpb25UZW1wbGF0ZSqmAQoPRGVsaXZlcnlDaGFubmVsEiAKHERFTElWRVJZX0NIQU5ORUxfVU5TUEVDSUZJRUQQABIaChZERUxJVkVSWV9DSEFOTkVMX1NMQUNLEAESGgoWREVMSVZFUllfQ0hBTk5FTF9FTUFJTBACEhwKGERFTElWRVJZX0NIQU5ORUxfV0VCSE9PSxADEhsKF0RFTElWRVJZX0NIQU5ORUxfSU5fQVBQEAQqcwoIUHJpb3JpdHkSGAoUUFJJT1JJVFlfVU5TUEVDSUZJRUQQABIQCgxQUklPUklUWV9MT1cQARITCg9QUklPUklUWV9OT1JNQUwQAhIRCg1QUklPUklUWV9ISUdIEAMSEwoPUFJJT1JJVFlfVVJHRU5UEAQq7AIKFE5vdGlmaWNhdGlvbkNhdGVnb3J5EiUKIU5PVElGSUNBVElPTl9DQVRFR09SWV9VTlNQRUNJRklFRBAAEioKJk5PVElGSUNBVElPTl9DQVRFR09SWV9BUFBST1ZBTF9SRVFVRVNUEAESJgoiTk9USUZJQ0FUSU9OX0NBVEVHT1JZX0JVREdFVF9BTEVSVBACEicKI05PVElGSUNBVElPTl9DQVRFR09SWV9QSUlfREVURUNUSU9OEAMSIgoeTk9USUZJQ0FUSU9OX0NBVEVHT1JZX0lOQ0lERU5UEAQSIAocTk9USUZJQ0FUSU9OX0NBVEVHT1JZX1JFUE9SVBAFEiUKIU5PVElGSUNBVElPTl9DQVRFR09SWV9JTlRFR1JBVElPThAGEiAKHE5PVElGSUNBVElPTl9DQVRFR09SWV9ESUdFU1QQBxIhCh1OT1RJRklDQVRJT05fQ0FURUdPUllfR0VORVJBTBAIKsABCg5EZWxpdmVyeVN0YXR1cxIfChtERUxJVkVSWV9TVEFUVVNfVU5TUEVDSUZJRUQQABIbChdERUxJVkVSWV9TVEFUVVNfUEVORElORxABEhgKFERFTElWRVJZX1NUQVRVU19TRU5UEAISHQoZREVMSVZFUllfU1RBVFVTX0RFTElWRVJFRBADEhoKFkRFTElWRVJZX1NUQVRVU19GQUlMRUQQBBIbChdERUxJVkVSWV9TVEFUVVNfQk9VTkNFRBAFMvUGChNOb3RpZmljYXRpb25TZXJ2aWNlEkUKBFNlbmQSHS5ub3RpZmljYXRpb25zLnYxLlNlbmRSZXF1ZXN0Gh4ubm90aWZpY2F0aW9ucy52MS5TZW5kUmVzcG9uc2USVAoJU2VuZEJhdGNoEiIubm90aWZpY2F0aW9ucy52MS5TZW5kQmF0Y2hSZXF1ZXN0GiMubm90aWZpY2F0aW9ucy52MS5TZW5kQmF0Y2hSZXNwb25zZRJjCg5HZXRQcmVmZXJlbmNlcxInLm5vdGlmaWNhdGlvbnMudjEuR2V0UHJlZmVyZW5jZXNSZXF1ZXN0Gigubm90aWZpY2F0aW9ucy52MS5HZXRQcmVmZXJlbmNlc1Jlc3BvbnNlEmMKDlNldFByZWZlcmVuY2VzEicubm90aWZpY2F0aW9ucy52MS5TZXRQcmVmZXJlbmNlc1JlcXVlc3QaKC5ub3RpZmljYXRpb25zLnYxLlNldFByZWZlcmVuY2VzUmVzcG9uc2USWgoLTGlzdEhpc3RvcnkSJC5ub3RpZmljYXRpb25zLnYxLkxpc3RIaXN0b3J5UmVxdWVzdBolLm5vdGlmaWNhdGlvbnMudjEuTGlzdEhpc3RvcnlSZXNwb25zZRJmCg9SZWdpc3RlckNoYW5uZWwSKC5ub3RpZmljYXRpb25zLnYxLlJlZ2lzdGVyQ2hhbm5lbFJlcXVlc3QaKS5ub3RpZmljYXRpb25zLnYxLlJlZ2lzdGVyQ2hhbm5lbFJlc3BvbnNlEmwKEUdldERlbGl2ZXJ5U3RhdHVzEioubm90aWZpY2F0aW9ucy52MS5HZXREZWxpdmVyeVN0YXR1c1JlcXVlc3QaKy5ub3RpZmljYXRpb25zLnYxLkdldERlbGl2ZXJ5U3RhdHVzUmVzcG9uc2USYwoOVXBzZXJ0VGVtcGxhdGUSJy5ub3RpZmljYXRpb25zLnYxLlVwc2VydFRlbXBsYXRlUmVxdWVzdBooLm5vdGlmaWNhdGlvbnMudjEuVXBzZXJ0VGVtcGxhdGVSZXNwb25zZRJgCg1MaXN0VGVtcGxhdGVzEiYubm90aWZpY2F0aW9ucy52MS5MaXN0VGVtcGxhdGVzUmVxdWVzdBonLm5vdGlmaWNhdGlvbnMudjEuTGlzdFRlbXBsYXRlc1Jlc3BvbnNlQkJaQGdpdGh1Yi5jb20vZXZhbG9wcy9wcm90by9nZW4vZ28vbm90aWZpY2F0aW9ucy92MTtub3RpZmljYXRpb25zdjFiBnByb3RvMw", [file_google_protobuf_timestamp]);
 
 /**
  * Notification is the canonical notification record.
@@ -74,6 +74,16 @@ export type Notification = Message<"notifications.v1.Notification"> & {
    * @generated from field: google.protobuf.Timestamp delivered_at = 11;
    */
   deliveredAt?: Timestamp;
+
+  /**
+   * @generated from field: notifications.v1.NotificationCategory category = 12;
+   */
+  category: NotificationCategory;
+
+  /**
+   * @generated from field: string template_name = 13;
+   */
+  templateName: string;
 };
 
 /**
@@ -142,6 +152,11 @@ export type NotificationPreferences = Message<"notifications.v1.NotificationPref
    * @generated from field: repeated notifications.v1.EscalationRule escalation_rules = 6;
    */
   escalationRules: EscalationRule[];
+
+  /**
+   * @generated from field: repeated notifications.v1.CategoryChannelPreference category_channels = 7;
+   */
+  categoryChannels: CategoryChannelPreference[];
 };
 
 /**
@@ -150,6 +165,94 @@ export type NotificationPreferences = Message<"notifications.v1.NotificationPref
  */
 export const NotificationPreferencesSchema: GenMessage<NotificationPreferences> = /*@__PURE__*/
   messageDesc(file_notifications_v1_notifications, 2);
+
+/**
+ * CategoryChannelPreference overrides delivery routing for a specific category.
+ *
+ * @generated from message notifications.v1.CategoryChannelPreference
+ */
+export type CategoryChannelPreference = Message<"notifications.v1.CategoryChannelPreference"> & {
+  /**
+   * @generated from field: notifications.v1.NotificationCategory category = 1;
+   */
+  category: NotificationCategory;
+
+  /**
+   * @generated from field: notifications.v1.DeliveryChannel channel = 2;
+   */
+  channel: DeliveryChannel;
+};
+
+/**
+ * Describes the message notifications.v1.CategoryChannelPreference.
+ * Use `create(CategoryChannelPreferenceSchema)` to create a new message.
+ */
+export const CategoryChannelPreferenceSchema: GenMessage<CategoryChannelPreference> = /*@__PURE__*/
+  messageDesc(file_notifications_v1_notifications, 3);
+
+/**
+ * NotificationTemplate defines a reusable notification subject/body template.
+ *
+ * @generated from message notifications.v1.NotificationTemplate
+ */
+export type NotificationTemplate = Message<"notifications.v1.NotificationTemplate"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * @generated from field: string workspace_id = 2;
+   */
+  workspaceId: string;
+
+  /**
+   * @generated from field: string name = 3;
+   */
+  name: string;
+
+  /**
+   * @generated from field: notifications.v1.NotificationCategory category = 4;
+   */
+  category: NotificationCategory;
+
+  /**
+   * @generated from field: notifications.v1.DeliveryChannel channel = 5;
+   */
+  channel: DeliveryChannel;
+
+  /**
+   * @generated from field: string subject_template = 6;
+   */
+  subjectTemplate: string;
+
+  /**
+   * @generated from field: string body_template = 7;
+   */
+  bodyTemplate: string;
+
+  /**
+   * @generated from field: repeated string required_variables = 8;
+   */
+  requiredVariables: string[];
+
+  /**
+   * @generated from field: bool built_in = 9;
+   */
+  builtIn: boolean;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp updated_at = 10;
+   */
+  updatedAt?: Timestamp;
+};
+
+/**
+ * Describes the message notifications.v1.NotificationTemplate.
+ * Use `create(NotificationTemplateSchema)` to create a new message.
+ */
+export const NotificationTemplateSchema: GenMessage<NotificationTemplate> = /*@__PURE__*/
+  messageDesc(file_notifications_v1_notifications, 4);
 
 /**
  * @generated from message notifications.v1.SendRequest
@@ -192,6 +295,21 @@ export type SendRequest = Message<"notifications.v1.SendRequest"> & {
    * @generated from field: string metadata_json = 7;
    */
   metadataJson: string;
+
+  /**
+   * @generated from field: notifications.v1.NotificationCategory category = 8;
+   */
+  category: NotificationCategory;
+
+  /**
+   * @generated from field: string template_name = 9;
+   */
+  templateName: string;
+
+  /**
+   * @generated from field: string template_variables_json = 10;
+   */
+  templateVariablesJson: string;
 };
 
 /**
@@ -199,7 +317,7 @@ export type SendRequest = Message<"notifications.v1.SendRequest"> & {
  * Use `create(SendRequestSchema)` to create a new message.
  */
 export const SendRequestSchema: GenMessage<SendRequest> = /*@__PURE__*/
-  messageDesc(file_notifications_v1_notifications, 3);
+  messageDesc(file_notifications_v1_notifications, 5);
 
 /**
  * @generated from message notifications.v1.SendResponse
@@ -216,7 +334,7 @@ export type SendResponse = Message<"notifications.v1.SendResponse"> & {
  * Use `create(SendResponseSchema)` to create a new message.
  */
 export const SendResponseSchema: GenMessage<SendResponse> = /*@__PURE__*/
-  messageDesc(file_notifications_v1_notifications, 4);
+  messageDesc(file_notifications_v1_notifications, 6);
 
 /**
  * @generated from message notifications.v1.SendBatchRequest
@@ -233,7 +351,7 @@ export type SendBatchRequest = Message<"notifications.v1.SendBatchRequest"> & {
  * Use `create(SendBatchRequestSchema)` to create a new message.
  */
 export const SendBatchRequestSchema: GenMessage<SendBatchRequest> = /*@__PURE__*/
-  messageDesc(file_notifications_v1_notifications, 5);
+  messageDesc(file_notifications_v1_notifications, 7);
 
 /**
  * @generated from message notifications.v1.SendBatchResponse
@@ -255,7 +373,7 @@ export type SendBatchResponse = Message<"notifications.v1.SendBatchResponse"> & 
  * Use `create(SendBatchResponseSchema)` to create a new message.
  */
 export const SendBatchResponseSchema: GenMessage<SendBatchResponse> = /*@__PURE__*/
-  messageDesc(file_notifications_v1_notifications, 6);
+  messageDesc(file_notifications_v1_notifications, 8);
 
 /**
  * @generated from message notifications.v1.GetPreferencesRequest
@@ -277,7 +395,7 @@ export type GetPreferencesRequest = Message<"notifications.v1.GetPreferencesRequ
  * Use `create(GetPreferencesRequestSchema)` to create a new message.
  */
 export const GetPreferencesRequestSchema: GenMessage<GetPreferencesRequest> = /*@__PURE__*/
-  messageDesc(file_notifications_v1_notifications, 7);
+  messageDesc(file_notifications_v1_notifications, 9);
 
 /**
  * @generated from message notifications.v1.GetPreferencesResponse
@@ -294,7 +412,7 @@ export type GetPreferencesResponse = Message<"notifications.v1.GetPreferencesRes
  * Use `create(GetPreferencesResponseSchema)` to create a new message.
  */
 export const GetPreferencesResponseSchema: GenMessage<GetPreferencesResponse> = /*@__PURE__*/
-  messageDesc(file_notifications_v1_notifications, 8);
+  messageDesc(file_notifications_v1_notifications, 10);
 
 /**
  * @generated from message notifications.v1.SetPreferencesRequest
@@ -311,7 +429,7 @@ export type SetPreferencesRequest = Message<"notifications.v1.SetPreferencesRequ
  * Use `create(SetPreferencesRequestSchema)` to create a new message.
  */
 export const SetPreferencesRequestSchema: GenMessage<SetPreferencesRequest> = /*@__PURE__*/
-  messageDesc(file_notifications_v1_notifications, 9);
+  messageDesc(file_notifications_v1_notifications, 11);
 
 /**
  * @generated from message notifications.v1.SetPreferencesResponse
@@ -328,7 +446,7 @@ export type SetPreferencesResponse = Message<"notifications.v1.SetPreferencesRes
  * Use `create(SetPreferencesResponseSchema)` to create a new message.
  */
 export const SetPreferencesResponseSchema: GenMessage<SetPreferencesResponse> = /*@__PURE__*/
-  messageDesc(file_notifications_v1_notifications, 10);
+  messageDesc(file_notifications_v1_notifications, 12);
 
 /**
  * @generated from message notifications.v1.ListHistoryRequest
@@ -360,7 +478,7 @@ export type ListHistoryRequest = Message<"notifications.v1.ListHistoryRequest"> 
  * Use `create(ListHistoryRequestSchema)` to create a new message.
  */
 export const ListHistoryRequestSchema: GenMessage<ListHistoryRequest> = /*@__PURE__*/
-  messageDesc(file_notifications_v1_notifications, 11);
+  messageDesc(file_notifications_v1_notifications, 13);
 
 /**
  * @generated from message notifications.v1.ListHistoryResponse
@@ -382,7 +500,7 @@ export type ListHistoryResponse = Message<"notifications.v1.ListHistoryResponse"
  * Use `create(ListHistoryResponseSchema)` to create a new message.
  */
 export const ListHistoryResponseSchema: GenMessage<ListHistoryResponse> = /*@__PURE__*/
-  messageDesc(file_notifications_v1_notifications, 12);
+  messageDesc(file_notifications_v1_notifications, 14);
 
 /**
  * @generated from message notifications.v1.RegisterChannelRequest
@@ -409,7 +527,7 @@ export type RegisterChannelRequest = Message<"notifications.v1.RegisterChannelRe
  * Use `create(RegisterChannelRequestSchema)` to create a new message.
  */
 export const RegisterChannelRequestSchema: GenMessage<RegisterChannelRequest> = /*@__PURE__*/
-  messageDesc(file_notifications_v1_notifications, 13);
+  messageDesc(file_notifications_v1_notifications, 15);
 
 /**
  * @generated from message notifications.v1.RegisterChannelResponse
@@ -426,7 +544,7 @@ export type RegisterChannelResponse = Message<"notifications.v1.RegisterChannelR
  * Use `create(RegisterChannelResponseSchema)` to create a new message.
  */
 export const RegisterChannelResponseSchema: GenMessage<RegisterChannelResponse> = /*@__PURE__*/
-  messageDesc(file_notifications_v1_notifications, 14);
+  messageDesc(file_notifications_v1_notifications, 16);
 
 /**
  * @generated from message notifications.v1.GetDeliveryStatusRequest
@@ -443,7 +561,7 @@ export type GetDeliveryStatusRequest = Message<"notifications.v1.GetDeliveryStat
  * Use `create(GetDeliveryStatusRequestSchema)` to create a new message.
  */
 export const GetDeliveryStatusRequestSchema: GenMessage<GetDeliveryStatusRequest> = /*@__PURE__*/
-  messageDesc(file_notifications_v1_notifications, 15);
+  messageDesc(file_notifications_v1_notifications, 17);
 
 /**
  * @generated from message notifications.v1.GetDeliveryStatusResponse
@@ -470,7 +588,90 @@ export type GetDeliveryStatusResponse = Message<"notifications.v1.GetDeliverySta
  * Use `create(GetDeliveryStatusResponseSchema)` to create a new message.
  */
 export const GetDeliveryStatusResponseSchema: GenMessage<GetDeliveryStatusResponse> = /*@__PURE__*/
-  messageDesc(file_notifications_v1_notifications, 16);
+  messageDesc(file_notifications_v1_notifications, 18);
+
+/**
+ * @generated from message notifications.v1.UpsertTemplateRequest
+ */
+export type UpsertTemplateRequest = Message<"notifications.v1.UpsertTemplateRequest"> & {
+  /**
+   * @generated from field: notifications.v1.NotificationTemplate template = 1;
+   */
+  template?: NotificationTemplate;
+};
+
+/**
+ * Describes the message notifications.v1.UpsertTemplateRequest.
+ * Use `create(UpsertTemplateRequestSchema)` to create a new message.
+ */
+export const UpsertTemplateRequestSchema: GenMessage<UpsertTemplateRequest> = /*@__PURE__*/
+  messageDesc(file_notifications_v1_notifications, 19);
+
+/**
+ * @generated from message notifications.v1.UpsertTemplateResponse
+ */
+export type UpsertTemplateResponse = Message<"notifications.v1.UpsertTemplateResponse"> & {
+  /**
+   * @generated from field: notifications.v1.NotificationTemplate template = 1;
+   */
+  template?: NotificationTemplate;
+};
+
+/**
+ * Describes the message notifications.v1.UpsertTemplateResponse.
+ * Use `create(UpsertTemplateResponseSchema)` to create a new message.
+ */
+export const UpsertTemplateResponseSchema: GenMessage<UpsertTemplateResponse> = /*@__PURE__*/
+  messageDesc(file_notifications_v1_notifications, 20);
+
+/**
+ * @generated from message notifications.v1.ListTemplatesRequest
+ */
+export type ListTemplatesRequest = Message<"notifications.v1.ListTemplatesRequest"> & {
+  /**
+   * @generated from field: string workspace_id = 1;
+   */
+  workspaceId: string;
+
+  /**
+   * @generated from field: notifications.v1.NotificationCategory category = 2;
+   */
+  category: NotificationCategory;
+
+  /**
+   * @generated from field: notifications.v1.DeliveryChannel channel = 3;
+   */
+  channel: DeliveryChannel;
+
+  /**
+   * @generated from field: bool include_built_in = 4;
+   */
+  includeBuiltIn: boolean;
+};
+
+/**
+ * Describes the message notifications.v1.ListTemplatesRequest.
+ * Use `create(ListTemplatesRequestSchema)` to create a new message.
+ */
+export const ListTemplatesRequestSchema: GenMessage<ListTemplatesRequest> = /*@__PURE__*/
+  messageDesc(file_notifications_v1_notifications, 21);
+
+/**
+ * @generated from message notifications.v1.ListTemplatesResponse
+ */
+export type ListTemplatesResponse = Message<"notifications.v1.ListTemplatesResponse"> & {
+  /**
+   * @generated from field: repeated notifications.v1.NotificationTemplate templates = 1;
+   */
+  templates: NotificationTemplate[];
+};
+
+/**
+ * Describes the message notifications.v1.ListTemplatesResponse.
+ * Use `create(ListTemplatesResponseSchema)` to create a new message.
+ */
+export const ListTemplatesResponseSchema: GenMessage<ListTemplatesResponse> = /*@__PURE__*/
+  messageDesc(file_notifications_v1_notifications, 22);
 
 /**
  * DeliveryChannel identifies the notification delivery channel.
@@ -549,6 +750,64 @@ export const PrioritySchema: GenEnum<Priority> = /*@__PURE__*/
   enumDesc(file_notifications_v1_notifications, 1);
 
 /**
+ * NotificationCategory groups notifications for routing and template selection.
+ *
+ * @generated from enum notifications.v1.NotificationCategory
+ */
+export enum NotificationCategory {
+  /**
+   * @generated from enum value: NOTIFICATION_CATEGORY_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: NOTIFICATION_CATEGORY_APPROVAL_REQUEST = 1;
+   */
+  APPROVAL_REQUEST = 1,
+
+  /**
+   * @generated from enum value: NOTIFICATION_CATEGORY_BUDGET_ALERT = 2;
+   */
+  BUDGET_ALERT = 2,
+
+  /**
+   * @generated from enum value: NOTIFICATION_CATEGORY_PII_DETECTION = 3;
+   */
+  PII_DETECTION = 3,
+
+  /**
+   * @generated from enum value: NOTIFICATION_CATEGORY_INCIDENT = 4;
+   */
+  INCIDENT = 4,
+
+  /**
+   * @generated from enum value: NOTIFICATION_CATEGORY_REPORT = 5;
+   */
+  REPORT = 5,
+
+  /**
+   * @generated from enum value: NOTIFICATION_CATEGORY_INTEGRATION = 6;
+   */
+  INTEGRATION = 6,
+
+  /**
+   * @generated from enum value: NOTIFICATION_CATEGORY_DIGEST = 7;
+   */
+  DIGEST = 7,
+
+  /**
+   * @generated from enum value: NOTIFICATION_CATEGORY_GENERAL = 8;
+   */
+  GENERAL = 8,
+}
+
+/**
+ * Describes the enum notifications.v1.NotificationCategory.
+ */
+export const NotificationCategorySchema: GenEnum<NotificationCategory> = /*@__PURE__*/
+  enumDesc(file_notifications_v1_notifications, 2);
+
+/**
  * DeliveryStatus describes the delivery state of a notification.
  *
  * @generated from enum notifications.v1.DeliveryStatus
@@ -589,7 +848,7 @@ export enum DeliveryStatus {
  * Describes the enum notifications.v1.DeliveryStatus.
  */
 export const DeliveryStatusSchema: GenEnum<DeliveryStatus> = /*@__PURE__*/
-  enumDesc(file_notifications_v1_notifications, 2);
+  enumDesc(file_notifications_v1_notifications, 3);
 
 /**
  * NotificationService manages delivery of notifications across channels.
@@ -652,6 +911,22 @@ export const NotificationService: GenService<{
     methodKind: "unary";
     input: typeof GetDeliveryStatusRequestSchema;
     output: typeof GetDeliveryStatusResponseSchema;
+  },
+  /**
+   * @generated from rpc notifications.v1.NotificationService.UpsertTemplate
+   */
+  upsertTemplate: {
+    methodKind: "unary";
+    input: typeof UpsertTemplateRequestSchema;
+    output: typeof UpsertTemplateResponseSchema;
+  },
+  /**
+   * @generated from rpc notifications.v1.NotificationService.ListTemplates
+   */
+  listTemplates: {
+    methodKind: "unary";
+    input: typeof ListTemplatesRequestSchema;
+    output: typeof ListTemplatesResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_notifications_v1_notifications, 0);
