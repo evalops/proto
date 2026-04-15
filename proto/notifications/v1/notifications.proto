@@ -58,6 +58,7 @@ enum DeliveryStatus {
   DELIVERY_STATUS_DELIVERED = 3;
   DELIVERY_STATUS_FAILED = 4;
   DELIVERY_STATUS_BOUNCED = 5;
+  DELIVERY_STATUS_QUEUED = 6;
 }
 
 // Notification is the canonical notification record.
@@ -92,6 +93,7 @@ message NotificationPreferences {
   string quiet_hours_end = 5;
   repeated EscalationRule escalation_rules = 6;
   repeated CategoryChannelPreference category_channels = 7;
+  repeated DigestPreference digest_preferences = 8;
 }
 
 // CategoryChannelPreference overrides delivery routing for a specific category.
@@ -112,6 +114,14 @@ message NotificationTemplate {
   repeated string required_variables = 8;
   bool built_in = 9;
   google.protobuf.Timestamp updated_at = 10;
+}
+
+// DigestPreference controls batching for a category/channel pair.
+message DigestPreference {
+  NotificationCategory category = 1;
+  DeliveryChannel channel = 2;
+  int32 window_seconds = 3;
+  bool enabled = 4;
 }
 
 message SendRequest {
