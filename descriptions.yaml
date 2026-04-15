@@ -130,6 +130,21 @@ ConnectorService_GetCapabilities: >-
   bulk-export). Used to determine what operations an agent can perform
   through this integration.
 
+# --- compliance/v1 ---
+ComplianceService_GenerateEvidencePackage: >-
+  Generate a compliance evidence package for a workspace and framework by
+  aggregating audit evidence, governance policy snapshots, and selected
+  approval decisions into a single report-ready payload.
+ComplianceService_DetectGaps: >-
+  Detect uncovered controls for a framework in a given time window. Returns
+  the missing controls and the reason each gap was identified.
+ComplianceService_GetCoverage: >-
+  Compute control coverage for a framework over a given evidence window.
+  Returns per-control coverage and overall coverage ratio.
+ComplianceService_ExportPackage: >-
+  Render an evidence package into an exportable JSON or CSV artifact for
+  auditor delivery and downstream compliance tooling.
+
 # --- entities/v1 ---
 EntityService_Resolve: >-
   Resolve a record from an external system to its canonical entity.
