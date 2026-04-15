@@ -258,6 +258,21 @@ MeterService_QueryUsage: >-
 MeterService_GetUsageSummary: >-
   Get aggregated usage summary grouped by model, provider, team, agent,
   surface, or metadata key. Returns totals for tokens and cost.
+  
+# --- traces/v1 ---
+SpanIngestService_IngestSpans: >-
+  Record one or more execution spans for an agent trace. Stores span identity,
+  parent/child relationships, token usage, governance outcome, latency, and
+  cost metadata, then returns updated trace summaries for the affected traces.
+SpanIngestService_GetTrace: >-
+  Retrieve a trace by ID. Returns the trace summary plus the flat span list for
+  inspection or downstream tree reconstruction.
+SpanIngestService_ListTraces: >-
+  List traces by workspace, agent, surface, or time range. Returns paginated
+  trace summaries with total count metadata.
+SpanIngestService_GetSpanTree: >-
+  Retrieve a trace as a parent/child span tree. Used for execution debugging,
+  attribution, and governance review.
 MeterService_GetMeterSummary: >-
   Get summary for a specific meter ID, grouped by the requested dimension.
 MeterService_IngestWideEvent: >-
