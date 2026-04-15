@@ -1,0 +1,53 @@
+## Proto Bump — Consumer Workflow Template
+##
+## Copy this file to .github/workflows/proto-bump.yml in each consuming repo.
+## No secrets setup is required — GITHUB_TOKEN is sufficient for opening PRs
+## within the same repo.
+
+name: Proto Bump
+
+on:
+  repository_dispatch:
+    types: [proto-bump]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Bump proto
+        run: |
+          TAG="${{ github.event.client_payload.tag }}"
+          BRANCH="${{ github.event.client_payload.branch }}"
+
+          git checkout -b "$BRANCH"
+
+          go get "github.com/evalops/proto@${TAG}"
+          go mod tidy
+
+          if git diff --quiet go.mod go.sum; then
+            echo "No changes needed — already on ${TAG}"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add go.mod go.sum
+          git commit -m "Bump proto to ${TAG}"
+          git push origin "$BRANCH"
+
+          gh pr create \
+            --title "Bump proto to ${TAG}" \
+            --body "Automated proto dependency update to \`${TAG}\`."$'\n\n'"Triggered by new tag in [evalops/proto](https://github.com/evalops/proto/releases/tag/${TAG})." \
+            --base main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
