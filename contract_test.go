@@ -552,8 +552,8 @@ func TestCloudEventTapHubspotDealQualifiedFixtureMatchesProtoContract(t *testing
 	var message eventsv1.CloudEvent
 	loadProtoJSONFixture(t, filepath.Join("proto", "events", "v1", "testdata", "cloud_event_tap_hubspot_deal_qualified.json"), &message)
 
-	if message.GetType() != "siphon.hubspot.deal.updated" {
-		t.Fatalf("expected type siphon.hubspot.deal.updated, got %q", message.GetType())
+	if message.GetType() != "siphon.tap.hubspot.deal.updated" {
+		t.Fatalf("expected type siphon.tap.hubspot.deal.updated, got %q", message.GetType())
 	}
 	if message.GetSubject() != "hubspot/deal/deal_123" {
 		t.Fatalf("expected subject hubspot/deal/deal_123, got %q", message.GetSubject())

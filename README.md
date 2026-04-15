@@ -352,7 +352,7 @@ with `outcome=replied`, `pipeline.changes.signal.create` with
 `status=terminated`, plus `evaluation.completed` with a typed
 `events/v1.EvaluationCompleted` payload for the Fermata -> Pipeline capability
 signal seam. It also includes a Tap -> Pipeline boundary fixture for
-`siphon.hubspot.deal.updated` with a qualified stage change and a real
+`siphon.tap.hubspot.deal.updated` with a qualified stage change and a real
 UUID tenant, so downstream consumers can pin the semantics they depend on
 instead of only the wire shape.
 
