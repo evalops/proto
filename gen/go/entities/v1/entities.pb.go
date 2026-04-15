@@ -1099,6 +1099,298 @@ func (x *UnlinkEntityResponse) GetEntity() *CanonicalEntity {
 	return nil
 }
 
+type CrossSystemRefKey struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	IntegrationId string                 `protobuf:"bytes,1,opt,name=integration_id,json=integrationId,proto3" json:"integration_id,omitempty"`
+	RecordId      string                 `protobuf:"bytes,2,opt,name=record_id,json=recordId,proto3" json:"record_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CrossSystemRefKey) Reset() {
+	*x = CrossSystemRefKey{}
+	mi := &file_entities_v1_entities_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CrossSystemRefKey) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CrossSystemRefKey) ProtoMessage() {}
+
+func (x *CrossSystemRefKey) ProtoReflect() protoreflect.Message {
+	mi := &file_entities_v1_entities_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CrossSystemRefKey.ProtoReflect.Descriptor instead.
+func (*CrossSystemRefKey) Descriptor() ([]byte, []int) {
+	return file_entities_v1_entities_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *CrossSystemRefKey) GetIntegrationId() string {
+	if x != nil {
+		return x.IntegrationId
+	}
+	return ""
+}
+
+func (x *CrossSystemRefKey) GetRecordId() string {
+	if x != nil {
+		return x.RecordId
+	}
+	return ""
+}
+
+type MergeEntitiesRequest struct {
+	state                    protoimpl.MessageState `protogen:"open.v1"`
+	TargetCanonicalEntityId  string                 `protobuf:"bytes,1,opt,name=target_canonical_entity_id,json=targetCanonicalEntityId,proto3" json:"target_canonical_entity_id,omitempty"`
+	SourceCanonicalEntityIds []string               `protobuf:"bytes,2,rep,name=source_canonical_entity_ids,json=sourceCanonicalEntityIds,proto3" json:"source_canonical_entity_ids,omitempty"`
+	PrimaryType              EntityType             `protobuf:"varint,3,opt,name=primary_type,json=primaryType,proto3,enum=entities.v1.EntityType" json:"primary_type,omitempty"`
+	PrimaryName              string                 `protobuf:"bytes,4,opt,name=primary_name,json=primaryName,proto3" json:"primary_name,omitempty"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
+}
+
+func (x *MergeEntitiesRequest) Reset() {
+	*x = MergeEntitiesRequest{}
+	mi := &file_entities_v1_entities_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MergeEntitiesRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MergeEntitiesRequest) ProtoMessage() {}
+
+func (x *MergeEntitiesRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_entities_v1_entities_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MergeEntitiesRequest.ProtoReflect.Descriptor instead.
+func (*MergeEntitiesRequest) Descriptor() ([]byte, []int) {
+	return file_entities_v1_entities_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *MergeEntitiesRequest) GetTargetCanonicalEntityId() string {
+	if x != nil {
+		return x.TargetCanonicalEntityId
+	}
+	return ""
+}
+
+func (x *MergeEntitiesRequest) GetSourceCanonicalEntityIds() []string {
+	if x != nil {
+		return x.SourceCanonicalEntityIds
+	}
+	return nil
+}
+
+func (x *MergeEntitiesRequest) GetPrimaryType() EntityType {
+	if x != nil {
+		return x.PrimaryType
+	}
+	return EntityType_ENTITY_TYPE_UNSPECIFIED
+}
+
+func (x *MergeEntitiesRequest) GetPrimaryName() string {
+	if x != nil {
+		return x.PrimaryName
+	}
+	return ""
+}
+
+type MergeEntitiesResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Entity         *CanonicalEntity       `protobuf:"bytes,1,opt,name=entity,proto3" json:"entity,omitempty"`
+	MergedEntities []*CanonicalEntity     `protobuf:"bytes,2,rep,name=merged_entities,json=mergedEntities,proto3" json:"merged_entities,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *MergeEntitiesResponse) Reset() {
+	*x = MergeEntitiesResponse{}
+	mi := &file_entities_v1_entities_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MergeEntitiesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MergeEntitiesResponse) ProtoMessage() {}
+
+func (x *MergeEntitiesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_entities_v1_entities_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MergeEntitiesResponse.ProtoReflect.Descriptor instead.
+func (*MergeEntitiesResponse) Descriptor() ([]byte, []int) {
+	return file_entities_v1_entities_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *MergeEntitiesResponse) GetEntity() *CanonicalEntity {
+	if x != nil {
+		return x.Entity
+	}
+	return nil
+}
+
+func (x *MergeEntitiesResponse) GetMergedEntities() []*CanonicalEntity {
+	if x != nil {
+		return x.MergedEntities
+	}
+	return nil
+}
+
+type SplitEntityRequest struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	CanonicalEntityId string                 `protobuf:"bytes,1,opt,name=canonical_entity_id,json=canonicalEntityId,proto3" json:"canonical_entity_id,omitempty"`
+	Refs              []*CrossSystemRefKey   `protobuf:"bytes,2,rep,name=refs,proto3" json:"refs,omitempty"`
+	NewPrimaryType    EntityType             `protobuf:"varint,3,opt,name=new_primary_type,json=newPrimaryType,proto3,enum=entities.v1.EntityType" json:"new_primary_type,omitempty"`
+	NewPrimaryName    string                 `protobuf:"bytes,4,opt,name=new_primary_name,json=newPrimaryName,proto3" json:"new_primary_name,omitempty"`
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *SplitEntityRequest) Reset() {
+	*x = SplitEntityRequest{}
+	mi := &file_entities_v1_entities_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SplitEntityRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SplitEntityRequest) ProtoMessage() {}
+
+func (x *SplitEntityRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_entities_v1_entities_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SplitEntityRequest.ProtoReflect.Descriptor instead.
+func (*SplitEntityRequest) Descriptor() ([]byte, []int) {
+	return file_entities_v1_entities_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *SplitEntityRequest) GetCanonicalEntityId() string {
+	if x != nil {
+		return x.CanonicalEntityId
+	}
+	return ""
+}
+
+func (x *SplitEntityRequest) GetRefs() []*CrossSystemRefKey {
+	if x != nil {
+		return x.Refs
+	}
+	return nil
+}
+
+func (x *SplitEntityRequest) GetNewPrimaryType() EntityType {
+	if x != nil {
+		return x.NewPrimaryType
+	}
+	return EntityType_ENTITY_TYPE_UNSPECIFIED
+}
+
+func (x *SplitEntityRequest) GetNewPrimaryName() string {
+	if x != nil {
+		return x.NewPrimaryName
+	}
+	return ""
+}
+
+type SplitEntityResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	SourceEntity  *CanonicalEntity       `protobuf:"bytes,1,opt,name=source_entity,json=sourceEntity,proto3" json:"source_entity,omitempty"`
+	SplitEntity   *CanonicalEntity       `protobuf:"bytes,2,opt,name=split_entity,json=splitEntity,proto3" json:"split_entity,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SplitEntityResponse) Reset() {
+	*x = SplitEntityResponse{}
+	mi := &file_entities_v1_entities_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SplitEntityResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SplitEntityResponse) ProtoMessage() {}
+
+func (x *SplitEntityResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_entities_v1_entities_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SplitEntityResponse.ProtoReflect.Descriptor instead.
+func (*SplitEntityResponse) Descriptor() ([]byte, []int) {
+	return file_entities_v1_entities_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *SplitEntityResponse) GetSourceEntity() *CanonicalEntity {
+	if x != nil {
+		return x.SourceEntity
+	}
+	return nil
+}
+
+func (x *SplitEntityResponse) GetSplitEntity() *CanonicalEntity {
+	if x != nil {
+		return x.SplitEntity
+	}
+	return nil
+}
+
 type GetCorrelationGraphRequest struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	CanonicalEntityId string                 `protobuf:"bytes,1,opt,name=canonical_entity_id,json=canonicalEntityId,proto3" json:"canonical_entity_id,omitempty"`
@@ -1109,7 +1401,7 @@ type GetCorrelationGraphRequest struct {
 
 func (x *GetCorrelationGraphRequest) Reset() {
 	*x = GetCorrelationGraphRequest{}
-	mi := &file_entities_v1_entities_proto_msgTypes[16]
+	mi := &file_entities_v1_entities_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1121,7 +1413,7 @@ func (x *GetCorrelationGraphRequest) String() string {
 func (*GetCorrelationGraphRequest) ProtoMessage() {}
 
 func (x *GetCorrelationGraphRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_entities_v1_entities_proto_msgTypes[16]
+	mi := &file_entities_v1_entities_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1134,7 +1426,7 @@ func (x *GetCorrelationGraphRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCorrelationGraphRequest.ProtoReflect.Descriptor instead.
 func (*GetCorrelationGraphRequest) Descriptor() ([]byte, []int) {
-	return file_entities_v1_entities_proto_rawDescGZIP(), []int{16}
+	return file_entities_v1_entities_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GetCorrelationGraphRequest) GetCanonicalEntityId() string {
@@ -1160,7 +1452,7 @@ type GetCorrelationGraphResponse struct {
 
 func (x *GetCorrelationGraphResponse) Reset() {
 	*x = GetCorrelationGraphResponse{}
-	mi := &file_entities_v1_entities_proto_msgTypes[17]
+	mi := &file_entities_v1_entities_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1172,7 +1464,7 @@ func (x *GetCorrelationGraphResponse) String() string {
 func (*GetCorrelationGraphResponse) ProtoMessage() {}
 
 func (x *GetCorrelationGraphResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_entities_v1_entities_proto_msgTypes[17]
+	mi := &file_entities_v1_entities_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1185,7 +1477,7 @@ func (x *GetCorrelationGraphResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCorrelationGraphResponse.ProtoReflect.Descriptor instead.
 func (*GetCorrelationGraphResponse) Descriptor() ([]byte, []int) {
-	return file_entities_v1_entities_proto_rawDescGZIP(), []int{17}
+	return file_entities_v1_entities_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *GetCorrelationGraphResponse) GetGroups() []*CorrelationGroup {
@@ -1210,7 +1502,7 @@ type IngestResultRequest struct {
 
 func (x *IngestResultRequest) Reset() {
 	*x = IngestResultRequest{}
-	mi := &file_entities_v1_entities_proto_msgTypes[18]
+	mi := &file_entities_v1_entities_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1222,7 +1514,7 @@ func (x *IngestResultRequest) String() string {
 func (*IngestResultRequest) ProtoMessage() {}
 
 func (x *IngestResultRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_entities_v1_entities_proto_msgTypes[18]
+	mi := &file_entities_v1_entities_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1235,7 +1527,7 @@ func (x *IngestResultRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IngestResultRequest.ProtoReflect.Descriptor instead.
 func (*IngestResultRequest) Descriptor() ([]byte, []int) {
-	return file_entities_v1_entities_proto_rawDescGZIP(), []int{18}
+	return file_entities_v1_entities_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *IngestResultRequest) GetWorkspaceId() string {
@@ -1297,7 +1589,7 @@ type IngestResultResponse struct {
 
 func (x *IngestResultResponse) Reset() {
 	*x = IngestResultResponse{}
-	mi := &file_entities_v1_entities_proto_msgTypes[19]
+	mi := &file_entities_v1_entities_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1309,7 +1601,7 @@ func (x *IngestResultResponse) String() string {
 func (*IngestResultResponse) ProtoMessage() {}
 
 func (x *IngestResultResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_entities_v1_entities_proto_msgTypes[19]
+	mi := &file_entities_v1_entities_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1322,7 +1614,7 @@ func (x *IngestResultResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IngestResultResponse.ProtoReflect.Descriptor instead.
 func (*IngestResultResponse) Descriptor() ([]byte, []int) {
-	return file_entities_v1_entities_proto_rawDescGZIP(), []int{19}
+	return file_entities_v1_entities_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *IngestResultResponse) GetEntity() *CanonicalEntity {
@@ -1415,7 +1707,26 @@ const file_entities_v1_entities_proto_rawDesc = "" +
 	"\x0eintegration_id\x18\x02 \x01(\tR\rintegrationId\x12\x1b\n" +
 	"\trecord_id\x18\x03 \x01(\tR\brecordId\"L\n" +
 	"\x14UnlinkEntityResponse\x124\n" +
-	"\x06entity\x18\x01 \x01(\v2\x1c.entities.v1.CanonicalEntityR\x06entity\"b\n" +
+	"\x06entity\x18\x01 \x01(\v2\x1c.entities.v1.CanonicalEntityR\x06entity\"W\n" +
+	"\x11CrossSystemRefKey\x12%\n" +
+	"\x0eintegration_id\x18\x01 \x01(\tR\rintegrationId\x12\x1b\n" +
+	"\trecord_id\x18\x02 \x01(\tR\brecordId\"\xf1\x01\n" +
+	"\x14MergeEntitiesRequest\x12;\n" +
+	"\x1atarget_canonical_entity_id\x18\x01 \x01(\tR\x17targetCanonicalEntityId\x12=\n" +
+	"\x1bsource_canonical_entity_ids\x18\x02 \x03(\tR\x18sourceCanonicalEntityIds\x12:\n" +
+	"\fprimary_type\x18\x03 \x01(\x0e2\x17.entities.v1.EntityTypeR\vprimaryType\x12!\n" +
+	"\fprimary_name\x18\x04 \x01(\tR\vprimaryName\"\x94\x01\n" +
+	"\x15MergeEntitiesResponse\x124\n" +
+	"\x06entity\x18\x01 \x01(\v2\x1c.entities.v1.CanonicalEntityR\x06entity\x12E\n" +
+	"\x0fmerged_entities\x18\x02 \x03(\v2\x1c.entities.v1.CanonicalEntityR\x0emergedEntities\"\xe5\x01\n" +
+	"\x12SplitEntityRequest\x12.\n" +
+	"\x13canonical_entity_id\x18\x01 \x01(\tR\x11canonicalEntityId\x122\n" +
+	"\x04refs\x18\x02 \x03(\v2\x1e.entities.v1.CrossSystemRefKeyR\x04refs\x12A\n" +
+	"\x10new_primary_type\x18\x03 \x01(\x0e2\x17.entities.v1.EntityTypeR\x0enewPrimaryType\x12(\n" +
+	"\x10new_primary_name\x18\x04 \x01(\tR\x0enewPrimaryName\"\x99\x01\n" +
+	"\x13SplitEntityResponse\x12A\n" +
+	"\rsource_entity\x18\x01 \x01(\v2\x1c.entities.v1.CanonicalEntityR\fsourceEntity\x12?\n" +
+	"\fsplit_entity\x18\x02 \x01(\v2\x1c.entities.v1.CanonicalEntityR\vsplitEntity\"b\n" +
 	"\x1aGetCorrelationGraphRequest\x12.\n" +
 	"\x13canonical_entity_id\x18\x01 \x01(\tR\x11canonicalEntityId\x12\x14\n" +
 	"\x05depth\x18\x02 \x01(\x05R\x05depth\"T\n" +
@@ -1448,7 +1759,7 @@ const file_entities_v1_entities_proto_rawDesc = "" +
 	"\x13MATCH_METHOD_DOMAIN\x10\x02\x12\x1d\n" +
 	"\x19MATCH_METHOD_COMPANY_NAME\x10\x03\x12\x1c\n" +
 	"\x18MATCH_METHOD_RECORD_NAME\x10\x04\x12\x17\n" +
-	"\x13MATCH_METHOD_MANUAL\x10\x052\x9c\x05\n" +
+	"\x13MATCH_METHOD_MANUAL\x10\x052\xc6\x06\n" +
 	"\rEntityService\x12D\n" +
 	"\aResolve\x12\x1b.entities.v1.ResolveRequest\x1a\x1c.entities.v1.ResolveResponse\x12J\n" +
 	"\tCorrelate\x12\x1d.entities.v1.CorrelateRequest\x1a\x1e.entities.v1.CorrelateResponse\x12S\n" +
@@ -1456,7 +1767,9 @@ const file_entities_v1_entities_proto_rawDesc = "" +
 	"\x06Search\x12\x1a.entities.v1.SearchRequest\x1a\x1b.entities.v1.SearchResponse\x12M\n" +
 	"\n" +
 	"LinkEntity\x12\x1e.entities.v1.LinkEntityRequest\x1a\x1f.entities.v1.LinkEntityResponse\x12S\n" +
-	"\fUnlinkEntity\x12 .entities.v1.UnlinkEntityRequest\x1a!.entities.v1.UnlinkEntityResponse\x12h\n" +
+	"\fUnlinkEntity\x12 .entities.v1.UnlinkEntityRequest\x1a!.entities.v1.UnlinkEntityResponse\x12V\n" +
+	"\rMergeEntities\x12!.entities.v1.MergeEntitiesRequest\x1a\".entities.v1.MergeEntitiesResponse\x12P\n" +
+	"\vSplitEntity\x12\x1f.entities.v1.SplitEntityRequest\x1a .entities.v1.SplitEntityResponse\x12h\n" +
 	"\x13GetCorrelationGraph\x12'.entities.v1.GetCorrelationGraphRequest\x1a(.entities.v1.GetCorrelationGraphResponse\x12S\n" +
 	"\fIngestResult\x12 .entities.v1.IngestResultRequest\x1a!.entities.v1.IngestResultResponseB8Z6github.com/evalops/proto/gen/go/entities/v1;entitiesv1b\x06proto3"
 
@@ -1473,7 +1786,7 @@ func file_entities_v1_entities_proto_rawDescGZIP() []byte {
 }
 
 var file_entities_v1_entities_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_entities_v1_entities_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
+var file_entities_v1_entities_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_entities_v1_entities_proto_goTypes = []any{
 	(EntityType)(0),                     // 0: entities.v1.EntityType
 	(MatchMethod)(0),                    // 1: entities.v1.MatchMethod
@@ -1493,17 +1806,22 @@ var file_entities_v1_entities_proto_goTypes = []any{
 	(*LinkEntityResponse)(nil),          // 15: entities.v1.LinkEntityResponse
 	(*UnlinkEntityRequest)(nil),         // 16: entities.v1.UnlinkEntityRequest
 	(*UnlinkEntityResponse)(nil),        // 17: entities.v1.UnlinkEntityResponse
-	(*GetCorrelationGraphRequest)(nil),  // 18: entities.v1.GetCorrelationGraphRequest
-	(*GetCorrelationGraphResponse)(nil), // 19: entities.v1.GetCorrelationGraphResponse
-	(*IngestResultRequest)(nil),         // 20: entities.v1.IngestResultRequest
-	(*IngestResultResponse)(nil),        // 21: entities.v1.IngestResultResponse
-	(*timestamppb.Timestamp)(nil),       // 22: google.protobuf.Timestamp
+	(*CrossSystemRefKey)(nil),           // 18: entities.v1.CrossSystemRefKey
+	(*MergeEntitiesRequest)(nil),        // 19: entities.v1.MergeEntitiesRequest
+	(*MergeEntitiesResponse)(nil),       // 20: entities.v1.MergeEntitiesResponse
+	(*SplitEntityRequest)(nil),          // 21: entities.v1.SplitEntityRequest
+	(*SplitEntityResponse)(nil),         // 22: entities.v1.SplitEntityResponse
+	(*GetCorrelationGraphRequest)(nil),  // 23: entities.v1.GetCorrelationGraphRequest
+	(*GetCorrelationGraphResponse)(nil), // 24: entities.v1.GetCorrelationGraphResponse
+	(*IngestResultRequest)(nil),         // 25: entities.v1.IngestResultRequest
+	(*IngestResultResponse)(nil),        // 26: entities.v1.IngestResultResponse
+	(*timestamppb.Timestamp)(nil),       // 27: google.protobuf.Timestamp
 }
 var file_entities_v1_entities_proto_depIdxs = []int32{
 	0,  // 0: entities.v1.CanonicalEntity.primary_type:type_name -> entities.v1.EntityType
 	3,  // 1: entities.v1.CanonicalEntity.refs:type_name -> entities.v1.CrossSystemRef
-	22, // 2: entities.v1.CanonicalEntity.created_at:type_name -> google.protobuf.Timestamp
-	22, // 3: entities.v1.CanonicalEntity.updated_at:type_name -> google.protobuf.Timestamp
+	27, // 2: entities.v1.CanonicalEntity.created_at:type_name -> google.protobuf.Timestamp
+	27, // 3: entities.v1.CanonicalEntity.updated_at:type_name -> google.protobuf.Timestamp
 	0,  // 4: entities.v1.CrossSystemRef.entity_type:type_name -> entities.v1.EntityType
 	1,  // 5: entities.v1.CorrelationMatch.matched_by:type_name -> entities.v1.MatchMethod
 	0,  // 6: entities.v1.CorrelationGroup.primary_type:type_name -> entities.v1.EntityType
@@ -1517,30 +1835,41 @@ var file_entities_v1_entities_proto_depIdxs = []int32{
 	3,  // 14: entities.v1.LinkEntityRequest.ref:type_name -> entities.v1.CrossSystemRef
 	2,  // 15: entities.v1.LinkEntityResponse.entity:type_name -> entities.v1.CanonicalEntity
 	2,  // 16: entities.v1.UnlinkEntityResponse.entity:type_name -> entities.v1.CanonicalEntity
-	5,  // 17: entities.v1.GetCorrelationGraphResponse.groups:type_name -> entities.v1.CorrelationGroup
-	0,  // 18: entities.v1.IngestResultRequest.entity_type:type_name -> entities.v1.EntityType
-	2,  // 19: entities.v1.IngestResultResponse.entity:type_name -> entities.v1.CanonicalEntity
-	6,  // 20: entities.v1.EntityService.Resolve:input_type -> entities.v1.ResolveRequest
-	8,  // 21: entities.v1.EntityService.Correlate:input_type -> entities.v1.CorrelateRequest
-	10, // 22: entities.v1.EntityService.GetCanonical:input_type -> entities.v1.GetCanonicalRequest
-	12, // 23: entities.v1.EntityService.Search:input_type -> entities.v1.SearchRequest
-	14, // 24: entities.v1.EntityService.LinkEntity:input_type -> entities.v1.LinkEntityRequest
-	16, // 25: entities.v1.EntityService.UnlinkEntity:input_type -> entities.v1.UnlinkEntityRequest
-	18, // 26: entities.v1.EntityService.GetCorrelationGraph:input_type -> entities.v1.GetCorrelationGraphRequest
-	20, // 27: entities.v1.EntityService.IngestResult:input_type -> entities.v1.IngestResultRequest
-	7,  // 28: entities.v1.EntityService.Resolve:output_type -> entities.v1.ResolveResponse
-	9,  // 29: entities.v1.EntityService.Correlate:output_type -> entities.v1.CorrelateResponse
-	11, // 30: entities.v1.EntityService.GetCanonical:output_type -> entities.v1.GetCanonicalResponse
-	13, // 31: entities.v1.EntityService.Search:output_type -> entities.v1.SearchResponse
-	15, // 32: entities.v1.EntityService.LinkEntity:output_type -> entities.v1.LinkEntityResponse
-	17, // 33: entities.v1.EntityService.UnlinkEntity:output_type -> entities.v1.UnlinkEntityResponse
-	19, // 34: entities.v1.EntityService.GetCorrelationGraph:output_type -> entities.v1.GetCorrelationGraphResponse
-	21, // 35: entities.v1.EntityService.IngestResult:output_type -> entities.v1.IngestResultResponse
-	28, // [28:36] is the sub-list for method output_type
-	20, // [20:28] is the sub-list for method input_type
-	20, // [20:20] is the sub-list for extension type_name
-	20, // [20:20] is the sub-list for extension extendee
-	0,  // [0:20] is the sub-list for field type_name
+	0,  // 17: entities.v1.MergeEntitiesRequest.primary_type:type_name -> entities.v1.EntityType
+	2,  // 18: entities.v1.MergeEntitiesResponse.entity:type_name -> entities.v1.CanonicalEntity
+	2,  // 19: entities.v1.MergeEntitiesResponse.merged_entities:type_name -> entities.v1.CanonicalEntity
+	18, // 20: entities.v1.SplitEntityRequest.refs:type_name -> entities.v1.CrossSystemRefKey
+	0,  // 21: entities.v1.SplitEntityRequest.new_primary_type:type_name -> entities.v1.EntityType
+	2,  // 22: entities.v1.SplitEntityResponse.source_entity:type_name -> entities.v1.CanonicalEntity
+	2,  // 23: entities.v1.SplitEntityResponse.split_entity:type_name -> entities.v1.CanonicalEntity
+	5,  // 24: entities.v1.GetCorrelationGraphResponse.groups:type_name -> entities.v1.CorrelationGroup
+	0,  // 25: entities.v1.IngestResultRequest.entity_type:type_name -> entities.v1.EntityType
+	2,  // 26: entities.v1.IngestResultResponse.entity:type_name -> entities.v1.CanonicalEntity
+	6,  // 27: entities.v1.EntityService.Resolve:input_type -> entities.v1.ResolveRequest
+	8,  // 28: entities.v1.EntityService.Correlate:input_type -> entities.v1.CorrelateRequest
+	10, // 29: entities.v1.EntityService.GetCanonical:input_type -> entities.v1.GetCanonicalRequest
+	12, // 30: entities.v1.EntityService.Search:input_type -> entities.v1.SearchRequest
+	14, // 31: entities.v1.EntityService.LinkEntity:input_type -> entities.v1.LinkEntityRequest
+	16, // 32: entities.v1.EntityService.UnlinkEntity:input_type -> entities.v1.UnlinkEntityRequest
+	19, // 33: entities.v1.EntityService.MergeEntities:input_type -> entities.v1.MergeEntitiesRequest
+	21, // 34: entities.v1.EntityService.SplitEntity:input_type -> entities.v1.SplitEntityRequest
+	23, // 35: entities.v1.EntityService.GetCorrelationGraph:input_type -> entities.v1.GetCorrelationGraphRequest
+	25, // 36: entities.v1.EntityService.IngestResult:input_type -> entities.v1.IngestResultRequest
+	7,  // 37: entities.v1.EntityService.Resolve:output_type -> entities.v1.ResolveResponse
+	9,  // 38: entities.v1.EntityService.Correlate:output_type -> entities.v1.CorrelateResponse
+	11, // 39: entities.v1.EntityService.GetCanonical:output_type -> entities.v1.GetCanonicalResponse
+	13, // 40: entities.v1.EntityService.Search:output_type -> entities.v1.SearchResponse
+	15, // 41: entities.v1.EntityService.LinkEntity:output_type -> entities.v1.LinkEntityResponse
+	17, // 42: entities.v1.EntityService.UnlinkEntity:output_type -> entities.v1.UnlinkEntityResponse
+	20, // 43: entities.v1.EntityService.MergeEntities:output_type -> entities.v1.MergeEntitiesResponse
+	22, // 44: entities.v1.EntityService.SplitEntity:output_type -> entities.v1.SplitEntityResponse
+	24, // 45: entities.v1.EntityService.GetCorrelationGraph:output_type -> entities.v1.GetCorrelationGraphResponse
+	26, // 46: entities.v1.EntityService.IngestResult:output_type -> entities.v1.IngestResultResponse
+	37, // [37:47] is the sub-list for method output_type
+	27, // [27:37] is the sub-list for method input_type
+	27, // [27:27] is the sub-list for extension type_name
+	27, // [27:27] is the sub-list for extension extendee
+	0,  // [0:27] is the sub-list for field type_name
 }
 
 func init() { file_entities_v1_entities_proto_init() }
@@ -1554,7 +1883,7 @@ func file_entities_v1_entities_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_entities_v1_entities_proto_rawDesc), len(file_entities_v1_entities_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   20,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

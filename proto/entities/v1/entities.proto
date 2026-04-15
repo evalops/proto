@@ -14,6 +14,8 @@ service EntityService {
   rpc Search(SearchRequest) returns (SearchResponse);
   rpc LinkEntity(LinkEntityRequest) returns (LinkEntityResponse);
   rpc UnlinkEntity(UnlinkEntityRequest) returns (UnlinkEntityResponse);
+  rpc MergeEntities(MergeEntitiesRequest) returns (MergeEntitiesResponse);
+  rpc SplitEntity(SplitEntityRequest) returns (SplitEntityResponse);
   rpc GetCorrelationGraph(GetCorrelationGraphRequest) returns (GetCorrelationGraphResponse);
   rpc IngestResult(IngestResultRequest) returns (IngestResultResponse);
 }
@@ -136,6 +138,35 @@ message UnlinkEntityRequest {
 
 message UnlinkEntityResponse {
   CanonicalEntity entity = 1;
+}
+
+message CrossSystemRefKey {
+  string integration_id = 1;
+  string record_id = 2;
+}
+
+message MergeEntitiesRequest {
+  string target_canonical_entity_id = 1;
+  repeated string source_canonical_entity_ids = 2;
+  EntityType primary_type = 3;
+  string primary_name = 4;
+}
+
+message MergeEntitiesResponse {
+  CanonicalEntity entity = 1;
+  repeated CanonicalEntity merged_entities = 2;
+}
+
+message SplitEntityRequest {
+  string canonical_entity_id = 1;
+  repeated CrossSystemRefKey refs = 2;
+  EntityType new_primary_type = 3;
+  string new_primary_name = 4;
+}
+
+message SplitEntityResponse {
+  CanonicalEntity source_entity = 1;
+  CanonicalEntity split_entity = 2;
 }
 
 message GetCorrelationGraphRequest {
