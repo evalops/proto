@@ -1,0 +1,138 @@
+syntax = "proto3";
+
+package attribution.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/attribution/v1;attributionv1";
+
+import "google/protobuf/timestamp.proto";
+import "traces/v1/traces.proto";
+
+// AttributionService computes revenue attribution and ROI across traces and usage.
+service AttributionService {
+  rpc GenerateReport(GenerateReportRequest) returns (GenerateReportResponse);
+  rpc GetReport(GetReportRequest) returns (GetReportResponse);
+  rpc ExportReport(ExportReportRequest) returns (ExportReportResponse);
+}
+
+enum AttributionModel {
+  ATTRIBUTION_MODEL_UNSPECIFIED = 0;
+  ATTRIBUTION_MODEL_DIRECT = 1;
+  ATTRIBUTION_MODEL_ASSISTED = 2;
+  ATTRIBUTION_MODEL_INFLUENCED = 3;
+}
+
+enum ReportExportFormat {
+  REPORT_EXPORT_FORMAT_UNSPECIFIED = 0;
+  REPORT_EXPORT_FORMAT_JSON = 1;
+  REPORT_EXPORT_FORMAT_CSV = 2;
+}
+
+message AttributionQuery {
+  string workspace_id = 1;
+  string organization_id = 2;
+  repeated string deal_ids = 3;
+  AttributionModel model = 4;
+  google.protobuf.Timestamp start_time = 5;
+  google.protobuf.Timestamp end_time = 6;
+  bool include_team_rollups = 7;
+}
+
+message DealContext {
+  string deal_id = 1;
+  string title = 2;
+  string stage = 3;
+  double value = 4;
+  string currency = 5;
+  string owner_id = 6;
+  string contact_id = 7;
+  string company_id = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+}
+
+message TraceTouchpoint {
+  traces.v1.TraceSummary trace = 1;
+  repeated string match_reasons = 2;
+}
+
+message UsageTouchpoint {
+  string record_id = 1;
+  string request_id = 2;
+  string agent_id = 3;
+  string team_id = 4;
+  string surface = 5;
+  string model = 6;
+  string provider = 7;
+  int64 input_tokens = 8;
+  int64 output_tokens = 9;
+  double total_cost_usd = 10;
+  google.protobuf.Timestamp observed_at = 11;
+}
+
+message AgentSummary {
+  string agent_id = 1;
+  double attribution_weight = 2;
+  double attributed_revenue_usd = 3;
+  double total_cost_usd = 4;
+  double roi_multiple = 5;
+  int32 trace_count = 6;
+  int32 usage_count = 7;
+  repeated string trace_ids = 8;
+  repeated string usage_record_ids = 9;
+}
+
+message TeamSummary {
+  string team_id = 1;
+  double attributed_revenue_usd = 2;
+  double total_cost_usd = 3;
+  double roi_multiple = 4;
+  repeated string agent_ids = 5;
+}
+
+message DealAttribution {
+  DealContext deal = 1;
+  repeated TraceTouchpoint trace_touchpoints = 2;
+  repeated UsageTouchpoint usage_touchpoints = 3;
+  repeated AgentSummary agent_summaries = 4;
+  repeated TeamSummary team_summaries = 5;
+  double total_attributed_revenue_usd = 6;
+  double total_attributed_cost_usd = 7;
+  double unattributed_revenue_usd = 8;
+  double unattributed_cost_usd = 9;
+}
+
+message AttributionReport {
+  string id = 1;
+  AttributionQuery query = 2;
+  google.protobuf.Timestamp generated_at = 3;
+  repeated DealAttribution deals = 4;
+  repeated AgentSummary agent_summaries = 5;
+  repeated TeamSummary team_summaries = 6;
+}
+
+message GenerateReportRequest {
+  AttributionQuery query = 1;
+}
+
+message GenerateReportResponse {
+  AttributionReport report = 1;
+}
+
+message GetReportRequest {
+  string report_id = 1;
+}
+
+message GetReportResponse {
+  AttributionReport report = 1;
+}
+
+message ExportReportRequest {
+  AttributionQuery query = 1;
+  ReportExportFormat format = 2;
+}
+
+message ExportReportResponse {
+  bytes content = 1;
+  string content_type = 2;
+  string filename = 3;
+}

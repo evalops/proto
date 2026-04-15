@@ -130,6 +130,17 @@ ConnectorService_GetCapabilities: >-
   bulk-export). Used to determine what operations an agent can perform
   through this integration.
 
+# --- attribution/v1 ---
+AttributionService_GenerateReport: >-
+  Generate a persisted attribution report for one or more pipeline deals by
+  correlating traces, metered usage, and deal context into per-agent and
+  optional team revenue and ROI rollups.
+AttributionService_GetReport: >-
+  Retrieve a previously generated attribution report by ID.
+AttributionService_ExportReport: >-
+  Render an attribution report into JSON or CSV for finance, operations, or
+  downstream analytics tooling.
+
 # --- compliance/v1 ---
 ComplianceService_GenerateEvidencePackage: >-
   Generate a compliance evidence package for a workspace and framework by
