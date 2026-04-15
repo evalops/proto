@@ -14,7 +14,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file attribution/v1/attribution.proto.
  */
 export const file_attribution_v1_attribution: GenFile = /*@__PURE__*/
-  fileDesc("CiBhdHRyaWJ1dGlvbi92MS9hdHRyaWJ1dGlvbi5wcm90bxIOYXR0cmlidXRpb24udjEigAIKEEF0dHJpYnV0aW9uUXVlcnkSFAoMd29ya3NwYWNlX2lkGAEgASgJEhcKD29yZ2FuaXphdGlvbl9pZBgCIAEoCRIQCghkZWFsX2lkcxgDIAMoCRIvCgVtb2RlbBgEIAEoDjIgLmF0dHJpYnV0aW9uLnYxLkF0dHJpYnV0aW9uTW9kZWwSLgoKc3RhcnRfdGltZRgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLAoIZW5kX3RpbWUYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhwKFGluY2x1ZGVfdGVhbV9yb2xsdXBzGAcgASgIIvcBCgtEZWFsQ29udGV4dBIPCgdkZWFsX2lkGAEgASgJEg0KBXRpdGxlGAIgASgJEg0KBXN0YWdlGAMgASgJEg0KBXZhbHVlGAQgASgBEhAKCGN1cnJlbmN5GAUgASgJEhAKCG93bmVyX2lkGAYgASgJEhIKCmNvbnRhY3RfaWQYByABKAkSEgoKY29tcGFueV9pZBgIIAEoCRIuCgpjcmVhdGVkX2F0GAkgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgp1cGRhdGVkX2F0GAogASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCJQCg9UcmFjZVRvdWNocG9pbnQSJgoFdHJhY2UYASABKAsyFy50cmFjZXMudjEuVHJhY2VTdW1tYXJ5EhUKDW1hdGNoX3JlYXNvbnMYAiADKAkigwIKD1VzYWdlVG91Y2hwb2ludBIRCglyZWNvcmRfaWQYASABKAkSEgoKcmVxdWVzdF9pZBgCIAEoCRIQCghhZ2VudF9pZBgDIAEoCRIPCgd0ZWFtX2lkGAQgASgJEg8KB3N1cmZhY2UYBSABKAkSDQoFbW9kZWwYBiABKAkSEAoIcHJvdmlkZXIYByABKAkSFAoMaW5wdXRfdG9rZW5zGAggASgDEhUKDW91dHB1dF90b2tlbnMYCSABKAMSFgoOdG90YWxfY29zdF91c2QYCiABKAESLwoLb2JzZXJ2ZWRfYXQYCyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIuEBCgxBZ2VudFN1bW1hcnkSEAoIYWdlbnRfaWQYASABKAkSGgoSYXR0cmlidXRpb25fd2VpZ2h0GAIgASgBEh4KFmF0dHJpYnV0ZWRfcmV2ZW51ZV91c2QYAyABKAESFgoOdG90YWxfY29zdF91c2QYBCABKAESFAoMcm9pX211bHRpcGxlGAUgASgBEhMKC3RyYWNlX2NvdW50GAYgASgFEhMKC3VzYWdlX2NvdW50GAcgASgFEhEKCXRyYWNlX2lkcxgIIAMoCRIYChB1c2FnZV9yZWNvcmRfaWRzGAkgAygJIn8KC1RlYW1TdW1tYXJ5Eg8KB3RlYW1faWQYASABKAkSHgoWYXR0cmlidXRlZF9yZXZlbnVlX3VzZBgCIAEoARIWCg50b3RhbF9jb3N0X3VzZBgDIAEoARIUCgxyb2lfbXVsdGlwbGUYBCABKAESEQoJYWdlbnRfaWRzGAUgAygJIqoDCg9EZWFsQXR0cmlidXRpb24SKQoEZGVhbBgBIAEoCzIbLmF0dHJpYnV0aW9uLnYxLkRlYWxDb250ZXh0EjoKEXRyYWNlX3RvdWNocG9pbnRzGAIgAygLMh8uYXR0cmlidXRpb24udjEuVHJhY2VUb3VjaHBvaW50EjoKEXVzYWdlX3RvdWNocG9pbnRzGAMgAygLMh8uYXR0cmlidXRpb24udjEuVXNhZ2VUb3VjaHBvaW50EjUKD2FnZW50X3N1bW1hcmllcxgEIAMoCzIcLmF0dHJpYnV0aW9uLnYxLkFnZW50U3VtbWFyeRIzCg50ZWFtX3N1bW1hcmllcxgFIAMoCzIbLmF0dHJpYnV0aW9uLnYxLlRlYW1TdW1tYXJ5EiQKHHRvdGFsX2F0dHJpYnV0ZWRfcmV2ZW51ZV91c2QYBiABKAESIQoZdG90YWxfYXR0cmlidXRlZF9jb3N0X3VzZBgHIAEoARIgChh1bmF0dHJpYnV0ZWRfcmV2ZW51ZV91c2QYCCABKAESHQoVdW5hdHRyaWJ1dGVkX2Nvc3RfdXNkGAkgASgBIp4CChFBdHRyaWJ1dGlvblJlcG9ydBIKCgJpZBgBIAEoCRIvCgVxdWVyeRgCIAEoCzIgLmF0dHJpYnV0aW9uLnYxLkF0dHJpYnV0aW9uUXVlcnkSMAoMZ2VuZXJhdGVkX2F0GAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIuCgVkZWFscxgEIAMoCzIfLmF0dHJpYnV0aW9uLnYxLkRlYWxBdHRyaWJ1dGlvbhI1Cg9hZ2VudF9zdW1tYXJpZXMYBSADKAsyHC5hdHRyaWJ1dGlvbi52MS5BZ2VudFN1bW1hcnkSMwoOdGVhbV9zdW1tYXJpZXMYBiADKAsyGy5hdHRyaWJ1dGlvbi52MS5UZWFtU3VtbWFyeSLGAQoYQXR0cmlidXRpb25SZXBvcnRTdW1tYXJ5EgoKAmlkGAEgASgJEi8KBXF1ZXJ5GAIgASgLMiAuYXR0cmlidXRpb24udjEuQXR0cmlidXRpb25RdWVyeRIwCgxnZW5lcmF0ZWRfYXQYAyABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhIKCmRlYWxfY291bnQYBCABKAUSEwoLYWdlbnRfY291bnQYBSABKAUSEgoKdGVhbV9jb3VudBgGIAEoBSJIChVHZW5lcmF0ZVJlcG9ydFJlcXVlc3QSLwoFcXVlcnkYASABKAsyIC5hdHRyaWJ1dGlvbi52MS5BdHRyaWJ1dGlvblF1ZXJ5IksKFkdlbmVyYXRlUmVwb3J0UmVzcG9uc2USMQoGcmVwb3J0GAEgASgLMiEuYXR0cmlidXRpb24udjEuQXR0cmlidXRpb25SZXBvcnQiJQoQR2V0UmVwb3J0UmVxdWVzdBIRCglyZXBvcnRfaWQYASABKAkiRgoRR2V0UmVwb3J0UmVzcG9uc2USMQoGcmVwb3J0GAEgASgLMiEuYXR0cmlidXRpb24udjEuQXR0cmlidXRpb25SZXBvcnQikwEKEkxpc3RSZXBvcnRzUmVxdWVzdBIXCg9vcmdhbml6YXRpb25faWQYASABKAkSFAoMd29ya3NwYWNlX2lkGAIgASgJEi8KBW1vZGVsGAMgASgOMiAuYXR0cmlidXRpb24udjEuQXR0cmlidXRpb25Nb2RlbBINCgVsaW1pdBgEIAEoBRIOCgZvZmZzZXQYBSABKAUiYgoTTGlzdFJlcG9ydHNSZXNwb25zZRI5CgdyZXBvcnRzGAEgAygLMiguYXR0cmlidXRpb24udjEuQXR0cmlidXRpb25SZXBvcnRTdW1tYXJ5EhAKCGhhc19tb3JlGAIgASgIInoKE0V4cG9ydFJlcG9ydFJlcXVlc3QSLwoFcXVlcnkYASABKAsyIC5hdHRyaWJ1dGlvbi52MS5BdHRyaWJ1dGlvblF1ZXJ5EjIKBmZvcm1hdBgCIAEoDjIiLmF0dHJpYnV0aW9uLnYxLlJlcG9ydEV4cG9ydEZvcm1hdCJPChRFeHBvcnRSZXBvcnRSZXNwb25zZRIPCgdjb250ZW50GAEgASgMEhQKDGNvbnRlbnRfdHlwZRgCIAEoCRIQCghmaWxlbmFtZRgDIAEoCSqVAQoQQXR0cmlidXRpb25Nb2RlbBIhCh1BVFRSSUJVVElPTl9NT0RFTF9VTlNQRUNJRklFRBAAEhwKGEFUVFJJQlVUSU9OX01PREVMX0RJUkVDVBABEh4KGkFUVFJJQlVUSU9OX01PREVMX0FTU0lTVEVEEAISIAocQVRUUklCVVRJT05fTU9ERUxfSU5GTFVFTkNFRBADKncKElJlcG9ydEV4cG9ydEZvcm1hdBIkCiBSRVBPUlRfRVhQT1JUX0ZPUk1BVF9VTlNQRUNJRklFRBAAEh0KGVJFUE9SVF9FWFBPUlRfRk9STUFUX0pTT04QARIcChhSRVBPUlRfRVhQT1JUX0ZPUk1BVF9DU1YQAjL6AgoSQXR0cmlidXRpb25TZXJ2aWNlEl8KDkdlbmVyYXRlUmVwb3J0EiUuYXR0cmlidXRpb24udjEuR2VuZXJhdGVSZXBvcnRSZXF1ZXN0GiYuYXR0cmlidXRpb24udjEuR2VuZXJhdGVSZXBvcnRSZXNwb25zZRJQCglHZXRSZXBvcnQSIC5hdHRyaWJ1dGlvbi52MS5HZXRSZXBvcnRSZXF1ZXN0GiEuYXR0cmlidXRpb24udjEuR2V0UmVwb3J0UmVzcG9uc2USVgoLTGlzdFJlcG9ydHMSIi5hdHRyaWJ1dGlvbi52MS5MaXN0UmVwb3J0c1JlcXVlc3QaIy5hdHRyaWJ1dGlvbi52MS5MaXN0UmVwb3J0c1Jlc3BvbnNlElkKDEV4cG9ydFJlcG9ydBIjLmF0dHJpYnV0aW9uLnYxLkV4cG9ydFJlcG9ydFJlcXVlc3QaJC5hdHRyaWJ1dGlvbi52MS5FeHBvcnRSZXBvcnRSZXNwb25zZUI+WjxnaXRodWIuY29tL2V2YWxvcHMvcHJvdG8vZ2VuL2dvL2F0dHJpYnV0aW9uL3YxO2F0dHJpYnV0aW9udjFiBnByb3RvMw", [file_google_protobuf_timestamp, file_traces_v1_traces]);
+  fileDesc("CiBhdHRyaWJ1dGlvbi92MS9hdHRyaWJ1dGlvbi5wcm90bxIOYXR0cmlidXRpb24udjEilwIKEEF0dHJpYnV0aW9uUXVlcnkSFAoMd29ya3NwYWNlX2lkGAEgASgJEhcKD29yZ2FuaXphdGlvbl9pZBgCIAEoCRIQCghkZWFsX2lkcxgDIAMoCRIvCgVtb2RlbBgEIAEoDjIgLmF0dHJpYnV0aW9uLnYxLkF0dHJpYnV0aW9uTW9kZWwSLgoKc3RhcnRfdGltZRgFIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLAoIZW5kX3RpbWUYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEhwKFGluY2x1ZGVfdGVhbV9yb2xsdXBzGAcgASgIEhUKDW9iamVjdGl2ZV9pZHMYCCADKAki9wEKC0RlYWxDb250ZXh0Eg8KB2RlYWxfaWQYASABKAkSDQoFdGl0bGUYAiABKAkSDQoFc3RhZ2UYAyABKAkSDQoFdmFsdWUYBCABKAESEAoIY3VycmVuY3kYBSABKAkSEAoIb3duZXJfaWQYBiABKAkSEgoKY29udGFjdF9pZBgHIAEoCRISCgpjb21wYW55X2lkGAggASgJEi4KCmNyZWF0ZWRfYXQYCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYCiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIpACChBPYmplY3RpdmVDb250ZXh0EhQKDG9iamVjdGl2ZV9pZBgBIAEoCRIQCghhZ2VudF9pZBgCIAEoCRIPCgdzdXJmYWNlGAMgASgJEg0KBXRpdGxlGAQgASgJEhMKC2Rlc2NyaXB0aW9uGAUgASgJEg0KBXN0YXRlGAYgASgJEi4KCmNyZWF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYCCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEjAKDGNvbXBsZXRlZF9hdBgJIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXAiUAoPVHJhY2VUb3VjaHBvaW50EiYKBXRyYWNlGAEgASgLMhcudHJhY2VzLnYxLlRyYWNlU3VtbWFyeRIVCg1tYXRjaF9yZWFzb25zGAIgAygJIoMCCg9Vc2FnZVRvdWNocG9pbnQSEQoJcmVjb3JkX2lkGAEgASgJEhIKCnJlcXVlc3RfaWQYAiABKAkSEAoIYWdlbnRfaWQYAyABKAkSDwoHdGVhbV9pZBgEIAEoCRIPCgdzdXJmYWNlGAUgASgJEg0KBW1vZGVsGAYgASgJEhAKCHByb3ZpZGVyGAcgASgJEhQKDGlucHV0X3Rva2VucxgIIAEoAxIVCg1vdXRwdXRfdG9rZW5zGAkgASgDEhYKDnRvdGFsX2Nvc3RfdXNkGAogASgBEi8KC29ic2VydmVkX2F0GAsgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcCLhAQoMQWdlbnRTdW1tYXJ5EhAKCGFnZW50X2lkGAEgASgJEhoKEmF0dHJpYnV0aW9uX3dlaWdodBgCIAEoARIeChZhdHRyaWJ1dGVkX3JldmVudWVfdXNkGAMgASgBEhYKDnRvdGFsX2Nvc3RfdXNkGAQgASgBEhQKDHJvaV9tdWx0aXBsZRgFIAEoARITCgt0cmFjZV9jb3VudBgGIAEoBRITCgt1c2FnZV9jb3VudBgHIAEoBRIRCgl0cmFjZV9pZHMYCCADKAkSGAoQdXNhZ2VfcmVjb3JkX2lkcxgJIAMoCSJ/CgtUZWFtU3VtbWFyeRIPCgd0ZWFtX2lkGAEgASgJEh4KFmF0dHJpYnV0ZWRfcmV2ZW51ZV91c2QYAiABKAESFgoOdG90YWxfY29zdF91c2QYAyABKAESFAoMcm9pX211bHRpcGxlGAQgASgBEhEKCWFnZW50X2lkcxgFIAMoCSLWAQoVT2JqZWN0aXZlQWdlbnRTdW1tYXJ5EhAKCGFnZW50X2lkGAEgASgJEhoKEmF0dHJpYnV0aW9uX3dlaWdodBgCIAEoARIgChhhdHRyaWJ1dGVkX291dGNvbWVfY291bnQYAyABKAESFgoOdG90YWxfY29zdF91c2QYBCABKAESEwoLdHJhY2VfY291bnQYBSABKAUSEwoLdXNhZ2VfY291bnQYBiABKAUSEQoJdHJhY2VfaWRzGAcgAygJEhgKEHVzYWdlX3JlY29yZF9pZHMYCCADKAkikAEKFE9iamVjdGl2ZVRlYW1TdW1tYXJ5Eg8KB3RlYW1faWQYASABKAkSGgoSYXR0cmlidXRpb25fd2VpZ2h0GAIgASgBEiAKGGF0dHJpYnV0ZWRfb3V0Y29tZV9jb3VudBgDIAEoARIWCg50b3RhbF9jb3N0X3VzZBgEIAEoARIRCglhZ2VudF9pZHMYBSADKAkiqgMKD0RlYWxBdHRyaWJ1dGlvbhIpCgRkZWFsGAEgASgLMhsuYXR0cmlidXRpb24udjEuRGVhbENvbnRleHQSOgoRdHJhY2VfdG91Y2hwb2ludHMYAiADKAsyHy5hdHRyaWJ1dGlvbi52MS5UcmFjZVRvdWNocG9pbnQSOgoRdXNhZ2VfdG91Y2hwb2ludHMYAyADKAsyHy5hdHRyaWJ1dGlvbi52MS5Vc2FnZVRvdWNocG9pbnQSNQoPYWdlbnRfc3VtbWFyaWVzGAQgAygLMhwuYXR0cmlidXRpb24udjEuQWdlbnRTdW1tYXJ5EjMKDnRlYW1fc3VtbWFyaWVzGAUgAygLMhsuYXR0cmlidXRpb24udjEuVGVhbVN1bW1hcnkSJAocdG90YWxfYXR0cmlidXRlZF9yZXZlbnVlX3VzZBgGIAEoARIhChl0b3RhbF9hdHRyaWJ1dGVkX2Nvc3RfdXNkGAcgASgBEiAKGHVuYXR0cmlidXRlZF9yZXZlbnVlX3VzZBgIIAEoARIdChV1bmF0dHJpYnV0ZWRfY29zdF91c2QYCSABKAEi1gMKG09iamVjdGl2ZU91dGNvbWVBdHRyaWJ1dGlvbhIzCglvYmplY3RpdmUYASABKAsyIC5hdHRyaWJ1dGlvbi52MS5PYmplY3RpdmVDb250ZXh0EjoKEXRyYWNlX3RvdWNocG9pbnRzGAIgAygLMh8uYXR0cmlidXRpb24udjEuVHJhY2VUb3VjaHBvaW50EjoKEXVzYWdlX3RvdWNocG9pbnRzGAMgAygLMh8uYXR0cmlidXRpb24udjEuVXNhZ2VUb3VjaHBvaW50Ej4KD2FnZW50X3N1bW1hcmllcxgEIAMoCzIlLmF0dHJpYnV0aW9uLnYxLk9iamVjdGl2ZUFnZW50U3VtbWFyeRI8Cg50ZWFtX3N1bW1hcmllcxgFIAMoCzIkLmF0dHJpYnV0aW9uLnYxLk9iamVjdGl2ZVRlYW1TdW1tYXJ5EiYKHnRvdGFsX2F0dHJpYnV0ZWRfb3V0Y29tZV9jb3VudBgGIAEoARIhChl0b3RhbF9hdHRyaWJ1dGVkX2Nvc3RfdXNkGAcgASgBEiIKGnVuYXR0cmlidXRlZF9vdXRjb21lX2NvdW50GAggASgBEh0KFXVuYXR0cmlidXRlZF9jb3N0X3VzZBgJIAEoASL5AwoRQXR0cmlidXRpb25SZXBvcnQSCgoCaWQYASABKAkSLwoFcXVlcnkYAiABKAsyIC5hdHRyaWJ1dGlvbi52MS5BdHRyaWJ1dGlvblF1ZXJ5EjAKDGdlbmVyYXRlZF9hdBgDIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXASLgoFZGVhbHMYBCADKAsyHy5hdHRyaWJ1dGlvbi52MS5EZWFsQXR0cmlidXRpb24SNQoPYWdlbnRfc3VtbWFyaWVzGAUgAygLMhwuYXR0cmlidXRpb24udjEuQWdlbnRTdW1tYXJ5EjMKDnRlYW1fc3VtbWFyaWVzGAYgAygLMhsuYXR0cmlidXRpb24udjEuVGVhbVN1bW1hcnkSRwoSb2JqZWN0aXZlX291dGNvbWVzGAcgAygLMisuYXR0cmlidXRpb24udjEuT2JqZWN0aXZlT3V0Y29tZUF0dHJpYnV0aW9uEkgKGW9iamVjdGl2ZV9hZ2VudF9zdW1tYXJpZXMYCCADKAsyJS5hdHRyaWJ1dGlvbi52MS5PYmplY3RpdmVBZ2VudFN1bW1hcnkSRgoYb2JqZWN0aXZlX3RlYW1fc3VtbWFyaWVzGAkgAygLMiQuYXR0cmlidXRpb24udjEuT2JqZWN0aXZlVGVhbVN1bW1hcnki5wEKGEF0dHJpYnV0aW9uUmVwb3J0U3VtbWFyeRIKCgJpZBgBIAEoCRIvCgVxdWVyeRgCIAEoCzIgLmF0dHJpYnV0aW9uLnYxLkF0dHJpYnV0aW9uUXVlcnkSMAoMZ2VuZXJhdGVkX2F0GAMgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBISCgpkZWFsX2NvdW50GAQgASgFEhMKC2FnZW50X2NvdW50GAUgASgFEhIKCnRlYW1fY291bnQYBiABKAUSHwoXb2JqZWN0aXZlX291dGNvbWVfY291bnQYByABKAUivwQKE0F0dHJpYnV0aW9uU25hcHNob3QSCgoCaWQYASABKAkSFAoMd29ya3NwYWNlX2lkGAIgASgJEhcKD29yZ2FuaXphdGlvbl9pZBgDIAEoCRI8CgxzdWJqZWN0X2tpbmQYBCABKA4yJi5hdHRyaWJ1dGlvbi52MS5BdHRyaWJ1dGlvblN1YmplY3RLaW5kEhIKCnN1YmplY3RfaWQYBSABKAkSLwoFbW9kZWwYBiABKA4yIC5hdHRyaWJ1dGlvbi52MS5BdHRyaWJ1dGlvbk1vZGVsEjoKC3NpZ25hbF90eXBlGAcgASgOMiUuYXR0cmlidXRpb24udjEuQXR0cmlidXRpb25TaWduYWxUeXBlEhEKCXNpZ25hbF9pZBgIIAEoCRIwCgx3aW5kb3dfc3RhcnQYCSABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCndpbmRvd19lbmQYCiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi8KC3JlY29yZGVkX2F0GAsgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVzdGFtcBIvCgRkZWFsGAwgASgLMh8uYXR0cmlidXRpb24udjEuRGVhbEF0dHJpYnV0aW9uSAASSAoRb2JqZWN0aXZlX291dGNvbWUYDSABKAsyKy5hdHRyaWJ1dGlvbi52MS5PYmplY3RpdmVPdXRjb21lQXR0cmlidXRpb25IAEINCgthdHRyaWJ1dGlvbiKSAQoZT2JqZWN0aXZlQ29tcGxldGlvblNpZ25hbBIUCgx3b3Jrc3BhY2VfaWQYASABKAkSFwoPb3JnYW5pemF0aW9uX2lkGAIgASgJEhQKDG9iamVjdGl2ZV9pZBgDIAEoCRIwCgxjb21wbGV0ZWRfYXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIooBChVUcmFjZUNvbXBsZXRpb25TaWduYWwSFAoMd29ya3NwYWNlX2lkGAEgASgJEhcKD29yZ2FuaXphdGlvbl9pZBgCIAEoCRIQCgh0cmFjZV9pZBgDIAEoCRIwCgxjb21wbGV0ZWRfYXQYBCABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIqsBChFBdHRyaWJ1dGlvblNpZ25hbBJJChRvYmplY3RpdmVfY29tcGxldGlvbhgBIAEoCzIpLmF0dHJpYnV0aW9uLnYxLk9iamVjdGl2ZUNvbXBsZXRpb25TaWduYWxIABJBChB0cmFjZV9jb21wbGV0aW9uGAIgASgLMiUuYXR0cmlidXRpb24udjEuVHJhY2VDb21wbGV0aW9uU2lnbmFsSABCCAoGc2lnbmFsIkgKFUdlbmVyYXRlUmVwb3J0UmVxdWVzdBIvCgVxdWVyeRgBIAEoCzIgLmF0dHJpYnV0aW9uLnYxLkF0dHJpYnV0aW9uUXVlcnkiSwoWR2VuZXJhdGVSZXBvcnRSZXNwb25zZRIxCgZyZXBvcnQYASABKAsyIS5hdHRyaWJ1dGlvbi52MS5BdHRyaWJ1dGlvblJlcG9ydCIlChBHZXRSZXBvcnRSZXF1ZXN0EhEKCXJlcG9ydF9pZBgBIAEoCSJGChFHZXRSZXBvcnRSZXNwb25zZRIxCgZyZXBvcnQYASABKAsyIS5hdHRyaWJ1dGlvbi52MS5BdHRyaWJ1dGlvblJlcG9ydCKTAQoSTGlzdFJlcG9ydHNSZXF1ZXN0EhcKD29yZ2FuaXphdGlvbl9pZBgBIAEoCRIUCgx3b3Jrc3BhY2VfaWQYAiABKAkSLwoFbW9kZWwYAyABKA4yIC5hdHRyaWJ1dGlvbi52MS5BdHRyaWJ1dGlvbk1vZGVsEg0KBWxpbWl0GAQgASgFEg4KBm9mZnNldBgFIAEoBSJiChNMaXN0UmVwb3J0c1Jlc3BvbnNlEjkKB3JlcG9ydHMYASADKAsyKC5hdHRyaWJ1dGlvbi52MS5BdHRyaWJ1dGlvblJlcG9ydFN1bW1hcnkSEAoIaGFzX21vcmUYAiABKAgiegoTRXhwb3J0UmVwb3J0UmVxdWVzdBIvCgVxdWVyeRgBIAEoCzIgLmF0dHJpYnV0aW9uLnYxLkF0dHJpYnV0aW9uUXVlcnkSMgoGZm9ybWF0GAIgASgOMiIuYXR0cmlidXRpb24udjEuUmVwb3J0RXhwb3J0Rm9ybWF0Ik8KFEV4cG9ydFJlcG9ydFJlc3BvbnNlEg8KB2NvbnRlbnQYASABKAwSFAoMY29udGVudF90eXBlGAIgASgJEhAKCGZpbGVuYW1lGAMgASgJIpoBChRSZWNvcmRTaWduYWxzUmVxdWVzdBIyCgdzaWduYWxzGAEgAygLMiEuYXR0cmlidXRpb24udjEuQXR0cmlidXRpb25TaWduYWwSMAoGbW9kZWxzGAIgAygOMiAuYXR0cmlidXRpb24udjEuQXR0cmlidXRpb25Nb2RlbBIcChRpbmNsdWRlX3RlYW1fcm9sbHVwcxgDIAEoCCJPChVSZWNvcmRTaWduYWxzUmVzcG9uc2USNgoJc25hcHNob3RzGAEgAygLMiMuYXR0cmlidXRpb24udjEuQXR0cmlidXRpb25TbmFwc2hvdCIpChJHZXRTbmFwc2hvdFJlcXVlc3QSEwoLc25hcHNob3RfaWQYASABKAkiTAoTR2V0U25hcHNob3RSZXNwb25zZRI1CghzbmFwc2hvdBgBIAEoCzIjLmF0dHJpYnV0aW9uLnYxLkF0dHJpYnV0aW9uU25hcHNob3Qi5wEKFExpc3RTbmFwc2hvdHNSZXF1ZXN0EhcKD29yZ2FuaXphdGlvbl9pZBgBIAEoCRIUCgx3b3Jrc3BhY2VfaWQYAiABKAkSPAoMc3ViamVjdF9raW5kGAMgASgOMiYuYXR0cmlidXRpb24udjEuQXR0cmlidXRpb25TdWJqZWN0S2luZBISCgpzdWJqZWN0X2lkGAQgASgJEi8KBW1vZGVsGAUgASgOMiAuYXR0cmlidXRpb24udjEuQXR0cmlidXRpb25Nb2RlbBINCgVsaW1pdBgGIAEoBRIOCgZvZmZzZXQYByABKAUiYQoVTGlzdFNuYXBzaG90c1Jlc3BvbnNlEjYKCXNuYXBzaG90cxgBIAMoCzIjLmF0dHJpYnV0aW9uLnYxLkF0dHJpYnV0aW9uU25hcHNob3QSEAoIaGFzX21vcmUYAiABKAgqlQEKEEF0dHJpYnV0aW9uTW9kZWwSIQodQVRUUklCVVRJT05fTU9ERUxfVU5TUEVDSUZJRUQQABIcChhBVFRSSUJVVElPTl9NT0RFTF9ESVJFQ1QQARIeChpBVFRSSUJVVElPTl9NT0RFTF9BU1NJU1RFRBACEiAKHEFUVFJJQlVUSU9OX01PREVMX0lORkxVRU5DRUQQAyp3ChJSZXBvcnRFeHBvcnRGb3JtYXQSJAogUkVQT1JUX0VYUE9SVF9GT1JNQVRfVU5TUEVDSUZJRUQQABIdChlSRVBPUlRfRVhQT1JUX0ZPUk1BVF9KU09OEAESHAoYUkVQT1JUX0VYUE9SVF9GT1JNQVRfQ1NWEAIqjQEKFkF0dHJpYnV0aW9uU3ViamVjdEtpbmQSKAokQVRUUklCVVRJT05fU1VCSkVDVF9LSU5EX1VOU1BFQ0lGSUVEEAASIQodQVRUUklCVVRJT05fU1VCSkVDVF9LSU5EX0RFQUwQARImCiJBVFRSSUJVVElPTl9TVUJKRUNUX0tJTkRfT0JKRUNUSVZFEAIqngEKFUF0dHJpYnV0aW9uU2lnbmFsVHlwZRInCiNBVFRSSUJVVElPTl9TSUdOQUxfVFlQRV9VTlNQRUNJRklFRBAAEi8KK0FUVFJJQlVUSU9OX1NJR05BTF9UWVBFX09CSkVDVElWRV9DT01QTEVURUQQARIrCidBVFRSSUJVVElPTl9TSUdOQUxfVFlQRV9UUkFDRV9DT01QTEVURUQQAjKOBQoSQXR0cmlidXRpb25TZXJ2aWNlEl8KDkdlbmVyYXRlUmVwb3J0EiUuYXR0cmlidXRpb24udjEuR2VuZXJhdGVSZXBvcnRSZXF1ZXN0GiYuYXR0cmlidXRpb24udjEuR2VuZXJhdGVSZXBvcnRSZXNwb25zZRJQCglHZXRSZXBvcnQSIC5hdHRyaWJ1dGlvbi52MS5HZXRSZXBvcnRSZXF1ZXN0GiEuYXR0cmlidXRpb24udjEuR2V0UmVwb3J0UmVzcG9uc2USVgoLTGlzdFJlcG9ydHMSIi5hdHRyaWJ1dGlvbi52MS5MaXN0UmVwb3J0c1JlcXVlc3QaIy5hdHRyaWJ1dGlvbi52MS5MaXN0UmVwb3J0c1Jlc3BvbnNlElkKDEV4cG9ydFJlcG9ydBIjLmF0dHJpYnV0aW9uLnYxLkV4cG9ydFJlcG9ydFJlcXVlc3QaJC5hdHRyaWJ1dGlvbi52MS5FeHBvcnRSZXBvcnRSZXNwb25zZRJcCg1SZWNvcmRTaWduYWxzEiQuYXR0cmlidXRpb24udjEuUmVjb3JkU2lnbmFsc1JlcXVlc3QaJS5hdHRyaWJ1dGlvbi52MS5SZWNvcmRTaWduYWxzUmVzcG9uc2USVgoLR2V0U25hcHNob3QSIi5hdHRyaWJ1dGlvbi52MS5HZXRTbmFwc2hvdFJlcXVlc3QaIy5hdHRyaWJ1dGlvbi52MS5HZXRTbmFwc2hvdFJlc3BvbnNlElwKDUxpc3RTbmFwc2hvdHMSJC5hdHRyaWJ1dGlvbi52MS5MaXN0U25hcHNob3RzUmVxdWVzdBolLmF0dHJpYnV0aW9uLnYxLkxpc3RTbmFwc2hvdHNSZXNwb25zZUI+WjxnaXRodWIuY29tL2V2YWxvcHMvcHJvdG8vZ2VuL2dvL2F0dHJpYnV0aW9uL3YxO2F0dHJpYnV0aW9udjFiBnByb3RvMw", [file_google_protobuf_timestamp, file_traces_v1_traces]);
 
 /**
  * @generated from message attribution.v1.AttributionQuery
@@ -54,6 +54,11 @@ export type AttributionQuery = Message<"attribution.v1.AttributionQuery"> & {
    * @generated from field: bool include_team_rollups = 7;
    */
   includeTeamRollups: boolean;
+
+  /**
+   * @generated from field: repeated string objective_ids = 8;
+   */
+  objectiveIds: string[];
 };
 
 /**
@@ -126,6 +131,63 @@ export const DealContextSchema: GenMessage<DealContext> = /*@__PURE__*/
   messageDesc(file_attribution_v1_attribution, 1);
 
 /**
+ * @generated from message attribution.v1.ObjectiveContext
+ */
+export type ObjectiveContext = Message<"attribution.v1.ObjectiveContext"> & {
+  /**
+   * @generated from field: string objective_id = 1;
+   */
+  objectiveId: string;
+
+  /**
+   * @generated from field: string agent_id = 2;
+   */
+  agentId: string;
+
+  /**
+   * @generated from field: string surface = 3;
+   */
+  surface: string;
+
+  /**
+   * @generated from field: string title = 4;
+   */
+  title: string;
+
+  /**
+   * @generated from field: string description = 5;
+   */
+  description: string;
+
+  /**
+   * @generated from field: string state = 6;
+   */
+  state: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp created_at = 7;
+   */
+  createdAt?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp updated_at = 8;
+   */
+  updatedAt?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp completed_at = 9;
+   */
+  completedAt?: Timestamp;
+};
+
+/**
+ * Describes the message attribution.v1.ObjectiveContext.
+ * Use `create(ObjectiveContextSchema)` to create a new message.
+ */
+export const ObjectiveContextSchema: GenMessage<ObjectiveContext> = /*@__PURE__*/
+  messageDesc(file_attribution_v1_attribution, 2);
+
+/**
  * @generated from message attribution.v1.TraceTouchpoint
  */
 export type TraceTouchpoint = Message<"attribution.v1.TraceTouchpoint"> & {
@@ -145,7 +207,7 @@ export type TraceTouchpoint = Message<"attribution.v1.TraceTouchpoint"> & {
  * Use `create(TraceTouchpointSchema)` to create a new message.
  */
 export const TraceTouchpointSchema: GenMessage<TraceTouchpoint> = /*@__PURE__*/
-  messageDesc(file_attribution_v1_attribution, 2);
+  messageDesc(file_attribution_v1_attribution, 3);
 
 /**
  * @generated from message attribution.v1.UsageTouchpoint
@@ -212,7 +274,7 @@ export type UsageTouchpoint = Message<"attribution.v1.UsageTouchpoint"> & {
  * Use `create(UsageTouchpointSchema)` to create a new message.
  */
 export const UsageTouchpointSchema: GenMessage<UsageTouchpoint> = /*@__PURE__*/
-  messageDesc(file_attribution_v1_attribution, 3);
+  messageDesc(file_attribution_v1_attribution, 4);
 
 /**
  * @generated from message attribution.v1.AgentSummary
@@ -269,7 +331,7 @@ export type AgentSummary = Message<"attribution.v1.AgentSummary"> & {
  * Use `create(AgentSummarySchema)` to create a new message.
  */
 export const AgentSummarySchema: GenMessage<AgentSummary> = /*@__PURE__*/
-  messageDesc(file_attribution_v1_attribution, 4);
+  messageDesc(file_attribution_v1_attribution, 5);
 
 /**
  * @generated from message attribution.v1.TeamSummary
@@ -306,7 +368,96 @@ export type TeamSummary = Message<"attribution.v1.TeamSummary"> & {
  * Use `create(TeamSummarySchema)` to create a new message.
  */
 export const TeamSummarySchema: GenMessage<TeamSummary> = /*@__PURE__*/
-  messageDesc(file_attribution_v1_attribution, 5);
+  messageDesc(file_attribution_v1_attribution, 6);
+
+/**
+ * @generated from message attribution.v1.ObjectiveAgentSummary
+ */
+export type ObjectiveAgentSummary = Message<"attribution.v1.ObjectiveAgentSummary"> & {
+  /**
+   * @generated from field: string agent_id = 1;
+   */
+  agentId: string;
+
+  /**
+   * @generated from field: double attribution_weight = 2;
+   */
+  attributionWeight: number;
+
+  /**
+   * @generated from field: double attributed_outcome_count = 3;
+   */
+  attributedOutcomeCount: number;
+
+  /**
+   * @generated from field: double total_cost_usd = 4;
+   */
+  totalCostUsd: number;
+
+  /**
+   * @generated from field: int32 trace_count = 5;
+   */
+  traceCount: number;
+
+  /**
+   * @generated from field: int32 usage_count = 6;
+   */
+  usageCount: number;
+
+  /**
+   * @generated from field: repeated string trace_ids = 7;
+   */
+  traceIds: string[];
+
+  /**
+   * @generated from field: repeated string usage_record_ids = 8;
+   */
+  usageRecordIds: string[];
+};
+
+/**
+ * Describes the message attribution.v1.ObjectiveAgentSummary.
+ * Use `create(ObjectiveAgentSummarySchema)` to create a new message.
+ */
+export const ObjectiveAgentSummarySchema: GenMessage<ObjectiveAgentSummary> = /*@__PURE__*/
+  messageDesc(file_attribution_v1_attribution, 7);
+
+/**
+ * @generated from message attribution.v1.ObjectiveTeamSummary
+ */
+export type ObjectiveTeamSummary = Message<"attribution.v1.ObjectiveTeamSummary"> & {
+  /**
+   * @generated from field: string team_id = 1;
+   */
+  teamId: string;
+
+  /**
+   * @generated from field: double attribution_weight = 2;
+   */
+  attributionWeight: number;
+
+  /**
+   * @generated from field: double attributed_outcome_count = 3;
+   */
+  attributedOutcomeCount: number;
+
+  /**
+   * @generated from field: double total_cost_usd = 4;
+   */
+  totalCostUsd: number;
+
+  /**
+   * @generated from field: repeated string agent_ids = 5;
+   */
+  agentIds: string[];
+};
+
+/**
+ * Describes the message attribution.v1.ObjectiveTeamSummary.
+ * Use `create(ObjectiveTeamSummarySchema)` to create a new message.
+ */
+export const ObjectiveTeamSummarySchema: GenMessage<ObjectiveTeamSummary> = /*@__PURE__*/
+  messageDesc(file_attribution_v1_attribution, 8);
 
 /**
  * @generated from message attribution.v1.DealAttribution
@@ -363,7 +514,64 @@ export type DealAttribution = Message<"attribution.v1.DealAttribution"> & {
  * Use `create(DealAttributionSchema)` to create a new message.
  */
 export const DealAttributionSchema: GenMessage<DealAttribution> = /*@__PURE__*/
-  messageDesc(file_attribution_v1_attribution, 6);
+  messageDesc(file_attribution_v1_attribution, 9);
+
+/**
+ * @generated from message attribution.v1.ObjectiveOutcomeAttribution
+ */
+export type ObjectiveOutcomeAttribution = Message<"attribution.v1.ObjectiveOutcomeAttribution"> & {
+  /**
+   * @generated from field: attribution.v1.ObjectiveContext objective = 1;
+   */
+  objective?: ObjectiveContext;
+
+  /**
+   * @generated from field: repeated attribution.v1.TraceTouchpoint trace_touchpoints = 2;
+   */
+  traceTouchpoints: TraceTouchpoint[];
+
+  /**
+   * @generated from field: repeated attribution.v1.UsageTouchpoint usage_touchpoints = 3;
+   */
+  usageTouchpoints: UsageTouchpoint[];
+
+  /**
+   * @generated from field: repeated attribution.v1.ObjectiveAgentSummary agent_summaries = 4;
+   */
+  agentSummaries: ObjectiveAgentSummary[];
+
+  /**
+   * @generated from field: repeated attribution.v1.ObjectiveTeamSummary team_summaries = 5;
+   */
+  teamSummaries: ObjectiveTeamSummary[];
+
+  /**
+   * @generated from field: double total_attributed_outcome_count = 6;
+   */
+  totalAttributedOutcomeCount: number;
+
+  /**
+   * @generated from field: double total_attributed_cost_usd = 7;
+   */
+  totalAttributedCostUsd: number;
+
+  /**
+   * @generated from field: double unattributed_outcome_count = 8;
+   */
+  unattributedOutcomeCount: number;
+
+  /**
+   * @generated from field: double unattributed_cost_usd = 9;
+   */
+  unattributedCostUsd: number;
+};
+
+/**
+ * Describes the message attribution.v1.ObjectiveOutcomeAttribution.
+ * Use `create(ObjectiveOutcomeAttributionSchema)` to create a new message.
+ */
+export const ObjectiveOutcomeAttributionSchema: GenMessage<ObjectiveOutcomeAttribution> = /*@__PURE__*/
+  messageDesc(file_attribution_v1_attribution, 10);
 
 /**
  * @generated from message attribution.v1.AttributionReport
@@ -398,6 +606,21 @@ export type AttributionReport = Message<"attribution.v1.AttributionReport"> & {
    * @generated from field: repeated attribution.v1.TeamSummary team_summaries = 6;
    */
   teamSummaries: TeamSummary[];
+
+  /**
+   * @generated from field: repeated attribution.v1.ObjectiveOutcomeAttribution objective_outcomes = 7;
+   */
+  objectiveOutcomes: ObjectiveOutcomeAttribution[];
+
+  /**
+   * @generated from field: repeated attribution.v1.ObjectiveAgentSummary objective_agent_summaries = 8;
+   */
+  objectiveAgentSummaries: ObjectiveAgentSummary[];
+
+  /**
+   * @generated from field: repeated attribution.v1.ObjectiveTeamSummary objective_team_summaries = 9;
+   */
+  objectiveTeamSummaries: ObjectiveTeamSummary[];
 };
 
 /**
@@ -405,7 +628,7 @@ export type AttributionReport = Message<"attribution.v1.AttributionReport"> & {
  * Use `create(AttributionReportSchema)` to create a new message.
  */
 export const AttributionReportSchema: GenMessage<AttributionReport> = /*@__PURE__*/
-  messageDesc(file_attribution_v1_attribution, 7);
+  messageDesc(file_attribution_v1_attribution, 11);
 
 /**
  * @generated from message attribution.v1.AttributionReportSummary
@@ -440,6 +663,11 @@ export type AttributionReportSummary = Message<"attribution.v1.AttributionReport
    * @generated from field: int32 team_count = 6;
    */
   teamCount: number;
+
+  /**
+   * @generated from field: int32 objective_outcome_count = 7;
+   */
+  objectiveOutcomeCount: number;
 };
 
 /**
@@ -447,7 +675,184 @@ export type AttributionReportSummary = Message<"attribution.v1.AttributionReport
  * Use `create(AttributionReportSummarySchema)` to create a new message.
  */
 export const AttributionReportSummarySchema: GenMessage<AttributionReportSummary> = /*@__PURE__*/
-  messageDesc(file_attribution_v1_attribution, 8);
+  messageDesc(file_attribution_v1_attribution, 12);
+
+/**
+ * @generated from message attribution.v1.AttributionSnapshot
+ */
+export type AttributionSnapshot = Message<"attribution.v1.AttributionSnapshot"> & {
+  /**
+   * @generated from field: string id = 1;
+   */
+  id: string;
+
+  /**
+   * @generated from field: string workspace_id = 2;
+   */
+  workspaceId: string;
+
+  /**
+   * @generated from field: string organization_id = 3;
+   */
+  organizationId: string;
+
+  /**
+   * @generated from field: attribution.v1.AttributionSubjectKind subject_kind = 4;
+   */
+  subjectKind: AttributionSubjectKind;
+
+  /**
+   * @generated from field: string subject_id = 5;
+   */
+  subjectId: string;
+
+  /**
+   * @generated from field: attribution.v1.AttributionModel model = 6;
+   */
+  model: AttributionModel;
+
+  /**
+   * @generated from field: attribution.v1.AttributionSignalType signal_type = 7;
+   */
+  signalType: AttributionSignalType;
+
+  /**
+   * @generated from field: string signal_id = 8;
+   */
+  signalId: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp window_start = 9;
+   */
+  windowStart?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp window_end = 10;
+   */
+  windowEnd?: Timestamp;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp recorded_at = 11;
+   */
+  recordedAt?: Timestamp;
+
+  /**
+   * @generated from oneof attribution.v1.AttributionSnapshot.attribution
+   */
+  attribution: {
+    /**
+     * @generated from field: attribution.v1.DealAttribution deal = 12;
+     */
+    value: DealAttribution;
+    case: "deal";
+  } | {
+    /**
+     * @generated from field: attribution.v1.ObjectiveOutcomeAttribution objective_outcome = 13;
+     */
+    value: ObjectiveOutcomeAttribution;
+    case: "objectiveOutcome";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * Describes the message attribution.v1.AttributionSnapshot.
+ * Use `create(AttributionSnapshotSchema)` to create a new message.
+ */
+export const AttributionSnapshotSchema: GenMessage<AttributionSnapshot> = /*@__PURE__*/
+  messageDesc(file_attribution_v1_attribution, 13);
+
+/**
+ * @generated from message attribution.v1.ObjectiveCompletionSignal
+ */
+export type ObjectiveCompletionSignal = Message<"attribution.v1.ObjectiveCompletionSignal"> & {
+  /**
+   * @generated from field: string workspace_id = 1;
+   */
+  workspaceId: string;
+
+  /**
+   * @generated from field: string organization_id = 2;
+   */
+  organizationId: string;
+
+  /**
+   * @generated from field: string objective_id = 3;
+   */
+  objectiveId: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp completed_at = 4;
+   */
+  completedAt?: Timestamp;
+};
+
+/**
+ * Describes the message attribution.v1.ObjectiveCompletionSignal.
+ * Use `create(ObjectiveCompletionSignalSchema)` to create a new message.
+ */
+export const ObjectiveCompletionSignalSchema: GenMessage<ObjectiveCompletionSignal> = /*@__PURE__*/
+  messageDesc(file_attribution_v1_attribution, 14);
+
+/**
+ * @generated from message attribution.v1.TraceCompletionSignal
+ */
+export type TraceCompletionSignal = Message<"attribution.v1.TraceCompletionSignal"> & {
+  /**
+   * @generated from field: string workspace_id = 1;
+   */
+  workspaceId: string;
+
+  /**
+   * @generated from field: string organization_id = 2;
+   */
+  organizationId: string;
+
+  /**
+   * @generated from field: string trace_id = 3;
+   */
+  traceId: string;
+
+  /**
+   * @generated from field: google.protobuf.Timestamp completed_at = 4;
+   */
+  completedAt?: Timestamp;
+};
+
+/**
+ * Describes the message attribution.v1.TraceCompletionSignal.
+ * Use `create(TraceCompletionSignalSchema)` to create a new message.
+ */
+export const TraceCompletionSignalSchema: GenMessage<TraceCompletionSignal> = /*@__PURE__*/
+  messageDesc(file_attribution_v1_attribution, 15);
+
+/**
+ * @generated from message attribution.v1.AttributionSignal
+ */
+export type AttributionSignal = Message<"attribution.v1.AttributionSignal"> & {
+  /**
+   * @generated from oneof attribution.v1.AttributionSignal.signal
+   */
+  signal: {
+    /**
+     * @generated from field: attribution.v1.ObjectiveCompletionSignal objective_completion = 1;
+     */
+    value: ObjectiveCompletionSignal;
+    case: "objectiveCompletion";
+  } | {
+    /**
+     * @generated from field: attribution.v1.TraceCompletionSignal trace_completion = 2;
+     */
+    value: TraceCompletionSignal;
+    case: "traceCompletion";
+  } | { case: undefined; value?: undefined };
+};
+
+/**
+ * Describes the message attribution.v1.AttributionSignal.
+ * Use `create(AttributionSignalSchema)` to create a new message.
+ */
+export const AttributionSignalSchema: GenMessage<AttributionSignal> = /*@__PURE__*/
+  messageDesc(file_attribution_v1_attribution, 16);
 
 /**
  * @generated from message attribution.v1.GenerateReportRequest
@@ -464,7 +869,7 @@ export type GenerateReportRequest = Message<"attribution.v1.GenerateReportReques
  * Use `create(GenerateReportRequestSchema)` to create a new message.
  */
 export const GenerateReportRequestSchema: GenMessage<GenerateReportRequest> = /*@__PURE__*/
-  messageDesc(file_attribution_v1_attribution, 9);
+  messageDesc(file_attribution_v1_attribution, 17);
 
 /**
  * @generated from message attribution.v1.GenerateReportResponse
@@ -481,7 +886,7 @@ export type GenerateReportResponse = Message<"attribution.v1.GenerateReportRespo
  * Use `create(GenerateReportResponseSchema)` to create a new message.
  */
 export const GenerateReportResponseSchema: GenMessage<GenerateReportResponse> = /*@__PURE__*/
-  messageDesc(file_attribution_v1_attribution, 10);
+  messageDesc(file_attribution_v1_attribution, 18);
 
 /**
  * @generated from message attribution.v1.GetReportRequest
@@ -498,7 +903,7 @@ export type GetReportRequest = Message<"attribution.v1.GetReportRequest"> & {
  * Use `create(GetReportRequestSchema)` to create a new message.
  */
 export const GetReportRequestSchema: GenMessage<GetReportRequest> = /*@__PURE__*/
-  messageDesc(file_attribution_v1_attribution, 11);
+  messageDesc(file_attribution_v1_attribution, 19);
 
 /**
  * @generated from message attribution.v1.GetReportResponse
@@ -515,7 +920,7 @@ export type GetReportResponse = Message<"attribution.v1.GetReportResponse"> & {
  * Use `create(GetReportResponseSchema)` to create a new message.
  */
 export const GetReportResponseSchema: GenMessage<GetReportResponse> = /*@__PURE__*/
-  messageDesc(file_attribution_v1_attribution, 12);
+  messageDesc(file_attribution_v1_attribution, 20);
 
 /**
  * @generated from message attribution.v1.ListReportsRequest
@@ -552,7 +957,7 @@ export type ListReportsRequest = Message<"attribution.v1.ListReportsRequest"> & 
  * Use `create(ListReportsRequestSchema)` to create a new message.
  */
 export const ListReportsRequestSchema: GenMessage<ListReportsRequest> = /*@__PURE__*/
-  messageDesc(file_attribution_v1_attribution, 13);
+  messageDesc(file_attribution_v1_attribution, 21);
 
 /**
  * @generated from message attribution.v1.ListReportsResponse
@@ -574,7 +979,7 @@ export type ListReportsResponse = Message<"attribution.v1.ListReportsResponse"> 
  * Use `create(ListReportsResponseSchema)` to create a new message.
  */
 export const ListReportsResponseSchema: GenMessage<ListReportsResponse> = /*@__PURE__*/
-  messageDesc(file_attribution_v1_attribution, 14);
+  messageDesc(file_attribution_v1_attribution, 22);
 
 /**
  * @generated from message attribution.v1.ExportReportRequest
@@ -596,7 +1001,7 @@ export type ExportReportRequest = Message<"attribution.v1.ExportReportRequest"> 
  * Use `create(ExportReportRequestSchema)` to create a new message.
  */
 export const ExportReportRequestSchema: GenMessage<ExportReportRequest> = /*@__PURE__*/
-  messageDesc(file_attribution_v1_attribution, 15);
+  messageDesc(file_attribution_v1_attribution, 23);
 
 /**
  * @generated from message attribution.v1.ExportReportResponse
@@ -623,7 +1028,154 @@ export type ExportReportResponse = Message<"attribution.v1.ExportReportResponse"
  * Use `create(ExportReportResponseSchema)` to create a new message.
  */
 export const ExportReportResponseSchema: GenMessage<ExportReportResponse> = /*@__PURE__*/
-  messageDesc(file_attribution_v1_attribution, 16);
+  messageDesc(file_attribution_v1_attribution, 24);
+
+/**
+ * @generated from message attribution.v1.RecordSignalsRequest
+ */
+export type RecordSignalsRequest = Message<"attribution.v1.RecordSignalsRequest"> & {
+  /**
+   * @generated from field: repeated attribution.v1.AttributionSignal signals = 1;
+   */
+  signals: AttributionSignal[];
+
+  /**
+   * @generated from field: repeated attribution.v1.AttributionModel models = 2;
+   */
+  models: AttributionModel[];
+
+  /**
+   * @generated from field: bool include_team_rollups = 3;
+   */
+  includeTeamRollups: boolean;
+};
+
+/**
+ * Describes the message attribution.v1.RecordSignalsRequest.
+ * Use `create(RecordSignalsRequestSchema)` to create a new message.
+ */
+export const RecordSignalsRequestSchema: GenMessage<RecordSignalsRequest> = /*@__PURE__*/
+  messageDesc(file_attribution_v1_attribution, 25);
+
+/**
+ * @generated from message attribution.v1.RecordSignalsResponse
+ */
+export type RecordSignalsResponse = Message<"attribution.v1.RecordSignalsResponse"> & {
+  /**
+   * @generated from field: repeated attribution.v1.AttributionSnapshot snapshots = 1;
+   */
+  snapshots: AttributionSnapshot[];
+};
+
+/**
+ * Describes the message attribution.v1.RecordSignalsResponse.
+ * Use `create(RecordSignalsResponseSchema)` to create a new message.
+ */
+export const RecordSignalsResponseSchema: GenMessage<RecordSignalsResponse> = /*@__PURE__*/
+  messageDesc(file_attribution_v1_attribution, 26);
+
+/**
+ * @generated from message attribution.v1.GetSnapshotRequest
+ */
+export type GetSnapshotRequest = Message<"attribution.v1.GetSnapshotRequest"> & {
+  /**
+   * @generated from field: string snapshot_id = 1;
+   */
+  snapshotId: string;
+};
+
+/**
+ * Describes the message attribution.v1.GetSnapshotRequest.
+ * Use `create(GetSnapshotRequestSchema)` to create a new message.
+ */
+export const GetSnapshotRequestSchema: GenMessage<GetSnapshotRequest> = /*@__PURE__*/
+  messageDesc(file_attribution_v1_attribution, 27);
+
+/**
+ * @generated from message attribution.v1.GetSnapshotResponse
+ */
+export type GetSnapshotResponse = Message<"attribution.v1.GetSnapshotResponse"> & {
+  /**
+   * @generated from field: attribution.v1.AttributionSnapshot snapshot = 1;
+   */
+  snapshot?: AttributionSnapshot;
+};
+
+/**
+ * Describes the message attribution.v1.GetSnapshotResponse.
+ * Use `create(GetSnapshotResponseSchema)` to create a new message.
+ */
+export const GetSnapshotResponseSchema: GenMessage<GetSnapshotResponse> = /*@__PURE__*/
+  messageDesc(file_attribution_v1_attribution, 28);
+
+/**
+ * @generated from message attribution.v1.ListSnapshotsRequest
+ */
+export type ListSnapshotsRequest = Message<"attribution.v1.ListSnapshotsRequest"> & {
+  /**
+   * @generated from field: string organization_id = 1;
+   */
+  organizationId: string;
+
+  /**
+   * @generated from field: string workspace_id = 2;
+   */
+  workspaceId: string;
+
+  /**
+   * @generated from field: attribution.v1.AttributionSubjectKind subject_kind = 3;
+   */
+  subjectKind: AttributionSubjectKind;
+
+  /**
+   * @generated from field: string subject_id = 4;
+   */
+  subjectId: string;
+
+  /**
+   * @generated from field: attribution.v1.AttributionModel model = 5;
+   */
+  model: AttributionModel;
+
+  /**
+   * @generated from field: int32 limit = 6;
+   */
+  limit: number;
+
+  /**
+   * @generated from field: int32 offset = 7;
+   */
+  offset: number;
+};
+
+/**
+ * Describes the message attribution.v1.ListSnapshotsRequest.
+ * Use `create(ListSnapshotsRequestSchema)` to create a new message.
+ */
+export const ListSnapshotsRequestSchema: GenMessage<ListSnapshotsRequest> = /*@__PURE__*/
+  messageDesc(file_attribution_v1_attribution, 29);
+
+/**
+ * @generated from message attribution.v1.ListSnapshotsResponse
+ */
+export type ListSnapshotsResponse = Message<"attribution.v1.ListSnapshotsResponse"> & {
+  /**
+   * @generated from field: repeated attribution.v1.AttributionSnapshot snapshots = 1;
+   */
+  snapshots: AttributionSnapshot[];
+
+  /**
+   * @generated from field: bool has_more = 2;
+   */
+  hasMore: boolean;
+};
+
+/**
+ * Describes the message attribution.v1.ListSnapshotsResponse.
+ * Use `create(ListSnapshotsResponseSchema)` to create a new message.
+ */
+export const ListSnapshotsResponseSchema: GenMessage<ListSnapshotsResponse> = /*@__PURE__*/
+  messageDesc(file_attribution_v1_attribution, 30);
 
 /**
  * @generated from enum attribution.v1.AttributionModel
@@ -683,6 +1235,58 @@ export const ReportExportFormatSchema: GenEnum<ReportExportFormat> = /*@__PURE__
   enumDesc(file_attribution_v1_attribution, 1);
 
 /**
+ * @generated from enum attribution.v1.AttributionSubjectKind
+ */
+export enum AttributionSubjectKind {
+  /**
+   * @generated from enum value: ATTRIBUTION_SUBJECT_KIND_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: ATTRIBUTION_SUBJECT_KIND_DEAL = 1;
+   */
+  DEAL = 1,
+
+  /**
+   * @generated from enum value: ATTRIBUTION_SUBJECT_KIND_OBJECTIVE = 2;
+   */
+  OBJECTIVE = 2,
+}
+
+/**
+ * Describes the enum attribution.v1.AttributionSubjectKind.
+ */
+export const AttributionSubjectKindSchema: GenEnum<AttributionSubjectKind> = /*@__PURE__*/
+  enumDesc(file_attribution_v1_attribution, 2);
+
+/**
+ * @generated from enum attribution.v1.AttributionSignalType
+ */
+export enum AttributionSignalType {
+  /**
+   * @generated from enum value: ATTRIBUTION_SIGNAL_TYPE_UNSPECIFIED = 0;
+   */
+  UNSPECIFIED = 0,
+
+  /**
+   * @generated from enum value: ATTRIBUTION_SIGNAL_TYPE_OBJECTIVE_COMPLETED = 1;
+   */
+  OBJECTIVE_COMPLETED = 1,
+
+  /**
+   * @generated from enum value: ATTRIBUTION_SIGNAL_TYPE_TRACE_COMPLETED = 2;
+   */
+  TRACE_COMPLETED = 2,
+}
+
+/**
+ * Describes the enum attribution.v1.AttributionSignalType.
+ */
+export const AttributionSignalTypeSchema: GenEnum<AttributionSignalType> = /*@__PURE__*/
+  enumDesc(file_attribution_v1_attribution, 3);
+
+/**
  * AttributionService computes revenue attribution and ROI across traces and usage.
  *
  * @generated from service attribution.v1.AttributionService
@@ -719,6 +1323,30 @@ export const AttributionService: GenService<{
     methodKind: "unary";
     input: typeof ExportReportRequestSchema;
     output: typeof ExportReportResponseSchema;
+  },
+  /**
+   * @generated from rpc attribution.v1.AttributionService.RecordSignals
+   */
+  recordSignals: {
+    methodKind: "unary";
+    input: typeof RecordSignalsRequestSchema;
+    output: typeof RecordSignalsResponseSchema;
+  },
+  /**
+   * @generated from rpc attribution.v1.AttributionService.GetSnapshot
+   */
+  getSnapshot: {
+    methodKind: "unary";
+    input: typeof GetSnapshotRequestSchema;
+    output: typeof GetSnapshotResponseSchema;
+  },
+  /**
+   * @generated from rpc attribution.v1.AttributionService.ListSnapshots
+   */
+  listSnapshots: {
+    methodKind: "unary";
+    input: typeof ListSnapshotsRequestSchema;
+    output: typeof ListSnapshotsResponseSchema;
   },
 }> = /*@__PURE__*/
   serviceDesc(file_attribution_v1_attribution, 0);

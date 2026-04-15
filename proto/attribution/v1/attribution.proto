@@ -2,10 +2,10 @@ syntax = "proto3";
 
 package attribution.v1;
 
-option go_package = "github.com/evalops/proto/gen/go/attribution/v1;attributionv1";
-
 import "google/protobuf/timestamp.proto";
 import "traces/v1/traces.proto";
+
+option go_package = "github.com/evalops/proto/gen/go/attribution/v1;attributionv1";
 
 // AttributionService computes revenue attribution and ROI across traces and usage.
 service AttributionService {
@@ -13,6 +13,9 @@ service AttributionService {
   rpc GetReport(GetReportRequest) returns (GetReportResponse);
   rpc ListReports(ListReportsRequest) returns (ListReportsResponse);
   rpc ExportReport(ExportReportRequest) returns (ExportReportResponse);
+  rpc RecordSignals(RecordSignalsRequest) returns (RecordSignalsResponse);
+  rpc GetSnapshot(GetSnapshotRequest) returns (GetSnapshotResponse);
+  rpc ListSnapshots(ListSnapshotsRequest) returns (ListSnapshotsResponse);
 }
 
 enum AttributionModel {
@@ -28,6 +31,18 @@ enum ReportExportFormat {
   REPORT_EXPORT_FORMAT_CSV = 2;
 }
 
+enum AttributionSubjectKind {
+  ATTRIBUTION_SUBJECT_KIND_UNSPECIFIED = 0;
+  ATTRIBUTION_SUBJECT_KIND_DEAL = 1;
+  ATTRIBUTION_SUBJECT_KIND_OBJECTIVE = 2;
+}
+
+enum AttributionSignalType {
+  ATTRIBUTION_SIGNAL_TYPE_UNSPECIFIED = 0;
+  ATTRIBUTION_SIGNAL_TYPE_OBJECTIVE_COMPLETED = 1;
+  ATTRIBUTION_SIGNAL_TYPE_TRACE_COMPLETED = 2;
+}
+
 message AttributionQuery {
   string workspace_id = 1;
   string organization_id = 2;
@@ -36,6 +51,7 @@ message AttributionQuery {
   google.protobuf.Timestamp start_time = 5;
   google.protobuf.Timestamp end_time = 6;
   bool include_team_rollups = 7;
+  repeated string objective_ids = 8;
 }
 
 message DealContext {
@@ -49,6 +65,18 @@ message DealContext {
   string company_id = 8;
   google.protobuf.Timestamp created_at = 9;
   google.protobuf.Timestamp updated_at = 10;
+}
+
+message ObjectiveContext {
+  string objective_id = 1;
+  string agent_id = 2;
+  string surface = 3;
+  string title = 4;
+  string description = 5;
+  string state = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+  google.protobuf.Timestamp completed_at = 9;
 }
 
 message TraceTouchpoint {
@@ -90,6 +118,25 @@ message TeamSummary {
   repeated string agent_ids = 5;
 }
 
+message ObjectiveAgentSummary {
+  string agent_id = 1;
+  double attribution_weight = 2;
+  double attributed_outcome_count = 3;
+  double total_cost_usd = 4;
+  int32 trace_count = 5;
+  int32 usage_count = 6;
+  repeated string trace_ids = 7;
+  repeated string usage_record_ids = 8;
+}
+
+message ObjectiveTeamSummary {
+  string team_id = 1;
+  double attribution_weight = 2;
+  double attributed_outcome_count = 3;
+  double total_cost_usd = 4;
+  repeated string agent_ids = 5;
+}
+
 message DealAttribution {
   DealContext deal = 1;
   repeated TraceTouchpoint trace_touchpoints = 2;
@@ -102,6 +149,18 @@ message DealAttribution {
   double unattributed_cost_usd = 9;
 }
 
+message ObjectiveOutcomeAttribution {
+  ObjectiveContext objective = 1;
+  repeated TraceTouchpoint trace_touchpoints = 2;
+  repeated UsageTouchpoint usage_touchpoints = 3;
+  repeated ObjectiveAgentSummary agent_summaries = 4;
+  repeated ObjectiveTeamSummary team_summaries = 5;
+  double total_attributed_outcome_count = 6;
+  double total_attributed_cost_usd = 7;
+  double unattributed_outcome_count = 8;
+  double unattributed_cost_usd = 9;
+}
+
 message AttributionReport {
   string id = 1;
   AttributionQuery query = 2;
@@ -109,6 +168,9 @@ message AttributionReport {
   repeated DealAttribution deals = 4;
   repeated AgentSummary agent_summaries = 5;
   repeated TeamSummary team_summaries = 6;
+  repeated ObjectiveOutcomeAttribution objective_outcomes = 7;
+  repeated ObjectiveAgentSummary objective_agent_summaries = 8;
+  repeated ObjectiveTeamSummary objective_team_summaries = 9;
 }
 
 message AttributionReportSummary {
@@ -118,6 +180,46 @@ message AttributionReportSummary {
   int32 deal_count = 4;
   int32 agent_count = 5;
   int32 team_count = 6;
+  int32 objective_outcome_count = 7;
+}
+
+message AttributionSnapshot {
+  string id = 1;
+  string workspace_id = 2;
+  string organization_id = 3;
+  AttributionSubjectKind subject_kind = 4;
+  string subject_id = 5;
+  AttributionModel model = 6;
+  AttributionSignalType signal_type = 7;
+  string signal_id = 8;
+  google.protobuf.Timestamp window_start = 9;
+  google.protobuf.Timestamp window_end = 10;
+  google.protobuf.Timestamp recorded_at = 11;
+  oneof attribution {
+    DealAttribution deal = 12;
+    ObjectiveOutcomeAttribution objective_outcome = 13;
+  }
+}
+
+message ObjectiveCompletionSignal {
+  string workspace_id = 1;
+  string organization_id = 2;
+  string objective_id = 3;
+  google.protobuf.Timestamp completed_at = 4;
+}
+
+message TraceCompletionSignal {
+  string workspace_id = 1;
+  string organization_id = 2;
+  string trace_id = 3;
+  google.protobuf.Timestamp completed_at = 4;
+}
+
+message AttributionSignal {
+  oneof signal {
+    ObjectiveCompletionSignal objective_completion = 1;
+    TraceCompletionSignal trace_completion = 2;
+  }
 }
 
 message GenerateReportRequest {
@@ -158,4 +260,37 @@ message ExportReportResponse {
   bytes content = 1;
   string content_type = 2;
   string filename = 3;
+}
+
+message RecordSignalsRequest {
+  repeated AttributionSignal signals = 1;
+  repeated AttributionModel models = 2;
+  bool include_team_rollups = 3;
+}
+
+message RecordSignalsResponse {
+  repeated AttributionSnapshot snapshots = 1;
+}
+
+message GetSnapshotRequest {
+  string snapshot_id = 1;
+}
+
+message GetSnapshotResponse {
+  AttributionSnapshot snapshot = 1;
+}
+
+message ListSnapshotsRequest {
+  string organization_id = 1;
+  string workspace_id = 2;
+  AttributionSubjectKind subject_kind = 3;
+  string subject_id = 4;
+  AttributionModel model = 5;
+  int32 limit = 6;
+  int32 offset = 7;
+}
+
+message ListSnapshotsResponse {
+  repeated AttributionSnapshot snapshots = 1;
+  bool has_more = 2;
 }
