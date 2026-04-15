@@ -48,6 +48,12 @@ const (
 	// EntityServiceUnlinkEntityProcedure is the fully-qualified name of the EntityService's
 	// UnlinkEntity RPC.
 	EntityServiceUnlinkEntityProcedure = "/entities.v1.EntityService/UnlinkEntity"
+	// EntityServiceMergeEntitiesProcedure is the fully-qualified name of the EntityService's
+	// MergeEntities RPC.
+	EntityServiceMergeEntitiesProcedure = "/entities.v1.EntityService/MergeEntities"
+	// EntityServiceSplitEntityProcedure is the fully-qualified name of the EntityService's SplitEntity
+	// RPC.
+	EntityServiceSplitEntityProcedure = "/entities.v1.EntityService/SplitEntity"
 	// EntityServiceGetCorrelationGraphProcedure is the fully-qualified name of the EntityService's
 	// GetCorrelationGraph RPC.
 	EntityServiceGetCorrelationGraphProcedure = "/entities.v1.EntityService/GetCorrelationGraph"
@@ -64,6 +70,8 @@ type EntityServiceClient interface {
 	Search(context.Context, *connect.Request[v1.SearchRequest]) (*connect.Response[v1.SearchResponse], error)
 	LinkEntity(context.Context, *connect.Request[v1.LinkEntityRequest]) (*connect.Response[v1.LinkEntityResponse], error)
 	UnlinkEntity(context.Context, *connect.Request[v1.UnlinkEntityRequest]) (*connect.Response[v1.UnlinkEntityResponse], error)
+	MergeEntities(context.Context, *connect.Request[v1.MergeEntitiesRequest]) (*connect.Response[v1.MergeEntitiesResponse], error)
+	SplitEntity(context.Context, *connect.Request[v1.SplitEntityRequest]) (*connect.Response[v1.SplitEntityResponse], error)
 	GetCorrelationGraph(context.Context, *connect.Request[v1.GetCorrelationGraphRequest]) (*connect.Response[v1.GetCorrelationGraphResponse], error)
 	IngestResult(context.Context, *connect.Request[v1.IngestResultRequest]) (*connect.Response[v1.IngestResultResponse], error)
 }
@@ -115,6 +123,18 @@ func NewEntityServiceClient(httpClient connect.HTTPClient, baseURL string, opts 
 			connect.WithSchema(entityServiceMethods.ByName("UnlinkEntity")),
 			connect.WithClientOptions(opts...),
 		),
+		mergeEntities: connect.NewClient[v1.MergeEntitiesRequest, v1.MergeEntitiesResponse](
+			httpClient,
+			baseURL+EntityServiceMergeEntitiesProcedure,
+			connect.WithSchema(entityServiceMethods.ByName("MergeEntities")),
+			connect.WithClientOptions(opts...),
+		),
+		splitEntity: connect.NewClient[v1.SplitEntityRequest, v1.SplitEntityResponse](
+			httpClient,
+			baseURL+EntityServiceSplitEntityProcedure,
+			connect.WithSchema(entityServiceMethods.ByName("SplitEntity")),
+			connect.WithClientOptions(opts...),
+		),
 		getCorrelationGraph: connect.NewClient[v1.GetCorrelationGraphRequest, v1.GetCorrelationGraphResponse](
 			httpClient,
 			baseURL+EntityServiceGetCorrelationGraphProcedure,
@@ -138,6 +158,8 @@ type entityServiceClient struct {
 	search              *connect.Client[v1.SearchRequest, v1.SearchResponse]
 	linkEntity          *connect.Client[v1.LinkEntityRequest, v1.LinkEntityResponse]
 	unlinkEntity        *connect.Client[v1.UnlinkEntityRequest, v1.UnlinkEntityResponse]
+	mergeEntities       *connect.Client[v1.MergeEntitiesRequest, v1.MergeEntitiesResponse]
+	splitEntity         *connect.Client[v1.SplitEntityRequest, v1.SplitEntityResponse]
 	getCorrelationGraph *connect.Client[v1.GetCorrelationGraphRequest, v1.GetCorrelationGraphResponse]
 	ingestResult        *connect.Client[v1.IngestResultRequest, v1.IngestResultResponse]
 }
@@ -172,6 +194,16 @@ func (c *entityServiceClient) UnlinkEntity(ctx context.Context, req *connect.Req
 	return c.unlinkEntity.CallUnary(ctx, req)
 }
 
+// MergeEntities calls entities.v1.EntityService.MergeEntities.
+func (c *entityServiceClient) MergeEntities(ctx context.Context, req *connect.Request[v1.MergeEntitiesRequest]) (*connect.Response[v1.MergeEntitiesResponse], error) {
+	return c.mergeEntities.CallUnary(ctx, req)
+}
+
+// SplitEntity calls entities.v1.EntityService.SplitEntity.
+func (c *entityServiceClient) SplitEntity(ctx context.Context, req *connect.Request[v1.SplitEntityRequest]) (*connect.Response[v1.SplitEntityResponse], error) {
+	return c.splitEntity.CallUnary(ctx, req)
+}
+
 // GetCorrelationGraph calls entities.v1.EntityService.GetCorrelationGraph.
 func (c *entityServiceClient) GetCorrelationGraph(ctx context.Context, req *connect.Request[v1.GetCorrelationGraphRequest]) (*connect.Response[v1.GetCorrelationGraphResponse], error) {
 	return c.getCorrelationGraph.CallUnary(ctx, req)
@@ -190,6 +222,8 @@ type EntityServiceHandler interface {
 	Search(context.Context, *connect.Request[v1.SearchRequest]) (*connect.Response[v1.SearchResponse], error)
 	LinkEntity(context.Context, *connect.Request[v1.LinkEntityRequest]) (*connect.Response[v1.LinkEntityResponse], error)
 	UnlinkEntity(context.Context, *connect.Request[v1.UnlinkEntityRequest]) (*connect.Response[v1.UnlinkEntityResponse], error)
+	MergeEntities(context.Context, *connect.Request[v1.MergeEntitiesRequest]) (*connect.Response[v1.MergeEntitiesResponse], error)
+	SplitEntity(context.Context, *connect.Request[v1.SplitEntityRequest]) (*connect.Response[v1.SplitEntityResponse], error)
 	GetCorrelationGraph(context.Context, *connect.Request[v1.GetCorrelationGraphRequest]) (*connect.Response[v1.GetCorrelationGraphResponse], error)
 	IngestResult(context.Context, *connect.Request[v1.IngestResultRequest]) (*connect.Response[v1.IngestResultResponse], error)
 }
@@ -237,6 +271,18 @@ func NewEntityServiceHandler(svc EntityServiceHandler, opts ...connect.HandlerOp
 		connect.WithSchema(entityServiceMethods.ByName("UnlinkEntity")),
 		connect.WithHandlerOptions(opts...),
 	)
+	entityServiceMergeEntitiesHandler := connect.NewUnaryHandler(
+		EntityServiceMergeEntitiesProcedure,
+		svc.MergeEntities,
+		connect.WithSchema(entityServiceMethods.ByName("MergeEntities")),
+		connect.WithHandlerOptions(opts...),
+	)
+	entityServiceSplitEntityHandler := connect.NewUnaryHandler(
+		EntityServiceSplitEntityProcedure,
+		svc.SplitEntity,
+		connect.WithSchema(entityServiceMethods.ByName("SplitEntity")),
+		connect.WithHandlerOptions(opts...),
+	)
 	entityServiceGetCorrelationGraphHandler := connect.NewUnaryHandler(
 		EntityServiceGetCorrelationGraphProcedure,
 		svc.GetCorrelationGraph,
@@ -263,6 +309,10 @@ func NewEntityServiceHandler(svc EntityServiceHandler, opts ...connect.HandlerOp
 			entityServiceLinkEntityHandler.ServeHTTP(w, r)
 		case EntityServiceUnlinkEntityProcedure:
 			entityServiceUnlinkEntityHandler.ServeHTTP(w, r)
+		case EntityServiceMergeEntitiesProcedure:
+			entityServiceMergeEntitiesHandler.ServeHTTP(w, r)
+		case EntityServiceSplitEntityProcedure:
+			entityServiceSplitEntityHandler.ServeHTTP(w, r)
 		case EntityServiceGetCorrelationGraphProcedure:
 			entityServiceGetCorrelationGraphHandler.ServeHTTP(w, r)
 		case EntityServiceIngestResultProcedure:
@@ -298,6 +348,14 @@ func (UnimplementedEntityServiceHandler) LinkEntity(context.Context, *connect.Re
 
 func (UnimplementedEntityServiceHandler) UnlinkEntity(context.Context, *connect.Request[v1.UnlinkEntityRequest]) (*connect.Response[v1.UnlinkEntityResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("entities.v1.EntityService.UnlinkEntity is not implemented"))
+}
+
+func (UnimplementedEntityServiceHandler) MergeEntities(context.Context, *connect.Request[v1.MergeEntitiesRequest]) (*connect.Response[v1.MergeEntitiesResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("entities.v1.EntityService.MergeEntities is not implemented"))
+}
+
+func (UnimplementedEntityServiceHandler) SplitEntity(context.Context, *connect.Request[v1.SplitEntityRequest]) (*connect.Response[v1.SplitEntityResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("entities.v1.EntityService.SplitEntity is not implemented"))
 }
 
 func (UnimplementedEntityServiceHandler) GetCorrelationGraph(context.Context, *connect.Request[v1.GetCorrelationGraphRequest]) (*connect.Response[v1.GetCorrelationGraphResponse], error) {

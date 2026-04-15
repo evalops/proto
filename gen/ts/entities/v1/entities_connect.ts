@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CorrelateRequest, CorrelateResponse, GetCanonicalRequest, GetCanonicalResponse, GetCorrelationGraphRequest, GetCorrelationGraphResponse, IngestResultRequest, IngestResultResponse, LinkEntityRequest, LinkEntityResponse, ResolveRequest, ResolveResponse, SearchRequest, SearchResponse, UnlinkEntityRequest, UnlinkEntityResponse } from "./entities_pb.js";
+import { CorrelateRequest, CorrelateResponse, GetCanonicalRequest, GetCanonicalResponse, GetCorrelationGraphRequest, GetCorrelationGraphResponse, IngestResultRequest, IngestResultResponse, LinkEntityRequest, LinkEntityResponse, MergeEntitiesRequest, MergeEntitiesResponse, ResolveRequest, ResolveResponse, SearchRequest, SearchResponse, SplitEntityRequest, SplitEntityResponse, UnlinkEntityRequest, UnlinkEntityResponse } from "./entities_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -66,6 +66,24 @@ export const EntityService = {
       name: "UnlinkEntity",
       I: UnlinkEntityRequest,
       O: UnlinkEntityResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc entities.v1.EntityService.MergeEntities
+     */
+    mergeEntities: {
+      name: "MergeEntities",
+      I: MergeEntitiesRequest,
+      O: MergeEntitiesResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc entities.v1.EntityService.SplitEntity
+     */
+    splitEntity: {
+      name: "SplitEntity",
+      I: SplitEntityRequest,
+      O: SplitEntityResponse,
       kind: MethodKind.Unary,
     },
     /**

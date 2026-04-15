@@ -12,7 +12,7 @@ import type { Message } from "@bufbuild/protobuf";
  * Describes the file entities/v1/entities.proto.
  */
 export const file_entities_v1_entities: GenFile = /*@__PURE__*/
-  fileDesc("ChplbnRpdGllcy92MS9lbnRpdGllcy5wcm90bxILZW50aXRpZXMudjEigwIKD0Nhbm9uaWNhbEVudGl0eRIKCgJpZBgBIAEoCRIUCgx3b3Jrc3BhY2VfaWQYAiABKAkSLQoMcHJpbWFyeV90eXBlGAMgASgOMhcuZW50aXRpZXMudjEuRW50aXR5VHlwZRIUCgxwcmltYXJ5X25hbWUYBCABKAkSKQoEcmVmcxgFIAMoCzIbLmVudGl0aWVzLnYxLkNyb3NzU3lzdGVtUmVmEi4KCmNyZWF0ZWRfYXQYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIrQBCg5Dcm9zc1N5c3RlbVJlZhIWCg5pbnRlZ3JhdGlvbl9pZBgBIAEoCRIRCglyZWNvcmRfaWQYAiABKAkSLAoLZW50aXR5X3R5cGUYAyABKA4yFy5lbnRpdGllcy52MS5FbnRpdHlUeXBlEhQKDGRpc3BsYXlfbmFtZRgEIAEoCRIOCgZlbWFpbHMYBSADKAkSDwoHZG9tYWlucxgGIAMoCRISCgpjb25maWRlbmNlGAcgASgCImsKEENvcnJlbGF0aW9uTWF0Y2gSLAoKbWF0Y2hlZF9ieRgBIAEoDjIYLmVudGl0aWVzLnYxLk1hdGNoTWV0aG9kEhUKDW1hdGNoZWRfdmFsdWUYAiABKAkSEgoKY29uZmlkZW5jZRgDIAEoAiLDAQoQQ29ycmVsYXRpb25Hcm91cBIKCgJpZBgBIAEoCRIUCgxwcmltYXJ5X25hbWUYAiABKAkSLQoMcHJpbWFyeV90eXBlGAMgASgOMhcuZW50aXRpZXMudjEuRW50aXR5VHlwZRIuCghlbnRpdGllcxgEIAMoCzIcLmVudGl0aWVzLnYxLkNhbm9uaWNhbEVudGl0eRIuCgdtYXRjaGVzGAUgAygLMh0uZW50aXRpZXMudjEuQ29ycmVsYXRpb25NYXRjaCJRCg5SZXNvbHZlUmVxdWVzdBIUCgx3b3Jrc3BhY2VfaWQYASABKAkSFgoOaW50ZWdyYXRpb25faWQYAiABKAkSEQoJcmVjb3JkX2lkGAMgASgJIj8KD1Jlc29sdmVSZXNwb25zZRIsCgZlbnRpdHkYASABKAsyHC5lbnRpdGllcy52MS5DYW5vbmljYWxFbnRpdHkiXwoQQ29ycmVsYXRlUmVxdWVzdBIUCgx3b3Jrc3BhY2VfaWQYASABKAkSDgoGZW1haWxzGAIgAygJEg8KB2RvbWFpbnMYAyADKAkSFAoMY29tcGFueV9uYW1lGAQgASgJIkIKEUNvcnJlbGF0ZVJlc3BvbnNlEi0KBmdyb3VwcxgBIAMoCzIdLmVudGl0aWVzLnYxLkNvcnJlbGF0aW9uR3JvdXAiIQoTR2V0Q2Fub25pY2FsUmVxdWVzdBIKCgJpZBgBIAEoCSJEChRHZXRDYW5vbmljYWxSZXNwb25zZRIsCgZlbnRpdHkYASABKAsyHC5lbnRpdGllcy52MS5DYW5vbmljYWxFbnRpdHkigQEKDVNlYXJjaFJlcXVlc3QSFAoMd29ya3NwYWNlX2lkGAEgASgJEg0KBXF1ZXJ5GAIgASgJEiwKC2VudGl0eV90eXBlGAMgASgOMhcuZW50aXRpZXMudjEuRW50aXR5VHlwZRINCgVsaW1pdBgEIAEoBRIOCgZvZmZzZXQYBSABKAUiTwoOU2VhcmNoUmVzcG9uc2USLgoIZW50aXRpZXMYASADKAsyHC5lbnRpdGllcy52MS5DYW5vbmljYWxFbnRpdHkSDQoFdG90YWwYAiABKAUiWgoRTGlua0VudGl0eVJlcXVlc3QSGwoTY2Fub25pY2FsX2VudGl0eV9pZBgBIAEoCRIoCgNyZWYYAiABKAsyGy5lbnRpdGllcy52MS5Dcm9zc1N5c3RlbVJlZiJCChJMaW5rRW50aXR5UmVzcG9uc2USLAoGZW50aXR5GAEgASgLMhwuZW50aXRpZXMudjEuQ2Fub25pY2FsRW50aXR5Il0KE1VubGlua0VudGl0eVJlcXVlc3QSGwoTY2Fub25pY2FsX2VudGl0eV9pZBgBIAEoCRIWCg5pbnRlZ3JhdGlvbl9pZBgCIAEoCRIRCglyZWNvcmRfaWQYAyABKAkiRAoUVW5saW5rRW50aXR5UmVzcG9uc2USLAoGZW50aXR5GAEgASgLMhwuZW50aXRpZXMudjEuQ2Fub25pY2FsRW50aXR5IkgKGkdldENvcnJlbGF0aW9uR3JhcGhSZXF1ZXN0EhsKE2Nhbm9uaWNhbF9lbnRpdHlfaWQYASABKAkSDQoFZGVwdGgYAiABKAUiTAobR2V0Q29ycmVsYXRpb25HcmFwaFJlc3BvbnNlEi0KBmdyb3VwcxgBIAMoCzIdLmVudGl0aWVzLnYxLkNvcnJlbGF0aW9uR3JvdXAiuwEKE0luZ2VzdFJlc3VsdFJlcXVlc3QSFAoMd29ya3NwYWNlX2lkGAEgASgJEhYKDmludGVncmF0aW9uX2lkGAIgASgJEhEKCXJlY29yZF9pZBgDIAEoCRIsCgtlbnRpdHlfdHlwZRgEIAEoDjIXLmVudGl0aWVzLnYxLkVudGl0eVR5cGUSFAoMZGlzcGxheV9uYW1lGAUgASgJEg4KBmVtYWlscxgGIAMoCRIPCgdkb21haW5zGAcgAygJIlUKFEluZ2VzdFJlc3VsdFJlc3BvbnNlEiwKBmVudGl0eRgBIAEoCzIcLmVudGl0aWVzLnYxLkNhbm9uaWNhbEVudGl0eRIPCgdjcmVhdGVkGAIgASgIKsABCgpFbnRpdHlUeXBlEhsKF0VOVElUWV9UWVBFX1VOU1BFQ0lGSUVEEAASFwoTRU5USVRZX1RZUEVfQ09OVEFDVBABEhcKE0VOVElUWV9UWVBFX0NPTVBBTlkQAhIUChBFTlRJVFlfVFlQRV9ERUFMEAMSFgoSRU5USVRZX1RZUEVfVElDS0VUEAQSGAoURU5USVRZX1RZUEVfQ1VTVE9NRVIQBRIbChdFTlRJVFlfVFlQRV9PUFBPUlRVTklUWRAGKrIBCgtNYXRjaE1ldGhvZBIcChhNQVRDSF9NRVRIT0RfVU5TUEVDSUZJRUQQABIWChJNQVRDSF9NRVRIT0RfRU1BSUwQARIXChNNQVRDSF9NRVRIT0RfRE9NQUlOEAISHQoZTUFUQ0hfTUVUSE9EX0NPTVBBTllfTkFNRRADEhwKGE1BVENIX01FVEhPRF9SRUNPUkRfTkFNRRAEEhcKE01BVENIX01FVEhPRF9NQU5VQUwQBTKcBQoNRW50aXR5U2VydmljZRJECgdSZXNvbHZlEhsuZW50aXRpZXMudjEuUmVzb2x2ZVJlcXVlc3QaHC5lbnRpdGllcy52MS5SZXNvbHZlUmVzcG9uc2USSgoJQ29ycmVsYXRlEh0uZW50aXRpZXMudjEuQ29ycmVsYXRlUmVxdWVzdBoeLmVudGl0aWVzLnYxLkNvcnJlbGF0ZVJlc3BvbnNlElMKDEdldENhbm9uaWNhbBIgLmVudGl0aWVzLnYxLkdldENhbm9uaWNhbFJlcXVlc3QaIS5lbnRpdGllcy52MS5HZXRDYW5vbmljYWxSZXNwb25zZRJBCgZTZWFyY2gSGi5lbnRpdGllcy52MS5TZWFyY2hSZXF1ZXN0GhsuZW50aXRpZXMudjEuU2VhcmNoUmVzcG9uc2USTQoKTGlua0VudGl0eRIeLmVudGl0aWVzLnYxLkxpbmtFbnRpdHlSZXF1ZXN0Gh8uZW50aXRpZXMudjEuTGlua0VudGl0eVJlc3BvbnNlElMKDFVubGlua0VudGl0eRIgLmVudGl0aWVzLnYxLlVubGlua0VudGl0eVJlcXVlc3QaIS5lbnRpdGllcy52MS5VbmxpbmtFbnRpdHlSZXNwb25zZRJoChNHZXRDb3JyZWxhdGlvbkdyYXBoEicuZW50aXRpZXMudjEuR2V0Q29ycmVsYXRpb25HcmFwaFJlcXVlc3QaKC5lbnRpdGllcy52MS5HZXRDb3JyZWxhdGlvbkdyYXBoUmVzcG9uc2USUwoMSW5nZXN0UmVzdWx0EiAuZW50aXRpZXMudjEuSW5nZXN0UmVzdWx0UmVxdWVzdBohLmVudGl0aWVzLnYxLkluZ2VzdFJlc3VsdFJlc3BvbnNlQjhaNmdpdGh1Yi5jb20vZXZhbG9wcy9wcm90by9nZW4vZ28vZW50aXRpZXMvdjE7ZW50aXRpZXN2MWIGcHJvdG8z", [file_google_protobuf_timestamp]);
+  fileDesc("ChplbnRpdGllcy92MS9lbnRpdGllcy5wcm90bxILZW50aXRpZXMudjEigwIKD0Nhbm9uaWNhbEVudGl0eRIKCgJpZBgBIAEoCRIUCgx3b3Jrc3BhY2VfaWQYAiABKAkSLQoMcHJpbWFyeV90eXBlGAMgASgOMhcuZW50aXRpZXMudjEuRW50aXR5VHlwZRIUCgxwcmltYXJ5X25hbWUYBCABKAkSKQoEcmVmcxgFIAMoCzIbLmVudGl0aWVzLnYxLkNyb3NzU3lzdGVtUmVmEi4KCmNyZWF0ZWRfYXQYBiABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wEi4KCnVwZGF0ZWRfYXQYByABKAsyGi5nb29nbGUucHJvdG9idWYuVGltZXN0YW1wIrQBCg5Dcm9zc1N5c3RlbVJlZhIWCg5pbnRlZ3JhdGlvbl9pZBgBIAEoCRIRCglyZWNvcmRfaWQYAiABKAkSLAoLZW50aXR5X3R5cGUYAyABKA4yFy5lbnRpdGllcy52MS5FbnRpdHlUeXBlEhQKDGRpc3BsYXlfbmFtZRgEIAEoCRIOCgZlbWFpbHMYBSADKAkSDwoHZG9tYWlucxgGIAMoCRISCgpjb25maWRlbmNlGAcgASgCImsKEENvcnJlbGF0aW9uTWF0Y2gSLAoKbWF0Y2hlZF9ieRgBIAEoDjIYLmVudGl0aWVzLnYxLk1hdGNoTWV0aG9kEhUKDW1hdGNoZWRfdmFsdWUYAiABKAkSEgoKY29uZmlkZW5jZRgDIAEoAiLDAQoQQ29ycmVsYXRpb25Hcm91cBIKCgJpZBgBIAEoCRIUCgxwcmltYXJ5X25hbWUYAiABKAkSLQoMcHJpbWFyeV90eXBlGAMgASgOMhcuZW50aXRpZXMudjEuRW50aXR5VHlwZRIuCghlbnRpdGllcxgEIAMoCzIcLmVudGl0aWVzLnYxLkNhbm9uaWNhbEVudGl0eRIuCgdtYXRjaGVzGAUgAygLMh0uZW50aXRpZXMudjEuQ29ycmVsYXRpb25NYXRjaCJRCg5SZXNvbHZlUmVxdWVzdBIUCgx3b3Jrc3BhY2VfaWQYASABKAkSFgoOaW50ZWdyYXRpb25faWQYAiABKAkSEQoJcmVjb3JkX2lkGAMgASgJIj8KD1Jlc29sdmVSZXNwb25zZRIsCgZlbnRpdHkYASABKAsyHC5lbnRpdGllcy52MS5DYW5vbmljYWxFbnRpdHkiXwoQQ29ycmVsYXRlUmVxdWVzdBIUCgx3b3Jrc3BhY2VfaWQYASABKAkSDgoGZW1haWxzGAIgAygJEg8KB2RvbWFpbnMYAyADKAkSFAoMY29tcGFueV9uYW1lGAQgASgJIkIKEUNvcnJlbGF0ZVJlc3BvbnNlEi0KBmdyb3VwcxgBIAMoCzIdLmVudGl0aWVzLnYxLkNvcnJlbGF0aW9uR3JvdXAiIQoTR2V0Q2Fub25pY2FsUmVxdWVzdBIKCgJpZBgBIAEoCSJEChRHZXRDYW5vbmljYWxSZXNwb25zZRIsCgZlbnRpdHkYASABKAsyHC5lbnRpdGllcy52MS5DYW5vbmljYWxFbnRpdHkigQEKDVNlYXJjaFJlcXVlc3QSFAoMd29ya3NwYWNlX2lkGAEgASgJEg0KBXF1ZXJ5GAIgASgJEiwKC2VudGl0eV90eXBlGAMgASgOMhcuZW50aXRpZXMudjEuRW50aXR5VHlwZRINCgVsaW1pdBgEIAEoBRIOCgZvZmZzZXQYBSABKAUiTwoOU2VhcmNoUmVzcG9uc2USLgoIZW50aXRpZXMYASADKAsyHC5lbnRpdGllcy52MS5DYW5vbmljYWxFbnRpdHkSDQoFdG90YWwYAiABKAUiWgoRTGlua0VudGl0eVJlcXVlc3QSGwoTY2Fub25pY2FsX2VudGl0eV9pZBgBIAEoCRIoCgNyZWYYAiABKAsyGy5lbnRpdGllcy52MS5Dcm9zc1N5c3RlbVJlZiJCChJMaW5rRW50aXR5UmVzcG9uc2USLAoGZW50aXR5GAEgASgLMhwuZW50aXRpZXMudjEuQ2Fub25pY2FsRW50aXR5Il0KE1VubGlua0VudGl0eVJlcXVlc3QSGwoTY2Fub25pY2FsX2VudGl0eV9pZBgBIAEoCRIWCg5pbnRlZ3JhdGlvbl9pZBgCIAEoCRIRCglyZWNvcmRfaWQYAyABKAkiRAoUVW5saW5rRW50aXR5UmVzcG9uc2USLAoGZW50aXR5GAEgASgLMhwuZW50aXRpZXMudjEuQ2Fub25pY2FsRW50aXR5Ij4KEUNyb3NzU3lzdGVtUmVmS2V5EhYKDmludGVncmF0aW9uX2lkGAEgASgJEhEKCXJlY29yZF9pZBgCIAEoCSKkAQoUTWVyZ2VFbnRpdGllc1JlcXVlc3QSIgoadGFyZ2V0X2Nhbm9uaWNhbF9lbnRpdHlfaWQYASABKAkSIwobc291cmNlX2Nhbm9uaWNhbF9lbnRpdHlfaWRzGAIgAygJEi0KDHByaW1hcnlfdHlwZRgDIAEoDjIXLmVudGl0aWVzLnYxLkVudGl0eVR5cGUSFAoMcHJpbWFyeV9uYW1lGAQgASgJInwKFU1lcmdlRW50aXRpZXNSZXNwb25zZRIsCgZlbnRpdHkYASABKAsyHC5lbnRpdGllcy52MS5DYW5vbmljYWxFbnRpdHkSNQoPbWVyZ2VkX2VudGl0aWVzGAIgAygLMhwuZW50aXRpZXMudjEuQ2Fub25pY2FsRW50aXR5IqwBChJTcGxpdEVudGl0eVJlcXVlc3QSGwoTY2Fub25pY2FsX2VudGl0eV9pZBgBIAEoCRIsCgRyZWZzGAIgAygLMh4uZW50aXRpZXMudjEuQ3Jvc3NTeXN0ZW1SZWZLZXkSMQoQbmV3X3ByaW1hcnlfdHlwZRgDIAEoDjIXLmVudGl0aWVzLnYxLkVudGl0eVR5cGUSGAoQbmV3X3ByaW1hcnlfbmFtZRgEIAEoCSJ+ChNTcGxpdEVudGl0eVJlc3BvbnNlEjMKDXNvdXJjZV9lbnRpdHkYASABKAsyHC5lbnRpdGllcy52MS5DYW5vbmljYWxFbnRpdHkSMgoMc3BsaXRfZW50aXR5GAIgASgLMhwuZW50aXRpZXMudjEuQ2Fub25pY2FsRW50aXR5IkgKGkdldENvcnJlbGF0aW9uR3JhcGhSZXF1ZXN0EhsKE2Nhbm9uaWNhbF9lbnRpdHlfaWQYASABKAkSDQoFZGVwdGgYAiABKAUiTAobR2V0Q29ycmVsYXRpb25HcmFwaFJlc3BvbnNlEi0KBmdyb3VwcxgBIAMoCzIdLmVudGl0aWVzLnYxLkNvcnJlbGF0aW9uR3JvdXAiuwEKE0luZ2VzdFJlc3VsdFJlcXVlc3QSFAoMd29ya3NwYWNlX2lkGAEgASgJEhYKDmludGVncmF0aW9uX2lkGAIgASgJEhEKCXJlY29yZF9pZBgDIAEoCRIsCgtlbnRpdHlfdHlwZRgEIAEoDjIXLmVudGl0aWVzLnYxLkVudGl0eVR5cGUSFAoMZGlzcGxheV9uYW1lGAUgASgJEg4KBmVtYWlscxgGIAMoCRIPCgdkb21haW5zGAcgAygJIlUKFEluZ2VzdFJlc3VsdFJlc3BvbnNlEiwKBmVudGl0eRgBIAEoCzIcLmVudGl0aWVzLnYxLkNhbm9uaWNhbEVudGl0eRIPCgdjcmVhdGVkGAIgASgIKsABCgpFbnRpdHlUeXBlEhsKF0VOVElUWV9UWVBFX1VOU1BFQ0lGSUVEEAASFwoTRU5USVRZX1RZUEVfQ09OVEFDVBABEhcKE0VOVElUWV9UWVBFX0NPTVBBTlkQAhIUChBFTlRJVFlfVFlQRV9ERUFMEAMSFgoSRU5USVRZX1RZUEVfVElDS0VUEAQSGAoURU5USVRZX1RZUEVfQ1VTVE9NRVIQBRIbChdFTlRJVFlfVFlQRV9PUFBPUlRVTklUWRAGKrIBCgtNYXRjaE1ldGhvZBIcChhNQVRDSF9NRVRIT0RfVU5TUEVDSUZJRUQQABIWChJNQVRDSF9NRVRIT0RfRU1BSUwQARIXChNNQVRDSF9NRVRIT0RfRE9NQUlOEAISHQoZTUFUQ0hfTUVUSE9EX0NPTVBBTllfTkFNRRADEhwKGE1BVENIX01FVEhPRF9SRUNPUkRfTkFNRRAEEhcKE01BVENIX01FVEhPRF9NQU5VQUwQBTLGBgoNRW50aXR5U2VydmljZRJECgdSZXNvbHZlEhsuZW50aXRpZXMudjEuUmVzb2x2ZVJlcXVlc3QaHC5lbnRpdGllcy52MS5SZXNvbHZlUmVzcG9uc2USSgoJQ29ycmVsYXRlEh0uZW50aXRpZXMudjEuQ29ycmVsYXRlUmVxdWVzdBoeLmVudGl0aWVzLnYxLkNvcnJlbGF0ZVJlc3BvbnNlElMKDEdldENhbm9uaWNhbBIgLmVudGl0aWVzLnYxLkdldENhbm9uaWNhbFJlcXVlc3QaIS5lbnRpdGllcy52MS5HZXRDYW5vbmljYWxSZXNwb25zZRJBCgZTZWFyY2gSGi5lbnRpdGllcy52MS5TZWFyY2hSZXF1ZXN0GhsuZW50aXRpZXMudjEuU2VhcmNoUmVzcG9uc2USTQoKTGlua0VudGl0eRIeLmVudGl0aWVzLnYxLkxpbmtFbnRpdHlSZXF1ZXN0Gh8uZW50aXRpZXMudjEuTGlua0VudGl0eVJlc3BvbnNlElMKDFVubGlua0VudGl0eRIgLmVudGl0aWVzLnYxLlVubGlua0VudGl0eVJlcXVlc3QaIS5lbnRpdGllcy52MS5VbmxpbmtFbnRpdHlSZXNwb25zZRJWCg1NZXJnZUVudGl0aWVzEiEuZW50aXRpZXMudjEuTWVyZ2VFbnRpdGllc1JlcXVlc3QaIi5lbnRpdGllcy52MS5NZXJnZUVudGl0aWVzUmVzcG9uc2USUAoLU3BsaXRFbnRpdHkSHy5lbnRpdGllcy52MS5TcGxpdEVudGl0eVJlcXVlc3QaIC5lbnRpdGllcy52MS5TcGxpdEVudGl0eVJlc3BvbnNlEmgKE0dldENvcnJlbGF0aW9uR3JhcGgSJy5lbnRpdGllcy52MS5HZXRDb3JyZWxhdGlvbkdyYXBoUmVxdWVzdBooLmVudGl0aWVzLnYxLkdldENvcnJlbGF0aW9uR3JhcGhSZXNwb25zZRJTCgxJbmdlc3RSZXN1bHQSIC5lbnRpdGllcy52MS5Jbmdlc3RSZXN1bHRSZXF1ZXN0GiEuZW50aXRpZXMudjEuSW5nZXN0UmVzdWx0UmVzcG9uc2VCOFo2Z2l0aHViLmNvbS9ldmFsb3BzL3Byb3RvL2dlbi9nby9lbnRpdGllcy92MTtlbnRpdGllc3YxYgZwcm90bzM", [file_google_protobuf_timestamp]);
 
 /**
  * CanonicalEntity is the unified, deduplicated entity record.
@@ -450,6 +450,136 @@ export const UnlinkEntityResponseSchema: GenMessage<UnlinkEntityResponse> = /*@_
   messageDesc(file_entities_v1_entities, 15);
 
 /**
+ * @generated from message entities.v1.CrossSystemRefKey
+ */
+export type CrossSystemRefKey = Message<"entities.v1.CrossSystemRefKey"> & {
+  /**
+   * @generated from field: string integration_id = 1;
+   */
+  integrationId: string;
+
+  /**
+   * @generated from field: string record_id = 2;
+   */
+  recordId: string;
+};
+
+/**
+ * Describes the message entities.v1.CrossSystemRefKey.
+ * Use `create(CrossSystemRefKeySchema)` to create a new message.
+ */
+export const CrossSystemRefKeySchema: GenMessage<CrossSystemRefKey> = /*@__PURE__*/
+  messageDesc(file_entities_v1_entities, 16);
+
+/**
+ * @generated from message entities.v1.MergeEntitiesRequest
+ */
+export type MergeEntitiesRequest = Message<"entities.v1.MergeEntitiesRequest"> & {
+  /**
+   * @generated from field: string target_canonical_entity_id = 1;
+   */
+  targetCanonicalEntityId: string;
+
+  /**
+   * @generated from field: repeated string source_canonical_entity_ids = 2;
+   */
+  sourceCanonicalEntityIds: string[];
+
+  /**
+   * @generated from field: entities.v1.EntityType primary_type = 3;
+   */
+  primaryType: EntityType;
+
+  /**
+   * @generated from field: string primary_name = 4;
+   */
+  primaryName: string;
+};
+
+/**
+ * Describes the message entities.v1.MergeEntitiesRequest.
+ * Use `create(MergeEntitiesRequestSchema)` to create a new message.
+ */
+export const MergeEntitiesRequestSchema: GenMessage<MergeEntitiesRequest> = /*@__PURE__*/
+  messageDesc(file_entities_v1_entities, 17);
+
+/**
+ * @generated from message entities.v1.MergeEntitiesResponse
+ */
+export type MergeEntitiesResponse = Message<"entities.v1.MergeEntitiesResponse"> & {
+  /**
+   * @generated from field: entities.v1.CanonicalEntity entity = 1;
+   */
+  entity?: CanonicalEntity;
+
+  /**
+   * @generated from field: repeated entities.v1.CanonicalEntity merged_entities = 2;
+   */
+  mergedEntities: CanonicalEntity[];
+};
+
+/**
+ * Describes the message entities.v1.MergeEntitiesResponse.
+ * Use `create(MergeEntitiesResponseSchema)` to create a new message.
+ */
+export const MergeEntitiesResponseSchema: GenMessage<MergeEntitiesResponse> = /*@__PURE__*/
+  messageDesc(file_entities_v1_entities, 18);
+
+/**
+ * @generated from message entities.v1.SplitEntityRequest
+ */
+export type SplitEntityRequest = Message<"entities.v1.SplitEntityRequest"> & {
+  /**
+   * @generated from field: string canonical_entity_id = 1;
+   */
+  canonicalEntityId: string;
+
+  /**
+   * @generated from field: repeated entities.v1.CrossSystemRefKey refs = 2;
+   */
+  refs: CrossSystemRefKey[];
+
+  /**
+   * @generated from field: entities.v1.EntityType new_primary_type = 3;
+   */
+  newPrimaryType: EntityType;
+
+  /**
+   * @generated from field: string new_primary_name = 4;
+   */
+  newPrimaryName: string;
+};
+
+/**
+ * Describes the message entities.v1.SplitEntityRequest.
+ * Use `create(SplitEntityRequestSchema)` to create a new message.
+ */
+export const SplitEntityRequestSchema: GenMessage<SplitEntityRequest> = /*@__PURE__*/
+  messageDesc(file_entities_v1_entities, 19);
+
+/**
+ * @generated from message entities.v1.SplitEntityResponse
+ */
+export type SplitEntityResponse = Message<"entities.v1.SplitEntityResponse"> & {
+  /**
+   * @generated from field: entities.v1.CanonicalEntity source_entity = 1;
+   */
+  sourceEntity?: CanonicalEntity;
+
+  /**
+   * @generated from field: entities.v1.CanonicalEntity split_entity = 2;
+   */
+  splitEntity?: CanonicalEntity;
+};
+
+/**
+ * Describes the message entities.v1.SplitEntityResponse.
+ * Use `create(SplitEntityResponseSchema)` to create a new message.
+ */
+export const SplitEntityResponseSchema: GenMessage<SplitEntityResponse> = /*@__PURE__*/
+  messageDesc(file_entities_v1_entities, 20);
+
+/**
  * @generated from message entities.v1.GetCorrelationGraphRequest
  */
 export type GetCorrelationGraphRequest = Message<"entities.v1.GetCorrelationGraphRequest"> & {
@@ -469,7 +599,7 @@ export type GetCorrelationGraphRequest = Message<"entities.v1.GetCorrelationGrap
  * Use `create(GetCorrelationGraphRequestSchema)` to create a new message.
  */
 export const GetCorrelationGraphRequestSchema: GenMessage<GetCorrelationGraphRequest> = /*@__PURE__*/
-  messageDesc(file_entities_v1_entities, 16);
+  messageDesc(file_entities_v1_entities, 21);
 
 /**
  * @generated from message entities.v1.GetCorrelationGraphResponse
@@ -486,7 +616,7 @@ export type GetCorrelationGraphResponse = Message<"entities.v1.GetCorrelationGra
  * Use `create(GetCorrelationGraphResponseSchema)` to create a new message.
  */
 export const GetCorrelationGraphResponseSchema: GenMessage<GetCorrelationGraphResponse> = /*@__PURE__*/
-  messageDesc(file_entities_v1_entities, 17);
+  messageDesc(file_entities_v1_entities, 22);
 
 /**
  * @generated from message entities.v1.IngestResultRequest
@@ -533,7 +663,7 @@ export type IngestResultRequest = Message<"entities.v1.IngestResultRequest"> & {
  * Use `create(IngestResultRequestSchema)` to create a new message.
  */
 export const IngestResultRequestSchema: GenMessage<IngestResultRequest> = /*@__PURE__*/
-  messageDesc(file_entities_v1_entities, 18);
+  messageDesc(file_entities_v1_entities, 23);
 
 /**
  * @generated from message entities.v1.IngestResultResponse
@@ -555,7 +685,7 @@ export type IngestResultResponse = Message<"entities.v1.IngestResultResponse"> &
  * Use `create(IngestResultResponseSchema)` to create a new message.
  */
 export const IngestResultResponseSchema: GenMessage<IngestResultResponse> = /*@__PURE__*/
-  messageDesc(file_entities_v1_entities, 19);
+  messageDesc(file_entities_v1_entities, 24);
 
 /**
  * EntityType identifies the kind of entity across systems.
@@ -701,6 +831,22 @@ export const EntityService: GenService<{
     methodKind: "unary";
     input: typeof UnlinkEntityRequestSchema;
     output: typeof UnlinkEntityResponseSchema;
+  },
+  /**
+   * @generated from rpc entities.v1.EntityService.MergeEntities
+   */
+  mergeEntities: {
+    methodKind: "unary";
+    input: typeof MergeEntitiesRequestSchema;
+    output: typeof MergeEntitiesResponseSchema;
+  },
+  /**
+   * @generated from rpc entities.v1.EntityService.SplitEntity
+   */
+  splitEntity: {
+    methodKind: "unary";
+    input: typeof SplitEntityRequestSchema;
+    output: typeof SplitEntityResponseSchema;
   },
   /**
    * @generated from rpc entities.v1.EntityService.GetCorrelationGraph
