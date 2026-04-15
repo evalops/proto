@@ -54,6 +54,12 @@ const (
 	// NotificationServiceGetDeliveryStatusProcedure is the fully-qualified name of the
 	// NotificationService's GetDeliveryStatus RPC.
 	NotificationServiceGetDeliveryStatusProcedure = "/notifications.v1.NotificationService/GetDeliveryStatus"
+	// NotificationServiceUpsertTemplateProcedure is the fully-qualified name of the
+	// NotificationService's UpsertTemplate RPC.
+	NotificationServiceUpsertTemplateProcedure = "/notifications.v1.NotificationService/UpsertTemplate"
+	// NotificationServiceListTemplatesProcedure is the fully-qualified name of the
+	// NotificationService's ListTemplates RPC.
+	NotificationServiceListTemplatesProcedure = "/notifications.v1.NotificationService/ListTemplates"
 )
 
 // NotificationServiceClient is a client for the notifications.v1.NotificationService service.
@@ -65,6 +71,8 @@ type NotificationServiceClient interface {
 	ListHistory(context.Context, *connect.Request[v1.ListHistoryRequest]) (*connect.Response[v1.ListHistoryResponse], error)
 	RegisterChannel(context.Context, *connect.Request[v1.RegisterChannelRequest]) (*connect.Response[v1.RegisterChannelResponse], error)
 	GetDeliveryStatus(context.Context, *connect.Request[v1.GetDeliveryStatusRequest]) (*connect.Response[v1.GetDeliveryStatusResponse], error)
+	UpsertTemplate(context.Context, *connect.Request[v1.UpsertTemplateRequest]) (*connect.Response[v1.UpsertTemplateResponse], error)
+	ListTemplates(context.Context, *connect.Request[v1.ListTemplatesRequest]) (*connect.Response[v1.ListTemplatesResponse], error)
 }
 
 // NewNotificationServiceClient constructs a client for the notifications.v1.NotificationService
@@ -120,6 +128,18 @@ func NewNotificationServiceClient(httpClient connect.HTTPClient, baseURL string,
 			connect.WithSchema(notificationServiceMethods.ByName("GetDeliveryStatus")),
 			connect.WithClientOptions(opts...),
 		),
+		upsertTemplate: connect.NewClient[v1.UpsertTemplateRequest, v1.UpsertTemplateResponse](
+			httpClient,
+			baseURL+NotificationServiceUpsertTemplateProcedure,
+			connect.WithSchema(notificationServiceMethods.ByName("UpsertTemplate")),
+			connect.WithClientOptions(opts...),
+		),
+		listTemplates: connect.NewClient[v1.ListTemplatesRequest, v1.ListTemplatesResponse](
+			httpClient,
+			baseURL+NotificationServiceListTemplatesProcedure,
+			connect.WithSchema(notificationServiceMethods.ByName("ListTemplates")),
+			connect.WithClientOptions(opts...),
+		),
 	}
 }
 
@@ -132,6 +152,8 @@ type notificationServiceClient struct {
 	listHistory       *connect.Client[v1.ListHistoryRequest, v1.ListHistoryResponse]
 	registerChannel   *connect.Client[v1.RegisterChannelRequest, v1.RegisterChannelResponse]
 	getDeliveryStatus *connect.Client[v1.GetDeliveryStatusRequest, v1.GetDeliveryStatusResponse]
+	upsertTemplate    *connect.Client[v1.UpsertTemplateRequest, v1.UpsertTemplateResponse]
+	listTemplates     *connect.Client[v1.ListTemplatesRequest, v1.ListTemplatesResponse]
 }
 
 // Send calls notifications.v1.NotificationService.Send.
@@ -169,6 +191,16 @@ func (c *notificationServiceClient) GetDeliveryStatus(ctx context.Context, req *
 	return c.getDeliveryStatus.CallUnary(ctx, req)
 }
 
+// UpsertTemplate calls notifications.v1.NotificationService.UpsertTemplate.
+func (c *notificationServiceClient) UpsertTemplate(ctx context.Context, req *connect.Request[v1.UpsertTemplateRequest]) (*connect.Response[v1.UpsertTemplateResponse], error) {
+	return c.upsertTemplate.CallUnary(ctx, req)
+}
+
+// ListTemplates calls notifications.v1.NotificationService.ListTemplates.
+func (c *notificationServiceClient) ListTemplates(ctx context.Context, req *connect.Request[v1.ListTemplatesRequest]) (*connect.Response[v1.ListTemplatesResponse], error) {
+	return c.listTemplates.CallUnary(ctx, req)
+}
+
 // NotificationServiceHandler is an implementation of the notifications.v1.NotificationService
 // service.
 type NotificationServiceHandler interface {
@@ -179,6 +211,8 @@ type NotificationServiceHandler interface {
 	ListHistory(context.Context, *connect.Request[v1.ListHistoryRequest]) (*connect.Response[v1.ListHistoryResponse], error)
 	RegisterChannel(context.Context, *connect.Request[v1.RegisterChannelRequest]) (*connect.Response[v1.RegisterChannelResponse], error)
 	GetDeliveryStatus(context.Context, *connect.Request[v1.GetDeliveryStatusRequest]) (*connect.Response[v1.GetDeliveryStatusResponse], error)
+	UpsertTemplate(context.Context, *connect.Request[v1.UpsertTemplateRequest]) (*connect.Response[v1.UpsertTemplateResponse], error)
+	ListTemplates(context.Context, *connect.Request[v1.ListTemplatesRequest]) (*connect.Response[v1.ListTemplatesResponse], error)
 }
 
 // NewNotificationServiceHandler builds an HTTP handler from the service implementation. It returns
@@ -230,6 +264,18 @@ func NewNotificationServiceHandler(svc NotificationServiceHandler, opts ...conne
 		connect.WithSchema(notificationServiceMethods.ByName("GetDeliveryStatus")),
 		connect.WithHandlerOptions(opts...),
 	)
+	notificationServiceUpsertTemplateHandler := connect.NewUnaryHandler(
+		NotificationServiceUpsertTemplateProcedure,
+		svc.UpsertTemplate,
+		connect.WithSchema(notificationServiceMethods.ByName("UpsertTemplate")),
+		connect.WithHandlerOptions(opts...),
+	)
+	notificationServiceListTemplatesHandler := connect.NewUnaryHandler(
+		NotificationServiceListTemplatesProcedure,
+		svc.ListTemplates,
+		connect.WithSchema(notificationServiceMethods.ByName("ListTemplates")),
+		connect.WithHandlerOptions(opts...),
+	)
 	return "/notifications.v1.NotificationService/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		switch r.URL.Path {
 		case NotificationServiceSendProcedure:
@@ -246,6 +292,10 @@ func NewNotificationServiceHandler(svc NotificationServiceHandler, opts ...conne
 			notificationServiceRegisterChannelHandler.ServeHTTP(w, r)
 		case NotificationServiceGetDeliveryStatusProcedure:
 			notificationServiceGetDeliveryStatusHandler.ServeHTTP(w, r)
+		case NotificationServiceUpsertTemplateProcedure:
+			notificationServiceUpsertTemplateHandler.ServeHTTP(w, r)
+		case NotificationServiceListTemplatesProcedure:
+			notificationServiceListTemplatesHandler.ServeHTTP(w, r)
 		default:
 			http.NotFound(w, r)
 		}
@@ -281,4 +331,12 @@ func (UnimplementedNotificationServiceHandler) RegisterChannel(context.Context, 
 
 func (UnimplementedNotificationServiceHandler) GetDeliveryStatus(context.Context, *connect.Request[v1.GetDeliveryStatusRequest]) (*connect.Response[v1.GetDeliveryStatusResponse], error) {
 	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("notifications.v1.NotificationService.GetDeliveryStatus is not implemented"))
+}
+
+func (UnimplementedNotificationServiceHandler) UpsertTemplate(context.Context, *connect.Request[v1.UpsertTemplateRequest]) (*connect.Response[v1.UpsertTemplateResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("notifications.v1.NotificationService.UpsertTemplate is not implemented"))
+}
+
+func (UnimplementedNotificationServiceHandler) ListTemplates(context.Context, *connect.Request[v1.ListTemplatesRequest]) (*connect.Response[v1.ListTemplatesResponse], error) {
+	return nil, connect.NewError(connect.CodeUnimplemented, errors.New("notifications.v1.NotificationService.ListTemplates is not implemented"))
 }

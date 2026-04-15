@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetDeliveryStatusRequest, GetDeliveryStatusResponse, GetPreferencesRequest, GetPreferencesResponse, ListHistoryRequest, ListHistoryResponse, RegisterChannelRequest, RegisterChannelResponse, SendBatchRequest, SendBatchResponse, SendRequest, SendResponse, SetPreferencesRequest, SetPreferencesResponse } from "./notifications_pb.js";
+import { GetDeliveryStatusRequest, GetDeliveryStatusResponse, GetPreferencesRequest, GetPreferencesResponse, ListHistoryRequest, ListHistoryResponse, ListTemplatesRequest, ListTemplatesResponse, RegisterChannelRequest, RegisterChannelResponse, SendBatchRequest, SendBatchResponse, SendRequest, SendResponse, SetPreferencesRequest, SetPreferencesResponse, UpsertTemplateRequest, UpsertTemplateResponse } from "./notifications_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -75,6 +75,24 @@ export const NotificationService = {
       name: "GetDeliveryStatus",
       I: GetDeliveryStatusRequest,
       O: GetDeliveryStatusResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc notifications.v1.NotificationService.UpsertTemplate
+     */
+    upsertTemplate: {
+      name: "UpsertTemplate",
+      I: UpsertTemplateRequest,
+      O: UpsertTemplateResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc notifications.v1.NotificationService.ListTemplates
+     */
+    listTemplates: {
+      name: "ListTemplates",
+      I: ListTemplatesRequest,
+      O: ListTemplatesResponse,
       kind: MethodKind.Unary,
     },
   }

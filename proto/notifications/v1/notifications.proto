@@ -2,9 +2,9 @@ syntax = "proto3";
 
 package notifications.v1;
 
-option go_package = "github.com/evalops/proto/gen/go/notifications/v1;notificationsv1";
-
 import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/evalops/proto/gen/go/notifications/v1;notificationsv1";
 
 // NotificationService manages delivery of notifications across channels.
 service NotificationService {
@@ -15,6 +15,8 @@ service NotificationService {
   rpc ListHistory(ListHistoryRequest) returns (ListHistoryResponse);
   rpc RegisterChannel(RegisterChannelRequest) returns (RegisterChannelResponse);
   rpc GetDeliveryStatus(GetDeliveryStatusRequest) returns (GetDeliveryStatusResponse);
+  rpc UpsertTemplate(UpsertTemplateRequest) returns (UpsertTemplateResponse);
+  rpc ListTemplates(ListTemplatesRequest) returns (ListTemplatesResponse);
 }
 
 // DeliveryChannel identifies the notification delivery channel.
@@ -33,6 +35,19 @@ enum Priority {
   PRIORITY_NORMAL = 2;
   PRIORITY_HIGH = 3;
   PRIORITY_URGENT = 4;
+}
+
+// NotificationCategory groups notifications for routing and template selection.
+enum NotificationCategory {
+  NOTIFICATION_CATEGORY_UNSPECIFIED = 0;
+  NOTIFICATION_CATEGORY_APPROVAL_REQUEST = 1;
+  NOTIFICATION_CATEGORY_BUDGET_ALERT = 2;
+  NOTIFICATION_CATEGORY_PII_DETECTION = 3;
+  NOTIFICATION_CATEGORY_INCIDENT = 4;
+  NOTIFICATION_CATEGORY_REPORT = 5;
+  NOTIFICATION_CATEGORY_INTEGRATION = 6;
+  NOTIFICATION_CATEGORY_DIGEST = 7;
+  NOTIFICATION_CATEGORY_GENERAL = 8;
 }
 
 // DeliveryStatus describes the delivery state of a notification.
@@ -58,6 +73,8 @@ message Notification {
   DeliveryStatus delivery_status = 9;
   google.protobuf.Timestamp sent_at = 10;
   google.protobuf.Timestamp delivered_at = 11;
+  NotificationCategory category = 12;
+  string template_name = 13;
 }
 
 // EscalationRule defines automatic escalation when a notification is unacknowledged.
@@ -74,6 +91,27 @@ message NotificationPreferences {
   string quiet_hours_start = 4;
   string quiet_hours_end = 5;
   repeated EscalationRule escalation_rules = 6;
+  repeated CategoryChannelPreference category_channels = 7;
+}
+
+// CategoryChannelPreference overrides delivery routing for a specific category.
+message CategoryChannelPreference {
+  NotificationCategory category = 1;
+  DeliveryChannel channel = 2;
+}
+
+// NotificationTemplate defines a reusable notification subject/body template.
+message NotificationTemplate {
+  string id = 1;
+  string workspace_id = 2;
+  string name = 3;
+  NotificationCategory category = 4;
+  DeliveryChannel channel = 5;
+  string subject_template = 6;
+  string body_template = 7;
+  repeated string required_variables = 8;
+  bool built_in = 9;
+  google.protobuf.Timestamp updated_at = 10;
 }
 
 message SendRequest {
@@ -86,6 +124,9 @@ message SendRequest {
   string subject = 5;
   string body = 6;
   string metadata_json = 7;
+  NotificationCategory category = 8;
+  string template_name = 9;
+  string template_variables_json = 10;
 }
 
 message SendResponse {
@@ -148,4 +189,23 @@ message GetDeliveryStatusResponse {
   DeliveryStatus status = 1;
   google.protobuf.Timestamp last_updated_at = 2;
   string error_message = 3;
+}
+
+message UpsertTemplateRequest {
+  NotificationTemplate template = 1;
+}
+
+message UpsertTemplateResponse {
+  NotificationTemplate template = 1;
+}
+
+message ListTemplatesRequest {
+  string workspace_id = 1;
+  NotificationCategory category = 2;
+  DeliveryChannel channel = 3;
+  bool include_built_in = 4;
+}
+
+message ListTemplatesResponse {
+  repeated NotificationTemplate templates = 1;
 }
