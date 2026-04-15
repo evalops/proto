@@ -14,6 +14,10 @@
       "types": "./gen/dist/agents/v1/agents_pb.d.ts",
       "import": "./gen/dist/agents/v1/agents_pb.js"
     },
+    "./attribution/v1/attribution_pb": {
+      "types": "./gen/dist/attribution/v1/attribution_pb.d.ts",
+      "import": "./gen/dist/attribution/v1/attribution_pb.js"
+    },
     "./approvals/v1/approvals_pb": {
       "types": "./gen/dist/approvals/v1/approvals_pb.d.ts",
       "import": "./gen/dist/approvals/v1/approvals_pb.js"
