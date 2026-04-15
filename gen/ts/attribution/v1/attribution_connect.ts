@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { ExportReportRequest, ExportReportResponse, GenerateReportRequest, GenerateReportResponse, GetReportRequest, GetReportResponse } from "./attribution_pb.js";
+import { ExportReportRequest, ExportReportResponse, GenerateReportRequest, GenerateReportResponse, GetReportRequest, GetReportResponse, ListReportsRequest, ListReportsResponse } from "./attribution_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -30,6 +30,15 @@ export const AttributionService = {
       name: "GetReport",
       I: GetReportRequest,
       O: GetReportResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc attribution.v1.AttributionService.ListReports
+     */
+    listReports: {
+      name: "ListReports",
+      I: ListReportsRequest,
+      O: ListReportsResponse,
       kind: MethodKind.Unary,
     },
     /**

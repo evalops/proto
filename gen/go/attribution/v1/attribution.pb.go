@@ -884,6 +884,90 @@ func (x *AttributionReport) GetTeamSummaries() []*TeamSummary {
 	return nil
 }
 
+type AttributionReportSummary struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Query         *AttributionQuery      `protobuf:"bytes,2,opt,name=query,proto3" json:"query,omitempty"`
+	GeneratedAt   *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=generated_at,json=generatedAt,proto3" json:"generated_at,omitempty"`
+	DealCount     int32                  `protobuf:"varint,4,opt,name=deal_count,json=dealCount,proto3" json:"deal_count,omitempty"`
+	AgentCount    int32                  `protobuf:"varint,5,opt,name=agent_count,json=agentCount,proto3" json:"agent_count,omitempty"`
+	TeamCount     int32                  `protobuf:"varint,6,opt,name=team_count,json=teamCount,proto3" json:"team_count,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AttributionReportSummary) Reset() {
+	*x = AttributionReportSummary{}
+	mi := &file_attribution_v1_attribution_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AttributionReportSummary) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AttributionReportSummary) ProtoMessage() {}
+
+func (x *AttributionReportSummary) ProtoReflect() protoreflect.Message {
+	mi := &file_attribution_v1_attribution_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AttributionReportSummary.ProtoReflect.Descriptor instead.
+func (*AttributionReportSummary) Descriptor() ([]byte, []int) {
+	return file_attribution_v1_attribution_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *AttributionReportSummary) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *AttributionReportSummary) GetQuery() *AttributionQuery {
+	if x != nil {
+		return x.Query
+	}
+	return nil
+}
+
+func (x *AttributionReportSummary) GetGeneratedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.GeneratedAt
+	}
+	return nil
+}
+
+func (x *AttributionReportSummary) GetDealCount() int32 {
+	if x != nil {
+		return x.DealCount
+	}
+	return 0
+}
+
+func (x *AttributionReportSummary) GetAgentCount() int32 {
+	if x != nil {
+		return x.AgentCount
+	}
+	return 0
+}
+
+func (x *AttributionReportSummary) GetTeamCount() int32 {
+	if x != nil {
+		return x.TeamCount
+	}
+	return 0
+}
+
 type GenerateReportRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Query         *AttributionQuery      `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
@@ -893,7 +977,7 @@ type GenerateReportRequest struct {
 
 func (x *GenerateReportRequest) Reset() {
 	*x = GenerateReportRequest{}
-	mi := &file_attribution_v1_attribution_proto_msgTypes[8]
+	mi := &file_attribution_v1_attribution_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -905,7 +989,7 @@ func (x *GenerateReportRequest) String() string {
 func (*GenerateReportRequest) ProtoMessage() {}
 
 func (x *GenerateReportRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_attribution_v1_attribution_proto_msgTypes[8]
+	mi := &file_attribution_v1_attribution_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -918,7 +1002,7 @@ func (x *GenerateReportRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenerateReportRequest.ProtoReflect.Descriptor instead.
 func (*GenerateReportRequest) Descriptor() ([]byte, []int) {
-	return file_attribution_v1_attribution_proto_rawDescGZIP(), []int{8}
+	return file_attribution_v1_attribution_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GenerateReportRequest) GetQuery() *AttributionQuery {
@@ -937,7 +1021,7 @@ type GenerateReportResponse struct {
 
 func (x *GenerateReportResponse) Reset() {
 	*x = GenerateReportResponse{}
-	mi := &file_attribution_v1_attribution_proto_msgTypes[9]
+	mi := &file_attribution_v1_attribution_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -949,7 +1033,7 @@ func (x *GenerateReportResponse) String() string {
 func (*GenerateReportResponse) ProtoMessage() {}
 
 func (x *GenerateReportResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_attribution_v1_attribution_proto_msgTypes[9]
+	mi := &file_attribution_v1_attribution_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -962,7 +1046,7 @@ func (x *GenerateReportResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenerateReportResponse.ProtoReflect.Descriptor instead.
 func (*GenerateReportResponse) Descriptor() ([]byte, []int) {
-	return file_attribution_v1_attribution_proto_rawDescGZIP(), []int{9}
+	return file_attribution_v1_attribution_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GenerateReportResponse) GetReport() *AttributionReport {
@@ -981,7 +1065,7 @@ type GetReportRequest struct {
 
 func (x *GetReportRequest) Reset() {
 	*x = GetReportRequest{}
-	mi := &file_attribution_v1_attribution_proto_msgTypes[10]
+	mi := &file_attribution_v1_attribution_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -993,7 +1077,7 @@ func (x *GetReportRequest) String() string {
 func (*GetReportRequest) ProtoMessage() {}
 
 func (x *GetReportRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_attribution_v1_attribution_proto_msgTypes[10]
+	mi := &file_attribution_v1_attribution_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1006,7 +1090,7 @@ func (x *GetReportRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetReportRequest.ProtoReflect.Descriptor instead.
 func (*GetReportRequest) Descriptor() ([]byte, []int) {
-	return file_attribution_v1_attribution_proto_rawDescGZIP(), []int{10}
+	return file_attribution_v1_attribution_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetReportRequest) GetReportId() string {
@@ -1025,7 +1109,7 @@ type GetReportResponse struct {
 
 func (x *GetReportResponse) Reset() {
 	*x = GetReportResponse{}
-	mi := &file_attribution_v1_attribution_proto_msgTypes[11]
+	mi := &file_attribution_v1_attribution_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1037,7 +1121,7 @@ func (x *GetReportResponse) String() string {
 func (*GetReportResponse) ProtoMessage() {}
 
 func (x *GetReportResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_attribution_v1_attribution_proto_msgTypes[11]
+	mi := &file_attribution_v1_attribution_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1050,7 +1134,7 @@ func (x *GetReportResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetReportResponse.ProtoReflect.Descriptor instead.
 func (*GetReportResponse) Descriptor() ([]byte, []int) {
-	return file_attribution_v1_attribution_proto_rawDescGZIP(), []int{11}
+	return file_attribution_v1_attribution_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetReportResponse) GetReport() *AttributionReport {
@@ -1058,6 +1142,134 @@ func (x *GetReportResponse) GetReport() *AttributionReport {
 		return x.Report
 	}
 	return nil
+}
+
+type ListReportsRequest struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OrganizationId string                 `protobuf:"bytes,1,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
+	WorkspaceId    string                 `protobuf:"bytes,2,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
+	Model          AttributionModel       `protobuf:"varint,3,opt,name=model,proto3,enum=attribution.v1.AttributionModel" json:"model,omitempty"`
+	Limit          int32                  `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset         int32                  `protobuf:"varint,5,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ListReportsRequest) Reset() {
+	*x = ListReportsRequest{}
+	mi := &file_attribution_v1_attribution_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListReportsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListReportsRequest) ProtoMessage() {}
+
+func (x *ListReportsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_attribution_v1_attribution_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListReportsRequest.ProtoReflect.Descriptor instead.
+func (*ListReportsRequest) Descriptor() ([]byte, []int) {
+	return file_attribution_v1_attribution_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *ListReportsRequest) GetOrganizationId() string {
+	if x != nil {
+		return x.OrganizationId
+	}
+	return ""
+}
+
+func (x *ListReportsRequest) GetWorkspaceId() string {
+	if x != nil {
+		return x.WorkspaceId
+	}
+	return ""
+}
+
+func (x *ListReportsRequest) GetModel() AttributionModel {
+	if x != nil {
+		return x.Model
+	}
+	return AttributionModel_ATTRIBUTION_MODEL_UNSPECIFIED
+}
+
+func (x *ListReportsRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *ListReportsRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+type ListReportsResponse struct {
+	state         protoimpl.MessageState      `protogen:"open.v1"`
+	Reports       []*AttributionReportSummary `protobuf:"bytes,1,rep,name=reports,proto3" json:"reports,omitempty"`
+	HasMore       bool                        `protobuf:"varint,2,opt,name=has_more,json=hasMore,proto3" json:"has_more,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListReportsResponse) Reset() {
+	*x = ListReportsResponse{}
+	mi := &file_attribution_v1_attribution_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListReportsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListReportsResponse) ProtoMessage() {}
+
+func (x *ListReportsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_attribution_v1_attribution_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListReportsResponse.ProtoReflect.Descriptor instead.
+func (*ListReportsResponse) Descriptor() ([]byte, []int) {
+	return file_attribution_v1_attribution_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *ListReportsResponse) GetReports() []*AttributionReportSummary {
+	if x != nil {
+		return x.Reports
+	}
+	return nil
+}
+
+func (x *ListReportsResponse) GetHasMore() bool {
+	if x != nil {
+		return x.HasMore
+	}
+	return false
 }
 
 type ExportReportRequest struct {
@@ -1070,7 +1282,7 @@ type ExportReportRequest struct {
 
 func (x *ExportReportRequest) Reset() {
 	*x = ExportReportRequest{}
-	mi := &file_attribution_v1_attribution_proto_msgTypes[12]
+	mi := &file_attribution_v1_attribution_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1082,7 +1294,7 @@ func (x *ExportReportRequest) String() string {
 func (*ExportReportRequest) ProtoMessage() {}
 
 func (x *ExportReportRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_attribution_v1_attribution_proto_msgTypes[12]
+	mi := &file_attribution_v1_attribution_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1095,7 +1307,7 @@ func (x *ExportReportRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExportReportRequest.ProtoReflect.Descriptor instead.
 func (*ExportReportRequest) Descriptor() ([]byte, []int) {
-	return file_attribution_v1_attribution_proto_rawDescGZIP(), []int{12}
+	return file_attribution_v1_attribution_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *ExportReportRequest) GetQuery() *AttributionQuery {
@@ -1123,7 +1335,7 @@ type ExportReportResponse struct {
 
 func (x *ExportReportResponse) Reset() {
 	*x = ExportReportResponse{}
-	mi := &file_attribution_v1_attribution_proto_msgTypes[13]
+	mi := &file_attribution_v1_attribution_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1135,7 +1347,7 @@ func (x *ExportReportResponse) String() string {
 func (*ExportReportResponse) ProtoMessage() {}
 
 func (x *ExportReportResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_attribution_v1_attribution_proto_msgTypes[13]
+	mi := &file_attribution_v1_attribution_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1148,7 +1360,7 @@ func (x *ExportReportResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExportReportResponse.ProtoReflect.Descriptor instead.
 func (*ExportReportResponse) Descriptor() ([]byte, []int) {
-	return file_attribution_v1_attribution_proto_rawDescGZIP(), []int{13}
+	return file_attribution_v1_attribution_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ExportReportResponse) GetContent() []byte {
@@ -1254,7 +1466,17 @@ const file_attribution_v1_attribution_proto_rawDesc = "" +
 	"\fgenerated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\vgeneratedAt\x125\n" +
 	"\x05deals\x18\x04 \x03(\v2\x1f.attribution.v1.DealAttributionR\x05deals\x12E\n" +
 	"\x0fagent_summaries\x18\x05 \x03(\v2\x1c.attribution.v1.AgentSummaryR\x0eagentSummaries\x12B\n" +
-	"\x0eteam_summaries\x18\x06 \x03(\v2\x1b.attribution.v1.TeamSummaryR\rteamSummaries\"O\n" +
+	"\x0eteam_summaries\x18\x06 \x03(\v2\x1b.attribution.v1.TeamSummaryR\rteamSummaries\"\x80\x02\n" +
+	"\x18AttributionReportSummary\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x126\n" +
+	"\x05query\x18\x02 \x01(\v2 .attribution.v1.AttributionQueryR\x05query\x12=\n" +
+	"\fgenerated_at\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\vgeneratedAt\x12\x1d\n" +
+	"\n" +
+	"deal_count\x18\x04 \x01(\x05R\tdealCount\x12\x1f\n" +
+	"\vagent_count\x18\x05 \x01(\x05R\n" +
+	"agentCount\x12\x1d\n" +
+	"\n" +
+	"team_count\x18\x06 \x01(\x05R\tteamCount\"O\n" +
 	"\x15GenerateReportRequest\x126\n" +
 	"\x05query\x18\x01 \x01(\v2 .attribution.v1.AttributionQueryR\x05query\"S\n" +
 	"\x16GenerateReportResponse\x129\n" +
@@ -1262,7 +1484,16 @@ const file_attribution_v1_attribution_proto_rawDesc = "" +
 	"\x10GetReportRequest\x12\x1b\n" +
 	"\treport_id\x18\x01 \x01(\tR\breportId\"N\n" +
 	"\x11GetReportResponse\x129\n" +
-	"\x06report\x18\x01 \x01(\v2!.attribution.v1.AttributionReportR\x06report\"\x89\x01\n" +
+	"\x06report\x18\x01 \x01(\v2!.attribution.v1.AttributionReportR\x06report\"\xc6\x01\n" +
+	"\x12ListReportsRequest\x12'\n" +
+	"\x0forganization_id\x18\x01 \x01(\tR\x0eorganizationId\x12!\n" +
+	"\fworkspace_id\x18\x02 \x01(\tR\vworkspaceId\x126\n" +
+	"\x05model\x18\x03 \x01(\x0e2 .attribution.v1.AttributionModelR\x05model\x12\x14\n" +
+	"\x05limit\x18\x04 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x05 \x01(\x05R\x06offset\"t\n" +
+	"\x13ListReportsResponse\x12B\n" +
+	"\areports\x18\x01 \x03(\v2(.attribution.v1.AttributionReportSummaryR\areports\x12\x19\n" +
+	"\bhas_more\x18\x02 \x01(\bR\ahasMore\"\x89\x01\n" +
 	"\x13ExportReportRequest\x126\n" +
 	"\x05query\x18\x01 \x01(\v2 .attribution.v1.AttributionQueryR\x05query\x12:\n" +
 	"\x06format\x18\x02 \x01(\x0e2\".attribution.v1.ReportExportFormatR\x06format\"o\n" +
@@ -1278,10 +1509,11 @@ const file_attribution_v1_attribution_proto_rawDesc = "" +
 	"\x12ReportExportFormat\x12$\n" +
 	" REPORT_EXPORT_FORMAT_UNSPECIFIED\x10\x00\x12\x1d\n" +
 	"\x19REPORT_EXPORT_FORMAT_JSON\x10\x01\x12\x1c\n" +
-	"\x18REPORT_EXPORT_FORMAT_CSV\x10\x022\xa2\x02\n" +
+	"\x18REPORT_EXPORT_FORMAT_CSV\x10\x022\xfa\x02\n" +
 	"\x12AttributionService\x12_\n" +
 	"\x0eGenerateReport\x12%.attribution.v1.GenerateReportRequest\x1a&.attribution.v1.GenerateReportResponse\x12P\n" +
-	"\tGetReport\x12 .attribution.v1.GetReportRequest\x1a!.attribution.v1.GetReportResponse\x12Y\n" +
+	"\tGetReport\x12 .attribution.v1.GetReportRequest\x1a!.attribution.v1.GetReportResponse\x12V\n" +
+	"\vListReports\x12\".attribution.v1.ListReportsRequest\x1a#.attribution.v1.ListReportsResponse\x12Y\n" +
 	"\fExportReport\x12#.attribution.v1.ExportReportRequest\x1a$.attribution.v1.ExportReportResponseB>Z<github.com/evalops/proto/gen/go/attribution/v1;attributionv1b\x06proto3"
 
 var (
@@ -1297,61 +1529,70 @@ func file_attribution_v1_attribution_proto_rawDescGZIP() []byte {
 }
 
 var file_attribution_v1_attribution_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_attribution_v1_attribution_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_attribution_v1_attribution_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_attribution_v1_attribution_proto_goTypes = []any{
-	(AttributionModel)(0),          // 0: attribution.v1.AttributionModel
-	(ReportExportFormat)(0),        // 1: attribution.v1.ReportExportFormat
-	(*AttributionQuery)(nil),       // 2: attribution.v1.AttributionQuery
-	(*DealContext)(nil),            // 3: attribution.v1.DealContext
-	(*TraceTouchpoint)(nil),        // 4: attribution.v1.TraceTouchpoint
-	(*UsageTouchpoint)(nil),        // 5: attribution.v1.UsageTouchpoint
-	(*AgentSummary)(nil),           // 6: attribution.v1.AgentSummary
-	(*TeamSummary)(nil),            // 7: attribution.v1.TeamSummary
-	(*DealAttribution)(nil),        // 8: attribution.v1.DealAttribution
-	(*AttributionReport)(nil),      // 9: attribution.v1.AttributionReport
-	(*GenerateReportRequest)(nil),  // 10: attribution.v1.GenerateReportRequest
-	(*GenerateReportResponse)(nil), // 11: attribution.v1.GenerateReportResponse
-	(*GetReportRequest)(nil),       // 12: attribution.v1.GetReportRequest
-	(*GetReportResponse)(nil),      // 13: attribution.v1.GetReportResponse
-	(*ExportReportRequest)(nil),    // 14: attribution.v1.ExportReportRequest
-	(*ExportReportResponse)(nil),   // 15: attribution.v1.ExportReportResponse
-	(*timestamppb.Timestamp)(nil),  // 16: google.protobuf.Timestamp
-	(*v1.TraceSummary)(nil),        // 17: traces.v1.TraceSummary
+	(AttributionModel)(0),            // 0: attribution.v1.AttributionModel
+	(ReportExportFormat)(0),          // 1: attribution.v1.ReportExportFormat
+	(*AttributionQuery)(nil),         // 2: attribution.v1.AttributionQuery
+	(*DealContext)(nil),              // 3: attribution.v1.DealContext
+	(*TraceTouchpoint)(nil),          // 4: attribution.v1.TraceTouchpoint
+	(*UsageTouchpoint)(nil),          // 5: attribution.v1.UsageTouchpoint
+	(*AgentSummary)(nil),             // 6: attribution.v1.AgentSummary
+	(*TeamSummary)(nil),              // 7: attribution.v1.TeamSummary
+	(*DealAttribution)(nil),          // 8: attribution.v1.DealAttribution
+	(*AttributionReport)(nil),        // 9: attribution.v1.AttributionReport
+	(*AttributionReportSummary)(nil), // 10: attribution.v1.AttributionReportSummary
+	(*GenerateReportRequest)(nil),    // 11: attribution.v1.GenerateReportRequest
+	(*GenerateReportResponse)(nil),   // 12: attribution.v1.GenerateReportResponse
+	(*GetReportRequest)(nil),         // 13: attribution.v1.GetReportRequest
+	(*GetReportResponse)(nil),        // 14: attribution.v1.GetReportResponse
+	(*ListReportsRequest)(nil),       // 15: attribution.v1.ListReportsRequest
+	(*ListReportsResponse)(nil),      // 16: attribution.v1.ListReportsResponse
+	(*ExportReportRequest)(nil),      // 17: attribution.v1.ExportReportRequest
+	(*ExportReportResponse)(nil),     // 18: attribution.v1.ExportReportResponse
+	(*timestamppb.Timestamp)(nil),    // 19: google.protobuf.Timestamp
+	(*v1.TraceSummary)(nil),          // 20: traces.v1.TraceSummary
 }
 var file_attribution_v1_attribution_proto_depIdxs = []int32{
 	0,  // 0: attribution.v1.AttributionQuery.model:type_name -> attribution.v1.AttributionModel
-	16, // 1: attribution.v1.AttributionQuery.start_time:type_name -> google.protobuf.Timestamp
-	16, // 2: attribution.v1.AttributionQuery.end_time:type_name -> google.protobuf.Timestamp
-	16, // 3: attribution.v1.DealContext.created_at:type_name -> google.protobuf.Timestamp
-	16, // 4: attribution.v1.DealContext.updated_at:type_name -> google.protobuf.Timestamp
-	17, // 5: attribution.v1.TraceTouchpoint.trace:type_name -> traces.v1.TraceSummary
-	16, // 6: attribution.v1.UsageTouchpoint.observed_at:type_name -> google.protobuf.Timestamp
+	19, // 1: attribution.v1.AttributionQuery.start_time:type_name -> google.protobuf.Timestamp
+	19, // 2: attribution.v1.AttributionQuery.end_time:type_name -> google.protobuf.Timestamp
+	19, // 3: attribution.v1.DealContext.created_at:type_name -> google.protobuf.Timestamp
+	19, // 4: attribution.v1.DealContext.updated_at:type_name -> google.protobuf.Timestamp
+	20, // 5: attribution.v1.TraceTouchpoint.trace:type_name -> traces.v1.TraceSummary
+	19, // 6: attribution.v1.UsageTouchpoint.observed_at:type_name -> google.protobuf.Timestamp
 	3,  // 7: attribution.v1.DealAttribution.deal:type_name -> attribution.v1.DealContext
 	4,  // 8: attribution.v1.DealAttribution.trace_touchpoints:type_name -> attribution.v1.TraceTouchpoint
 	5,  // 9: attribution.v1.DealAttribution.usage_touchpoints:type_name -> attribution.v1.UsageTouchpoint
 	6,  // 10: attribution.v1.DealAttribution.agent_summaries:type_name -> attribution.v1.AgentSummary
 	7,  // 11: attribution.v1.DealAttribution.team_summaries:type_name -> attribution.v1.TeamSummary
 	2,  // 12: attribution.v1.AttributionReport.query:type_name -> attribution.v1.AttributionQuery
-	16, // 13: attribution.v1.AttributionReport.generated_at:type_name -> google.protobuf.Timestamp
+	19, // 13: attribution.v1.AttributionReport.generated_at:type_name -> google.protobuf.Timestamp
 	8,  // 14: attribution.v1.AttributionReport.deals:type_name -> attribution.v1.DealAttribution
 	6,  // 15: attribution.v1.AttributionReport.agent_summaries:type_name -> attribution.v1.AgentSummary
 	7,  // 16: attribution.v1.AttributionReport.team_summaries:type_name -> attribution.v1.TeamSummary
-	2,  // 17: attribution.v1.GenerateReportRequest.query:type_name -> attribution.v1.AttributionQuery
-	9,  // 18: attribution.v1.GenerateReportResponse.report:type_name -> attribution.v1.AttributionReport
-	9,  // 19: attribution.v1.GetReportResponse.report:type_name -> attribution.v1.AttributionReport
-	2,  // 20: attribution.v1.ExportReportRequest.query:type_name -> attribution.v1.AttributionQuery
-	1,  // 21: attribution.v1.ExportReportRequest.format:type_name -> attribution.v1.ReportExportFormat
-	10, // 22: attribution.v1.AttributionService.GenerateReport:input_type -> attribution.v1.GenerateReportRequest
-	12, // 23: attribution.v1.AttributionService.GetReport:input_type -> attribution.v1.GetReportRequest
-	14, // 24: attribution.v1.AttributionService.ExportReport:input_type -> attribution.v1.ExportReportRequest
-	11, // 25: attribution.v1.AttributionService.GenerateReport:output_type -> attribution.v1.GenerateReportResponse
-	13, // 26: attribution.v1.AttributionService.GetReport:output_type -> attribution.v1.GetReportResponse
-	15, // 27: attribution.v1.AttributionService.ExportReport:output_type -> attribution.v1.ExportReportResponse
-	25, // [25:28] is the sub-list for method output_type
-	22, // [22:25] is the sub-list for method input_type
-	22, // [22:22] is the sub-list for extension type_name
-	22, // [22:22] is the sub-list for extension extendee
-	0,  // [0:22] is the sub-list for field type_name
+	2,  // 17: attribution.v1.AttributionReportSummary.query:type_name -> attribution.v1.AttributionQuery
+	19, // 18: attribution.v1.AttributionReportSummary.generated_at:type_name -> google.protobuf.Timestamp
+	2,  // 19: attribution.v1.GenerateReportRequest.query:type_name -> attribution.v1.AttributionQuery
+	9,  // 20: attribution.v1.GenerateReportResponse.report:type_name -> attribution.v1.AttributionReport
+	9,  // 21: attribution.v1.GetReportResponse.report:type_name -> attribution.v1.AttributionReport
+	0,  // 22: attribution.v1.ListReportsRequest.model:type_name -> attribution.v1.AttributionModel
+	10, // 23: attribution.v1.ListReportsResponse.reports:type_name -> attribution.v1.AttributionReportSummary
+	2,  // 24: attribution.v1.ExportReportRequest.query:type_name -> attribution.v1.AttributionQuery
+	1,  // 25: attribution.v1.ExportReportRequest.format:type_name -> attribution.v1.ReportExportFormat
+	11, // 26: attribution.v1.AttributionService.GenerateReport:input_type -> attribution.v1.GenerateReportRequest
+	13, // 27: attribution.v1.AttributionService.GetReport:input_type -> attribution.v1.GetReportRequest
+	15, // 28: attribution.v1.AttributionService.ListReports:input_type -> attribution.v1.ListReportsRequest
+	17, // 29: attribution.v1.AttributionService.ExportReport:input_type -> attribution.v1.ExportReportRequest
+	12, // 30: attribution.v1.AttributionService.GenerateReport:output_type -> attribution.v1.GenerateReportResponse
+	14, // 31: attribution.v1.AttributionService.GetReport:output_type -> attribution.v1.GetReportResponse
+	16, // 32: attribution.v1.AttributionService.ListReports:output_type -> attribution.v1.ListReportsResponse
+	18, // 33: attribution.v1.AttributionService.ExportReport:output_type -> attribution.v1.ExportReportResponse
+	30, // [30:34] is the sub-list for method output_type
+	26, // [26:30] is the sub-list for method input_type
+	26, // [26:26] is the sub-list for extension type_name
+	26, // [26:26] is the sub-list for extension extendee
+	0,  // [0:26] is the sub-list for field type_name
 }
 
 func init() { file_attribution_v1_attribution_proto_init() }
@@ -1365,7 +1606,7 @@ func file_attribution_v1_attribution_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_attribution_v1_attribution_proto_rawDesc), len(file_attribution_v1_attribution_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   14,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
