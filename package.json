@@ -98,6 +98,10 @@
       "types": "./gen/dist/tap/v1/event_pb.d.ts",
       "import": "./gen/dist/tap/v1/event_pb.js"
     },
+    "./traces/v1/traces_pb": {
+      "types": "./gen/dist/traces/v1/traces_pb.d.ts",
+      "import": "./gen/dist/traces/v1/traces_pb.js"
+    },
     "./workflows/v1/workflows_pb": {
       "types": "./gen/dist/workflows/v1/workflows_pb.d.ts",
       "import": "./gen/dist/workflows/v1/workflows_pb.js"

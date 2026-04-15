@@ -8,7 +8,6 @@ on:
 
 permissions:
   contents: read
-
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
@@ -18,8 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99 # v1.50.0
+      - uses: bufbuild/buf-action@v1
         with:
+          setup_only: true
+          token: ${{ secrets.BUF_TOKEN }}
           github_token: ${{ github.token }}
       - run: buf lint
 
@@ -30,8 +31,10 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           fetch-depth: 0
-      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99 # v1.50.0
+      - uses: bufbuild/buf-action@v1
         with:
+          setup_only: true
+          token: ${{ secrets.BUF_TOKEN }}
           github_token: ${{ github.token }}
       - run: git fetch origin main:main
       - run: buf breaking --against '.git#branch=main'
@@ -40,8 +43,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99 # v1.50.0
+      - uses: bufbuild/buf-action@v1
         with:
+          setup_only: true
+          token: ${{ secrets.BUF_TOKEN }}
           github_token: ${{ github.token }}
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
@@ -72,22 +77,11 @@ jobs:
     needs: generate
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99 # v1.50.0
-        with:
-          github_token: ${{ github.token }}
       - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: 20
           cache: npm
       - run: npm ci
-      - run: buf generate --timeout 10m
-      - name: Check generated code is up to date
-        run: |
-          if [ -n "$(git status --porcelain gen/)" ]; then
-            echo "Generated code is out of date. Run 'buf generate' and commit the result."
-            git diff gen/
-            exit 1
-          fi
       - run: npm run check:package
 
   python-package:
@@ -95,21 +89,10 @@ jobs:
     needs: generate
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: bufbuild/buf-setup-action@a47c93e0b1648d5651a065437926377d060baa99 # v1.50.0
-        with:
-          github_token: ${{ github.token }}
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: "3.12"
       - run: python -m pip install --upgrade build pip
-      - run: buf generate --timeout 10m
-      - name: Check generated code is up to date
-        run: |
-          if [ -n "$(git status --porcelain gen/)" ]; then
-            echo "Generated code is out of date. Run 'buf generate' and commit the result."
-            git diff gen/
-            exit 1
-          fi
       - run: python -m build
       - name: Smoke install generated Python wheel
         run: |
@@ -117,4 +100,4 @@ jobs:
           . .venv-smoke/bin/activate
           python -m pip install --upgrade pip
           python -m pip install dist/*.whl
-          python -c "from agents.v1.agents_pb2 import Agent; from config.v1.config_pb2 import FeatureFlagSnapshot; from events.v1.cloudevent_pb2 import CloudEvent; from workflows.v1.workflows_pb2 import WorkflowRun; assert Agent.DESCRIPTOR.full_name == 'agents.v1.Agent'; assert FeatureFlagSnapshot.DESCRIPTOR.full_name == 'config.v1.FeatureFlagSnapshot'; assert CloudEvent.DESCRIPTOR.full_name == 'events.v1.CloudEvent'; assert WorkflowRun.DESCRIPTOR.full_name == 'workflows.v1.WorkflowRun'"
+          python -c "from agents.v1.agents_pb2 import Agent; from config.v1.config_pb2 import FeatureFlagSnapshot; from events.v1.cloudevent_pb2 import CloudEvent; from traces.v1.traces_pb2 import TraceSummary; from workflows.v1.workflows_pb2 import WorkflowRun; assert Agent.DESCRIPTOR.full_name == 'agents.v1.Agent'; assert FeatureFlagSnapshot.DESCRIPTOR.full_name == 'config.v1.FeatureFlagSnapshot'; assert CloudEvent.DESCRIPTOR.full_name == 'events.v1.CloudEvent'; assert TraceSummary.DESCRIPTOR.full_name == 'traces.v1.TraceSummary'; assert WorkflowRun.DESCRIPTOR.full_name == 'workflows.v1.WorkflowRun'"
