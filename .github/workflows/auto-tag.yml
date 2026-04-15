@@ -61,7 +61,7 @@ jobs:
           BUMP="patch"
 
           # feat: or BREAKING CHANGE → minor (pre-1.0 convention)
-          if echo "$COMMITS" | grep -qiE '^feat(\(|:)|BREAKING CHANGE'; then
+          if echo "$COMMITS" | grep -qiE '^(feat(\(|:)|BREAKING CHANGE)'; then
             BUMP="minor"
           fi
 
