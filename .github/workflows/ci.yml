@@ -45,7 +45,8 @@ jobs:
           github_token: ${{ github.token }}
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
-          go-version: "1.22"
+          go-version-file: go.mod
+          # go-version: "1.22"
       - run: buf generate
       - name: Check generated code is up to date
         run: |
@@ -62,7 +63,8 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
-          go-version: "1.22"
+          go-version-file: go.mod
+          # go-version: "1.22"
       - run: go test ./...
 
   ts-package:
