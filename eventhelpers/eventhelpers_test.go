@@ -87,8 +87,8 @@ func TestUnpackTapEventDataRoundTrip(t *testing.T) {
 
 	envelope, err := NewCloudEvent(
 		"evt_456",
-		"ensemble.tap.hubspot.deal.updated",
-		"ensemble-tap",
+		"siphon.hubspot.deal.updated",
+		"siphon",
 		"hubspot/deal/deal_123",
 		data.GetTenantId(),
 		time.Date(2026, 4, 13, 1, 0, 0, 0, time.UTC),

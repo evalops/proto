@@ -1,8 +1,8 @@
 {
   "spec_version": "1.0",
   "id": "evt_tap_hubspot_deal_qualified_1",
-  "type": "ensemble.tap.hubspot.deal.updated",
-  "source": "ensemble-tap",
+  "type": "siphon.hubspot.deal.updated",
+  "source": "siphon",
   "subject": "hubspot/deal/deal_123",
   "time": "2026-04-12T15:20:00Z",
   "data_content_type": "application/protobuf",

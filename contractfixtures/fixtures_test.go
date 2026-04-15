@@ -125,7 +125,7 @@ func TestLoadTapFixture(t *testing.T) {
 	if err != nil {
 		t.Fatalf("load tap fixture: %v", err)
 	}
-	if envelope.GetType() != "ensemble.tap.hubspot.deal.updated" {
+	if envelope.GetType() != "siphon.hubspot.deal.updated" {
 		t.Fatalf("unexpected type %q", envelope.GetType())
 	}
 	if envelope.GetTenantId() != "11111111-1111-1111-1111-111111111111" {

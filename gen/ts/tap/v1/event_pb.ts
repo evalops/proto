@@ -40,7 +40,7 @@ export const FieldChangeSchema: GenMessage<FieldChange> = /*@__PURE__*/
 
 /**
  * TapEventData is the canonical normalized provider event payload produced by
- * ensemble-tap and consumed by downstream systems like pipeline.
+ * siphon and consumed by downstream systems like pipeline.
  *
  * @generated from message tap.v1.TapEventData
  */

@@ -77,7 +77,7 @@ func (x *FieldChange) GetTo() *structpb.Value {
 }
 
 // TapEventData is the canonical normalized provider event payload produced by
-// ensemble-tap and consumed by downstream systems like pipeline.
+// siphon and consumed by downstream systems like pipeline.
 type TapEventData struct {
 	state             protoimpl.MessageState  `protogen:"open.v1"`
 	Provider          string                  `protobuf:"bytes,1,opt,name=provider,proto3" json:"provider,omitempty"`
