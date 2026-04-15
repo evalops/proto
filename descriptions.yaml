@@ -258,7 +258,18 @@ MeterService_QueryUsage: >-
 MeterService_GetUsageSummary: >-
   Get aggregated usage summary grouped by model, provider, team, agent,
   surface, or metadata key. Returns totals for tokens and cost.
-  
+MeterService_GetMeterSummary: >-
+  Get summary for a specific meter ID, grouped by the requested dimension.
+MeterService_IngestWideEvent: >-
+  Ingest a wide event with full metrics (tokens, cost, duration,
+  time-to-first-token, tool call count). Used for observability dashboards.
+MeterService_QueryWideEvents: >-
+  Query wide events with filters and pagination. Used by dashboards and
+  analytics.
+MeterService_GetEventDashboard: >-
+  Get a dashboard summary: total events, tokens, cost, and top-N
+  breakdowns by event type, surface, model, and provider.
+
 # --- traces/v1 ---
 SpanIngestService_IngestSpans: >-
   Record one or more execution spans for an agent trace. Stores span identity,
@@ -273,17 +284,6 @@ SpanIngestService_ListTraces: >-
 SpanIngestService_GetSpanTree: >-
   Retrieve a trace as a parent/child span tree. Used for execution debugging,
   attribution, and governance review.
-MeterService_GetMeterSummary: >-
-  Get summary for a specific meter ID, grouped by the requested dimension.
-MeterService_IngestWideEvent: >-
-  Ingest a wide event with full metrics (tokens, cost, duration,
-  time-to-first-token, tool call count). Used for observability dashboards.
-MeterService_QueryWideEvents: >-
-  Query wide events with filters and pagination. Used by dashboards and
-  analytics.
-MeterService_GetEventDashboard: >-
-  Get a dashboard summary: total events, tokens, cost, and top-N
-  breakdowns by event type, surface, model, and provider.
 
 # --- notifications/v1 ---
 NotificationService_Send: >-
