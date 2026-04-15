@@ -577,6 +577,7 @@ type CorrelateRequest struct {
 	Emails        []string               `protobuf:"bytes,2,rep,name=emails,proto3" json:"emails,omitempty"`
 	Domains       []string               `protobuf:"bytes,3,rep,name=domains,proto3" json:"domains,omitempty"`
 	CompanyName   string                 `protobuf:"bytes,4,opt,name=company_name,json=companyName,proto3" json:"company_name,omitempty"`
+	RecordName    string                 `protobuf:"bytes,5,opt,name=record_name,json=recordName,proto3" json:"record_name,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -635,6 +636,13 @@ func (x *CorrelateRequest) GetDomains() []string {
 func (x *CorrelateRequest) GetCompanyName() string {
 	if x != nil {
 		return x.CompanyName
+	}
+	return ""
+}
+
+func (x *CorrelateRequest) GetRecordName() string {
+	if x != nil {
+		return x.RecordName
 	}
 	return ""
 }
@@ -1675,12 +1683,14 @@ const file_entities_v1_entities_proto_rawDesc = "" +
 	"\x0eintegration_id\x18\x02 \x01(\tR\rintegrationId\x12\x1b\n" +
 	"\trecord_id\x18\x03 \x01(\tR\brecordId\"G\n" +
 	"\x0fResolveResponse\x124\n" +
-	"\x06entity\x18\x01 \x01(\v2\x1c.entities.v1.CanonicalEntityR\x06entity\"\x8a\x01\n" +
+	"\x06entity\x18\x01 \x01(\v2\x1c.entities.v1.CanonicalEntityR\x06entity\"\xab\x01\n" +
 	"\x10CorrelateRequest\x12!\n" +
 	"\fworkspace_id\x18\x01 \x01(\tR\vworkspaceId\x12\x16\n" +
 	"\x06emails\x18\x02 \x03(\tR\x06emails\x12\x18\n" +
 	"\adomains\x18\x03 \x03(\tR\adomains\x12!\n" +
-	"\fcompany_name\x18\x04 \x01(\tR\vcompanyName\"J\n" +
+	"\fcompany_name\x18\x04 \x01(\tR\vcompanyName\x12\x1f\n" +
+	"\vrecord_name\x18\x05 \x01(\tR\n" +
+	"recordName\"J\n" +
 	"\x11CorrelateResponse\x125\n" +
 	"\x06groups\x18\x01 \x03(\v2\x1d.entities.v1.CorrelationGroupR\x06groups\"%\n" +
 	"\x13GetCanonicalRequest\x12\x0e\n" +
