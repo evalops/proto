@@ -14,7 +14,7 @@ message FieldChange {
 }
 
 // TapEventData is the canonical normalized provider event payload produced by
-// ensemble-tap and consumed by downstream systems like pipeline.
+// siphon and consumed by downstream systems like pipeline.
 message TapEventData {
   string provider = 1;
   string entity_type = 2;

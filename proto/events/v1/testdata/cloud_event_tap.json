@@ -2,7 +2,7 @@
   "spec_version": "1.0",
   "id": "evt_456",
   "type": "tap.entity.updated",
-  "source": "ensemble-tap",
+  "source": "siphon",
   "subject": "deal/deal_123",
   "time": "2026-04-12T15:20:00Z",
   "data_content_type": "application/protobuf",

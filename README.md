@@ -43,7 +43,7 @@ packages instead of maintaining their own hand-written struct copies.
 | `objectives/v1` | Objective lifecycle, wake scheduling, provenance, mutations | objectives, approvals, governance, pipeline, parker |
 | `skills/v1` | Shared skill registry, versions, search, import/export | skills, chat, ensemble, maestro, pipeline |
 | `events/v1` | Shared NATS event envelope and change journal payloads | service-runtime, pipeline, parker |
-| `tap/v1` | Normalized tap webhook payloads and field-level diffs | ensemble-tap, pipeline |
+| `tap/v1` | Normalized tap webhook payloads and field-level diffs | siphon, pipeline |
 | `workflows/v1` | Multi-agent workflow orchestration, DAG execution, compensation | objectives, ensemble, maestro, approvals, governance |
 | `prompts/v1` | Prompt versioning, deployment tracking, eval linkage, resolution | prompts, llm-gateway, fermata, maestro, ensemble |
 | `registry/v1` | Agent presence, capability discovery, heartbeat, capacity routing | registry, ensemble, chat, maestro, conductor |
@@ -121,7 +121,7 @@ flowchart TD
     Proto -->|events/v1| SRT
     Proto -->|events/v1| Parker[Parker]
     Proto -->|events/v1| Pipeline[Pipeline]
-    Proto -->|tap/v1| EnsembleTap[ensemble-tap]
+    Proto -->|tap/v1| Siphon[siphon]
     Proto -->|tap/v1| Pipeline
     Proto -->|prompts/v1| Prompts[prompts]
     Proto -->|prompts/v1| Gateway
@@ -352,7 +352,7 @@ with `outcome=replied`, `pipeline.changes.signal.create` with
 `status=terminated`, plus `evaluation.completed` with a typed
 `events/v1.EvaluationCompleted` payload for the Fermata -> Pipeline capability
 signal seam. It also includes a Tap -> Pipeline boundary fixture for
-`ensemble.tap.hubspot.deal.updated` with a qualified stage change and a real
+`siphon.hubspot.deal.updated` with a qualified stage change and a real
 UUID tenant, so downstream consumers can pin the semantics they depend on
 instead of only the wire shape.
 
