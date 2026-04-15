@@ -45,9 +45,16 @@ jobs:
           git commit -m "Bump proto to ${TAG}"
           git push origin "$BRANCH"
 
+          pr_body=$(cat <<EOF
+          Automated proto dependency update to \`${TAG}\`.
+
+          Triggered by new tag in [evalops/proto](https://github.com/evalops/proto/releases/tag/${TAG}).
+          EOF
+          )
+
           gh pr create \
             --title "Bump proto to ${TAG}" \
-            --body "Automated proto dependency update to \`${TAG}\`."$'\n\n'"Triggered by new tag in [evalops/proto](https://github.com/evalops/proto/releases/tag/${TAG})." \
+            --body "$pr_body" \
             --base main
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
