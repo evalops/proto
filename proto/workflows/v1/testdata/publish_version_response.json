@@ -66,8 +66,8 @@
         "id": "wait-for-reply",
         "name": "Wait for Reply",
         "step_type": "STEP_TYPE_WAIT_FOR_EVENT",
-        "event_type_pattern": "siphon.gmail.message.received",
-        "event_subject_pattern": "siphon.gmail.message.received",
+        "event_type_pattern": "siphon.tap.gmail.message.received",
+        "event_subject_pattern": "siphon.tap.gmail.message.received",
         "timeout_seconds": 259200,
         "config": {
           "timeout_action": "follow_up"
