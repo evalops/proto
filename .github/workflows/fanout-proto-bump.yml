@@ -41,8 +41,6 @@ jobs:
           - prompts
           - siphon
     steps:
-      - uses: actions/checkout@v6
-
       - name: Trigger proto bump in ${{ matrix.repo }}
         env:
           GH_TOKEN: ${{ secrets.PROTO_FANOUT_PAT }}
