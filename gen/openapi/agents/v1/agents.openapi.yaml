@@ -1,0 +1,1461 @@
+openapi: 3.1.0
+info:
+  title: agents.v1
+paths:
+  /agents.v1.AgentService/Register:
+    post:
+      tags:
+        - agents.v1.AgentService
+      summary: Register
+      description: Register creates a new agent definition.
+      operationId: agents.v1.AgentService.Register
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agents.v1.RegisterRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agents.v1.RegisterResponse'
+  /agents.v1.AgentService/Get:
+    post:
+      tags:
+        - agents.v1.AgentService
+      summary: Get
+      description: Get retrieves an agent by ID.
+      operationId: agents.v1.AgentService.Get
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agents.v1.GetRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agents.v1.GetResponse'
+  /agents.v1.AgentService/List:
+    post:
+      tags:
+        - agents.v1.AgentService
+      summary: List
+      description: List returns agents matching the query filters.
+      operationId: agents.v1.AgentService.List
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agents.v1.ListRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agents.v1.ListResponse'
+  /agents.v1.AgentService/Update:
+    post:
+      tags:
+        - agents.v1.AgentService
+      summary: Update
+      description: Update modifies mutable agent metadata (name, description, surfaces).
+      operationId: agents.v1.AgentService.Update
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agents.v1.UpdateRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agents.v1.UpdateResponse'
+  /agents.v1.AgentService/Deregister:
+    post:
+      tags:
+        - agents.v1.AgentService
+      summary: Deregister
+      description: Deregister removes an agent from the registry.
+      operationId: agents.v1.AgentService.Deregister
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agents.v1.DeregisterRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agents.v1.DeregisterResponse'
+  /agents.v1.AgentService/PushConfig:
+    post:
+      tags:
+        - agents.v1.AgentService
+      summary: PushConfig
+      description: |-
+        PushConfig creates a new immutable configuration version for an agent.
+         The agent's active_config_version advances atomically.
+      operationId: agents.v1.AgentService.PushConfig
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agents.v1.PushConfigRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agents.v1.PushConfigResponse'
+  /agents.v1.AgentService/GetConfig:
+    post:
+      tags:
+        - agents.v1.AgentService
+      summary: GetConfig
+      description: GetConfig retrieves a specific configuration version.
+      operationId: agents.v1.AgentService.GetConfig
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agents.v1.GetConfigRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agents.v1.GetConfigResponse'
+  /agents.v1.AgentService/ListConfigs:
+    post:
+      tags:
+        - agents.v1.AgentService
+      summary: ListConfigs
+      description: ListConfigs returns all configuration versions for an agent.
+      operationId: agents.v1.AgentService.ListConfigs
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agents.v1.ListConfigsRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agents.v1.ListConfigsResponse'
+  /agents.v1.AgentService/RollbackConfig:
+    post:
+      tags:
+        - agents.v1.AgentService
+      summary: RollbackConfig
+      description: RollbackConfig atomically reverts an agent to a prior configuration version.
+      operationId: agents.v1.AgentService.RollbackConfig
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agents.v1.RollbackConfigRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agents.v1.RollbackConfigResponse'
+  /agents.v1.AgentService/Delegate:
+    post:
+      tags:
+        - agents.v1.AgentService
+      summary: Delegate
+      description: |-
+        Delegate requests that another agent (or any agent with a matching
+         capability) accept a unit of work. The delegation is tracked as a
+         DelegationRecord and linked to the originating objective and optional
+         workflow step.
+      operationId: agents.v1.AgentService.Delegate
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agents.v1.DelegateRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agents.v1.DelegateResponse'
+  /agents.v1.AgentService/ResolveDelegation:
+    post:
+      tags:
+        - agents.v1.AgentService
+      summary: ResolveDelegation
+      description: ResolveDelegation records the outcome of a delegation.
+      operationId: agents.v1.AgentService.ResolveDelegation
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agents.v1.ResolveDelegationRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agents.v1.ResolveDelegationResponse'
+  /agents.v1.AgentService/GetDelegation:
+    post:
+      tags:
+        - agents.v1.AgentService
+      summary: GetDelegation
+      description: GetDelegation retrieves a delegation record by ID.
+      operationId: agents.v1.AgentService.GetDelegation
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agents.v1.GetDelegationRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agents.v1.GetDelegationResponse'
+  /agents.v1.AgentService/ListDelegations:
+    post:
+      tags:
+        - agents.v1.AgentService
+      summary: ListDelegations
+      description: ListDelegations returns delegations matching the query filters.
+      operationId: agents.v1.AgentService.ListDelegations
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agents.v1.ListDelegationsRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agents.v1.ListDelegationsResponse'
+  /agents.v1.AgentService/Heartbeat:
+    post:
+      tags:
+        - agents.v1.AgentService
+      summary: Heartbeat
+      description: |-
+        Heartbeat records agent liveness. The registry uses this to maintain
+         presence state and route capability-based delegation requests.
+      operationId: agents.v1.AgentService.Heartbeat
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/agents.v1.HeartbeatRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agents.v1.HeartbeatResponse'
+components:
+  schemas:
+    agents.v1.AgentStatus:
+      type: string
+      title: AgentStatus
+      enum:
+        - AGENT_STATUS_UNSPECIFIED
+        - AGENT_STATUS_ACTIVE
+        - AGENT_STATUS_IDLE
+        - AGENT_STATUS_BUSY
+        - AGENT_STATUS_OFFLINE
+        - AGENT_STATUS_DEGRADED
+        - AGENT_STATUS_SUSPENDED
+      description: AgentStatus describes the operational state of an agent.
+    agents.v1.DelegationStatus:
+      type: string
+      title: DelegationStatus
+      enum:
+        - DELEGATION_STATUS_UNSPECIFIED
+        - DELEGATION_STATUS_PENDING
+        - DELEGATION_STATUS_ACCEPTED
+        - DELEGATION_STATUS_REJECTED
+        - DELEGATION_STATUS_COMPLETED
+        - DELEGATION_STATUS_FAILED
+        - DELEGATION_STATUS_TIMED_OUT
+      description: DelegationStatus describes the lifecycle state of a delegation.
+    google.protobuf.NullValue:
+      type: string
+      title: NullValue
+      enum:
+        - NULL_VALUE
+      description: |-
+        `NullValue` is a singleton enumeration to represent the null value for the
+         `Value` type union.
+
+         The JSON representation for `NullValue` is JSON `null`.
+    agents.v1.Agent:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        workspaceId:
+          type: string
+          title: workspace_id
+        name:
+          type: string
+          title: name
+        description:
+          type: string
+          title: description
+        agentType:
+          type: string
+          title: agent_type
+          description: |-
+            agent_type aligns with identity/v1 IntrospectResponse.agent_type and
+             IssueAgentTokenRequest.agent_type. Examples: "sdr", "support", "coding",
+             "ops", "research".
+        capabilities:
+          type: array
+          items:
+            type: string
+          title: capabilities
+          description: |-
+            capabilities aligns with identity/v1 IntrospectResponse.capabilities and
+             IssueAgentTokenRequest.capabilities. Used by capability-based delegation
+             routing. Examples: "hubspot-write", "email-send", "code-review".
+        surfaces:
+          type: array
+          items:
+            type: string
+          title: surfaces
+          description: |-
+            surfaces this agent can operate on. Aligns with the surface field in
+             meter/v1, objectives/v1, approvals/v1. Examples: "ensemble", "chat",
+             "maestro", "conductor", "slack".
+        status:
+          title: status
+          $ref: '#/components/schemas/agents.v1.AgentStatus'
+        activeConfigVersion:
+          type: integer
+          title: active_config_version
+          format: int32
+        ownerId:
+          type: string
+          title: owner_id
+        lastHeartbeatAt:
+          title: last_heartbeat_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        createdAt:
+          title: created_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: Agent
+      additionalProperties: false
+      description: |-
+        Agent is the canonical agent definition record.
+         The id field is the value stored in every agent_id / agent string field
+         across the platform: meter/v1 RecordUsageRequest.agent_id,
+         objectives/v1 Objective.agent_id, approvals/v1 ApprovalRequest.agent_id,
+         governance/v1 EvaluateActionRequest.agent_id, memory/v1 Memory.agent,
+         and events/v1 Change.actor_id when actor_type is "agent".
+    agents.v1.AgentConfig:
+      type: object
+      properties:
+        version:
+          type: integer
+          title: version
+          format: int32
+        agentId:
+          type: string
+          title: agent_id
+        skillIds:
+          type: array
+          items:
+            type: string
+          title: skill_ids
+          description: |-
+            skill_ids reference skills/v1 Skill.id — the reusable capabilities
+             this agent has loaded.
+        promptBindings:
+          type: object
+          title: prompt_bindings
+          additionalProperties:
+            type: string
+            title: value
+          description: |-
+            prompt_bindings maps prompt name to label (e.g., "sdr-outreach" -> "production").
+             Aligns with prompts/v1 ResolveRequest.name and ResolveRequest.label.
+        modelPreferences:
+          type: object
+          title: model_preferences
+          additionalProperties:
+            type: string
+            title: value
+          description: |-
+            model_preferences maps surface to preferred model identifier
+             (e.g., "ensemble" -> "claude-opus-4.6"). Aligns with meter/v1
+             RecordUsageRequest.model and keys/v1 ResolveProviderRefRequest.provider.
+        integrationIds:
+          type: array
+          items:
+            type: string
+          title: integration_ids
+          description: |-
+            integration_ids reference connectors/v1 Connection.id — the external
+             system connections this agent is authorized to use.
+        entityTypeScopes:
+          type: array
+          items:
+            type: string
+          title: entity_type_scopes
+          description: |-
+            entity_type_scopes restrict which entities/v1 EntityType values this
+             agent can operate on. Empty means unrestricted.
+        maxConcurrentObjectives:
+          type: integer
+          title: max_concurrent_objectives
+          format: int32
+          description: |-
+            max_concurrent_objectives caps the number of objectives/v1 Objective
+             records this agent can hold in RUNNING or BLOCKED state simultaneously.
+        costBudgetUsd:
+          type: number
+          title: cost_budget_usd
+          format: double
+          description: |-
+            cost_budget_usd is the per-period spend ceiling enforced against
+             meter/v1 usage records for this agent.
+        notificationChannel:
+          type: string
+          title: notification_channel
+          description: |-
+            notification_channel specifies the preferred notifications/v1
+             DeliveryChannel for this agent's escalations. Stored as string to
+             avoid cross-package import (e.g., "DELIVERY_CHANNEL_SLACK").
+        parameters:
+          title: parameters
+          description: parameters holds arbitrary agent-specific tuning knobs.
+          $ref: '#/components/schemas/google.protobuf.Struct'
+        author:
+          type: string
+          title: author
+        createdAt:
+          title: created_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: AgentConfig
+      additionalProperties: false
+      description: |-
+        AgentConfig is an immutable snapshot of everything that shapes an agent's
+         behavior. Promotion and rollback are both config version reassignments —
+         the same pattern as prompts/v1 Label.
+    agents.v1.AgentConfig.ModelPreferencesEntry:
+      type: object
+      properties:
+        key:
+          type: string
+          title: key
+        value:
+          type: string
+          title: value
+      title: ModelPreferencesEntry
+      additionalProperties: false
+    agents.v1.AgentConfig.PromptBindingsEntry:
+      type: object
+      properties:
+        key:
+          type: string
+          title: key
+        value:
+          type: string
+          title: value
+      title: PromptBindingsEntry
+      additionalProperties: false
+    agents.v1.DelegateRequest:
+      type: object
+      properties:
+        fromAgentId:
+          type: string
+          title: from_agent_id
+        toAgentId:
+          type: string
+          title: to_agent_id
+          description: |-
+            Specify to_agent_id for direct delegation, or required_capability for
+             capability-based routing through the registry.
+        requiredCapability:
+          type: string
+          title: required_capability
+        objectiveId:
+          type: string
+          title: objective_id
+        workflowRunId:
+          type: string
+          title: workflow_run_id
+        workflowStepId:
+          type: string
+          title: workflow_step_id
+        contextPayload:
+          type: string
+          title: context_payload
+          format: byte
+        reason:
+          type: string
+          title: reason
+      title: DelegateRequest
+      additionalProperties: false
+    agents.v1.DelegateResponse:
+      type: object
+      properties:
+        delegation:
+          title: delegation
+          $ref: '#/components/schemas/agents.v1.DelegationRecord'
+      title: DelegateResponse
+      additionalProperties: false
+    agents.v1.DelegationRecord:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        workspaceId:
+          type: string
+          title: workspace_id
+        fromAgentId:
+          type: string
+          title: from_agent_id
+        toAgentId:
+          type: string
+          title: to_agent_id
+        requiredCapability:
+          type: string
+          title: required_capability
+        objectiveId:
+          type: string
+          title: objective_id
+          description: |-
+            objective_id links to the objectives/v1 Objective created for this
+             delegated unit of work.
+        workflowRunId:
+          type: string
+          title: workflow_run_id
+          description: |-
+            workflow_run_id and workflow_step_id link to workflows/v1 when this
+             delegation occurs within a workflow execution.
+        workflowStepId:
+          type: string
+          title: workflow_step_id
+        status:
+          title: status
+          $ref: '#/components/schemas/agents.v1.DelegationStatus'
+        contextPayload:
+          type: string
+          title: context_payload
+          format: byte
+        resultPayload:
+          type: string
+          title: result_payload
+          format: byte
+        reason:
+          type: string
+          title: reason
+        errorMessage:
+          type: string
+          title: error_message
+        createdAt:
+          title: created_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        resolvedAt:
+          title: resolved_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: DelegationRecord
+      additionalProperties: false
+      description: |-
+        DelegationRecord tracks a typed hand-off between agents. The from_agent_id
+         creates an objective (objectives/v1) or references a workflow step
+         (workflows/v1 StepRun) and delegates execution to another agent resolved
+         by ID or by capability through the registry.
+    agents.v1.DeregisterRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        reason:
+          type: string
+          title: reason
+      title: DeregisterRequest
+      additionalProperties: false
+    agents.v1.DeregisterResponse:
+      type: object
+      title: DeregisterResponse
+      additionalProperties: false
+    agents.v1.GetConfigRequest:
+      type: object
+      properties:
+        agentId:
+          type: string
+          title: agent_id
+        version:
+          type: integer
+          title: version
+          format: int32
+      title: GetConfigRequest
+      additionalProperties: false
+    agents.v1.GetConfigResponse:
+      type: object
+      properties:
+        config:
+          title: config
+          $ref: '#/components/schemas/agents.v1.AgentConfig'
+      title: GetConfigResponse
+      additionalProperties: false
+    agents.v1.GetDelegationRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+      title: GetDelegationRequest
+      additionalProperties: false
+    agents.v1.GetDelegationResponse:
+      type: object
+      properties:
+        delegation:
+          title: delegation
+          $ref: '#/components/schemas/agents.v1.DelegationRecord'
+      title: GetDelegationResponse
+      additionalProperties: false
+    agents.v1.GetRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+      title: GetRequest
+      additionalProperties: false
+    agents.v1.GetResponse:
+      type: object
+      properties:
+        agent:
+          title: agent
+          $ref: '#/components/schemas/agents.v1.Agent'
+      title: GetResponse
+      additionalProperties: false
+    agents.v1.HeartbeatRequest:
+      type: object
+      properties:
+        agentId:
+          type: string
+          title: agent_id
+        status:
+          title: status
+          $ref: '#/components/schemas/agents.v1.AgentStatus'
+        currentObjectiveIds:
+          type: array
+          items:
+            type: string
+          title: current_objective_ids
+          description: |-
+            current_objective_ids lists the objectives/v1 Objective.id values this
+             agent currently holds. Used for capacity-aware delegation routing.
+        surface:
+          type: string
+          title: surface
+      title: HeartbeatRequest
+      additionalProperties: false
+    agents.v1.HeartbeatResponse:
+      type: object
+      properties:
+        nextHeartbeatBy:
+          title: next_heartbeat_by
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: HeartbeatResponse
+      additionalProperties: false
+    agents.v1.ListConfigsRequest:
+      type: object
+      properties:
+        agentId:
+          type: string
+          title: agent_id
+      title: ListConfigsRequest
+      additionalProperties: false
+    agents.v1.ListConfigsResponse:
+      type: object
+      properties:
+        configs:
+          type: array
+          items:
+            $ref: '#/components/schemas/agents.v1.AgentConfig'
+          title: configs
+      title: ListConfigsResponse
+      additionalProperties: false
+    agents.v1.ListDelegationsRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        fromAgentId:
+          type: string
+          title: from_agent_id
+        toAgentId:
+          type: string
+          title: to_agent_id
+        status:
+          title: status
+          $ref: '#/components/schemas/agents.v1.DelegationStatus'
+        workflowRunId:
+          type: string
+          title: workflow_run_id
+        limit:
+          type: integer
+          title: limit
+          format: int32
+        offset:
+          type: integer
+          title: offset
+          format: int32
+      title: ListDelegationsRequest
+      additionalProperties: false
+    agents.v1.ListDelegationsResponse:
+      type: object
+      properties:
+        delegations:
+          type: array
+          items:
+            $ref: '#/components/schemas/agents.v1.DelegationRecord'
+          title: delegations
+        total:
+          type: integer
+          title: total
+          format: int32
+      title: ListDelegationsResponse
+      additionalProperties: false
+    agents.v1.ListRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        agentType:
+          type: string
+          title: agent_type
+        capability:
+          type: string
+          title: capability
+        surface:
+          type: string
+          title: surface
+        status:
+          title: status
+          $ref: '#/components/schemas/agents.v1.AgentStatus'
+        limit:
+          type: integer
+          title: limit
+          format: int32
+        offset:
+          type: integer
+          title: offset
+          format: int32
+      title: ListRequest
+      additionalProperties: false
+    agents.v1.ListResponse:
+      type: object
+      properties:
+        agents:
+          type: array
+          items:
+            $ref: '#/components/schemas/agents.v1.Agent'
+          title: agents
+        total:
+          type: integer
+          title: total
+          format: int32
+      title: ListResponse
+      additionalProperties: false
+    agents.v1.PushConfigRequest:
+      type: object
+      properties:
+        agentId:
+          type: string
+          title: agent_id
+        skillIds:
+          type: array
+          items:
+            type: string
+          title: skill_ids
+        promptBindings:
+          type: object
+          title: prompt_bindings
+          additionalProperties:
+            type: string
+            title: value
+        modelPreferences:
+          type: object
+          title: model_preferences
+          additionalProperties:
+            type: string
+            title: value
+        integrationIds:
+          type: array
+          items:
+            type: string
+          title: integration_ids
+        entityTypeScopes:
+          type: array
+          items:
+            type: string
+          title: entity_type_scopes
+        maxConcurrentObjectives:
+          type: integer
+          title: max_concurrent_objectives
+          format: int32
+        costBudgetUsd:
+          type: number
+          title: cost_budget_usd
+          format: double
+        notificationChannel:
+          type: string
+          title: notification_channel
+        parameters:
+          title: parameters
+          $ref: '#/components/schemas/google.protobuf.Struct'
+        author:
+          type: string
+          title: author
+      title: PushConfigRequest
+      additionalProperties: false
+    agents.v1.PushConfigRequest.ModelPreferencesEntry:
+      type: object
+      properties:
+        key:
+          type: string
+          title: key
+        value:
+          type: string
+          title: value
+      title: ModelPreferencesEntry
+      additionalProperties: false
+    agents.v1.PushConfigRequest.PromptBindingsEntry:
+      type: object
+      properties:
+        key:
+          type: string
+          title: key
+        value:
+          type: string
+          title: value
+      title: PromptBindingsEntry
+      additionalProperties: false
+    agents.v1.PushConfigResponse:
+      type: object
+      properties:
+        config:
+          title: config
+          $ref: '#/components/schemas/agents.v1.AgentConfig'
+        agent:
+          title: agent
+          $ref: '#/components/schemas/agents.v1.Agent'
+      title: PushConfigResponse
+      additionalProperties: false
+    agents.v1.RegisterRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        name:
+          type: string
+          title: name
+        description:
+          type: string
+          title: description
+        agentType:
+          type: string
+          title: agent_type
+        capabilities:
+          type: array
+          items:
+            type: string
+          title: capabilities
+        surfaces:
+          type: array
+          items:
+            type: string
+          title: surfaces
+        ownerId:
+          type: string
+          title: owner_id
+      title: RegisterRequest
+      additionalProperties: false
+    agents.v1.RegisterResponse:
+      type: object
+      properties:
+        agent:
+          title: agent
+          $ref: '#/components/schemas/agents.v1.Agent'
+      title: RegisterResponse
+      additionalProperties: false
+    agents.v1.ResolveDelegationRequest:
+      type: object
+      properties:
+        delegationId:
+          type: string
+          title: delegation_id
+        status:
+          title: status
+          $ref: '#/components/schemas/agents.v1.DelegationStatus'
+        resultPayload:
+          type: string
+          title: result_payload
+          format: byte
+        errorMessage:
+          type: string
+          title: error_message
+      title: ResolveDelegationRequest
+      additionalProperties: false
+    agents.v1.ResolveDelegationResponse:
+      type: object
+      properties:
+        delegation:
+          title: delegation
+          $ref: '#/components/schemas/agents.v1.DelegationRecord'
+      title: ResolveDelegationResponse
+      additionalProperties: false
+    agents.v1.RollbackConfigRequest:
+      type: object
+      properties:
+        agentId:
+          type: string
+          title: agent_id
+        targetVersion:
+          type: integer
+          title: target_version
+          format: int32
+        actor:
+          type: string
+          title: actor
+        reason:
+          type: string
+          title: reason
+      title: RollbackConfigRequest
+      additionalProperties: false
+    agents.v1.RollbackConfigResponse:
+      type: object
+      properties:
+        config:
+          title: config
+          $ref: '#/components/schemas/agents.v1.AgentConfig'
+        agent:
+          title: agent
+          $ref: '#/components/schemas/agents.v1.Agent'
+      title: RollbackConfigResponse
+      additionalProperties: false
+    agents.v1.UpdateRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        name:
+          type: string
+          title: name
+        description:
+          type: string
+          title: description
+        capabilities:
+          type: array
+          items:
+            type: string
+          title: capabilities
+        surfaces:
+          type: array
+          items:
+            type: string
+          title: surfaces
+      title: UpdateRequest
+      additionalProperties: false
+    agents.v1.UpdateResponse:
+      type: object
+      properties:
+        agent:
+          title: agent
+          $ref: '#/components/schemas/agents.v1.Agent'
+      title: UpdateResponse
+      additionalProperties: false
+    google.protobuf.ListValue:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/google.protobuf.Value'
+          title: values
+          description: Repeated field of dynamically typed values.
+      title: ListValue
+      additionalProperties: false
+      description: |-
+        `ListValue` is a wrapper around a repeated field of values.
+
+         The JSON representation for `ListValue` is JSON array.
+    google.protobuf.Struct:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/google.protobuf.Value'
+      description: |-
+        `Struct` represents a structured data value, consisting of fields
+         which map to dynamically typed values. In some languages, `Struct`
+         might be supported by a native representation. For example, in
+         scripting languages like JS a struct is represented as an
+         object. The details of that representation are described together
+         with the proto support for the language.
+
+         The JSON representation for `Struct` is JSON object.
+    google.protobuf.Struct.FieldsEntry:
+      type: object
+      properties:
+        key:
+          type: string
+          title: key
+        value:
+          title: value
+          $ref: '#/components/schemas/google.protobuf.Value'
+      title: FieldsEntry
+      additionalProperties: false
+    google.protobuf.Timestamp:
+      type: string
+      examples:
+        - 1s
+        - 1.000340012s
+      format: date-time
+      description: |-
+        A Timestamp represents a point in time independent of any time zone or local
+         calendar, encoded as a count of seconds and fractions of seconds at
+         nanosecond resolution. The count is relative to an epoch at UTC midnight on
+         January 1, 1970, in the proleptic Gregorian calendar which extends the
+         Gregorian calendar backwards to year one.
+
+         All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
+         second table is needed for interpretation, using a [24-hour linear
+         smear](https://developers.google.com/time/smear).
+
+         The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
+         restricting to that range, we ensure that we can convert to and from [RFC
+         3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+
+         # Examples
+
+         Example 1: Compute Timestamp from POSIX `time()`.
+
+             Timestamp timestamp;
+             timestamp.set_seconds(time(NULL));
+             timestamp.set_nanos(0);
+
+         Example 2: Compute Timestamp from POSIX `gettimeofday()`.
+
+             struct timeval tv;
+             gettimeofday(&tv, NULL);
+
+             Timestamp timestamp;
+             timestamp.set_seconds(tv.tv_sec);
+             timestamp.set_nanos(tv.tv_usec * 1000);
+
+         Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
+
+             FILETIME ft;
+             GetSystemTimeAsFileTime(&ft);
+             UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+
+             // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+             // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+             Timestamp timestamp;
+             timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+             timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+
+         Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
+
+             long millis = System.currentTimeMillis();
+
+             Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                 .setNanos((int) ((millis % 1000) * 1000000)).build();
+
+         Example 5: Compute Timestamp from Java `Instant.now()`.
+
+             Instant now = Instant.now();
+
+             Timestamp timestamp =
+                 Timestamp.newBuilder().setSeconds(now.getEpochSecond())
+                     .setNanos(now.getNano()).build();
+
+         Example 6: Compute Timestamp from current time in Python.
+
+             timestamp = Timestamp()
+             timestamp.GetCurrentTime()
+
+         # JSON Mapping
+
+         In JSON format, the Timestamp type is encoded as a string in the
+         [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
+         format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
+         where {year} is always expressed using four digits while {month}, {day},
+         {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+         seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+         are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
+         is required. A proto3 JSON serializer should always use UTC (as indicated by
+         "Z") when printing the Timestamp type and a proto3 JSON parser should be
+         able to accept both UTC and other timezones (as indicated by an offset).
+
+         For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
+         01:30 UTC on January 15, 2017.
+
+         In JavaScript, one can convert a Date object to this format using the
+         standard
+         [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+         method. In Python, a standard `datetime.datetime` object can be converted
+         to this format using
+         [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
+         the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
+         the Joda Time's [`ISODateTimeFormat.dateTime()`](
+         http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
+         ) to obtain a formatter capable of generating timestamps in this format.
+    google.protobuf.Value:
+      oneOf:
+        - type: "null"
+        - type: number
+        - type: string
+        - type: boolean
+        - type: array
+        - type: object
+          additionalProperties: true
+      description: |-
+        `Value` represents a dynamically typed value which can be either
+         null, a number, a string, a boolean, a recursive struct value, or a
+         list of values. A producer of value is expected to set one of these
+         variants. Absence of any variant indicates an error.
+
+         The JSON representation for `Value` is JSON value.
+    connect-protocol-version:
+      type: number
+      title: Connect-Protocol-Version
+      enum:
+        - 1
+      description: Define the version of the Connect protocol
+      const: 1
+    connect-timeout-header:
+      type: number
+      title: Connect-Timeout-Ms
+      description: Define the timeout, in ms
+    connect.error:
+      type: object
+      properties:
+        code:
+          type: string
+          examples:
+            - not_found
+          enum:
+            - canceled
+            - unknown
+            - invalid_argument
+            - deadline_exceeded
+            - not_found
+            - already_exists
+            - permission_denied
+            - resource_exhausted
+            - failed_precondition
+            - aborted
+            - out_of_range
+            - unimplemented
+            - internal
+            - unavailable
+            - data_loss
+            - unauthenticated
+          description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
+        message:
+          type: string
+          description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
+        detail:
+          $ref: '#/components/schemas/google.protobuf.Any'
+      title: Connect Error
+      additionalProperties: true
+      description: 'Error type returned by Connect: https://connectrpc.com/docs/go/errors/#http-representation'
+    google.protobuf.Any:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          format: binary
+        debug:
+          type: object
+          additionalProperties: true
+      additionalProperties: true
+      description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+security: []
+tags:
+  - name: agents.v1.AgentService
+    description: |-
+      AgentService manages agent definitions, versioned configuration, and
+       cross-agent delegation. Every string agent_id in the platform (meter,
+       objectives, approvals, governance, memory) resolves to an Agent record
+       owned by this service.

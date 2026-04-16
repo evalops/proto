@@ -17,3 +17,9 @@ plugins:
   # Python
   - remote: buf.build/protocolbuffers/python
     out: gen/python
+  # OpenAPI — generates Connect-compatible OpenAPI v3.1 specs per service.
+  # Consumed by mcp-openapi to produce MCP tool definitions for agent-mcp.
+  - remote: buf.build/community/sudorandom-connect-openapi:v0.19.1
+    out: gen/openapi
+    opt:
+      - path=

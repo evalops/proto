@@ -1,0 +1,1227 @@
+openapi: 3.1.0
+info:
+  title: attribution.v1
+paths:
+  /attribution.v1.AttributionService/GenerateReport:
+    post:
+      tags:
+        - attribution.v1.AttributionService
+      summary: GenerateReport
+      operationId: attribution.v1.AttributionService.GenerateReport
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/attribution.v1.GenerateReportRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/attribution.v1.GenerateReportResponse'
+  /attribution.v1.AttributionService/GetReport:
+    post:
+      tags:
+        - attribution.v1.AttributionService
+      summary: GetReport
+      operationId: attribution.v1.AttributionService.GetReport
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/attribution.v1.GetReportRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/attribution.v1.GetReportResponse'
+  /attribution.v1.AttributionService/ListReports:
+    post:
+      tags:
+        - attribution.v1.AttributionService
+      summary: ListReports
+      operationId: attribution.v1.AttributionService.ListReports
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/attribution.v1.ListReportsRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/attribution.v1.ListReportsResponse'
+  /attribution.v1.AttributionService/ExportReport:
+    post:
+      tags:
+        - attribution.v1.AttributionService
+      summary: ExportReport
+      operationId: attribution.v1.AttributionService.ExportReport
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/attribution.v1.ExportReportRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/attribution.v1.ExportReportResponse'
+  /attribution.v1.AttributionService/RecordSignals:
+    post:
+      tags:
+        - attribution.v1.AttributionService
+      summary: RecordSignals
+      operationId: attribution.v1.AttributionService.RecordSignals
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/attribution.v1.RecordSignalsRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/attribution.v1.RecordSignalsResponse'
+  /attribution.v1.AttributionService/GetSnapshot:
+    post:
+      tags:
+        - attribution.v1.AttributionService
+      summary: GetSnapshot
+      operationId: attribution.v1.AttributionService.GetSnapshot
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/attribution.v1.GetSnapshotRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/attribution.v1.GetSnapshotResponse'
+  /attribution.v1.AttributionService/ListSnapshots:
+    post:
+      tags:
+        - attribution.v1.AttributionService
+      summary: ListSnapshots
+      operationId: attribution.v1.AttributionService.ListSnapshots
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/attribution.v1.ListSnapshotsRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/attribution.v1.ListSnapshotsResponse'
+components:
+  schemas:
+    attribution.v1.AttributionModel:
+      type: string
+      title: AttributionModel
+      enum:
+        - ATTRIBUTION_MODEL_UNSPECIFIED
+        - ATTRIBUTION_MODEL_DIRECT
+        - ATTRIBUTION_MODEL_ASSISTED
+        - ATTRIBUTION_MODEL_INFLUENCED
+    attribution.v1.AttributionSignalType:
+      type: string
+      title: AttributionSignalType
+      enum:
+        - ATTRIBUTION_SIGNAL_TYPE_UNSPECIFIED
+        - ATTRIBUTION_SIGNAL_TYPE_OBJECTIVE_COMPLETED
+        - ATTRIBUTION_SIGNAL_TYPE_TRACE_COMPLETED
+    attribution.v1.AttributionSubjectKind:
+      type: string
+      title: AttributionSubjectKind
+      enum:
+        - ATTRIBUTION_SUBJECT_KIND_UNSPECIFIED
+        - ATTRIBUTION_SUBJECT_KIND_DEAL
+        - ATTRIBUTION_SUBJECT_KIND_OBJECTIVE
+    attribution.v1.ReportExportFormat:
+      type: string
+      title: ReportExportFormat
+      enum:
+        - REPORT_EXPORT_FORMAT_UNSPECIFIED
+        - REPORT_EXPORT_FORMAT_JSON
+        - REPORT_EXPORT_FORMAT_CSV
+    attribution.v1.AgentSummary:
+      type: object
+      properties:
+        agentId:
+          type: string
+          title: agent_id
+        attributionWeight:
+          type: number
+          title: attribution_weight
+          format: double
+        attributedRevenueUsd:
+          type: number
+          title: attributed_revenue_usd
+          format: double
+        totalCostUsd:
+          type: number
+          title: total_cost_usd
+          format: double
+        roiMultiple:
+          type: number
+          title: roi_multiple
+          format: double
+        traceCount:
+          type: integer
+          title: trace_count
+          format: int32
+        usageCount:
+          type: integer
+          title: usage_count
+          format: int32
+        traceIds:
+          type: array
+          items:
+            type: string
+          title: trace_ids
+        usageRecordIds:
+          type: array
+          items:
+            type: string
+          title: usage_record_ids
+      title: AgentSummary
+      additionalProperties: false
+    attribution.v1.AttributionQuery:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        organizationId:
+          type: string
+          title: organization_id
+        dealIds:
+          type: array
+          items:
+            type: string
+          title: deal_ids
+        model:
+          title: model
+          $ref: '#/components/schemas/attribution.v1.AttributionModel'
+        startTime:
+          title: start_time
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        endTime:
+          title: end_time
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        includeTeamRollups:
+          type: boolean
+          title: include_team_rollups
+        objectiveIds:
+          type: array
+          items:
+            type: string
+          title: objective_ids
+      title: AttributionQuery
+      additionalProperties: false
+    attribution.v1.AttributionReport:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        query:
+          title: query
+          $ref: '#/components/schemas/attribution.v1.AttributionQuery'
+        generatedAt:
+          title: generated_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        deals:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.DealAttribution'
+          title: deals
+        agentSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.AgentSummary'
+          title: agent_summaries
+        teamSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.TeamSummary'
+          title: team_summaries
+        objectiveOutcomes:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.ObjectiveOutcomeAttribution'
+          title: objective_outcomes
+        objectiveAgentSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.ObjectiveAgentSummary'
+          title: objective_agent_summaries
+        objectiveTeamSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.ObjectiveTeamSummary'
+          title: objective_team_summaries
+      title: AttributionReport
+      additionalProperties: false
+    attribution.v1.AttributionReportSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        query:
+          title: query
+          $ref: '#/components/schemas/attribution.v1.AttributionQuery'
+        generatedAt:
+          title: generated_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        dealCount:
+          type: integer
+          title: deal_count
+          format: int32
+        agentCount:
+          type: integer
+          title: agent_count
+          format: int32
+        teamCount:
+          type: integer
+          title: team_count
+          format: int32
+        objectiveOutcomeCount:
+          type: integer
+          title: objective_outcome_count
+          format: int32
+      title: AttributionReportSummary
+      additionalProperties: false
+    attribution.v1.AttributionSignal:
+      type: object
+      oneOf:
+        - properties:
+            objectiveCompletion:
+              title: objective_completion
+              $ref: '#/components/schemas/attribution.v1.ObjectiveCompletionSignal'
+          title: objective_completion
+          required:
+            - objectiveCompletion
+        - properties:
+            traceCompletion:
+              title: trace_completion
+              $ref: '#/components/schemas/attribution.v1.TraceCompletionSignal'
+          title: trace_completion
+          required:
+            - traceCompletion
+      title: AttributionSignal
+      additionalProperties: false
+    attribution.v1.AttributionSnapshot:
+      type: object
+      oneOf:
+        - properties:
+            deal:
+              title: deal
+              $ref: '#/components/schemas/attribution.v1.DealAttribution'
+          title: deal
+          required:
+            - deal
+        - properties:
+            objectiveOutcome:
+              title: objective_outcome
+              $ref: '#/components/schemas/attribution.v1.ObjectiveOutcomeAttribution'
+          title: objective_outcome
+          required:
+            - objectiveOutcome
+      properties:
+        id:
+          type: string
+          title: id
+        workspaceId:
+          type: string
+          title: workspace_id
+        organizationId:
+          type: string
+          title: organization_id
+        subjectKind:
+          title: subject_kind
+          $ref: '#/components/schemas/attribution.v1.AttributionSubjectKind'
+        subjectId:
+          type: string
+          title: subject_id
+        model:
+          title: model
+          $ref: '#/components/schemas/attribution.v1.AttributionModel'
+        signalType:
+          title: signal_type
+          $ref: '#/components/schemas/attribution.v1.AttributionSignalType'
+        signalId:
+          type: string
+          title: signal_id
+        windowStart:
+          title: window_start
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        windowEnd:
+          title: window_end
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        recordedAt:
+          title: recorded_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: AttributionSnapshot
+      additionalProperties: false
+    attribution.v1.DealAttribution:
+      type: object
+      properties:
+        deal:
+          title: deal
+          $ref: '#/components/schemas/attribution.v1.DealContext'
+        traceTouchpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.TraceTouchpoint'
+          title: trace_touchpoints
+        usageTouchpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.UsageTouchpoint'
+          title: usage_touchpoints
+        agentSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.AgentSummary'
+          title: agent_summaries
+        teamSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.TeamSummary'
+          title: team_summaries
+        totalAttributedRevenueUsd:
+          type: number
+          title: total_attributed_revenue_usd
+          format: double
+        totalAttributedCostUsd:
+          type: number
+          title: total_attributed_cost_usd
+          format: double
+        unattributedRevenueUsd:
+          type: number
+          title: unattributed_revenue_usd
+          format: double
+        unattributedCostUsd:
+          type: number
+          title: unattributed_cost_usd
+          format: double
+      title: DealAttribution
+      additionalProperties: false
+    attribution.v1.DealContext:
+      type: object
+      properties:
+        dealId:
+          type: string
+          title: deal_id
+        title:
+          type: string
+          title: title
+        stage:
+          type: string
+          title: stage
+        value:
+          type: number
+          title: value
+          format: double
+        currency:
+          type: string
+          title: currency
+        ownerId:
+          type: string
+          title: owner_id
+        contactId:
+          type: string
+          title: contact_id
+        companyId:
+          type: string
+          title: company_id
+        createdAt:
+          title: created_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: DealContext
+      additionalProperties: false
+    attribution.v1.ExportReportRequest:
+      type: object
+      properties:
+        query:
+          title: query
+          $ref: '#/components/schemas/attribution.v1.AttributionQuery'
+        format:
+          title: format
+          $ref: '#/components/schemas/attribution.v1.ReportExportFormat'
+      title: ExportReportRequest
+      additionalProperties: false
+    attribution.v1.ExportReportResponse:
+      type: object
+      properties:
+        content:
+          type: string
+          title: content
+          format: byte
+        contentType:
+          type: string
+          title: content_type
+        filename:
+          type: string
+          title: filename
+      title: ExportReportResponse
+      additionalProperties: false
+    attribution.v1.GenerateReportRequest:
+      type: object
+      properties:
+        query:
+          title: query
+          $ref: '#/components/schemas/attribution.v1.AttributionQuery'
+      title: GenerateReportRequest
+      additionalProperties: false
+    attribution.v1.GenerateReportResponse:
+      type: object
+      properties:
+        report:
+          title: report
+          $ref: '#/components/schemas/attribution.v1.AttributionReport'
+      title: GenerateReportResponse
+      additionalProperties: false
+    attribution.v1.GetReportRequest:
+      type: object
+      properties:
+        reportId:
+          type: string
+          title: report_id
+      title: GetReportRequest
+      additionalProperties: false
+    attribution.v1.GetReportResponse:
+      type: object
+      properties:
+        report:
+          title: report
+          $ref: '#/components/schemas/attribution.v1.AttributionReport'
+      title: GetReportResponse
+      additionalProperties: false
+    attribution.v1.GetSnapshotRequest:
+      type: object
+      properties:
+        snapshotId:
+          type: string
+          title: snapshot_id
+      title: GetSnapshotRequest
+      additionalProperties: false
+    attribution.v1.GetSnapshotResponse:
+      type: object
+      properties:
+        snapshot:
+          title: snapshot
+          $ref: '#/components/schemas/attribution.v1.AttributionSnapshot'
+      title: GetSnapshotResponse
+      additionalProperties: false
+    attribution.v1.ListReportsRequest:
+      type: object
+      properties:
+        organizationId:
+          type: string
+          title: organization_id
+        workspaceId:
+          type: string
+          title: workspace_id
+        model:
+          title: model
+          $ref: '#/components/schemas/attribution.v1.AttributionModel'
+        limit:
+          type: integer
+          title: limit
+          format: int32
+        offset:
+          type: integer
+          title: offset
+          format: int32
+      title: ListReportsRequest
+      additionalProperties: false
+    attribution.v1.ListReportsResponse:
+      type: object
+      properties:
+        reports:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.AttributionReportSummary'
+          title: reports
+        hasMore:
+          type: boolean
+          title: has_more
+      title: ListReportsResponse
+      additionalProperties: false
+    attribution.v1.ListSnapshotsRequest:
+      type: object
+      properties:
+        organizationId:
+          type: string
+          title: organization_id
+        workspaceId:
+          type: string
+          title: workspace_id
+        subjectKind:
+          title: subject_kind
+          $ref: '#/components/schemas/attribution.v1.AttributionSubjectKind'
+        subjectId:
+          type: string
+          title: subject_id
+        model:
+          title: model
+          $ref: '#/components/schemas/attribution.v1.AttributionModel'
+        limit:
+          type: integer
+          title: limit
+          format: int32
+        offset:
+          type: integer
+          title: offset
+          format: int32
+      title: ListSnapshotsRequest
+      additionalProperties: false
+    attribution.v1.ListSnapshotsResponse:
+      type: object
+      properties:
+        snapshots:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.AttributionSnapshot'
+          title: snapshots
+        hasMore:
+          type: boolean
+          title: has_more
+      title: ListSnapshotsResponse
+      additionalProperties: false
+    attribution.v1.ObjectiveAgentSummary:
+      type: object
+      properties:
+        agentId:
+          type: string
+          title: agent_id
+        attributionWeight:
+          type: number
+          title: attribution_weight
+          format: double
+        attributedOutcomeCount:
+          type: number
+          title: attributed_outcome_count
+          format: double
+        totalCostUsd:
+          type: number
+          title: total_cost_usd
+          format: double
+        traceCount:
+          type: integer
+          title: trace_count
+          format: int32
+        usageCount:
+          type: integer
+          title: usage_count
+          format: int32
+        traceIds:
+          type: array
+          items:
+            type: string
+          title: trace_ids
+        usageRecordIds:
+          type: array
+          items:
+            type: string
+          title: usage_record_ids
+      title: ObjectiveAgentSummary
+      additionalProperties: false
+    attribution.v1.ObjectiveCompletionSignal:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        organizationId:
+          type: string
+          title: organization_id
+        objectiveId:
+          type: string
+          title: objective_id
+        completedAt:
+          title: completed_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: ObjectiveCompletionSignal
+      additionalProperties: false
+    attribution.v1.ObjectiveContext:
+      type: object
+      properties:
+        objectiveId:
+          type: string
+          title: objective_id
+        agentId:
+          type: string
+          title: agent_id
+        surface:
+          type: string
+          title: surface
+        title:
+          type: string
+          title: title
+        description:
+          type: string
+          title: description
+        state:
+          type: string
+          title: state
+        createdAt:
+          title: created_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        completedAt:
+          title: completed_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: ObjectiveContext
+      additionalProperties: false
+    attribution.v1.ObjectiveOutcomeAttribution:
+      type: object
+      properties:
+        objective:
+          title: objective
+          $ref: '#/components/schemas/attribution.v1.ObjectiveContext'
+        traceTouchpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.TraceTouchpoint'
+          title: trace_touchpoints
+        usageTouchpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.UsageTouchpoint'
+          title: usage_touchpoints
+        agentSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.ObjectiveAgentSummary'
+          title: agent_summaries
+        teamSummaries:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.ObjectiveTeamSummary'
+          title: team_summaries
+        totalAttributedOutcomeCount:
+          type: number
+          title: total_attributed_outcome_count
+          format: double
+        totalAttributedCostUsd:
+          type: number
+          title: total_attributed_cost_usd
+          format: double
+        unattributedOutcomeCount:
+          type: number
+          title: unattributed_outcome_count
+          format: double
+        unattributedCostUsd:
+          type: number
+          title: unattributed_cost_usd
+          format: double
+      title: ObjectiveOutcomeAttribution
+      additionalProperties: false
+    attribution.v1.ObjectiveTeamSummary:
+      type: object
+      properties:
+        teamId:
+          type: string
+          title: team_id
+        attributionWeight:
+          type: number
+          title: attribution_weight
+          format: double
+        attributedOutcomeCount:
+          type: number
+          title: attributed_outcome_count
+          format: double
+        totalCostUsd:
+          type: number
+          title: total_cost_usd
+          format: double
+        agentIds:
+          type: array
+          items:
+            type: string
+          title: agent_ids
+      title: ObjectiveTeamSummary
+      additionalProperties: false
+    attribution.v1.RecordSignalsRequest:
+      type: object
+      properties:
+        signals:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.AttributionSignal'
+          title: signals
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.AttributionModel'
+          title: models
+        includeTeamRollups:
+          type: boolean
+          title: include_team_rollups
+      title: RecordSignalsRequest
+      additionalProperties: false
+    attribution.v1.RecordSignalsResponse:
+      type: object
+      properties:
+        snapshots:
+          type: array
+          items:
+            $ref: '#/components/schemas/attribution.v1.AttributionSnapshot'
+          title: snapshots
+      title: RecordSignalsResponse
+      additionalProperties: false
+    attribution.v1.TeamSummary:
+      type: object
+      properties:
+        teamId:
+          type: string
+          title: team_id
+        attributedRevenueUsd:
+          type: number
+          title: attributed_revenue_usd
+          format: double
+        totalCostUsd:
+          type: number
+          title: total_cost_usd
+          format: double
+        roiMultiple:
+          type: number
+          title: roi_multiple
+          format: double
+        agentIds:
+          type: array
+          items:
+            type: string
+          title: agent_ids
+      title: TeamSummary
+      additionalProperties: false
+    attribution.v1.TraceCompletionSignal:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        organizationId:
+          type: string
+          title: organization_id
+        traceId:
+          type: string
+          title: trace_id
+        completedAt:
+          title: completed_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: TraceCompletionSignal
+      additionalProperties: false
+    attribution.v1.TraceTouchpoint:
+      type: object
+      properties:
+        trace:
+          title: trace
+          $ref: '#/components/schemas/traces.v1.TraceSummary'
+        matchReasons:
+          type: array
+          items:
+            type: string
+          title: match_reasons
+      title: TraceTouchpoint
+      additionalProperties: false
+    attribution.v1.UsageTouchpoint:
+      type: object
+      properties:
+        recordId:
+          type: string
+          title: record_id
+        requestId:
+          type: string
+          title: request_id
+        agentId:
+          type: string
+          title: agent_id
+        teamId:
+          type: string
+          title: team_id
+        surface:
+          type: string
+          title: surface
+        model:
+          type: string
+          title: model
+        provider:
+          type: string
+          title: provider
+        inputTokens:
+          type:
+            - integer
+            - string
+          title: input_tokens
+          format: int64
+        outputTokens:
+          type:
+            - integer
+            - string
+          title: output_tokens
+          format: int64
+        totalCostUsd:
+          type: number
+          title: total_cost_usd
+          format: double
+        observedAt:
+          title: observed_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: UsageTouchpoint
+      additionalProperties: false
+    google.protobuf.Timestamp:
+      type: string
+      examples:
+        - 1s
+        - 1.000340012s
+      format: date-time
+      description: |-
+        A Timestamp represents a point in time independent of any time zone or local
+         calendar, encoded as a count of seconds and fractions of seconds at
+         nanosecond resolution. The count is relative to an epoch at UTC midnight on
+         January 1, 1970, in the proleptic Gregorian calendar which extends the
+         Gregorian calendar backwards to year one.
+
+         All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
+         second table is needed for interpretation, using a [24-hour linear
+         smear](https://developers.google.com/time/smear).
+
+         The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
+         restricting to that range, we ensure that we can convert to and from [RFC
+         3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+
+         # Examples
+
+         Example 1: Compute Timestamp from POSIX `time()`.
+
+             Timestamp timestamp;
+             timestamp.set_seconds(time(NULL));
+             timestamp.set_nanos(0);
+
+         Example 2: Compute Timestamp from POSIX `gettimeofday()`.
+
+             struct timeval tv;
+             gettimeofday(&tv, NULL);
+
+             Timestamp timestamp;
+             timestamp.set_seconds(tv.tv_sec);
+             timestamp.set_nanos(tv.tv_usec * 1000);
+
+         Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
+
+             FILETIME ft;
+             GetSystemTimeAsFileTime(&ft);
+             UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+
+             // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+             // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+             Timestamp timestamp;
+             timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+             timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+
+         Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
+
+             long millis = System.currentTimeMillis();
+
+             Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                 .setNanos((int) ((millis % 1000) * 1000000)).build();
+
+         Example 5: Compute Timestamp from Java `Instant.now()`.
+
+             Instant now = Instant.now();
+
+             Timestamp timestamp =
+                 Timestamp.newBuilder().setSeconds(now.getEpochSecond())
+                     .setNanos(now.getNano()).build();
+
+         Example 6: Compute Timestamp from current time in Python.
+
+             timestamp = Timestamp()
+             timestamp.GetCurrentTime()
+
+         # JSON Mapping
+
+         In JSON format, the Timestamp type is encoded as a string in the
+         [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
+         format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
+         where {year} is always expressed using four digits while {month}, {day},
+         {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+         seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+         are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
+         is required. A proto3 JSON serializer should always use UTC (as indicated by
+         "Z") when printing the Timestamp type and a proto3 JSON parser should be
+         able to accept both UTC and other timezones (as indicated by an offset).
+
+         For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
+         01:30 UTC on January 15, 2017.
+
+         In JavaScript, one can convert a Date object to this format using the
+         standard
+         [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+         method. In Python, a standard `datetime.datetime` object can be converted
+         to this format using
+         [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
+         the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
+         the Joda Time's [`ISODateTimeFormat.dateTime()`](
+         http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
+         ) to obtain a formatter capable of generating timestamps in this format.
+    traces.v1.TraceSummary:
+      type: object
+      properties:
+        traceId:
+          type: string
+          title: trace_id
+        workspaceId:
+          type: string
+          title: workspace_id
+        organizationId:
+          type: string
+          title: organization_id
+        agentId:
+          type: string
+          title: agent_id
+        surface:
+          type: string
+          title: surface
+        rootSpanName:
+          type: string
+          title: root_span_name
+        totalSpans:
+          type: integer
+          title: total_spans
+          format: int32
+        totalTokenInput:
+          type:
+            - integer
+            - string
+          title: total_token_input
+          format: int64
+        totalTokenOutput:
+          type:
+            - integer
+            - string
+          title: total_token_output
+          format: int64
+        totalCostUsd:
+          type: number
+          title: total_cost_usd
+          format: double
+        totalLatencyMs:
+          type:
+            - integer
+            - string
+          title: total_latency_ms
+          format: int64
+        startedAt:
+          title: started_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        endedAt:
+          title: ended_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: TraceSummary
+      additionalProperties: false
+    connect-protocol-version:
+      type: number
+      title: Connect-Protocol-Version
+      enum:
+        - 1
+      description: Define the version of the Connect protocol
+      const: 1
+    connect-timeout-header:
+      type: number
+      title: Connect-Timeout-Ms
+      description: Define the timeout, in ms
+    connect.error:
+      type: object
+      properties:
+        code:
+          type: string
+          examples:
+            - not_found
+          enum:
+            - canceled
+            - unknown
+            - invalid_argument
+            - deadline_exceeded
+            - not_found
+            - already_exists
+            - permission_denied
+            - resource_exhausted
+            - failed_precondition
+            - aborted
+            - out_of_range
+            - unimplemented
+            - internal
+            - unavailable
+            - data_loss
+            - unauthenticated
+          description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
+        message:
+          type: string
+          description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
+        detail:
+          $ref: '#/components/schemas/google.protobuf.Any'
+      title: Connect Error
+      additionalProperties: true
+      description: 'Error type returned by Connect: https://connectrpc.com/docs/go/errors/#http-representation'
+    google.protobuf.Any:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          format: binary
+        debug:
+          type: object
+          additionalProperties: true
+      additionalProperties: true
+      description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+security: []
+tags:
+  - name: attribution.v1.AttributionService
+    description: AttributionService computes revenue attribution and ROI across traces and usage.

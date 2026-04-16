@@ -1,0 +1,833 @@
+openapi: 3.1.0
+info:
+  title: memory.v1
+paths:
+  /memory.v1.MemoryService/Store:
+    post:
+      tags:
+        - memory.v1.MemoryService
+      summary: Store
+      operationId: memory.v1.MemoryService.Store
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/memory.v1.StoreRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/memory.v1.StoreResponse'
+  /memory.v1.MemoryService/Recall:
+    post:
+      tags:
+        - memory.v1.MemoryService
+      summary: Recall
+      operationId: memory.v1.MemoryService.Recall
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/memory.v1.RecallRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/memory.v1.RecallResponse'
+  /memory.v1.MemoryService/RecallKnowledge:
+    post:
+      tags:
+        - memory.v1.MemoryService
+      summary: RecallKnowledge
+      operationId: memory.v1.MemoryService.RecallKnowledge
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/memory.v1.RecallKnowledgeRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/memory.v1.RecallKnowledgeResponse'
+  /memory.v1.MemoryService/Update:
+    post:
+      tags:
+        - memory.v1.MemoryService
+      summary: Update
+      operationId: memory.v1.MemoryService.Update
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/memory.v1.UpdateRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/memory.v1.UpdateResponse'
+  /memory.v1.MemoryService/Delete:
+    post:
+      tags:
+        - memory.v1.MemoryService
+      summary: Delete
+      operationId: memory.v1.MemoryService.Delete
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/memory.v1.DeleteRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/memory.v1.DeleteResponse'
+  /memory.v1.MemoryService/List:
+    post:
+      tags:
+        - memory.v1.MemoryService
+      summary: List
+      operationId: memory.v1.MemoryService.List
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/memory.v1.ListRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/memory.v1.ListResponse'
+  /memory.v1.MemoryService/GetOperatingRules:
+    post:
+      tags:
+        - memory.v1.MemoryService
+      summary: GetOperatingRules
+      operationId: memory.v1.MemoryService.GetOperatingRules
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/memory.v1.GetOperatingRulesRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/memory.v1.GetOperatingRulesResponse'
+  /memory.v1.MemoryService/Consolidate:
+    post:
+      tags:
+        - memory.v1.MemoryService
+      summary: Consolidate
+      operationId: memory.v1.MemoryService.Consolidate
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/memory.v1.ConsolidateRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/memory.v1.ConsolidateResponse'
+components:
+  schemas:
+    memory.v1.Scope:
+      type: string
+      title: Scope
+      enum:
+        - SCOPE_UNSPECIFIED
+        - SCOPE_USER
+        - SCOPE_TEAM
+        - SCOPE_ORGANIZATION
+        - SCOPE_AGENT
+        - SCOPE_PROJECT
+      description: Scope controls memory visibility.
+    google.protobuf.Timestamp:
+      type: string
+      examples:
+        - 1s
+        - 1.000340012s
+      format: date-time
+      description: |-
+        A Timestamp represents a point in time independent of any time zone or local
+         calendar, encoded as a count of seconds and fractions of seconds at
+         nanosecond resolution. The count is relative to an epoch at UTC midnight on
+         January 1, 1970, in the proleptic Gregorian calendar which extends the
+         Gregorian calendar backwards to year one.
+
+         All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
+         second table is needed for interpretation, using a [24-hour linear
+         smear](https://developers.google.com/time/smear).
+
+         The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
+         restricting to that range, we ensure that we can convert to and from [RFC
+         3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+
+         # Examples
+
+         Example 1: Compute Timestamp from POSIX `time()`.
+
+             Timestamp timestamp;
+             timestamp.set_seconds(time(NULL));
+             timestamp.set_nanos(0);
+
+         Example 2: Compute Timestamp from POSIX `gettimeofday()`.
+
+             struct timeval tv;
+             gettimeofday(&tv, NULL);
+
+             Timestamp timestamp;
+             timestamp.set_seconds(tv.tv_sec);
+             timestamp.set_nanos(tv.tv_usec * 1000);
+
+         Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
+
+             FILETIME ft;
+             GetSystemTimeAsFileTime(&ft);
+             UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+
+             // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+             // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+             Timestamp timestamp;
+             timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+             timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+
+         Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
+
+             long millis = System.currentTimeMillis();
+
+             Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                 .setNanos((int) ((millis % 1000) * 1000000)).build();
+
+         Example 5: Compute Timestamp from Java `Instant.now()`.
+
+             Instant now = Instant.now();
+
+             Timestamp timestamp =
+                 Timestamp.newBuilder().setSeconds(now.getEpochSecond())
+                     .setNanos(now.getNano()).build();
+
+         Example 6: Compute Timestamp from current time in Python.
+
+             timestamp = Timestamp()
+             timestamp.GetCurrentTime()
+
+         # JSON Mapping
+
+         In JSON format, the Timestamp type is encoded as a string in the
+         [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
+         format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
+         where {year} is always expressed using four digits while {month}, {day},
+         {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+         seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+         are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
+         is required. A proto3 JSON serializer should always use UTC (as indicated by
+         "Z") when printing the Timestamp type and a proto3 JSON parser should be
+         able to accept both UTC and other timezones (as indicated by an offset).
+
+         For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
+         01:30 UTC on January 15, 2017.
+
+         In JavaScript, one can convert a Date object to this format using the
+         standard
+         [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+         method. In Python, a standard `datetime.datetime` object can be converted
+         to this format using
+         [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
+         the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
+         the Joda Time's [`ISODateTimeFormat.dateTime()`](
+         http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
+         ) to obtain a formatter capable of generating timestamps in this format.
+    memory.v1.ConsolidateRequest:
+      type: object
+      properties:
+        scope:
+          title: scope
+          $ref: '#/components/schemas/memory.v1.Scope'
+        projectId:
+          type: string
+          title: project_id
+      title: ConsolidateRequest
+      additionalProperties: false
+    memory.v1.ConsolidateResponse:
+      type: object
+      properties:
+        merged:
+          type: integer
+          title: merged
+          format: int32
+        pruned:
+          type: integer
+          title: pruned
+          format: int32
+      title: ConsolidateResponse
+      additionalProperties: false
+    memory.v1.DeleteRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+      title: DeleteRequest
+      additionalProperties: false
+    memory.v1.DeleteResponse:
+      type: object
+      title: DeleteResponse
+      additionalProperties: false
+    memory.v1.GetOperatingRulesRequest:
+      type: object
+      properties:
+        scope:
+          title: scope
+          $ref: '#/components/schemas/memory.v1.Scope'
+        projectId:
+          type: string
+          title: project_id
+        teamId:
+          type: string
+          title: team_id
+        repository:
+          type: string
+          title: repository
+        agent:
+          type: string
+          title: agent
+        limit:
+          type: integer
+          title: limit
+          format: int32
+        offset:
+          type: integer
+          title: offset
+          format: int32
+      title: GetOperatingRulesRequest
+      additionalProperties: false
+    memory.v1.GetOperatingRulesResponse:
+      type: object
+      properties:
+        memories:
+          type: array
+          items:
+            $ref: '#/components/schemas/memory.v1.Memory'
+          title: memories
+        total:
+          type: integer
+          title: total
+          format: int32
+        hasMore:
+          type: boolean
+          title: has_more
+      title: GetOperatingRulesResponse
+      additionalProperties: false
+    memory.v1.ListRequest:
+      type: object
+      properties:
+        scope:
+          title: scope
+          $ref: '#/components/schemas/memory.v1.Scope'
+        projectId:
+          type: string
+          title: project_id
+        teamId:
+          type: string
+          title: team_id
+        repository:
+          type: string
+          title: repository
+        agent:
+          type: string
+          title: agent
+        limit:
+          type: integer
+          title: limit
+          format: int32
+        offset:
+          type: integer
+          title: offset
+          format: int32
+        type:
+          type: string
+          title: type
+      title: ListRequest
+      additionalProperties: false
+    memory.v1.ListResponse:
+      type: object
+      properties:
+        memories:
+          type: array
+          items:
+            $ref: '#/components/schemas/memory.v1.Memory'
+          title: memories
+        total:
+          type: integer
+          title: total
+          format: int32
+        hasMore:
+          type: boolean
+          title: has_more
+      title: ListResponse
+      additionalProperties: false
+    memory.v1.Memory:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        scope:
+          title: scope
+          $ref: '#/components/schemas/memory.v1.Scope'
+        content:
+          type: string
+          title: content
+        type:
+          type: string
+          title: type
+        source:
+          type: string
+          title: source
+        confidence:
+          type: number
+          title: confidence
+          format: float
+        pinned:
+          type: boolean
+          title: pinned
+        embedding:
+          type: array
+          items:
+            type: number
+            format: float
+          title: embedding
+          description: Packed float encoding — ~4x smaller than JSON float arrays.
+        workspaceId:
+          type: string
+          title: workspace_id
+        userId:
+          type: string
+          title: user_id
+        projectId:
+          type: string
+          title: project_id
+        teamId:
+          type: string
+          title: team_id
+        repository:
+          type: string
+          title: repository
+        agent:
+          type: string
+          title: agent
+        isPolicy:
+          type: boolean
+          title: is_policy
+        createdAt:
+          title: created_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        tags:
+          type: array
+          items:
+            type: string
+          title: tags
+      title: Memory
+      additionalProperties: false
+      description: |-
+        Memory is the canonical memory record.
+         Unifies chat's Memory proto and ensemble's TypeScript memory types.
+    memory.v1.RecallKnowledgeRequest:
+      type: object
+      properties:
+        conditions:
+          type: array
+          items:
+            type: string
+          title: conditions
+        scope:
+          title: scope
+          $ref: '#/components/schemas/memory.v1.Scope'
+        topK:
+          type: integer
+          title: top_k
+          format: int32
+        projectId:
+          type: string
+          title: project_id
+        teamId:
+          type: string
+          title: team_id
+        repository:
+          type: string
+          title: repository
+        agent:
+          type: string
+          title: agent
+      title: RecallKnowledgeRequest
+      additionalProperties: false
+    memory.v1.RecallKnowledgeResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/memory.v1.RecallResult'
+          title: results
+      title: RecallKnowledgeResponse
+      additionalProperties: false
+    memory.v1.RecallRequest:
+      type: object
+      properties:
+        query:
+          type: string
+          title: query
+        scope:
+          title: scope
+          $ref: '#/components/schemas/memory.v1.Scope'
+        topK:
+          type: integer
+          title: top_k
+          format: int32
+        minSimilarity:
+          type: number
+          title: min_similarity
+          format: float
+        projectId:
+          type: string
+          title: project_id
+        teamId:
+          type: string
+          title: team_id
+        repository:
+          type: string
+          title: repository
+        agent:
+          type: string
+          title: agent
+        type:
+          type: string
+          title: type
+      title: RecallRequest
+      additionalProperties: false
+    memory.v1.RecallResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/memory.v1.RecallResult'
+          title: results
+      title: RecallResponse
+      additionalProperties: false
+    memory.v1.RecallResult:
+      type: object
+      properties:
+        memory:
+          title: memory
+          $ref: '#/components/schemas/memory.v1.Memory'
+        similarity:
+          type: number
+          title: similarity
+          format: float
+      title: RecallResult
+      additionalProperties: false
+    memory.v1.StoreRequest:
+      type: object
+      properties:
+        scope:
+          title: scope
+          $ref: '#/components/schemas/memory.v1.Scope'
+        content:
+          type: string
+          title: content
+        type:
+          type: string
+          title: type
+        source:
+          type: string
+          title: source
+        confidence:
+          type: number
+          title: confidence
+          format: float
+        projectId:
+          type: string
+          title: project_id
+        teamId:
+          type: string
+          title: team_id
+        repository:
+          type: string
+          title: repository
+        agent:
+          type: string
+          title: agent
+        isPolicy:
+          type: boolean
+          title: is_policy
+        tags:
+          type: array
+          items:
+            type: string
+          title: tags
+        id:
+          type: string
+          title: id
+      title: StoreRequest
+      additionalProperties: false
+    memory.v1.StoreResponse:
+      type: object
+      properties:
+        memory:
+          title: memory
+          $ref: '#/components/schemas/memory.v1.Memory'
+      title: StoreResponse
+      additionalProperties: false
+    memory.v1.UpdateRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        content:
+          type: string
+          title: content
+        type:
+          type: string
+          title: type
+        confidence:
+          type: number
+          title: confidence
+          format: float
+        tags:
+          type: array
+          items:
+            type: string
+          title: tags
+      title: UpdateRequest
+      additionalProperties: false
+    memory.v1.UpdateResponse:
+      type: object
+      properties:
+        memory:
+          title: memory
+          $ref: '#/components/schemas/memory.v1.Memory'
+      title: UpdateResponse
+      additionalProperties: false
+    connect-protocol-version:
+      type: number
+      title: Connect-Protocol-Version
+      enum:
+        - 1
+      description: Define the version of the Connect protocol
+      const: 1
+    connect-timeout-header:
+      type: number
+      title: Connect-Timeout-Ms
+      description: Define the timeout, in ms
+    connect.error:
+      type: object
+      properties:
+        code:
+          type: string
+          examples:
+            - not_found
+          enum:
+            - canceled
+            - unknown
+            - invalid_argument
+            - deadline_exceeded
+            - not_found
+            - already_exists
+            - permission_denied
+            - resource_exhausted
+            - failed_precondition
+            - aborted
+            - out_of_range
+            - unimplemented
+            - internal
+            - unavailable
+            - data_loss
+            - unauthenticated
+          description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
+        message:
+          type: string
+          description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
+        detail:
+          $ref: '#/components/schemas/google.protobuf.Any'
+      title: Connect Error
+      additionalProperties: true
+      description: 'Error type returned by Connect: https://connectrpc.com/docs/go/errors/#http-representation'
+    google.protobuf.Any:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          format: binary
+        debug:
+          type: object
+          additionalProperties: true
+      additionalProperties: true
+      description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+security: []
+tags:
+  - name: memory.v1.MemoryService
+    description: |-
+      MemoryService provides semantic memory storage and recall.
+       Canonical contract for evalops/memory, replacing hand-written structs
+       in chat (externalmemory/client.go) and ensemble (src/lib/memory/).

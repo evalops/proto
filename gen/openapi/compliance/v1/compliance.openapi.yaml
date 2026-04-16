@@ -1,0 +1,795 @@
+openapi: 3.1.0
+info:
+  title: compliance.v1
+paths:
+  /compliance.v1.ComplianceService/GenerateEvidencePackage:
+    post:
+      tags:
+        - compliance.v1.ComplianceService
+      summary: GenerateEvidencePackage
+      operationId: compliance.v1.ComplianceService.GenerateEvidencePackage
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/compliance.v1.GenerateEvidencePackageRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/compliance.v1.GenerateEvidencePackageResponse'
+  /compliance.v1.ComplianceService/DetectGaps:
+    post:
+      tags:
+        - compliance.v1.ComplianceService
+      summary: DetectGaps
+      operationId: compliance.v1.ComplianceService.DetectGaps
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/compliance.v1.DetectGapsRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/compliance.v1.DetectGapsResponse'
+  /compliance.v1.ComplianceService/GetCoverage:
+    post:
+      tags:
+        - compliance.v1.ComplianceService
+      summary: GetCoverage
+      operationId: compliance.v1.ComplianceService.GetCoverage
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/compliance.v1.GetCoverageRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/compliance.v1.GetCoverageResponse'
+  /compliance.v1.ComplianceService/ExportPackage:
+    post:
+      tags:
+        - compliance.v1.ComplianceService
+      summary: ExportPackage
+      operationId: compliance.v1.ComplianceService.ExportPackage
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/compliance.v1.ExportPackageRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/compliance.v1.ExportPackageResponse'
+components:
+  schemas:
+    approvals.v1.DecisionType:
+      type: string
+      title: DecisionType
+      enum:
+        - DECISION_TYPE_UNSPECIFIED
+        - DECISION_TYPE_APPROVED
+        - DECISION_TYPE_DENIED
+        - DECISION_TYPE_ESCALATED
+        - DECISION_TYPE_EXPIRED
+        - DECISION_TYPE_AUTO_APPROVED
+      description: DecisionType describes the outcome of an approval request.
+    approvals.v1.RiskLevel:
+      type: string
+      title: RiskLevel
+      enum:
+        - RISK_LEVEL_UNSPECIFIED
+        - RISK_LEVEL_LOW
+        - RISK_LEVEL_MEDIUM
+        - RISK_LEVEL_HIGH
+        - RISK_LEVEL_CRITICAL
+      description: RiskLevel classifies the risk of an action.
+    compliance.v1.ComplianceFramework:
+      type: string
+      title: ComplianceFramework
+      enum:
+        - COMPLIANCE_FRAMEWORK_UNSPECIFIED
+        - COMPLIANCE_FRAMEWORK_SOC2
+        - COMPLIANCE_FRAMEWORK_HIPAA
+        - COMPLIANCE_FRAMEWORK_NIST_CSF
+    compliance.v1.ExportFormat:
+      type: string
+      title: ExportFormat
+      enum:
+        - EXPORT_FORMAT_UNSPECIFIED
+        - EXPORT_FORMAT_JSON
+        - EXPORT_FORMAT_CSV
+    google.protobuf.NullValue:
+      type: string
+      title: NullValue
+      enum:
+        - NULL_VALUE
+      description: |-
+        `NullValue` is a singleton enumeration to represent the null value for the
+         `Value` type union.
+
+         The JSON representation for `NullValue` is JSON `null`.
+    governance.v1.ActionDecision:
+      type: string
+      title: ActionDecision
+      enum:
+        - ACTION_DECISION_UNSPECIFIED
+        - ACTION_DECISION_ALLOW
+        - ACTION_DECISION_DENY
+        - ACTION_DECISION_REQUIRE_APPROVAL
+      description: ActionDecision describes the governance decision for an action.
+    governance.v1.RiskLevel:
+      type: string
+      title: RiskLevel
+      enum:
+        - RISK_LEVEL_UNSPECIFIED
+        - RISK_LEVEL_LOW
+        - RISK_LEVEL_MEDIUM
+        - RISK_LEVEL_HIGH
+        - RISK_LEVEL_CRITICAL
+      description: RiskLevel classifies the risk of an action.
+    approvals.v1.ApprovalDecision:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        approvalRequestId:
+          type: string
+          title: approval_request_id
+        decision:
+          title: decision
+          $ref: '#/components/schemas/approvals.v1.DecisionType'
+        decidedBy:
+          type: string
+          title: decided_by
+        reason:
+          type: string
+          title: reason
+        decidedAt:
+          title: decided_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: ApprovalDecision
+      additionalProperties: false
+      description: ApprovalDecision records a decision made on an approval request.
+    approvals.v1.ApprovalRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        workspaceId:
+          type: string
+          title: workspace_id
+        approverUserId:
+          type: string
+          title: approver_user_id
+        agentId:
+          type: string
+          title: agent_id
+        surface:
+          type: string
+          title: surface
+        actionType:
+          type: string
+          title: action_type
+        actionPayload:
+          type: string
+          title: action_payload
+          format: byte
+        riskLevel:
+          title: risk_level
+          $ref: '#/components/schemas/approvals.v1.RiskLevel'
+        contextJson:
+          type: string
+          title: context_json
+        createdAt:
+          title: created_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: ApprovalRequest
+      additionalProperties: false
+      description: ApprovalRequest is the canonical approval request record.
+    compliance.v1.ApprovalEvidence:
+      type: object
+      properties:
+        request:
+          title: request
+          $ref: '#/components/schemas/approvals.v1.ApprovalRequest'
+        decisions:
+          type: array
+          items:
+            $ref: '#/components/schemas/approvals.v1.ApprovalDecision'
+          title: decisions
+        state:
+          type: string
+          title: state
+      title: ApprovalEvidence
+      additionalProperties: false
+    compliance.v1.ControlCoverage:
+      type: object
+      properties:
+        controlId:
+          type: string
+          title: control_id
+        controlName:
+          type: string
+          title: control_name
+        controlDescription:
+          type: string
+          title: control_description
+        evidenceCount:
+          type: integer
+          title: evidence_count
+          format: int32
+        covered:
+          type: boolean
+          title: covered
+        lastObservedAt:
+          title: last_observed_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        evidenceSourceIds:
+          type: array
+          items:
+            type: string
+          title: evidence_source_ids
+      title: ControlCoverage
+      additionalProperties: false
+    compliance.v1.DetectGapsRequest:
+      type: object
+      properties:
+        query:
+          title: query
+          $ref: '#/components/schemas/compliance.v1.EvidenceQuery'
+      title: DetectGapsRequest
+      additionalProperties: false
+    compliance.v1.DetectGapsResponse:
+      type: object
+      properties:
+        gaps:
+          type: array
+          items:
+            $ref: '#/components/schemas/compliance.v1.GapResult'
+          title: gaps
+      title: DetectGapsResponse
+      additionalProperties: false
+    compliance.v1.EvidenceItem:
+      type: object
+      properties:
+        source:
+          type: string
+          title: source
+        sourceId:
+          type: string
+          title: source_id
+        actorId:
+          type: string
+          title: actor_id
+        actorName:
+          type: string
+          title: actor_name
+        action:
+          type: string
+          title: action
+        resourceType:
+          type: string
+          title: resource_type
+        resourceId:
+          type: string
+          title: resource_id
+        outcome:
+          type: string
+          title: outcome
+        controlIds:
+          type: array
+          items:
+            type: string
+          title: control_ids
+        metadata:
+          title: metadata
+          $ref: '#/components/schemas/google.protobuf.Struct'
+        observedAt:
+          title: observed_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: EvidenceItem
+      additionalProperties: false
+    compliance.v1.EvidencePackage:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        query:
+          title: query
+          $ref: '#/components/schemas/compliance.v1.EvidenceQuery'
+        generatedAt:
+          title: generated_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        evidenceItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/compliance.v1.EvidenceItem'
+          title: evidence_items
+        controlCoverage:
+          type: array
+          items:
+            $ref: '#/components/schemas/compliance.v1.ControlCoverage'
+          title: control_coverage
+        gaps:
+          type: array
+          items:
+            $ref: '#/components/schemas/compliance.v1.GapResult'
+          title: gaps
+        retentionPolicy:
+          title: retention_policy
+          $ref: '#/components/schemas/governance.v1.RetentionPolicy'
+        safetyPolicy:
+          title: safety_policy
+          $ref: '#/components/schemas/governance.v1.SafetyPolicy'
+        approvals:
+          type: array
+          items:
+            $ref: '#/components/schemas/compliance.v1.ApprovalEvidence'
+          title: approvals
+      title: EvidencePackage
+      additionalProperties: false
+    compliance.v1.EvidenceQuery:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        organizationId:
+          type: string
+          title: organization_id
+        framework:
+          title: framework
+          $ref: '#/components/schemas/compliance.v1.ComplianceFramework'
+        startTime:
+          title: start_time
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        endTime:
+          title: end_time
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        approvalRequestIds:
+          type: array
+          items:
+            type: string
+          title: approval_request_ids
+      title: EvidenceQuery
+      additionalProperties: false
+    compliance.v1.ExportPackageRequest:
+      type: object
+      properties:
+        query:
+          title: query
+          $ref: '#/components/schemas/compliance.v1.EvidenceQuery'
+        format:
+          title: format
+          $ref: '#/components/schemas/compliance.v1.ExportFormat'
+      title: ExportPackageRequest
+      additionalProperties: false
+    compliance.v1.ExportPackageResponse:
+      type: object
+      properties:
+        content:
+          type: string
+          title: content
+          format: byte
+        contentType:
+          type: string
+          title: content_type
+        filename:
+          type: string
+          title: filename
+      title: ExportPackageResponse
+      additionalProperties: false
+    compliance.v1.GapResult:
+      type: object
+      properties:
+        controlId:
+          type: string
+          title: control_id
+        controlName:
+          type: string
+          title: control_name
+        controlDescription:
+          type: string
+          title: control_description
+        reason:
+          type: string
+          title: reason
+      title: GapResult
+      additionalProperties: false
+    compliance.v1.GenerateEvidencePackageRequest:
+      type: object
+      properties:
+        query:
+          title: query
+          $ref: '#/components/schemas/compliance.v1.EvidenceQuery'
+      title: GenerateEvidencePackageRequest
+      additionalProperties: false
+    compliance.v1.GenerateEvidencePackageResponse:
+      type: object
+      properties:
+        evidencePackage:
+          title: evidence_package
+          $ref: '#/components/schemas/compliance.v1.EvidencePackage'
+      title: GenerateEvidencePackageResponse
+      additionalProperties: false
+    compliance.v1.GetCoverageRequest:
+      type: object
+      properties:
+        query:
+          title: query
+          $ref: '#/components/schemas/compliance.v1.EvidenceQuery'
+      title: GetCoverageRequest
+      additionalProperties: false
+    compliance.v1.GetCoverageResponse:
+      type: object
+      properties:
+        controlCoverage:
+          type: array
+          items:
+            $ref: '#/components/schemas/compliance.v1.ControlCoverage'
+          title: control_coverage
+        coveredControls:
+          type: integer
+          title: covered_controls
+          format: int32
+        totalControls:
+          type: integer
+          title: total_controls
+          format: int32
+        coverageRatio:
+          type: number
+          title: coverage_ratio
+          format: double
+      title: GetCoverageResponse
+      additionalProperties: false
+    google.protobuf.ListValue:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/google.protobuf.Value'
+          title: values
+          description: Repeated field of dynamically typed values.
+      title: ListValue
+      additionalProperties: false
+      description: |-
+        `ListValue` is a wrapper around a repeated field of values.
+
+         The JSON representation for `ListValue` is JSON array.
+    google.protobuf.Struct:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/google.protobuf.Value'
+      description: |-
+        `Struct` represents a structured data value, consisting of fields
+         which map to dynamically typed values. In some languages, `Struct`
+         might be supported by a native representation. For example, in
+         scripting languages like JS a struct is represented as an
+         object. The details of that representation are described together
+         with the proto support for the language.
+
+         The JSON representation for `Struct` is JSON object.
+    google.protobuf.Struct.FieldsEntry:
+      type: object
+      properties:
+        key:
+          type: string
+          title: key
+        value:
+          title: value
+          $ref: '#/components/schemas/google.protobuf.Value'
+      title: FieldsEntry
+      additionalProperties: false
+    google.protobuf.Timestamp:
+      type: string
+      examples:
+        - 1s
+        - 1.000340012s
+      format: date-time
+      description: |-
+        A Timestamp represents a point in time independent of any time zone or local
+         calendar, encoded as a count of seconds and fractions of seconds at
+         nanosecond resolution. The count is relative to an epoch at UTC midnight on
+         January 1, 1970, in the proleptic Gregorian calendar which extends the
+         Gregorian calendar backwards to year one.
+
+         All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
+         second table is needed for interpretation, using a [24-hour linear
+         smear](https://developers.google.com/time/smear).
+
+         The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
+         restricting to that range, we ensure that we can convert to and from [RFC
+         3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+
+         # Examples
+
+         Example 1: Compute Timestamp from POSIX `time()`.
+
+             Timestamp timestamp;
+             timestamp.set_seconds(time(NULL));
+             timestamp.set_nanos(0);
+
+         Example 2: Compute Timestamp from POSIX `gettimeofday()`.
+
+             struct timeval tv;
+             gettimeofday(&tv, NULL);
+
+             Timestamp timestamp;
+             timestamp.set_seconds(tv.tv_sec);
+             timestamp.set_nanos(tv.tv_usec * 1000);
+
+         Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
+
+             FILETIME ft;
+             GetSystemTimeAsFileTime(&ft);
+             UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+
+             // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+             // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+             Timestamp timestamp;
+             timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+             timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+
+         Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
+
+             long millis = System.currentTimeMillis();
+
+             Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                 .setNanos((int) ((millis % 1000) * 1000000)).build();
+
+         Example 5: Compute Timestamp from Java `Instant.now()`.
+
+             Instant now = Instant.now();
+
+             Timestamp timestamp =
+                 Timestamp.newBuilder().setSeconds(now.getEpochSecond())
+                     .setNanos(now.getNano()).build();
+
+         Example 6: Compute Timestamp from current time in Python.
+
+             timestamp = Timestamp()
+             timestamp.GetCurrentTime()
+
+         # JSON Mapping
+
+         In JSON format, the Timestamp type is encoded as a string in the
+         [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
+         format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
+         where {year} is always expressed using four digits while {month}, {day},
+         {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+         seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+         are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
+         is required. A proto3 JSON serializer should always use UTC (as indicated by
+         "Z") when printing the Timestamp type and a proto3 JSON parser should be
+         able to accept both UTC and other timezones (as indicated by an offset).
+
+         For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
+         01:30 UTC on January 15, 2017.
+
+         In JavaScript, one can convert a Date object to this format using the
+         standard
+         [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+         method. In Python, a standard `datetime.datetime` object can be converted
+         to this format using
+         [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
+         the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
+         the Joda Time's [`ISODateTimeFormat.dateTime()`](
+         http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
+         ) to obtain a formatter capable of generating timestamps in this format.
+    google.protobuf.Value:
+      oneOf:
+        - type: "null"
+        - type: number
+        - type: string
+        - type: boolean
+        - type: array
+        - type: object
+          additionalProperties: true
+      description: |-
+        `Value` represents a dynamically typed value which can be either
+         null, a number, a string, a boolean, a recursive struct value, or a
+         list of values. A producer of value is expected to set one of these
+         variants. Absence of any variant indicates an error.
+
+         The JSON representation for `Value` is JSON value.
+    governance.v1.RetentionPolicy:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        retentionDays:
+          type: integer
+          title: retention_days
+          format: int32
+        legalHoldOverride:
+          type: boolean
+          title: legal_hold_override
+      title: RetentionPolicy
+      additionalProperties: false
+      description: RetentionPolicy defines data retention rules for a workspace.
+    governance.v1.SafetyPolicy:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/governance.v1.SafetyRule'
+          title: rules
+      title: SafetyPolicy
+      additionalProperties: false
+      description: SafetyPolicy defines the safety rules for a workspace.
+    governance.v1.SafetyRule:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        pattern:
+          type: string
+          title: pattern
+        action:
+          title: action
+          $ref: '#/components/schemas/governance.v1.ActionDecision'
+        riskLevel:
+          title: risk_level
+          $ref: '#/components/schemas/governance.v1.RiskLevel'
+        description:
+          type: string
+          title: description
+      title: SafetyRule
+      additionalProperties: false
+      description: SafetyRule is a single rule within a safety policy.
+    connect-protocol-version:
+      type: number
+      title: Connect-Protocol-Version
+      enum:
+        - 1
+      description: Define the version of the Connect protocol
+      const: 1
+    connect-timeout-header:
+      type: number
+      title: Connect-Timeout-Ms
+      description: Define the timeout, in ms
+    connect.error:
+      type: object
+      properties:
+        code:
+          type: string
+          examples:
+            - not_found
+          enum:
+            - canceled
+            - unknown
+            - invalid_argument
+            - deadline_exceeded
+            - not_found
+            - already_exists
+            - permission_denied
+            - resource_exhausted
+            - failed_precondition
+            - aborted
+            - out_of_range
+            - unimplemented
+            - internal
+            - unavailable
+            - data_loss
+            - unauthenticated
+          description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
+        message:
+          type: string
+          description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
+        detail:
+          $ref: '#/components/schemas/google.protobuf.Any'
+      title: Connect Error
+      additionalProperties: true
+      description: 'Error type returned by Connect: https://connectrpc.com/docs/go/errors/#http-representation'
+    google.protobuf.Any:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          format: binary
+        debug:
+          type: object
+          additionalProperties: true
+      additionalProperties: true
+      description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+security: []
+tags:
+  - name: compliance.v1.ComplianceService
+    description: ComplianceService generates evidence packages and control coverage views.

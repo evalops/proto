@@ -1,0 +1,869 @@
+openapi: 3.1.0
+info:
+  title: connectors.v1
+paths:
+  /connectors.v1.ConnectorService/RegisterConnection:
+    post:
+      tags:
+        - connectors.v1.ConnectorService
+      summary: RegisterConnection
+      operationId: connectors.v1.ConnectorService.RegisterConnection
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/connectors.v1.RegisterConnectionRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectors.v1.RegisterConnectionResponse'
+  /connectors.v1.ConnectorService/GetConnection:
+    post:
+      tags:
+        - connectors.v1.ConnectorService
+      summary: GetConnection
+      operationId: connectors.v1.ConnectorService.GetConnection
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/connectors.v1.GetConnectionRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectors.v1.GetConnectionResponse'
+  /connectors.v1.ConnectorService/ListConnections:
+    post:
+      tags:
+        - connectors.v1.ConnectorService
+      summary: ListConnections
+      operationId: connectors.v1.ConnectorService.ListConnections
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/connectors.v1.ListConnectionsRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectors.v1.ListConnectionsResponse'
+  /connectors.v1.ConnectorService/RefreshConnection:
+    post:
+      tags:
+        - connectors.v1.ConnectorService
+      summary: RefreshConnection
+      operationId: connectors.v1.ConnectorService.RefreshConnection
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/connectors.v1.RefreshConnectionRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectors.v1.RefreshConnectionResponse'
+  /connectors.v1.ConnectorService/RevokeConnection:
+    post:
+      tags:
+        - connectors.v1.ConnectorService
+      summary: RevokeConnection
+      operationId: connectors.v1.ConnectorService.RevokeConnection
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/connectors.v1.RevokeConnectionRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectors.v1.RevokeConnectionResponse'
+  /connectors.v1.ConnectorService/GetHealth:
+    post:
+      tags:
+        - connectors.v1.ConnectorService
+      summary: GetHealth
+      operationId: connectors.v1.ConnectorService.GetHealth
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/connectors.v1.GetHealthRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectors.v1.GetHealthResponse'
+  /connectors.v1.ConnectorService/ResolveSourceOfTruth:
+    post:
+      tags:
+        - connectors.v1.ConnectorService
+      summary: ResolveSourceOfTruth
+      operationId: connectors.v1.ConnectorService.ResolveSourceOfTruth
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/connectors.v1.ResolveSourceOfTruthRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectors.v1.ResolveSourceOfTruthResponse'
+  /connectors.v1.ConnectorService/GetDegradedReadPolicy:
+    post:
+      tags:
+        - connectors.v1.ConnectorService
+      summary: GetDegradedReadPolicy
+      operationId: connectors.v1.ConnectorService.GetDegradedReadPolicy
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/connectors.v1.GetDegradedReadPolicyRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectors.v1.GetDegradedReadPolicyResponse'
+  /connectors.v1.ConnectorService/SetSourceOfTruthPolicy:
+    post:
+      tags:
+        - connectors.v1.ConnectorService
+      summary: SetSourceOfTruthPolicy
+      operationId: connectors.v1.ConnectorService.SetSourceOfTruthPolicy
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/connectors.v1.SetSourceOfTruthPolicyRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectors.v1.SetSourceOfTruthPolicyResponse'
+  /connectors.v1.ConnectorService/GetCapabilities:
+    post:
+      tags:
+        - connectors.v1.ConnectorService
+      summary: GetCapabilities
+      operationId: connectors.v1.ConnectorService.GetCapabilities
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/connectors.v1.GetCapabilitiesRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connectors.v1.GetCapabilitiesResponse'
+components:
+  schemas:
+    connectors.v1.AuthType:
+      type: string
+      title: AuthType
+      enum:
+        - AUTH_TYPE_UNSPECIFIED
+        - AUTH_TYPE_OAUTH2
+        - AUTH_TYPE_API_KEY
+        - AUTH_TYPE_BASIC
+        - AUTH_TYPE_MTLS
+      description: AuthType describes the authentication method for a connection.
+    connectors.v1.HealthStatus:
+      type: string
+      title: HealthStatus
+      enum:
+        - HEALTH_STATUS_UNSPECIFIED
+        - HEALTH_STATUS_HEALTHY
+        - HEALTH_STATUS_DEGRADED
+        - HEALTH_STATUS_UNHEALTHY
+        - HEALTH_STATUS_UNKNOWN
+      description: HealthStatus describes the health state of a connection.
+    connectors.v1.SourceOfTruthArea:
+      type: string
+      title: SourceOfTruthArea
+      enum:
+        - SOURCE_OF_TRUTH_AREA_UNSPECIFIED
+        - SOURCE_OF_TRUTH_AREA_CRM
+        - SOURCE_OF_TRUTH_AREA_SUPPORT
+        - SOURCE_OF_TRUTH_AREA_BILLING
+        - SOURCE_OF_TRUTH_AREA_ANALYTICS
+        - SOURCE_OF_TRUTH_AREA_HRIS
+      description: SourceOfTruthArea identifies a functional domain for source-of-truth resolution.
+    connectors.v1.Connection:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        workspaceId:
+          type: string
+          title: workspace_id
+        providerId:
+          type: string
+          title: provider_id
+        displayName:
+          type: string
+          title: display_name
+        authType:
+          title: auth_type
+          $ref: '#/components/schemas/connectors.v1.AuthType'
+        scopes:
+          type: array
+          items:
+            type: string
+          title: scopes
+        healthStatus:
+          title: health_status
+          $ref: '#/components/schemas/connectors.v1.HealthStatus'
+        lastHealthyAt:
+          title: last_healthy_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        createdAt:
+          title: created_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        credentialRefs:
+          type: object
+          title: credential_refs
+          additionalProperties:
+            type: string
+            title: value
+          description: |-
+            credential_refs mirrors non-secret credential references such as vault or
+             secret-manager handles. Raw credential material must not be returned here.
+      title: Connection
+      additionalProperties: false
+      description: Connection is the canonical external integration connection record.
+    connectors.v1.Connection.CredentialRefsEntry:
+      type: object
+      properties:
+        key:
+          type: string
+          title: key
+        value:
+          type: string
+          title: value
+      title: CredentialRefsEntry
+      additionalProperties: false
+    connectors.v1.ConnectionHealth:
+      type: object
+      properties:
+        status:
+          title: status
+          $ref: '#/components/schemas/connectors.v1.HealthStatus'
+        latencyMs:
+          type: integer
+          title: latency_ms
+          format: int32
+        lastCheckAt:
+          title: last_check_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        errorMessage:
+          type: string
+          title: error_message
+      title: ConnectionHealth
+      additionalProperties: false
+      description: ConnectionHealth provides detailed health information for a connection.
+    connectors.v1.DegradedReadPolicy:
+      type: object
+      properties:
+        mode:
+          type: string
+          title: mode
+        allowedIntegrations:
+          type: array
+          items:
+            type: string
+          title: allowed_integrations
+        maxAgeMinutes:
+          type: integer
+          title: max_age_minutes
+          format: int32
+        queuePrimaryRefresh:
+          type: boolean
+          title: queue_primary_refresh
+      title: DegradedReadPolicy
+      additionalProperties: false
+      description: DegradedReadPolicy defines behavior when the primary source is unavailable.
+    connectors.v1.GetCapabilitiesRequest:
+      type: object
+      properties:
+        connectionId:
+          type: string
+          title: connection_id
+      title: GetCapabilitiesRequest
+      additionalProperties: false
+    connectors.v1.GetCapabilitiesResponse:
+      type: object
+      properties:
+        capabilities:
+          type: array
+          items:
+            type: string
+          title: capabilities
+      title: GetCapabilitiesResponse
+      additionalProperties: false
+    connectors.v1.GetConnectionRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+      title: GetConnectionRequest
+      additionalProperties: false
+    connectors.v1.GetConnectionResponse:
+      type: object
+      properties:
+        connection:
+          title: connection
+          $ref: '#/components/schemas/connectors.v1.Connection'
+      title: GetConnectionResponse
+      additionalProperties: false
+    connectors.v1.GetDegradedReadPolicyRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+      title: GetDegradedReadPolicyRequest
+      additionalProperties: false
+    connectors.v1.GetDegradedReadPolicyResponse:
+      type: object
+      properties:
+        policy:
+          title: policy
+          $ref: '#/components/schemas/connectors.v1.DegradedReadPolicy'
+      title: GetDegradedReadPolicyResponse
+      additionalProperties: false
+    connectors.v1.GetHealthRequest:
+      type: object
+      properties:
+        connectionId:
+          type: string
+          title: connection_id
+      title: GetHealthRequest
+      additionalProperties: false
+    connectors.v1.GetHealthResponse:
+      type: object
+      properties:
+        health:
+          title: health
+          $ref: '#/components/schemas/connectors.v1.ConnectionHealth'
+      title: GetHealthResponse
+      additionalProperties: false
+    connectors.v1.ListConnectionsRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        limit:
+          type: integer
+          title: limit
+          format: int32
+        offset:
+          type: integer
+          title: offset
+          format: int32
+      title: ListConnectionsRequest
+      additionalProperties: false
+    connectors.v1.ListConnectionsResponse:
+      type: object
+      properties:
+        connections:
+          type: array
+          items:
+            $ref: '#/components/schemas/connectors.v1.Connection'
+          title: connections
+        total:
+          type: integer
+          title: total
+          format: int32
+      title: ListConnectionsResponse
+      additionalProperties: false
+    connectors.v1.RefreshConnectionRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+      title: RefreshConnectionRequest
+      additionalProperties: false
+    connectors.v1.RefreshConnectionResponse:
+      type: object
+      properties:
+        connection:
+          title: connection
+          $ref: '#/components/schemas/connectors.v1.Connection'
+      title: RefreshConnectionResponse
+      additionalProperties: false
+    connectors.v1.RegisterConnectionRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        providerId:
+          type: string
+          title: provider_id
+        displayName:
+          type: string
+          title: display_name
+        authType:
+          title: auth_type
+          $ref: '#/components/schemas/connectors.v1.AuthType'
+        scopes:
+          type: array
+          items:
+            type: string
+          title: scopes
+        credentials:
+          type: object
+          title: credentials
+          additionalProperties:
+            type: string
+            title: value
+      title: RegisterConnectionRequest
+      additionalProperties: false
+    connectors.v1.RegisterConnectionRequest.CredentialsEntry:
+      type: object
+      properties:
+        key:
+          type: string
+          title: key
+        value:
+          type: string
+          title: value
+      title: CredentialsEntry
+      additionalProperties: false
+    connectors.v1.RegisterConnectionResponse:
+      type: object
+      properties:
+        connection:
+          title: connection
+          $ref: '#/components/schemas/connectors.v1.Connection'
+      title: RegisterConnectionResponse
+      additionalProperties: false
+    connectors.v1.ResolveSourceOfTruthRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        area:
+          title: area
+          $ref: '#/components/schemas/connectors.v1.SourceOfTruthArea'
+      title: ResolveSourceOfTruthRequest
+      additionalProperties: false
+    connectors.v1.ResolveSourceOfTruthResponse:
+      type: object
+      properties:
+        policy:
+          title: policy
+          $ref: '#/components/schemas/connectors.v1.SourceOfTruthPolicy'
+        primaryConnection:
+          title: primary_connection
+          $ref: '#/components/schemas/connectors.v1.Connection'
+      title: ResolveSourceOfTruthResponse
+      additionalProperties: false
+    connectors.v1.RevokeConnectionRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+      title: RevokeConnectionRequest
+      additionalProperties: false
+    connectors.v1.RevokeConnectionResponse:
+      type: object
+      title: RevokeConnectionResponse
+      additionalProperties: false
+    connectors.v1.SetSourceOfTruthPolicyRequest:
+      type: object
+      properties:
+        policy:
+          title: policy
+          $ref: '#/components/schemas/connectors.v1.SourceOfTruthPolicy'
+      title: SetSourceOfTruthPolicyRequest
+      additionalProperties: false
+    connectors.v1.SetSourceOfTruthPolicyResponse:
+      type: object
+      properties:
+        policy:
+          title: policy
+          $ref: '#/components/schemas/connectors.v1.SourceOfTruthPolicy'
+      title: SetSourceOfTruthPolicyResponse
+      additionalProperties: false
+    connectors.v1.SourceOfTruthPolicy:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        area:
+          title: area
+          $ref: '#/components/schemas/connectors.v1.SourceOfTruthArea'
+        primaryConnectionId:
+          type: string
+          title: primary_connection_id
+        fallbackConnectionId:
+          type: string
+          title: fallback_connection_id
+      title: SourceOfTruthPolicy
+      additionalProperties: false
+      description: SourceOfTruthPolicy defines which connection is authoritative for a domain.
+    google.protobuf.Timestamp:
+      type: string
+      examples:
+        - 1s
+        - 1.000340012s
+      format: date-time
+      description: |-
+        A Timestamp represents a point in time independent of any time zone or local
+         calendar, encoded as a count of seconds and fractions of seconds at
+         nanosecond resolution. The count is relative to an epoch at UTC midnight on
+         January 1, 1970, in the proleptic Gregorian calendar which extends the
+         Gregorian calendar backwards to year one.
+
+         All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
+         second table is needed for interpretation, using a [24-hour linear
+         smear](https://developers.google.com/time/smear).
+
+         The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
+         restricting to that range, we ensure that we can convert to and from [RFC
+         3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+
+         # Examples
+
+         Example 1: Compute Timestamp from POSIX `time()`.
+
+             Timestamp timestamp;
+             timestamp.set_seconds(time(NULL));
+             timestamp.set_nanos(0);
+
+         Example 2: Compute Timestamp from POSIX `gettimeofday()`.
+
+             struct timeval tv;
+             gettimeofday(&tv, NULL);
+
+             Timestamp timestamp;
+             timestamp.set_seconds(tv.tv_sec);
+             timestamp.set_nanos(tv.tv_usec * 1000);
+
+         Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
+
+             FILETIME ft;
+             GetSystemTimeAsFileTime(&ft);
+             UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+
+             // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+             // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+             Timestamp timestamp;
+             timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+             timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+
+         Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
+
+             long millis = System.currentTimeMillis();
+
+             Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                 .setNanos((int) ((millis % 1000) * 1000000)).build();
+
+         Example 5: Compute Timestamp from Java `Instant.now()`.
+
+             Instant now = Instant.now();
+
+             Timestamp timestamp =
+                 Timestamp.newBuilder().setSeconds(now.getEpochSecond())
+                     .setNanos(now.getNano()).build();
+
+         Example 6: Compute Timestamp from current time in Python.
+
+             timestamp = Timestamp()
+             timestamp.GetCurrentTime()
+
+         # JSON Mapping
+
+         In JSON format, the Timestamp type is encoded as a string in the
+         [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
+         format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
+         where {year} is always expressed using four digits while {month}, {day},
+         {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+         seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+         are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
+         is required. A proto3 JSON serializer should always use UTC (as indicated by
+         "Z") when printing the Timestamp type and a proto3 JSON parser should be
+         able to accept both UTC and other timezones (as indicated by an offset).
+
+         For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
+         01:30 UTC on January 15, 2017.
+
+         In JavaScript, one can convert a Date object to this format using the
+         standard
+         [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+         method. In Python, a standard `datetime.datetime` object can be converted
+         to this format using
+         [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
+         the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
+         the Joda Time's [`ISODateTimeFormat.dateTime()`](
+         http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
+         ) to obtain a formatter capable of generating timestamps in this format.
+    connect-protocol-version:
+      type: number
+      title: Connect-Protocol-Version
+      enum:
+        - 1
+      description: Define the version of the Connect protocol
+      const: 1
+    connect-timeout-header:
+      type: number
+      title: Connect-Timeout-Ms
+      description: Define the timeout, in ms
+    connect.error:
+      type: object
+      properties:
+        code:
+          type: string
+          examples:
+            - not_found
+          enum:
+            - canceled
+            - unknown
+            - invalid_argument
+            - deadline_exceeded
+            - not_found
+            - already_exists
+            - permission_denied
+            - resource_exhausted
+            - failed_precondition
+            - aborted
+            - out_of_range
+            - unimplemented
+            - internal
+            - unavailable
+            - data_loss
+            - unauthenticated
+          description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
+        message:
+          type: string
+          description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
+        detail:
+          $ref: '#/components/schemas/google.protobuf.Any'
+      title: Connect Error
+      additionalProperties: true
+      description: 'Error type returned by Connect: https://connectrpc.com/docs/go/errors/#http-representation'
+    google.protobuf.Any:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          format: binary
+        debug:
+          type: object
+          additionalProperties: true
+      additionalProperties: true
+      description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+security: []
+tags:
+  - name: connectors.v1.ConnectorService
+    description: ConnectorService manages external integration connections.
