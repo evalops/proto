@@ -1,0 +1,1791 @@
+openapi: 3.1.0
+info:
+  title: workflows.v1
+paths:
+  /workflows.v1.WorkflowService/CreateDefinition:
+    post:
+      tags:
+        - workflows.v1.WorkflowService
+      summary: CreateDefinition
+      description: CreateDefinition registers a new workflow definition.
+      operationId: workflows.v1.WorkflowService.CreateDefinition
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflows.v1.CreateDefinitionRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows.v1.CreateDefinitionResponse'
+  /workflows.v1.WorkflowService/GetDefinition:
+    post:
+      tags:
+        - workflows.v1.WorkflowService
+      summary: GetDefinition
+      description: GetDefinition retrieves a workflow definition by ID.
+      operationId: workflows.v1.WorkflowService.GetDefinition
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflows.v1.GetDefinitionRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows.v1.GetDefinitionResponse'
+  /workflows.v1.WorkflowService/ListDefinitions:
+    post:
+      tags:
+        - workflows.v1.WorkflowService
+      summary: ListDefinitions
+      description: ListDefinitions returns workflow definitions matching the query filters.
+      operationId: workflows.v1.WorkflowService.ListDefinitions
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflows.v1.ListDefinitionsRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows.v1.ListDefinitionsResponse'
+  /workflows.v1.WorkflowService/PublishVersion:
+    post:
+      tags:
+        - workflows.v1.WorkflowService
+      summary: PublishVersion
+      description: |-
+        PublishVersion creates an immutable version snapshot of a definition.
+         Runs always reference a specific definition version.
+      operationId: workflows.v1.WorkflowService.PublishVersion
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflows.v1.PublishVersionRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows.v1.PublishVersionResponse'
+  /workflows.v1.WorkflowService/ListVersions:
+    post:
+      tags:
+        - workflows.v1.WorkflowService
+      summary: ListVersions
+      description: ListVersions returns all published versions of a definition.
+      operationId: workflows.v1.WorkflowService.ListVersions
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflows.v1.ListVersionsRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows.v1.ListVersionsResponse'
+  /workflows.v1.WorkflowService/StartRun:
+    post:
+      tags:
+        - workflows.v1.WorkflowService
+      summary: StartRun
+      description: StartRun begins execution of a workflow definition version.
+      operationId: workflows.v1.WorkflowService.StartRun
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflows.v1.StartRunRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows.v1.StartRunResponse'
+  /workflows.v1.WorkflowService/HandleTrigger:
+    post:
+      tags:
+        - workflows.v1.WorkflowService
+      summary: HandleTrigger
+      description: |-
+        HandleTrigger processes an asynchronous workflow trigger. It starts
+         matching latest workflow versions for EVENT, WEBHOOK, or SCHEDULE
+         triggers and may also satisfy WAIT_FOR_EVENT steps when event
+         metadata is present.
+      operationId: workflows.v1.WorkflowService.HandleTrigger
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflows.v1.HandleTriggerRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows.v1.HandleTriggerResponse'
+  /workflows.v1.WorkflowService/GetRun:
+    post:
+      tags:
+        - workflows.v1.WorkflowService
+      summary: GetRun
+      description: GetRun retrieves a workflow run by ID.
+      operationId: workflows.v1.WorkflowService.GetRun
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflows.v1.GetRunRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows.v1.GetRunResponse'
+  /workflows.v1.WorkflowService/ListRuns:
+    post:
+      tags:
+        - workflows.v1.WorkflowService
+      summary: ListRuns
+      description: ListRuns returns workflow runs matching the query filters.
+      operationId: workflows.v1.WorkflowService.ListRuns
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflows.v1.ListRunsRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows.v1.ListRunsResponse'
+  /workflows.v1.WorkflowService/TransitionStep:
+    post:
+      tags:
+        - workflows.v1.WorkflowService
+      summary: TransitionStep
+      description: |-
+        TransitionStep records a step state change. Called by the orchestrator
+         as agents complete objectives, approvals resolve, or events arrive.
+      operationId: workflows.v1.WorkflowService.TransitionStep
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflows.v1.TransitionStepRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows.v1.TransitionStepResponse'
+  /workflows.v1.WorkflowService/PauseRun:
+    post:
+      tags:
+        - workflows.v1.WorkflowService
+      summary: PauseRun
+      description: |-
+        PauseRun suspends a running workflow. Steps in RUNNING state continue
+         to completion but no new steps are started.
+      operationId: workflows.v1.WorkflowService.PauseRun
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflows.v1.PauseRunRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows.v1.PauseRunResponse'
+  /workflows.v1.WorkflowService/ResumeRun:
+    post:
+      tags:
+        - workflows.v1.WorkflowService
+      summary: ResumeRun
+      description: ResumeRun resumes a paused workflow.
+      operationId: workflows.v1.WorkflowService.ResumeRun
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflows.v1.ResumeRunRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows.v1.ResumeRunResponse'
+  /workflows.v1.WorkflowService/CancelRun:
+    post:
+      tags:
+        - workflows.v1.WorkflowService
+      summary: CancelRun
+      description: |-
+        CancelRun terminates a workflow. In-progress steps are cancelled and
+         no compensation is triggered.
+      operationId: workflows.v1.WorkflowService.CancelRun
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflows.v1.CancelRunRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows.v1.CancelRunResponse'
+  /workflows.v1.WorkflowService/CompensateRun:
+    post:
+      tags:
+        - workflows.v1.WorkflowService
+      summary: CompensateRun
+      description: |-
+        CompensateRun triggers the compensation path for a failed workflow,
+         executing compensation steps in reverse topological order.
+      operationId: workflows.v1.WorkflowService.CompensateRun
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/workflows.v1.CompensateRunRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflows.v1.CompensateRunResponse'
+components:
+  schemas:
+    google.protobuf.NullValue:
+      type: string
+      title: NullValue
+      enum:
+        - NULL_VALUE
+      description: |-
+        `NullValue` is a singleton enumeration to represent the null value for the
+         `Value` type union.
+
+         The JSON representation for `NullValue` is JSON `null`.
+    workflows.v1.StepRunState:
+      type: string
+      title: StepRunState
+      enum:
+        - STEP_RUN_STATE_UNSPECIFIED
+        - STEP_RUN_STATE_PENDING
+        - STEP_RUN_STATE_RUNNING
+        - STEP_RUN_STATE_WAITING
+        - STEP_RUN_STATE_COMPLETED
+        - STEP_RUN_STATE_FAILED
+        - STEP_RUN_STATE_SKIPPED
+        - STEP_RUN_STATE_COMPENSATED
+        - STEP_RUN_STATE_CANCELLED
+      description: StepRunState describes the lifecycle state of an individual step execution.
+    workflows.v1.StepType:
+      type: string
+      title: StepType
+      enum:
+        - STEP_TYPE_UNSPECIFIED
+        - STEP_TYPE_AGENT_ACTION
+        - STEP_TYPE_APPROVAL_GATE
+        - STEP_TYPE_GOVERNANCE_CHECK
+        - STEP_TYPE_WAIT_FOR_EVENT
+        - STEP_TYPE_BRANCH
+        - STEP_TYPE_PARALLEL
+        - STEP_TYPE_NOTIFICATION
+        - STEP_TYPE_HUMAN_TASK
+      description: StepType describes the semantic kind of a workflow step.
+    workflows.v1.TriggerType:
+      type: string
+      title: TriggerType
+      enum:
+        - TRIGGER_TYPE_UNSPECIFIED
+        - TRIGGER_TYPE_EVENT
+        - TRIGGER_TYPE_SCHEDULE
+        - TRIGGER_TYPE_MANUAL
+        - TRIGGER_TYPE_WEBHOOK
+        - TRIGGER_TYPE_WORKFLOW
+      description: TriggerType describes what initiates a workflow run.
+    workflows.v1.WorkflowState:
+      type: string
+      title: WorkflowState
+      enum:
+        - WORKFLOW_STATE_UNSPECIFIED
+        - WORKFLOW_STATE_PENDING
+        - WORKFLOW_STATE_RUNNING
+        - WORKFLOW_STATE_PAUSED
+        - WORKFLOW_STATE_COMPENSATING
+        - WORKFLOW_STATE_COMPLETED
+        - WORKFLOW_STATE_FAILED
+        - WORKFLOW_STATE_CANCELLED
+      description: WorkflowState describes the lifecycle state of a workflow run.
+    google.protobuf.ListValue:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/google.protobuf.Value'
+          title: values
+          description: Repeated field of dynamically typed values.
+      title: ListValue
+      additionalProperties: false
+      description: |-
+        `ListValue` is a wrapper around a repeated field of values.
+
+         The JSON representation for `ListValue` is JSON array.
+    google.protobuf.Struct:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/google.protobuf.Value'
+      description: |-
+        `Struct` represents a structured data value, consisting of fields
+         which map to dynamically typed values. In some languages, `Struct`
+         might be supported by a native representation. For example, in
+         scripting languages like JS a struct is represented as an
+         object. The details of that representation are described together
+         with the proto support for the language.
+
+         The JSON representation for `Struct` is JSON object.
+    google.protobuf.Struct.FieldsEntry:
+      type: object
+      properties:
+        key:
+          type: string
+          title: key
+        value:
+          title: value
+          $ref: '#/components/schemas/google.protobuf.Value'
+      title: FieldsEntry
+      additionalProperties: false
+    google.protobuf.Timestamp:
+      type: string
+      examples:
+        - 1s
+        - 1.000340012s
+      format: date-time
+      description: |-
+        A Timestamp represents a point in time independent of any time zone or local
+         calendar, encoded as a count of seconds and fractions of seconds at
+         nanosecond resolution. The count is relative to an epoch at UTC midnight on
+         January 1, 1970, in the proleptic Gregorian calendar which extends the
+         Gregorian calendar backwards to year one.
+
+         All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
+         second table is needed for interpretation, using a [24-hour linear
+         smear](https://developers.google.com/time/smear).
+
+         The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
+         restricting to that range, we ensure that we can convert to and from [RFC
+         3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+
+         # Examples
+
+         Example 1: Compute Timestamp from POSIX `time()`.
+
+             Timestamp timestamp;
+             timestamp.set_seconds(time(NULL));
+             timestamp.set_nanos(0);
+
+         Example 2: Compute Timestamp from POSIX `gettimeofday()`.
+
+             struct timeval tv;
+             gettimeofday(&tv, NULL);
+
+             Timestamp timestamp;
+             timestamp.set_seconds(tv.tv_sec);
+             timestamp.set_nanos(tv.tv_usec * 1000);
+
+         Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
+
+             FILETIME ft;
+             GetSystemTimeAsFileTime(&ft);
+             UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+
+             // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+             // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+             Timestamp timestamp;
+             timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+             timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+
+         Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
+
+             long millis = System.currentTimeMillis();
+
+             Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                 .setNanos((int) ((millis % 1000) * 1000000)).build();
+
+         Example 5: Compute Timestamp from Java `Instant.now()`.
+
+             Instant now = Instant.now();
+
+             Timestamp timestamp =
+                 Timestamp.newBuilder().setSeconds(now.getEpochSecond())
+                     .setNanos(now.getNano()).build();
+
+         Example 6: Compute Timestamp from current time in Python.
+
+             timestamp = Timestamp()
+             timestamp.GetCurrentTime()
+
+         # JSON Mapping
+
+         In JSON format, the Timestamp type is encoded as a string in the
+         [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
+         format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
+         where {year} is always expressed using four digits while {month}, {day},
+         {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+         seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+         are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
+         is required. A proto3 JSON serializer should always use UTC (as indicated by
+         "Z") when printing the Timestamp type and a proto3 JSON parser should be
+         able to accept both UTC and other timezones (as indicated by an offset).
+
+         For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
+         01:30 UTC on January 15, 2017.
+
+         In JavaScript, one can convert a Date object to this format using the
+         standard
+         [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+         method. In Python, a standard `datetime.datetime` object can be converted
+         to this format using
+         [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
+         the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
+         the Joda Time's [`ISODateTimeFormat.dateTime()`](
+         http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
+         ) to obtain a formatter capable of generating timestamps in this format.
+    google.protobuf.Value:
+      oneOf:
+        - type: "null"
+        - type: number
+        - type: string
+        - type: boolean
+        - type: array
+        - type: object
+          additionalProperties: true
+      description: |-
+        `Value` represents a dynamically typed value which can be either
+         null, a number, a string, a boolean, a recursive struct value, or a
+         list of values. A producer of value is expected to set one of these
+         variants. Absence of any variant indicates an error.
+
+         The JSON representation for `Value` is JSON value.
+    workflows.v1.CancelRunRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        reason:
+          type: string
+          title: reason
+      title: CancelRunRequest
+      additionalProperties: false
+    workflows.v1.CancelRunResponse:
+      type: object
+      properties:
+        run:
+          title: run
+          $ref: '#/components/schemas/workflows.v1.WorkflowRun'
+      title: CancelRunResponse
+      additionalProperties: false
+    workflows.v1.CompensateRunRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        reason:
+          type: string
+          title: reason
+      title: CompensateRunRequest
+      additionalProperties: false
+    workflows.v1.CompensateRunResponse:
+      type: object
+      properties:
+        run:
+          title: run
+          $ref: '#/components/schemas/workflows.v1.WorkflowRun'
+      title: CompensateRunResponse
+      additionalProperties: false
+    workflows.v1.CreateDefinitionRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        name:
+          type: string
+          title: name
+        description:
+          type: string
+          title: description
+        tags:
+          type: array
+          items:
+            type: string
+          title: tags
+      title: CreateDefinitionRequest
+      additionalProperties: false
+    workflows.v1.CreateDefinitionResponse:
+      type: object
+      properties:
+        definition:
+          title: definition
+          $ref: '#/components/schemas/workflows.v1.WorkflowDefinition'
+      title: CreateDefinitionResponse
+      additionalProperties: false
+    workflows.v1.Edge:
+      type: object
+      properties:
+        fromStepId:
+          type: string
+          title: from_step_id
+        toStepId:
+          type: string
+          title: to_step_id
+        conditionExpr:
+          type: string
+          title: condition_expr
+          description: |-
+            Optional condition for BRANCH steps. When the from_step is a BRANCH,
+             each outgoing edge has a condition_expr evaluated against the step's
+             output. The first matching edge is followed.
+        label:
+          type: string
+          title: label
+          description: |-
+            label for the edge, useful for debugging and visualization
+             (e.g., "approved", "denied", "high-value", "default").
+      title: Edge
+      additionalProperties: false
+      description: Edge defines a directed connection between two steps in the DAG.
+    workflows.v1.GetDefinitionRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+      title: GetDefinitionRequest
+      additionalProperties: false
+    workflows.v1.GetDefinitionResponse:
+      type: object
+      properties:
+        definition:
+          title: definition
+          $ref: '#/components/schemas/workflows.v1.WorkflowDefinition'
+      title: GetDefinitionResponse
+      additionalProperties: false
+    workflows.v1.GetRunRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+      title: GetRunRequest
+      additionalProperties: false
+    workflows.v1.GetRunResponse:
+      type: object
+      properties:
+        run:
+          title: run
+          $ref: '#/components/schemas/workflows.v1.WorkflowRun'
+      title: GetRunResponse
+      additionalProperties: false
+    workflows.v1.HandleTriggerRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        triggerType:
+          title: trigger_type
+          description: |-
+            trigger_type selects how the request is matched against WorkflowTrigger.
+             Supported values are EVENT, WEBHOOK, and SCHEDULE.
+          $ref: '#/components/schemas/workflows.v1.TriggerType'
+        triggerEventId:
+          type: string
+          title: trigger_event_id
+          description: |-
+            trigger_event_id references the events/v1 CloudEvent.id that initiated
+             this trigger when trigger_type is EVENT or WEBHOOK.
+        eventType:
+          type: string
+          title: event_type
+          description: |-
+            For EVENT and optional WAIT_FOR_EVENT satisfaction: the
+             events/v1 CloudEvent.type value.
+        eventSubject:
+          type: string
+          title: event_subject
+          description: |-
+            For EVENT and optional WAIT_FOR_EVENT satisfaction: the
+             events/v1 CloudEvent.subject value.
+        tapProvider:
+          type: string
+          title: tap_provider
+          description: 'For WEBHOOK: the tap/v1 TapEventData.provider to match.'
+        tapEntityType:
+          type: string
+          title: tap_entity_type
+          description: 'For WEBHOOK: the tap/v1 TapEventData.entity_type to match.'
+        tapAction:
+          type: string
+          title: tap_action
+          description: 'For WEBHOOK: the tap/v1 TapEventData.action to match.'
+        cronExpr:
+          type: string
+          title: cron_expr
+          description: 'For SCHEDULE: the cron expression that fired.'
+        initiatorAgentId:
+          type: string
+          title: initiator_agent_id
+        initiatorUserId:
+          type: string
+          title: initiator_user_id
+        entityId:
+          type: string
+          title: entity_id
+        entityType:
+          type: string
+          title: entity_type
+        inputPayload:
+          title: input_payload
+          description: |-
+            input_payload is passed to newly started runs and, when event metadata
+             is present, to WAIT_FOR_EVENT steps completed by this trigger.
+          $ref: '#/components/schemas/google.protobuf.Struct'
+      title: HandleTriggerRequest
+      additionalProperties: false
+    workflows.v1.HandleTriggerResponse:
+      type: object
+      properties:
+        startedRuns:
+          type: array
+          items:
+            $ref: '#/components/schemas/workflows.v1.WorkflowRun'
+          title: started_runs
+          description: started_runs contains runs created by matching workflow triggers.
+        updatedRuns:
+          type: array
+          items:
+            $ref: '#/components/schemas/workflows.v1.WorkflowRun'
+          title: updated_runs
+          description: |-
+            updated_runs contains existing runs advanced by satisfying
+             WAIT_FOR_EVENT steps. Runs already present in started_runs should not
+             be repeated here.
+      title: HandleTriggerResponse
+      additionalProperties: false
+    workflows.v1.ListDefinitionsRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        tag:
+          type: string
+          title: tag
+        limit:
+          type: integer
+          title: limit
+          format: int32
+        offset:
+          type: integer
+          title: offset
+          format: int32
+      title: ListDefinitionsRequest
+      additionalProperties: false
+    workflows.v1.ListDefinitionsResponse:
+      type: object
+      properties:
+        definitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/workflows.v1.WorkflowDefinition'
+          title: definitions
+        total:
+          type: integer
+          title: total
+          format: int32
+      title: ListDefinitionsResponse
+      additionalProperties: false
+    workflows.v1.ListRunsRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        definitionId:
+          type: string
+          title: definition_id
+        state:
+          title: state
+          $ref: '#/components/schemas/workflows.v1.WorkflowState'
+        entityId:
+          type: string
+          title: entity_id
+        initiatorAgentId:
+          type: string
+          title: initiator_agent_id
+        limit:
+          type: integer
+          title: limit
+          format: int32
+        offset:
+          type: integer
+          title: offset
+          format: int32
+      title: ListRunsRequest
+      additionalProperties: false
+    workflows.v1.ListRunsResponse:
+      type: object
+      properties:
+        runs:
+          type: array
+          items:
+            $ref: '#/components/schemas/workflows.v1.WorkflowRun'
+          title: runs
+        total:
+          type: integer
+          title: total
+          format: int32
+      title: ListRunsResponse
+      additionalProperties: false
+    workflows.v1.ListVersionsRequest:
+      type: object
+      properties:
+        definitionId:
+          type: string
+          title: definition_id
+      title: ListVersionsRequest
+      additionalProperties: false
+    workflows.v1.ListVersionsResponse:
+      type: object
+      properties:
+        versions:
+          type: array
+          items:
+            $ref: '#/components/schemas/workflows.v1.WorkflowVersion'
+          title: versions
+      title: ListVersionsResponse
+      additionalProperties: false
+    workflows.v1.PauseRunRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        reason:
+          type: string
+          title: reason
+      title: PauseRunRequest
+      additionalProperties: false
+    workflows.v1.PauseRunResponse:
+      type: object
+      properties:
+        run:
+          title: run
+          $ref: '#/components/schemas/workflows.v1.WorkflowRun'
+      title: PauseRunResponse
+      additionalProperties: false
+    workflows.v1.PublishVersionRequest:
+      type: object
+      properties:
+        definitionId:
+          type: string
+          title: definition_id
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/workflows.v1.StepDefinition'
+          title: steps
+        edges:
+          type: array
+          items:
+            $ref: '#/components/schemas/workflows.v1.Edge'
+          title: edges
+        trigger:
+          title: trigger
+          $ref: '#/components/schemas/workflows.v1.WorkflowTrigger'
+        defaultRetryPolicy:
+          title: default_retry_policy
+          $ref: '#/components/schemas/workflows.v1.RetryPolicy'
+        timeoutSeconds:
+          type: integer
+          title: timeout_seconds
+          format: int32
+        author:
+          type: string
+          title: author
+      title: PublishVersionRequest
+      additionalProperties: false
+    workflows.v1.PublishVersionResponse:
+      type: object
+      properties:
+        version:
+          title: version
+          $ref: '#/components/schemas/workflows.v1.WorkflowVersion'
+        definition:
+          title: definition
+          $ref: '#/components/schemas/workflows.v1.WorkflowDefinition'
+      title: PublishVersionResponse
+      additionalProperties: false
+    workflows.v1.ResumeRunRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+      title: ResumeRunRequest
+      additionalProperties: false
+    workflows.v1.ResumeRunResponse:
+      type: object
+      properties:
+        run:
+          title: run
+          $ref: '#/components/schemas/workflows.v1.WorkflowRun'
+      title: ResumeRunResponse
+      additionalProperties: false
+    workflows.v1.RetryPolicy:
+      type: object
+      properties:
+        maxRetries:
+          type: integer
+          title: max_retries
+          format: int32
+        backoffSeconds:
+          type: integer
+          title: backoff_seconds
+          format: int32
+        backoffMultiplier:
+          type: number
+          title: backoff_multiplier
+          format: float
+      title: RetryPolicy
+      additionalProperties: false
+      description: |-
+        RetryPolicy controls retry behavior for steps. Mirrors the pattern in
+         objectives/v1 WakeSchedule (retry_count, max_retries, backoff_seconds).
+    workflows.v1.StartRunRequest:
+      type: object
+      properties:
+        definitionId:
+          type: string
+          title: definition_id
+        definitionVersion:
+          type: integer
+          title: definition_version
+          format: int32
+        workspaceId:
+          type: string
+          title: workspace_id
+        initiatorAgentId:
+          type: string
+          title: initiator_agent_id
+        initiatorUserId:
+          type: string
+          title: initiator_user_id
+        entityId:
+          type: string
+          title: entity_id
+        entityType:
+          type: string
+          title: entity_type
+        parentRunId:
+          type: string
+          title: parent_run_id
+        inputPayload:
+          title: input_payload
+          $ref: '#/components/schemas/google.protobuf.Struct'
+        triggerType:
+          title: trigger_type
+          description: |-
+            trigger_type allows callers to start non-manual runs explicitly.
+             When omitted, services may infer WORKFLOW from parent_run_id or
+             default to MANUAL.
+          $ref: '#/components/schemas/workflows.v1.TriggerType'
+        triggerEventId:
+          type: string
+          title: trigger_event_id
+          description: |-
+            trigger_event_id references the events/v1 CloudEvent.id that started
+             this run when trigger_type is EVENT or WEBHOOK.
+      title: StartRunRequest
+      additionalProperties: false
+    workflows.v1.StartRunResponse:
+      type: object
+      properties:
+        run:
+          title: run
+          $ref: '#/components/schemas/workflows.v1.WorkflowRun'
+      title: StartRunResponse
+      additionalProperties: false
+    workflows.v1.StepDefinition:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+          description: |-
+            Unique identifier within the workflow (e.g., "prospect", "qualify",
+             "send-outreach"). Referenced by Edge.from_step_id / Edge.to_step_id
+             and by StepRun.step_id.
+        name:
+          type: string
+          title: name
+        stepType:
+          title: step_type
+          $ref: '#/components/schemas/workflows.v1.StepType'
+        agentId:
+          type: string
+          title: agent_id
+          description: |-
+            For AGENT_ACTION: the agents/v1 Agent.id to assign, or empty for
+             capability-based routing.
+        requiredCapability:
+          type: string
+          title: required_capability
+          description: |-
+            For AGENT_ACTION: the agents/v1 capability required. Used when
+             agent_id is empty to resolve the best available agent through the
+             registry.
+        actionType:
+          type: string
+          title: action_type
+          description: |-
+            For AGENT_ACTION: the action type passed to governance/v1
+             EvaluateActionRequest.action_type and approvals/v1
+             RequestApprovalRequest.action_type.
+        riskLevel:
+          type: string
+          title: risk_level
+          description: |-
+            For APPROVAL_GATE: the approvals/v1 RiskLevel for this gate.
+             Stored as string to avoid cross-package import (e.g., "RISK_LEVEL_HIGH").
+        eventTypePattern:
+          type: string
+          title: event_type_pattern
+          description: 'For WAIT_FOR_EVENT: the events/v1 CloudEvent.type pattern to match.'
+        eventSubjectPattern:
+          type: string
+          title: event_subject_pattern
+          description: 'For WAIT_FOR_EVENT: the events/v1 CloudEvent.subject pattern to match.'
+        notificationChannel:
+          type: string
+          title: notification_channel
+          description: |-
+            For NOTIFICATION: the notifications/v1 DeliveryChannel to use.
+             Stored as string (e.g., "DELIVERY_CHANNEL_SLACK").
+        notificationTemplate:
+          type: string
+          title: notification_template
+          description: 'For NOTIFICATION: the notification template.'
+        conditionExpr:
+          type: string
+          title: condition_expr
+          description: |-
+            For BRANCH: the expression evaluated to select outgoing edges.
+             References step output fields from prior steps.
+        compensationStepId:
+          type: string
+          title: compensation_step_id
+          description: |-
+            The step to execute if this step fails and the workflow enters
+             COMPENSATING state. References another StepDefinition.id in the
+             same workflow.
+        config:
+          title: config
+          description: |-
+            Step-specific parameters. For AGENT_ACTION, passed as the objective
+             description or context. For WAIT_FOR_EVENT, may contain
+             timeout_seconds. For HUMAN_TASK, contains instructions.
+          $ref: '#/components/schemas/google.protobuf.Struct'
+        retryPolicy:
+          title: retry_policy
+          description: Per-step retry policy. Falls back to WorkflowVersion.default_retry_policy.
+          $ref: '#/components/schemas/workflows.v1.RetryPolicy'
+        timeoutSeconds:
+          type: integer
+          title: timeout_seconds
+          format: int32
+          description: Per-step timeout. Falls back to WorkflowVersion.timeout_seconds.
+        promptName:
+          type: string
+          title: prompt_name
+          description: |-
+            prompt_name references prompts/v1 Prompt.name for agent action steps.
+             Resolved through prompts/v1 Resolve at execution time using the
+             label from the agent's agents/v1 AgentConfig.prompt_bindings.
+        skillId:
+          type: string
+          title: skill_id
+          description: skill_id references skills/v1 Skill.id required for this step.
+      title: StepDefinition
+      additionalProperties: false
+      description: StepDefinition is a single node in the workflow DAG.
+    workflows.v1.StepRun:
+      type: object
+      properties:
+        stepId:
+          type: string
+          title: step_id
+          description: step_id references StepDefinition.id from the workflow version.
+        stepName:
+          type: string
+          title: step_name
+        stepType:
+          title: step_type
+          $ref: '#/components/schemas/workflows.v1.StepType'
+        state:
+          title: state
+          $ref: '#/components/schemas/workflows.v1.StepRunState'
+        objectiveId:
+          type: string
+          title: objective_id
+          description: |-
+            objective_id links to objectives/v1 Objective.id — the objective
+             created when this AGENT_ACTION step begins execution.
+        agentId:
+          type: string
+          title: agent_id
+          description: agent_id links to agents/v1 Agent.id — the agent assigned to this step.
+        delegationId:
+          type: string
+          title: delegation_id
+          description: |-
+            delegation_id links to agents/v1 DelegationRecord.id when the step
+             was fulfilled through capability-based delegation.
+        approvalRequestId:
+          type: string
+          title: approval_request_id
+          description: |-
+            approval_request_id links to approvals/v1 ApprovalRequest.id for
+             APPROVAL_GATE steps or when governance/v1 returns REQUIRE_APPROVAL.
+        governanceDecision:
+          type: string
+          title: governance_decision
+          description: |-
+            governance_decision stores the governance/v1 ActionDecision result.
+             Stored as string (e.g., "ACTION_DECISION_ALLOW").
+        eventId:
+          type: string
+          title: event_id
+          description: |-
+            event_id references the events/v1 CloudEvent.id that satisfied a
+             WAIT_FOR_EVENT step.
+        notificationId:
+          type: string
+          title: notification_id
+          description: |-
+            notification_id references notifications/v1 Notification.id for
+             NOTIFICATION steps.
+        inputPayload:
+          title: input_payload
+          description: input_payload is the data this step received from upstream steps.
+          $ref: '#/components/schemas/google.protobuf.Struct'
+        outputPayload:
+          title: output_payload
+          description: output_payload is the data this step produced for downstream steps.
+          $ref: '#/components/schemas/google.protobuf.Struct'
+        errorMessage:
+          type: string
+          title: error_message
+        retryCount:
+          type: integer
+          title: retry_count
+          format: int32
+        costUsd:
+          type: number
+          title: cost_usd
+          format: double
+          description: cost_usd is the meter/v1 cost attributed to this step's execution.
+        startedAt:
+          title: started_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        completedAt:
+          title: completed_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: StepRun
+      additionalProperties: false
+      description: StepRun is the execution record for a single step within a workflow run.
+    workflows.v1.TransitionStepRequest:
+      type: object
+      properties:
+        runId:
+          type: string
+          title: run_id
+        stepId:
+          type: string
+          title: step_id
+        state:
+          title: state
+          $ref: '#/components/schemas/workflows.v1.StepRunState'
+        objectiveId:
+          type: string
+          title: objective_id
+        agentId:
+          type: string
+          title: agent_id
+        delegationId:
+          type: string
+          title: delegation_id
+        approvalRequestId:
+          type: string
+          title: approval_request_id
+        governanceDecision:
+          type: string
+          title: governance_decision
+        eventId:
+          type: string
+          title: event_id
+        notificationId:
+          type: string
+          title: notification_id
+        outputPayload:
+          title: output_payload
+          $ref: '#/components/schemas/google.protobuf.Struct'
+        errorMessage:
+          type: string
+          title: error_message
+        costUsd:
+          type: number
+          title: cost_usd
+          format: double
+      title: TransitionStepRequest
+      additionalProperties: false
+    workflows.v1.TransitionStepResponse:
+      type: object
+      properties:
+        step:
+          title: step
+          $ref: '#/components/schemas/workflows.v1.StepRun'
+        run:
+          title: run
+          $ref: '#/components/schemas/workflows.v1.WorkflowRun'
+      title: TransitionStepResponse
+      additionalProperties: false
+    workflows.v1.WorkflowDefinition:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        workspaceId:
+          type: string
+          title: workspace_id
+        name:
+          type: string
+          title: name
+        description:
+          type: string
+          title: description
+        latestVersion:
+          type: integer
+          title: latest_version
+          format: int32
+        tags:
+          type: array
+          items:
+            type: string
+          title: tags
+        createdAt:
+          title: created_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        updatedAt:
+          title: updated_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: WorkflowDefinition
+      additionalProperties: false
+      description: WorkflowDefinition is a named, versioned process template.
+    workflows.v1.WorkflowRun:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        definitionId:
+          type: string
+          title: definition_id
+        definitionVersion:
+          type: integer
+          title: definition_version
+          format: int32
+        workspaceId:
+          type: string
+          title: workspace_id
+        state:
+          title: state
+          $ref: '#/components/schemas/workflows.v1.WorkflowState'
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/workflows.v1.StepRun'
+          title: steps
+        triggerEventId:
+          type: string
+          title: trigger_event_id
+          description: |-
+            trigger_event_id references the events/v1 CloudEvent.id that started
+             this run, if trigger_type is EVENT or WEBHOOK.
+        triggerType:
+          title: trigger_type
+          $ref: '#/components/schemas/workflows.v1.TriggerType'
+        initiatorAgentId:
+          type: string
+          title: initiator_agent_id
+          description: |-
+            initiator_agent_id references agents/v1 Agent.id if an agent started
+             this run. For MANUAL triggers, this may be empty (human-initiated).
+        initiatorUserId:
+          type: string
+          title: initiator_user_id
+          description: |-
+            initiator_user_id references identity/v1 Member.user_id if a human
+             started this run.
+        parentRunId:
+          type: string
+          title: parent_run_id
+          description: |-
+            parent_run_id references another WorkflowRun.id when this run is a
+             sub-workflow started by a WORKFLOW trigger.
+        entityId:
+          type: string
+          title: entity_id
+          description: |-
+            entity_id references entities/v1 CanonicalEntity.id — the primary
+             entity this workflow operates on (e.g., a contact being prospected,
+             a deal being closed).
+        entityType:
+          type: string
+          title: entity_type
+          description: |-
+            entity_type aligns with entities/v1 EntityType. Stored as string
+             to avoid cross-package import (e.g., "ENTITY_TYPE_DEAL").
+        inputPayload:
+          title: input_payload
+          description: input_payload is the trigger data passed to the first step.
+          $ref: '#/components/schemas/google.protobuf.Struct'
+        outputPayload:
+          title: output_payload
+          description: output_payload is the final result produced by the terminal step.
+          $ref: '#/components/schemas/google.protobuf.Struct'
+        totalCostUsd:
+          type: number
+          title: total_cost_usd
+          format: double
+          description: |-
+            total_cost_usd is the sum of meter/v1 usage records attributed to
+             this workflow run's steps.
+        startedAt:
+          title: started_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        completedAt:
+          title: completed_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: WorkflowRun
+      additionalProperties: false
+      description: WorkflowRun is a live execution of a workflow definition version.
+    workflows.v1.WorkflowRunLifecycleEvent:
+      type: object
+      properties:
+        run:
+          title: run
+          $ref: '#/components/schemas/workflows.v1.WorkflowRun'
+        operation:
+          type: string
+          title: operation
+        recordedAt:
+          title: recorded_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: WorkflowRunLifecycleEvent
+      additionalProperties: false
+      description: |-
+        WorkflowRunLifecycleEvent is the typed payload for workflow run lifecycle
+         events published on the internal event bus (for example
+         `workflows.changes.run.started` and `workflows.changes.run.completed`).
+    workflows.v1.WorkflowStepLifecycleEvent:
+      type: object
+      properties:
+        runId:
+          type: string
+          title: run_id
+        definitionId:
+          type: string
+          title: definition_id
+        definitionVersion:
+          type: integer
+          title: definition_version
+          format: int32
+        workspaceId:
+          type: string
+          title: workspace_id
+        workflowState:
+          title: workflow_state
+          $ref: '#/components/schemas/workflows.v1.WorkflowState'
+        triggerType:
+          title: trigger_type
+          $ref: '#/components/schemas/workflows.v1.TriggerType'
+        triggerEventId:
+          type: string
+          title: trigger_event_id
+        initiatorAgentId:
+          type: string
+          title: initiator_agent_id
+        initiatorUserId:
+          type: string
+          title: initiator_user_id
+        parentRunId:
+          type: string
+          title: parent_run_id
+        entityId:
+          type: string
+          title: entity_id
+        entityType:
+          type: string
+          title: entity_type
+        workflowTotalCostUsd:
+          type: number
+          title: workflow_total_cost_usd
+          format: double
+        step:
+          title: step
+          $ref: '#/components/schemas/workflows.v1.StepRun'
+        operation:
+          type: string
+          title: operation
+        recordedAt:
+          title: recorded_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: WorkflowStepLifecycleEvent
+      additionalProperties: false
+      description: |-
+        WorkflowStepLifecycleEvent is the typed payload for workflow step lifecycle
+         events published on the internal event bus (for example
+         `workflows.changes.step.started`, `workflows.changes.step.waiting`, and
+         `workflows.changes.step.completed`). It carries the specific StepRun plus the
+         run context consumers need without requiring the full WorkflowRun snapshot.
+    workflows.v1.WorkflowTrigger:
+      type: object
+      properties:
+        triggerType:
+          title: trigger_type
+          $ref: '#/components/schemas/workflows.v1.TriggerType'
+        eventType:
+          type: string
+          title: event_type
+          description: 'For EVENT: the events/v1 CloudEvent.type to match.'
+        eventSubject:
+          type: string
+          title: event_subject
+          description: 'For EVENT: the events/v1 CloudEvent.subject to match.'
+        tapProvider:
+          type: string
+          title: tap_provider
+          description: 'For WEBHOOK: the tap/v1 TapEventData.provider to match.'
+        tapEntityType:
+          type: string
+          title: tap_entity_type
+          description: 'For WEBHOOK: the tap/v1 TapEventData.entity_type to match.'
+        tapAction:
+          type: string
+          title: tap_action
+          description: 'For WEBHOOK: the tap/v1 TapEventData.action to match.'
+        cronExpr:
+          type: string
+          title: cron_expr
+          description: 'For SCHEDULE: the cron expression.'
+        parentWorkflowId:
+          type: string
+          title: parent_workflow_id
+          description: 'For WORKFLOW: the parent workflows/v1 WorkflowDefinition.id.'
+        filterExpr:
+          type: string
+          title: filter_expr
+          description: |-
+            Filter expression applied to the trigger payload. Only events matching
+             this expression start a run.
+      title: WorkflowTrigger
+      additionalProperties: false
+      description: WorkflowTrigger defines what automatically starts a workflow run.
+    workflows.v1.WorkflowVersion:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        definitionId:
+          type: string
+          title: definition_id
+        version:
+          type: integer
+          title: version
+          format: int32
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/workflows.v1.StepDefinition'
+          title: steps
+        edges:
+          type: array
+          items:
+            $ref: '#/components/schemas/workflows.v1.Edge'
+          title: edges
+        trigger:
+          title: trigger
+          $ref: '#/components/schemas/workflows.v1.WorkflowTrigger'
+        defaultRetryPolicy:
+          title: default_retry_policy
+          $ref: '#/components/schemas/workflows.v1.RetryPolicy'
+        timeoutSeconds:
+          type: integer
+          title: timeout_seconds
+          format: int32
+        author:
+          type: string
+          title: author
+        createdAt:
+          title: created_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: WorkflowVersion
+      additionalProperties: false
+      description: |-
+        WorkflowVersion is an immutable snapshot of a workflow's step graph.
+         Follows the same versioning pattern as prompts/v1 Version and
+         skills/v1 SkillVersion.
+    connect-protocol-version:
+      type: number
+      title: Connect-Protocol-Version
+      enum:
+        - 1
+      description: Define the version of the Connect protocol
+      const: 1
+    connect-timeout-header:
+      type: number
+      title: Connect-Timeout-Ms
+      description: Define the timeout, in ms
+    connect.error:
+      type: object
+      properties:
+        code:
+          type: string
+          examples:
+            - not_found
+          enum:
+            - canceled
+            - unknown
+            - invalid_argument
+            - deadline_exceeded
+            - not_found
+            - already_exists
+            - permission_denied
+            - resource_exhausted
+            - failed_precondition
+            - aborted
+            - out_of_range
+            - unimplemented
+            - internal
+            - unavailable
+            - data_loss
+            - unauthenticated
+          description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
+        message:
+          type: string
+          description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
+        detail:
+          $ref: '#/components/schemas/google.protobuf.Any'
+      title: Connect Error
+      additionalProperties: true
+      description: 'Error type returned by Connect: https://connectrpc.com/docs/go/errors/#http-representation'
+    google.protobuf.Any:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          format: binary
+        debug:
+          type: object
+          additionalProperties: true
+      additionalProperties: true
+      description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+security: []
+tags:
+  - name: workflows.v1.WorkflowService
+    description: |-
+      WorkflowService manages multi-agent process definitions and their
+       executions. A workflow composes multiple objectives/v1 Objective records
+       into a DAG with typed step semantics, approval gates, governance checks,
+       event waits, branching, and compensation.
+
+       Where objectives/v1 tracks a single agent doing a single thing, a workflow
+       tracks the process: prospect -> qualify -> outreach -> follow-up -> close.
+       Each step in a running workflow creates an objective, delegates to an agent
+       (agents/v1), and feeds its output to the next step.

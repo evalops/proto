@@ -1,0 +1,926 @@
+openapi: 3.1.0
+info:
+  title: notifications.v1
+paths:
+  /notifications.v1.NotificationService/Send:
+    post:
+      tags:
+        - notifications.v1.NotificationService
+      summary: Send
+      operationId: notifications.v1.NotificationService.Send
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/notifications.v1.SendRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notifications.v1.SendResponse'
+  /notifications.v1.NotificationService/SendBatch:
+    post:
+      tags:
+        - notifications.v1.NotificationService
+      summary: SendBatch
+      operationId: notifications.v1.NotificationService.SendBatch
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/notifications.v1.SendBatchRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notifications.v1.SendBatchResponse'
+  /notifications.v1.NotificationService/GetPreferences:
+    post:
+      tags:
+        - notifications.v1.NotificationService
+      summary: GetPreferences
+      operationId: notifications.v1.NotificationService.GetPreferences
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/notifications.v1.GetPreferencesRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notifications.v1.GetPreferencesResponse'
+  /notifications.v1.NotificationService/SetPreferences:
+    post:
+      tags:
+        - notifications.v1.NotificationService
+      summary: SetPreferences
+      operationId: notifications.v1.NotificationService.SetPreferences
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/notifications.v1.SetPreferencesRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notifications.v1.SetPreferencesResponse'
+  /notifications.v1.NotificationService/ListHistory:
+    post:
+      tags:
+        - notifications.v1.NotificationService
+      summary: ListHistory
+      operationId: notifications.v1.NotificationService.ListHistory
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/notifications.v1.ListHistoryRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notifications.v1.ListHistoryResponse'
+  /notifications.v1.NotificationService/RegisterChannel:
+    post:
+      tags:
+        - notifications.v1.NotificationService
+      summary: RegisterChannel
+      operationId: notifications.v1.NotificationService.RegisterChannel
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/notifications.v1.RegisterChannelRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notifications.v1.RegisterChannelResponse'
+  /notifications.v1.NotificationService/GetDeliveryStatus:
+    post:
+      tags:
+        - notifications.v1.NotificationService
+      summary: GetDeliveryStatus
+      operationId: notifications.v1.NotificationService.GetDeliveryStatus
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/notifications.v1.GetDeliveryStatusRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notifications.v1.GetDeliveryStatusResponse'
+  /notifications.v1.NotificationService/UpsertTemplate:
+    post:
+      tags:
+        - notifications.v1.NotificationService
+      summary: UpsertTemplate
+      operationId: notifications.v1.NotificationService.UpsertTemplate
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/notifications.v1.UpsertTemplateRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notifications.v1.UpsertTemplateResponse'
+  /notifications.v1.NotificationService/ListTemplates:
+    post:
+      tags:
+        - notifications.v1.NotificationService
+      summary: ListTemplates
+      operationId: notifications.v1.NotificationService.ListTemplates
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/notifications.v1.ListTemplatesRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/notifications.v1.ListTemplatesResponse'
+components:
+  schemas:
+    notifications.v1.DeliveryChannel:
+      type: string
+      title: DeliveryChannel
+      enum:
+        - DELIVERY_CHANNEL_UNSPECIFIED
+        - DELIVERY_CHANNEL_SLACK
+        - DELIVERY_CHANNEL_EMAIL
+        - DELIVERY_CHANNEL_WEBHOOK
+        - DELIVERY_CHANNEL_IN_APP
+      description: DeliveryChannel identifies the notification delivery channel.
+    notifications.v1.DeliveryStatus:
+      type: string
+      title: DeliveryStatus
+      enum:
+        - DELIVERY_STATUS_UNSPECIFIED
+        - DELIVERY_STATUS_PENDING
+        - DELIVERY_STATUS_SENT
+        - DELIVERY_STATUS_DELIVERED
+        - DELIVERY_STATUS_FAILED
+        - DELIVERY_STATUS_BOUNCED
+        - DELIVERY_STATUS_QUEUED
+      description: DeliveryStatus describes the delivery state of a notification.
+    notifications.v1.NotificationCategory:
+      type: string
+      title: NotificationCategory
+      enum:
+        - NOTIFICATION_CATEGORY_UNSPECIFIED
+        - NOTIFICATION_CATEGORY_APPROVAL_REQUEST
+        - NOTIFICATION_CATEGORY_BUDGET_ALERT
+        - NOTIFICATION_CATEGORY_PII_DETECTION
+        - NOTIFICATION_CATEGORY_INCIDENT
+        - NOTIFICATION_CATEGORY_REPORT
+        - NOTIFICATION_CATEGORY_INTEGRATION
+        - NOTIFICATION_CATEGORY_DIGEST
+        - NOTIFICATION_CATEGORY_GENERAL
+      description: NotificationCategory groups notifications for routing and template selection.
+    notifications.v1.Priority:
+      type: string
+      title: Priority
+      enum:
+        - PRIORITY_UNSPECIFIED
+        - PRIORITY_LOW
+        - PRIORITY_NORMAL
+        - PRIORITY_HIGH
+        - PRIORITY_URGENT
+      description: Priority describes the urgency of a notification.
+    google.protobuf.Timestamp:
+      type: string
+      examples:
+        - 1s
+        - 1.000340012s
+      format: date-time
+      description: |-
+        A Timestamp represents a point in time independent of any time zone or local
+         calendar, encoded as a count of seconds and fractions of seconds at
+         nanosecond resolution. The count is relative to an epoch at UTC midnight on
+         January 1, 1970, in the proleptic Gregorian calendar which extends the
+         Gregorian calendar backwards to year one.
+
+         All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
+         second table is needed for interpretation, using a [24-hour linear
+         smear](https://developers.google.com/time/smear).
+
+         The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
+         restricting to that range, we ensure that we can convert to and from [RFC
+         3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+
+         # Examples
+
+         Example 1: Compute Timestamp from POSIX `time()`.
+
+             Timestamp timestamp;
+             timestamp.set_seconds(time(NULL));
+             timestamp.set_nanos(0);
+
+         Example 2: Compute Timestamp from POSIX `gettimeofday()`.
+
+             struct timeval tv;
+             gettimeofday(&tv, NULL);
+
+             Timestamp timestamp;
+             timestamp.set_seconds(tv.tv_sec);
+             timestamp.set_nanos(tv.tv_usec * 1000);
+
+         Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
+
+             FILETIME ft;
+             GetSystemTimeAsFileTime(&ft);
+             UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+
+             // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+             // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+             Timestamp timestamp;
+             timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+             timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+
+         Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
+
+             long millis = System.currentTimeMillis();
+
+             Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                 .setNanos((int) ((millis % 1000) * 1000000)).build();
+
+         Example 5: Compute Timestamp from Java `Instant.now()`.
+
+             Instant now = Instant.now();
+
+             Timestamp timestamp =
+                 Timestamp.newBuilder().setSeconds(now.getEpochSecond())
+                     .setNanos(now.getNano()).build();
+
+         Example 6: Compute Timestamp from current time in Python.
+
+             timestamp = Timestamp()
+             timestamp.GetCurrentTime()
+
+         # JSON Mapping
+
+         In JSON format, the Timestamp type is encoded as a string in the
+         [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
+         format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
+         where {year} is always expressed using four digits while {month}, {day},
+         {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+         seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+         are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
+         is required. A proto3 JSON serializer should always use UTC (as indicated by
+         "Z") when printing the Timestamp type and a proto3 JSON parser should be
+         able to accept both UTC and other timezones (as indicated by an offset).
+
+         For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
+         01:30 UTC on January 15, 2017.
+
+         In JavaScript, one can convert a Date object to this format using the
+         standard
+         [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+         method. In Python, a standard `datetime.datetime` object can be converted
+         to this format using
+         [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
+         the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
+         the Joda Time's [`ISODateTimeFormat.dateTime()`](
+         http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
+         ) to obtain a formatter capable of generating timestamps in this format.
+    notifications.v1.CategoryChannelPreference:
+      type: object
+      properties:
+        category:
+          title: category
+          $ref: '#/components/schemas/notifications.v1.NotificationCategory'
+        channel:
+          title: channel
+          $ref: '#/components/schemas/notifications.v1.DeliveryChannel'
+      title: CategoryChannelPreference
+      additionalProperties: false
+      description: CategoryChannelPreference overrides delivery routing for a specific category.
+    notifications.v1.DigestPreference:
+      type: object
+      properties:
+        category:
+          title: category
+          $ref: '#/components/schemas/notifications.v1.NotificationCategory'
+        channel:
+          title: channel
+          $ref: '#/components/schemas/notifications.v1.DeliveryChannel'
+        windowSeconds:
+          type: integer
+          title: window_seconds
+          format: int32
+        enabled:
+          type: boolean
+          title: enabled
+      title: DigestPreference
+      additionalProperties: false
+      description: DigestPreference controls batching for a category/channel pair.
+    notifications.v1.EscalationRule:
+      type: object
+      properties:
+        ifUnacknowledgedAfterSeconds:
+          type: integer
+          title: if_unacknowledged_after_seconds
+          format: int32
+        escalateToChannel:
+          title: escalate_to_channel
+          $ref: '#/components/schemas/notifications.v1.DeliveryChannel'
+      title: EscalationRule
+      additionalProperties: false
+      description: EscalationRule defines automatic escalation when a notification is unacknowledged.
+    notifications.v1.GetDeliveryStatusRequest:
+      type: object
+      properties:
+        notificationId:
+          type: string
+          title: notification_id
+      title: GetDeliveryStatusRequest
+      additionalProperties: false
+    notifications.v1.GetDeliveryStatusResponse:
+      type: object
+      properties:
+        status:
+          title: status
+          $ref: '#/components/schemas/notifications.v1.DeliveryStatus'
+        lastUpdatedAt:
+          title: last_updated_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        errorMessage:
+          type: string
+          title: error_message
+      title: GetDeliveryStatusResponse
+      additionalProperties: false
+    notifications.v1.GetPreferencesRequest:
+      type: object
+      properties:
+        userId:
+          type: string
+          title: user_id
+        workspaceId:
+          type: string
+          title: workspace_id
+      title: GetPreferencesRequest
+      additionalProperties: false
+    notifications.v1.GetPreferencesResponse:
+      type: object
+      properties:
+        preferences:
+          title: preferences
+          $ref: '#/components/schemas/notifications.v1.NotificationPreferences'
+      title: GetPreferencesResponse
+      additionalProperties: false
+    notifications.v1.ListHistoryRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        recipientId:
+          type: string
+          title: recipient_id
+        limit:
+          type: integer
+          title: limit
+          format: int32
+        offset:
+          type: integer
+          title: offset
+          format: int32
+      title: ListHistoryRequest
+      additionalProperties: false
+    notifications.v1.ListHistoryResponse:
+      type: object
+      properties:
+        notifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/notifications.v1.Notification'
+          title: notifications
+        total:
+          type: integer
+          title: total
+          format: int32
+      title: ListHistoryResponse
+      additionalProperties: false
+    notifications.v1.ListTemplatesRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        category:
+          title: category
+          $ref: '#/components/schemas/notifications.v1.NotificationCategory'
+        channel:
+          title: channel
+          $ref: '#/components/schemas/notifications.v1.DeliveryChannel'
+        includeBuiltIn:
+          type: boolean
+          title: include_built_in
+      title: ListTemplatesRequest
+      additionalProperties: false
+    notifications.v1.ListTemplatesResponse:
+      type: object
+      properties:
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/notifications.v1.NotificationTemplate'
+          title: templates
+      title: ListTemplatesResponse
+      additionalProperties: false
+    notifications.v1.Notification:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        workspaceId:
+          type: string
+          title: workspace_id
+        recipientId:
+          type: string
+          title: recipient_id
+        channel:
+          title: channel
+          $ref: '#/components/schemas/notifications.v1.DeliveryChannel'
+        priority:
+          title: priority
+          $ref: '#/components/schemas/notifications.v1.Priority'
+        subject:
+          type: string
+          title: subject
+        body:
+          type: string
+          title: body
+        metadataJson:
+          type: string
+          title: metadata_json
+        deliveryStatus:
+          title: delivery_status
+          $ref: '#/components/schemas/notifications.v1.DeliveryStatus'
+        sentAt:
+          title: sent_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        deliveredAt:
+          title: delivered_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        category:
+          title: category
+          $ref: '#/components/schemas/notifications.v1.NotificationCategory'
+        templateName:
+          type: string
+          title: template_name
+      title: Notification
+      additionalProperties: false
+      description: Notification is the canonical notification record.
+    notifications.v1.NotificationPreferences:
+      type: object
+      properties:
+        userId:
+          type: string
+          title: user_id
+        workspaceId:
+          type: string
+          title: workspace_id
+        defaultChannel:
+          title: default_channel
+          $ref: '#/components/schemas/notifications.v1.DeliveryChannel'
+        quietHoursStart:
+          type: string
+          title: quiet_hours_start
+        quietHoursEnd:
+          type: string
+          title: quiet_hours_end
+        escalationRules:
+          type: array
+          items:
+            $ref: '#/components/schemas/notifications.v1.EscalationRule'
+          title: escalation_rules
+        categoryChannels:
+          type: array
+          items:
+            $ref: '#/components/schemas/notifications.v1.CategoryChannelPreference'
+          title: category_channels
+        digestPreferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/notifications.v1.DigestPreference'
+          title: digest_preferences
+      title: NotificationPreferences
+      additionalProperties: false
+      description: NotificationPreferences stores a user's notification settings.
+    notifications.v1.NotificationTemplate:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        workspaceId:
+          type: string
+          title: workspace_id
+        name:
+          type: string
+          title: name
+        category:
+          title: category
+          $ref: '#/components/schemas/notifications.v1.NotificationCategory'
+        channel:
+          title: channel
+          $ref: '#/components/schemas/notifications.v1.DeliveryChannel'
+        subjectTemplate:
+          type: string
+          title: subject_template
+        bodyTemplate:
+          type: string
+          title: body_template
+        requiredVariables:
+          type: array
+          items:
+            type: string
+          title: required_variables
+        builtIn:
+          type: boolean
+          title: built_in
+        updatedAt:
+          title: updated_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: NotificationTemplate
+      additionalProperties: false
+      description: NotificationTemplate defines a reusable notification subject/body template.
+    notifications.v1.RegisterChannelRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        channel:
+          title: channel
+          $ref: '#/components/schemas/notifications.v1.DeliveryChannel'
+        config:
+          type: object
+          title: config
+          additionalProperties:
+            type: string
+            title: value
+      title: RegisterChannelRequest
+      additionalProperties: false
+    notifications.v1.RegisterChannelRequest.ConfigEntry:
+      type: object
+      properties:
+        key:
+          type: string
+          title: key
+        value:
+          type: string
+          title: value
+      title: ConfigEntry
+      additionalProperties: false
+    notifications.v1.RegisterChannelResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          title: success
+      title: RegisterChannelResponse
+      additionalProperties: false
+    notifications.v1.SendBatchRequest:
+      type: object
+      properties:
+        notifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/notifications.v1.SendRequest'
+          title: notifications
+      title: SendBatchRequest
+      additionalProperties: false
+    notifications.v1.SendBatchResponse:
+      type: object
+      properties:
+        notifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/notifications.v1.Notification'
+          title: notifications
+        failedCount:
+          type: integer
+          title: failed_count
+          format: int32
+      title: SendBatchResponse
+      additionalProperties: false
+    notifications.v1.SendRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        recipientId:
+          type: string
+          title: recipient_id
+        channel:
+          title: channel
+          description: |-
+            If channel is unspecified, the notifications service may resolve it from
+             the recipient's preferences before falling back to a safe default.
+          $ref: '#/components/schemas/notifications.v1.DeliveryChannel'
+        priority:
+          title: priority
+          $ref: '#/components/schemas/notifications.v1.Priority'
+        subject:
+          type: string
+          title: subject
+        body:
+          type: string
+          title: body
+        metadataJson:
+          type: string
+          title: metadata_json
+        category:
+          title: category
+          $ref: '#/components/schemas/notifications.v1.NotificationCategory'
+        templateName:
+          type: string
+          title: template_name
+        templateVariablesJson:
+          type: string
+          title: template_variables_json
+      title: SendRequest
+      additionalProperties: false
+    notifications.v1.SendResponse:
+      type: object
+      properties:
+        notification:
+          title: notification
+          $ref: '#/components/schemas/notifications.v1.Notification'
+      title: SendResponse
+      additionalProperties: false
+    notifications.v1.SetPreferencesRequest:
+      type: object
+      properties:
+        preferences:
+          title: preferences
+          $ref: '#/components/schemas/notifications.v1.NotificationPreferences'
+      title: SetPreferencesRequest
+      additionalProperties: false
+    notifications.v1.SetPreferencesResponse:
+      type: object
+      properties:
+        preferences:
+          title: preferences
+          $ref: '#/components/schemas/notifications.v1.NotificationPreferences'
+      title: SetPreferencesResponse
+      additionalProperties: false
+    notifications.v1.UpsertTemplateRequest:
+      type: object
+      properties:
+        template:
+          title: template
+          $ref: '#/components/schemas/notifications.v1.NotificationTemplate'
+      title: UpsertTemplateRequest
+      additionalProperties: false
+    notifications.v1.UpsertTemplateResponse:
+      type: object
+      properties:
+        template:
+          title: template
+          $ref: '#/components/schemas/notifications.v1.NotificationTemplate'
+      title: UpsertTemplateResponse
+      additionalProperties: false
+    connect-protocol-version:
+      type: number
+      title: Connect-Protocol-Version
+      enum:
+        - 1
+      description: Define the version of the Connect protocol
+      const: 1
+    connect-timeout-header:
+      type: number
+      title: Connect-Timeout-Ms
+      description: Define the timeout, in ms
+    connect.error:
+      type: object
+      properties:
+        code:
+          type: string
+          examples:
+            - not_found
+          enum:
+            - canceled
+            - unknown
+            - invalid_argument
+            - deadline_exceeded
+            - not_found
+            - already_exists
+            - permission_denied
+            - resource_exhausted
+            - failed_precondition
+            - aborted
+            - out_of_range
+            - unimplemented
+            - internal
+            - unavailable
+            - data_loss
+            - unauthenticated
+          description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
+        message:
+          type: string
+          description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
+        detail:
+          $ref: '#/components/schemas/google.protobuf.Any'
+      title: Connect Error
+      additionalProperties: true
+      description: 'Error type returned by Connect: https://connectrpc.com/docs/go/errors/#http-representation'
+    google.protobuf.Any:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          format: binary
+        debug:
+          type: object
+          additionalProperties: true
+      additionalProperties: true
+      description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+security: []
+tags:
+  - name: notifications.v1.NotificationService
+    description: NotificationService manages delivery of notifications across channels.

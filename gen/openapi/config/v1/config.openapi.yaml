@@ -1,0 +1,46 @@
+openapi: 3.1.0
+info:
+  title: config.v1
+paths: {}
+components:
+  schemas:
+    config.v1.FeatureFlag:
+      type: object
+      properties:
+        key:
+          type: string
+          title: key
+        enabled:
+          type: boolean
+          title: enabled
+        rolloutPercent:
+          type: integer
+          title: rollout_percent
+        owners:
+          type: array
+          items:
+            type: string
+          title: owners
+        description:
+          type: string
+          title: description
+      title: FeatureFlag
+      additionalProperties: false
+      description: FeatureFlag describes a single rollout, migration, or kill-switch control.
+    config.v1.FeatureFlagSnapshot:
+      type: object
+      properties:
+        schemaVersion:
+          type: integer
+          title: schema_version
+        flags:
+          type: array
+          items:
+            $ref: '#/components/schemas/config.v1.FeatureFlag'
+          title: flags
+      title: FeatureFlagSnapshot
+      additionalProperties: false
+      description: |-
+        FeatureFlagSnapshot is the canonical shared snapshot for lightweight dynamic
+         runtime configuration and feature-flag state.
+security: []

@@ -1,0 +1,930 @@
+openapi: 3.1.0
+info:
+  title: governance.v1
+paths:
+  /governance.v1.GovernanceService/EvaluateAction:
+    post:
+      tags:
+        - governance.v1.GovernanceService
+      summary: EvaluateAction
+      operationId: governance.v1.GovernanceService.EvaluateAction
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/governance.v1.EvaluateActionRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/governance.v1.EvaluateActionResponse'
+  /governance.v1.GovernanceService/DetectPII:
+    post:
+      tags:
+        - governance.v1.GovernanceService
+      summary: DetectPII
+      operationId: governance.v1.GovernanceService.DetectPII
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/governance.v1.DetectPIIRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/governance.v1.DetectPIIResponse'
+  /governance.v1.GovernanceService/ClassifyRisk:
+    post:
+      tags:
+        - governance.v1.GovernanceService
+      summary: ClassifyRisk
+      operationId: governance.v1.GovernanceService.ClassifyRisk
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/governance.v1.ClassifyRiskRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/governance.v1.ClassifyRiskResponse'
+  /governance.v1.GovernanceService/CheckCredentialExposure:
+    post:
+      tags:
+        - governance.v1.GovernanceService
+      summary: CheckCredentialExposure
+      operationId: governance.v1.GovernanceService.CheckCredentialExposure
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/governance.v1.CheckCredentialExposureRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/governance.v1.CheckCredentialExposureResponse'
+  /governance.v1.GovernanceService/GetRetentionPolicy:
+    post:
+      tags:
+        - governance.v1.GovernanceService
+      summary: GetRetentionPolicy
+      operationId: governance.v1.GovernanceService.GetRetentionPolicy
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/governance.v1.GetRetentionPolicyRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/governance.v1.GetRetentionPolicyResponse'
+  /governance.v1.GovernanceService/SetRetentionPolicy:
+    post:
+      tags:
+        - governance.v1.GovernanceService
+      summary: SetRetentionPolicy
+      operationId: governance.v1.GovernanceService.SetRetentionPolicy
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/governance.v1.SetRetentionPolicyRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/governance.v1.SetRetentionPolicyResponse'
+  /governance.v1.GovernanceService/CheckLegalHold:
+    post:
+      tags:
+        - governance.v1.GovernanceService
+      summary: CheckLegalHold
+      operationId: governance.v1.GovernanceService.CheckLegalHold
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/governance.v1.CheckLegalHoldRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/governance.v1.CheckLegalHoldResponse'
+  /governance.v1.GovernanceService/SetLegalHold:
+    post:
+      tags:
+        - governance.v1.GovernanceService
+      summary: SetLegalHold
+      operationId: governance.v1.GovernanceService.SetLegalHold
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/governance.v1.SetLegalHoldRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/governance.v1.SetLegalHoldResponse'
+  /governance.v1.GovernanceService/GetSafetyPolicy:
+    post:
+      tags:
+        - governance.v1.GovernanceService
+      summary: GetSafetyPolicy
+      operationId: governance.v1.GovernanceService.GetSafetyPolicy
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/governance.v1.GetSafetyPolicyRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/governance.v1.GetSafetyPolicyResponse'
+  /governance.v1.GovernanceService/SetSafetyPolicy:
+    post:
+      tags:
+        - governance.v1.GovernanceService
+      summary: SetSafetyPolicy
+      operationId: governance.v1.GovernanceService.SetSafetyPolicy
+      parameters:
+        - name: Connect-Protocol-Version
+          in: header
+          required: true
+          schema:
+            $ref: '#/components/schemas/connect-protocol-version'
+        - name: Connect-Timeout-Ms
+          in: header
+          schema:
+            $ref: '#/components/schemas/connect-timeout-header'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/governance.v1.SetSafetyPolicyRequest'
+        required: true
+      responses:
+        default:
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/connect.error'
+        "200":
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/governance.v1.SetSafetyPolicyResponse'
+components:
+  schemas:
+    governance.v1.ActionDecision:
+      type: string
+      title: ActionDecision
+      enum:
+        - ACTION_DECISION_UNSPECIFIED
+        - ACTION_DECISION_ALLOW
+        - ACTION_DECISION_DENY
+        - ACTION_DECISION_REQUIRE_APPROVAL
+      description: ActionDecision describes the governance decision for an action.
+    governance.v1.PIICategory:
+      type: string
+      title: PIICategory
+      enum:
+        - PII_CATEGORY_UNSPECIFIED
+        - PII_CATEGORY_EMAIL
+        - PII_CATEGORY_PHONE
+        - PII_CATEGORY_SSN
+        - PII_CATEGORY_CREDIT_CARD
+        - PII_CATEGORY_ADDRESS
+        - PII_CATEGORY_PERSON_NAME
+        - PII_CATEGORY_CUSTOM
+      description: PIICategory identifies the category of personally identifiable information.
+    governance.v1.RiskLevel:
+      type: string
+      title: RiskLevel
+      enum:
+        - RISK_LEVEL_UNSPECIFIED
+        - RISK_LEVEL_LOW
+        - RISK_LEVEL_MEDIUM
+        - RISK_LEVEL_HIGH
+        - RISK_LEVEL_CRITICAL
+      description: RiskLevel classifies the risk of an action.
+    google.protobuf.Timestamp:
+      type: string
+      examples:
+        - 1s
+        - 1.000340012s
+      format: date-time
+      description: |-
+        A Timestamp represents a point in time independent of any time zone or local
+         calendar, encoded as a count of seconds and fractions of seconds at
+         nanosecond resolution. The count is relative to an epoch at UTC midnight on
+         January 1, 1970, in the proleptic Gregorian calendar which extends the
+         Gregorian calendar backwards to year one.
+
+         All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap
+         second table is needed for interpretation, using a [24-hour linear
+         smear](https://developers.google.com/time/smear).
+
+         The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By
+         restricting to that range, we ensure that we can convert to and from [RFC
+         3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+
+         # Examples
+
+         Example 1: Compute Timestamp from POSIX `time()`.
+
+             Timestamp timestamp;
+             timestamp.set_seconds(time(NULL));
+             timestamp.set_nanos(0);
+
+         Example 2: Compute Timestamp from POSIX `gettimeofday()`.
+
+             struct timeval tv;
+             gettimeofday(&tv, NULL);
+
+             Timestamp timestamp;
+             timestamp.set_seconds(tv.tv_sec);
+             timestamp.set_nanos(tv.tv_usec * 1000);
+
+         Example 3: Compute Timestamp from Win32 `GetSystemTimeAsFileTime()`.
+
+             FILETIME ft;
+             GetSystemTimeAsFileTime(&ft);
+             UINT64 ticks = (((UINT64)ft.dwHighDateTime) << 32) | ft.dwLowDateTime;
+
+             // A Windows tick is 100 nanoseconds. Windows epoch 1601-01-01T00:00:00Z
+             // is 11644473600 seconds before Unix epoch 1970-01-01T00:00:00Z.
+             Timestamp timestamp;
+             timestamp.set_seconds((INT64) ((ticks / 10000000) - 11644473600LL));
+             timestamp.set_nanos((INT32) ((ticks % 10000000) * 100));
+
+         Example 4: Compute Timestamp from Java `System.currentTimeMillis()`.
+
+             long millis = System.currentTimeMillis();
+
+             Timestamp timestamp = Timestamp.newBuilder().setSeconds(millis / 1000)
+                 .setNanos((int) ((millis % 1000) * 1000000)).build();
+
+         Example 5: Compute Timestamp from Java `Instant.now()`.
+
+             Instant now = Instant.now();
+
+             Timestamp timestamp =
+                 Timestamp.newBuilder().setSeconds(now.getEpochSecond())
+                     .setNanos(now.getNano()).build();
+
+         Example 6: Compute Timestamp from current time in Python.
+
+             timestamp = Timestamp()
+             timestamp.GetCurrentTime()
+
+         # JSON Mapping
+
+         In JSON format, the Timestamp type is encoded as a string in the
+         [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. That is, the
+         format is "{year}-{month}-{day}T{hour}:{min}:{sec}[.{frac_sec}]Z"
+         where {year} is always expressed using four digits while {month}, {day},
+         {hour}, {min}, and {sec} are zero-padded to two digits each. The fractional
+         seconds, which can go up to 9 digits (i.e. up to 1 nanosecond resolution),
+         are optional. The "Z" suffix indicates the timezone ("UTC"); the timezone
+         is required. A proto3 JSON serializer should always use UTC (as indicated by
+         "Z") when printing the Timestamp type and a proto3 JSON parser should be
+         able to accept both UTC and other timezones (as indicated by an offset).
+
+         For example, "2017-01-15T01:30:15.01Z" encodes 15.01 seconds past
+         01:30 UTC on January 15, 2017.
+
+         In JavaScript, one can convert a Date object to this format using the
+         standard
+         [toISOString()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString)
+         method. In Python, a standard `datetime.datetime` object can be converted
+         to this format using
+         [`strftime`](https://docs.python.org/2/library/time.html#time.strftime) with
+         the time format spec '%Y-%m-%dT%H:%M:%S.%fZ'. Likewise, in Java, one can use
+         the Joda Time's [`ISODateTimeFormat.dateTime()`](
+         http://joda-time.sourceforge.net/apidocs/org/joda/time/format/ISODateTimeFormat.html#dateTime()
+         ) to obtain a formatter capable of generating timestamps in this format.
+    governance.v1.ActionContext:
+      type: object
+      properties:
+        recordCount:
+          type:
+            - integer
+            - string
+          title: record_count
+          format: int64
+        currencyAmount:
+          type: number
+          title: currency_amount
+          format: double
+        currencyCode:
+          type: string
+          title: currency_code
+        environment:
+          type: string
+          title: environment
+        dataClassification:
+          type: string
+          title: data_classification
+      title: ActionContext
+      additionalProperties: false
+    governance.v1.ActionEvaluation:
+      type: object
+      properties:
+        decision:
+          title: decision
+          $ref: '#/components/schemas/governance.v1.ActionDecision'
+        riskLevel:
+          title: risk_level
+          $ref: '#/components/schemas/governance.v1.RiskLevel'
+        reasons:
+          type: array
+          items:
+            type: string
+          title: reasons
+        matchedRules:
+          type: array
+          items:
+            type: string
+          title: matched_rules
+        habitConfidence:
+          type: number
+          title: habit_confidence
+          format: float
+          description: |-
+            Approval habit confidence for this action pattern, if available.
+             Consumers can show "94% confidence, 2 more approvals until auto-approve"
+             to help humans understand the trust trajectory.
+        habitObservationCount:
+          type: integer
+          title: habit_observation_count
+          format: int32
+      title: ActionEvaluation
+      additionalProperties: false
+      description: ActionEvaluation is the result of evaluating an action against governance rules.
+    governance.v1.CheckCredentialExposureRequest:
+      type: object
+      properties:
+        text:
+          type: string
+          title: text
+      title: CheckCredentialExposureRequest
+      additionalProperties: false
+    governance.v1.CheckCredentialExposureResponse:
+      type: object
+      properties:
+        exposed:
+          type: boolean
+          title: exposed
+        credentialTypes:
+          type: array
+          items:
+            type: string
+          title: credential_types
+        locations:
+          type: array
+          items:
+            type: string
+          title: locations
+      title: CheckCredentialExposureResponse
+      additionalProperties: false
+    governance.v1.CheckLegalHoldRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        scope:
+          type: string
+          title: scope
+      title: CheckLegalHoldRequest
+      additionalProperties: false
+    governance.v1.CheckLegalHoldResponse:
+      type: object
+      properties:
+        held:
+          type: boolean
+          title: held
+        holds:
+          type: array
+          items:
+            $ref: '#/components/schemas/governance.v1.LegalHold'
+          title: holds
+      title: CheckLegalHoldResponse
+      additionalProperties: false
+    governance.v1.ClassifyRiskRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        actionType:
+          type: string
+          title: action_type
+        actionPayload:
+          type: string
+          title: action_payload
+          format: byte
+        context:
+          title: context
+          $ref: '#/components/schemas/governance.v1.ActionContext'
+      title: ClassifyRiskRequest
+      additionalProperties: false
+    governance.v1.ClassifyRiskResponse:
+      type: object
+      properties:
+        riskLevel:
+          title: risk_level
+          $ref: '#/components/schemas/governance.v1.RiskLevel'
+        reasons:
+          type: array
+          items:
+            type: string
+          title: reasons
+      title: ClassifyRiskResponse
+      additionalProperties: false
+    governance.v1.DetectPIIRequest:
+      type: object
+      properties:
+        text:
+          type: string
+          title: text
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/governance.v1.PIICategory'
+          title: categories
+      title: DetectPIIRequest
+      additionalProperties: false
+    governance.v1.DetectPIIResponse:
+      type: object
+      properties:
+        result:
+          title: result
+          $ref: '#/components/schemas/governance.v1.PIIDetectionResult'
+      title: DetectPIIResponse
+      additionalProperties: false
+    governance.v1.EvaluateActionRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        agentId:
+          type: string
+          title: agent_id
+        actionType:
+          type: string
+          title: action_type
+        actionPayload:
+          type: string
+          title: action_payload
+          format: byte
+        context:
+          title: context
+          $ref: '#/components/schemas/governance.v1.ActionContext'
+      title: EvaluateActionRequest
+      additionalProperties: false
+    governance.v1.EvaluateActionResponse:
+      type: object
+      properties:
+        evaluation:
+          title: evaluation
+          $ref: '#/components/schemas/governance.v1.ActionEvaluation'
+      title: EvaluateActionResponse
+      additionalProperties: false
+    governance.v1.GetRetentionPolicyRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+      title: GetRetentionPolicyRequest
+      additionalProperties: false
+    governance.v1.GetRetentionPolicyResponse:
+      type: object
+      properties:
+        policy:
+          title: policy
+          $ref: '#/components/schemas/governance.v1.RetentionPolicy'
+      title: GetRetentionPolicyResponse
+      additionalProperties: false
+    governance.v1.GetSafetyPolicyRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+      title: GetSafetyPolicyRequest
+      additionalProperties: false
+    governance.v1.GetSafetyPolicyResponse:
+      type: object
+      properties:
+        policy:
+          title: policy
+          $ref: '#/components/schemas/governance.v1.SafetyPolicy'
+      title: GetSafetyPolicyResponse
+      additionalProperties: false
+    governance.v1.LegalHold:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        workspaceId:
+          type: string
+          title: workspace_id
+        scope:
+          type: string
+          title: scope
+        reason:
+          type: string
+          title: reason
+        createdBy:
+          type: string
+          title: created_by
+        active:
+          type: boolean
+          title: active
+        createdAt:
+          title: created_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+        expiresAt:
+          title: expires_at
+          $ref: '#/components/schemas/google.protobuf.Timestamp'
+      title: LegalHold
+      additionalProperties: false
+      description: LegalHold prevents data deletion for compliance or legal reasons.
+    governance.v1.PIIDetectionResult:
+      type: object
+      properties:
+        spans:
+          type: array
+          items:
+            $ref: '#/components/schemas/governance.v1.PIISpan'
+          title: spans
+      title: PIIDetectionResult
+      additionalProperties: false
+      description: PIIDetectionResult contains all PII spans found in a text.
+    governance.v1.PIISpan:
+      type: object
+      properties:
+        startOffset:
+          type: integer
+          title: start_offset
+          format: int32
+        endOffset:
+          type: integer
+          title: end_offset
+          format: int32
+        category:
+          title: category
+          $ref: '#/components/schemas/governance.v1.PIICategory'
+        text:
+          type: string
+          title: text
+        confidence:
+          type: number
+          title: confidence
+          format: float
+      title: PIISpan
+      additionalProperties: false
+      description: PIISpan identifies a single occurrence of PII within text.
+    governance.v1.RetentionPolicy:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        retentionDays:
+          type: integer
+          title: retention_days
+          format: int32
+        legalHoldOverride:
+          type: boolean
+          title: legal_hold_override
+      title: RetentionPolicy
+      additionalProperties: false
+      description: RetentionPolicy defines data retention rules for a workspace.
+    governance.v1.SafetyPolicy:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: workspace_id
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/governance.v1.SafetyRule'
+          title: rules
+      title: SafetyPolicy
+      additionalProperties: false
+      description: SafetyPolicy defines the safety rules for a workspace.
+    governance.v1.SafetyRule:
+      type: object
+      properties:
+        id:
+          type: string
+          title: id
+        pattern:
+          type: string
+          title: pattern
+        action:
+          title: action
+          $ref: '#/components/schemas/governance.v1.ActionDecision'
+        riskLevel:
+          title: risk_level
+          $ref: '#/components/schemas/governance.v1.RiskLevel'
+        description:
+          type: string
+          title: description
+      title: SafetyRule
+      additionalProperties: false
+      description: SafetyRule is a single rule within a safety policy.
+    governance.v1.SetLegalHoldRequest:
+      type: object
+      properties:
+        hold:
+          title: hold
+          $ref: '#/components/schemas/governance.v1.LegalHold'
+      title: SetLegalHoldRequest
+      additionalProperties: false
+    governance.v1.SetLegalHoldResponse:
+      type: object
+      properties:
+        hold:
+          title: hold
+          $ref: '#/components/schemas/governance.v1.LegalHold'
+      title: SetLegalHoldResponse
+      additionalProperties: false
+    governance.v1.SetRetentionPolicyRequest:
+      type: object
+      properties:
+        policy:
+          title: policy
+          $ref: '#/components/schemas/governance.v1.RetentionPolicy'
+      title: SetRetentionPolicyRequest
+      additionalProperties: false
+    governance.v1.SetRetentionPolicyResponse:
+      type: object
+      properties:
+        policy:
+          title: policy
+          $ref: '#/components/schemas/governance.v1.RetentionPolicy'
+      title: SetRetentionPolicyResponse
+      additionalProperties: false
+    governance.v1.SetSafetyPolicyRequest:
+      type: object
+      properties:
+        policy:
+          title: policy
+          $ref: '#/components/schemas/governance.v1.SafetyPolicy'
+      title: SetSafetyPolicyRequest
+      additionalProperties: false
+    governance.v1.SetSafetyPolicyResponse:
+      type: object
+      properties:
+        policy:
+          title: policy
+          $ref: '#/components/schemas/governance.v1.SafetyPolicy'
+      title: SetSafetyPolicyResponse
+      additionalProperties: false
+    connect-protocol-version:
+      type: number
+      title: Connect-Protocol-Version
+      enum:
+        - 1
+      description: Define the version of the Connect protocol
+      const: 1
+    connect-timeout-header:
+      type: number
+      title: Connect-Timeout-Ms
+      description: Define the timeout, in ms
+    connect.error:
+      type: object
+      properties:
+        code:
+          type: string
+          examples:
+            - not_found
+          enum:
+            - canceled
+            - unknown
+            - invalid_argument
+            - deadline_exceeded
+            - not_found
+            - already_exists
+            - permission_denied
+            - resource_exhausted
+            - failed_precondition
+            - aborted
+            - out_of_range
+            - unimplemented
+            - internal
+            - unavailable
+            - data_loss
+            - unauthenticated
+          description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
+        message:
+          type: string
+          description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
+        detail:
+          $ref: '#/components/schemas/google.protobuf.Any'
+      title: Connect Error
+      additionalProperties: true
+      description: 'Error type returned by Connect: https://connectrpc.com/docs/go/errors/#http-representation'
+    google.protobuf.Any:
+      type: object
+      properties:
+        type:
+          type: string
+        value:
+          type: string
+          format: binary
+        debug:
+          type: object
+          additionalProperties: true
+      additionalProperties: true
+      description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+security: []
+tags:
+  - name: governance.v1.GovernanceService
+    description: GovernanceService enforces safety, compliance, and data governance policies.
