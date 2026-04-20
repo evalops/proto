@@ -30,6 +30,26 @@
       "types": "./gen/dist/compliance/v1/compliance_pb.d.ts",
       "import": "./gen/dist/compliance/v1/compliance_pb.js"
     },
+    "./common/v1/analytics_pb": {
+      "types": "./gen/dist/common/v1/analytics_pb.d.ts",
+      "import": "./gen/dist/common/v1/analytics_pb.js"
+    },
+    "./common/v1/authz_pb": {
+      "types": "./gen/dist/common/v1/authz_pb.d.ts",
+      "import": "./gen/dist/common/v1/authz_pb.js"
+    },
+    "./common/v1/delivery_pb": {
+      "types": "./gen/dist/common/v1/delivery_pb.d.ts",
+      "import": "./gen/dist/common/v1/delivery_pb.js"
+    },
+    "./common/v1/entity_pb": {
+      "types": "./gen/dist/common/v1/entity_pb.d.ts",
+      "import": "./gen/dist/common/v1/entity_pb.js"
+    },
+    "./common/v1/risk_pb": {
+      "types": "./gen/dist/common/v1/risk_pb.d.ts",
+      "import": "./gen/dist/common/v1/risk_pb.js"
+    },
     "./config/v1/config_pb": {
       "types": "./gen/dist/config/v1/config_pb.d.ts",
       "import": "./gen/dist/config/v1/config_pb.js"
