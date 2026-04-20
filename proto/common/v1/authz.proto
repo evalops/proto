@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package common.v1;
+
+option go_package = "github.com/evalops/proto/gen/go/common/v1;commonv1";
+
+import "common/v1/risk.proto";
+import "google/protobuf/descriptor.proto";
+
+// required_scopes declares the authorization scopes required to invoke an RPC.
+extend google.protobuf.MethodOptions {
+  repeated string required_scopes = 51001;
+}
+
+// workspace_scope_field names the request string field that must match the caller workspace.
+extend google.protobuf.MethodOptions {
+  string workspace_scope_field = 51002;
+}
+
+// risk_level classifies the operational risk of invoking an RPC.
+extend google.protobuf.MethodOptions {
+  RiskLevel risk_level = 51003;
+}
+
+// public marks an RPC that intentionally bypasses authenticated principal checks.
+extend google.protobuf.MethodOptions {
+  bool public = 51004;
+}
