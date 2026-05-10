@@ -1,5 +1,14 @@
 # Proto
 
+> Deprecated standalone upstream.
+>
+> EvalOps protobuf source now lives in
+> [`evalops/platform`](https://github.com/evalops/platform) under `proto/`,
+> with generated SDKs under `gen/`. Start contract changes in Platform and
+> reference [`evalops/platform#1768`](https://github.com/evalops/platform/issues/1768)
+> when retiring the old standalone path. This repository is kept temporarily
+> for package compatibility and history during the monorepo transition.
+
 `proto` is the canonical home for cross-service protobuf definitions in the
 EvalOps ecosystem.
 
