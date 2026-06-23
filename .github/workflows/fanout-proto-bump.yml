@@ -41,7 +41,7 @@ jobs:
           - prompts
           - siphon
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Trigger proto bump in ${{ matrix.repo }}
         env:
