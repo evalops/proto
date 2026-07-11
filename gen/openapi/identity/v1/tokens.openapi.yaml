@@ -268,6 +268,9 @@ components:
         issuedAt:
           title: issued_at
           $ref: '#/components/schemas/google.protobuf.Timestamp'
+        workspaceId:
+          type: string
+          title: workspace_id
       title: IntrospectResponse
       additionalProperties: false
       description: |-
@@ -346,6 +349,9 @@ components:
           type: integer
           title: ttl_seconds
           format: int32
+        workspaceId:
+          type: string
+          title: workspace_id
       title: IssueServiceTokenRequest
       additionalProperties: false
     identity.v1.IssueServiceTokenResponse:
