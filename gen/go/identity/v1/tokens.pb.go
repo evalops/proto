@@ -87,6 +87,7 @@ type IntrospectResponse struct {
 	Name           string                 `protobuf:"bytes,13,opt,name=name,proto3" json:"name,omitempty"`
 	ExpiresAt      *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=expires_at,json=expiresAt,proto3" json:"expires_at,omitempty"`
 	IssuedAt       *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=issued_at,json=issuedAt,proto3" json:"issued_at,omitempty"`
+	WorkspaceId    string                 `protobuf:"bytes,27,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -226,12 +227,20 @@ func (x *IntrospectResponse) GetIssuedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+func (x *IntrospectResponse) GetWorkspaceId() string {
+	if x != nil {
+		return x.WorkspaceId
+	}
+	return ""
+}
+
 type IssueServiceTokenRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	Service        string                 `protobuf:"bytes,1,opt,name=service,proto3" json:"service,omitempty"`
 	OrganizationId string                 `protobuf:"bytes,2,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
 	Scopes         []string               `protobuf:"bytes,3,rep,name=scopes,proto3" json:"scopes,omitempty"`
 	TtlSeconds     int32                  `protobuf:"varint,4,opt,name=ttl_seconds,json=ttlSeconds,proto3" json:"ttl_seconds,omitempty"`
+	WorkspaceId    string                 `protobuf:"bytes,5,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"`
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
@@ -292,6 +301,13 @@ func (x *IssueServiceTokenRequest) GetTtlSeconds() int32 {
 		return x.TtlSeconds
 	}
 	return 0
+}
+
+func (x *IssueServiceTokenRequest) GetWorkspaceId() string {
+	if x != nil {
+		return x.WorkspaceId
+	}
+	return ""
 }
 
 type IssueServiceTokenResponse struct {
@@ -502,7 +518,7 @@ const file_identity_v1_tokens_proto_rawDesc = "" +
 	"\n" +
 	"\x18identity/v1/tokens.proto\x12\videntity.v1\x1a\x1fgoogle/protobuf/timestamp.proto\")\n" +
 	"\x11IntrospectRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"\xf5\x03\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"\x98\x04\n" +
 	"\x12IntrospectResponse\x12\x16\n" +
 	"\x06active\x18\x01 \x01(\bR\x06active\x12\x18\n" +
 	"\asubject\x18\x02 \x01(\tR\asubject\x12\x1d\n" +
@@ -522,13 +538,15 @@ const file_identity_v1_tokens_proto_rawDesc = "" +
 	"\x04name\x18\r \x01(\tR\x04name\x129\n" +
 	"\n" +
 	"expires_at\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\texpiresAt\x127\n" +
-	"\tissued_at\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\bissuedAt\"\x96\x01\n" +
+	"\tissued_at\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\bissuedAt\x12!\n" +
+	"\fworkspace_id\x18\x1b \x01(\tR\vworkspaceId\"\xb9\x01\n" +
 	"\x18IssueServiceTokenRequest\x12\x18\n" +
 	"\aservice\x18\x01 \x01(\tR\aservice\x12'\n" +
 	"\x0forganization_id\x18\x02 \x01(\tR\x0eorganizationId\x12\x16\n" +
 	"\x06scopes\x18\x03 \x03(\tR\x06scopes\x12\x1f\n" +
 	"\vttl_seconds\x18\x04 \x01(\x05R\n" +
-	"ttlSeconds\"l\n" +
+	"ttlSeconds\x12!\n" +
+	"\fworkspace_id\x18\x05 \x01(\tR\vworkspaceId\"l\n" +
 	"\x19IssueServiceTokenResponse\x12\x14\n" +
 	"\x05token\x18\x01 \x01(\tR\x05token\x129\n" +
 	"\n" +
